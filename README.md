@@ -1,2 +1,2 @@
 # datanator_frontend
-Cointains the react app that runs www.datanator.info
+Cointains the react app that runs datanator.info
