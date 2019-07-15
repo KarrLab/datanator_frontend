@@ -1,0 +1,1 @@
+web: cd ./datanator_frontend && npm install && npm run start
