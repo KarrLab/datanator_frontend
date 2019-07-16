@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './Home.css';
-import {Logo} from '~/components/Logo/Logo'
+import {Logo} from '~/components/Logo/';
 import {Layout} from 'antd';
 //import 'antd/dist/antd.css'
 
