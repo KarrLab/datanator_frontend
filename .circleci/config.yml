@@ -21,7 +21,7 @@ jobs:
       - checkout
 
       #Install python 3 for Karr Lab Utils
-      -run: 
+      - run: 
           name: Install python
           command: apt-get install python3 pip3
 
@@ -37,10 +37,6 @@ jobs:
       - run:
           name: Install package configuration files including credentials
           command: karr_lab_build_utils3 download-install-package-config-files      
-      -run: 
-        name: "Install Karr Lab build utils"
-        command: 
-
       # Download and cache dependencies
       - restore_cache:
           keys:
