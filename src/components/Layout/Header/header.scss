@@ -1,0 +1,46 @@
+.navbar{
+    height: 8vh;
+    display:flex;
+    
+}
+.navgroupleft{
+    height: 100%;
+    margin:0; 
+}
+
+.navgroupright{
+    height: 100%;
+    margin:0; 
+}
+
+.centernavgroup{
+    flex: 1;
+    height: 100%;
+    padding: 1% 10%;
+    margin:0 0;
+}
+.centernavgroup .searchbar{
+    width: 100%;
+    height: 100%;
+    align-self: center;
+}
+.navbutton{
+    text-align: center;
+    padding-top: 0;
+    padding-bottom: 0;
+    height: 100%;
+}
+
+
+.navbutton .bp3-button-text{
+    font-size: large;
+}
+.navbutton .bp3-icon{
+    height:100%;
+}
+.navbutton .bp3-icon svg{
+    height:100%;
+}
+.logo{
+    height: 100%;
+}
