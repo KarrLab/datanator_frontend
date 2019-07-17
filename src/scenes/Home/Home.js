@@ -1,50 +1,50 @@
-import React, { Component } from 'react'
-import './Home.css';
-import {Logo} from '~/components/Logo/';
-import {Layout} from 'antd';
+import React, { Component } from "react";
+import "./Home.css";
+import {Logo} from "~/components/Logo/";
+import {Layout} from "antd";
 //import 'antd/dist/antd.css'
 
 
 class Home extends Component {
-  constructor(props) {
+    constructor(props) {
     
-      super(props)
+        super(props);
 
-      this.state = {
-      }
-  }
+        this.state = {
+        };
+    }
  
-  render() {
-    const { Header, Footer, Sider, Content } = Layout;
+    render() {
+        const { Header, Footer, Sider, Content } = Layout;
 
-    return (
-    <div>
-    <Layout className="Page">
-        <Header className="Header">
-          {<Logo/>}
-        </Header>
-      <Layout>
-      <Sider className="Sider">
+        return (
+            <div>
+                <Layout className="Page">
+                    <Header className="Header">
+                        {<Logo/>}
+                    </Header>
+                    <Layout>
+                        <Sider className="Sider">
         Side 
-      </Sider>
-        <Content className="Content">
-        <h1>Content</h1>
-        <p>test</p>
-        <p>test</p>
-        <p>test</p>
-        <p>test</p>
-        <p>test</p>
-        </Content>
-      </Layout>
+                        </Sider>
+                        <Content className="Content">
+                            <h1>Content</h1>
+                            <p>test</p>
+                            <p>test</p>
+                            <p>test</p>
+                            <p>test</p>
+                            <p>test</p>
+                        </Content>
+                    </Layout>
         
-        <Footer className="Footer">
+                    <Footer className="Footer">
           Footer
-          </Footer>
-    </Layout>             
-    </div>
-          )
-      }
+                    </Footer>
+                </Layout>             
+            </div>
+        );
+    }
       
-  }
+}
 
-export {Home}
+export {Home};
