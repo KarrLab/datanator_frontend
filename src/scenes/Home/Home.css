@@ -1,29 +1,19 @@
-.Page{
-  min-height:100vh
+.main{
+  min-height: 80vh
+}
+
+.sider {
+  background-color: gray
   
 }
 
-.Sider {
-  //min-height:84vh;
-  background-color: #ebca13;
+.header {
+  
 }
-
-.Header {
-  text-align: center;
-  background-color: blue;
-  //min-height: 10vh;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-.Content{
-  //min-height:84vh;
-  background-color: #e00303;
+.content{
+ 
 
 }
-.Footer{
-  //min-height: 5vh;
-  background-color: green;
+.footer{
 }
 

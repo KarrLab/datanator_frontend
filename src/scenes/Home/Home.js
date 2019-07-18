@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import "./Home.css";
-import {Logo} from "~/components/Logo/";
 import {Layout} from "antd";
-//import 'antd/dist/antd.css'
-
+import {TopBar} from "~/components/TopBar/TopBar";
+import {BottomBar} from "~/components/BottomBar/BottomBar";
+import {SideBar} from "~/components/SideBar/SideBar";
+import {Main} from "~/components/Main/Main";
 
 class Home extends Component {
     constructor(props) {
@@ -15,33 +16,20 @@ class Home extends Component {
     }
  
     render() {
-        const { Header, Footer, Sider, Content } = Layout;
 
         return (
-            <div>
-                <Layout className="Page">
-                    <Header className="Header">
-                        {<Logo/>}
-                    </Header>
-                    <Layout>
-                        <Sider className="Sider">
-        Side 
-                        </Sider>
-                        <Content className="Content">
-                            <h1>Content</h1>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                            <p>test</p>
-                        </Content>
+            <Layout className="page">
+                <TopBar className="header"/> 
+                <Layout>
+                    <SideBar className="sider"/>
+                    <Layout className="main">
+                        <Main className="content"/>
                     </Layout>
+                </Layout>
+                <BottomBar className="footer"/>
+            </Layout>
         
-                    <Footer className="Footer">
-          Footer
-                    </Footer>
-                </Layout>             
-            </div>
+          
         );
     }
       

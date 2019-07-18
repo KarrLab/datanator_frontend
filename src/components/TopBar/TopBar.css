@@ -1,0 +1,21 @@
+.header{
+    height: 10vh;
+    display:flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  .logo{
+    padding: 0 0 0.7rem 0;
+    height:100%
+  }
+  .logo img{
+    height: 100%;
+  }
+  .logo-menu-spacer{
+    flex:1
+  }
+  .header-menu{
+    line-height: 500%;
+
+  }
