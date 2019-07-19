@@ -5,7 +5,7 @@ import "./TopBar.css";
 import {Layout, Menu} from 'antd';
 const {Header} = Layout;
 
-function TopBar(props) {
+const TopBar = (props) => {
     return (
         <Header className="header">
             <div className="logo"> <a href="/"> <img src={logo} className= "logo-image" alt="Datanator Logo"/> </a> </div>
@@ -21,5 +21,5 @@ function TopBar(props) {
             </Menu>
         </Header>
     );
-}
+};
 export {TopBar}; 

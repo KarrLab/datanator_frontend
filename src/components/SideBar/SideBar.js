@@ -6,7 +6,7 @@ import './SideBar.css';
 const{Sider}= Layout;
 const{SubMenu} = Menu;
 
-function SideBar(props){
+const  SideBar = (props) => {
     return(
         <Sider className="sider"
             breakpoint="lg"
@@ -14,5 +14,5 @@ function SideBar(props){
             <SideMenu/>
         </Sider>
     );
-}
+};
 export {SideBar};
