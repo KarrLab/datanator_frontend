@@ -1,10 +1,9 @@
 import React from "react";
-import{Layout, Menu, Icon} from 'antd';
-import {SideMenu} from './SideMenu/SideMenu';
-import './SideBar.css';
+import{Layout, Menu} from "antd";
+import {SideMenu} from "./SideMenu/SideMenu";
+import "./SideBar.css";
 
 const{Sider}= Layout;
-const{SubMenu} = Menu;
 
 const  SideBar = (props) => {
     return(

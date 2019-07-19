@@ -18,4 +18,4 @@ class SideButton extends Component {
     )
     }
 }
-export{SideButton}
+export{SideButton};
