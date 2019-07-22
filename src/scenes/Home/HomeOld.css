@@ -1,0 +1,24 @@
+.container {
+  margin-top: 50;
+}
+
+.container .menu{
+  margin-top: 30px;
+  text-align: center;
+  display:flex; 
+  flex-direction:row;
+  flex-wrap: wrap;
+  flex-flow: row wrap
+
+}
+
+
+.container .menu .molecule{
+  text-align: center;
+  
+}
+
+.container .menu .reaction{
+  text-align: center;
+  
+}

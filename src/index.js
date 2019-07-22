@@ -13,13 +13,16 @@ import "../node_modules/@blueprintjs/core/lib/scss/variables.scss";
 
 //Website pages (scenes) 
 import {Home} from "~/scenes/Home/Home";
+import {HomeOld} from "~/scenes/Home/HomeOld";
 import {Search} from "~/scenes/Search/Search";
+import {Metabconcs} from "~/scenes/Results/Metabconcs";
 
 function SiteRouter(){
     return(
         <Router> 
-            <Route path="/" exact component={Home}/>
+            <Route path="/" exact component={HomeOld}/>
             <Route path="/search/"component={Search}/>
+            <Route path="/metabconcs/:molecule/:organism/:abstract?/"component={Search}/>
         </Router>
     );
 }
