@@ -16,7 +16,7 @@ import "../node_modules/@blueprintjs/core/lib/scss/variables.scss";
 import {Home} from "~/scenes/Home/Home";
 import HomeOld from "~/scenes/Home/HomeOld";
 import Search from "~/scenes/Search/Search";
-import {Metabconcs} from "~/scenes/Results/Metabconcs";
+import Metabconcs from "~/scenes/Results/Metabconcs";
 
 
 
@@ -25,7 +25,7 @@ function SiteRouter(){
         <Router> 
             <Route path="/" exact component={HomeOld}/>
             <Route path="/search/"component={Search}/>
-            <Route path="/metabconcs/:molecule/:organism/:abstract?/"component={Search}/>
+            <Route path="/metabconcs/:molecule/:organism/:abstract?/"component={Metabconcs}/>
         </Router>
     );
 }
