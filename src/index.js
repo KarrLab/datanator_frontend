@@ -2,6 +2,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+//import { BrowserHistory} from "~/../node_modules/react-router-dom/lib/BrowserHistory";
 
 //Styles for @Blueprint JS
 import "./index.css";
@@ -13,9 +14,11 @@ import "../node_modules/@blueprintjs/core/lib/scss/variables.scss";
 
 //Website pages (scenes) 
 import {Home} from "~/scenes/Home/Home";
-import {HomeOld} from "~/scenes/Home/HomeOld";
-import {Search} from "~/scenes/Search/Search";
+import HomeOld from "~/scenes/Home/HomeOld";
+import Search from "~/scenes/Search/Search";
 import {Metabconcs} from "~/scenes/Results/Metabconcs";
+
+
 
 function SiteRouter(){
     return(

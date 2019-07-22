@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import {H1, H2, H3, H4, H5, H6, OL, UL} from "@blueprintjs/core";
 import {Default} from "~/Layouts/Default/Default";
 import {SearchField} from "~/components/SearchField";
+import { withRouter } from "react-router";
+
 class Search extends Component {
     constructor(props) {
     
@@ -27,4 +29,4 @@ class Search extends Component {
       
 }
 
-export {Search};
+export default withRouter(Search);

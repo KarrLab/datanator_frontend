@@ -4,7 +4,7 @@
 import React, {
 	Component
 } from 'react';
-import '~/../node_modules/bootstrap/dist/css/bootstrap.min.css';
+//import '~/../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import ReactDOM from 'react-dom';
 import ConcSearch from '~/components/SearchField/ConcSearch.js';
 import { PropTypes } from 'react'
@@ -34,6 +34,11 @@ class HomeOld extends Component {
 		this.setState({enactSearch:true})
 
 	}
+
+	componentDidMount(){
+		this.props.history.push("/");
+	}
+
 
 
 
@@ -75,4 +80,4 @@ class HomeOld extends Component {
   }
 }
 
-export {HomeOld};
+export default withRouter(HomeOld);

@@ -1,15 +1,17 @@
 import React, {
 	Component
 } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 import BootstrapTable from 'react-bootstrap-table-next';
 import axios from 'axios';
 import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
-import filterFactory, {
+/*import filterFactory, {
 	textFilter,
 	selectFilter
 } from 'react-bootstrap-table2-filter';
+*/
 import ReactDOM from 'react-dom';
+
 import {
 	Input,
 	Col,
@@ -21,7 +23,8 @@ import {
 	Cascade,
 	Button
 } from 'antd';
-import 'antd/dist/antd.css';
+
+//import 'antd/dist/antd.css';
 import { PropTypes } from 'react'
 import { withRouter } from "react-router";
 
