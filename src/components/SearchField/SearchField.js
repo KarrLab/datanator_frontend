@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {ControlGroup, Button} from "@blueprintjs/core";
 
 import {MetaboliteInput} from "./MetaboliteInput";
+import { OrganismInput } from "./OrganismInput";
 
 class SearchField extends Component {
     constructor(props) {
@@ -19,10 +20,12 @@ class SearchField extends Component {
         return(
             <ControlGroup fill='true'>
                 <MetaboliteInput/>
+                <OrganismInput/>
                 <Button icon="filter">Filter</Button>
             </ControlGroup>
         );
         
 
     }}
+
 export {SearchField};
