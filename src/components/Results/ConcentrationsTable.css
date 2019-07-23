@@ -44,7 +44,7 @@
 	}
 .total_table .results .consensus{width: 23.6%; background-color: #d1fafc; border-style: solid; border-color: #1bf0fa; margin-top: 5px;}
 
-.results .concTable{
+.total_table .results .concTable{
 overflow-x:scroll !important;
 
 }

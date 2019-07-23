@@ -1,4 +1,3 @@
-// App.js
 
 import React, {
     Component
@@ -30,8 +29,6 @@ import { Slider } from "antd";
 import { withRouter } from "react-router";
 
 import './ConcentrationsTable.css';
-
-import {H1, H2, H3, H4, H5, H6, OL, UL} from "@blueprintjs/core"
 
 
 
@@ -608,28 +605,25 @@ class ConcentrationsTable extends Component {
 	      <br />
 	      </div>
 	      <div className="results" >
-
-
-		      <div className="concTable" class="table">
-
+		      <div className="concTable" >
 		      	<img src={require("~/images/result.png")} />
 		      	<Button type="primary" onClick={(event)=>this.setState({advanced:next})}> {b_title} </Button>
 
 
-		      	<div className="bootstrap">
-			        <BootstrapTable 
-			        ref={ n => this.node = n }
-			        striped
-			        hover
-			        keyField='key' 
-			        data={ this.state.f_concentrations } 
-			        columns={ display_columns }
-			        filter={ filterFactory() }
-			        defaultSorted = {defaultSorted}
-			        selectRow={ selectRow}
+		      	<div className="bootstrap" >
+		        <BootstrapTable 
+		        ref={ n => this.node = n }
+		        striped
+		        hover
+		        keyField='key' 
+		        data={ this.state.f_concentrations } 
+		        columns={ display_columns }
+		        filter={ filterFactory() }
+		        defaultSorted = {defaultSorted}
+		        selectRow={ selectRow}
 
-			     	/>
-		     	</div>
+		     />
+		     </div>
 
 
 		     </div>
@@ -646,7 +640,6 @@ class ConcentrationsTable extends Component {
 
 		     </div>
 	      </div>
-
             </div>
         );
     }
