@@ -30,14 +30,8 @@ import { withRouter } from "react-router";
 
 import './ConcentrationsTable.css';
 
+import {ResultsTable} from './ResultsTable.js'
 
-
-
-const selectRow2 = {
-    mode: "checkbox", // single row selection
-    selected: [],
-
-};
 
 
 const selectRow = {
@@ -46,23 +40,7 @@ const selectRow = {
     onSelect: (row, isSelect, rowIndex, e) => {
   		console.log(selectRow["selected"]);
   		row["selected"] = isSelect;
-  		
-  		/*
-  		if(isSelect){
-  			selectRow['selected'].push(row["key"])
-  		}
-  		else
-  		{
-  			selectRow['selected'].splice(selectRow['selected'].indexOf(row["key"]),1)
-  		}
-  		//selectRow['selected'][rowIndex] = isSelect
-  		console.log(row['key'])
-  		console.log(rowIndex)
-  		console.log(isSelect)
-  		console.log(e)
-  		console.log(selectRow['selected'])
-  		*/
-    // ...
+
     },
     onSelectAll: (isSelect, rows, e) => {
 
@@ -70,7 +48,6 @@ const selectRow = {
             rows[i]["selected"] = isSelect;
         }
     },
-    // status available value is checked, indeterminate and unchecked
 };
 
 
@@ -561,13 +538,6 @@ class ConcentrationsTable extends Component {
         }
 
 
-        let styles = {
-
-	    backgroundColor: "#ccf2ff",
-
-	  };
-
-
 
 	  let selected_data = [];
 	  for (var i = this.state.displayed_data.length - 1; i >= 0; i--) {
@@ -606,24 +576,16 @@ class ConcentrationsTable extends Component {
 	      </div>
 	      <div className="results" >
 		      <div className="concTable" >
-		      	<img src={require("~/images/result.png")} />
-		      	<Button type="primary" onClick={(event)=>this.setState({advanced:next})}> {b_title} </Button>
 
 
-		      	<div className="bootstrap" >
-		        <BootstrapTable 
-		        ref={ n => this.node = n }
-		        striped
-		        hover
-		        keyField='key' 
-		        data={ this.state.f_concentrations } 
-		        columns={ display_columns }
-		        filter={ filterFactory() }
-		        defaultSorted = {defaultSorted}
-		        selectRow={ selectRow}
+		      	<ResultsTable 
+		      	data= {this.state.f_concentrations}
+		      	columns={display_columns}
+		      	advanced_columns={this.state.advanced_columns}
 
-		     />
-		     </div>
+		      	/>
+
+		     
 
 
 		     </div>
