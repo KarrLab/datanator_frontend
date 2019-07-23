@@ -112,6 +112,7 @@
     "babel-plugin-root-import": "^6.2.0",
     "customize-cra": "^0.2.14",
     "react-app-rewired": "^2.1.3",
+    "redux-devtools-extension": "^2.13.8",
     "typescript": "^3.5.3"
   },
   "jest": {
@@ -163,11 +164,14 @@
     "presets": [
       "react-app"
     ],
-    "plugins":[["babel-plugin-root-import",
-      {
+    "plugins": [
+      [
+        "babel-plugin-root-import",
+        {
           "rootPathSuffix": "./src",
-          "rootPathPrefix": "~"        
-      }],
+          "rootPathPrefix": "~"
+        }
+      ],
       [
         "@babel/plugin-proposal-decorators",
         {
