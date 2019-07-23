@@ -1,46 +1,49 @@
 import React from "react";
 import {FormGroup, InputGroup, MenuItem} from "@blueprintjs/core";
 import {Suggest} from "@blueprintjs/select";
+import {GetSearchData} from "~/services/MongoApi.js";
+import {connect} from "react-redux";
 
+@connect()
+class OrganismInput extends React.Component{
+    render(){
+        return(
+            <FormGroup 
+                helperText= "Select a species from which to get data"
+                label="Species"
+                labelFor="species-input"
+                labelInfo="(required)">
+                <Suggest 
+                    itemRenderer={this.itemRenderer} 
+                    items={["hello", "world", "this", "is", "a'", "test"]}
+                    inputValueRenderer={this.inputValueRenderer}
+                    id="species-input" 
+                    placeholder="Escherichia coli" />
+            </FormGroup>
+        );}
 
-const inputValueRenderer = (item)=> {
-    return( {item}
-    );
-}
+    inputValueRenderer(item){
+        return( {item} );
+    }
 
-const filter = (query) => {
+    filter(query){
+    };
 
-}
-const items =["hello", "world", "this", "is", "a'", "test"];
-const itemRenderer = (item, {handleClick, Modifiers}) => {
+    itemRenderer = (item, {handleClick, Modifiers}) => {
 
-    return (
+        return (
       
-        <MenuItem
+            <MenuItem
             //active={Modifiers.active}
-            Key={item}
-            onclick={handleClick}
-            text= {item} />
-    );
+                Key={item}
+                onclick={handleClick}
+                text= {item} />
+        );
 
 
+    };
 }
 
-const OrganismInput = () => {
-    return(
-        <FormGroup 
-            helperText= "Select a species from which to get data"
-            label="Species"
-            labelFor="species-input"
-            labelInfo="(required)">
-            <Suggest 
-                itemRenderer={itemRenderer} 
-                items={["hello", "world", "this", "is", "a'", "test"]}
-                inputValueRenderer={inputValueRenderer}
-                id="species-input" 
-                placeholder="Escherichia coli" />
-        </FormGroup>
-    );
-};
+
 
 export{OrganismInput};
