@@ -120,7 +120,7 @@ overflow-x:scroll !important;
   line-height: 1.5;
   color: #212529;
   text-align: left;
-  background-color: #fff;
+  background-color: #e2f7ff;
 }
 .bootstrap [tabindex="-1"]:focus {
   outline: 0 !important;
