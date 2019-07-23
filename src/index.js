@@ -23,8 +23,9 @@ import Metabconcs from "~/scenes/Results/Metabconcs";
 function SiteRouter(){
     return(
         <Router> 
-            <Route path="/" exact component={HomeOld}/>
+            <Route path="/" exact component={Home}/>
             <Route path="/search/"component={Search}/>
+            <Route path="/old" component={HomeOld}/>
             <Route path="/metabconcs/:molecule/:organism/:abstract?/"component={Metabconcs}/>
         </Router>
     );

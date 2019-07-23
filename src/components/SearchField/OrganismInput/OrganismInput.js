@@ -16,12 +16,12 @@ const itemRenderer = (item, {handleClick, Modifiers}) => {
 
     return (
       
-            <MenuItem
+        <MenuItem
             //active={Modifiers.active}
             Key={item}
             onclick={handleClick}
             text= {item} />
-        );
+    );
 
 
 }
