@@ -31,6 +31,8 @@ import { withRouter } from "react-router";
 
 import './ConcentrationsTable.css';
 
+import {H1, H2, H3, H4, H5, H6, OL, UL} from "@blueprintjs/core"
+
 
 
 
@@ -608,26 +610,26 @@ class ConcentrationsTable extends Component {
 	      <div className="results" >
 
 
-		      <div className="concTable" class="bootstrap">
-		      	      		<link rel="stylesheet" href="https://toert.github.io/Isolated-Bootstrap/versions/4.0.0-beta/iso_bootstrap4.0.0min.css" />
+		      <div className="concTable" class="table">
 
 		      	<img src={require("~/images/result.png")} />
 		      	<Button type="primary" onClick={(event)=>this.setState({advanced:next})}> {b_title} </Button>
 
 
+		      	<div className="bootstrap">
+			        <BootstrapTable 
+			        ref={ n => this.node = n }
+			        striped
+			        hover
+			        keyField='key' 
+			        data={ this.state.f_concentrations } 
+			        columns={ display_columns }
+			        filter={ filterFactory() }
+			        defaultSorted = {defaultSorted}
+			        selectRow={ selectRow}
 
-		        <BootstrapTable 
-		        ref={ n => this.node = n }
-		        striped
-		        hover
-		        keyField='key' 
-		        data={ this.state.f_concentrations } 
-		        columns={ display_columns }
-		        filter={ filterFactory() }
-		        defaultSorted = {defaultSorted}
-		        selectRow={ selectRow}
-
-		     />
+			     	/>
+		     	</div>
 
 
 		     </div>
@@ -644,6 +646,7 @@ class ConcentrationsTable extends Component {
 
 		     </div>
 	      </div>
+
             </div>
         );
     }
