@@ -606,7 +606,11 @@ class ConcentrationsTable extends Component {
 	      <br />
 	      </div>
 	      <div className="results" >
-		      <div className="concTable" >
+
+
+		      <div className="concTable" class="bootstrap">
+		      	      		<link rel="stylesheet" href="https://toert.github.io/Isolated-Bootstrap/versions/4.0.0-beta/iso_bootstrap4.0.0min.css" />
+
 		      	<img src={require("~/images/result.png")} />
 		      	<Button type="primary" onClick={(event)=>this.setState({advanced:next})}> {b_title} </Button>
 
