@@ -1,0 +1,44 @@
+
+.results {
+  text-align: left;
+  display:flex; 
+  flex-direction:row;
+  flex-wrap: wrap;
+  flex-flow: row wrap
+
+
+}
+
+
+.slider {
+  background-color: #fceded;
+  text-align: left;
+  display:flex; 
+  flex-direction:row;
+  border-style: solid;
+  border-color: #fcd1d1;
+  flex-wrap: wrap;
+  flex-flow: row wrap
+
+
+}
+
+
+
+.slider .slider_bar {
+  width: 85%;
+}
+.slider .slider_bar2 {
+  width: 25%;
+}
+
+.results .concTable{
+	width: 76%;
+	background-color: #e2f7ff;
+	border-style: solid;
+    border-color: #76e1f2;
+    margin-top: 5px;
+    margin-right: .4%;
+
+	}
+.total_table .results .consensus{width: 23.6%; background-color: #d1fafc; border-style: solid; border-color: #1bf0fa; margin-top: 5px;}

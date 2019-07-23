@@ -29,6 +29,8 @@ import Chart3 from './Chart3.js';
 import { Slider } from 'antd';
 import { withRouter } from "react-router";
 
+import './ConcentrationsTable.css';
+
 
 const marks_old = {
   0: '0°C',
