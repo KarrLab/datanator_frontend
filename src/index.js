@@ -1,10 +1,16 @@
-// Thrid Party Libraries
+// React Libraries
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-//import { BrowserHistory} from "~/../node_modules/react-router-dom/lib/BrowserHistory";
+import PropTypes from "prop-types";
 
-//Styles for @Blueprint JS
+//Router (enables persistant URLS and History)
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
+//Redux (used for state management)
+import {Provider} from "react-redux";
+import store from "~/data/Store";
+
+//Styles for @Blueprint JS (Template Components)
 import "./index.css";
 import "../node_modules/@blueprintjs/core/lib/css/blueprint.css";
 import "../node_modules/@blueprintjs/icons/lib/css/blueprint-icons.css";
@@ -19,15 +25,25 @@ import Search from "~/scenes/Search/Search";
 import Metabconcs from "~/scenes/Results/Metabconcs";
 
 
-
-function SiteRouter(){
+const SiteRouter =() => {
     return(
         <Router> 
-            <Route path="/" exact component={HomeOld}/>
+            <Route path="/" exact component={Home}/>
             <Route path="/search/"component={Search}/>
+            <Route path="/old" component={HomeOld}/>
             <Route path="/metabconcs/:molecule/:organism/:abstract?/"component={Metabconcs}/>
         </Router>
     );
-}
+};
+const SiteProvider = () => {
+    return(
+        <Provider store={store}>
+            <SiteRouter/>
+        </Provider>
+    );};
 
-ReactDOM.render(<SiteRouter/>,document.getElementById("root"));    
+SiteProvider.propTypes={
+    store: PropTypes.object.isRequired
+};
+
+ReactDOM.render(<SiteProvider/>,document.getElementById("root"));     

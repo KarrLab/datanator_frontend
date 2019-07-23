@@ -1,5 +1,5 @@
-import React from 'react';
-import {Navbar, Alignment, Button, AnchorButton, InputGroup, Classes} from "@blueprintjs/core";
+import React from "react";
+import {Navbar, AnchorButton, InputGroup} from "@blueprintjs/core";
 import "./header.scss";
 import {Logo} from "~/components/Layout/Logo";
 
@@ -20,5 +20,5 @@ const Header = () => {
             </Navbar.Group>
         </Navbar>
     );
-}
+};
 export{Header}; 
