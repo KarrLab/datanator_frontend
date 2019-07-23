@@ -32,17 +32,7 @@ import { withRouter } from "react-router";
 import './ConcentrationsTable.css';
 
 
-const marks_old = {
-    0: "0°C",
-    26: "26°C",
-    37: "37°C",
-    40: {
-        style: {
-            color: "#f50",
-        },
-        label: <strong>30</strong>,
-    },
-};
+
 
 const selectRow2 = {
     mode: "checkbox", // single row selection
@@ -311,10 +301,6 @@ class ConcentrationsTable extends Component {
 
 
             marks:{},
-            omarks:{
-			  0: "0°C",
-			  26: "26°C",
-			  37: "37°C",},
             numToNode:{0:0},
             sliderLen:100
 
@@ -519,13 +505,7 @@ class ConcentrationsTable extends Component {
     }
 
 
-    ooooo_componentWillReceiveProps(nextProps) {
-	  // You don't have to do this check first, but it can help prevent an unneeded render
-	    console.log(nextProps.json_data);
-	    this.formatData(nextProps.json_data);
-	    this.formatSlider(nextProps.json_data);
-	  
-    }
+
 
 
     handleUpdate() {
@@ -629,8 +609,10 @@ class ConcentrationsTable extends Component {
 		      <div className="concTable" >
 		      	<img src={require("~/images/result.png")} />
 		      	<Button type="primary" onClick={(event)=>this.setState({advanced:next})}> {b_title} </Button>
+
+
+
 		        <BootstrapTable 
-		        
 		        ref={ n => this.node = n }
 		        striped
 		        hover
@@ -642,6 +624,8 @@ class ConcentrationsTable extends Component {
 		        selectRow={ selectRow}
 
 		     />
+
+
 		     </div>
 		     <div className="consensus">
 		     	<img src={require("~/images/consensus.png")} />

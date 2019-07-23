@@ -4,7 +4,7 @@ import {Suggest} from "@blueprintjs/select";
 import {GetSearchData} from "~/services/MongoApi.js";
 import {connect} from "react-redux";
 
-@connect()
+//"@"connect()
 class OrganismInput extends React.Component{
     render(){
         return(
