@@ -1,4 +1,3 @@
-import { combineReducers } from 'redux';
 import organismReducer from './organismReducer';
 
 function combined(state = {}, action) {

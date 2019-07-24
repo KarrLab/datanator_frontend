@@ -1,7 +1,6 @@
 import React from 'react';
 import { FormGroup, InputGroup, MenuItem } from '@blueprintjs/core';
 import { Suggest } from '@blueprintjs/select';
-
 import { connect } from 'react-redux';
 import { getData } from '~/data/actions/organismAction';
 
