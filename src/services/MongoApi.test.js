@@ -1,5 +1,5 @@
 import { getSearchData, getSearchObject } from '~/services/MongoApi';
-test('runs', () => {
+test.skip('runs', () => {
   let result = getSearchData(['ATP', 'Escherichia coli']);
   console.log(result);
   return result.then(response => {
@@ -8,20 +8,20 @@ test('runs', () => {
   });
 });
 
-test('Fails on bad search', () => {
+test.skip('Fails on bad search', () => {
   return getSearchData(['ATPa', 'Escherichia coli']).then(response => {
     expect(response.data).toBeFalsey;
     expect(response.status).toBe(500);
   });
 });
 
-test('Fails on missing page', () => {
+test.skip('Fails on missing page', () => {
   return getSearchData(['ATP']).then(response => {
     expect(response.data).toBeFalsey;
     expect(response.status).toBe(404);
   });
 });
-test('fake test', () => {
+test.skip('fake test', () => {
   getSearchObject(['ATP', 'Escherichia coli']);
   expect(true).toBeTruthy;
 });
