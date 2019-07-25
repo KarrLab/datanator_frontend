@@ -1,6 +1,10 @@
-import {combineReducers} from "redux";
-import organismReducer from "./organismReducer";
+import { combineReducers } from 'redux';
+import organismReducer from './organismReducer';
 
-export default combineReducers({organismReducer});
+function combined(state = {}, action) {
+  return {
+    organisms: organismReducer(state.organisms, action),
+  };
+}
 
- 
+export default combined;
