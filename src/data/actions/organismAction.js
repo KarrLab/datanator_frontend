@@ -1,13 +1,14 @@
-import {GetSearchData} from "~/services/MongoApi";
-import { returnStatement } from "@babel/types";
+import { getSearchData } from '~/services/MongoApi';
 
 /* This dispatch requires the Promises middleware, imported in Store.js*/
 function getData() {
-    return( (dispatch)=>{
-        dispatch({
-            type:"FETCH_ORGANISMS",
-            payload:{GetSearchData(urlParams=["/organisms"])}})
-        });
-    };
-    
-export{getData}
+  let urlParams = ['organisms'];
+  return function(dispatch) {
+    dispatch({
+      type: 'FETCH_ORGANISMS',
+      payload: getSearchData(urlParams),
+    });
+  };
+}
+
+export { getData };
