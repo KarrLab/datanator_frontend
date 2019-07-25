@@ -84,7 +84,9 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
-    "test": "react-app-rewired test"
+    "test": "react-app-rewired test",
+    "lint": "yarn eslint .",
+    "lint:fix": "yarn lint --fix"
   },
   "eslintConfig": {
     "extends": "react-app"
