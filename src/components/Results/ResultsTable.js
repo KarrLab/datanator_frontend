@@ -1,33 +1,17 @@
 import React, { Component } from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
 import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
-import filterFactory, {
-  textFilter,
-  selectFilter,
-  numberFilter,
-  Comparator,
-} from 'react-bootstrap-table2-filter';
+import filterFactory from 'react-bootstrap-table2-filter';
 import ReactDOM from 'react-dom';
 import {
-  Input,
-  Col,
-  Row,
-  Select,
-  InputNumber,
-  DatePicker,
-  AutoComplete,
-  Cascade,
   Button,
 } from 'antd';
-import Chart3 from './Chart3.js';
-import { styles } from './ResultsTable.css';
 import PropTypes from 'prop-types';
 
 const selectRow = {
   mode: 'checkbox',
   selected: [],
   onSelect: (row, isSelect, rowIndex, e) => {
-    console.log(selectRow['selected']);
     row['selected'] = isSelect;
   },
   onSelectAll: (isSelect, rows, e) => {
@@ -58,7 +42,6 @@ const defaultSorted = [
  * The reason this exists as a function here (as opposed to in a parent class) is because the information about
  * which data are displayed exists in the react-bootrsap-table2 component, and can only be accessed by a ref.
  */
-let propTypes={data: PropTypes.string,}
 class ResultsTable extends Component {
   static propTypes = {
     /** The data must be a list of dictionaries. Each dictionary cooresponds a single row. Each key is the proper column,
@@ -111,8 +94,7 @@ class ResultsTable extends Component {
   setSelected() {
     let data = this.props.data;
     //this.setState({displayed_data:this.props.data})
-    console.log(this.props.data);
-    console.log('above');
+
 
     for (var i = data.length - 1; i >= 0; i--) {
       data[i]['key'] = i;
@@ -202,18 +184,17 @@ class ResultsTable extends Component {
   }
 }
 
+
+/**
+ * This returns the data that is both displayed (not filtered out) and selected.
+ */
 function getSelectedData() {
   let selected_data = [];
-  console.log(data);
-  console.log('newwww');
-  console.log(tableRef);
   if (tableRef) {
     for (var i = tableRef.props.data.length - 1; i >= 0; i--) {
       if (tableRef.props.data[i].selected) {
-        console.log('indeed');
         selected_data.push(tableRef.props.data[i]);
       } else {
-        console.log('Indont');
       }
     }
   }
