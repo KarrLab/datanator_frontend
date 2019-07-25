@@ -99,9 +99,9 @@ class ResultsTable extends Component {
   handleBasicToAdvancedToggle(){
     
     if (!this.state.advanced) {
-      this.setState({toggleLabel:'Advanced'});
+      this.setState({toggleLabel:'Basic'});
     } else {
-      this.setState({toggleLabel:'Basic'})
+      this.setState({toggleLabel:'Advanced'})
 
     }
 

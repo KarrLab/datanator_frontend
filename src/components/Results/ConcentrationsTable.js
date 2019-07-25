@@ -468,39 +468,15 @@ class ConcentrationsTable extends Component {
 
     render() {
 
-
-
-        let display_columns;
-
-        display_columns = this.state.columns;
+        let display_columns = this.state.columns;
 
         if (this.state.tanitomo){
             console.log("tanitomo!");
             display_columns = display_columns.concat(this.state.tanitomo_column);
         }
 
-
-        let b_title;
-		
-        let next;
-        if (!this.state.advanced){
-            b_title = "Advanced";
-            next = true;
-        }
-        else{
-            b_title = "Basic";
-            display_columns = display_columns.concat(this.state.advanced_columns);
-            console.log(display_columns);
-            next=false;
-        }
-
-
-
-	  let selected_data = [];
-	  selected_data = (getSelectedData(this.state.f_concentrations))
-	  console.log(selected_data)
-	  console.log("trying...")
-
+      //get the data for the consensus module
+	  let selected_data = (getSelectedData(this.state.f_concentrations))
 
 
 
@@ -526,7 +502,6 @@ class ConcentrationsTable extends Component {
 		   }
 
 	      </div>
-
 
 	      <br />
 	      <br />
