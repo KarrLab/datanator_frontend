@@ -387,7 +387,7 @@ class ConcentrationsTable extends Component {
 
             for (var i = f_concentrations.length - 1; i >= 0; i--) {
                 f_concentrations[i]["key"] = i;
-                selectRow["selected"].push(i);
+                //selectRow["selected"].push(i);
                 f_concentrations[i]["selected"] = true;
             }
 

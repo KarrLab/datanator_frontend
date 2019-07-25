@@ -54,15 +54,19 @@ class ResultsTable extends Component {
   }
 
   setSelected(){
-    this.setState({displayed_data:this.props.data})
+    let data = this.props.data
+    //this.setState({displayed_data:this.props.data})
     console.log(this.props.data)
     console.log("above")
 
-    for (var i = this.state.displayed_data.length - 1; i >= 0; i--) {
-        this.state.displayed_data[i]["key"] = i;
+    for (var i = data.length - 1; i >= 0; i--) {
+        data[i]["key"] = i;
         selectRow["selected"].push(i);
-        this.state.displayed_data[i]["selected"] = true;
+       
+        data[i]["selected"] = true;
     }
+
+    this.setState({displayed_data:data})
   }
   componentDidMount() {
     tableRef = this.node.table
@@ -72,11 +76,16 @@ class ResultsTable extends Component {
 
   componentDidUpdate (prevProps) {
       console.log("updating");
-      if (this.props.data != prevProps.data){
+      if ((this.props.data != prevProps.data)){
           this.setSelected()
       }
+      console.log(this.state.displayed_data)
   }
 
+
+  /**
+   * At each render, the selectRow object must be reinitialized with the correct selections from the data.
+   */
   correctlyRenderSelectRow(){
     let selected = [];
     for (var i = this.state.displayed_data.length - 1; i >= 0; i--) {
@@ -91,21 +100,15 @@ class ResultsTable extends Component {
 
 
 
-
-
   render() {
     this.correctlyRenderSelectRow()
+    console.log(this.state.displayed_data)
+    console.log("bepop")
 
     let display_columns;
 
     display_columns = this.props.columns;
 
-    let selected_data = [];
-    for (var i = this.state.displayed_data.length - 1; i >= 0; i--) {
-      if (this.state.displayed_data[i].selected) {
-        selected_data.push(this.state.displayed_data[i]);
-      }
-    }
 
     let b_title;
 
