@@ -49,32 +49,35 @@ const defaultSorted = [
 
 /**
  * Class to render the results. This table uses react-bootsrap-table2, but adds three additional pieces of functionality 
+ * 1) The ability to specify basic and advanced columns, and to toggle between them
+ * 2) The addition of a column which allows selection/rejection of data
+ * 3) The table keeps track of which data is both displayed and selected. This later gets used to calculated the consensus
  */
 let propTypes={data: PropTypes.string,}
 class ResultsTable extends Component {
   static propTypes = {
     /** The data must be a list of dictionaries. Each dictionary cooresponds a single row. Each key is the proper column,
-    and each value gets entered into the corresponding cell. 
-    For example:
-    data = [
-      { name: "Adenosine triphosphate", concentration: 4150, units: "uM"},
-      { name: "Adenosine triphosphate", concentration: 3829, units: "uM"},
-    ]
+    * and each value gets entered into the corresponding cell. 
+    * For example:
+    * data = [
+    *   { name: "Adenosine triphosphate", concentration: 4150, units: "uM"},
+    *   { name: "Adenosine triphosphate", concentration: 3829, units: "uM"},
+    * ]
     */
     data: PropTypes.array.isRequired,
 
 
     /** This must be a list of columns that can be used in a react-bootstrap-table2 table. The docs for that can be 
-    found here - https://react-bootstrap-table.github.io/react-bootstrap-table2/docs/getting-started.html
-
-    This is used to define the columns that show up in the table. Each column represented as a dictionary with 
-    at least two key:value pairs -- dataField, to the column id; text, to what its title will be upon rendering. 
-    For example
-    {
-      dataField: 'concentration',
-      text: 'Concentration',
-    }
-    The dataField id in the columns list must correspond to a key in the data list. 
+    * found here - https://react-bootstrap-table.github.io/react-bootstrap-table2/docs/getting-started.html
+    * 
+    * This is used to define the columns that show up in the table. Each column represented as a dictionary with 
+    * at least two key:value pairs -- dataField, to the column id; text, to what its title will be upon rendering. 
+    * For example
+    * {
+    *   dataField: 'concentration',
+    *   text: 'Concentration',
+    * }
+    * The dataField id in the columns list must correspond to a key in the data list. 
      */
     columns: PropTypes.array.isRequired,
 
