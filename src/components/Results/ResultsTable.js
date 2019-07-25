@@ -40,6 +40,13 @@ const selectRow = {
 
 let tableRef = null
 
+const defaultSorted = [{
+    dataField: "taxonomic_proximity", // if dataField is not match to any column you defined, it will be ignored.
+    order: "asc" // desc or asc
+}];
+
+
+
 class ResultsTable extends Component {
   constructor(props) {
     super(props);
@@ -141,6 +148,7 @@ class ResultsTable extends Component {
             columns={display_columns}
             filter={filterFactory()}
             selectRow={selectRow}
+            defaultSorted={defaultSorted}
           />
         </div>
       </div>

@@ -41,47 +41,7 @@ function round(value, decimals) {
     return Number(Math.round(value+"e"+decimals)+"e-"+decimals);
 }
 
-class DecimalStep extends React.Component {
-  state = {
-      inputValue: 0,
-  };
 
-  onChange = value => {
-      if (Number.isNaN(value)) {
-          return;
-      }
-      this.setState({
-          inputValue: value,
-      });
-  };
-
-  render() {
-      const { inputValue } = this.state;
-      return (
-          <Row>
-              <Col span={12}>
-                  <Slider
-                      min={0}
-                      max={1}
-                      onChange={this.onChange}
-                      value={typeof inputValue === "number" ? inputValue : 0}
-                      step={0.01}
-                  />
-              </Col>
-              <Col span={4}>
-                  <InputNumber
-                      min={0}
-                      max={1}
-                      style={{ marginLeft: 16 }}
-                      step={0.01}
-                      value={inputValue}
-                      onChange={this.onChange}
-                  />
-              </Col>
-          </Row>
-      );
-  }
-}
 
 const selectOptions = {
     "Stationary Phase": "Stationary Phase",
@@ -164,10 +124,6 @@ class Consensus extends Component {
 }
 
 
-const defaultSorted = [{
-    dataField: "taxonomic_proximity", // if dataField is not match to any column you defined, it will be ignored.
-    order: "asc" // desc or asc
-}];
 
 class ConcentrationsTable extends Component {
     constructor(props) {
@@ -180,7 +136,6 @@ class ConcentrationsTable extends Component {
             json_data: "",
 
             f_concentrations: [],
-            displayed_data:[],
 
             columns: [{
                 dataField: "concentration",
@@ -475,9 +430,8 @@ class ConcentrationsTable extends Component {
             display_columns = display_columns.concat(this.state.tanitomo_column);
         }
 
-      //get the data for the consensus module
-	  let selected_data = (getSelectedData(this.state.f_concentrations))
-
+	    //get the data for the consensus module
+		let selected_data = (getSelectedData(this.state.f_concentrations))
 
 
         return (
