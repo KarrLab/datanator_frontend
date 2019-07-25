@@ -71,26 +71,7 @@ class ResultsTable extends Component {
     	this.props.recordDisplayedData(this.node.table)
     }
 
-    ooooo_componentDidUpdate(prevProps, prevState) {
-    	console.log(this.state.table_size)
-    	console.log(this.node.table.props.data.length)
-    	 if (prevState.table_size !== this.node.table.props.data.length) {
-    	 	this.setState({table_size:this.node.table.props.data.length})
-	    	let selected_data = []
-	    	let post_filtered_data = this.node.table.props.data;
-	    	for (var i = post_filtered_data.length - 1; i >= 0; i--) {
-			  	if (post_filtered_data[i].selected){
-			  		selected_data.push(post_filtered_data[i]);
-			  	}
-			  }
 
-			this.props.recordDisplayedData(selected_data)
-			//this.setState({displayed_data:selected_data})
-		}
-
-
-
-    }
 
 
     render() {

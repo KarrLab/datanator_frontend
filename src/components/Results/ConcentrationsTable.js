@@ -51,18 +51,6 @@ const selectRow = {
 };
 
 
-const tanitomo_marks = {
-    0.65: "0",
-    26: "26°C",
-    37: "37°C",
-    40: {
-        style: {
-            color: "#f50",
-        },
-        label: <strong>30</strong>,
-    },
-};
-
 
 function round(value, decimals) {
     return Number(Math.round(value+"e"+decimals)+"e-"+decimals);
