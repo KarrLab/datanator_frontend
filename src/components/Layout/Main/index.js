@@ -1,1 +1,1 @@
-export * from "./Main.js";
+export * from './Main.js';
