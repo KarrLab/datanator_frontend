@@ -52,6 +52,11 @@ const defaultSorted = [
  * 1) The ability to specify basic and advanced columns, and to toggle between them
  * 2) The addition of a column which allows selection/rejection of data
  * 3) The table keeps track of which data is both displayed and selected. This later gets used to calculated the consensus
+ *
+ * This file also contains a function which returns the current seleclted data --getSelectedData().
+ * This is required to get the current displayed and selected data to calculate the consensus. 
+ * The reason this exists as a function here (as opposed to in a parent class) is because the information about
+ * which data are displayed exists in the react-bootrsap-table2 component, and can only be accessed by a ref.
  */
 let propTypes={data: PropTypes.string,}
 class ResultsTable extends Component {
@@ -88,8 +93,6 @@ class ResultsTable extends Component {
   constructor(props) {
     super(props);
 
-    
-
 
     this.state = {
       displayed_data: [],
@@ -103,7 +106,7 @@ class ResultsTable extends Component {
   }
 
   /**
-   * At each render, the selectRow object must be reinitialized with the correct selections from the data.
+   * The table begins with all the data points being selected. This selects them all.
    */
   setSelected() {
     let data = this.props.data;
@@ -120,19 +123,7 @@ class ResultsTable extends Component {
 
     this.setState({ displayed_data: data });
   }
-  componentDidMount() {
-    tableRef = this.node.table;
-    this.setSelected();
-  }
 
-  componentDidUpdate(prevProps) {
-    console.log('updating');
-    if (this.props.data != prevProps.data) {
-      this.setSelected();
-      this.setState({ display_columns: this.props.columns });
-    }
-    console.log(this.state.displayed_data);
-  }
 
   /**
    * At each render, the selectRow object must be reinitialized with the correct selections from the data.
@@ -147,7 +138,7 @@ class ResultsTable extends Component {
   }
 
   /**
-   * At each render, the selectRow object must be reinitialized with the correct selections from the data.
+   * Toggle back and forth between basic and advanced columns
    */
   handleBasicToAdvancedToggle() {
     if (!this.state.advanced) {
@@ -157,6 +148,20 @@ class ResultsTable extends Component {
     }
 
     this.setState({ advanced: !this.state.advanced });
+  }
+
+  componentDidMount() {
+    tableRef = this.node.table;
+    this.setSelected();
+  }
+
+  componentDidUpdate(prevProps) {
+    console.log('updating');
+    if (this.props.data != prevProps.data) {
+      this.setSelected();
+      this.setState({ display_columns: this.props.columns });
+    }
+    console.log(this.state.displayed_data);
   }
 
   render() {
@@ -197,7 +202,7 @@ class ResultsTable extends Component {
   }
 }
 
-function getSelectedData(data) {
+function getSelectedData() {
   let selected_data = [];
   console.log(data);
   console.log('newwww');
@@ -215,8 +220,5 @@ function getSelectedData(data) {
   return selected_data;
 }
 
-/*
-ResultsTable.propTypes = {
-  data: PropTypes.number
-};*/
+
 export { ResultsTable, getSelectedData };

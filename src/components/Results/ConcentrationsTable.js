@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
-import axios from 'axios';
 import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
 import filterFactory, {
   textFilter,
@@ -11,13 +10,6 @@ import filterFactory, {
 import ReactDOM from 'react-dom';
 import {
   Input,
-  Col,
-  Row,
-  Select,
-  InputNumber,
-  DatePicker,
-  AutoComplete,
-  Cascade,
   Button,
 } from 'antd';
 import 'antd/dist/antd.css';
@@ -38,7 +30,6 @@ const selectOptions = {
   'Log Phase': 'Log Phase',
 };
 
-const InputGroup = Input.Group;
 
 class Consensus extends Component {
   constructor(props) {
@@ -198,7 +189,6 @@ class ConcentrationsTable extends Component {
     this.filter_taxon = this.filter_taxon.bind(this);
     this.filter_tanitomo = this.filter_tanitomo.bind(this);
     this.handleAbstractInner = this.handleAbstractInner.bind(this);
-    console.log('made');
   }
 
   formatData(data) {
@@ -396,7 +386,7 @@ class ConcentrationsTable extends Component {
     }
 
     //get the data for the consensus module
-    let selected_data = getSelectedData(this.state.f_concentrations);
+    let selected_data = getSelectedData();
 
     return (
       <div className="total_table">
