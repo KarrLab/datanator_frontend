@@ -38,7 +38,6 @@ const selectRow = {
     },
 };
 
-
 let tableRef = null
 
 class ResultsTable extends Component {
@@ -46,11 +45,12 @@ class ResultsTable extends Component {
     super(props);
 
     this.state = {
-      displayed_columns: [],
       displayed_data: [],
       table_size: 0,
+      toggleLabel:"Advanced"
     };
     this.correctlyRenderSelectRow = this.correctlyRenderSelectRow.bind(this);
+    this.handleBasicToAdvancedToggle = this.handleBasicToAdvancedToggle.bind(this);
   }
 
   setSelected(){
@@ -78,6 +78,7 @@ class ResultsTable extends Component {
       console.log("updating");
       if ((this.props.data != prevProps.data)){
           this.setSelected()
+          this.setState({display_columns: this.props.columns})
       }
       console.log(this.state.displayed_data)
   }
@@ -95,43 +96,39 @@ class ResultsTable extends Component {
     selectRow['selected'] = selected;
   }
 
+  handleBasicToAdvancedToggle(){
+    
+    if (!this.state.advanced) {
+      this.setState({toggleLabel:'Advanced'});
+    } else {
+      this.setState({toggleLabel:'Basic'})
 
+    }
+
+    this.setState({ advanced: !(this.state.advanced) })
+  }
 
 
 
 
   render() {
     this.correctlyRenderSelectRow()
-    console.log(this.state.displayed_data)
-    console.log("bepop")
 
-    let display_columns;
+    let display_columns = this.props.columns;
 
-    display_columns = this.props.columns;
-
-
-    let b_title;
-
-    let next;
-    if (!this.state.advanced) {
-      b_title = 'Advanced';
-      next = true;
-    } else {
-      b_title = 'Basic';
-      display_columns = display_columns.concat(this.props.advanced_columns);
-      console.log(display_columns);
-      next = false;
-    }
+    if (this.state.advanced) {
+      display_columns = display_columns.concat(this.props.advanced_columns);;
+    } 
 
     return (
       <div className="concTable2">
         <img src={require('~/images/result.png')} />
         <Button
           type="primary"
-          onClick={event => this.setState({ advanced: next })}
+          onClick={event => this.handleBasicToAdvancedToggle() }
         >
           {' '}
-          {b_title}{' '}
+          {this.state.toggleLabel}{' '}
         </Button>
 
         <div className="bootstrap">

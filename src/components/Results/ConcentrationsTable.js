@@ -34,21 +34,6 @@ import {ResultsTable, getSelectedData} from './ResultsTable.js'
 
 
 
-const selectRow = {
-    mode: "checkbox",
-    selected: [],
-    onSelect: (row, isSelect, rowIndex, e) => {
-  		console.log(selectRow["selected"]);
-  		row["selected"] = isSelect;
-
-    },
-    onSelectAll: (isSelect, rows, e) => {
-
-        for (var i = rows.length - 1; i >= 0; i--){
-            rows[i]["selected"] = isSelect;
-        }
-    },
-};
 
 
 
@@ -107,9 +92,6 @@ const selectOptions = {
 
 
 const InputGroup = Input.Group;
-const {
-    Option
-} = Select;
 
 
 
@@ -384,12 +366,6 @@ class ConcentrationsTable extends Component {
                 }
             }
 
-
-            for (var i = f_concentrations.length - 1; i >= 0; i--) {
-                f_concentrations[i]["key"] = i;
-                //selectRow["selected"].push(i);
-                f_concentrations[i]["selected"] = true;
-            }
 
 
             this.setState({
