@@ -48,7 +48,7 @@ const defaultSorted = [
 
 
 /**
- * Class to render the results
+ * Class to render the results. This table uses react-bootsrap-table2, but adds three additional pieces of functionality 
  */
 let propTypes={data: PropTypes.string,}
 class ResultsTable extends Component {
@@ -79,7 +79,7 @@ class ResultsTable extends Component {
     columns: PropTypes.array.isRequired,
 
     /** Optional advanced columns that can be added*/
-    advanced_columns: PropTypes.array.,
+    advanced_columns: PropTypes.array,
   }
 
   constructor(props) {
