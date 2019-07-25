@@ -50,6 +50,7 @@ class ResultsTable extends Component {
       displayed_data: [],
       table_size: 0,
     };
+    this.correctlyRenderSelectRow = this.correctlyRenderSelectRow.bind(this);
   }
 
   setSelected(){
@@ -64,7 +65,6 @@ class ResultsTable extends Component {
     }
   }
   componentDidMount() {
-    //this.props.getTableRef(this.node.table);
     tableRef = this.node.table
     this.setSelected()
   }
@@ -77,22 +77,24 @@ class ResultsTable extends Component {
       }
   }
 
+  correctlyRenderSelectRow(){
+    let selected = [];
+    for (var i = this.state.displayed_data.length - 1; i >= 0; i--) {
+      if (this.state.displayed_data[i]['selected'])
+        selected.push(this.state.displayed_data[i]['key']);
+    }
+    selectRow['selected'] = selected;
+  }
+
+
+
 
 
 
 
 
   render() {
-    console.log('woot woot');
-    console.log(this.props.data)
-
-    let selected = [];
-    console.log(this.state.displayed_data)
-    for (var i = this.state.displayed_data.length - 1; i >= 0; i--) {
-      if (this.state.displayed_data[i]['selected'])
-        selected.push(this.state.displayed_data[i]['key']);
-    }
-    selectRow['selected'] = selected;
+    this.correctlyRenderSelectRow()
 
     let display_columns;
 
