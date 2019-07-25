@@ -64,7 +64,7 @@ class ResultsTable extends Component {
     }
   }
   componentDidMount() {
-    this.props.getTableRef(this.node.table);
+    //this.props.getTableRef(this.node.table);
     tableRef = this.node.table
     this.setSelected()
   }
@@ -164,7 +164,6 @@ function getSelectedData(data) {
       }
     }
   }
-  let return_data=selected_data
   return (selected_data);
 }
 

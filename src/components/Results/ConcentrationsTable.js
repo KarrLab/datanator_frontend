@@ -192,7 +192,6 @@ class ConcentrationsTable extends Component {
         super(props);
 		
         this.state = {
-        	tableRef: null,
             asked_consensus: false,
             tanitomo: false,
             consensus_prompt: "Get Consensus",
@@ -277,7 +276,6 @@ class ConcentrationsTable extends Component {
         this.filter_taxon = this.filter_taxon.bind(this);
         this.filter_tanitomo = this.filter_tanitomo.bind(this);
         this.handleAbstractInner = this.handleAbstractInner.bind(this);
-        this.getTableRef = this.getTableRef.bind(this);
         console.log("made");
     }
 
@@ -478,7 +476,6 @@ class ConcentrationsTable extends Component {
             asked_consensus:true,
             consensus_prompt:"Update Consensus"
         });
-        this.setState({displayed_data:this.state.tableRef});
     };
 
     handleSlider(value) {
@@ -490,9 +487,6 @@ class ConcentrationsTable extends Component {
         this.props.handleAbstract();
     }
 
-    getTableRef(tRef){
-    	this.setState({"tableRef":tRef})
-    }
 
 
 
@@ -531,11 +525,7 @@ class ConcentrationsTable extends Component {
 	  console.log(selected_data)
 	  console.log("trying...")
 
-	  //for (var i = this.state.displayed_data.length - 1; i >= 0; i--) {
-	 // 	if (this.state.displayed_data[i].selected){
-	 // 		selected_data.push(this.state.displayed_data[i]);
-	 // 	}
-	  //}
+
 
 
         return (
@@ -573,8 +563,6 @@ class ConcentrationsTable extends Component {
 		      	data= {this.state.f_concentrations}
 		      	columns={display_columns}
 		      	advanced_columns={this.state.advanced_columns}
-		      	getTableRef={this.getTableRef}
-
 		      	/>
 		     
 
