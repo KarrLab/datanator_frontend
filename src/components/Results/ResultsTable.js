@@ -21,6 +21,7 @@ import {
 } from 'antd';
 import Chart3 from './Chart3.js';
 import { styles } from './ResultsTable.css';
+import PropTypes from 'prop-types';
 
 const selectRow = {
   mode: 'checkbox',
@@ -45,9 +46,47 @@ const defaultSorted = [
   },
 ];
 
+
+/**
+ * Class to render the results
+ */
+let propTypes={data: PropTypes.string,}
 class ResultsTable extends Component {
+  static propTypes = {
+    /** The data must be a list of dictionaries. Each dictionary cooresponds a single row. Each key is the proper column,
+    and each value gets entered into the corresponding cell. 
+    For example:
+    data = [
+      { name: "Adenosine triphosphate", concentration: 4150, units: "uM"},
+      { name: "Adenosine triphosphate", concentration: 3829, units: "uM"},
+    ]
+    */
+    data: PropTypes.array.isRequired,
+
+
+    /** This must be a list of columns that can be used in a react-bootstrap-table2 table. The docs for that can be 
+    found here - https://react-bootstrap-table.github.io/react-bootstrap-table2/docs/getting-started.html
+
+    This is used to define the columns that show up in the table. Each column represented as a dictionary with 
+    at least two key:value pairs -- dataField, to the column id; text, to what its title will be upon rendering. 
+    For example
+    {
+      dataField: 'concentration',
+      text: 'Concentration',
+    }
+    The dataField id in the columns list must correspond to a key in the data list. 
+     */
+    columns: PropTypes.array.isRequired,
+
+    /** Optional advanced columns that can be added*/
+    advanced_columns: PropTypes.array.,
+  }
+
   constructor(props) {
     super(props);
+
+    
+
 
     this.state = {
       displayed_data: [],
@@ -60,6 +99,9 @@ class ResultsTable extends Component {
     );
   }
 
+  /**
+   * At each render, the selectRow object must be reinitialized with the correct selections from the data.
+   */
   setSelected() {
     let data = this.props.data;
     //this.setState({displayed_data:this.props.data})
@@ -101,6 +143,9 @@ class ResultsTable extends Component {
     selectRow['selected'] = selected;
   }
 
+  /**
+   * At each render, the selectRow object must be reinitialized with the correct selections from the data.
+   */
   handleBasicToAdvancedToggle() {
     if (!this.state.advanced) {
       this.setState({ toggleLabel: 'Basic' });
@@ -167,4 +212,8 @@ function getSelectedData(data) {
   return selected_data;
 }
 
+/*
+ResultsTable.propTypes = {
+  data: PropTypes.number
+};*/
 export { ResultsTable, getSelectedData };
