@@ -22,19 +22,24 @@ import {
 import Chart3 from './Chart3.js';
 import {styles} from './ResultsTable.css';
 
+
 const selectRow = {
-  mode: 'checkbox',
-  selected: [],
-  onSelect: (row, isSelect, rowIndex, e) => {
-    console.log(selectRow['selected']);
-    row['selected'] = isSelect;
-  },
-  onSelectAll: (isSelect, rows, e) => {
-    for (var i = rows.length - 1; i >= 0; i--) {
-      rows[i]['selected'] = isSelect;
-    }
-  },
+    mode: "checkbox",
+    selected: [],
+    onSelect: (row, isSelect, rowIndex, e) => {
+      console.log(selectRow["selected"]);
+      row["selected"] = isSelect;
+    },
+    onSelectAll: (isSelect, rows, e) => {
+
+        for (var i = rows.length - 1; i >= 0; i--){
+            rows[i]["selected"] = isSelect;
+        }
+    },
 };
+
+
+let tableRef = null
 
 class ResultsTable extends Component {
   constructor(props) {
@@ -46,41 +51,48 @@ class ResultsTable extends Component {
       table_size: 0,
     };
   }
-  componentDidMount() {
-    this.props.recordDisplayedData(this.node.table);
-  }
 
-  ooooo_componentDidUpdate(prevProps, prevState) {
-    console.log(this.state.table_size);
-    console.log(this.node.table.props.data.length);
-    if (prevState.table_size !== this.node.table.props.data.length) {
-      this.setState({ table_size: this.node.table.props.data.length });
-      let selected_data = [];
-      let post_filtered_data = this.node.table.props.data;
-      for (var i = post_filtered_data.length - 1; i >= 0; i--) {
-        if (post_filtered_data[i].selected) {
-          selected_data.push(post_filtered_data[i]);
-        }
-      }
+  setSelected(){
+    this.setState({displayed_data:this.props.data})
+    console.log(this.props.data)
+    console.log("above")
 
-      this.props.recordDisplayedData(selected_data);
-      //this.setState({displayed_data:selected_data})
+    for (var i = this.state.displayed_data.length - 1; i >= 0; i--) {
+        this.state.displayed_data[i]["key"] = i;
+        selectRow["selected"].push(i);
+        this.state.displayed_data[i]["selected"] = true;
     }
   }
+  componentDidMount() {
+    this.props.getTableRef(this.node.table);
+    tableRef = this.node.table
+    this.setSelected()
+  }
 
-<<<<<<< HEAD
 
-=======
+  componentDidUpdate (prevProps) {
+      console.log("updating");
+      if (this.props.data != prevProps.data){
+          this.setSelected()
+      }
+  }
+
+
+
+
+
+
   render() {
     console.log('woot woot');
+    console.log(this.props.data)
 
     let selected = [];
-    for (var i = this.props.data.length - 1; i >= 0; i--) {
-      if (this.props.data[i]['selected'])
-        selected.push(this.props.data[i]['key']);
+    console.log(this.state.displayed_data)
+    for (var i = this.state.displayed_data.length - 1; i >= 0; i--) {
+      if (this.state.displayed_data[i]['selected'])
+        selected.push(this.state.displayed_data[i]['key']);
     }
     selectRow['selected'] = selected;
->>>>>>> 2e4ecfc6a1b37b03736ef5a0d54e170fa4ea8313
 
     let display_columns;
 
@@ -134,4 +146,27 @@ class ResultsTable extends Component {
   }
 }
 
-export { ResultsTable };
+
+function getSelectedData(data) {
+  let selected_data = [];
+  console.log(data)
+  console.log("newwww")
+  console.log(tableRef)
+  if (tableRef){
+
+    for (var i = tableRef.props.data.length - 1; i >= 0; i--) {
+      if (tableRef.props.data[i].selected){
+        console.log("indeed")
+        selected_data.push(tableRef.props.data[i]);
+      }
+      else{
+        console.log("Indont")
+      }
+    }
+  }
+  let return_data=selected_data
+  return (selected_data);
+}
+
+
+export { ResultsTable, getSelectedData };
