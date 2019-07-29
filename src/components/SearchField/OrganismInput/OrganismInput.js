@@ -1,8 +1,9 @@
 import React from 'react';
-import { FormGroup, InputGroup, MenuItem } from '@blueprintjs/core';
+import { FormGroup, MenuItem } from '@blueprintjs/core';
 import { Suggest } from '@blueprintjs/select';
 import { connect } from 'react-redux';
 import { getData } from '~/data/actions/organismAction';
+import { setSelected, setActive } from '../../../data/actions/organismAction';
 
 @connect(store => {
   return {
@@ -10,6 +11,8 @@ import { getData } from '~/data/actions/organismAction';
     organismsFetched: store.organisms.fetched,
     organismsFetching: store.organisms.fetching,
     organismsError: store.organisms.error,
+    active: store.organisms.active,
+    selected: store.organisms.select,
   };
 })
 class OrganismInput extends React.Component {
@@ -25,32 +28,50 @@ class OrganismInput extends React.Component {
         labelInfo="(required)"
       >
         <Suggest
+          inputProps={{ placeholder: 'Escherichia Coli' }}
+          activeItem={this.props.active}
+          selectedItem={this.props.selected}
+          onItemSelect={this.handleSelect.bind(this)}
+          onActiveItemChange={this.handleActive.bind(this)}
           itemRenderer={this.itemRenderer}
+          itemPredicate={this.filterSpecies}
           items={this.props.organisms}
           inputValueRenderer={this.inputValueRenderer}
           id="species-input"
-          placeholder="Escherichia coli"
+          noResults={<MenuItem disabled={true} text="No results." />}
         />
       </FormGroup>
     );
   }
 
   inputValueRenderer(item) {
-    return { item };
+    return item.toString();
   }
 
-  filter(query) {}
+  filterSpecies(query, species) {
+    return species.toLowerCase().indexOf(query.toLowerCase()) >= 0;
+  }
 
-  itemRenderer = (item, { handleClick, Modifiers }) => {
+  itemRenderer(item, { handleClick, modifiers }) {
+    if (!modifiers.matchesPredicate) {
+      return null;
+    }
     return (
       <MenuItem
-        //active={Modifiers.active}
         Key={item}
-        onclick={handleClick}
-        text={item}
+        onClick={handleClick}
+        text={item.toString()}
+        active={modifiers.active}
       />
     );
-  };
+  }
+
+  handleSelect(item, event) {
+    this.props.dispatch(setSelected(item));
+  }
+  handleActive(item, event) {
+    this.props.dispatch(setActive(item));
+  }
 }
 
 export { OrganismInput };

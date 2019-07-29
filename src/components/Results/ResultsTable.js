@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
 import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
 import filterFactory from 'react-bootstrap-table2-filter';
-import ReactDOM from 'react-dom';
 import { Button } from 'antd';
 import PropTypes from 'prop-types';
 
@@ -132,7 +131,7 @@ class ResultsTable extends Component {
 
   componentDidUpdate(prevProps) {
     console.log('updating');
-    if (this.props.data != prevProps.data) {
+    if (this.props.data !== prevProps.data) {
       this.setSelected();
       this.setState({ display_columns: this.props.columns });
     }
@@ -150,7 +149,7 @@ class ResultsTable extends Component {
 
     return (
       <div className="concTable2">
-        <img src={require('~/images/result.png')} />
+        <img src={require('~/images/result.png')} alt="results" />
         <Button
           type="primary"
           onClick={event => this.handleBasicToAdvancedToggle()}
@@ -186,7 +185,6 @@ function getSelectedData() {
     for (var i = tableRef.props.data.length - 1; i >= 0; i--) {
       if (tableRef.props.data[i].selected) {
         selected_data.push(tableRef.props.data[i]);
-      } else {
       }
     }
   }

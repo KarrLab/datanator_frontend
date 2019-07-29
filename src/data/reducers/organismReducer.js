@@ -3,6 +3,8 @@ const defaultState = {
   fetching: false,
   fetched: false,
   error: null,
+  select: null,
+  active: null,
 };
 
 function organismReducer(state = defaultState, action) {
@@ -11,7 +13,7 @@ function organismReducer(state = defaultState, action) {
   }
   switch (action.type) {
     case 'FETCH_ORGANISMS_PENDING': {
-      return { ...state, fetching:true, organismList: ['Loading...'] };
+      return { ...state, fetching: true, organismList: ['Loading...'] };
     }
     case 'FETCH_ORGANISMS_REJECTED': {
       return {
@@ -28,6 +30,18 @@ function organismReducer(state = defaultState, action) {
         fetched: true,
         organismList: action.payload.data,
         status: action.payload.status,
+      };
+    }
+    case 'SET_SELECT': {
+      return {
+        ...state,
+        select: action.payload,
+      };
+    }
+    case 'SET_ACTIVE': {
+      return {
+        ...state,
+        active: action.payload,
       };
     }
     default: {
