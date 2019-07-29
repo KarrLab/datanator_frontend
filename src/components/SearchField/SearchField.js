@@ -4,6 +4,7 @@ import { ControlGroup, Button } from '@blueprintjs/core';
 import { MetaboliteInput } from './MetaboliteInput';
 import { OrganismInput } from './OrganismInput';
 
+import styles from './SearchField.css';
 class SearchField extends Component {
   constructor(props) {
     super(props);
@@ -18,11 +19,13 @@ class SearchField extends Component {
 
   render() {
     return (
-      <ControlGroup fill="true">
-        <MetaboliteInput />
-        <OrganismInput />
-        <Button icon="filter">Filter</Button>
-      </ControlGroup>
+      <div className="container">
+        <MetaboliteInput className="metabolite" />
+        <OrganismInput className="organism" />
+        <Button icon="search" className="button">
+          Search
+        </Button>
+      </div>
     );
   }
 }

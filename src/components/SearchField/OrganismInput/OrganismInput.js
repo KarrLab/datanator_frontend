@@ -28,6 +28,7 @@ class OrganismInput extends React.Component {
         labelInfo="(required)"
       >
         <Suggest
+          fill={true}
           inputProps={{ placeholder: 'Escherichia Coli' }}
           activeItem={this.props.active}
           selectedItem={this.props.selected}
