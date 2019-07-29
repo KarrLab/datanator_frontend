@@ -10,5 +10,21 @@ function getData() {
     });
   };
 }
+function setSelected(item) {
+  return function(dispatch) {
+    dispatch({
+      type: 'SET_SELECT',
+      payload: item,
+    });
+  };
+}
 
-export { getData };
+function setActive(item) {
+  return function(dispatch) {
+    dispatch({
+      type: 'SET_ACTIVE',
+      payload: item,
+    });
+  };
+}
+export { getData, setSelected, setActive };
