@@ -3,7 +3,8 @@ import axios from 'axios';
 const rootSearchURL = process.env.REACT_APP_DATANATOR_REST_SERVER;
 
 function getSearchData(urlParams) {
-  let searchUrl = rootSearchURL + '/search/' + urlParams.join('/');
+  let searchUrl = rootSearchURL + urlParams.join('/');
+  console.log(searchUrl);
   return axios.get(searchUrl);
 }
 export { getSearchData };

@@ -10,15 +10,14 @@ function organismReducer(state = defaultState, action) {
     return state;
   }
   switch (action.type) {
-    case 'FETCH_ORGANISMS': {
-      return { ...state, fetching: true };
+    case 'FETCH_ORGANISMS_PENDING': {
+      return { ...state, fetching:true, organismList: ['Loading...'] };
     }
     case 'FETCH_ORGANISMS_REJECTED': {
-      console.log(action.payload);
       return {
         ...state,
         fetching: false,
-        error: action.payload.response,
+        error: action.payload,
         organismList: ['Hello', 'The', 'Organism', 'Did', 'Not', 'Load'],
       };
     }
