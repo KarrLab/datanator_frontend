@@ -32,6 +32,7 @@ import { withRouter } from "react-router";
 
 import './MetabConcs.css';
 
+import { getSearchData } from '~/services/MongoApi';
 
 
 
@@ -83,7 +84,15 @@ class MetabConcs extends Component {
 
 
 	getSearchData() {
-		var url = "http://34.237.189.56:5000/results/" + this.props.match.params.molecule + "/" + this.props.match.params.organism + "/" + this.props.match.params.abstract
+		//var url = "http://api.datanator.info/results/" + this.props.match.params.molecule + "/" + this.props.match.params.organism + "/" + this.props.match.params.abstract
+		//let response = null
+		//getSearchData(["concentration", this.props.match.params.molecule, this.props.match.params.organism, this.props.match.params.abstract])
+		getSearchData(["concentration", this.props.match.params.molecule, this.props.match.params.organism])
+		.then(response => {this.setState({orig_json: response.data})} )
+
+
+		/*
+
 		console.log(url)
 
 		console.log("worked!!")
@@ -98,6 +107,8 @@ class MetabConcs extends Component {
 				},)
 			}, )
 			.catch(error => alert("Nothing Found"));
+
+		*/
 
 	}
 
