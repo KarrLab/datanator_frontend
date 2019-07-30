@@ -20,7 +20,7 @@ import { withRouter } from 'react-router';
 import './ConcentrationsTable.css';
 
 import { ResultsTable, getSelectedData } from './ResultsTable.js';
-import { Columns } from './Columns.js';
+//import { Columns } from './Columns.js';
 
 function round(value, decimals) {
   return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);

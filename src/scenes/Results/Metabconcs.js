@@ -45,6 +45,8 @@ const jsonfile = require('jsonfile');
   }
 }) //the names given here will be the names of props
 */
+
+
 class MetabConcs extends Component {
   constructor(props) {
     super(props);
@@ -67,16 +69,11 @@ class MetabConcs extends Component {
       this.props.match.params.organism;
   }
   componentDidMount() {
-    var info = [
-      this.props.match.params.molecule,
-      this.props.match.params.organism,
-      this.props.match.params.abstract,
-    ];
     console.log('hello');
     this.setState({
       abstract_search: this.props.match.params.abstract,
     });
-    this.getSearchData(info);
+    this.getSearchData();
   }
 
   componentDidUpdate(prevProps) {
@@ -86,11 +83,7 @@ class MetabConcs extends Component {
       this.props.match.params.organism != prevProps.match.params.organism ||
       this.props.match.params.abstract != prevProps.match.params.abstract
     ) {
-      var info = [
-        this.props.match.params.molecule,
-        this.props.match.params.organism,
-        this.props.match.params.abstract,
-      ];
+      console.log("UPDATIONG!!!")
       this.getSearchData();
     }
   }
@@ -101,6 +94,7 @@ class MetabConcs extends Component {
       'concentration',
       this.props.match.params.molecule,
       this.props.match.params.organism,
+      this.props.match.params.abstract,
     ]).then(response => {
       this.setState({ orig_json: response.data });
     });

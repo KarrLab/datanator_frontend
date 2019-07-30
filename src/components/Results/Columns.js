@@ -16,7 +16,7 @@ const selectOptions = {
 class Columns extends Component {
   constructor(props) {
     super(props);
-    this.state = {a:"a"}; 
+    this.state = { a: 'a' };
     this.setColumns = this.setColumns.bind(this);
     this.formatSlider = this.formatSlider.bind(this);
     this.formatter = this.formatter.bind(this);
@@ -24,7 +24,7 @@ class Columns extends Component {
     this.filter_tanitomo = this.filter_tanitomo.bind(this);
   }
 
-  setColumns() {
+  getTotalColumns() {
     let column_dict = {
       concentration: {
         dataField: 'concentration',
@@ -95,15 +95,8 @@ class Columns extends Component {
         }),
       },
     };
-
-
-
-
-
-
-
+    return(column_dict)
   }
-
 
   filter_taxon(value) {
     this.taxon_filter({
@@ -143,9 +136,28 @@ class Columns extends Component {
       return `${this.state.numToNode[value]}`;
     } else {
       return `${''}`;
-    
+    }
+  }
+
+
+  componentDidMount() {
+    let desired_columns = this.props.desired_columns
+    total_columns = this.getTotalColumns()
+    let final_columns = []
+    for (var i = 0; i > desired_columns.length; i++) {
+      final_columns.append(total_columns[desired_columns[i]])
+      Things[i]
+    }
+    if (this.props.json_data) {
+      this.formatData(this.props.json_data);
+      this.formatSlider(this.props.json_data);
+    }
+  }
+
+
 
 
 
 }
+
 export { Columns };
