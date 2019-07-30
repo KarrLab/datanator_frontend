@@ -20,7 +20,7 @@ import { withRouter } from 'react-router';
 import './ConcentrationsTable.css';
 
 import { ResultsTable, getSelectedData } from './ResultsTable.js';
-//import { Columns } from './Columns.js';
+import { Columns } from './Columns.js';
 
 function round(value, decimals) {
   return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
@@ -103,6 +103,8 @@ class ConcentrationsTable extends Component {
       tanitomo: false,
       consensus_prompt: 'Get Consensus',
       json_data: '',
+
+      test_display_columns: [],
 
       f_concentrations: [],
 
@@ -392,38 +394,10 @@ class ConcentrationsTable extends Component {
     return (
       <div className="total_table">
         <div className="slider">
-          Taxonomic Distance
-          <div className="slider_bar">
-            <Slider
-              marks={this.state.marks}
-              defaultValue={this.state.sliderLen}
-              tipFormatter={this.formatter}
-              onChange={this.filter_taxon}
-              max={this.state.sliderLen}
-            />
-          </div>
-          <br></br>
-          Molecular Similarity
-          <div className="slider_bar2">
-            {!this.state.tanitomo && (
-              <Button type="primary" onClick={this.handleAbstractInner}>
-                {' '}
-                Abstract{' '}
-              </Button>
-            )}
-
-            {this.state.tanitomo && (
-              <Slider
-                step={0.01}
-                defaultValue={0.65}
-                min={0.65}
-                max={1}
-                onChange={this.filter_tanitomo}
-              />
-            )}
-          </div>
-          <br />
-          <br />
+          <Columns
+            desired_columns = {["concentration", "error", "molecule"]}
+            setColumns = {final_columns => {this.setState({test_display_columns: final_columns}); console.log(this.state.test_display_columns)}}
+          />
         </div>
         <div className="results">
           <div className="concTable">

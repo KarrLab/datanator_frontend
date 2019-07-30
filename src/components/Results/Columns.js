@@ -16,8 +16,12 @@ const selectOptions = {
 class Columns extends Component {
   constructor(props) {
     super(props);
-    this.state = { a: 'a' };
-    this.setColumns = this.setColumns.bind(this);
+    this.state = { 
+      marks: {},
+      numToNode: { 0: 0 },
+      sliderLen: 100 
+    };
+    this.getTotalColumns = this.getTotalColumns.bind(this);
     this.formatSlider = this.formatSlider.bind(this);
     this.formatter = this.formatter.bind(this);
     this.filter_taxon = this.filter_taxon.bind(this);
@@ -141,18 +145,64 @@ class Columns extends Component {
 
 
   componentDidMount() {
+    console.log(this.props.desired_columns)
     let desired_columns = this.props.desired_columns
-    total_columns = this.getTotalColumns()
+    let total_columns = this.getTotalColumns()
     let final_columns = []
-    for (var i = 0; i > desired_columns.length; i++) {
-      final_columns.append(total_columns[desired_columns[i]])
-      Things[i]
+    console.log(desired_columns.length)
+    for (var i = 0; i < desired_columns.length; i++) {
+      console.log(desired_columns[i])
+      final_columns.push(total_columns[desired_columns[i]])
     }
-    if (this.props.json_data) {
-      this.formatData(this.props.json_data);
-      this.formatSlider(this.props.json_data);
+    if (this.props.taxon_data) {
+      this.formatSlider(this.props.taxon_data);
     }
+    console.log(final_columns)
+    this.props.setColumns(final_columns)
   }
+
+
+
+  render() {
+        
+return (
+        <div className="slider">
+          Taxonomic Distance
+          <div className="slider_bar">
+            <Slider
+              marks={this.state.marks}
+              defaultValue={this.state.sliderLen}
+              tipFormatter={this.formatter}
+              onChange={this.filter_taxon}
+              max={this.state.sliderLen}
+            />
+          </div>
+          <br></br>
+          Molecular Similarity
+          <div className="slider_bar2">
+            {!this.state.tanitomo && (
+              <Button type="primary" onClick={this.handleAbstractInner}>
+                {' '}
+                Abstract{' '}
+              </Button>
+            )}
+
+            {this.state.tanitomo && (
+              <Slider
+                step={0.01}
+                defaultValue={0.65}
+                min={0.65}
+                max={1}
+                onChange={this.filter_tanitomo}
+              />
+            )}
+          </div>
+          <br />
+          <br />
+        </div>
+  )}
+
+
 
 
 
