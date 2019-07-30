@@ -3,7 +3,7 @@ import { FormGroup, MenuItem } from '@blueprintjs/core';
 import { Suggest } from '@blueprintjs/select';
 import { connect } from 'react-redux';
 import { getData } from '~/data/actions/organismAction';
-import { setSelected, setActive } from '../../../data/actions/organismAction';
+import { setSelected, setActive } from '~data/actions/organismAction';
 
 @connect(store => {
   return {
