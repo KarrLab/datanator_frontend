@@ -20,7 +20,11 @@ import { withRouter } from 'react-router';
 import './ConcentrationsTable.css';
 
 import { ResultsTable, getSelectedData } from './ResultsTable.js';
-import { Columns } from './Columns.js';
+//import { getTotalColumns } from './Columns2.js';
+import { connect } from 'react-redux';
+
+import store from '~/data/Store'
+import { getTotalColumns } from '~/data/actions/columnAction';
 
 function round(value, decimals) {
   return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
@@ -30,6 +34,7 @@ const selectOptions = {
   'Stationary Phase': 'Stationary Phase',
   'Log Phase': 'Log Phase',
 };
+
 
 
 class Consensus extends Component {
@@ -94,6 +99,14 @@ class Consensus extends Component {
   }
 }
 
+
+
+@connect(store => {
+  return {
+    columns: store.columns.columns,
+
+  };
+})
 class ConcentrationsTable extends Component {
   constructor(props) {
     super(props);
@@ -352,6 +365,14 @@ class ConcentrationsTable extends Component {
       this.formatData(this.props.json_data);
       this.formatSlider(this.props.json_data);
     }
+    console.log("watermellon")
+
+    this.props.dispatch(getTotalColumns(["concentration", "error", "molecule"]));
+    console.log("watermellon2")
+    console.log(this.props.columns)
+
+
+
   }
 
   componentDidUpdate(prevProps) {
@@ -391,21 +412,56 @@ class ConcentrationsTable extends Component {
     //get the data for the consensus module
     let selected_data = getSelectedData();
 
+    let test_columns = [
+      {
+        dataField: 'concentration',
+        text: 'Conc. (µM)',
+      },
+
+      {
+        dataField: 'error',
+        text: 'Error',
+      },
+       {
+        dataField: 'name',
+        text: 'Molecule',
+        filter: textFilter(),
+      },
+       {
+        dataField: 'organism',
+        text: 'Organism',
+        filter: textFilter(),
+      },
+
+
+    ];
+
+
+    console.log(test_columns)
+    console.log(this.props.columns)
+    console.log("AGAIN!!")
+
+
     return (
+
       <div className="total_table">
         <div className="slider">
+        {/*
           <Columns
             desired_columns = {["concentration", "error", "molecule"]}
             setColumns = {final_columns => {this.setState({test_display_columns: final_columns}); console.log(this.state.test_display_columns)}}
           />
+        */}
         </div>
         <div className="results">
           <div className="concTable">
+            {this.props.columns.length>0 && 
             <ResultsTable
               data={this.state.f_concentrations}
-              columns={display_columns}
+              columns={this.props.columns}
               advanced_columns={this.state.advanced_columns}
             />
+          }
           </div>
           <div className="consensus">
             <img src={require('~/images/consensus.png')} />
