@@ -21,6 +21,9 @@ import './ConcentrationsTable.css';
 
 import { ResultsTable, getSelectedData } from './ResultsTable.js';
 //import { getTotalColumns } from './Columns2.js';
+
+
+import { Filters } from './Filters.js';
 import { connect } from 'react-redux';
 
 import store from '~/data/Store'
@@ -448,6 +451,7 @@ class ConcentrationsTable extends Component {
 
       <div className="total_table">
         <div className="slider">
+        <Filters />
         {/*
           <Columns
             desired_columns = {["concentration", "error", "molecule"]}
