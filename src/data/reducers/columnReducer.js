@@ -15,55 +15,14 @@ let defaultState = {
   numToNode: { 0: 0 },
   sliderLen: 100,
   columns: [],
-  a_taxon_filter: null,
-  new_taxon_filter: null,
-  b_taxon_filter:numberFilter({
-          placeholder: 'custom placeholder',
-          defaultValue: { comparator: Comparator.LE, number: 1000 }, //ref:this.node,
-          getFilter: filter => ( defaultState.a_taxon_filter = filter, console.log(filter),console.log("ddd")),
-        }),
-
-
-
-  test_col : [ {
-        dataField: 'taxonomic_proximity',
-        text: 'Taxonomic Distance',
-
-        headerStyle: (colum, colIndex) => {
-          return { width: '40px', textAlign: 'left' };
-        },
-
-        filter: numberFilter({
-          placeholder: 'custom placeholder',
-          defaultValue: { comparator: Comparator.LE, number: 1000 }, //ref:this.node,
-          getFilter: filter => (defaultState.taxon_filter = filter),
-        }),
-        sort: true,
-      },]
-
-
-
-
-
-
-
 
 
 };
 
 
-console.log(defaultState)
 
-function setTaxonFilter(filter, state = defaultState){
-	console.log("Blue")
-	console.log(filter)
-	return {
-        ...state,
-        new_taxon_filter: filter
-    }
-    
-}
-let innerFilter = null;
+
+let taxonFilter = null;
 function columnReducer(state = defaultState, action) {
 	if (action === undefined) {
     return state;
@@ -107,7 +66,7 @@ function columnReducer(state = defaultState, action) {
         filter: numberFilter({
           placeholder: 'custom placeholder',
           defaultValue: { comparator: Comparator.LE, number: 1000 }, //ref:this.node,
-          getFilter: filter => ( setTaxonFilter(filter=filter), innerFilter = filter, console.log(filter),console.log("ddd")),
+          getFilter: filter => (taxonFilter = filter),
         }),
         sort: true,
       },
@@ -149,14 +108,11 @@ function columnReducer(state = defaultState, action) {
 
     let final_columns = []
     let desired_columns = action.payload
-    console.log(desired_columns.length)
+
     for (var i = 0; i < desired_columns.length; i++) {
       console.log(desired_columns[i])
       final_columns.push(total_columns[desired_columns[i]])
     }
-    console.log(final_columns)
-    console.log("muffins")
-    console.log(temp_taxon_filter)
 
 
 
@@ -165,51 +121,15 @@ function columnReducer(state = defaultState, action) {
 
         //columns: final_columns,
         columns: final_columns,
-        new_taxon_filter: defaultState["new_taxon_filter"]
 
       };
     }
 
     case 'FILTER_TAXON': {
-    	console.log(innerFilter)
-    	innerFilter({number: 2, comparator: Comparator.LE,})
+    	console.log(taxonFilter)
+    	taxonFilter({number: action.payload, comparator: Comparator.LE,})
 
-    	/*
-    	state.a_taxon_filter({number: 2, comparator: Comparator.LE,})
-    	console.log(state.columns)
-    	console.log(state.columns[4])
-    	state.columns[4].filter.Filter.number = action.payload
-    	//console.log(state.columns[0]["filter"]["Filter"])
-    	//console.log(state.columns[0]["filter"]["Filter"])
-    	console.log(action.payload)
-    	
-    	//state.columns[0]["filter"].props.number = action.payload
-    	
-    	//state.columns[0]["filter"]["Filter"].getFilter()({
-	    //  number: action.payload,
-	    //  comparator: Comparator.LE,
-	    //})
-	    let filter = state.columns[4]["filter"].props.getFilter()
-	    console.log(filter)
-	    //filter({number: 2, comparator: Comparator.LE,})
-	    console.log(state.columns[4]["filter"].props.getFilter)
-	    //state.columns[0]["filter"].props.getFilter()
-	    //.then(new_filter => {filter=new_filter})
-	    //filter({
-	    //  number: action.payload,
-	     // comparator: Comparator.LE,
-	    //})
-	    //filter()
-	    console.log(state.columns[4]["filter"])
-    	//console.log(state.columns[0]["filter"]["Filter"])
-    	//let filter = state.columns[0]["filter"]["getFilter"]()//.getFilter()
-    	//console.log(filter)
 
-    	let a = ({
-	      number: action.payload,
-	      comparator: Comparator.LE,
-	    });
-	    */
       }
       
       return {

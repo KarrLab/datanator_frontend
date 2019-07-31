@@ -391,7 +391,7 @@ class ConcentrationsTable extends Component {
       asked_consensus: true,
       consensus_prompt: 'Update Consensus',
     });
-    this.props.dispatch(filter_taxon(3))
+    //this.props.dispatch(filter_taxon(3))
   }
 
   handleSlider(value) {
