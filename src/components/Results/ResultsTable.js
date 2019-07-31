@@ -4,7 +4,7 @@ import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css
 import filterFactory from 'react-bootstrap-table2-filter';
 import { Button } from 'antd';
 import PropTypes from 'prop-types';
-import { getTotalColumns, filter_taxon, set_lineage } from '~/data/actions/columnAction';
+import { getTotalColumns, filter_taxon, set_lineage, set_displayed_columns } from '~/data/actions/columnAction';
 import { connect } from 'react-redux';
 
 const selectRow = {
@@ -44,6 +44,8 @@ const defaultSorted = [
  @connect(store => {
   return {
     columns: store.columns.columns,
+    displayed_columns: store.columns.displayed_columns,
+    col_list:store.columns.column_list
   };
 })
 class ResultsTable extends Component {
@@ -85,9 +87,8 @@ class ResultsTable extends Component {
       toggleLabel: 'Advanced',
     };
     this.correctlyRenderSelectRow = this.correctlyRenderSelectRow.bind(this);
-    this.handleBasicToAdvancedToggle = this.handleBasicToAdvancedToggle.bind(
-      this,
-    );
+    this.handleBasicToAdvancedToggle = this.handleBasicToAdvancedToggle.bind(this);
+    this.setDisplayColumns = this.setDisplayColumns.bind(this);
   }
 
   /**
@@ -125,16 +126,32 @@ class ResultsTable extends Component {
   handleBasicToAdvancedToggle() {
     if (!this.state.advanced) {
       this.setState({ toggleLabel: 'Basic' });
+
+      //this.props.dispatch(getTotalColumns(this.props.basic_columns.concat(this.props.advanced_columns)));
+      this.props.dispatch(set_displayed_columns(this.props.basic_columns.concat(this.props.advanced_columns)));
     } else {
       this.setState({ toggleLabel: 'Advanced' });
+      this.props.dispatch(set_displayed_columns(this.props.basic_columns));
     }
 
     this.setState({ advanced: !this.state.advanced });
   }
 
+  setDisplayColumns(list_col_names){
+    let to_display_columns = [];
+    for (var i = 0; i < list_col_names.length; i++) {
+      to_display_columns.push(this.props.columns[list_col_names[i]])
+    } 
+    console.log(to_display_columns)
+    return(to_display_columns)
+  }
+
   componentDidMount() {
-    this.props.dispatch(getTotalColumns(this.props.basic_columns));
+    this.props.dispatch(getTotalColumns(this.props.basic_columns.concat(this.props.advanced_columns)))
+    this.props.dispatch(set_displayed_columns(this.props.basic_columns))
     console.log(this.props.basic_columns)
+    console.log(this.props.basic_columns.concat(this.props.advanced_columns))
+    console.log("running runnin nin")
     if (typeof(this.node) !== "undefined"){
       tableRef = this.node.table;
     }
@@ -156,11 +173,21 @@ class ResultsTable extends Component {
   render() {
     this.correctlyRenderSelectRow();
 
-    let display_columns = this.props.columns;
+    //let display_columns = this.setDisplayColumns(this.props.basic_columns);
 
-    if (this.state.advanced) {
-      display_columns = display_columns.concat(this.props.advanced_columns);
-    }
+    //let display_columns = []
+    //for (var i = 0; i < display_columns.length; i++) {
+    //  display_columns[i]
+    //}
+
+    //this.props.columns;
+
+    //if (this.state.advanced) {
+    //  display_columns = display_columns.concat(this.props.advanced_columns);
+    //}
+    console.log(this.props.displayed_columns)
+    console.log(this.props.columns)
+    console.log("baluga")
 
     return (
       <div className="concTable2">
@@ -174,14 +201,14 @@ class ResultsTable extends Component {
         </Button>
 
         <div className="bootstrap">
-        {this.props.columns.length>0 &&
+        {this.props.displayed_columns.length>0 &&
           <BootstrapTable
             ref={n => (this.node = n)}
             striped
             hover
             keyField="key"
             data={this.props.data}
-            columns={display_columns}
+            columns={this.props.displayed_columns}
             filter={filterFactory()}
             selectRow={selectRow}
             defaultSorted={defaultSorted}

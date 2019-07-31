@@ -384,7 +384,7 @@ class ConcentrationsTable extends Component {
             <ResultsTable
               data={this.state.f_concentrations}
               basic_columns={["concentration", "error", "molecule", "organism", "taxonomic_proximity"]}
-              advanced_columns={this.state.advanced_columns}
+              advanced_columns={["growth_phase", "growth_conditions", "growth_media"]}
             />
 
           </div>

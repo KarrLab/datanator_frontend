@@ -14,7 +14,9 @@ let defaultState = {
   marks: {},
   numToNode: { 0: 0 },
   sliderLen: 100,
-  columns: [],
+  columns: {},
+  column_list:[],
+  displayed_columns:[],
   taxon_lineage:null,
   permanent_taxon_filter:null,
 
@@ -110,12 +112,16 @@ function columnReducer(state = defaultState, action) {
     };
 
 
-    let final_columns = []
+    let final_columns = {}
+    let final_column_list = []
     let desired_columns = action.payload
 
     for (var i = 0; i < desired_columns.length; i++) {
       console.log(desired_columns[i])
-      final_columns.push(total_columns[desired_columns[i]])
+      final_columns[desired_columns[i]] = total_columns[desired_columns[i]]
+      
+      final_column_list.push(total_columns[desired_columns[i]])
+      //final_columns.push(total_columns[desired_columns[i]])
     }
 
 
@@ -125,6 +131,7 @@ function columnReducer(state = defaultState, action) {
 
         //columns: final_columns,
         columns: final_columns,
+        column_list: final_column_list,
         permanent_taxon_filter: taxonFilter
 
       };
@@ -132,9 +139,24 @@ function columnReducer(state = defaultState, action) {
 
     case 'FILTER_TAXON': {
     	//console.log(taxonFilter)
-    	taxonFilter({number: action.payload, comparator: Comparator.LE,})
+
+    	//taxonFilter({number: action.payload, comparator: Comparator.LE,})
     	return {
         ...state,
+    }
+      }
+
+    case 'SET_DISPLAYED_COLUMNS': {
+    	let list_col_names = action.payload
+    	let to_display_columns = [];
+	    for (var i = 0; i < list_col_names.length; i++) {
+	      to_display_columns.push(state.columns[list_col_names[i]])
+	    } 
+
+    	return {
+        ...state,
+
+        displayed_columns:to_display_columns
     }
       }
 
