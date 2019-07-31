@@ -6,8 +6,17 @@ function getTotalColumns(desired_columns) {
       payload: desired_columns,
     });
   };
+}
 
+
+function filter_taxon(value) {
+    return function(dispatch) {
+    dispatch({
+      type: 'FILTER_TAXON',
+      payload: value,
+    });
+  };
 
 }
 
-export { getTotalColumns };
+export { getTotalColumns, filter_taxon };

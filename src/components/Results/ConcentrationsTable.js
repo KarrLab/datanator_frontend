@@ -24,7 +24,7 @@ import { ResultsTable, getSelectedData } from './ResultsTable.js';
 import { connect } from 'react-redux';
 
 import store from '~/data/Store'
-import { getTotalColumns } from '~/data/actions/columnAction';
+import { getTotalColumns, filter_taxon } from '~/data/actions/columnAction';
 
 function round(value, decimals) {
   return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
@@ -367,9 +367,10 @@ class ConcentrationsTable extends Component {
     }
     console.log("watermellon")
 
-    this.props.dispatch(getTotalColumns(["concentration", "error", "molecule"]));
+    this.props.dispatch(getTotalColumns(["concentration", "error", "molecule", "organism", "taxonomic_proximity"]));
     console.log("watermellon2")
     console.log(this.props.columns)
+    //this.props.dispatch(filter_taxon(3))
 
 
 
@@ -390,6 +391,7 @@ class ConcentrationsTable extends Component {
       asked_consensus: true,
       consensus_prompt: 'Update Consensus',
     });
+    this.props.dispatch(filter_taxon(3))
   }
 
   handleSlider(value) {
