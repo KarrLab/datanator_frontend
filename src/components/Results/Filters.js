@@ -21,6 +21,7 @@ const selectOptions = {
 @connect(store => {
   return {
     columns: store.columns.columns,
+    lineage: store.columns.taxon_lineage
 
   };
 })
@@ -55,7 +56,8 @@ class Filters extends Component {
   }
 
   formatSlider(data) {
-    const lineage = data[2][0];
+    const lineage = this.props.lineage;
+    console.log(this.props.lineage)
     this.setState({ sliderLen: lineage.length - 1 });
 
     var new_marks = {};
@@ -81,6 +83,23 @@ class Filters extends Component {
     }
   }
 
+
+  componentDidMount() {
+    console.log("mounting mounting")
+    console.log(this.props.lineage)
+
+    if (this.props.lineage) {
+      this.formatSlider(this.props.lineage);
+    }
+
+  }
+
+  componentDidUpdate(prevProps){
+    if (this.props.lineage != prevProps.lineage) {
+      this.formatSlider(this.props.lineage)
+    }
+
+  }
 
 
 

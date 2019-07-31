@@ -27,7 +27,7 @@ import { Filters } from './Filters.js';
 import { connect } from 'react-redux';
 
 import store from '~/data/Store'
-import { getTotalColumns, filter_taxon } from '~/data/actions/columnAction';
+import { getTotalColumns, filter_taxon, set_lineage } from '~/data/actions/columnAction';
 
 function round(value, decimals) {
   return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
@@ -214,6 +214,8 @@ class ConcentrationsTable extends Component {
     console.log(data);
     if (data != null) {
       var f_concentrations = [];
+
+      this.props.dispatch(set_lineage(data[2][0]))
 
       for (var n = data[0].length; n > 0; n--) {
         if (data[0][n - 1].tanitomo_similarity < 1) {

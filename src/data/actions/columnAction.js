@@ -16,7 +16,16 @@ function filter_taxon(value) {
       payload: value,
     });
   };
+}
+
+function set_lineage(lineage_list) {
+    return function(dispatch) {
+    dispatch({
+      type: 'SET_LINEAGE',
+      payload: lineage_list,
+    });
+  };
 
 }
 
-export { getTotalColumns, filter_taxon };
+export { getTotalColumns, filter_taxon, set_lineage };

@@ -15,6 +15,7 @@ let defaultState = {
   numToNode: { 0: 0 },
   sliderLen: 100,
   columns: [],
+  taxon_lineage:null,
 
 
 };
@@ -128,14 +129,19 @@ function columnReducer(state = defaultState, action) {
     case 'FILTER_TAXON': {
     	console.log(taxonFilter)
     	taxonFilter({number: action.payload, comparator: Comparator.LE,})
-
-
-      }
-      
-      return {
+    	return {
         ...state,
-        taxon_filter: state.taxon_filter
     }
+      }
+
+    case 'SET_LINEAGE': {
+    	return {
+        ...state,
+
+        taxon_lineage:action.payload
+    }
+      }
+
     
     default: {
       return state;
