@@ -16,14 +16,16 @@ let defaultState = {
   sliderLen: 100,
   columns: [],
   taxon_lineage:null,
+  permanent_taxon_filter:null,
 
 
 };
 
 
+let taxonFilter;
 
 
-let taxonFilter = null;
+//let taxonFilter = null;
 function columnReducer(state = defaultState, action) {
 	if (action === undefined) {
     return state;
@@ -32,6 +34,7 @@ function columnReducer(state = defaultState, action) {
   switch (action.type) {
 
     case 'CREATE_COLUMNS': {
+     //let taxonFilter;
 
      let temp_taxon_filter = null
 
@@ -122,12 +125,13 @@ function columnReducer(state = defaultState, action) {
 
         //columns: final_columns,
         columns: final_columns,
+        permanent_taxon_filter: taxonFilter
 
       };
     }
 
     case 'FILTER_TAXON': {
-    	console.log(taxonFilter)
+    	//console.log(taxonFilter)
     	taxonFilter({number: action.payload, comparator: Comparator.LE,})
     	return {
         ...state,

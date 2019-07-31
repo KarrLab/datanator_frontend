@@ -124,41 +124,7 @@ class ConcentrationsTable extends Component {
 
       f_concentrations: [],
 
-      columns: [
-        {
-          dataField: 'concentration',
-          text: 'Conc. (µM)',
-        },
-        {
-          dataField: 'error',
-          text: 'Error',
-        },
-        {
-          dataField: 'name',
-          text: 'Molecule',
-          filter: textFilter(),
-        },
-        {
-          dataField: 'organism',
-          text: 'Organism',
-          filter: textFilter(),
-        },
-        {
-          dataField: 'taxonomic_proximity',
-          text: 'Taxonomic Distance',
-
-          headerStyle: (colum, colIndex) => {
-            return { width: '20px', textAlign: 'left' };
-          },
-
-          filter: numberFilter({
-            placeholder: 'custom placeholder',
-            defaultValue: { comparator: Comparator.LE, number: 1000 }, //ref:this.node,
-            getFilter: filter => (this.taxon_filter = filter),
-          }),
-          sort: true,
-        },
-      ],
+      
 
       advanced_columns: [
         {
@@ -196,17 +162,11 @@ class ConcentrationsTable extends Component {
         },
       ],
 
-      marks: {},
-      numToNode: { 0: 0 },
-      sliderLen: 100,
+
     };
 
     this.formatData = this.formatData.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
-    this.formatSlider = this.formatSlider.bind(this);
-    this.formatter = this.formatter.bind(this);
-    this.filter_taxon = this.filter_taxon.bind(this);
-    this.filter_tanitomo = this.filter_tanitomo.bind(this);
     this.handleAbstractInner = this.handleAbstractInner.bind(this);
   }
 
@@ -324,60 +284,18 @@ class ConcentrationsTable extends Component {
     }
   }
 
-  filter_taxon(value) {
-    this.taxon_filter({
-      number: value,
-      comparator: Comparator.LE,
-    });
-  }
 
-  filter_tanitomo(value) {
-    this.tanitomo_filter({
-      number: value,
-      comparator: Comparator.GE,
-    });
-  }
-
-  formatSlider(data) {
-    const lineage = data[2][0];
-    this.setState({ sliderLen: lineage.length - 1 });
-
-    var new_marks = {};
-    var new_numToNode = {};
-    var n = lineage.length - 1;
-    for (var i = 0; i < lineage.length; i++) {
-      new_numToNode[i] = lineage[n];
-      new_marks[i] = i;
-      n--;
-    }
-
-    this.setState({
-      numToNode: new_numToNode,
-      marks: new_marks,
-    });
-  }
-
-  formatter(value) {
-    if (this.state.numToNode[value]) {
-      return `${this.state.numToNode[value]}`;
-    } else {
-      return `${''}`;
-    }
-  }
 
   componentDidMount() {
     if (this.props.json_data) {
       this.formatData(this.props.json_data);
-      this.formatSlider(this.props.json_data);
     }
     console.log("watermellon")
 
-    this.props.dispatch(getTotalColumns(["concentration", "error", "molecule", "organism", "taxonomic_proximity"]));
+    //this.props.dispatch(getTotalColumns(["concentration", "error", "molecule", "organism", "taxonomic_proximity"]));
     console.log("watermellon2")
     console.log(this.props.columns)
     //this.props.dispatch(filter_taxon(3))
-
-
 
   }
 
@@ -387,7 +305,6 @@ class ConcentrationsTable extends Component {
       console.log('not equal');
       console.log(this.props.json_data);
       this.formatData(this.props.json_data);
-      this.formatSlider(this.props.json_data);
     }
   }
 
@@ -463,13 +380,13 @@ class ConcentrationsTable extends Component {
         </div>
         <div className="results">
           <div className="concTable">
-            {this.props.columns.length>0 && 
+             
             <ResultsTable
               data={this.state.f_concentrations}
-              columns={this.props.columns}
+              basic_columns={["concentration", "error", "molecule", "organism", "taxonomic_proximity"]}
               advanced_columns={this.state.advanced_columns}
             />
-          }
+
           </div>
           <div className="consensus">
             <img src={require('~/images/consensus.png')} />

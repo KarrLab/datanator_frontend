@@ -4,6 +4,8 @@ import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css
 import filterFactory from 'react-bootstrap-table2-filter';
 import { Button } from 'antd';
 import PropTypes from 'prop-types';
+import { getTotalColumns, filter_taxon, set_lineage } from '~/data/actions/columnAction';
+import { connect } from 'react-redux';
 
 const selectRow = {
   mode: 'checkbox',
@@ -38,6 +40,12 @@ const defaultSorted = [
  * The reason this exists as a function here (as opposed to in a parent class) is because the information about
  * which data are displayed exists in the react-bootrsap-table2 component, and can only be accessed by a ref.
  */
+
+ @connect(store => {
+  return {
+    columns: store.columns.columns,
+  };
+})
 class ResultsTable extends Component {
   static propTypes = {
     /** The data must be a list of dictionaries. Each dictionary cooresponds a single row. Each key is the proper column,
@@ -62,7 +70,7 @@ class ResultsTable extends Component {
      * }
      * The dataField id in the columns list must correspond to a key in the data list.
      */
-    columns: PropTypes.array.isRequired,
+    basic_columns: PropTypes.array.isRequired,
 
     /** Optional advanced columns that can be added*/
     advanced_columns: PropTypes.array,
@@ -125,7 +133,11 @@ class ResultsTable extends Component {
   }
 
   componentDidMount() {
-    tableRef = this.node.table;
+    this.props.dispatch(getTotalColumns(this.props.basic_columns));
+    console.log(this.props.basic_columns)
+    if (typeof(this.node) !== "undefined"){
+      tableRef = this.node.table;
+    }
     this.setSelected();
   }
 
@@ -134,6 +146,9 @@ class ResultsTable extends Component {
     if (this.props.data !== prevProps.data) {
       this.setSelected();
       this.setState({ display_columns: this.props.columns });
+    }
+    if (typeof(this.node) !== "undefined"){
+      tableRef = this.node.table;
     }
     console.log(this.state.displayed_data);
   }
@@ -159,6 +174,7 @@ class ResultsTable extends Component {
         </Button>
 
         <div className="bootstrap">
+        {this.props.columns.length>0 &&
           <BootstrapTable
             ref={n => (this.node = n)}
             striped
@@ -170,6 +186,7 @@ class ResultsTable extends Component {
             selectRow={selectRow}
             defaultSorted={defaultSorted}
           />
+        }
         </div>
       </div>
     );
