@@ -25,22 +25,7 @@ let defaultState = {
 
 
 let taxonFilter;
-
-
-//let taxonFilter = null;
-function columnReducer(state = defaultState, action) {
-	if (action === undefined) {
-    return state;
-  }
-
-  switch (action.type) {
-
-    case 'CREATE_COLUMNS': {
-     //let taxonFilter;
-
-     let temp_taxon_filter = null
-
-     let total_columns = {
+const total_columns = {
       concentration: {
         dataField: 'concentration',
         text: 'Conc. (µM)',
@@ -94,7 +79,7 @@ function columnReducer(state = defaultState, action) {
       growth_media: {
         dataField: 'growth_media',
         text: 'Media',
-        filter: textFilter(),
+        filter: textFilter({defaultValue:""}),
       },
 
       tanitomo: {
@@ -111,6 +96,19 @@ function columnReducer(state = defaultState, action) {
       },
     };
 
+//let taxonFilter = null;
+function columnReducer(state = defaultState, action) {
+	if (action === undefined) {
+    return state;
+  }
+
+  switch (action.type) {
+
+    case 'CREATE_COLUMNS': {
+     //let taxonFilter;
+
+     let temp_taxon_filter = null
+
 
     let final_columns = {}
     let final_column_list = []
@@ -123,7 +121,6 @@ function columnReducer(state = defaultState, action) {
       final_column_list.push(total_columns[desired_columns[i]])
       //final_columns.push(total_columns[desired_columns[i]])
     }
-
 
 
       return {
@@ -146,17 +143,122 @@ function columnReducer(state = defaultState, action) {
     }
       }
 
+    case 'REMOVE_COLUMNS': {
+    	//console.log(taxonFilter)
+
+    	let list_col_names = action.payload
+    	let new_columns = state.columns;
+    	for (var i = 0; i < list_col_names.length; i++) {
+	      delete new_columns[list_col_names[i]]
+	    } 
+    	return {
+        ...state,
+
+        columns:new_columns
+    }
+      }
+
+    case 'APPEND_COLUMNS': {
+    	//console.log(taxonFilter)
+
+    	let local_total_columns = {
+      concentration: {
+        dataField: 'concentration',
+        text: 'Conc. (µM)',
+      },
+
+      error: {
+        dataField: 'error',
+        text: 'Error',
+      },
+      molecule: {
+        dataField: 'name',
+        text: 'Molecule',
+        filter: textFilter(),
+      },
+      organism: {
+        dataField: 'organism',
+        text: 'Organism',
+        filter: textFilter(),
+      },
+
+      taxonomic_proximity: {
+        dataField: 'taxonomic_proximity',
+        text: 'Taxonomic Distance',
+
+        headerStyle: (colum, colIndex) => {
+          return { width: '40px', textAlign: 'left' };
+        },
+
+        filter: numberFilter({
+          placeholder: 'custom placeholder',
+          defaultValue: { comparator: Comparator.LE, number: 1000 }, //ref:this.node,
+          getFilter: filter => (taxonFilter = filter),
+        }),
+        sort: true,
+      },
+
+      growth_phase: {
+        dataField: 'growth_phase',
+        text: 'Growth Phase',
+        formatter: cell => selectOptions[cell],
+        filter: selectFilter({
+          options: selectOptions,
+        }),
+      },
+
+      growth_conditions: {
+        dataField: 'growth_conditions',
+        text: 'Conditions',
+        filter: textFilter(),
+      },
+      growth_media: {
+        dataField: 'growth_media',
+        text: 'Media',
+        filter: textFilter({
+        	placeholder: 'custom placeholder',
+        	className: 'my-custom-text-filter',
+        	defaultValue:'h',
+        }),
+      },
+
+      tanitomo: {
+        dataField: 'tanitomo_similarity',
+        text: 'Tanitomo Score',
+        headerStyle: (colum, colIndex) => {
+          return { width: '20px', textAlign: 'left' };
+        },
+        filter: numberFilter({
+          placeholder: 'custom placeholder',
+          defaultValue: { comparator: Comparator.GE, number: 0.5 }, //ref:this.node,
+          getFilter: filter => (this.tanitomo_filter = filter),
+        }),
+      },
+    };
+
+    	let list_col_names = action.payload
+    	let new_columns = state.columns
+    	for (var i = 0; i < list_col_names.length; i++) {
+	      new_columns[list_col_names[i]] = local_total_columns[list_col_names[i]]
+	    }
+    	return {
+        ...state,
+        columns:new_columns
+    }
+      }
+
     case 'SET_DISPLAYED_COLUMNS': {
     	let list_col_names = action.payload
     	let to_display_columns = [];
 	    for (var i = 0; i < list_col_names.length; i++) {
+	     //new_col = state.columns[list_col_names[i]]
 	      to_display_columns.push(state.columns[list_col_names[i]])
 	    } 
 
     	return {
         ...state,
 
-        displayed_columns:to_display_columns
+        displayed_columns:to_display_columns,
     }
       }
 

@@ -387,6 +387,8 @@ class ConcentrationsTable extends Component {
               advanced_columns={["growth_phase", "growth_conditions", "growth_media"]}
             />
 
+
+
           </div>
           <div className="consensus">
             <img src={require('~/images/consensus.png')} />
