@@ -4,7 +4,13 @@ import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css
 import filterFactory from 'react-bootstrap-table2-filter';
 import { Button } from 'antd';
 import PropTypes from 'prop-types';
-import { getTotalColumns, filter_taxon, set_lineage, set_displayed_columns, remove_columns, append_columns, hide_columns, reveal_columns } from '~/data/actions/columnAction';
+import {
+  getTotalColumns,
+  filter_taxon,
+  set_lineage,
+  hide_columns,
+  reveal_columns,
+} from '~/data/actions/columnAction';
 import { connect } from 'react-redux';
 
 const selectRow = {
@@ -41,11 +47,11 @@ const defaultSorted = [
  * which data are displayed exists in the react-bootrsap-table2 component, and can only be accessed by a ref.
  */
 
- @connect(store => {
+@connect(store => {
   return {
     columns: store.columns.columns,
     displayed_columns: store.columns.displayed_columns,
-    col_list:store.columns.column_list
+    col_list: store.columns.column_list,
   };
 })
 class ResultsTable extends Component {
@@ -87,8 +93,9 @@ class ResultsTable extends Component {
       toggleLabel: 'Advanced',
     };
     this.correctlyRenderSelectRow = this.correctlyRenderSelectRow.bind(this);
-    this.handleBasicToAdvancedToggle = this.handleBasicToAdvancedToggle.bind(this);
-    this.setDisplayColumns = this.setDisplayColumns.bind(this);
+    this.handleBasicToAdvancedToggle = this.handleBasicToAdvancedToggle.bind(
+      this,
+    );
   }
 
   /**
@@ -126,41 +133,19 @@ class ResultsTable extends Component {
   handleBasicToAdvancedToggle() {
     if (!this.state.advanced) {
       this.setState({ toggleLabel: 'Basic' });
-      this.props.dispatch(reveal_columns(this.props.advanced_columns))
-      console.log(tableRef)
-      //tableRef.updater.enqueueForceUpdate()
-      //this.props.dispatch(getTotalColumns(this.props.basic_columns.concat(this.props.advanced_columns)));
-      //this.props.dispatch(set_displayed_columns(this.props.basic_columns.concat(this.props.advanced_columns)));
-      //this.props.dispatch(append_columns(this.props.advanced_columns))
+      this.props.dispatch(reveal_columns(this.props.advanced_columns));
     } else {
       this.setState({ toggleLabel: 'Advanced' });
-      this.props.dispatch(hide_columns(this.props.advanced_columns))
-      //tableRef.updater.enqueueForceUpdate()
-      //this.props.dispatch(getTotalColumns(this.props.basic_columns));
-      //this.props.dispatch(set_displayed_columns(this.props.basic_columns));
-      //this.props.dispatch(remove_columns(this.props.advanced_columns))
+      this.props.dispatch(hide_columns(this.props.advanced_columns));
     }
 
     this.setState({ advanced: !this.state.advanced });
   }
 
-  setDisplayColumns(list_col_names){
-    let to_display_columns = [];
-    for (var i = 0; i < list_col_names.length; i++) {
-      to_display_columns.push(this.props.columns[list_col_names[i]])
-    } 
-    console.log(to_display_columns)
-    return(to_display_columns)
-  }
-
   componentDidMount() {
-    this.props.dispatch(getTotalColumns(this.props.basic_columns.concat(this.props.advanced_columns)))
-    //this.props.dispatch(set_displayed_columns(this.props.basic_columns))
-    this.props.dispatch(hide_columns(this.props.advanced_columns))
-    //console.log(this.props.basic_columns)
-    //console.log(this.props.basic_columns.concat(this.props.advanced_columns))
-    //console.log("running runnin nin")
-    if (typeof(this.node) !== "undefined"){
+    this.props.dispatch(getTotalColumns(this.props.basic_columns.concat(this.props.advanced_columns)));
+    this.props.dispatch(hide_columns(this.props.advanced_columns));
+    if (typeof this.node !== 'undefined') {
       tableRef = this.node.table;
     }
     this.setSelected();
@@ -170,43 +155,14 @@ class ResultsTable extends Component {
     console.log('updating');
     if (this.props.data !== prevProps.data) {
       this.setSelected();
-      this.setState({ display_columns: this.props.columns });
     }
-    if (typeof(this.node) !== "undefined"){
+    if (typeof this.node !== 'undefined') {
       tableRef = this.node.table;
     }
-    console.log(this.state.displayed_data);
   }
 
   render() {
     this.correctlyRenderSelectRow();
-
-    let desired_columns = this.props.basic_columns;
-
-    if (this.state.advanced) {
-      desired_columns = desired_columns.concat(this.props.advanced_columns);
-      console.log(desired_columns)
-    }
-    let display_columns = this.setDisplayColumns(desired_columns.concat(this.props.advanced_columns))
-
-    let basic_columns = this.setDisplayColumns(this.props.basic_columns)
-
-    let advanced_columns = this.setDisplayColumns(this.props.advanced_columns);
-
-    //let display_columns = this.props.columns
-    //for (var i = 0; i < display_columns.length; i++) {
-    //  display_columns[i]
-    //}
-
-    //this.props.columns;
-
-    //if (this.state.advanced) {
-     // display_columns = display_columns.concat(this.setDisplayColumns(this.props.advanced_columns));
-    //}
-    console.log(this.props.displayed_columns)
-    console.log(this.props.columns)
-    console.log("baluga")
-    console.log(this.state.advanced)
 
     return (
       <div className="concTable2">
@@ -220,20 +176,19 @@ class ResultsTable extends Component {
         </Button>
 
         <div className="bootstrap">
-        {this.props.col_list.length>0 && 
-          <BootstrapTable
-            ref={n => (this.node = n)}
-            striped
-            hover
-            keyField="key"
-            data={this.props.data}
-            columns={this.props.col_list}
-            filter={filterFactory()}
-            selectRow={selectRow}
-            defaultSorted={defaultSorted}
-          />
-        }
-
+          {this.props.col_list.length > 0 && (
+            <BootstrapTable
+              ref={n => (this.node = n)}
+              striped
+              hover
+              keyField="key"
+              data={this.props.data}
+              columns={this.props.col_list}
+              filter={filterFactory()}
+              selectRow={selectRow}
+              defaultSorted={defaultSorted}
+            />
+          )}
         </div>
       </div>
     );

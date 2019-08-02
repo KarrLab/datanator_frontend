@@ -120,33 +120,7 @@ class ConcentrationsTable extends Component {
       consensus_prompt: 'Get Consensus',
       json_data: '',
 
-      test_display_columns: [],
-
       f_concentrations: [],
-
-      
-
-      advanced_columns: [
-        {
-          dataField: 'growth_phase',
-          text: 'Growth Phase',
-          formatter: cell => selectOptions[cell],
-          filter: selectFilter({
-            options: selectOptions,
-          }),
-        },
-        {
-          dataField: 'growth_conditions',
-          text: 'Conditions',
-          filter: textFilter(),
-        },
-        {
-          dataField: 'growth_media',
-          text: 'Media',
-          filter: textFilter(),
-        },
-      ],
-
       tanitomo_column: [
         {
           dataField: 'tanitomo_similarity',
@@ -336,34 +310,6 @@ class ConcentrationsTable extends Component {
     //get the data for the consensus module
     let selected_data = getSelectedData();
 
-    let test_columns = [
-      {
-        dataField: 'concentration',
-        text: 'Conc. (µM)',
-      },
-
-      {
-        dataField: 'error',
-        text: 'Error',
-      },
-       {
-        dataField: 'name',
-        text: 'Molecule',
-        filter: textFilter(),
-      },
-       {
-        dataField: 'organism',
-        text: 'Organism',
-        filter: textFilter(),
-      },
-
-
-    ];
-
-
-    console.log(test_columns)
-    console.log(this.props.columns)
-    console.log("AGAIN!!")
 
 
     return (
@@ -371,23 +317,14 @@ class ConcentrationsTable extends Component {
       <div className="total_table">
         <div className="slider">
         <Filters />
-        {/*
-          <Columns
-            desired_columns = {["concentration", "error", "molecule"]}
-            setColumns = {final_columns => {this.setState({test_display_columns: final_columns}); console.log(this.state.test_display_columns)}}
-          />
-        */}
         </div>
         <div className="results">
-          <div className="concTable">
-             
+          <div className="concTable">             
             <ResultsTable
               data={this.state.f_concentrations}
-              basic_columns={["concentration", "error", "molecule", "organism", "taxonomic_proximity","growth_media"]}
-              advanced_columns={["growth_phase", "growth_conditions"]}
+              basic_columns={["concentration", "error", "molecule", "organism", "taxonomic_proximity",]}
+              advanced_columns={["growth_phase", "growth_conditions", "growth_media"]}
             />
-
-
 
           </div>
           <div className="consensus">
