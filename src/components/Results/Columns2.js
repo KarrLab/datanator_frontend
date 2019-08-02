@@ -125,16 +125,4 @@ function getTotalColumns(desired_columns) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 export { getTotalColumns };

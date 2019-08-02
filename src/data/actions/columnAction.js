@@ -55,4 +55,23 @@ function append_columns(to_display_columns) {
   };
 }
 
-export { getTotalColumns, filter_taxon, set_lineage, set_displayed_columns, remove_columns, append_columns };
+
+function hide_columns(to_display_columns) {
+    return function(dispatch) {
+    dispatch({
+      type: 'HIDE_COLUMNS',
+      payload: to_display_columns,
+    });
+  };
+}
+
+
+function reveal_columns(to_display_columns) {
+    return function(dispatch) {
+    dispatch({
+      type: 'REVEAL_COLUMNS',
+      payload: to_display_columns,
+    });
+  };
+}
+export { getTotalColumns, filter_taxon, set_lineage, set_displayed_columns, remove_columns, append_columns, hide_columns, reveal_columns };
