@@ -87,7 +87,10 @@ class Consensus extends Component {
   }
 
   componentDidMount() {
-    this.setMean(this.props.original_data);
+  	if (this.props.totalData != null){
+  		this.setMean(this.props.totalData);
+  	}
+    //this.setMean(this.props.totalData);
     //this.refs.taxonCol.applyFilter(28)
   }
 

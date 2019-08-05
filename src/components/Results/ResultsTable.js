@@ -101,7 +101,7 @@ class ResultsTable extends Component {
    * The table begins with all the data points being selected. This selects them all.
    */
   setSelected() {
-    let data = this.props.data;
+    let data = this.props.totalData;
     //this.setState({displayed_data:this.props.data})
 
     for (var i = data.length - 1; i >= 0; i--) {
@@ -147,12 +147,14 @@ class ResultsTable extends Component {
     if (typeof this.node !== 'undefined') {
       tableRef = this.node.table;
     }
-    this.setSelected();
+    if (this.props.totalData != null){
+      this.setSelected();
+    }
   }
 
   componentDidUpdate(prevProps) {
     console.log('updating');
-    if (this.props.data !== prevProps.data) {
+    if (this.props.totalData !== prevProps.totalData) {
       this.setSelected();
     }
     if (typeof this.node !== 'undefined') {

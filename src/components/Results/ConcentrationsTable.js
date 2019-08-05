@@ -198,12 +198,6 @@ class ConcentrationsTable extends Component {
     if (this.props.json_data) {
       this.formatData(this.props.json_data);
     }
-    console.log("watermellon")
-
-    //this.props.dispatch(getTotalColumns(["concentration", "error", "molecule", "organism", "taxonomic_proximity"]));
-    console.log("watermellon2")
-    //console.log(this.props.columns)
-    //this.props.dispatch(filter_taxon(3))
 
   }
 
@@ -241,9 +235,6 @@ class ConcentrationsTable extends Component {
       display_columns = display_columns.concat(this.state.tanitomo_column);
     }
 
-    //get the data for the consensus module
-    //let selected_data = getSelectedData();
-    //console.log(selected_data)
     console.log("hadrian")
 
 
@@ -257,14 +248,13 @@ class ConcentrationsTable extends Component {
         <div className="results">
           <div className="concTable">             
             <ResultsTable
-              data={this.state.f_concentrations}
               basic_columns={["concentration", "error", "molecule", "organism", "taxonomic_proximity",]}
               advanced_columns={["growth_phase", "growth_conditions", "growth_media"]}
             />
 
           </div>
           <div className="consensus">
-          <Consensus original_data={this.state.f_concentrations}/>
+          <Consensus />
           </div>
         </div>
       </div>
