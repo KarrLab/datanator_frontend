@@ -9,8 +9,8 @@ class Chart3 extends React.Component {
   }
 
   render() {
-    let y;
-    y = this.props.data;
+    //let y;
+    //y = this.props.data;
     let x;
     x = []
     let total_conc;
@@ -24,9 +24,9 @@ class Chart3 extends React.Component {
     }
 
 
-    for (var i = y.length - 1; i >= 0; i--){
-      x.push(1)
-    }
+    //for (var i = y.length - 1; i >= 0; i--){
+    //  x.push(1)
+   // }
     let to_chart;
     to_chart=[
           {
@@ -40,23 +40,25 @@ class Chart3 extends React.Component {
             paper_bgcolor: 'rgb(233,233,233)'
           },
         ]
+    if (this.props.data != null){
 
-    if (this.props.original_data.length != this.props.data.length){
-       let total_f_conc;
-       total_f_conc= []
-       for (var i = this.props.data.length - 1; i >= 0; i--){
-          total_f_conc.push(parseFloat(this.props.data[i].concentration))
-        }
-      to_chart.push({
-            //x: x,
-            name:'Filtered',
-            y: total_f_conc,
-            type: 'box',
-            mode: 'points',
-            boxpoints: 'all',
-            pointpos: 0,
-            paper_bgcolor: 'rgb(233,233,233)'
-          })
+      if (this.props.original_data.length != this.props.data.length){
+         let total_f_conc;
+         total_f_conc= []
+         for (var i = this.props.data.length - 1; i >= 0; i--){
+            total_f_conc.push(parseFloat(this.props.data[i].concentration))
+          }
+        to_chart.push({
+              //x: x,
+              name:'Filtered',
+              y: total_f_conc,
+              type: 'box',
+              mode: 'points',
+              boxpoints: 'all',
+              pointpos: 0,
+              paper_bgcolor: 'rgb(233,233,233)'
+            })
+      }
     }
 
     return (

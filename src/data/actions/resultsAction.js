@@ -54,4 +54,13 @@ function refreshSelectedData() {
     });
   };
 }
-export { getTotalColumns, filter_taxon, set_lineage, hide_columns, reveal_columns, refreshSelectedData };
+
+function setTotalData(totalData) {
+    return function(dispatch) {
+    dispatch({
+      type: 'SET_TOTAL_DATA',
+      payload: totalData,
+    });
+  };
+}
+export { getTotalColumns, filter_taxon, set_lineage, hide_columns, reveal_columns, refreshSelectedData, setTotalData };

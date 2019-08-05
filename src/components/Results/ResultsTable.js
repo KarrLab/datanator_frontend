@@ -49,8 +49,7 @@ const defaultSorted = [
 
 @connect(store => {
   return {
-    columns: store.results.columns,
-    displayed_columns: store.results.displayed_columns,
+    totalData: store.results.totalData,
     col_list: store.results.column_list,
   };
 })
@@ -182,7 +181,7 @@ class ResultsTable extends Component {
               striped
               hover
               keyField="key"
-              data={this.props.data}
+              data={this.props.totalData}
               columns={this.props.col_list}
               filter={filterFactory()}
               selectRow={selectRow}

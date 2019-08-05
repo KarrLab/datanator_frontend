@@ -98,8 +98,6 @@ class Filters extends Component {
       this.formatSlider(this.props.lineage)
     }
 
-    this.props.dispatch(refreshSelectedData())
-
   }
 
 

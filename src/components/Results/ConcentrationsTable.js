@@ -28,7 +28,7 @@ import { Consensus } from './Consensus.js';
 import { connect } from 'react-redux';
 
 import store from '~/data/Store'
-import { getTotalColumns, filter_taxon, set_lineage } from '~/data/actions/resultsAction';
+import { getTotalColumns, filter_taxon, set_lineage, setTotalData } from '~/data/actions/resultsAction';
 
 
 
@@ -39,7 +39,7 @@ import { getTotalColumns, filter_taxon, set_lineage } from '~/data/actions/resul
 @connect(store => {
   return {
     columns: store.results.columns,
-    selectedData: store.results.selectedData
+    //selectedData: store.results.selectedData
 
   };
 })
@@ -186,6 +186,7 @@ class ConcentrationsTable extends Component {
         f_concentrations: f_concentrations,
         //displayed_data: f_concentrations
       });
+      this.props.dispatch(setTotalData(f_concentrations))
     } else {
       alert('Nothing Found');
     }
@@ -241,8 +242,8 @@ class ConcentrationsTable extends Component {
     }
 
     //get the data for the consensus module
-    let selected_data = getSelectedData();
-    console.log(selected_data)
+    //let selected_data = getSelectedData();
+    //console.log(selected_data)
     console.log("hadrian")
 
 
@@ -263,20 +264,7 @@ class ConcentrationsTable extends Component {
 
           </div>
           <div className="consensus">
-          <Consensus data={selected_data} original_data={this.state.f_concentrations}/>
-            <img src={require('~/images/consensus.png')} />
-            <Button type="primary" onClick={event => this.handleUpdate()}>
-              {' '}
-              {this.state.consensus_prompt}{' '}
-            </Button>
-            {this.state.asked_consensus && <Consensus data={selected_data} />}
-            <br />
-            {this.state.asked_consensus && (
-              <Chart3
-                original_data={this.state.f_concentrations}
-                data={selected_data}
-              />
-            )}
+          <Consensus original_data={this.state.f_concentrations}/>
           </div>
         </div>
       </div>

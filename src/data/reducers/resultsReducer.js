@@ -18,6 +18,7 @@ let defaultState = {
   columns: {},
   column_list: [],
   taxon_lineage: null,
+  totalData:null,
   selectedData: null,
 };
 
@@ -175,6 +176,14 @@ function resultsReducer(state = defaultState, action) {
         ...state,
 
         taxon_lineage: action.payload,
+      };
+    }
+
+    case 'SET_TOTAL_DATA': {
+      return {
+        ...state,
+
+        totalData: action.payload,
       };
     }
 

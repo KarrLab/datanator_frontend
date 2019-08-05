@@ -37,6 +37,7 @@ function round(value, decimals) {
 @connect(store => {
   return {
     selectedData: store.results.selectedData,
+    totalData: store.results.totalData
   };
 })
 class Consensus extends Component {
@@ -83,8 +84,6 @@ class Consensus extends Component {
       consensus_prompt: 'Update Consensus',
     });
     this.props.dispatch(refreshSelectedData())
-    //this.setMean(this.props.data)
-    //this.props.dispatch(filter_taxon(3))
   }
 
   componentDidMount() {
@@ -96,17 +95,18 @@ class Consensus extends Component {
     // You don't have to do this check first, but it can help prevent an unneeded render
     //this.props.dispatch(refreshSelectedData())
     console.log("majorian")
-    if (prevProps.original_data != this.props.original_data){
-    	this.setMean(this.props.original_data)
+    if (prevProps.totalData != this.props.totalData){
+    	this.setMean(this.props.totalData)
     }
-    else if (prevProps.data != this.props.data){
+    else if (prevProps.selectedData != this.props.selectedData){
     	console.log("UPDATED")
-    	this.setMean(this.props.data)
+    	this.setMean(this.props.selectedData)
     }
 
   }
 
   render() {
+  	console.log("again")
     return (
 
 
@@ -128,7 +128,7 @@ class Consensus extends Component {
             <br />
             {this.state.asked_consensus && (
               <Chart3
-                original_data={this.props.original_data}
+                original_data={this.props.totalData}
                 data={this.props.selectedData}
               />
             )}
