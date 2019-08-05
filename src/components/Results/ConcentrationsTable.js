@@ -251,10 +251,9 @@ class ConcentrationsTable extends Component {
               basic_columns={["concentration", "error", "molecule", "organism", "taxonomic_proximity",]}
               advanced_columns={["growth_phase", "growth_conditions", "growth_media"]}
             />
-
           </div>
           <div className="consensus">
-          <Consensus />
+            <Consensus relevantColumn={"concentration"}/>
           </div>
         </div>
       </div>

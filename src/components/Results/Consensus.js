@@ -66,7 +66,8 @@ class Consensus extends Component {
     var total_conc = 0;
     for (var i = data.length - 1; i >= 0; i--) {
       console.log(data[i]);
-      total_conc = total_conc + parseFloat(data[i].concentration);
+      console.log(this.props.relevantColumn)
+      total_conc = total_conc + parseFloat(data[i][this.props.relevantColumn]);
     }
     var average_conc = round(total_conc / data.length, 3);
     this.setState({
