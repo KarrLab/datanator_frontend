@@ -91,7 +91,24 @@ function range(numbers) {
     return [numbers[0], numbers[numbers.length - 1]];
 }
 
+function standardDeviation(values){
+  var avg = mean(values);
+  
+  var squareDiffs = values.map(function(value){
+    var diff = value - avg;
+    var sqrDiff = diff * diff;
+    return sqrDiff;
+  });
+  
+  var avgSquareDiff = mean(squareDiffs);
+
+  var stdDev = Math.sqrt(avgSquareDiff);
+  return stdDev;
+}
+
+
 export {mean,
 median,
 mode,
-range,}
+range,
+standardDeviation,}

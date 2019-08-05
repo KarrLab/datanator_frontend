@@ -32,7 +32,8 @@ import { getTotalColumns, filter_taxon, set_lineage, refreshSelectedData } from 
 import {mean,
 median,
 mode,
-range,} from '~/components/Results/mathTools.js'
+range,
+standardDeviation,} from '~/components/Results/mathTools.js'
 function round(value, decimals) {
   return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
 }
@@ -72,10 +73,14 @@ class Consensus extends Component {
     var average_conc = round(total_conc / data.length, 3);
     var new_mean = round(mean(total_data), 3)
     var new_median = round(median(total_data), 3)
+    var new_std_dev = round(standardDeviation(total_data), 3)
+    var new_range = range(total_data)
     //var new_median = round(median(total_data), 3)
     this.setState({
       mean: new_mean,
-      median: new_median
+      median: new_median,
+      std_dev: new_std_dev,
+      range: round(new_range[0],3) + "-" + round(new_range[1],3),
     });
   }
 
@@ -125,16 +130,22 @@ class Consensus extends Component {
             
             {this.state.asked_consensus &&  
               <div className="summary">
-              <Row >
+                <Row >
                   <Col span={22}>
               	   <Statistic title="Mean" value={this.state.mean} /> 
                    </Col>
-
                    <Col span={2}>
-
                     <Statistic title="Median" value={this.state.median} /> 
                     </Col>
-                    </Row>
+                </Row>
+                <Row >
+                  <Col span={15}>
+                   <Statistic title="Standard Deviation" value={this.state.std_dev} /> 
+                   </Col>
+                   <Col span={2}>
+                    <Statistic title="Range" value={this.state.range} /> 
+                    </Col>
+                </Row>
             </div>
 }
             <br />
