@@ -7,18 +7,16 @@ import filterFactory, {
 import ReactDOM from 'react-dom';
 import { getSelectedData } from '~/components/Results/ResultsTable.js';
 
-
 const selectOptions = {
   'Stationary Phase': 'Stationary Phase',
   'Log Phase': 'Log Phase',
 };
 
 let defaultState = {
-
   columns: {},
   column_list: [],
   taxon_lineage: null,
-  totalData:null,
+  totalData: null,
   selectedData: null,
 };
 
@@ -111,7 +109,6 @@ function resultsReducer(state = defaultState, action) {
 
   switch (action.type) {
     case 'CREATE_COLUMNS': {
-
       let temp_taxon_filter = null;
 
       let final_columns = {};
@@ -138,7 +135,7 @@ function resultsReducer(state = defaultState, action) {
 
     case 'FILTER_TAXON': {
       taxonFilter({ number: action.payload, comparator: Comparator.LE });
-      let newSelectedData = getSelectedData()
+      let newSelectedData = getSelectedData();
       return {
         ...state,
       };
@@ -188,8 +185,7 @@ function resultsReducer(state = defaultState, action) {
     }
 
     case 'REFRESH_SELECTED_DATA': {
-
-    	let newSelectedData = getSelectedData()
+      let newSelectedData = getSelectedData();
       return {
         ...state,
 

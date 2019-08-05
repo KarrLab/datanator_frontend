@@ -8,10 +8,7 @@ import filterFactory, {
   Comparator,
 } from 'react-bootstrap-table2-filter';
 import ReactDOM from 'react-dom';
-import {
-  Input,
-  Button,
-} from 'antd';
+import { Input, Button } from 'antd';
 import 'antd/dist/antd.css';
 import Chart3 from './Chart3.js';
 import { Slider } from 'antd';
@@ -22,25 +19,22 @@ import './ConcentrationsTable.css';
 import { ResultsTable, getSelectedData } from './ResultsTable.js';
 //import { getTotalColumns } from './Columns2.js';
 
-
 import { Filters } from './Filters.js';
 import { Consensus } from './Consensus.js';
 import { connect } from 'react-redux';
 
-import store from '~/data/Store'
-import { getTotalColumns, filter_taxon, set_lineage, setTotalData } from '~/data/actions/resultsAction';
-
-
-
-
-
-
+import store from '~/data/Store';
+import {
+  getTotalColumns,
+  filter_taxon,
+  set_lineage,
+  setTotalData,
+} from '~/data/actions/resultsAction';
 
 @connect(store => {
   return {
     columns: store.results.columns,
     //selectedData: store.results.selectedData
-
   };
 })
 class ConcentrationsTable extends Component {
@@ -68,8 +62,6 @@ class ConcentrationsTable extends Component {
           }),
         },
       ],
-
-
     };
 
     this.formatData = this.formatData.bind(this);
@@ -82,7 +74,7 @@ class ConcentrationsTable extends Component {
     if (data != null) {
       var f_concentrations = [];
 
-      this.props.dispatch(set_lineage(data[2][0]))
+      this.props.dispatch(set_lineage(data[2][0]));
 
       for (var n = data[0].length; n > 0; n--) {
         if (data[0][n - 1].tanitomo_similarity < 1) {
@@ -186,19 +178,16 @@ class ConcentrationsTable extends Component {
         f_concentrations: f_concentrations,
         //displayed_data: f_concentrations
       });
-      this.props.dispatch(setTotalData(f_concentrations))
+      this.props.dispatch(setTotalData(f_concentrations));
     } else {
       alert('Nothing Found');
     }
   }
 
-
-
   componentDidMount() {
     if (this.props.json_data) {
       this.formatData(this.props.json_data);
     }
-
   }
 
   componentDidUpdate(prevProps) {
@@ -235,25 +224,32 @@ class ConcentrationsTable extends Component {
       display_columns = display_columns.concat(this.state.tanitomo_column);
     }
 
-    console.log("hadrian")
-
-
+    console.log('hadrian');
 
     return (
-
       <div className="total_table">
         <div className="slider">
-        <Filters />
+          <Filters />
         </div>
         <div className="results">
-          <div className="concTable">             
+          <div className="concTable">
             <ResultsTable
-              basic_columns={["concentration", "error", "molecule", "organism", "taxonomic_proximity",]}
-              advanced_columns={["growth_phase", "growth_conditions", "growth_media"]}
+              basic_columns={[
+                'concentration',
+                'error',
+                'molecule',
+                'organism',
+                'taxonomic_proximity',
+              ]}
+              advanced_columns={[
+                'growth_phase',
+                'growth_conditions',
+                'growth_media',
+              ]}
             />
           </div>
           <div className="consensus">
-            <Consensus relevantColumn={"concentration"}/>
+            <Consensus relevantColumn={'concentration'} />
           </div>
         </div>
       </div>
