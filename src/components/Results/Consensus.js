@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
-import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
 import filterFactory, {
   textFilter,
   selectFilter,
@@ -19,7 +18,7 @@ import Chart3 from './Chart3.js';
 import { Slider, Statistic } from 'antd';
 import { withRouter } from 'react-router';
 
-import './ConcentrationsTable.css';
+import './Consensus.css';
 
 import { ResultsTable, getSelectedData } from './ResultsTable.js';
 //import { getTotalColumns } from './Columns2.js';
@@ -117,21 +116,26 @@ class Consensus extends Component {
 
 
 
-      <div className="consensus">
+      <div className="consensus_data">
             <img src={require('~/images/consensus.png')} />
             <Button type="primary" onClick={event => this.handleUpdate()}>
               {' '}
               {this.state.consensus_prompt}{' '}
             </Button>
+            
             {this.state.asked_consensus &&  
+              <div className="summary">
               <Row >
-                <Col span={20}>
+                  <Col span={22}>
               	   <Statistic title="Mean" value={this.state.mean} /> 
-                </Col>
-                <Col span={20}>
+                   </Col>
+
+                   <Col span={2}>
+
                     <Statistic title="Median" value={this.state.median} /> 
-                </Col>
-              </Row>
+                    </Col>
+                    </Row>
+            </div>
 }
             <br />
             {this.state.asked_consensus && (
