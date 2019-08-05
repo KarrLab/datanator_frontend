@@ -24,89 +24,22 @@ import { ResultsTable, getSelectedData } from './ResultsTable.js';
 
 
 import { Filters } from './Filters.js';
+import { Consensus } from './Consensus.js';
 import { connect } from 'react-redux';
 
 import store from '~/data/Store'
-import { getTotalColumns, filter_taxon, set_lineage } from '~/data/actions/columnAction';
-
-function round(value, decimals) {
-  return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
-}
-
-const selectOptions = {
-  'Stationary Phase': 'Stationary Phase',
-  'Log Phase': 'Log Phase',
-};
+import { getTotalColumns, filter_taxon, set_lineage } from '~/data/actions/resultsAction';
 
 
 
-class Consensus extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      consensus: [],
 
-      columns_mean: [
-        {
-          dataField: 'mean',
-          text: 'Mean Concentration (µM)',
-        },
-        {
-          dataField: 'uncertainty',
-          text: 'Uncertainty (µM)',
-        },
-      ],
-    };
-    this.setMean = this.setMean.bind(this);
-  }
-
-  setMean(data) {
-    var total_conc = 0;
-    for (var i = data.length - 1; i >= 0; i--) {
-      console.log(data[i]);
-      total_conc = total_conc + parseFloat(data[i].concentration);
-    }
-    var average_conc = round(total_conc / data.length, 3);
-    this.setState({
-      consensus: [
-        {
-          mean: average_conc,
-        },
-      ],
-    });
-  }
-
-  componentDidMount() {
-    this.setMean(this.props.data);
-    //this.refs.taxonCol.applyFilter(28)
-  }
-
-  componentWillReceiveProps(nextProps) {
-    // You don't have to do this check first, but it can help prevent an unneeded render
-    console.log(nextProps.data);
-    this.setMean(nextProps.data);
-  }
-
-  render() {
-    return (
-      <div className="Consensus">
-        <BootstrapTable
-          striped
-          hover
-          keyField="id"
-          data={this.state.consensus}
-          columns={this.state.columns_mean}
-        />
-      </div>
-    );
-  }
-}
 
 
 
 @connect(store => {
   return {
-    columns: store.columns.columns,
+    columns: store.results.columns,
+    selectedData: store.results.selectedData
 
   };
 })
@@ -268,7 +201,7 @@ class ConcentrationsTable extends Component {
 
     //this.props.dispatch(getTotalColumns(["concentration", "error", "molecule", "organism", "taxonomic_proximity"]));
     console.log("watermellon2")
-    console.log(this.props.columns)
+    //console.log(this.props.columns)
     //this.props.dispatch(filter_taxon(3))
 
   }
@@ -309,6 +242,8 @@ class ConcentrationsTable extends Component {
 
     //get the data for the consensus module
     let selected_data = getSelectedData();
+    console.log(selected_data)
+    console.log("hadrian")
 
 
 
@@ -328,6 +263,7 @@ class ConcentrationsTable extends Component {
 
           </div>
           <div className="consensus">
+          <Consensus data={selected_data} original_data={this.state.f_concentrations}/>
             <img src={require('~/images/consensus.png')} />
             <Button type="primary" onClick={event => this.handleUpdate()}>
               {' '}

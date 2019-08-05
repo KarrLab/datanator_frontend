@@ -10,7 +10,7 @@ import {
   set_lineage,
   hide_columns,
   reveal_columns,
-} from '~/data/actions/columnAction';
+} from '~/data/actions/resultsAction';
 import { connect } from 'react-redux';
 
 const selectRow = {
@@ -49,9 +49,9 @@ const defaultSorted = [
 
 @connect(store => {
   return {
-    columns: store.columns.columns,
-    displayed_columns: store.columns.displayed_columns,
-    col_list: store.columns.column_list,
+    columns: store.results.columns,
+    displayed_columns: store.results.displayed_columns,
+    col_list: store.results.column_list,
   };
 })
 class ResultsTable extends Component {

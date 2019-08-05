@@ -1,10 +1,10 @@
 import organismReducer from './organismReducer';
-import columnReducer from './columnReducer';
+import resultsReducer from './resultsReducer';
 
 function combined(state = {}, action) {
   return {
     organisms: organismReducer(state.organisms, action),
-    columns: columnReducer(state.columns, action)
+    results: resultsReducer(state.results, action)
   };
 }
 

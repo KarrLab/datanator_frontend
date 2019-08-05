@@ -9,7 +9,7 @@ import { Input, Button } from 'antd';
 import 'antd/dist/antd.css';
 import { Slider } from 'antd';
 import { connect } from 'react-redux';
-import { getTotalColumns, filter_taxon } from '~/data/actions/columnAction';
+import { getTotalColumns, filter_taxon, refreshSelectedData } from '~/data/actions/resultsAction';
 
 const selectOptions = {
   'Stationary Phase': 'Stationary Phase',
@@ -20,8 +20,8 @@ const selectOptions = {
 
 @connect(store => {
   return {
-    columns: store.columns.columns,
-    lineage: store.columns.taxon_lineage
+    columns: store.results.columns,
+    lineage: store.results.taxon_lineage
 
   };
 })
@@ -45,7 +45,6 @@ class Filters extends Component {
 
   filter_taxon_inner(value) {
     this.props.dispatch(filter_taxon(value))
-
   }
 
   filter_tanitomo(value) {
@@ -98,6 +97,8 @@ class Filters extends Component {
     if (this.props.lineage != prevProps.lineage) {
       this.formatSlider(this.props.lineage)
     }
+
+    this.props.dispatch(refreshSelectedData())
 
   }
 

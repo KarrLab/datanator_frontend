@@ -5,6 +5,8 @@ import filterFactory, {
   Comparator,
 } from 'react-bootstrap-table2-filter';
 import ReactDOM from 'react-dom';
+import { getSelectedData } from '~/components/Results/ResultsTable.js';
+
 
 const selectOptions = {
   'Stationary Phase': 'Stationary Phase',
@@ -16,6 +18,7 @@ let defaultState = {
   columns: {},
   column_list: [],
   taxon_lineage: null,
+  selectedData: null,
 };
 
 let taxonFilter;
@@ -100,7 +103,7 @@ const total_columns = {
 };
 
 //let taxonFilter = null;
-function columnReducer(state = defaultState, action) {
+function resultsReducer(state = defaultState, action) {
   if (action === undefined) {
     return state;
   }
@@ -129,12 +132,12 @@ function columnReducer(state = defaultState, action) {
         ...state,
         columns: final_columns,
         column_list: final_column_list,
-        permanent_taxon_filter: taxonFilter,
       };
     }
 
     case 'FILTER_TAXON': {
       taxonFilter({ number: action.payload, comparator: Comparator.LE });
+      let newSelectedData = getSelectedData()
       return {
         ...state,
       };
@@ -175,9 +178,19 @@ function columnReducer(state = defaultState, action) {
       };
     }
 
+    case 'REFRESH_SELECTED_DATA': {
+
+    	let newSelectedData = getSelectedData()
+      return {
+        ...state,
+
+        selectedData: newSelectedData,
+      };
+    }
+
     default: {
       return state;
     }
   }
 }
-export default columnReducer;
+export default resultsReducer;
