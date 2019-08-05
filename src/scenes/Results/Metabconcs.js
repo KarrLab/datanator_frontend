@@ -120,24 +120,6 @@ class MetabConcs extends Component {
     });
   }
 
-  setMean(data) {
-    var total_conc = 0;
-    for (var i = data.length - 1; i >= 0; i--) {
-      total_conc = total_conc + parseFloat(data[i].concentration);
-    }
-    var average_conc = total_conc / data.length;
-    this.setState({
-      consensus: [
-        {
-          mean: average_conc,
-        },
-      ],
-    });
-  }
-
-  handleUpdate() {
-    this.setMean(this.node.table.props.data);
-  }
 
   render() {
     //if (this.state.toMetabConc == true) {
