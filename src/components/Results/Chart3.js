@@ -19,7 +19,7 @@ class Chart3 extends React.Component {
     data=this.props.original_data;
 
     for (var i = data.length - 1; i >= 0; i--){
-      total_conc.push(parseFloat(data[i].concentration))
+      total_conc.push(parseFloat(data[i][this.props.relevantColumn]))
       x.push(1)
     }
 
@@ -46,7 +46,7 @@ class Chart3 extends React.Component {
          let total_f_conc;
          total_f_conc= []
          for (var i = this.props.data.length - 1; i >= 0; i--){
-            total_f_conc.push(parseFloat(this.props.data[i].concentration))
+            total_f_conc.push(parseFloat(this.props.data[i][this.props.relevantColumn]))
           }
         to_chart.push({
               //x: x,

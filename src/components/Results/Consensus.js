@@ -11,10 +11,12 @@ import ReactDOM from 'react-dom';
 import {
   Input,
   Button,
+  Row, 
+  Col,
 } from 'antd';
 import 'antd/dist/antd.css';
 import Chart3 from './Chart3.js';
-import { Slider } from 'antd';
+import { Slider, Statistic } from 'antd';
 import { withRouter } from 'react-router';
 
 import './ConcentrationsTable.css';
@@ -28,7 +30,10 @@ import { connect } from 'react-redux';
 
 import store from '~/data/Store'
 import { getTotalColumns, filter_taxon, set_lineage, refreshSelectedData } from '~/data/actions/resultsAction';
-
+import {mean,
+median,
+mode,
+range,} from '~/components/Results/mathTools.js'
 function round(value, decimals) {
   return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
 }
@@ -45,37 +50,33 @@ class Consensus extends Component {
     super(props);
     this.state = {
       consensus: [],
+      mean: null,
+      median: null, 
+      std_dev: null,
+      iqr: null,
+      range: null,
       asked_consensus:false,
       consensus_prompt: 'Get Consensus',
-
-      columns_mean: [
-        {
-          dataField: 'mean',
-          text: 'Mean Concentration (µM)',
-        },
-        {
-          dataField: 'uncertainty',
-          text: 'Uncertainty (µM)',
-        },
-      ],
     };
     this.setMean = this.setMean.bind(this);
   }
 
   setMean(data) {
     var total_conc = 0;
+    let total_data = []
     for (var i = data.length - 1; i >= 0; i--) {
       console.log(data[i]);
       console.log(this.props.relevantColumn)
+      total_data.push(parseFloat(data[i][this.props.relevantColumn]))
       total_conc = total_conc + parseFloat(data[i][this.props.relevantColumn]);
     }
     var average_conc = round(total_conc / data.length, 3);
+    var new_mean = round(mean(total_data), 3)
+    var new_median = round(median(total_data), 3)
+    //var new_median = round(median(total_data), 3)
     this.setState({
-      consensus: [
-        {
-          mean: average_conc,
-        },
-      ],
+      mean: new_mean,
+      median: new_median
     });
   }
 
@@ -122,18 +123,22 @@ class Consensus extends Component {
               {' '}
               {this.state.consensus_prompt}{' '}
             </Button>
-            {this.state.asked_consensus &&  <BootstrapTable
-								          striped
-								          hover
-								          keyField="id"
-								          data={this.state.consensus}
-								          columns={this.state.columns_mean}
-								        /> }
+            {this.state.asked_consensus &&  
+              <Row >
+                <Col span={20}>
+              	   <Statistic title="Mean" value={this.state.mean} /> 
+                </Col>
+                <Col span={20}>
+                    <Statistic title="Median" value={this.state.median} /> 
+                </Col>
+              </Row>
+}
             <br />
             {this.state.asked_consensus && (
               <Chart3
                 original_data={this.props.totalData}
                 data={this.props.selectedData}
+                relevantColumn={this.props.relevantColumn}
               />
             )}
           </div>
