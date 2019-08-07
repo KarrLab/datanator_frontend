@@ -8,5 +8,14 @@ function setNewUrl(newUrl) {
   };
 }
 
+function abstractMolecule(abstractBool) {
+    return function(dispatch) {
+    dispatch({
+      type: 'ABSTRACT_MOLECULE',
+      payload: abstractBool,
+    });
+  };
+}
 
-export { setNewUrl };
+
+export { setNewUrl, abstractMolecule };

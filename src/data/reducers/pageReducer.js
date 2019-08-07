@@ -1,7 +1,8 @@
 
 
 const defaultState = {
-	url: ""
+	url: "",
+	moleculeAbstract: false,
 };
 
 
@@ -17,6 +18,14 @@ function pageReducer(state = defaultState, action) {
       return {
         ...state,
         url: action.payload,
+      };
+    }
+
+    case 'ABSTRACT_MOLECULE': {
+
+      return {
+        ...state,
+        moleculeAbstract: action.payload,
       };
     }
 

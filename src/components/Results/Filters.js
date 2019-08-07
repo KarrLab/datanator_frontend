@@ -10,6 +10,7 @@ import 'antd/dist/antd.css';
 import { Slider } from 'antd';
 import { connect } from 'react-redux';
 import { getTotalColumns, filter_taxon, refreshSelectedData } from '~/data/actions/resultsAction';
+import { abstractMolecule } from '~/data/actions/pageAction';
 
 const selectOptions = {
   'Stationary Phase': 'Stationary Phase',
@@ -21,8 +22,8 @@ const selectOptions = {
 @connect(store => {
   return {
     columns: store.results.columns,
-    lineage: store.results.taxon_lineage
-
+    lineage: store.results.taxon_lineage,
+    currentUrl: store.page.url,
   };
 })
 
@@ -39,6 +40,7 @@ class Filters extends Component {
     this.formatter = this.formatter.bind(this);
     this.filter_taxon_inner = this.filter_taxon_inner.bind(this);
     this.filter_tanitomo = this.filter_tanitomo.bind(this);
+    this.setAbstractUrl = this.setAbstractUrl.bind(this)
   }
 
   
@@ -52,6 +54,11 @@ class Filters extends Component {
       number: value,
       comparator: Comparator.GE,
     });
+  }
+
+  setAbstractUrl(){
+    console.log("blue")
+    this.props.dispatch(abstractMolecule(true))
   }
 
   formatSlider(data) {
@@ -119,8 +126,9 @@ return (
           <br></br>
           Molecular Similarity
           <div className="slider_bar2">
+
             {!this.state.tanitomo && (
-              <Button type="primary" onClick={this.handleAbstractInner}>
+              <Button type="primary" onClick={() => this.setAbstractUrl()}>
                 {' '}
                 Abstract{' '}
               </Button>

@@ -219,9 +219,18 @@ class ConcentrationsTable extends Component {
   render() {
     let display_columns = this.state.columns;
 
+    let basic_columns=[
+                'concentration',
+                'error',
+                'molecule',
+                'organism',
+                'taxonomic_proximity',
+              ]
+
     if (this.state.tanitomo) {
       console.log('tanitomo!');
-      display_columns = display_columns.concat(this.state.tanitomo_column);
+      basic_columns = basic_columns.concat("tanitomo");
+
     }
 
     console.log('hadrian');
@@ -234,13 +243,7 @@ class ConcentrationsTable extends Component {
         <div className="results">
           <div className="concTable">
             <ResultsTable
-              basic_columns={[
-                'concentration',
-                'error',
-                'molecule',
-                'organism',
-                'taxonomic_proximity',
-              ]}
+              basic_columns={basic_columns}
               advanced_columns={[
                 'growth_phase',
                 'growth_conditions',
