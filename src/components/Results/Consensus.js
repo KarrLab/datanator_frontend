@@ -83,8 +83,7 @@ class Consensus extends Component {
     var total_conc = 0;
     let total_data = [];
     for (var i = data.length - 1; i >= 0; i--) {
-      console.log(data[i]);
-      console.log(this.props.relevantColumn);
+
       total_data.push(parseFloat(data[i][this.props.relevantColumn]));
       total_conc = total_conc + parseFloat(data[i][this.props.relevantColumn]);
     }
@@ -125,7 +124,6 @@ class Consensus extends Component {
     if (prevProps.totalData != this.props.totalData) {
       this.setMean(this.props.totalData);
     } else if (prevProps.selectedData != this.props.selectedData) {
-      console.log('UPDATED');
       this.setMean(this.props.selectedData);
     }
   }

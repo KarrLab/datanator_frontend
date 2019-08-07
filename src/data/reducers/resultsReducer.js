@@ -96,7 +96,7 @@ const total_columns = {
     filter: numberFilter({
       placeholder: 'custom placeholder',
       defaultValue: { comparator: Comparator.GE, number: 0.5 }, //ref:this.node,
-      getFilter: filter => (this.tanitomo_filter = filter),
+      getFilter: filter => (filters['tanitomo'] = filter),
     }),
   },
 };
@@ -135,7 +135,18 @@ function resultsReducer(state = defaultState, action) {
 
     case 'FILTER_TAXON': {
       taxonFilter({ number: action.payload, comparator: Comparator.LE });
-      let newSelectedData = getSelectedData();
+      //let newSelectedData = getSelectedData();
+      return {
+        ...state,
+      };
+    }
+
+    case 'FILTER_TANITOMO': {
+      filters['tanitomo']({
+      number: action.payload,
+      comparator: Comparator.GE,
+    });
+      //let newSelectedData = getSelectedData();
       return {
         ...state,
       };

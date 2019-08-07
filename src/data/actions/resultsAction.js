@@ -18,6 +18,15 @@ function filter_taxon(value) {
   };
 }
 
+function filter_tanitomo(value) {
+    return function(dispatch) {
+    dispatch({
+      type: 'FILTER_TANITOMO',
+      payload: value,
+    });
+  };
+}
+
 function set_lineage(lineage_list) {
     return function(dispatch) {
     dispatch({
@@ -63,4 +72,4 @@ function setTotalData(totalData) {
     });
   };
 }
-export { getTotalColumns, filter_taxon, set_lineage, hide_columns, reveal_columns, refreshSelectedData, setTotalData };
+export { getTotalColumns, filter_taxon, filter_tanitomo, set_lineage, hide_columns, reveal_columns, refreshSelectedData, setTotalData };

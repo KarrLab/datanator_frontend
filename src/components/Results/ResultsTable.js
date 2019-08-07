@@ -92,6 +92,8 @@ class ResultsTable extends Component {
       toggleLabel: 'Advanced',
     };
     this.correctlyRenderSelectRow = this.correctlyRenderSelectRow.bind(this);
+    this.setTable = this.setTable.bind(this);
+
     this.handleBasicToAdvancedToggle = this.handleBasicToAdvancedToggle.bind(
       this,
     );
@@ -142,12 +144,20 @@ class ResultsTable extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(getTotalColumns(this.props.basic_columns.concat(this.props.advanced_columns)));
+    this.setTable();
+  }
+
+  setTable() {
+    this.props.dispatch(
+      getTotalColumns(
+        this.props.basic_columns.concat(this.props.advanced_columns),
+      ),
+    );
     this.props.dispatch(hide_columns(this.props.advanced_columns));
     if (typeof this.node !== 'undefined') {
       tableRef = this.node.table;
     }
-    if (this.props.totalData != null){
+    if (this.props.totalData != null) {
       this.setSelected();
     }
   }
@@ -157,6 +167,7 @@ class ResultsTable extends Component {
     if (this.props.totalData !== prevProps.totalData) {
       this.setSelected();
     }
+
     if (typeof this.node !== 'undefined') {
       tableRef = this.node.table;
     }

@@ -20,6 +20,9 @@ import { ResultsTable, getSelectedData } from './ResultsTable.js';
 //import { getTotalColumns } from './Columns2.js';
 
 import { Filters } from './Filters.js';
+import { TaxonFilter } from '~/components/Results/Filters/TaxonFilter';
+import { TanitomoFilter } from '~/components/Results/Filters/TanitomoFilter';
+
 import { Consensus } from './Consensus.js';
 import { connect } from 'react-redux';
 
@@ -238,7 +241,8 @@ class ConcentrationsTable extends Component {
     return (
       <div className="total_table">
         <div className="slider">
-          <Filters />
+          <TaxonFilter />
+          <TanitomoFilter tanitomo={this.state.tanitomo}/>
         </div>
         <div className="results">
           <div className="concTable">
