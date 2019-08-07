@@ -35,20 +35,15 @@ import { MetaboliteInput } from '~/components/SearchField/MetaboliteInput';
 import { OrganismInput } from '~/components/SearchField/OrganismInput';
 import { setNewUrl, abstractMolecule } from '~/data/actions/pageAction';
 
-
-import store from '~/data/Store'
+import store from '~/data/Store';
 const jsonfile = require('jsonfile');
 
-
 @connect(store => {
-    return{
+  return {
     currentUrl: store.page.url,
-    moleculeAbstract: store.page.moleculeAbstract
-  }
+    moleculeAbstract: store.page.moleculeAbstract,
+  };
 }) //the names given here will be the names of props
-
-
-
 class MetabConcs extends Component {
   constructor(props) {
     super(props);
@@ -80,34 +75,38 @@ class MetabConcs extends Component {
 
   componentDidUpdate(prevProps) {
     // respond to parameter change in scenario 3
-    console.log("comp")
+    console.log('comp');
 
-    if (this.props.currentUrl != prevProps.currentUrl){
-      console.log("yipikayee")
-      console.log(this.props.currentUrl)
-      console.log(prevProps.currentUrl)
-      this.props.history.push(this.props.currentUrl)
+    if (this.props.currentUrl != prevProps.currentUrl) {
+      console.log('yipikayee');
+      console.log(this.props.currentUrl);
+      console.log(prevProps.currentUrl);
+      this.props.history.push(this.props.currentUrl);
       //return <Redirect to={this.props.newRedirect}/>
     }
-    if ((this.props.moleculeAbstract == true) && (prevProps.moleculeAbstract == false)){
-      this.props.history.push('/metabconcs/' +
-        this.props.match.params.molecule +
-        '/' +
-        this.props.match.params.organism +
-        '/True')
+    if (
+      this.props.moleculeAbstract == true &&
+      prevProps.moleculeAbstract == false
+    ) {
+      this.props.history.push(
+        '/metabconcs/' +
+          this.props.match.params.molecule +
+          '/' +
+          this.props.match.params.organism +
+          '/True',
+      );
     }
     if (
       this.props.match.params.molecule != prevProps.match.params.molecule ||
       this.props.match.params.organism != prevProps.match.params.organism ||
       this.props.match.params.abstract != prevProps.match.params.abstract
     ) {
-      console.log("UPDATIONG!!!")
+      console.log('UPDATIONG!!!');
       this.getSearchData();
     }
   }
 
   getSearchData() {
-
     getSearchData([
       'concentration',
       this.props.match.params.molecule,
@@ -116,14 +115,13 @@ class MetabConcs extends Component {
     ]).then(response => {
       this.setState({ orig_json: response.data });
     });
-
   }
 
   getNewSearch(url) {
     console.log(url);
     //url = url + '/False';
-    this.props.dispatch(abstractMolecule(false))
-    this.props.dispatch(setNewUrl(url))
+    this.props.dispatch(abstractMolecule(false));
+    this.props.dispatch(setNewUrl(url));
     //this.setState({ newSearch: true, newRedirect: url });
   }
 
@@ -140,12 +138,10 @@ class MetabConcs extends Component {
     });
   }
 
-
   render() {
     //if (this.state.toMetabConc == true) {
     //  return <BrowserRouter><Redirect to='/dashboard' /></BrowserRouter>
     //}
-
 
     const Search = Input.Search;
     let styles = {

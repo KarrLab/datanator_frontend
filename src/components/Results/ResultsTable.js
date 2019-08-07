@@ -93,6 +93,7 @@ class ResultsTable extends Component {
     };
     this.correctlyRenderSelectRow = this.correctlyRenderSelectRow.bind(this);
     this.setTable = this.setTable.bind(this);
+    this.setPotentialColumns = this.setPotentialColumns.bind(this);
 
     this.handleBasicToAdvancedToggle = this.handleBasicToAdvancedToggle.bind(
       this,
@@ -148,12 +149,14 @@ class ResultsTable extends Component {
   }
 
   setTable() {
+    console.log(Object.keys(this.props.potential_columns))
     this.props.dispatch(
       getTotalColumns(
-        this.props.basic_columns.concat(this.props.advanced_columns),
+        this.props.basic_columns.concat(this.props.advanced_columns).concat(Object.keys(this.props.potential_columns)),
       ),
     );
     this.props.dispatch(hide_columns(this.props.advanced_columns));
+    this.setPotentialColumns()
     if (typeof this.node !== 'undefined') {
       tableRef = this.node.table;
     }
@@ -162,11 +165,25 @@ class ResultsTable extends Component {
     }
   }
 
+  setPotentialColumns(){
+    for (const [key, value] of Object.entries(this.props.potential_columns)) {
+          if (value){
+            this.props.dispatch(reveal_columns([key]));
+          }
+        else{
+          this.props.dispatch(hide_columns([key]))
+        }
+    }
+  }
+
   componentDidUpdate(prevProps) {
     console.log('updating');
     if (this.props.totalData !== prevProps.totalData) {
       this.setSelected();
     }
+    if (this.props.potential_columns != prevProps.potential_columns) {
+      this.setPotentialColumns()
+  }
 
     if (typeof this.node !== 'undefined') {
       tableRef = this.node.table;

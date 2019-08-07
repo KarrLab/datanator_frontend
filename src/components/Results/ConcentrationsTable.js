@@ -220,39 +220,31 @@ class ConcentrationsTable extends Component {
   }
 
   render() {
-    let display_columns = this.state.columns;
+    let basic_columns
 
-    let basic_columns=[
-                'concentration',
-                'error',
-                'molecule',
-                'organism',
-                'taxonomic_proximity',
-              ]
-
-    if (this.state.tanitomo) {
-      console.log('tanitomo!');
-      basic_columns = basic_columns.concat("tanitomo");
-
-    }
-
-    console.log('hadrian');
 
     return (
       <div className="total_table">
         <div className="slider">
           <TaxonFilter />
-          <TanitomoFilter tanitomo={this.state.tanitomo}/>
+          <TanitomoFilter tanitomo={this.state.tanitomo} />
         </div>
         <div className="results">
           <div className="concTable">
             <ResultsTable
-              basic_columns={basic_columns}
+              basic_columns={[
+                'concentration',
+                'error',
+                'molecule',
+                'organism',
+                'taxonomic_proximity',
+              ]}
               advanced_columns={[
                 'growth_phase',
                 'growth_conditions',
                 'growth_media',
               ]}
+              potential_columns={{'tanitomo':this.state.tanitomo}}
             />
           </div>
           <div className="consensus">
