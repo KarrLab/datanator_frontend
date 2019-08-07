@@ -157,7 +157,7 @@ class Consensus extends Component {
 
         {this.state.asked_consensus && (
           <div className="summary">
-            <Row>
+            <Row >
               <Col span={22}>
                 <Statistic title="Mean" value={this.state.mean} />
               </Col>
@@ -165,6 +165,7 @@ class Consensus extends Component {
                 <Statistic title="Median" value={this.state.median} />
               </Col>
             </Row>
+
             <Row>
               <Col span={15}>
                 <Statistic
