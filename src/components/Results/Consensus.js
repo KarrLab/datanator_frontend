@@ -13,6 +13,7 @@ import Chart3 from './Chart3.js';
 import { Slider, Statistic } from 'antd';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
+import DownloadLink from "react-download-link";
 
 import './Consensus.css';
 
@@ -77,6 +78,7 @@ class Consensus extends Component {
       consensus_prompt: 'Get Consensus',
     };
     this.setMean = this.setMean.bind(this);
+    this.recordData = this.recordData.bind(this);
   }
 
   setMean(data) {
@@ -99,6 +101,15 @@ class Consensus extends Component {
       std_dev: new_std_dev,
       range: round(new_range[0], 3) + '-' + round(new_range[1], 3),
     });
+  }
+
+  recordData(){
+    let response = {}
+    response["total_data"] = this.props.totalData
+    response["filtered_data"] = this.props.selectedData
+    response["consensus"] = {mean:this.state.mean, median:this.state.median, 
+      standard_deviation:this.state.standardDeviation, range:this.state.range}
+    return(response)
   }
 
   handleUpdate() {
@@ -137,6 +148,12 @@ class Consensus extends Component {
           {' '}
           {this.state.consensus_prompt}{' '}
         </Button>
+        <DownloadLink
+          filename="Data.txt"
+          exportFile={() => JSON.stringify(this.recordData())}
+      >
+              Save to disk
+      </DownloadLink>
 
         {this.state.asked_consensus && (
           <div className="summary">

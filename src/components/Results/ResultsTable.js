@@ -12,6 +12,9 @@ import {
   reveal_columns,
 } from '~/data/actions/resultsAction';
 import { connect } from 'react-redux';
+import DownloadLink from "react-download-link";
+
+
 
 const selectRow = {
   mode: 'checkbox',
@@ -136,6 +139,12 @@ class ResultsTable extends Component {
     if (!this.state.advanced) {
       this.setState({ toggleLabel: 'Basic' });
       this.props.dispatch(reveal_columns(this.props.advanced_columns));
+
+
+
+
+
+
     } else {
       this.setState({ toggleLabel: 'Advanced' });
       this.props.dispatch(hide_columns(this.props.advanced_columns));
@@ -203,6 +212,13 @@ class ResultsTable extends Component {
           {' '}
           {this.state.toggleLabel}{' '}
         </Button>
+
+        <DownloadLink
+    filename="myfile.txt"
+    exportFile={() => "My cached data"}
+>
+        Save to disk
+</DownloadLink>
 
         <div className="bootstrap">
           {this.props.col_list.length > 0 && (

@@ -36,7 +36,6 @@ import { OrganismInput } from '~/components/SearchField/OrganismInput';
 import { setNewUrl, abstractMolecule } from '~/data/actions/pageAction';
 
 import store from '~/data/Store';
-const jsonfile = require('jsonfile');
 
 @connect(store => {
   return {
