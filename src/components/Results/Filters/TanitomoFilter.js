@@ -57,16 +57,17 @@ class TanitomoFilter extends Component {
 return (
 
           <div className="slider_bar2">
-          Molecular Similarity
 
             {!this.props.tanitomo && (
               <Button type="primary" onClick={() => this.setAbstractUrl()}>
                 {' '}
-                Abstract{' '}
+                Include Similar Compounds{' '}
               </Button>
             )}
 
             {this.props.tanitomo && (
+              <div className="tani">
+              Molecular Similarity 
               <Slider
                 step={0.01}
                 defaultValue={0.65}
@@ -74,7 +75,9 @@ return (
                 max={1}
                 onChange={this.filter_tanitomo}
               />
+              </div>
             )}
+
         </div>
   )}
 

@@ -12,7 +12,6 @@ import {
   reveal_columns,
 } from '~/data/actions/resultsAction';
 import { connect } from 'react-redux';
-import DownloadLink from "react-download-link";
 
 
 
@@ -213,12 +212,6 @@ class ResultsTable extends Component {
           {this.state.toggleLabel}{' '}
         </Button>
 
-        <DownloadLink
-    filename="myfile.txt"
-    exportFile={() => "My cached data"}
->
-        Save to disk
-</DownloadLink>
 
         <div className="bootstrap">
           {this.props.col_list.length > 0 && (
