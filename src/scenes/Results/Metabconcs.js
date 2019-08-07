@@ -33,18 +33,19 @@ import './MetabConcs.css';
 import { getSearchData } from '~/services/MongoApi';
 import { MetaboliteInput } from '~/components/SearchField/MetaboliteInput';
 import { OrganismInput } from '~/components/SearchField/OrganismInput';
+import { setNewUrl } from '~/data/actions/pageAction';
+
 
 import store from '~/data/Store'
 const jsonfile = require('jsonfile');
 
-/*
+
 @connect(store => {
     return{
-    organismSearch: store.organisms.select,
-    metabloltite: store.metabolties.select
+    newRedirect: store.page.url,
   }
 }) //the names given here will be the names of props
-*/
+
 
 
 class MetabConcs extends Component {
@@ -78,6 +79,15 @@ class MetabConcs extends Component {
 
   componentDidUpdate(prevProps) {
     // respond to parameter change in scenario 3
+    console.log("comp")
+
+    if (this.props.newRedirect != prevProps.newRedirect){
+      console.log("yipikayee")
+      console.log(this.props.newRedirect)
+      console.log(prevProps.newRedirect)
+      this.props.history.push(this.props.newRedirect)
+      //return <Redirect to={this.props.newRedirect}/>
+    }
     if (
       this.props.match.params.molecule != prevProps.match.params.molecule ||
       this.props.match.params.organism != prevProps.match.params.organism ||
@@ -104,7 +114,8 @@ class MetabConcs extends Component {
   getNewSearch(url) {
     console.log(url);
     url = url + '/False';
-    this.setState({ newSearch: true, newRedirect: url });
+    this.props.dispatch(setNewUrl(url))
+    //this.setState({ newSearch: true, newRedirect: url });
   }
 
   getAbstractSearch() {
@@ -125,15 +136,7 @@ class MetabConcs extends Component {
     //if (this.state.toMetabConc == true) {
     //  return <BrowserRouter><Redirect to='/dashboard' /></BrowserRouter>
     //}
-    if (this.state.newSearch === true) {
-      this.setState({ newSearch: false });
-      console.log('routing');
-      var url = this.state.newRedirect;
-      console.log(this.state.newRedirect);
-      console.log('above');
-      console.log(url);
-      return <Redirect to={url} />;
-    }
+
 
     const Search = Input.Search;
     let styles = {
