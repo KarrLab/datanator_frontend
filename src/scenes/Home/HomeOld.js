@@ -11,6 +11,8 @@ import { PropTypes } from 'react'
 import {BrowserRouter, Redirect } from 'react-router-dom'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { withRouter } from "react-router";
+import { Grid, Row, Col } from 'react-flexbox-grid';
+
 import '~/scenes/Home/HomeOld.css';
 
 
@@ -55,24 +57,31 @@ class HomeOld extends Component {
 
 		  
     <div className="container" >
+    <Grid fluid>
+    	<Row center="xs">
     	<style>{'body { background-color: #f7fdff; }'}</style>
 	      <div className="search">
 	        <ConcSearch  handleClick={this.getSearchData} landing={true}/>
 	      </div>
-
+	      </Row>
 	      <div className="menu">
-
-	      	<div className="molecule">
-		        <img src={require('~/scenes/Home/images/molecule.png')} style={{ width: '5%' }}/>
+	    
+		<Row center="xs">
+		<Col xs={6}>
+		        <img src={require('~/scenes/Home/images/molecule.png')} style={{ width: '10%' }}/>
 		        <p>Metabolite Concentrations</p>
 
-		    </div>
-		    <div className="reaction">
-		        <img src={require('~/scenes/Home/images/reaction.png')} style={{ width: '40%' }}/>
-		        <p>Reaction Kinetics</p>
-		    </div>
-	      </div>
+		</Col>
 
+		<Col xs={6}>
+		        <img src={require('~/scenes/Home/images/reaction.png')} style={{ width: '20%' }}/>
+		        <p>Reaction Kinetics</p>
+		</Col>
+
+	</Row>
+	      </div>
+	      
+</Grid>
 
       </div>
 

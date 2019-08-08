@@ -28,7 +28,7 @@ import ProteinPage from '~/scenes/Results/ProteinPage';
 const SiteRouter = () => {
   return (
     <Router>
-      <Route path="/" exact component={Home} />
+      <Route path="/" exact component={HomeOld} />
       <Route path="/search/" component={Search} />
       <Route path="/old" component={HomeOld} />
       <Route
