@@ -21,7 +21,7 @@ import {
   Button,
 } from 'antd';
 import 'antd/dist/antd.css';
-import ConcentrationsTable from '~/components/Results/ConcentrationsTable.js';
+import ProtAbundancesTable from '~/components/Results/ProtAbundancesTable.js';
 import ConcSearch from '~/components/SearchField/ConcSearch.js';
 import { PropTypes } from 'react';
 import { BrowserRouter, Redirect } from 'react-router-dom';
@@ -43,7 +43,7 @@ import store from '~/data/Store';
     moleculeAbstract: store.page.moleculeAbstract,
   };
 }) //the names given here will be the names of props
-class MetabConcs extends Component {
+class ProteinPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -52,7 +52,6 @@ class MetabConcs extends Component {
       dataSource: [],
       orig_json: null,
       newSearch: false,
-      abstract_search: false,
       newRedirect: '',
     };
 
@@ -97,8 +96,7 @@ class MetabConcs extends Component {
     }
     if (
       this.props.match.params.molecule != prevProps.match.params.molecule ||
-      this.props.match.params.organism != prevProps.match.params.organism ||
-      this.props.match.params.abstract != prevProps.match.params.abstract
+      this.props.match.params.organism != prevProps.match.params.organism
     ) {
       console.log('UPDATIONG!!!');
       this.getSearchData();
@@ -107,11 +105,8 @@ class MetabConcs extends Component {
 
   getSearchData() {
     getSearchData([
-      'search',
-      'concentration',
-      this.props.match.params.molecule,
-      this.props.match.params.organism,
-      this.props.match.params.abstract,
+      'proteins',
+      'test'
     ]).then(response => {
       this.setState({ orig_json: response.data });
     });
@@ -164,7 +159,7 @@ class MetabConcs extends Component {
         <br />
         <div className="results">
           {this.state.orig_json && (
-            <ConcentrationsTable
+            <ProtAbundancesTable
               json_data={this.state.orig_json}
               handleAbstract={this.getAbstractSearch}
             />
@@ -175,4 +170,4 @@ class MetabConcs extends Component {
   }
 }
 
-export default withRouter(MetabConcs);
+export default withRouter(ProteinPage);

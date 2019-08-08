@@ -42,6 +42,9 @@ const total_columns = {
   organism: {
     dataField: 'organism',
     text: 'Organism',
+    headerStyle: (colum, colIndex) => {
+      return { width: '20%', textAlign: 'left' };
+    },
     filter: textFilter({ getFilter: filter => (filters['organism'] = filter) }),
   },
 
@@ -58,7 +61,7 @@ const total_columns = {
       defaultValue: { comparator: Comparator.LE, number: 1000 }, //ref:this.node,
       getFilter: filter => (taxonFilter = filter),
     }),
-    sort: true,
+    //sort: true,
   },
 
   growth_phase: {
@@ -78,6 +81,9 @@ const total_columns = {
       getFilter: filter => (filters['growth_conditions'] = filter),
     }),
   },
+
+
+
   growth_media: {
     dataField: 'growth_media',
     text: 'Media',
@@ -99,6 +105,61 @@ const total_columns = {
       getFilter: filter => (filters['tanitomo'] = filter),
     }),
   },
+
+
+  genetic_identifiers: {
+    dataField: 'genetic_identifiers',
+    text: 'Identifiers',
+    filter: textFilter({
+      getFilter: filter => (filters['genetic_identifiers'] = filter),
+    }),
+  },
+
+  abundance: {
+    dataField: 'abundance',
+    text: 'Abundance (ppm)',
+    headerStyle: (colum, colIndex) => {
+      return { width: '9%', textAlign: 'left' };
+    },
+  },
+
+  organ: {
+    dataField: 'organ',
+    text: 'Organ',
+    
+    filter: textFilter({ getFilter: filter => (filters['organ'] = filter) }),
+  },
+
+  gene_symbol: {
+    dataField: 'gene_symbol',
+    text: 'Gene',
+    headerStyle: (colum, colIndex) => {
+      return { width: '9%', textAlign: 'left' };
+    },
+    filter: textFilter({ getFilter: filter => (filters['gene_symbol'] = filter) }),
+  },
+
+  protein_name: {
+    dataField: 'protein_name',
+    text: 'Protein',
+    headerStyle: (colum, colIndex) => {
+      return { width: '9%', textAlign: 'left' };
+    },
+    filter: textFilter({ getFilter: filter => (filters['protein_name'] = filter) }),
+  },
+
+  uniprot_id: {
+    dataField: 'uniprot_id',
+    text: 'Uniprot',
+    headerStyle: (colum, colIndex) => {
+      return { width: '9%', textAlign: 'left' };
+    },
+    filter: textFilter({ getFilter: filter => (filters['uniprot_id'] = filter) }),
+  },
+
+
+
+
 };
 
 //let taxonFilter = null;

@@ -23,6 +23,7 @@ import { Home } from '~/scenes/Home/Home';
 import HomeOld from '~/scenes/Home/HomeOld';
 import Search from '~/scenes/Search/Search';
 import Metabconcs from '~/scenes/Results/Metabconcs';
+import ProteinPage from '~/scenes/Results/ProteinPage';
 
 const SiteRouter = () => {
   return (
@@ -33,6 +34,10 @@ const SiteRouter = () => {
       <Route
         path="/metabconcs/:molecule/:organism/:abstract?/"
         component={Metabconcs}
+      />
+      <Route
+        path="/protein/:molecule/:organism/"
+        component={ProteinPage}
       />
     </Router>
   );
