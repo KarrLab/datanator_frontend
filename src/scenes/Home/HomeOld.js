@@ -5,8 +5,9 @@ import React, {
 	Component
 } from 'react';
 //import '~/../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import ReactDOM from 'react-dom';
 import ConcSearch from '~/components/SearchField/ConcSearch.js';
+import ProtSearch from '~/components/SearchField/ProtSearch.js';
+
 import { PropTypes } from 'react'
 import {BrowserRouter, Redirect } from 'react-router-dom'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
@@ -59,7 +60,12 @@ class HomeOld extends Component {
     <Grid fluid>
     	<Row center="xs">
     	<Col  xs={"100%"}>
+    	{this.state.currentSearch == "metab" &&
 	        <ConcSearch  handleClick={this.getSearchData} landing={true}/>
+	    }
+	    {this.state.currentSearch == "protein" &&
+	        <ProtSearch  handleClick={this.getSearchData} landing={true}/>
+	    }
 	        </Col>
 	     </Row>
 	      
@@ -73,7 +79,8 @@ class HomeOld extends Component {
 		</Col>
 
 		<Col xs={4} >
-		        <img src={require('~/scenes/Home/images/protein.png')} style={{ width: '60px' }}/>
+		        <img src={require('~/scenes/Home/images/protein.png')} style={{ width: '60px' }}
+		        onClick={() => this.setState({currentSearch:"protein"})} />
 		        <p>Protein Concentrations</p>
 
 		</Col>

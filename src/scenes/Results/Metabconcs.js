@@ -80,8 +80,9 @@ class MetabConcs extends Component {
       console.log('yipikayee');
       console.log(this.props.currentUrl);
       console.log(prevProps.currentUrl);
+      this.setState({newSearch:true})
       this.props.history.push(this.props.currentUrl);
-      //return <Redirect to={this.props.newRedirect}/>
+      //return <Redirect to={this.props.currentUrl}/>
     }
     if (
       this.props.moleculeAbstract == true &&
@@ -139,7 +140,11 @@ class MetabConcs extends Component {
   }
 
   render() {
-    //if (this.state.toMetabConc == true) {
+    if (this.state.newSearch == true) {
+      this.setState({newSearch:false})
+      return <Redirect to={this.props.currentUrl}/>
+    }
+
     //  return <BrowserRouter><Redirect to='/dashboard' /></BrowserRouter>
     //}
 

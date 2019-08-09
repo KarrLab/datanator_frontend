@@ -14,7 +14,6 @@ import {
 import { connect } from 'react-redux';
 
 
-
 const selectRow = {
   mode: 'checkbox',
   selected: [],
