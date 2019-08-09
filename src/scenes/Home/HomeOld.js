@@ -22,8 +22,8 @@ class HomeOld extends Component {
 		super(props);
 		this.state = {
 			dataSource: [],
-			orig_json: null,
 			enactSearch:false,
+			currentSearch: "metab",
 			nextUrl:"",
 		};
 
@@ -56,34 +56,37 @@ class HomeOld extends Component {
     return (
 
 		  
-    <div className="container" >
     <Grid fluid>
     	<Row center="xs">
-    	<style>{'body { background-color: #f7fdff; }'}</style>
-	      <div className="search">
+    	<Col  xs={"100%"}>
 	        <ConcSearch  handleClick={this.getSearchData} landing={true}/>
-	      </div>
-	      </Row>
-	      <div className="menu">
-	    
-		<Row center="xs">
-		<Col xs={6}>
-		        <img src={require('~/scenes/Home/images/molecule.png')} style={{ width: '10%' }}/>
+	        </Col>
+	     </Row>
+	      
+
+		<Row center="xs" bottom="xs">
+		<Col xs={4} >
+		        <img src={require('~/scenes/Home/images/molecule.png')} style={{ width: '50px' }}
+		     onClick={() => this.setState({currentSearch:"metab"})} />
 		        <p>Metabolite Concentrations</p>
 
 		</Col>
 
-		<Col xs={6}>
-		        <img src={require('~/scenes/Home/images/reaction.png')} style={{ width: '20%' }}/>
+		<Col xs={4} >
+		        <img src={require('~/scenes/Home/images/protein.png')} style={{ width: '60px' }}/>
+		        <p>Protein Concentrations</p>
+
+		</Col>
+
+		<Col xs={4}>
+		        <img src={require('~/scenes/Home/images/reaction.png')} style={{ width: '100px' }}/>
 		        <p>Reaction Kinetics</p>
 		</Col>
 
 	</Row>
-	      </div>
 	      
 </Grid>
 
-      </div>
 
     );
   }
