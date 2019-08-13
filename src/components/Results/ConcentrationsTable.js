@@ -47,8 +47,6 @@ class ConcentrationsTable extends Component {
     this.state = {
       asked_consensus: false,
       tanitomo: false,
-      consensus_prompt: 'Get Consensus',
-      json_data: '',
 
       f_concentrations: [],
       tanitomo_column: [
@@ -191,7 +189,7 @@ class ConcentrationsTable extends Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     if (this.props.json_data != prevProps.json_data) {
       this.formatData(this.props.json_data);
     }
