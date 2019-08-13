@@ -133,9 +133,8 @@ class ConcSearch extends Component {
   }
 
   handleClickInner() {
-    this.props.handleClick(
-      '/metabconcs/' + this.state.molecule + '/' + this.state.organism,
-    );
+    this.props.handleClick([this.state.molecule, this.state.organism])
+
   }
 
   goBack() {

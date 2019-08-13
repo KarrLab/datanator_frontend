@@ -21,7 +21,6 @@ const selectOptions = {
 
 @connect(store => {
   return {
-    columns: store.results.columns,
     lineage: store.results.taxon_lineage,
   };
 })
@@ -33,7 +32,8 @@ class TaxonFilter extends Component {
     this.state = { 
       marks: {},
       numToNode: { 0: 0 },
-      sliderLen: 100 
+      sliderValue: 100,
+      sliderLen: 100, 
     };
     this.formatSlider = this.formatSlider.bind(this);
     this.formatter = this.formatter.bind(this);
@@ -44,19 +44,16 @@ class TaxonFilter extends Component {
 
   filter_taxon_inner(value) {
     this.props.dispatch(filter_taxon(value))
+    this.setState({sliderValue:value})
   }
 
-  filter_tanitomo(value) {
-    this.tanitomo_filter({
-      number: value,
-      comparator: Comparator.GE,
-    });
-  }
 
-  formatSlider(data) {
-    const lineage = this.props.lineage;
-    console.log(this.props.lineage)
+
+  formatSlider(lineage) {
+    //const lineage = this.props.lineage;
+    console.log("WOOHHHOOOKKK: " + lineage.length)
     this.setState({ sliderLen: lineage.length - 1 });
+    this.setState({ sliderValue: lineage.length - 1 });
 
     var new_marks = {};
     var new_numToNode = {};
@@ -100,6 +97,7 @@ class TaxonFilter extends Component {
 
 
   render() {
+    console.log("HEREHEHEH: " + this.state.sliderLen)
         
 return (
         <div className="slider">
@@ -107,7 +105,8 @@ return (
           <div className="slider_bar">
             <Slider
               marks={this.state.marks}
-              defaultValue={this.state.sliderLen}
+              value={this.state.sliderValue}
+              //defaultValue={this.state.sliderLen}
               tipFormatter={this.formatter}
               onChange={this.filter_taxon_inner}
               max={this.state.sliderLen}

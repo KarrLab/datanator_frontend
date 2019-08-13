@@ -118,6 +118,7 @@ return (
             <Slider
               marks={this.state.marks}
               defaultValue={this.state.sliderLen}
+              value={this.state.sliderLen}
               tipFormatter={this.formatter}
               onChange={this.filter_taxon_inner}
               max={this.state.sliderLen}

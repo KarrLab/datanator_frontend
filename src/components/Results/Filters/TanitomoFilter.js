@@ -19,12 +19,6 @@ const selectOptions = {
 
 
 
-@connect(store => {
-  return {
-    currentUrl: store.page.url,
-  };
-})
-
 
 class TanitomoFilter extends Component {
   constructor(props) {

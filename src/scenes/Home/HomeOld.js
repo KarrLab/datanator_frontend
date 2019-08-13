@@ -13,6 +13,7 @@ import {BrowserRouter, Redirect } from 'react-router-dom'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { withRouter } from "react-router";
 import { Grid, Row, Col } from 'react-flexbox-grid';
+import { setNewUrl } from '~/data/actions/pageAction';
 
 import '~/scenes/Home/HomeOld.css';
 
@@ -35,6 +36,7 @@ class HomeOld extends Component {
 	getSearchData(url) {
 		this.setState({nextUrl:url})
 		this.setState({enactSearch:true})
+		this.props.dispatch(setNewUrl(url))
 
 	}
 
@@ -50,6 +52,8 @@ class HomeOld extends Component {
 	if (this.state.enactSearch === true) {
 		console.log("routing!!!")
 		console.log(this.state.nextUrl)
+		this.props.history.push(this.state.nextUrl);
+		
       return <Redirect to={this.state.nextUrl}/>
     }
 
