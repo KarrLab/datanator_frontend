@@ -131,7 +131,6 @@ class Consensus extends Component {
   componentDidUpdate(prevProps) {
     // You don't have to do this check first, but it can help prevent an unneeded render
     //this.props.dispatch(refreshSelectedData())
-    console.log('majorian');
     if (prevProps.totalData != this.props.totalData) {
       this.setMean(this.props.totalData);
     } else if (prevProps.selectedData != this.props.selectedData) {
@@ -140,7 +139,7 @@ class Consensus extends Component {
   }
 
   render() {
-    console.log('again');
+    console.log('Rendering Consensus');
     return (
       <div className="consensus_data">
         <img src={require('~/images/consensus.png')} />

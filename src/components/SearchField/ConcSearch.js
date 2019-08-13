@@ -150,6 +150,7 @@ class ConcSearch extends Component {
   }
 
   render() {
+    console.log("Rendering ConcSearch")
     const Search = Input.Search;
     let styles;
 

@@ -156,14 +156,19 @@ class ResultsTable extends Component {
   }
 
   setTable() {
-    console.log(Object.keys(this.props.potential_columns))
     this.props.dispatch(
       getTotalColumns(
         this.props.basic_columns.concat(this.props.advanced_columns).concat(Object.keys(this.props.potential_columns)),
       ),
     );
-    this.props.dispatch(hide_columns(this.props.advanced_columns));
-    this.setPotentialColumns()
+    let col_to_hide = this.props.advanced_columns
+    for (const [key, value] of Object.entries(this.props.potential_columns)) {
+      if (!value){
+        col_to_hide.push(key)
+      }
+    }
+  
+    this.props.dispatch(hide_columns(col_to_hide));
     if (typeof this.node !== 'undefined') {
       tableRef = this.node.table;
     }
@@ -173,22 +178,27 @@ class ResultsTable extends Component {
   }
 
   setPotentialColumns(){
+    let rev_col = []
+    let hid_col = []
     for (const [key, value] of Object.entries(this.props.potential_columns)) {
           if (value){
-            this.props.dispatch(reveal_columns([key]));
+            rev_col.push(key)
           }
         else{
-          this.props.dispatch(hide_columns([key]))
+          hid_col.push(key)
         }
     }
+    this.props.dispatch(reveal_columns(rev_col))
+    this.props.dispatch(reveal_columns(hid_col))
   }
 
   componentDidUpdate(prevProps) {
-    console.log('updating');
     if (this.props.totalData !== prevProps.totalData) {
       this.setSelected();
     }
-    if (this.props.potential_columns != prevProps.potential_columns) {
+    if (!compare(this.props.potential_columns, prevProps.potential_columns)) {
+      console.log(this.props.potential_columns)
+      console.log(prevProps.potential_columns)
       this.setPotentialColumns()
   }
 
@@ -198,6 +208,7 @@ class ResultsTable extends Component {
   }
 
   render() {
+    console.log("Rendering ResultsTable")
     this.correctlyRenderSelectRow();
 
     return (
@@ -245,6 +256,11 @@ function getSelectedData() {
     }
   }
   return selected_data;
+}
+
+
+function compare(a, b) {
+  return JSON.stringify(a) === JSON.stringify(b);
 }
 
 export { ResultsTable, getSelectedData };

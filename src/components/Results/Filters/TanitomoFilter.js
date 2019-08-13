@@ -19,7 +19,10 @@ const selectOptions = {
 
 
 
-
+@connect(store => {
+  return {
+  };
+})
 class TanitomoFilter extends Component {
   constructor(props) {
     super(props);
@@ -37,7 +40,7 @@ class TanitomoFilter extends Component {
   }
 
   setAbstractUrl(){
-    console.log("blue")
+
     this.props.dispatch(abstractMolecule(true))
   }
 
@@ -47,6 +50,7 @@ class TanitomoFilter extends Component {
 
 
   render() {
+    console.log("Rendering TanitomoFilter")
         
 return (
 

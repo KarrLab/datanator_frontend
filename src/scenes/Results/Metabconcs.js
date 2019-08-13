@@ -39,7 +39,6 @@ import store from '~/data/Store';
 
 @connect(store => {
   return {
-    currentUrl: store.page.url,
     moleculeAbstract: store.page.moleculeAbstract,
   };
 }) //the names given here will be the names of props
@@ -65,7 +64,6 @@ class MetabConcs extends Component {
       this.props.match.params.organism;
   }
   componentDidMount() {
-    console.log('hello');
     this.setState({
       abstract_search: this.props.match.params.abstract,
       newSearch:false
@@ -76,42 +74,34 @@ class MetabConcs extends Component {
 
   componentDidUpdate(prevProps) {
     // respond to parameter change in scenario 3
-    console.log('comp');
 
-    if (this.props.currentUrl != prevProps.currentUrl) {
-      console.log('yipikayee');
-      console.log(this.props.currentUrl);
-      console.log(prevProps.currentUrl);
-      this.setState({newSearch:true})
-      //this.props.history.push(this.props.currentUrl);
-      //return <Redirect to={this.props.currentUrl}/>
-    }
+
     if (
       this.props.moleculeAbstract == true &&
       prevProps.moleculeAbstract == false
     ) {
-      this.setState({newSearch:true})
-      //this.props.history.push(
-      //  '/metabconcs/' +
-      //    this.props.match.params.molecule +
-      //    '/' +
-      //    this.props.match.params.organism +
-      //    '/True',
-      //);
-      let url = '/metabconcs/' + this.props.match.params.molecule +
- '/' + this.props.match.params.organism + '/True'
+      
 
-      this.props.dispatch(setNewUrl(url))
+      this.setState({
+      newSearch: true,
+      new_url:
+        '/metabconcs/' +
+        this.props.match.params.molecule +
+        '/' +
+        this.props.match.params.organism +
+        '/True',
+    });
+
+
     }
-    console.log(this.props.match.params.molecule)
-    console.log(prevProps.match.params.molecule)
+
+
     if (
       this.props.match.params.molecule != prevProps.match.params.molecule ||
       this.props.match.params.organism != prevProps.match.params.organism ||
       this.props.match.params.abstract != prevProps.match.params.abstract
     ) {
       this.setState({newSearch:false})
-      console.log('UPDATIONG!!!');
       this.getSearchData();
     }
   }
@@ -147,7 +137,7 @@ class MetabConcs extends Component {
     //this.setState({abstract_search:true,})
     this.setState({
       newSearch: true,
-      newRedirect:
+      new_url:
         '/metabconcs/' +
         this.props.match.params.molecule +
         '/' +
@@ -157,6 +147,7 @@ class MetabConcs extends Component {
   }
 
   render() {
+    console.log("Rendering MetabConcs")
     if (this.state.newSearch == true) {
       //this.setState({newSearch:false})
       //this.props.history.push(this.props.currentUrl + "/" + this.props.moleculeAbstract
@@ -171,8 +162,7 @@ class MetabConcs extends Component {
     let styles = {
       marginTop: 50,
     };
-    console.log(this.props.match.params.molecule);
-    console.log(this.props.match.params.organism);
+
     return (
       <div className="container" style={styles}>
         <style>{'body { background-color: #f7fdff; }'}</style>

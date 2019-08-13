@@ -51,7 +51,6 @@ class TaxonFilter extends Component {
 
   formatSlider(lineage) {
     //const lineage = this.props.lineage;
-    console.log("WOOHHHOOOKKK: " + lineage.length)
     this.setState({ sliderLen: lineage.length - 1 });
     this.setState({ sliderValue: lineage.length - 1 });
 
@@ -80,7 +79,6 @@ class TaxonFilter extends Component {
 
 
   componentDidMount() {
-    console.log(this.props.lineage)
 
     if (this.props.lineage) {
       this.formatSlider(this.props.lineage);
@@ -97,7 +95,7 @@ class TaxonFilter extends Component {
 
 
   render() {
-    console.log("HEREHEHEH: " + this.state.sliderLen)
+    console.log("Rendering TaxonFilter")
         
 return (
         <div className="slider">

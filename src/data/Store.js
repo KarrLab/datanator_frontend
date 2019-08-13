@@ -18,6 +18,7 @@ const middleware = applyMiddleware(promise, thunk, logger);
 //set up firefox dev tools
 const composeEnhancers = composeWithDevTools({
   // Specify name here, actionsBlacklist, actionsCreators and other options if needed
+  trace: true,
 });
 
 export default createStore(reducer, composeEnhancers(middleware));

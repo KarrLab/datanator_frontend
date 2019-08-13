@@ -73,7 +73,6 @@ class ConcentrationsTable extends Component {
   }
 
   formatData(data) {
-    console.log(data);
     if (data != null) {
       var f_concentrations = [];
 
@@ -87,7 +86,6 @@ class ConcentrationsTable extends Component {
         }
 
         var concs = data[0][n - 1].concentrations;
-        console.log(concs);
         if (concs != null) {
           if (!Array.isArray(concs.concentration)) {
             for (var key in concs) {
@@ -194,10 +192,7 @@ class ConcentrationsTable extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log('updating');
     if (this.props.json_data != prevProps.json_data) {
-      console.log('not equal');
-      console.log(this.props.json_data);
       this.formatData(this.props.json_data);
     }
   }
@@ -211,7 +206,6 @@ class ConcentrationsTable extends Component {
   }
 
   handleSlider(value) {
-    console.log('onChange: ', value);
     //this.filter_taxon;
   }
 
@@ -220,6 +214,7 @@ class ConcentrationsTable extends Component {
   }
 
   render() {
+    console.log("Rendering ConcentrationsTable")
     let basic_columns
 
 
