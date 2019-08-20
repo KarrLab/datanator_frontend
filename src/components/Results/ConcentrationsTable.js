@@ -184,13 +184,13 @@ class ConcentrationsTable extends Component {
   }
 
   componentDidMount() {
-    if (this.props.json_data) {
+    if ((this.props.json_data) && false){
       this.formatData(this.props.json_data);
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.props.json_data != prevProps.json_data) {
+    if (this.props.json_data != prevProps.json_data){
       this.formatData(this.props.json_data);
     }
   }
@@ -215,7 +215,10 @@ class ConcentrationsTable extends Component {
     console.log("Rendering ConcentrationsTable")
     let basic_columns
 
-
+    if (!this.props.json_data) {
+      return(<div></div>)
+    }
+    else{
     return (
       <div className="total_table">
         <div className="slider">
@@ -246,6 +249,7 @@ class ConcentrationsTable extends Component {
         </div>
       </div>
     );
+}
   }
 }
 

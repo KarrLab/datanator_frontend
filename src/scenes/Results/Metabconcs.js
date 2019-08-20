@@ -177,12 +177,10 @@ class MetabConcs extends Component {
         <br />
         <br />
         <div className="results">
-          {this.state.orig_json && (
             <ConcentrationsTable
               json_data={this.state.orig_json}
               handleAbstract={this.getAbstractSearch}
             />
-          )}
         </div>
       </div>
     );
