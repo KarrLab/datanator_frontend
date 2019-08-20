@@ -40,7 +40,7 @@ import {
     //selectedData: store.results.selectedData
   };
 })
-class ConcentrationsTable extends Component {
+class ProtAbundancesTable extends Component {
   constructor(props) {
     super(props);
 
@@ -136,6 +136,7 @@ class ConcentrationsTable extends Component {
 
   render() {
     let basic_columns
+    console.log("Rendering ProtAbundancesTable")
 
     if (!this.props.json_data) {
       return(<div></div>)
@@ -174,4 +175,4 @@ class ConcentrationsTable extends Component {
   }
 }
 
-export default withRouter(ConcentrationsTable);
+export default withRouter(ProtAbundancesTable);

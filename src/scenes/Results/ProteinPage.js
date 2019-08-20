@@ -22,7 +22,7 @@ import {
 } from 'antd';
 import 'antd/dist/antd.css';
 import ProtAbundancesTable from '~/components/Results/ProtAbundancesTable.js';
-import ConcSearch from '~/components/SearchField/ConcSearch.js';
+import ProtSearch from '~/components/SearchField/ProtSearch.js';
 import { PropTypes } from 'react';
 import { BrowserRouter, Redirect } from 'react-router-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
@@ -106,7 +106,7 @@ class ProteinPage extends Component {
   getSearchData() {
     getSearchData([
       'proteins',
-      'test'
+      'abundance?uniprot_id=P08237'
     ]).then(response => {
       this.setState({ orig_json: response.data });
     });
@@ -137,6 +137,7 @@ class ProteinPage extends Component {
     //if (this.state.toMetabConc == true) {
     //  return <BrowserRouter><Redirect to='/dashboard' /></BrowserRouter>
     //}
+    console.log("Rendering ProteinPage")
 
     const Search = Input.Search;
     let styles = {
@@ -148,7 +149,7 @@ class ProteinPage extends Component {
       <div className="container" style={styles}>
         <style>{'body { background-color: #f7fdff; }'}</style>
         <div className="search">
-          <ConcSearch
+          <ProtSearch
             handleClick={this.getNewSearch}
             landing={false}
             defaultMolecule={this.props.match.params.molecule}
@@ -158,12 +159,10 @@ class ProteinPage extends Component {
         <br />
         <br />
         <div className="results">
-          {this.state.orig_json && (
             <ProtAbundancesTable
               json_data={this.state.orig_json}
               handleAbstract={this.getAbstractSearch}
             />
-          )}
         </div>
       </div>
     );

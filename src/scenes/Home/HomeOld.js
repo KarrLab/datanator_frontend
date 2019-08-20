@@ -13,7 +13,7 @@ import {BrowserRouter, Redirect } from 'react-router-dom'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { withRouter } from "react-router";
 import { Grid, Row, Col } from 'react-flexbox-grid';
-import { setNewUrl } from '~/data/actions/pageAction';
+//import { setNewUrl } from '~/data/actions/pageAction';
 
 import '~/scenes/Home/HomeOld.css';
 
@@ -24,19 +24,20 @@ class HomeOld extends Component {
 		super(props);
 		this.state = {
 			dataSource: [],
-			enactSearch:false,
+			newSearch:false,
 			currentSearch: "metab",
 			nextUrl:"",
 		};
 
-		this.getSearchData = this.getSearchData.bind(this);
+		this.getSearchDataProt = this.getSearchDataProt.bind(this);
+		this.getNewSearchMetab = this.getNewSearchMetab.bind(this);
 	}
 
 
-	getSearchData(url) {
+	getSearchDataProt(url) {
 		this.setState({nextUrl:url})
 		this.setState({enactSearch:true})
-		this.props.dispatch(setNewUrl(url))
+		//this.props.dispatch(setNewUrl(url))
 
 	}
 
@@ -44,17 +45,22 @@ class HomeOld extends Component {
 		this.props.history.push("/");
 	}
 
+	getNewSearchMetab(response) {
+
+    let url = '/metabconcs/' + response[0] + '/' + response[1];
+    if (url !== this.state.new_url) {
+      this.setState({ nextUrl: url });
+      this.setState({ newSearch: true });
+    }
+  }
+
 
 
 
 	render() {
 
-	if (this.state.enactSearch === true) {
-		console.log("routing!!!")
-		console.log(this.state.nextUrl)
-		this.props.history.push(this.state.nextUrl);
-		
-      return <Redirect to={this.state.nextUrl}/>
+	if (this.state.newSearch == true) {
+      return <Redirect to={this.state.nextUrl} push />;
     }
 
 
@@ -65,10 +71,10 @@ class HomeOld extends Component {
     	<Row center="xs">
     	<Col  xs={"100%"}>
     	{this.state.currentSearch == "metab" &&
-	        <ConcSearch  handleClick={this.getSearchData} landing={true}/>
+	        <ConcSearch  handleClick={this.getNewSearchMetab} landing={true}/>
 	    }
 	    {this.state.currentSearch == "protein" &&
-	        <ProtSearch  handleClick={this.getSearchData} landing={true}/>
+	        <ProtSearch  handleClick={this.getSearchDataProt} landing={true}/>
 	    }
 	        </Col>
 	     </Row>

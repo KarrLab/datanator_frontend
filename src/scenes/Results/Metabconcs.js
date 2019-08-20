@@ -46,7 +46,6 @@ class MetabConcs extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
       dataSource: [],
       orig_json: null,
       newSearch: false,
@@ -66,42 +65,35 @@ class MetabConcs extends Component {
   componentDidMount() {
     this.setState({
       abstract_search: this.props.match.params.abstract,
-      newSearch:false
+      newSearch: false,
     });
     this.getSearchData();
-
   }
 
   componentDidUpdate(prevProps) {
     // respond to parameter change in scenario 3
 
-
     if (
       this.props.moleculeAbstract == true &&
       prevProps.moleculeAbstract == false
     ) {
-      
-
       this.setState({
-      newSearch: true,
-      new_url:
-        '/metabconcs/' +
-        this.props.match.params.molecule +
-        '/' +
-        this.props.match.params.organism +
-        '/True',
-    });
-
-
+        newSearch: true,
+        new_url:
+          '/metabconcs/' +
+          this.props.match.params.molecule +
+          '/' +
+          this.props.match.params.organism +
+          '/True',
+      });
     }
-
 
     if (
       this.props.match.params.molecule != prevProps.match.params.molecule ||
       this.props.match.params.organism != prevProps.match.params.organism ||
       this.props.match.params.abstract != prevProps.match.params.abstract
     ) {
-      this.setState({newSearch:false})
+      this.setState({ newSearch: false });
       this.getSearchData();
     }
   }
@@ -119,22 +111,16 @@ class MetabConcs extends Component {
   }
 
   getNewSearch(response) {
-    //url = url + '/False';
-    //this.setState({organism:response[0]})
-    //this.setState({molecule:response[0]})
-    //this.props.dispatch(abstractMolecule(false));
-    let url = '/metabconcs/' + response[0] + '/' + response[1]
-    if (url !== this.state.new_url){
-      this.setState({new_url:url})
-      this.setState({newSearch:true})
+
+    let url = '/metabconcs/' + response[0] + '/' + response[1];
+    if (url !== this.state.new_url) {
+      this.setState({ new_url: url });
+      this.setState({ newSearch: true });
     }
 
-    //this.props.dispatch(setNewUrl(url));
-    //this.setState({ newSearch: true, newRedirect: url });
   }
 
   getAbstractSearch() {
-    //this.setState({abstract_search:true,})
     this.setState({
       newSearch: true,
       new_url:
@@ -147,16 +133,10 @@ class MetabConcs extends Component {
   }
 
   render() {
-    console.log("Rendering MetabConcs")
+    console.log('Rendering MetabConcs');
     if (this.state.newSearch == true) {
-      //this.setState({newSearch:false})
-      //this.props.history.push(this.props.currentUrl + "/" + this.props.moleculeAbstract
-      
-      return <Redirect to={this.state.new_url} push/>
+      return <Redirect to={this.state.new_url} push />;
     }
-
-    //  return <BrowserRouter><Redirect to='/dashboard' /></BrowserRouter>
-    //}
 
     const Search = Input.Search;
     let styles = {
@@ -177,10 +157,10 @@ class MetabConcs extends Component {
         <br />
         <br />
         <div className="results">
-            <ConcentrationsTable
-              json_data={this.state.orig_json}
-              handleAbstract={this.getAbstractSearch}
-            />
+          <ConcentrationsTable
+            json_data={this.state.orig_json}
+            handleAbstract={this.getAbstractSearch}
+          />
         </div>
       </div>
     );
