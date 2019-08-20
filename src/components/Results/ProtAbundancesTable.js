@@ -137,6 +137,10 @@ class ConcentrationsTable extends Component {
   render() {
     let basic_columns
 
+    if (!this.props.json_data) {
+      return(<div></div>)
+    }
+    else{
 
     return (
       <div className="total_table">
@@ -166,6 +170,7 @@ class ConcentrationsTable extends Component {
         </div>
       </div>
     );
+  }
   }
 }
 
