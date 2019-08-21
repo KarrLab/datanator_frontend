@@ -169,4 +169,4 @@ class ProteinPage extends Component {
   }
 }
 
-export default withRouter(ProteinPage);
+export default withRouter(ProteinPage); //
