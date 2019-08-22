@@ -1,0 +1,46 @@
+.navbar{
+    display:flex;
+    justify-content: space-between;
+
+}
+.logo-holder{
+    order: 1;
+
+}
+.logo{
+    height:100%;
+
+}
+
+.page-links{
+    height: 100%;
+    margin:0;
+    order: 3;
+
+}
+
+.searchbar{
+    order:2;
+    flex: 1;
+    align-self: center;
+    justify-self: center;
+    justify-content: center;
+    display:flex;
+}
+.searchbar .searchbar-input{
+    flex-basis: 95%;
+}
+.navbutton{
+    text-align: center;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+
+.navbutton .bp3-button-text{
+}
+.navbutton .bp3-icon{
+
+}
+.navbutton .bp3-icon svg{
+}

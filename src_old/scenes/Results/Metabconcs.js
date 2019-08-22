@@ -21,8 +21,8 @@ import {
   Button,
 } from 'antd';
 import 'antd/dist/antd.css';
-import ProtAbundancesTable from '~/components/Results/ProtAbundancesTable.js';
-import ProtSearch from '~/components/SearchField/ProtSearch.js';
+import ConcentrationsTable from '~/components/Results/ConcentrationsTable.js';
+import ConcSearch from '~/components/SearchField/ConcSearch.js';
 import { PropTypes } from 'react';
 import { BrowserRouter, Redirect } from 'react-router-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
@@ -39,20 +39,19 @@ import store from '~/data/Store';
 
 @connect(store => {
   return {
-    currentUrl: store.page.url,
     moleculeAbstract: store.page.moleculeAbstract,
   };
 }) //the names given here will be the names of props
-class ProteinPage extends Component {
+class MetabConcs extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      search: '',
-      organism: '',
       dataSource: [],
       orig_json: null,
       newSearch: false,
+      abstract_search: false,
       newRedirect: '',
+      new_url: '',
     };
 
     this.getNewSearch = this.getNewSearch.bind(this);
@@ -64,67 +63,67 @@ class ProteinPage extends Component {
       this.props.match.params.organism;
   }
   componentDidMount() {
-    console.log('hello');
     this.setState({
       abstract_search: this.props.match.params.abstract,
+      newSearch: false,
     });
     this.getSearchData();
   }
 
   componentDidUpdate(prevProps) {
     // respond to parameter change in scenario 3
-    console.log('comp');
 
-    if (this.props.currentUrl != prevProps.currentUrl) {
-      console.log('yipikayee');
-      console.log(this.props.currentUrl);
-      console.log(prevProps.currentUrl);
-      this.props.history.push(this.props.currentUrl);
-      //return <Redirect to={this.props.newRedirect}/>
-    }
     if (
       this.props.moleculeAbstract == true &&
       prevProps.moleculeAbstract == false
     ) {
-      this.props.history.push(
-        '/metabconcs/' +
+      this.setState({
+        newSearch: true,
+        new_url:
+          '/metabconcs/' +
           this.props.match.params.molecule +
           '/' +
           this.props.match.params.organism +
           '/True',
-      );
+      });
     }
+
     if (
       this.props.match.params.molecule != prevProps.match.params.molecule ||
-      this.props.match.params.organism != prevProps.match.params.organism
+      this.props.match.params.organism != prevProps.match.params.organism ||
+      this.props.match.params.abstract != prevProps.match.params.abstract
     ) {
-      console.log('UPDATIONG!!!');
+      this.setState({ newSearch: false });
       this.getSearchData();
     }
   }
 
   getSearchData() {
     getSearchData([
-      'proteins',
-      'super/same-kegg?uniprot_id=P0A796'
+      'search',
+      'concentration',
+      this.props.match.params.molecule,
+      this.props.match.params.organism,
+      this.props.match.params.abstract,
     ]).then(response => {
       this.setState({ orig_json: response.data });
     });
   }
 
-  getNewSearch(url) {
-    console.log(url);
-    //url = url + '/False';
-    this.props.dispatch(abstractMolecule(false));
-    this.props.dispatch(setNewUrl(url));
-    //this.setState({ newSearch: true, newRedirect: url });
+  getNewSearch(response) {
+
+    let url = '/metabconcs/' + response[0] + '/' + response[1];
+    if (url !== this.state.new_url) {
+      this.setState({ new_url: url });
+      this.setState({ newSearch: true });
+    }
+
   }
 
   getAbstractSearch() {
-    //this.setState({abstract_search:true,})
     this.setState({
       newSearch: true,
-      newRedirect:
+      new_url:
         '/metabconcs/' +
         this.props.match.params.molecule +
         '/' +
@@ -134,22 +133,21 @@ class ProteinPage extends Component {
   }
 
   render() {
-    //if (this.state.toMetabConc == true) {
-    //  return <BrowserRouter><Redirect to='/dashboard' /></BrowserRouter>
-    //}
-    console.log("Rendering ProteinPage")
+    console.log('Rendering MetabConcs');
+    if (this.state.newSearch == true) {
+      return <Redirect to={this.state.new_url} push />;
+    }
 
     const Search = Input.Search;
     let styles = {
       marginTop: 50,
     };
-    console.log(this.props.match.params.molecule);
-    console.log(this.props.match.params.organism);
+
     return (
       <div className="container" style={styles}>
         <style>{'body { background-color: #f7fdff; }'}</style>
         <div className="search">
-          <ProtSearch
+          <ConcSearch
             handleClick={this.getNewSearch}
             landing={false}
             defaultMolecule={this.props.match.params.molecule}
@@ -159,14 +157,14 @@ class ProteinPage extends Component {
         <br />
         <br />
         <div className="results">
-            <ProtAbundancesTable
-              json_data={this.state.orig_json}
-              handleAbstract={this.getAbstractSearch}
-            />
+          <ConcentrationsTable
+            json_data={this.state.orig_json}
+            handleAbstract={this.getAbstractSearch}
+          />
         </div>
       </div>
     );
   }
 }
 
-export default withRouter(ProteinPage);
+export default withRouter(MetabConcs);

@@ -106,7 +106,7 @@ class ProteinPage extends Component {
   getSearchData() {
     getSearchData([
       'proteins',
-      'super/same-kegg?uniprot_id=P0A796'
+      'abundance?uniprot_id=P08237'
     ]).then(response => {
       this.setState({ orig_json: response.data });
     });
@@ -169,4 +169,4 @@ class ProteinPage extends Component {
   }
 }
 
-export default withRouter(ProteinPage);
+export default withRouter(ProteinPage); //

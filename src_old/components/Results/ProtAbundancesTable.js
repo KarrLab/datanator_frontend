@@ -74,26 +74,8 @@ class ProtAbundancesTable extends Component {
 
   formatData(data) {
     console.log(data);
-    var f_abundances = [];
     if (data != null) {
       console.log(data)
-      for (var i = 1; i < data.length; i++) {
-        console.log(data[i])
-        let uniprot = data[i]
-        for (var n = 0; n < uniprot.abundances.length; n++){
-          let row = {}
-          row["abundance"] = uniprot.abundances[n].abundance
-          row["organ"] = uniprot.abundances[n].organ
-          row["gene_symbol"] = uniprot.gene_name
-          row["organism"] = uniprot.species_name
-          row["uniprot_id"] = uniprot.uniprot_id
-          row["protein_name"] = uniprot.protein_name
-          f_abundances.push(row)
-        }
-
-
-      }
-      /*
       var f_abundances = [];
       let genetic_identifiers = "gene_name: "+ data["gene_name"] + "           \n" +
       "          protein_name: "+ data["protein_name"] + "\n" + "uniprot_id: "+ data["uniprot_id"]
@@ -107,16 +89,14 @@ class ProtAbundancesTable extends Component {
       f_abundances["protein_name"] = data["protein_name"]
       f_abundances["uniprot_id"] = data["uniprot_id"]
       //f_abundances["organism"] = data["organism"]
-      */
-      console.log(f_abundances)
 
       
 
       this.setState({
-        f_abundances: f_abundances,
+        f_abundances: [f_abundances],
         //displayed_data: f_abundances
       });
-      this.props.dispatch(setTotalData(f_abundances));
+      this.props.dispatch(setTotalData([f_abundances]));
     } else {
       alert('Nothing Found');
     }
