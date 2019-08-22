@@ -35,7 +35,8 @@ class HomeOld extends Component {
 
 	getSearchDataProt(url) {
 		this.setState({nextUrl:url})
-		this.setState({enactSearch:true})
+		console.log(url)
+		this.setState({newSearch:true})
 		//this.props.dispatch(setNewUrl(url))
 
 	}
