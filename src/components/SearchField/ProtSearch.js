@@ -38,6 +38,7 @@ class ProtSearch extends Component {
     super(props);
     this.state = {
       protein: '',
+      uniprot:'',
       organism: '',
       buttonValue: 1,
       selectedSearch: 'name',
@@ -143,7 +144,12 @@ class ProtSearch extends Component {
   handleClickInner() {
     if (this.state.selectedSearch == 'name') {
       this.props.handleClick(
-        '/protein/' + this.state.protein + '/' + this.state.organism,
+        '/protein/name/' + this.state.protein + '/' + this.state.organism,
+      );
+    }
+    else if(this.state.selectedSearch=="uniprot"){
+      this.props.handleClick(
+        '/protein/uniprot/' + this.state.uniprot,
       );
     }
   }
@@ -246,7 +252,7 @@ class ProtSearch extends Component {
               defaultValue={this.props.defaultMolecule}
               addonBefore="Uniprot ID"
               onChange={event => {
-                this.setState({ protein: event.target.value });
+                this.setState({ uniprot: event.target.value });
               }}
             />
           )}
