@@ -8,7 +8,6 @@ import React, {
 import ConcSearch from '~/components/SearchField/ConcSearch.js';
 import ProtSearch from '~/components/SearchField/ProtSearch.js';
 
-import { PropTypes } from 'react'
 import {BrowserRouter, Redirect } from 'react-router-dom'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { withRouter } from "react-router";

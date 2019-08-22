@@ -106,7 +106,7 @@ class ProteinPage extends Component {
   getSearchData() {
     getSearchData([
       'proteins',
-      'super/same-kegg?uniprot_id=P0A796'
+      'super/same-kegg?uniprot_id=' + this.props.match.params.molecule
     ]).then(response => {
       this.setState({ orig_json: response.data });
     });

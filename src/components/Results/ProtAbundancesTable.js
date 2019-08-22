@@ -75,7 +75,7 @@ class ProtAbundancesTable extends Component {
   formatData(data) {
     console.log(data);
     var f_abundances = [];
-    if (data != null) {
+    if ((data != null) && (typeof(data) != "string")) {
       console.log(data)
       for (var i = 1; i < data.length; i++) {
         console.log(data[i])
@@ -93,21 +93,7 @@ class ProtAbundancesTable extends Component {
 
 
       }
-      /*
-      var f_abundances = [];
-      let genetic_identifiers = "gene_name: "+ data["gene_name"] + "           \n" +
-      "          protein_name: "+ data["protein_name"] + "\n" + "uniprot_id: "+ data["uniprot_id"]
 
-      this.props.dispatch(set_lineage(["a", "b", "c"]));
-      f_abundances["abundance"] = data["abundance"]
-      f_abundances["organism"] = data["organism"]
-      f_abundances["organ"] = data["organ"]
-      f_abundances["taxonomic_proximity"] = data["taxonomic_proximity"]
-      f_abundances["gene_symbol"] = data["gene_name"]
-      f_abundances["protein_name"] = data["protein_name"]
-      f_abundances["uniprot_id"] = data["uniprot_id"]
-      //f_abundances["organism"] = data["organism"]
-      */
       console.log(f_abundances)
 
       
@@ -186,7 +172,7 @@ class ProtAbundancesTable extends Component {
             />
           </div>
           <div className="consensus">
-            <Consensus relevantColumn={'concentration'} />
+            <Consensus relevantColumn={'abundance'} />
           </div>
         </div>
       </div>
