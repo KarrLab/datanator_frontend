@@ -20,6 +20,7 @@ import {
   AutoComplete,
   Cascade,
   Button,
+  Radio,
 } from 'antd';
 
 //import 'antd/dist/antd.css';
@@ -27,13 +28,19 @@ import { PropTypes } from 'react';
 import { withRouter } from 'react-router';
 
 const InputGroup = Input.Group;
-
+const radioStyle = {
+      display: 'block',
+      height: '30px',
+      lineHeight: '30px',
+    };
 class ProtSearch extends Component {
   constructor(props) {
     super(props);
     this.state = {
       protein: '',
       organism: '',
+      buttonValue:1,
+      selectedSearch:"name",
       dataSource: [
         'Escherichia coli',
         'Bacillus subtilis',
@@ -129,6 +136,7 @@ class ProtSearch extends Component {
     };
     this.handleClickInner = this.handleClickInner.bind(this);
     this.goBack = this.goBack.bind(this); //
+    this.buttonChange= this.buttonChange.bind(this);
     //this.handleSearch = this.handleSearch.bind(this);
   }
 
@@ -149,6 +157,14 @@ class ProtSearch extends Component {
     });
     //this.refs.taxonCol.applyFilter(28)
   }
+  buttonChange(e){
+    var searches = ["name", "uniprot"]
+    this.setState({buttonValue:e.target.value,
+      selectedSearch:searches[e.target.value-1]})
+  }
+
+
+
 
   render() {
     const Search = Input.Search;
@@ -165,6 +181,7 @@ class ProtSearch extends Component {
         flexDirection: 'row',
       };
     }
+    let selectedSearch = this.state.selectedSearch
     return (
       <div className="ProtSearch" style={styles}>
         {this.props.landing && (
@@ -172,7 +189,22 @@ class ProtSearch extends Component {
         )}
         {!this.props.landing && <img src={require('~/images/DT.png')} />}
 
+
+
+        
+
         <InputGroup compact>
+        <Radio.Group onChange={this.buttonChange} value={this.state.buttonValue}>
+        <Radio style={radioStyle} value={1}>
+          Protein Name
+        </Radio>
+        <Radio style={radioStyle} value={2}>
+          Uniprot ID
+          {this.state.value === 2 ? <Input style={{ width: 100, marginLeft: 10 }} /> : null}
+        </Radio>
+      </Radio.Group>
+
+          {selectedSearch == "name" &&
           <Input
             style={{ width: '30%' }}
             defaultValue={this.props.defaultMolecule}
@@ -181,6 +213,8 @@ class ProtSearch extends Component {
               this.setState({ protein: event.target.value });
             }}
           />
+        }
+        {selectedSearch == "name" &&
           <AutoComplete
             dataSource={this.state.dataSource}
             defaultValue={this.props.defaultOrganism}
@@ -199,15 +233,29 @@ class ProtSearch extends Component {
                 .toUpperCase()
                 .indexOf(inputValue.toUpperCase()) !== -1
             }
-          >
-            <Input defaultValue="" addonBefore="Organism" />
+          > 
+            <Input defaultValue="" addonBefore="Organism" /> 
           </AutoComplete>
+        }
+        
+        {selectedSearch == "uniprot" && 
+        <Input
+            style={{ width: '30%' }}
+            defaultValue={this.props.defaultMolecule}
+            addonBefore="Uniprot ID"
+            onChange={event => {
+              this.setState({ protein: event.target.value });
+            }}
+          />
+
+      }
           <Button
             type="primary"
             shape="circle"
             icon="search"
             onClick={this.handleClickInner}
           />
+
         </InputGroup>
       </div>
     );
