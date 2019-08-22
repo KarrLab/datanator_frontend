@@ -144,10 +144,11 @@ class ProtAbundancesTable extends Component {
     let basic_columns
     console.log("Rendering ProtAbundancesTable")
 
-    if (!this.props.json_data) {
+    if (!this.props.json_data || typeof(this.props.json_data) == "string") {
       return(<div></div>)
     }
     else{
+      console.log("shubedubop")
 
     return (
       <div className="total_table">
