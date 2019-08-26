@@ -49,25 +49,20 @@ class MetabConcs extends Component {
       dataSource: [],
       orig_json: null,
       newSearch: false,
-      abstract_search: false,
-      newRedirect: '',
       new_url: '',
     };
 
     this.getNewSearch = this.getNewSearch.bind(this);
-    this.getAbstractSearch = this.getAbstractSearch.bind(this);
 
   }
   componentDidMount() {
     this.setState({
-      abstract_search: this.props.match.params.abstract,
       newSearch: false,
     });
     this.getSearchData();
   }
 
   componentDidUpdate(prevProps) {
-    // respond to parameter change in scenario 3
 
     if (
       this.props.moleculeAbstract == true &&
@@ -103,7 +98,7 @@ class MetabConcs extends Component {
           this.props.match.params.molecule +
           '/' +
           this.props.match.params.organism +
-          '/True'
+          this.props.moleculeAbstract
     if (this.props.match.params.organism){
         url = url + "/" + this.props.match.params.organism
       }
@@ -136,17 +131,7 @@ class MetabConcs extends Component {
 
 
 
-  getAbstractSearch() {
-    this.setState({
-      newSearch: true,
-      new_url:
-        '/metabconcs/' +
-        this.props.match.params.molecule +
-        '/' +
-        this.props.match.params.organism +
-        '/True',
-    });
-  }
+
 
   render() {
     console.log('Rendering MetabConcs');

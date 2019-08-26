@@ -111,14 +111,8 @@ class ProteinPage extends Component {
   
 
   getNewSearch(url) {
-    //url = url + '/False';
-    //this.setState({ newSearch: true, newRedirect: url });
-    //let url = '/protein/' + response[0] + '/' + response[1] + response[2];
-    console.log(url)
     if (url !== this.state.new_url){
-      console.log("BLUEBBB")
-      console.log(url)
-      console.log(this.state.new_url)
+
       this.setState({ newSearch: true, new_url: url })
     }
   }
@@ -147,7 +141,10 @@ class ProteinPage extends Component {
             handleClick={this.getNewSearch}
             landing={false}
             defaultMolecule={this.props.match.params.molecule}
+            defaultUniprot={this.props.match.params.molecule}
             defaultOrganism={this.props.match.params.organism}
+            searchType={this.props.match.params.searchType}
+
           />
         </div>
         <br />

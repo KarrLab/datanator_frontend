@@ -67,7 +67,6 @@ class ConcentrationsTable extends Component {
 
     this.formatData = this.formatData.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
-    this.handleAbstractInner = this.handleAbstractInner.bind(this);
   }
 
   formatData(data) {
@@ -207,9 +206,7 @@ class ConcentrationsTable extends Component {
     //this.filter_taxon;
   }
 
-  handleAbstractInner() {
-    this.props.handleAbstract();
-  }
+
 
   render() {
     console.log("Rendering ConcentrationsTable")

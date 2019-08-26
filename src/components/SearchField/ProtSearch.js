@@ -150,7 +150,7 @@ class ProtSearch extends Component {
     }
     else if(this.state.selectedSearch=="uniprot"){
       this.props.handleClick(
-        '/protein/uniprot/' + this.state.protein,
+        '/protein/uniprot/' + this.state.uniprot,
       );
     }
   }
@@ -162,8 +162,16 @@ class ProtSearch extends Component {
   componentDidMount() {
     this.setState({
       protein: this.props.defaultMolecule,
+      uniprot: this.props.defaultUniprot,
       organism: this.props.defaultOrganism,
+      selectedSearch: this.props.searchType
     });
+    if (this.props.searchType=="uniprot"){
+      this.setState({"buttonValue":2})
+    }
+    else if (this.props.searchType=="name"){
+      this.setState({"buttonValue":1})
+    }
     //this.refs.taxonCol.applyFilter(28)
   }
   buttonChange(e) {
