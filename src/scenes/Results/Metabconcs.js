@@ -53,7 +53,6 @@ class MetabConcs extends Component {
     };
 
     this.getNewSearch = this.getNewSearch.bind(this);
-
   }
   componentDidMount() {
     this.setState({
@@ -63,7 +62,6 @@ class MetabConcs extends Component {
   }
 
   componentDidUpdate(prevProps) {
-
     if (
       this.props.moleculeAbstract == true &&
       prevProps.moleculeAbstract == false
@@ -77,10 +75,10 @@ class MetabConcs extends Component {
           this.props.match.params.organism +
           '/True',
       });
-    } 
+    }
 
-    if (!(this.props.match.params.abstract=="True")){
-      this.props.dispatch(abstractMolecule(false))
+    if (!(this.props.match.params.abstract == 'True')) {
+      this.props.dispatch(abstractMolecule(false));
     }
 
     if (
@@ -92,8 +90,6 @@ class MetabConcs extends Component {
       this.getSearchData();
     }
   }
-
-
 
   getSearchData() {
     getSearchData([
@@ -108,23 +104,20 @@ class MetabConcs extends Component {
   }
 
   getNewSearch(response) {
-
     let url = '/metabconcs/' + response[0] + '/' + response[1];
-    if (response[0] !== this.props.match.params.molecule || response[1] !== this.props.match.params.organism ) {
+    if (
+      response[0] !== this.props.match.params.molecule ||
+      response[1] !== this.props.match.params.organism
+    ) {
       this.setState({ new_url: url });
       this.setState({ newSearch: true });
     }
-
   }
-
-
-
-
 
   render() {
     console.log('Rendering MetabConcs');
     if (this.state.newSearch == true) {
-      console.log("Redirecting")
+      console.log('Redirecting');
       return <Redirect to={this.state.new_url} push />;
     }
 

@@ -20,7 +20,6 @@ import './Consensus.css';
 import { ResultsTable, getSelectedData } from './ResultsTable.js';
 //import { getTotalColumns } from './Columns2.js';
 
-import { Filters } from './Filters.js';
 import { connect } from 'react-redux';
 
 import store from '~/data/Store';

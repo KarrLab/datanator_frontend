@@ -19,7 +19,6 @@ import './ConcentrationsTable.css';
 import { ResultsTable, getSelectedData } from './ResultsTable.js';
 //import { getTotalColumns } from './Columns2.js';
 
-import { Filters } from './Filters.js';
 import { TaxonFilter } from '~/components/Results/Filters/TaxonFilter';
 import { TanitomoFilter } from '~/components/Results/Filters/TanitomoFilter';
 

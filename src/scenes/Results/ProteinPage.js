@@ -33,6 +33,8 @@ import './MetabConcs.css';
 import { getSearchData } from '~/services/MongoApi';
 import { MetaboliteInput } from '~/components/SearchField/MetaboliteInput';
 import { OrganismInput } from '~/components/SearchField/OrganismInput';
+import { OrthologyGroup } from '~/components/Definitions/OrthologyGroup';
+
 import { setNewUrl, abstractMolecule } from '~/data/actions/pageAction';
 
 import store from '~/data/Store';
@@ -52,17 +54,15 @@ class ProteinPage extends Component {
       dataSource: [],
       orig_json: null,
       newSearch: false,
-      newRedirect: '',
       new_url: '',
     };
 
     this.getNewSearch = this.getNewSearch.bind(this);
-      this.checkURL = this.checkURL.bind(this);
-
+    this.checkURL = this.checkURL.bind(this);
   }
   componentDidMount() {
     console.log('hello');
-    this.checkURL()
+    this.checkURL();
   }
 
   componentDidUpdate(prevProps) {
@@ -74,58 +74,60 @@ class ProteinPage extends Component {
       this.props.match.params.organism != prevProps.match.params.organism ||
       this.props.match.params.searchType != prevProps.match.params.searchType
     ) {
-      this.checkURL()
+      this.checkURL();
+    }
   }
-}
 
-  checkURL(){
-    let url = "/protein/" + this.props.match.params.searchType + "/" + this.props.match.params.molecule
-    if (this.props.match.params.organism){
-        url = url + "/" + this.props.match.params.organism
-      }
+  checkURL() {
+    let url =
+      '/protein/' +
+      this.props.match.params.searchType +
+      '/' +
+      this.props.match.params.molecule;
+    if (this.props.match.params.organism) {
+      url = url + '/' + this.props.match.params.organism;
+    }
     this.setState({ newSearch: false });
-    this.setState({new_url:url})
+    this.setState({ new_url: url });
     this.getSearchData();
   }
 
   getSearchData() {
-    if (this.props.match.params.searchType == "uniprot"){
-
-
-    getSearchData([
-      'proteins',
-      'super/same-kegg?uniprot_id=' + this.props.match.params.molecule
-    ]).then(response => {
-      this.setState({ orig_json: response.data });
-    });
+    if (this.props.match.params.searchType == 'uniprot') {
+      getSearchData([
+        'proteins',
+        'super/same-kegg?uniprot_id=' + this.props.match.params.molecule,
+      ]).then(response => {
+        this.setState({ orig_json: response.data });
+      });
+    } else if (this.props.match.params.searchType == 'name') {
+      console.log('BUILD ME');
+      let uniprot_id = "";
+      console.log(this.props.match.params.organism)
+      console.log(this.props.match.params.molecule)
+      getSearchData([
+        'proteins',
+        'meta?protein_name=' + this.props.match.params.molecule +  '&ncbi_taxon_id=' + this.props.match.params.organism,
+      ]).then(response => {
+        uniprot_id = response.data;
+        console.log(response.data)
+      });
+      console.log(uniprot_id)
+    }
   }
-  else if (this.props.match.params.searchType == "name"){
-    console.log("BUILD ME")
-    getSearchData([
-      'proteins',
-      'super/same-kegg?uniprot_id=' + this.props.match.params.molecule
-    ]).then(response => {
-      this.setState({ orig_json: response.data });
-    });}
-  }
-  
 
   getNewSearch(url) {
-    if (url !== this.state.new_url){
-
-      this.setState({ newSearch: true, new_url: url })
+    if (url !== this.state.new_url) {
+      this.setState({ newSearch: true, new_url: url });
     }
   }
 
-
-
   render() {
-
     if (this.state.newSearch == true) {
-      console.log("Redirecting")
+      console.log('Redirecting');
       return <Redirect to={this.state.new_url} push />;
     }
-    console.log("Rendering ProteinPage")
+    console.log('Rendering ProteinPage');
 
     const Search = Input.Search;
     let styles = {
@@ -144,16 +146,22 @@ class ProteinPage extends Component {
             defaultUniprot={this.props.match.params.molecule}
             defaultOrganism={this.props.match.params.organism}
             searchType={this.props.match.params.searchType}
-
+          />
+        </div>
+        <div className="definition_data">
+          <OrthologyGroup
+          protein_name={"phospho"}
+          ec_number={"phospho"}
+          ko_number={"phospho"}
           />
         </div>
         <br />
         <br />
         <div className="results">
-            <ProtAbundancesTable
-              json_data={this.state.orig_json}
-              handleAbstract={this.getAbstractSearch}
-            />
+          <ProtAbundancesTable
+            json_data={this.state.orig_json}
+            handleAbstract={this.getAbstractSearch}
+          />
         </div>
       </div>
     );
