@@ -56,11 +56,7 @@ class MetabConcs extends Component {
 
     this.getNewSearch = this.getNewSearch.bind(this);
     this.getAbstractSearch = this.getAbstractSearch.bind(this);
-    var url =
-      'http://localhost:5000/results/' +
-      this.props.match.params.molecule +
-      '/' +
-      this.props.match.params.organism;
+
   }
   componentDidMount() {
     this.setState({
@@ -86,6 +82,10 @@ class MetabConcs extends Component {
           this.props.match.params.organism +
           '/True',
       });
+    } 
+
+    if (!(this.props.match.params.abstract=="True")){
+      this.props.dispatch(abstractMolecule(false))
     }
 
     if (
@@ -96,6 +96,20 @@ class MetabConcs extends Component {
       this.setState({ newSearch: false });
       this.getSearchData();
     }
+  }
+
+  checkURL(){
+    let url = '/metabconcs/' +
+          this.props.match.params.molecule +
+          '/' +
+          this.props.match.params.organism +
+          '/True'
+    if (this.props.match.params.organism){
+        url = url + "/" + this.props.match.params.organism
+      }
+    this.setState({ newSearch: false });
+    this.setState({new_url:url})
+    this.getSearchData();
   }
 
   getSearchData() {
@@ -120,6 +134,8 @@ class MetabConcs extends Component {
 
   }
 
+
+
   getAbstractSearch() {
     this.setState({
       newSearch: true,
@@ -135,6 +151,7 @@ class MetabConcs extends Component {
   render() {
     console.log('Rendering MetabConcs');
     if (this.state.newSearch == true) {
+      console.log("Redirecting")
       return <Redirect to={this.state.new_url} push />;
     }
 
