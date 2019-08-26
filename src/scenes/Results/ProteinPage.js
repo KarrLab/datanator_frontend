@@ -39,7 +39,7 @@ import store from '~/data/Store';
 
 @connect(store => {
   return {
-    currentUrl: store.page.url,
+    //currentUrl: store.page.url,
     moleculeAbstract: store.page.moleculeAbstract,
   };
 }) //the names given here will be the names of props
@@ -53,57 +53,45 @@ class ProteinPage extends Component {
       orig_json: null,
       newSearch: false,
       newRedirect: '',
+      new_url: '',
     };
 
     this.getNewSearch = this.getNewSearch.bind(this);
-    this.getAbstractSearch = this.getAbstractSearch.bind(this);
-    var url =
-      'http://localhost:5000/results/' +
-      this.props.match.params.molecule +
-      '/' +
-      this.props.match.params.organism;
+      this.checkURL = this.checkURL.bind(this);
+
   }
   componentDidMount() {
     console.log('hello');
-    this.setState({
-      abstract_search: this.props.match.params.abstract,
-    });
-    this.getSearchData();
+    this.checkURL()
   }
 
   componentDidUpdate(prevProps) {
     // respond to parameter change in scenario 3
     console.log('comp');
 
-    if (this.props.currentUrl != prevProps.currentUrl) {
-      console.log('yipikayee');
-      console.log(this.props.currentUrl);
-      console.log(prevProps.currentUrl);
-      this.props.history.push(this.props.currentUrl);
-      //return <Redirect to={this.props.newRedirect}/>
-    }
-    if (
-      this.props.moleculeAbstract == true &&
-      prevProps.moleculeAbstract == false
-    ) {
-      this.props.history.push(
-        '/metabconcs/' +
-          this.props.match.params.molecule +
-          '/' +
-          this.props.match.params.organism +
-          '/True',
-      );
-    }
     if (
       this.props.match.params.molecule != prevProps.match.params.molecule ||
-      this.props.match.params.organism != prevProps.match.params.organism
+      this.props.match.params.organism != prevProps.match.params.organism ||
+      this.props.match.params.searchType != prevProps.match.params.searchType
     ) {
-      console.log('UPDATIONG!!!');
-      this.getSearchData();
-    }
+      this.checkURL()
+  }
+}
+
+  checkURL(){
+    let url = "/protein/" + this.props.match.params.searchType + "/" + this.props.match.params.molecule
+    if (this.props.match.params.organism){
+        url = url + "/" + this.props.match.params.organism
+      }
+    this.setState({ newSearch: false });
+    this.setState({new_url:url})
+    this.getSearchData();
   }
 
   getSearchData() {
+    if (this.props.match.params.searchType == "uniprot"){
+
+
     getSearchData([
       'proteins',
       'super/same-kegg?uniprot_id=' + this.props.match.params.molecule
@@ -111,32 +99,38 @@ class ProteinPage extends Component {
       this.setState({ orig_json: response.data });
     });
   }
+  else if (this.props.match.params.searchType == "name"){
+    console.log("BUILD ME")
+    getSearchData([
+      'proteins',
+      'super/same-kegg?uniprot_id=' + this.props.match.params.molecule
+    ]).then(response => {
+      this.setState({ orig_json: response.data });
+    });}
+  }
+  
 
   getNewSearch(url) {
-    console.log(url);
     //url = url + '/False';
-    this.props.dispatch(abstractMolecule(false));
-    this.props.dispatch(setNewUrl(url));
     //this.setState({ newSearch: true, newRedirect: url });
+    //let url = '/protein/' + response[0] + '/' + response[1] + response[2];
+    console.log(url)
+    if (url !== this.state.new_url){
+      console.log("BLUEBBB")
+      console.log(url)
+      console.log(this.state.new_url)
+      this.setState({ newSearch: true, new_url: url })
+    }
   }
 
-  getAbstractSearch() {
-    //this.setState({abstract_search:true,})
-    this.setState({
-      newSearch: true,
-      newRedirect:
-        '/metabconcs/' +
-        this.props.match.params.molecule +
-        '/' +
-        this.props.match.params.organism +
-        '/True',
-    });
-  }
+
 
   render() {
-    //if (this.state.toMetabConc == true) {
-    //  return <BrowserRouter><Redirect to='/dashboard' /></BrowserRouter>
-    //}
+
+    if (this.state.newSearch == true) {
+      console.log("Redirecting")
+      return <Redirect to={this.state.new_url} push />;
+    }
     console.log("Rendering ProteinPage")
 
     const Search = Input.Search;

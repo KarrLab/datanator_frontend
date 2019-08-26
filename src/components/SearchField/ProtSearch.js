@@ -142,6 +142,7 @@ class ProtSearch extends Component {
   }
 
   handleClickInner() {
+    console.log("handling click!!")
     if (this.state.selectedSearch == 'name') {
       this.props.handleClick(
         '/protein/name/' + this.state.protein + '/' + this.state.organism,
@@ -149,7 +150,7 @@ class ProtSearch extends Component {
     }
     else if(this.state.selectedSearch=="uniprot"){
       this.props.handleClick(
-        '/protein/uniprot/' + this.state.uniprot,
+        '/protein/uniprot/' + this.state.protein,
       );
     }
   }
@@ -174,6 +175,7 @@ class ProtSearch extends Component {
   }
 
   render() {
+    console.log("Rendering Search")
     const Search = Input.Search;
     let styles;
 

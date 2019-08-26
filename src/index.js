@@ -36,7 +36,7 @@ const SiteRouter = () => {
         component={Metabconcs}
       />
       <Route
-        path="/protein/:searchType/:molecule/:organism/"
+        path="/protein/:searchType/:molecule/:organism?/"
         component={ProteinPage}
       />
     </Router>
