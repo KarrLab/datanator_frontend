@@ -93,19 +93,7 @@ class MetabConcs extends Component {
     }
   }
 
-  checkURL(){
-    let url = '/metabconcs/' +
-          this.props.match.params.molecule +
-          '/' +
-          this.props.match.params.organism +
-          this.props.moleculeAbstract
-    if (this.props.match.params.organism){
-        url = url + "/" + this.props.match.params.organism
-      }
-    this.setState({ newSearch: false });
-    this.setState({new_url:url})
-    this.getSearchData();
-  }
+
 
   getSearchData() {
     getSearchData([
@@ -122,7 +110,7 @@ class MetabConcs extends Component {
   getNewSearch(response) {
 
     let url = '/metabconcs/' + response[0] + '/' + response[1];
-    if (url !== this.state.new_url) {
+    if (response[0] !== this.props.match.params.molecule || response[1] !== this.props.match.params.organism ) {
       this.setState({ new_url: url });
       this.setState({ newSearch: true });
     }
