@@ -50,6 +50,17 @@ class ProteinPage extends Component {
     super(props);
     this.state = {
       search: '',
+      proteinMetadata:[
+          {
+            uniprot: "P01113",
+            ec_number:"2.5.6",
+          ko_number:"KO1231",
+          protein_name:"phosphofructokinase"},
+          {uniprot: "P01112",
+          ec_number:"5.5.1",
+          ko_number:"KO1221",
+          protein_name:"ras"}
+        ],
       organism: '',
       dataSource: [],
       orig_json: null,
@@ -150,9 +161,7 @@ class ProteinPage extends Component {
         </div>
         <div className="definition_data">
           <OrthologyGroup
-          protein_name={"phospho"}
-          ec_number={"phospho"}
-          ko_number={"KO1231"}
+          proteinMetadata={this.state.proteinMetadata}
           />
         </div>
         <br />

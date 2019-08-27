@@ -54,11 +54,16 @@ class OrthologyGroup extends Component {
     super(props);
     this.state = {
       total_columns:  [
+      {
+            dataField: 'uniprot',
+            text: 'Uniprot ID',
+            formatter :this.colFormatter,
+
+          },
       
         {
             dataField: 'ko_number',
             text: 'KO Number',
-            formatter :this.colFormatter,
           },
           {
 
@@ -82,18 +87,16 @@ class OrthologyGroup extends Component {
 
   componentDidMount() {
     console.log('hello');
-    let new_data= {
-        protein_name:this.props.protein_name,
-        gene_name:this.props.gene_name,
-        ko_number:this.props.ko_number,
-      }
 
-    this.setState({total_data:[new_data]})
+    this.setState({total_data:this.props.proteinMetadata})
   }
 
   colFormatter = (cell, row) => {
+    console.log(cell)
+    console.log("grumble")
+    let url = "/protein/uniprot/" + cell
     return (
-      <Link to='/protein/uniprot/P01113'>
+      <Link to={url}>
         {cell.toString()}
       </Link>
     )
@@ -114,7 +117,7 @@ class OrthologyGroup extends Component {
 
               striped
               hover
-              keyField="protein_name"
+              keyField="uniprot"
               data={this.state.total_data}
               columns={this.state.total_columns}
             />
