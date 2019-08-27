@@ -26,6 +26,7 @@ import 'antd/dist/antd.css';
 import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
 
 import './OrthologyGroup.css';
+import {Link, Redirect } from 'react-router-dom'
 
 import { PropTypes } from 'react';
 
@@ -46,30 +47,36 @@ const columns = [{
 
 
 
+
+
 class OrthologyGroup extends Component {
   constructor(props) {
     super(props);
     this.state = {
       total_columns:  [
-      {
+      
+        {
+            dataField: 'ko_number',
+            text: 'KO Number',
+            formatter :this.colFormatter,
+          },
+          {
 
             dataField: 'protein_name',
             text: 'Protein',
           },
 
           {
-            dataField: 'ec_number',
-            text: 'EC Number',
+            dataField: 'gene_name',
+            text: 'Gene Name',
           },
+        
           
-          {
-            dataField: 'ko_number',
-            text: 'KO Number',
-          }
           ],
 
       total_data: []
     };
+    this.colFormatter = this.colFormatter.bind(this);
   }
 
 
@@ -77,11 +84,19 @@ class OrthologyGroup extends Component {
     console.log('hello');
     let new_data= {
         protein_name:this.props.protein_name,
-        ec_number:this.props.ec_number,
+        gene_name:this.props.gene_name,
         ko_number:this.props.ko_number,
       }
 
     this.setState({total_data:[new_data]})
+  }
+
+  colFormatter = (cell, row) => {
+    return (
+      <Link to='/protein/uniprot/P01113'>
+        {cell.toString()}
+      </Link>
+    )
   }
 
 

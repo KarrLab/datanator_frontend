@@ -152,7 +152,7 @@ class ProteinPage extends Component {
           <OrthologyGroup
           protein_name={"phospho"}
           ec_number={"phospho"}
-          ko_number={"phospho"}
+          ko_number={"KO1231"}
           />
         </div>
         <br />
