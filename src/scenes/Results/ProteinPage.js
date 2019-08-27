@@ -148,21 +148,20 @@ class ProteinPage extends Component {
 
       getSearchData([
         'proteins',
-        'super/same-kegg?uniprot_id=' + this.props.match.params.molecule,
+        'meta?uniprot_id=' + this.props.match.params.molecule
       ]).then(response => {
-        console.log(response)
+        this.formatData(response.data)
         });
 
     }
   }
 
   formatData(data) {
-    console.log("bluebluebluebeluebleu")
-    console.log(data);
     var f_abundances = [];
+    console.log(data)
     if ((data != null) && (typeof(data) != "string")) {
       console.log(data)
-      for (var i = 1; i < data.length; i++) {
+      for (var i = 0; i < data.length; i++) {
         console.log(data[i])
         let uniprot = data[i]
         for (var n = 0; n < uniprot.abundances.length; n++){
@@ -176,17 +175,16 @@ class ProteinPage extends Component {
           f_abundances.push(row)
         }
       }
-
       console.log(f_abundances)
-
       this.setState({
         f_abundances: f_abundances,
-        //displayed_data: f_abundances
       });
     } else {
       alert('Nothing Found');
     }
   }
+
+
 
   getNewSearch(url) {
     if (url !== this.state.new_url) {
@@ -230,7 +228,6 @@ class ProteinPage extends Component {
         <br />
         <div className="results">
           <ProtAbundancesTable
-            json_data={this.state.orig_json}
             f_abundances = {this.state.f_abundances}
             handleAbstract={this.getAbstractSearch}
           />
