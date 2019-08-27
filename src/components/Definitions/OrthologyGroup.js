@@ -61,10 +61,7 @@ class OrthologyGroup extends Component {
 
           },
       
-        {
-            dataField: 'ko_number',
-            text: 'KO Number',
-          },
+
           {
 
             dataField: 'protein_name',
@@ -89,6 +86,15 @@ class OrthologyGroup extends Component {
     console.log('hello');
 
     this.setState({total_data:this.props.proteinMetadata})
+  }
+
+  componentDidUpdate(prevProps) {
+    console.log('hello');
+
+    if (this.props.proteinMetadata !== prevProps.proteinMetadata){
+      this.setState({total_data:this.props.proteinMetadata})
+    }
+
   }
 
   colFormatter = (cell, row) => {

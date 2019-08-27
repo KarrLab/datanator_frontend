@@ -51,15 +51,6 @@ class ProteinPage extends Component {
     this.state = {
       search: '',
       proteinMetadata:[
-          {
-            uniprot: "P01113",
-            ec_number:"2.5.6",
-          ko_number:"KO1231",
-          protein_name:"phosphofructokinase"},
-          {uniprot: "P01112",
-          ec_number:"5.5.1",
-          ko_number:"KO1221",
-          protein_name:"ras"}
         ],
       organism: '',
       dataSource: [],
@@ -69,6 +60,8 @@ class ProteinPage extends Component {
     };
 
     this.getNewSearch = this.getNewSearch.bind(this);
+    this.formatProteinMetadata = this.formatProteinMetadata.bind(this);
+
     this.checkURL = this.checkURL.bind(this);
   }
   componentDidMount() {
@@ -118,13 +111,28 @@ class ProteinPage extends Component {
       console.log(this.props.match.params.molecule)
       getSearchData([
         'proteins',
-        'meta?protein_name=' + this.props.match.params.molecule +  '&ncbi_taxon_id=' + this.props.match.params.organism,
-      ]).then(response => {
+        'meta?protein_name=' + this.props.match.params.molecule +  '&species_name=' + this.props.match.params.organism,
+      ]).then(response => {this.formatProteinMetadata(response.data);
         uniprot_id = response.data;
         console.log(response.data)
       });
       console.log(uniprot_id)
     }
+  }
+
+  formatProteinMetadata(data){
+    let newProteinMetadata = []
+    for (var i = 0; i < data.length; i++) {
+      let meta = {}
+      meta["uniprot"] = data[i].uniprot_id
+      meta["protein_name"] = data[i].protein_name
+      meta["gene_name"] = data[i].gene_name
+      newProteinMetadata.push(meta)
+    }
+    console.log(newProteinMetadata)
+    console.log(data)
+    this.setState({proteinMetadata:newProteinMetadata})
+
   }
 
   getNewSearch(url) {
@@ -138,6 +146,7 @@ class ProteinPage extends Component {
       console.log('Redirecting');
       return <Redirect to={this.state.new_url} push />;
     }
+    console.log(this.state.proteinMetadata)
     console.log('Rendering ProteinPage');
 
     const Search = Input.Search;
