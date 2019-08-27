@@ -87,7 +87,8 @@ function mode(numbers) {
  * @return {Array} The range of the specified numbers.
  */
 function range(numbers) {
-    numbers.sort();
+    numbers = numbers.sort(function(a, b){return a-b});
+    console.log(numbers)
     return [numbers[0], numbers[numbers.length - 1]];
 }
 

@@ -81,6 +81,7 @@ class Consensus extends Component {
   }
 
   setMean(data) {
+    console.log(data)
     var total_conc = 0;
     let total_data = [];
     for (var i = data.length - 1; i >= 0; i--) {
@@ -93,12 +94,14 @@ class Consensus extends Component {
     var new_median = round(median(total_data), 3);
     var new_std_dev = round(standardDeviation(total_data), 3);
     var new_range = range(total_data);
+    console.log(total_data)
+    console.log(new_range)
     //var new_median = round(median(total_data), 3)
     this.setState({
       mean: new_mean,
       median: new_median,
       std_dev: new_std_dev,
-      range: round(new_range[0], 3) + '-' + round(new_range[1], 3),
+      range: round(new_range[0], 3) + '-' + round(new_range[new_range.length-1], 3),
     });
   }
 
