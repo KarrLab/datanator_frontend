@@ -30,7 +30,7 @@ function mean(numbers) {
 function median(numbers) {
     // median of [3, 5, 4, 4, 1, 1, 2, 3] = 3
     var median = 0, numsLen = numbers.length;
-    numbers.sort();
+    numbers.sort(function(a, b){return a-b});
  
     if (
         numsLen % 2 === 0 // is even
@@ -88,7 +88,6 @@ function mode(numbers) {
  */
 function range(numbers) {
     numbers = numbers.sort(function(a, b){return a-b});
-    console.log(numbers)
     return [numbers[0], numbers[numbers.length - 1]];
 }
 

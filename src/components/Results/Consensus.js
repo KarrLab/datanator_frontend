@@ -94,8 +94,7 @@ class Consensus extends Component {
     var new_median = round(median(total_data), 3);
     var new_std_dev = round(standardDeviation(total_data), 3);
     var new_range = range(total_data);
-    console.log(total_data)
-    console.log(new_range)
+
     //var new_median = round(median(total_data), 3)
     this.setState({
       mean: new_mean,
