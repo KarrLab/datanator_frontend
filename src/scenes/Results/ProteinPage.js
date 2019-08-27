@@ -52,6 +52,7 @@ class ProteinPage extends Component {
       search: '',
       proteinMetadata:[
         ],
+      f_abundances:null,
       organism: '',
       dataSource: [],
       orig_json: null,
@@ -61,6 +62,9 @@ class ProteinPage extends Component {
 
     this.getNewSearch = this.getNewSearch.bind(this);
     this.formatProteinMetadata = this.formatProteinMetadata.bind(this);
+    this.processProteinData = this.processProteinData.bind(this);
+    this.formatData = this.formatData.bind(this);
+
 
     this.checkURL = this.checkURL.bind(this);
   }
@@ -102,7 +106,7 @@ class ProteinPage extends Component {
         'proteins',
         'super/same-kegg?uniprot_id=' + this.props.match.params.molecule,
       ]).then(response => {
-        this.setState({ orig_json: response.data });
+        this.processProteinData(response.data)
       });
     } else if (this.props.match.params.searchType == 'name') {
       console.log('BUILD ME');
@@ -133,6 +137,55 @@ class ProteinPage extends Component {
     console.log(data)
     this.setState({proteinMetadata:newProteinMetadata})
 
+  }
+
+  processProteinData(data){
+    if (typeof(data) != "string"){
+      this.setState({ orig_json: data })
+      this.formatData(data)
+    }
+    else{
+
+      getSearchData([
+        'proteins',
+        'super/same-kegg?uniprot_id=' + this.props.match.params.molecule,
+      ]).then(response => {
+        console.log(response)
+        });
+
+    }
+  }
+
+  formatData(data) {
+    console.log("bluebluebluebeluebleu")
+    console.log(data);
+    var f_abundances = [];
+    if ((data != null) && (typeof(data) != "string")) {
+      console.log(data)
+      for (var i = 1; i < data.length; i++) {
+        console.log(data[i])
+        let uniprot = data[i]
+        for (var n = 0; n < uniprot.abundances.length; n++){
+          let row = {}
+          row["abundance"] = uniprot.abundances[n].abundance
+          row["organ"] = uniprot.abundances[n].organ
+          row["gene_symbol"] = uniprot.gene_name
+          row["organism"] = uniprot.species_name
+          row["uniprot_id"] = uniprot.uniprot_id
+          row["protein_name"] = uniprot.protein_name
+          f_abundances.push(row)
+        }
+      }
+
+      console.log(f_abundances)
+
+      this.setState({
+        f_abundances: f_abundances,
+        //displayed_data: f_abundances
+      });
+    } else {
+      alert('Nothing Found');
+    }
   }
 
   getNewSearch(url) {
@@ -178,6 +231,7 @@ class ProteinPage extends Component {
         <div className="results">
           <ProtAbundancesTable
             json_data={this.state.orig_json}
+            f_abundances = {this.state.f_abundances}
             handleAbstract={this.getAbstractSearch}
           />
         </div>

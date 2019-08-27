@@ -108,17 +108,21 @@ class ProtAbundancesTable extends Component {
   }
 
   componentDidMount() {
-    if (this.props.json_data) {
-      this.formatData(this.props.json_data);
+    if (this.props.f_abundances) {
+      this.props.dispatch(setTotalData(this.props.f_abundances));
     }
   }
 
   componentDidUpdate(prevProps) {
     console.log('updating');
-    if (this.props.json_data != prevProps.json_data) {
+    if (this.props.f_abundances != prevProps.f_abundances) {
       console.log('not equal');
       console.log(this.props.json_data);
-      this.formatData(this.props.json_data);
+      //this.formatData(this.props.json_data);
+      //this.props.dispatch(setTotalData(this.props.f_abundances));
+      if (this.props.f_abundances) {
+      this.props.dispatch(setTotalData(this.props.f_abundances));
+    }
     }
   }
 
@@ -143,7 +147,7 @@ class ProtAbundancesTable extends Component {
     let basic_columns
     console.log("Rendering ProtAbundancesTable")
 
-    if (!this.props.json_data || typeof(this.props.json_data) == "string") {
+    if (!this.props.f_abundances || typeof(this.props.f_abundances) == "string") {
       return(<div></div>)
     }
     else{
