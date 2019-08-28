@@ -72,6 +72,11 @@ class OrthologyGroup extends Component {
             dataField: 'gene_name',
             text: 'Gene Name',
           },
+
+          {
+            dataField: 'organism',
+            text: 'Organism',
+          },
         
           
           ],

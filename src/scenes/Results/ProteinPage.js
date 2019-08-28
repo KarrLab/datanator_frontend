@@ -136,6 +136,7 @@ class ProteinPage extends Component {
       meta["uniprot"] = data[i].uniprot_id
       meta["protein_name"] = data[i].protein_name
       meta["gene_name"] = data[i].gene_name
+      meta["organism"] = data[i].species_name
       newProteinMetadata.push(meta)
     }
     console.log(newProteinMetadata)
