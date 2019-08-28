@@ -47,9 +47,6 @@ class ProtAbundancesTable extends Component {
       asked_consensus: false,
       tanitomo: false,
       consensus_prompt: 'Get Consensus',
-      json_data: '',
-
-      f_abundances: [],
       tanitomo_column: [
         {
           dataField: 'tanitomo_similarity',
@@ -66,46 +63,10 @@ class ProtAbundancesTable extends Component {
       ],
     };
 
-    this.formatData = this.formatData.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
     this.handleAbstractInner = this.handleAbstractInner.bind(this);
   }
 
-  formatData(data) {
-    console.log(data);
-    var f_abundances = [];
-    if ((data != null) && (typeof(data) != "string")) {
-      console.log(data)
-      for (var i = 1; i < data.length; i++) {
-        console.log(data[i])
-        let uniprot = data[i]
-        for (var n = 0; n < uniprot.abundances.length; n++){
-          let row = {}
-          row["abundance"] = uniprot.abundances[n].abundance
-          row["organ"] = uniprot.abundances[n].organ
-          row["gene_symbol"] = uniprot.gene_name
-          row["organism"] = uniprot.species_name
-          row["uniprot_id"] = uniprot.uniprot_id
-          row["protein_name"] = uniprot.protein_name
-          f_abundances.push(row)
-        }
-
-
-      }
-
-      console.log(f_abundances)
-
-      
-
-      this.setState({
-        f_abundances: f_abundances,
-        //displayed_data: f_abundances
-      });
-      this.props.dispatch(setTotalData(f_abundances));
-    } else {
-      alert('Nothing Found');
-    }
-  }
 
   componentDidMount() {
     if (this.props.f_abundances) {
@@ -116,10 +77,6 @@ class ProtAbundancesTable extends Component {
   componentDidUpdate(prevProps) {
     console.log('updating');
     if (this.props.f_abundances != prevProps.f_abundances) {
-      console.log('not equal');
-      console.log(this.props.json_data);
-      //this.formatData(this.props.json_data);
-      //this.props.dispatch(setTotalData(this.props.f_abundances));
       if (this.props.f_abundances) {
       this.props.dispatch(setTotalData(this.props.f_abundances));
     }
@@ -146,6 +103,8 @@ class ProtAbundancesTable extends Component {
   render() {
     let basic_columns
     console.log("Rendering ProtAbundancesTable")
+    console.log(this.props.f_abundances)
+    console.log(!this.props.f_abundances)
 
     if (!this.props.f_abundances || typeof(this.props.f_abundances) == "string") {
       return(<div></div>)

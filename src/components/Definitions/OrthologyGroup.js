@@ -99,13 +99,19 @@ class OrthologyGroup extends Component {
 
   colFormatter = (cell, row) => {
     console.log(cell)
-    console.log("grumble")
+    if (cell){
+      console.log("grumble")
     let url = "/protein/uniprot/" + cell
     return (
       <Link to={url}>
         {cell.toString()}
       </Link>
     )
+    }
+    else{
+      return(<div></div>)
+    }
+
   }
 
 

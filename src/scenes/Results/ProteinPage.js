@@ -121,12 +121,17 @@ class ProteinPage extends Component {
         console.log(response.data)
       });
       console.log(uniprot_id)
+      this.setState({f_abundances:null})
     }
   }
 
   formatProteinMetadata(data){
     let newProteinMetadata = []
-    for (var i = 0; i < data.length; i++) {
+    let start = 0
+      if ("ko_number" in data[0]){
+        start = 1
+      }
+    for (var i = start; i < data.length; i++) {
       let meta = {}
       meta["uniprot"] = data[i].uniprot_id
       meta["protein_name"] = data[i].protein_name
@@ -143,6 +148,7 @@ class ProteinPage extends Component {
     if (typeof(data) != "string"){
       this.setState({ orig_json: data })
       this.formatData(data)
+      this.formatProteinMetadata(data)
     }
     else{
 
@@ -150,7 +156,8 @@ class ProteinPage extends Component {
         'proteins',
         'meta?uniprot_id=' + this.props.match.params.molecule
       ]).then(response => {
-        this.formatData(response.data)
+        this.formatData(response.data);
+        this.formatProteinMetadata(response.data)
         });
 
     }
@@ -161,7 +168,11 @@ class ProteinPage extends Component {
     console.log(data)
     if ((data != null) && (typeof(data) != "string")) {
       console.log(data)
-      for (var i = 0; i < data.length; i++) {
+      let start = 0
+      if ("ko_number" in data[0]){
+        start = 1
+      }
+      for (var i = start; i < data.length; i++) {
         console.log(data[i])
         let uniprot = data[i]
         for (var n = 0; n < uniprot.abundances.length; n++){
