@@ -23,7 +23,7 @@ import {
   Button,
 } from 'antd';
 import 'antd/dist/antd.css';
-import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
+//import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
 
 import './OrthologyGroup.css';
 import {Link, Redirect } from 'react-router-dom'

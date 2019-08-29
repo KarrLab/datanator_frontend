@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
-import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
+//import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
 import filterFactory, {
   textFilter,
   selectFilter,
@@ -115,6 +115,7 @@ class ProtAbundancesTable extends Component {
     return (
       <div className="total_table">
         <div className="slider">
+        <img src={require('~/images/filter.png')} alt="results" />
           <TaxonFilter />
         </div>
         <div className="results">

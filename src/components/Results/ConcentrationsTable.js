@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
-import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
+//import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
 import filterFactory, {
   textFilter,
   selectFilter,

@@ -36,6 +36,7 @@ import { OrganismInput } from '~/components/SearchField/OrganismInput';
 import { OrthologyGroup } from '~/components/Definitions/OrthologyGroup';
 
 import { setNewUrl, abstractMolecule } from '~/data/actions/pageAction';
+import  '~/scenes/Results/ProteinPage.css';
 
 import store from '~/data/Store';
 
@@ -115,7 +116,7 @@ class ProteinPage extends Component {
       console.log(this.props.match.params.molecule)
       getSearchData([
         'proteins',
-        'meta?protein_name=' + this.props.match.params.molecule +  '&species_name=' + this.props.match.params.organism,
+        'meta?name=' + this.props.match.params.molecule +  '&species_name=' + this.props.match.params.organism,
       ]).then(response => {this.formatProteinMetadata(response.data);
         uniprot_id = response.data;
         console.log(response.data)
