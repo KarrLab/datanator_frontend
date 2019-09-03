@@ -33,7 +33,7 @@ import './MetabConcs.css';
 import { getSearchData } from '~/services/MongoApi';
 import { MetaboliteInput } from '~/components/SearchField/MetaboliteInput';
 import { OrganismInput } from '~/components/SearchField/OrganismInput';
-import { OrthologyGroup } from '~/components/Definitions/OrthologyGroup';
+import { UniprotDefinition } from '~/components/Definitions/OrthologyGroup';
 
 import { setNewUrl, abstractMolecule } from '~/data/actions/pageAction';
 import  '~/scenes/Results/ProteinPage.css';
@@ -129,6 +129,7 @@ class ProteinPage extends Component {
   formatProteinMetadata(data){
     let newProteinMetadata = []
     let start = 0
+    console.log(data[0])
       if ("ko_number" in data[0]){
         start = 1
       }
@@ -233,7 +234,7 @@ class ProteinPage extends Component {
           />
         </div>
         <div className="definition_data">
-          <OrthologyGroup
+          <UniprotDefinition
           proteinMetadata={this.state.proteinMetadata}
           />
         </div>

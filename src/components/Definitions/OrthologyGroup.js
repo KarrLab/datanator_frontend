@@ -49,7 +49,7 @@ const columns = [{
 
 
 
-class OrthologyGroup extends Component {
+class UniprotDefinition extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -143,4 +143,4 @@ class OrthologyGroup extends Component {
 }}
 
 
-export {OrthologyGroup};
+export {UniprotDefinition};
