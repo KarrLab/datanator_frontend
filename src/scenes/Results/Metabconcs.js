@@ -102,9 +102,11 @@ class MetabConcs extends Component {
       this.props.match.params.abstract,
     ]).then(response => {
       this.setState({ orig_json: response.data });
-    }).catch(
-    this.setState({ orig_json: null }),
-    alert("Nothing Found")
+    }).catch(err => {
+    //alert("Nothing Found");
+    this.setState({ orig_json: null })
+  }
+
     );
   
 
