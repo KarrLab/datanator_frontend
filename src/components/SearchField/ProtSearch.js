@@ -164,14 +164,16 @@ class ProtSearch extends Component {
       protein: this.props.defaultMolecule,
       uniprot: this.props.defaultUniprot,
       organism: this.props.defaultOrganism,
-      selectedSearch: this.props.searchType
     });
     if (this.props.searchType=="uniprot"){
+      this.setState({selectedSearch: this.props.searchType})
       this.setState({"buttonValue":2})
     }
     else if (this.props.searchType=="name"){
+      this.setState({selectedSearch: this.props.searchType})
       this.setState({"buttonValue":1})
     }
+
     //this.refs.taxonCol.applyFilter(28)
   }
   buttonChange(e) {
@@ -232,29 +234,7 @@ class ProtSearch extends Component {
               }}
             />
           )}
-          {selectedSearch == 'name' && (
-            <AutoComplete
-              dataSource={this.state.dataSource}
-              defaultValue={this.props.defaultOrganism}
-              style={{ width: '30%' }}
-              onSelect={value => {
-                this.setState({ organism: value });
-              }}
-              addonBefore="Organism"
-              label="organism"
-              placeholder="input here"
-              onChange={value => {
-                this.setState({ organism: value });
-              }}
-              filterOption={(inputValue, option) =>
-                option.props.children
-                  .toUpperCase()
-                  .indexOf(inputValue.toUpperCase()) !== -1
-              }
-            >
-              <Input defaultValue="" addonBefore="Organism" />
-            </AutoComplete>
-          )}
+         
 
           {selectedSearch == 'uniprot' && (
             <Input
