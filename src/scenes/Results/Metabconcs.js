@@ -103,7 +103,7 @@ class MetabConcs extends Component {
     ]).then(response => {
       this.setState({ orig_json: response.data });
     }).catch(err => {
-    //alert("Nothing Found");
+    alert("Nothing Found");
     this.setState({ orig_json: null })
   }
 

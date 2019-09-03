@@ -177,7 +177,7 @@ class ConcentrationsTable extends Component {
       });
       this.props.dispatch(setTotalData(f_concentrations));
     } else {
-      alert('Nothing Found');
+      //alert('Nothing Found');
     }
   }
 
