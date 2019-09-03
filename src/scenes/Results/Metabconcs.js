@@ -78,7 +78,9 @@ class MetabConcs extends Component {
     }
 
     if (!(this.props.match.params.abstract == 'True')) {
+      if (this.props.moleculeAbstract==true){
       this.props.dispatch(abstractMolecule(false));
+      }
     }
 
     if (
@@ -100,7 +102,12 @@ class MetabConcs extends Component {
       this.props.match.params.abstract,
     ]).then(response => {
       this.setState({ orig_json: response.data });
-    });
+    }).catch(
+    this.setState({ orig_json: null }),
+    alert("Nothing Found")
+    );
+  
+
   }
 
   getNewSearch(response) {
