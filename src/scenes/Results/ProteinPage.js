@@ -33,12 +33,20 @@ import './MetabConcs.css';
 import { getSearchData } from '~/services/MongoApi';
 import { MetaboliteInput } from '~/components/SearchField/MetaboliteInput';
 import { OrganismInput } from '~/components/SearchField/OrganismInput';
-import { UniprotDefinition } from '~/components/Definitions/OrthologyGroup';
+import { UniprotDefinition, OrthologyDefinition } from '~/components/Definitions/OrthologyGroup';
 
 import { setNewUrl, abstractMolecule } from '~/data/actions/pageAction';
 import  '~/scenes/Results/ProteinPage.css';
 
 import store from '~/data/Store';
+Object.size = function(obj) {
+    var size = 0, key;
+    for (key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+};
+
 
 @connect(store => {
   return {
@@ -53,6 +61,7 @@ class ProteinPage extends Component {
       search: '',
       proteinMetadata:[
         ],
+      orthologyMetadata:[],
       f_abundances:null,
       organism: '',
       dataSource: [],
@@ -105,32 +114,35 @@ class ProteinPage extends Component {
     if (this.props.match.params.searchType == 'uniprot') {
       getSearchData([
         'proteins',
-        'super/same-kegg?uniprot_id=' + this.props.match.params.molecule,
+        'meta?uniprot_id=' + this.props.match.params.molecule,
       ]).then(response => {
         this.processProteinData(response.data)
       });
     } else if (this.props.match.params.searchType == 'name') {
-      console.log('BUILD ME');
-      let uniprot_id = "";
-      console.log(this.props.match.params.organism)
-      console.log(this.props.match.params.molecule)
       getSearchData([
         'proteins',
-        'meta?name=' + this.props.match.params.molecule +  '&species_name=' + this.props.match.params.organism,
-      ]).then(response => {this.formatProteinMetadata(response.data);
-        uniprot_id = response.data;
+        'meta?name=' + this.props.match.params.molecule
+      ]).then(response => {this.formatOrthologyMetadata(response.data);
+        this.setState({proteinMetadata:null});
         console.log(response.data)
       });
-      console.log(uniprot_id)
       this.setState({f_abundances:null})
     }
+    else if (this.props.match.params.searchType == 'ko') {
+      getSearchData([
+        'proteins',
+        'super/same-kegg?uniprot_id=' + this.props.match.params.molecule,
+      ]).then(response => {
+        this.processProteinData(response.data)
+      });
+}
   }
 
   formatProteinMetadata(data){
     let newProteinMetadata = []
     let start = 0
     console.log(data[0])
-      if ("ko_number" in data[0]){
+      if (data[0].length==1){
         start = 1
       }
     for (var i = start; i < data.length; i++) {
@@ -147,11 +159,47 @@ class ProteinPage extends Component {
 
   }
 
+
+  formatOrthologyMetadata(data){
+    let newOrthologyMetadata = []
+    let start = 0
+
+    for (var i = start; i < data.length; i++) {
+      let meta = {}
+      meta["ko_number"] = [data[i].ko_number, data[i].uniprot_ids[0]]
+      meta["ko_name"] = data[i].ko_name
+      let uni_ids = data[i].uniprot_ids
+      meta["uniprot_ids"] = uni_ids
+      newOrthologyMetadata.push(meta)
+    }
+    this.setState({orthologyMetadata:newOrthologyMetadata})
+  }
+
+
+
   processProteinData(data){
     if (typeof(data) != "string"){
       this.setState({ orig_json: data })
       this.formatData(data)
       this.formatProteinMetadata(data)
+      let newOrthologyMetadata = []
+      let meta = {}
+      let uniprot_id = ""
+      if (Object.size(data[0]) == 1){
+        uniprot_id = data[1].uniprot_id
+      }
+      else{
+        uniprot_id = data[0].uniprot_id
+      }
+      meta["ko_number"] = [data[0].ko_number, uniprot_id]
+      newOrthologyMetadata.push(meta)
+      console.log(newOrthologyMetadata)
+      console.log("octo")
+      this.setState({orthologyMetadata:newOrthologyMetadata})
+      console.log(data)
+
+      
+      
     }
     else{
 
@@ -161,6 +209,16 @@ class ProteinPage extends Component {
       ]).then(response => {
         this.formatData(response.data);
         this.formatProteinMetadata(response.data)
+        
+        let newOrthologyMetadata = []
+        let meta = {}
+        meta["ko_number"] = [response.data[0].ko_number, response.data[1].uniprot_id]
+        newOrthologyMetadata.push(meta)
+        console.log(newOrthologyMetadata)
+        console.log("octo")
+        this.setState({orthologyMetadata:newOrthologyMetadata})
+
+
         });
 
     }
@@ -172,7 +230,7 @@ class ProteinPage extends Component {
     if ((data != null) && (typeof(data) != "string")) {
       console.log(data)
       let start = 0
-      if ("ko_number" in data[0]){
+      if (Object.size(data[0])==1){
         start = 1
       }
       for (var i = start; i < data.length; i++) {
@@ -233,7 +291,12 @@ class ProteinPage extends Component {
             searchType={this.props.match.params.searchType}
           />
         </div>
-        <div className="definition_data">
+        <div className="orthology_definition_data">
+        <OrthologyDefinition
+          proteinMetadata={this.state.orthologyMetadata}
+          />
+        </div>
+          <div className="uniprot_definition_data">
           <UniprotDefinition
           proteinMetadata={this.state.proteinMetadata}
           />

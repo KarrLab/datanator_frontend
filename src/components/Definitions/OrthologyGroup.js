@@ -126,7 +126,7 @@ class UniprotDefinition extends Component {
 
 
     if (!this.state.total_data){
-      return(<div>asjasfd;jklasfd;jkla;jklsfd</div>)
+      return(<div></div>)
     }
     else{
           return(<div className="bootstrap">
@@ -143,4 +143,129 @@ class UniprotDefinition extends Component {
 }}
 
 
-export {UniprotDefinition};
+
+
+class OrthologyDefinition extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      total_columns:  [
+      {
+            dataField: 'ko_number',
+            text: 'KO Number',
+            formatter :this.colFormatterKO,
+
+          },
+      
+
+          {
+
+            dataField: 'ko_name',
+            text: 'KO Name',
+          },
+
+          {
+
+            dataField: 'uniprot_ids',
+            text: 'Uniprot IDs',
+            formatter :this.colFormatterUni,
+          },
+        
+          
+          ],
+
+      total_data: []
+    };
+    this.colFormatter = this.colFormatterUni.bind(this);
+    this.colFormatter = this.colFormatterKO.bind(this);
+  }
+
+
+  componentDidMount() {
+    console.log('hello');
+
+    this.setState({total_data:this.props.proteinMetadata})
+  }
+
+  componentDidUpdate(prevProps) {
+    console.log('hello');
+
+    if (this.props.proteinMetadata !== prevProps.proteinMetadata){
+      this.setState({total_data:this.props.proteinMetadata})
+    }
+
+  }
+
+  colFormatterUni = (cell, row) => {
+    console.log(cell)
+    if (cell){
+      let links = []
+      console.log("grumble")
+    let url = "/protein/uniprot/" + cell
+
+    {for (var i = cell.length - 1; i >= 0; i--) {
+        let url = "/protein/uniprot/" + cell[i]
+        links.push(
+          <Link to={url}>
+        {cell[i].toString() + ", "}
+      </Link>
+      )
+      }}
+
+    return (
+      <div>
+      {links}
+      </div>
+    )
+    }
+
+    else{
+      return(<div></div>)
+    }
+
+  }
+
+  colFormatterKO = (cell, row) => {
+    console.log(cell)
+    if (cell){
+      console.log("grumble")
+    let url = "/protein/ko/" + cell[1]
+    return (
+      <Link to={url}>
+        {cell[0].toString()}
+      </Link>
+    )
+    }
+    else{
+      return(<div></div>)
+    }
+
+  }
+  
+
+
+  render() {
+    console.log(this.state.total_data)
+    console.log("man on the moon")
+
+
+    if (!this.state.total_data){
+      return(<div></div>)
+    }
+    else{
+          return(<div className="bootstrap">
+<BootstrapTable
+
+              striped
+              hover
+              keyField="ko_number"
+              data={this.state.total_data}
+              columns={this.state.total_columns}
+            />
+            </div>)
+  }
+}}
+
+
+
+export {UniprotDefinition, OrthologyDefinition};

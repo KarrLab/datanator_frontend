@@ -1,4 +1,19 @@
-.container .definition_data{
+.container .uniprot_definition_data{
+	background-color:#c4c4c4;
+  text-align: left;
+  display:flex; 
+  flex-direction:row;
+  border-style: solid;
+  border-color: #bfbfbf;
+  flex-wrap: wrap;
+  flex-flow: row wrap;
+  margin-bottom: 5px;
+  margin-top: 5px;
+
+
+}
+
+.container .orthology_definition_data{
 	background-color:#c4c4c4;
   text-align: left;
   display:flex; 
