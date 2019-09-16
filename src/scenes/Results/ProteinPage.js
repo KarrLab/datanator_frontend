@@ -193,7 +193,7 @@ class ProteinPage extends Component {
       //meta["ko_name"] = data[i].ko_name
      //uni_ids = data[i].uniprot_ids
       //meta["uniprot_ids"] = uni_ids
-      newOrthologyMetadata.push(meta)
+      //newOrthologyMetadata.push(meta)
     }
     meta["uniprot_ids"] = uni_ids
     newOrthologyMetadata.push(meta)
