@@ -169,12 +169,34 @@ class ProteinPage extends Component {
 
     for (var i = start; i < data.length; i++) {
       let meta = {}
-      meta["ko_number"] = [data[i].ko_number, data[i].uniprot_ids[0]]
+      meta["ko_number"] = [data[i].ko_number, data[i].uniprot_id]
       meta["ko_name"] = data[i].ko_name
       let uni_ids = data[i].uniprot_ids
       meta["uniprot_ids"] = uni_ids
       newOrthologyMetadata.push(meta)
     }
+    this.setState({orthologyMetadata:newOrthologyMetadata})
+  }
+
+  formatOrthologyMetadataUniprot(data){
+    let newOrthologyMetadata = []
+    let start = 0
+    let uni_ids = []
+    let meta = {}
+    meta["ko_number"] = [data[0].ko_number, data[0].uniprot_id]
+    meta["ko_name"] = data[0].ko_name
+
+    for (var i = start; i < data.length; i++) {
+      uni_ids.push(data[i].uniprot_id)
+      //let meta = {}
+     // meta["ko_number"] = [data[i].ko_number, data[i].uniprot_id]
+      //meta["ko_name"] = data[i].ko_name
+     //uni_ids = data[i].uniprot_ids
+      //meta["uniprot_ids"] = uni_ids
+      newOrthologyMetadata.push(meta)
+    }
+    meta["uniprot_ids"] = uni_ids
+    newOrthologyMetadata.push(meta)
     this.setState({orthologyMetadata:newOrthologyMetadata})
   }
 
@@ -237,42 +259,47 @@ class ProteinPage extends Component {
     if (typeof(data) != "string"){
       this.setState({ orig_json: data })
       var f_abundances = [];
-      console.log(data)
+      let newProteinMetadata = []
+      let uniprot_to_dist = {}
       if ((data != null) && (typeof(data) != "string")) {
-        console.log(data)
-        console.log(data[0].documents.length)
         let start = 0
-
         for (var i = 0; i < data.length; i++) {
           let docs = data[i].documents
-          console.log(docs)
           for (var q = docs.length - 1; q >= 0; q--) {
-            console.log(docs[q])
-            console.log(q)
-
             var uniprot = docs[q].abundances
-            console.log(data[i].documents.abundances)
             for (var n = 0; n < uniprot.length; n++){
               let row = {}
-              row["abundance"] = uniprot[n].abundance
-              //row["organ"] = uniprot.abundances[n].organ
-              //row["gene_symbol"] = uniprot.gene_name
-              row["organism"] = docs[q].species_name
-              row["uniprot_id"] = docs[q].uniprot_id
-              row["taxonomic_proximity"] = data[i].distance
-              //row["protein_name"] = uniprot.protein_name
-              f_abundances.push(row)
+              uniprot_to_dist[docs[q].uniprot_id] = data[i].distance
             }
 
           }
         }
       }
+      console.log(uniprot_to_dist)
+      let total_ids = Object.keys(uniprot_to_dist)
+      let end_query = ""
+      for (var f = total_ids.length - 1; f >= 0; f--) {
+        end_query = end_query + "uniprot_id=" + total_ids[f] +"&"
+      }
+      console.log(end_query)
 
-      this.setState({
-        f_abundances: f_abundances,
+
+     getSearchData([
+        'proteins',
+        'meta/meta_combo?' + end_query
+      ]).then(response => {this.formatOrthologyMetadataUniprot(response.data);
+        this.formatData(response.data)
+        this.setState({proteinMetadata:null});
+        console.log(response.data)
       });
+
+
     }
+    
+
+
 }
+
 
   formatData(data) {
     var f_abundances = [];
