@@ -188,12 +188,7 @@ class ProteinPage extends Component {
 
     for (var i = start; i < data.length; i++) {
       uni_ids.push(data[i].uniprot_id)
-      //let meta = {}
-     // meta["ko_number"] = [data[i].ko_number, data[i].uniprot_id]
-      //meta["ko_name"] = data[i].ko_name
-     //uni_ids = data[i].uniprot_ids
-      //meta["uniprot_ids"] = uni_ids
-      //newOrthologyMetadata.push(meta)
+
     }
     meta["uniprot_ids"] = uni_ids
     newOrthologyMetadata.push(meta)
@@ -288,7 +283,7 @@ class ProteinPage extends Component {
         'proteins',
         'meta/meta_combo?' + end_query
       ]).then(response => {this.formatOrthologyMetadataUniprot(response.data);
-        this.formatData(response.data)
+        this.formatData(response.data, uniprot_to_dist)
         this.setState({proteinMetadata:null});
         console.log(response.data)
       });
@@ -301,7 +296,7 @@ class ProteinPage extends Component {
 }
 
 
-  formatData(data) {
+  formatData(data, uniprot_to_dist) {
     var f_abundances = [];
     console.log(data)
     if ((data != null) && (typeof(data) != "string")) {
@@ -321,6 +316,7 @@ class ProteinPage extends Component {
           row["organism"] = uniprot.species_name
           row["uniprot_id"] = uniprot.uniprot_id
           row["protein_name"] = uniprot.protein_name
+          row["taxonomic_proximity"] = uniprot_to_dist[uniprot.uniprot_id]
           f_abundances.push(row)
         }
       }
