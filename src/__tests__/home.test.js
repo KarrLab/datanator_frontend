@@ -45,7 +45,7 @@ f_concentrations.push({
 store.dispatch(setTotalData(f_concentrations))
 
 test('hello world', () => {
-  const { getByText, getByTestId, container, toHaveTextContent, getByLabelText, getAllByText } = render(
+  const { getByText, getByTestId, toHaveTextContent, container, getByLabelText, getAllByText, queryByText } = render(
   	<Provider store={store}>
     	<ResultsTable  
     	basic_columns={[
@@ -64,9 +64,20 @@ test('hello world', () => {
     	/>
   </Provider>
   )
-  //expect(getByText(/escherichia/i)).toBeTruthy();
-  //console.log(getAllByText("escherichia")[0].textContent)
+  
+  //test on of the basic columns to see if its present
   expect(getAllByText('escherichia', { exact: false })[0].textContent).toBe('escherichia coli')
+  //ensure both rows show up
+  expect(getAllByText('escherichia', { exact: false })[1].textContent).toBe('escherichia coli')
+
+  //test the advance/basic button
+  expect(getByText("Conc. (µM)"))
+  expect(queryByText('Conditions')).toBeNull() // make sure conditions starts out not on the page
+
+  //expect(conditions).toBeNull() // make sure conditions starts out not on the page
+
+  //fireEvent.click(getByText('Load Greeting'))
+
 
   //expect(getByText('escherichia')).toBeTruthy();
 });
