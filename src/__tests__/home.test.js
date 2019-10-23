@@ -13,6 +13,7 @@ import {
 } from '~/data/actions/resultsAction';
 
 import axiosMock from 'axios'
+import { fireEvent } from '@testing-library/react'
 
 const store = createStore
 
@@ -72,11 +73,11 @@ test('hello world', () => {
 
   //test the advance/basic button
   expect(getByText("Conc. (µM)"))
-  expect(queryByText('Conditions')).toBeNull() // make sure conditions starts out not on the page
+  expect(queryByText('Conditions')).toBeNull() // make sure the advance columns dont start out on the page
 
-  //expect(conditions).toBeNull() // make sure conditions starts out not on the page
-
-  //fireEvent.click(getByText('Load Greeting'))
+  //click on advanced columns button
+  fireEvent.click(getByText('Advanced'))
+  expect(queryByText('Conditions')).not.toBeNull()
 
 
   //expect(getByText('escherichia')).toBeTruthy();
