@@ -13,7 +13,19 @@ import {
 } from '~/data/actions/resultsAction';
 
 import axiosMock from 'axios'
-import { fireEvent } from '@testing-library/react'
+import { fireEvent, waitForElement } from '@testing-library/react'
+
+
+'use strict';
+function timerGame(callback) {
+  console.log('Ready....go!');
+  setTimeout(() => {
+    console.log("Time's up -- stop!");
+    callback && callback();
+  }, 1000);
+}
+
+jest.useFakeTimers();
 
 const store = createStore
 
@@ -38,15 +50,15 @@ f_concentrations.push({
               error: 1,
               growth_phase: "Log Phase",
               organism: "escherichia coli",
-              growth_media: "gutnick",
+              growth_media: "blue media",
               taxonomic_proximity: 1,
               tanitomo_similarity: 0.9,
             });
 
 store.dispatch(setTotalData(f_concentrations))
 
-test('hello world', () => {
-  const { getByText, getByTestId, toHaveTextContent, container, getByLabelText, getAllByText, queryByText } = render(
+test('hello world', async () => {
+  const { getByText, getByPlaceholderText, getByTestId, toHaveTextContent, container, getByLabelText, getAllByText, queryByText } = render(
   	<Provider store={store}>
     	<ResultsTable  
     	basic_columns={[
@@ -78,6 +90,24 @@ test('hello world', () => {
   //click on advanced columns button
   fireEvent.click(getByText('Advanced'))
   expect(queryByText('Conditions')).not.toBeNull()
+  fireEvent.click(getByText('Basic'))
+  expect(queryByText('Conditions')).toBeNull()
+
+  //
+  fireEvent.click(getByText('Advanced'))
+  expect(queryByText('blue media')).not.toBeNull()
+  expect(queryByText('gutnick')).not.toBeNull()
+  const node = getByPlaceholderText('Enter Media...')
+  fireEvent.change(node, { target: { value: "gutnick" } })
+  fireEvent.keyPress(node, { key: 'Enter', code: 13 })
+  jest.runAllTimers();
+  await timerGame()
+  //getByText("ASFASDAF")
+  //const updatedValue = await waitForElement(() => queryByText('blue media'))
+  //expect(updatedValue).toBeNull()
+  expect(queryByText('blue media')).toBeNull()
+  expect(queryByText('gutnick')).not.toBeNull()
+
 
 
   //expect(getByText('escherichia')).toBeTruthy();
