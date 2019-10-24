@@ -95,11 +95,8 @@ class MetabConcs extends Component {
 
   getSearchData() {
     getSearchData([
-      'search',
-      'concentration',
-      this.props.match.params.molecule,
-      this.props.match.params.organism,
-      this.props.match.params.abstract,
+      'metabolites/concentration/?abstract=' + this.props.match.params.abstract + '&species='
+      + this.props.match.params.organism + '&metabolite=' + this.props.match.params.molecule
     ]).then(response => {
       this.setState({ orig_json: response.data });
     }).catch(err => {
