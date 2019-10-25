@@ -11,6 +11,7 @@ import createStore from '~/data/Store.js'
 
 import {fireEvent, waitForElement } from '@testing-library/react'
 
+jest.useFakeTimers();
 
 
 
@@ -22,6 +23,14 @@ const store = createStore
 
 //jest.runAllTimers();
 
+'use strict';
+function timerGame(callback) {
+  console.log('Ready....go!');
+  setTimeout(() => {
+    console.log("Time's up -- stop!");
+    callback && callback();
+  }, 1000);
+}
 
 const renderComponent = ({ userId }) =>
   render (
@@ -37,7 +46,7 @@ const renderComponent = ({ userId }) =>
 
 it('render metabconcs page', async () => {
   // Render new instance in every test to prevent leaking state
-  const { getByText, getAllByText } =  renderComponent({ userId: 'ATP' });
+  const { getByTestId, getByText, getAllByText, getByPlaceholderText  } =  renderComponent({ userId: 'ATP' });
 
   await waitForElement(() => getByText('9640', { exact: false }));
   getAllByText('Escherichia coli K12 NCM3722', { exact: false })
@@ -49,7 +58,28 @@ it('render metabconcs page', async () => {
   //make sure that the mean is present (mean should be 3,002.643)
   expect(getAllByText('3,002', { exact: false }))
   expect(getAllByText('.643', { exact: false }))
+  //getAllByLabelText("input")
+  console.log(getByTestId('test_table'))
+
+  let node = getByPlaceholderText('Enter Organism...')
+  fireEvent.change(node, { target: { value: "escherichia" } })
+  await timerGame()
+  //fireEvent.keyPress(node, { key: 'Enter', code: 13 })
+  jest.runAllTimers();
+  fireEvent.click(getByText('Update Consensus'))
+  await timerGame()
+  jest.runAllTimers()
+  expect(getAllByText('4,755', { exact: false }))
+
+  ///fireEvent.click(findAllByRole("checkbox")[1])
+  //fireEvent.click(getByText('Update Consensus'))
+  //expect(getAllByText('2,914', { exact: false }))
+  //expect(getAllByText('.385', { exact: false }))
+
+  //make sure we can un-select an entry, and then update the consensus
 
 
 });
+
+
 

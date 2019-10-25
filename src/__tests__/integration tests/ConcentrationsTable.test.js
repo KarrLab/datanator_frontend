@@ -65,7 +65,7 @@ test('hello world', async () => {
   //test on of the basic columns to see if its present
   expect(getAllByText('Escherichia coli K-12', { exact: false })[0].textContent).toBe('Escherichia coli K-12')
   expect(getAllByText('Saccharomyces cerevisiae', { exact: false })[0].textContent)
-
+  
 
 
 

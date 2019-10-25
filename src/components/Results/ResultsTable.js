@@ -224,7 +224,7 @@ class ResultsTable extends Component {
         </Button>
 
 
-        <div className="bootstrap">
+        <div className="bootstrap" data-testid = "test_table">
           {(this.props.col_list.length > 0) && (
             <BootstrapTable
               ref={n => (this.node = n)}
