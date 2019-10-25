@@ -16,14 +16,6 @@ import axiosMock from 'axios'
 import { fireEvent, waitForElement } from '@testing-library/react'
 
 
-'use strict';
-function timerGame(callback) {
-  console.log('Ready....go!');
-  setTimeout(() => {
-    console.log("Time's up -- stop!");
-    callback && callback();
-  }, 1000);
-}
 
 jest.useFakeTimers();
 
@@ -101,10 +93,7 @@ test('hello world', async () => {
   fireEvent.change(node, { target: { value: "gutnick" } })
   fireEvent.keyPress(node, { key: 'Enter', code: 13 })
   jest.runAllTimers();
-  await timerGame()
-  //getByText("ASFASDAF")
-  //const updatedValue = await waitForElement(() => queryByText('blue media'))
-  //expect(updatedValue).toBeNull()
+
   expect(queryByText('blue media')).toBeNull()
   expect(queryByText('gutnick')).not.toBeNull()
 

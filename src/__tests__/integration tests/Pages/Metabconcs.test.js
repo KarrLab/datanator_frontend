@@ -23,15 +23,6 @@ const store = createStore
 
 //jest.runAllTimers();
 
-'use strict';
-function timerGame(callback) {
-  console.log('Ready....go!');
-  setTimeout(() => {
-    console.log("Time's up -- stop!");
-    callback && callback();
-  }, 1000);
-}
-
 const renderComponent = ({ userId }) =>
   render (
     <MemoryRouter initialEntries={['/metabconcs/ATP/escherichia coli']}>
@@ -63,11 +54,9 @@ it('render metabconcs page', async () => {
 
   let node = getByPlaceholderText('Enter Organism...')
   fireEvent.change(node, { target: { value: "escherichia" } })
-  await timerGame()
-  //fireEvent.keyPress(node, { key: 'Enter', code: 13 })
+
   jest.runAllTimers();
   fireEvent.click(getByText('Update Consensus'))
-  await timerGame()
   jest.runAllTimers()
   expect(getAllByText('4,755', { exact: false }))
 
