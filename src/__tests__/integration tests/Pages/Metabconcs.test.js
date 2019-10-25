@@ -1,41 +1,26 @@
 import React from 'react';
-import { render, cleanup, } from '@testing-library/react';
-import { ReactReduxContext } from 'react-redux'
+import { render, } from '@testing-library/react';
 import { Provider } from 'react-redux'
-import { Link, Route, Router, Switch } from 'react-router-dom'
+import {Route, Switch } from 'react-router-dom'
 import { createMemoryHistory } from 'history'
-import {BrowserRouter, Redirect } from 'react-router-dom'
+
 import Metabconcs from '~/scenes/Results/Metabconcs';
 import { MemoryRouter } from "react-router-dom";
 import { ResultsTable, getSelectedData } from '~/components/Results/ResultsTable.js';
 import createStore from '~/data/Store.js'
-import {
-  getTotalColumns,
-  filter_taxon,
-  set_lineage,
-  setTotalData,
-} from '~/data/actions/resultsAction';
 
-import axiosMock from 'axios'
-import { fireEvent, waitForElement } from '@testing-library/react'
-import { getSearchData } from '~/services/MongoApi';
-import ConcentrationsTable from '~/components/Results/ConcentrationsTable.js';
+import {waitForElement } from '@testing-library/react'
 
 
-'use strict';
 
 
 let the_json = ""
 
-jest.useFakeTimers();
+//jest.useFakeTimers();
 
 const store = createStore
 
-jest.runAllTimers();
-
-const history = createMemoryHistory()
-
-
+//jest.runAllTimers();
 
 
 const renderComponent = ({ userId }) =>
@@ -50,41 +35,14 @@ const renderComponent = ({ userId }) =>
   );
 
 
-it('renders initial user id', async () => {
+it('render metabconcs page', async () => {
   // Render new instance in every test to prevent leaking state
-  const { getByText } =  renderComponent({ userId: 'ATP' });
+  const { getByText, getAllByText } =  renderComponent({ userId: 'ATP' });
 
   await waitForElement(() => getByText('9640', { exact: false }));
+  getAllByText('Escherichia coli K12 NCM3722', { exact: false })
+
+  //await waitForElement(() => getByText('Escherichia coli K12 NCM3722', { exact: false }))
+  //await waitForElement(() => getByText('320.0', { exact: false }))
 });
 
-/*
-test('landing on a bad page',  () => {
-  const route = '/metabconcs/atp/Escherichia coli/'
-  const match = { params: { molecule: 'ATP', organism: 'escherichia coli' } }
-  const { getByTestId } = renderWithRouter(<Metabconcs match = {match}/>, { route })
-  expect(getByTestId('location-display').textContent).toBe(route)
-})
-*/
-/*
-test('hello world', async () => {
-  const redirectUrl = '/metabconcs/atp/Escherichia coli/'
-  const match = { params: { molecule: 'ATP', organism: 'escherichia coli' } }
-  const { getByText, getByPlaceholderText, getByTestId, toHaveTextContent, 
-    container, getByLabelText, getAllByText, queryByText } = render(
-    <Provider store={store}>
-      <MemoryRouter initialEntries={['/metabconcs/atp/Escherichia coli/']}>
-      <c match={match}/>
-    </MemoryRouter>,
-    root
-  </Provider>
-  )
-  
-  //test on of the basic columns to see if its present
-  expect(getAllByText('Escherichia coli K-12', { exact: false })[0].textContent).toBe('Escherichia coli K-12')
-  expect(getAllByText('Saccharomyces cerevisiae', { exact: false })[0].textContent)
-
-
-
-  //expect(getByText('escherichia')).toBeTruthy();
-});
-*/
