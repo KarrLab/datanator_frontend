@@ -182,12 +182,13 @@ class ConcentrationsTable extends Component {
   }
 
   componentDidMount() {
-    if ((this.props.json_data) && false){
+    if ((this.props.json_data)){
       this.formatData(this.props.json_data);
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
+    console.log(prevProps.json_data)
     if (this.props.json_data != prevProps.json_data){
       this.formatData(this.props.json_data);
     }

@@ -51,12 +51,6 @@ const defaultSorted = [
 
 @connect(store => {
   return {
-    totalData: store.results.totalData,
-    col_list: store.results.column_list,
-  };
-})
-class ResultsTable extends Component {
-  static propTypes = {
     /** The data must be a list of dictionaries. Each dictionary cooresponds a single row. Each key is the proper column,
      * and each value gets entered into the corresponding cell.
      * For example:
@@ -65,7 +59,13 @@ class ResultsTable extends Component {
      *   { name: "Adenosine triphosphate", concentration: 3829, units: "uM"},
      * ]
      */
-    data: PropTypes.array.isRequired,
+    totalData: store.results.totalData,
+    col_list: store.results.column_list,
+  };
+})
+class ResultsTable extends Component {
+  static propTypes = {
+    
 
     /** This must be a list of columns that can be used in a react-bootstrap-table2 table. The docs for that can be
      * found here - https://react-bootstrap-table.github.io/react-bootstrap-table2/docs/getting-started.html
