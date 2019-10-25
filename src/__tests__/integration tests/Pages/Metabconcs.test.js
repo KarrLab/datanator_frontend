@@ -9,7 +9,7 @@ import { MemoryRouter } from "react-router-dom";
 import { ResultsTable, getSelectedData } from '~/components/Results/ResultsTable.js';
 import createStore from '~/data/Store.js'
 
-import {waitForElement } from '@testing-library/react'
+import {fireEvent, waitForElement } from '@testing-library/react'
 
 
 
@@ -41,8 +41,15 @@ it('render metabconcs page', async () => {
 
   await waitForElement(() => getByText('9640', { exact: false }));
   getAllByText('Escherichia coli K12 NCM3722', { exact: false })
+  getAllByText('Saccharomyces cerevisiae', { exact: false })
 
-  //await waitForElement(() => getByText('Escherichia coli K12 NCM3722', { exact: false }))
-  //await waitForElement(() => getByText('320.0', { exact: false }))
+  //click on get consensus
+  fireEvent.click(getByText('Get Consensus'))
+
+  //make sure that the mean is present (mean should be 3,002.643)
+  expect(getAllByText('3,002', { exact: false }))
+  expect(getAllByText('.643', { exact: false }))
+
+
 });
 
