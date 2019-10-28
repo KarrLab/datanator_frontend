@@ -81,11 +81,11 @@ class Consensus extends Component {
   }
 
   setMean(data) {
-    console.log(data)
+    //console.log(data)
     var total_conc = 0;
     let total_data = [];
     for (var i = data.length - 1; i >= 0; i--) {
-      console.log(parseFloat(data[i][this.props.relevantColumn]))
+      //console.log(parseFloat(data[i][this.props.relevantColumn]))
       total_data.push(parseFloat(data[i][this.props.relevantColumn]));
       total_conc = total_conc + parseFloat(data[i][this.props.relevantColumn]);
     }

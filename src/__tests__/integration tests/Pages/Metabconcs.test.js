@@ -23,9 +23,9 @@ const store = createStore
 
 //jest.runAllTimers();
 
-const renderComponent = ({ userId }) =>
+const renderComponent = (molecule, organism) =>
   render (
-    <MemoryRouter initialEntries={['/metabconcs/ATP/escherichia coli']}>
+    <MemoryRouter initialEntries={['/metabconcs/' + molecule + '/' + organism]}>
       <Route path="/metabconcs/:molecule/:organism/:abstract?/">
        <Provider store={store}>
         <Metabconcs />
@@ -37,11 +37,21 @@ const renderComponent = ({ userId }) =>
 
 it('render metabconcs page', async () => {
   // Render new instance in every test to prevent leaking state
-  const { getByTestId, getByText, getAllByText, getByPlaceholderText  } =  renderComponent({ userId: 'ATP' });
+  const { getByTestId, getByText, getAllByText, getByPlaceholderText  } =  renderComponent('ATP', 'escherichia coli');
 
   await waitForElement(() => getByText('9640', { exact: false }));
-  getAllByText('Escherichia coli K12 NCM3722', { exact: false })
-  getAllByText('Saccharomyces cerevisiae', { exact: false })
+  expect(getByTestId('test_table'))
+  expect(getAllByText('Escherichia coli K12 NCM3722', { exact: false }))
+  expect(getAllByText('Saccharomyces cerevisiae', { exact: false }))
+
+});
+
+
+it('filter and update consensus', async () => {
+  // Render new instance in every test to prevent leaking state
+  const {getByText, getAllByText, getByPlaceholderText  } =  renderComponent('ATP', 'escherichia coli');
+
+  await waitForElement(() => getByText('9640', { exact: false }));
 
   //click on get consensus
   fireEvent.click(getByText('Get Consensus'))
@@ -49,8 +59,6 @@ it('render metabconcs page', async () => {
   //make sure that the mean is present (mean should be 3,002.643)
   expect(getAllByText('3,002', { exact: false }))
   expect(getAllByText('.643', { exact: false }))
-  //getAllByLabelText("input")
-  console.log(getByTestId('test_table'))
 
   let node = getByPlaceholderText('Enter Organism...')
   fireEvent.change(node, { target: { value: "escherichia" } })
@@ -60,15 +68,36 @@ it('render metabconcs page', async () => {
   jest.runAllTimers()
   expect(getAllByText('4,755', { exact: false }))
 
-  ///fireEvent.click(findAllByRole("checkbox")[1])
-  //fireEvent.click(getByText('Update Consensus'))
-  //expect(getAllByText('2,914', { exact: false }))
-  //expect(getAllByText('.385', { exact: false }))
-
-  //make sure we can un-select an entry, and then update the consensus
-
-
 });
 
 
+it('test taxonomy filter', async () => {
+  // Render new instance in every test to prevent leaking state
+  const { container, getByText, queryAllByText, queryByText, findAllByText, findByText, getByPlaceholderText  } =  renderComponent( 'ATP', 'Homo sapiens');
+
+  await waitForElement(() => getByText('9640', { exact: false }));
+  //jest.runAllTimers();
+  expect(findByText('Escherichia', { exact: false }))
+  //expect(queryByText('Escherichia', { exact: false })).toBeNull()
+  //let taxon_slider = container.querySelectorAll(".taxon_slider_bar .ant-slider-handle")[0]
+  let taxon_slider = container.querySelector(".taxon_slider_bar .ant-slider-handle")
+  //let taxon_slider = container.querySelectorAll(".taxon_slider_bar")[0]
+  await fireEvent.mouseDown(taxon_slider)
+  fireEvent.keyDown(taxon_slider, { key: 'ArrowDown', code: 40 })
+  fireEvent.keyDown(taxon_slider, { key: 'ArrowDown', code: 40 })
+
+
+  //click on get consensus
+  //fireEvent.change(taxon_slider, {target: {"aria-valuenow":"28"}})
+  //fireEvent.click(taxon_slider)
+  jest.runAllTimers();
+  expect(queryByText('Escherichia', { exact: false })).toBeNull()
+  //expect(queryByText('Homo sapiens', { exact: false }))
+  fireEvent.change(taxon_slider, {target: {"aria-valuenow":"10"}})
+  jest.runAllTimers();
+
+  //expect(queryAllByText('Saccharomyces')).toBeNull()
+
+
+});
 

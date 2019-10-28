@@ -100,7 +100,7 @@ class TaxonFilter extends Component {
 return (
         <div className="slider">
           Taxonomic Distance
-          <div className="slider_bar">
+          <div className="taxon_slider_bar">
             <Slider
               marks={this.state.marks}
               value={this.state.sliderValue}
