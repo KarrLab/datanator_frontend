@@ -73,7 +73,7 @@ it('filter and update consensus', async () => {
 
 it('test taxonomy filter', async () => {
   // Render new instance in every test to prevent leaking state
-  const { container, getByText, getAllByText, queryAllByText, queryByText, findAllByText, findByText, getByPlaceholderText  } =  renderComponent( 'ATP', 'Homo sapiens');
+  const { container, getByText, getAllByText, queryAllByText, queryByText, findAllByText, findByText, getByPlaceholderText  } =  renderComponent( 'ATP', 'Saccharomyces cerevisiae');
 
   await waitForElement(() => getByText('9640', { exact: false }));
   await waitForElement(() => queryAllByText('Escherichia', { exact: false }));
@@ -87,28 +87,15 @@ it('test taxonomy filter', async () => {
   let taxon_slider = container.querySelector(".taxon_slider_bar .ant-slider-handle")
   //let taxon_slider = container.querySelectorAll(".taxon_slider_bar")[0]
   await fireEvent.mouseDown(taxon_slider)
-  //await fireEvent.mouseDown(taxon_slider)
-  //await fireEvent.mouseDown(taxon_slider)
-  //await fireEvent.mouseDown(taxon_slider)
-  //fireEvent.keyDown(taxon_slider, { key: 'ArrowDown', code: 40 })
-  //fireEvent.keyDown(taxon_slider, { key: 'ArrowDown', code: 40 })
 
-
-  //click on get consensus
-  //fireEvent.change(taxon_slider, {target: {"aria-valuenow":"28"}})
-  //fireEvent.click(taxon_slider)
   await jest.runAllTimers();
   expect(queryAllByText('Escherichia', { exact: false }).length).toEqual(0)
-  expect(queryAllByText('Saccharomyces', { exact: false }).length).toEqual(0)
+  expect(queryAllByText('Saccharomyces', { exact: false }).length).toBeGreaterThan(0)
   
-  //expect(queryByText('Escherichia', { exact: false })).toBeNull()
-  //expect(queryByText('Saccharomyces', { exact: false })).toBeNull()
-  //expect(findByText('Saccharomyces', { exact: false })).toBeNull()
-  //fireEvent.change(taxon_slider, {target: {"aria-valuenow":"10"}})
+
   jest.runAllTimers();
   console.log("done")
 
-  //expect(queryAllByText('Saccharomyces')).toBeNull()
 
 
 });
