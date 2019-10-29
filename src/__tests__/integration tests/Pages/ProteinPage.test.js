@@ -43,3 +43,25 @@ it('render protein page', async () => {
 
 });
 
+
+it('filter and update consensus', async () => {
+  // Render new instance in every test to prevent leaking state
+  const {getByText, getAllByText, getByPlaceholderText  } =  renderComponent('uniprot', 'P01112', false);
+
+  await waitForElement(() => getByText('K02833', { exact: false }));
+
+  //click on get consensus
+  fireEvent.click(getByText('Get Consensus'))
+
+  //make sure that the mean is present (mean should be 3,002.643)
+  expect(getAllByText('.419', { exact: false }))
+
+  let node = getByPlaceholderText('Enter Organ...')
+  fireEvent.change(node, { target: { value: "liver" } })
+
+  jest.runAllTimers();
+  fireEvent.click(getByText('Update Consensus'))
+  jest.runAllTimers()
+  expect(getAllByText('.745', { exact: false }))
+
+});
