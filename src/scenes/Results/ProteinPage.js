@@ -122,7 +122,7 @@ class ProteinPage extends Component {
     } else if (this.props.match.params.searchType == 'name') {
       getSearchData([
         'proteins',
-        'meta?name=' + this.props.match.params.molecule
+        'meta/meta_single/?name=' + this.props.match.params.molecule
       ]).then(response => {this.formatOrthologyMetadata(response.data);
         this.setState({proteinMetadata:null});
         console.log(response.data)
@@ -172,7 +172,8 @@ class ProteinPage extends Component {
       meta["ko_number"] = [data[i].ko_number, data[i].uniprot_id]
       meta["ko_name"] = data[i].ko_name
       let uni_ids = data[i].uniprot_ids
-      meta["uniprot_ids"] = uni_ids
+      //meta["uniprot_ids"] = uni_ids
+      meta["uniprot_ids"] = Object.keys(uni_ids) .filter(function(k){return uni_ids[k]}) .map(String)
       newOrthologyMetadata.push(meta)
     }
     this.setState({orthologyMetadata:newOrthologyMetadata})
@@ -191,6 +192,9 @@ class ProteinPage extends Component {
 
     }
     meta["uniprot_ids"] = uni_ids
+    //meta["uniprot_ids"] = Object.keys(uni_ids) .filter(function(k){return uni_ids[k]}) .map(String)
+    console.log("corn cob")
+    console.log(meta["uniprot_ids"])
     newOrthologyMetadata.push(meta)
     this.setState({orthologyMetadata:newOrthologyMetadata})
   }
