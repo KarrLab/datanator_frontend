@@ -122,6 +122,7 @@
     "typescript": "^3.5.3"
   },
   "jest": {
+"collectCoverage": false,
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,ts,tsx}",
       "!src/**/*.d.ts"
