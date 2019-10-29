@@ -23,9 +23,9 @@ const store = createStore
 
 //jest.runAllTimers();
 
-const renderComponent = (molecule, organism) =>
+const renderComponent = (molecule, organism, abstract) =>
   render (
-    <MemoryRouter initialEntries={['/metabconcs/' + molecule + '/' + organism]}>
+    <MemoryRouter initialEntries={['/metabconcs/' + molecule + '/' + organism + '/' + abstract]}>
       <Route path="/metabconcs/:molecule/:organism/:abstract?/">
        <Provider store={store}>
         <Metabconcs />
@@ -37,7 +37,7 @@ const renderComponent = (molecule, organism) =>
 
 it('render metabconcs page', async () => {
   // Render new instance in every test to prevent leaking state
-  const { getByTestId, getByText, getAllByText, getByPlaceholderText  } =  renderComponent('ATP', 'escherichia coli');
+  const { getByTestId, getByText, getAllByText, getByPlaceholderText  } =  renderComponent('ATP', 'escherichia coli', false);
 
   await waitForElement(() => getByText('9640', { exact: false }));
   expect(getByTestId('test_table'))
@@ -49,7 +49,7 @@ it('render metabconcs page', async () => {
 
 it('filter and update consensus', async () => {
   // Render new instance in every test to prevent leaking state
-  const {getByText, getAllByText, getByPlaceholderText  } =  renderComponent('ATP', 'escherichia coli');
+  const {getByText, getAllByText, getByPlaceholderText  } =  renderComponent('ATP', 'escherichia coli', false);
 
   await waitForElement(() => getByText('9640', { exact: false }));
 
@@ -73,7 +73,7 @@ it('filter and update consensus', async () => {
 
 it('test taxonomy filter', async () => {
   // Render new instance in every test to prevent leaking state
-  const { container, getByText, getAllByText, queryAllByText, queryByText, findAllByText, findByText, getByPlaceholderText  } =  renderComponent( 'ATP', 'Saccharomyces cerevisiae');
+  const { container, getByText, getAllByText, queryAllByText, queryByText, findAllByText, findByText, getByPlaceholderText  } =  renderComponent( 'ATP', 'Saccharomyces cerevisiae', false);
 
   await waitForElement(() => getByText('9640', { exact: false }));
   await waitForElement(() => queryAllByText('Escherichia', { exact: false }));
@@ -89,12 +89,27 @@ it('test taxonomy filter', async () => {
   await fireEvent.mouseDown(taxon_slider)
 
   await jest.runAllTimers();
-  expect(queryAllByText('Escherichia', { exact: false }).length).toEqual(0)
-  expect(queryAllByText('Saccharomyces', { exact: false }).length).toBeGreaterThan(0)
+  expect(queryAllByText('Escherichia', { exact: false }).length).toEqual(0) // make sure e coli was filtered out
+  expect(queryAllByText('Saccharomyces', { exact: false }).length).toBeGreaterThan(0) // make sure yeast is still in
   
 
   jest.runAllTimers();
   console.log("done")
+
+});
+
+
+it('test include similar compounds', async () => {
+  // Render new instance in every test to prevent leaking state
+  const { getByTestId, getByText, getAllByText, queryAllByText, queryByText, findAllByText, findByText, getByPlaceholderText  } =  renderComponent( 'ATP', 'Saccharomyces cerevisiae', true);
+
+  //await waitForElement(() => getByTestId("tanitomo_button"));
+  await waitForElement(() => getByText("Molecular Similarity"));
+  //await fireEvent.click(getByTestId("tanitomo_button"))
+  jest.runAllTimers();
+
+  expect(getByText("Molecular Similarity"))
+ 
 
 
 

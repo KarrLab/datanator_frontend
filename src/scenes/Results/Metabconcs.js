@@ -73,11 +73,11 @@ class MetabConcs extends Component {
           this.props.match.params.molecule +
           '/' +
           this.props.match.params.organism +
-          '/True',
+          '/true',
       });
     }
 
-    if (!(this.props.match.params.abstract == 'True')) {
+    if (!(this.props.match.params.abstract == 'true')) {
       if (this.props.moleculeAbstract==true){
       this.props.dispatch(abstractMolecule(false));
       }
@@ -95,7 +95,7 @@ class MetabConcs extends Component {
 
   getSearchData() {
     let abs_default = false
-    if (this.props.match.params.abstract)
+    if (this.props.match.params.abstract == "true")
     { 
       abs_default = true
     }

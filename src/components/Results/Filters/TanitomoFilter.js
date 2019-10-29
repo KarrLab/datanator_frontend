@@ -57,7 +57,7 @@ return (
           <div className="slider_bar2">
 
             {!this.props.tanitomo && (
-              <Button type="primary" onClick={() => this.setAbstractUrl()}>
+              <Button type="primary" onClick={() => this.setAbstractUrl()} data-testid = "tanitomo_button">
                 {' '}
                 Include Similar Compounds{' '}
               </Button>
