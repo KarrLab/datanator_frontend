@@ -2,43 +2,22 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import BootstrapTable from 'react-bootstrap-table-next';
-import axios from 'axios';
-import filterFactory, {
-  textFilter,
-  selectFilter,
-} from 'react-bootstrap-table2-filter';
-import ReactDOM from 'react-dom';
+
 import {
   Input,
-  Col,
-  Row,
-  Select,
-  InputNumber,
-  DatePicker,
-  AutoComplete,
-  Cascade,
-  Button,
 } from 'antd';
 import 'antd/dist/antd.css';
 import ConcentrationsTable from '~/components/Results/ConcentrationsTable.js';
 import ConcSearch from '~/components/SearchField/ConcSearch.js';
 import { PropTypes } from 'react';
-import { BrowserRouter, Redirect } from 'react-router-dom';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import {Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
 import './MetabConcs.css';
 
 import { getSearchData } from '~/services/MongoApi';
-import { MetaboliteInput } from '~/components/SearchField/MetaboliteInput';
-import { OrganismInput } from '~/components/SearchField/OrganismInput';
-import { setNewUrl, abstractMolecule } from '~/data/actions/pageAction';
-
-import store from '~/data/Store';
+import { abstractMolecule } from '~/data/actions/pageAction';
 import {
-  getTotalColumns,
-  filter_taxon,
   set_lineage,
   setTotalData,
 } from '~/data/actions/resultsAction';
@@ -56,7 +35,7 @@ class MetabConcs extends Component {
       data_arrived: false,
       newSearch: false,
       new_url: '',
-      tanitomo: false
+      tanitomo: false,
     };
 
     this.getNewSearch = this.getNewSearch.bind(this);
@@ -70,24 +49,9 @@ class MetabConcs extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (
-      this.props.moleculeAbstract == true &&
-      prevProps.moleculeAbstract == false
-    ) {
-      this.setState({
-        newSearch: true,
-        new_url:
-          '/metabconcs/' +
-          this.props.match.params.molecule +
-          '/' +
-          this.props.match.params.organism +
-          '/true',
-      });
-    }
-
     if (!(this.props.match.params.abstract == 'true')) {
-      if (this.props.moleculeAbstract==true){
-      this.props.dispatch(abstractMolecule(false));
+      if (this.props.moleculeAbstract == true) {
+        this.props.dispatch(abstractMolecule(false));
       }
     }
 
@@ -102,24 +66,25 @@ class MetabConcs extends Component {
   }
 
   getSearchData() {
-    let abs_default = false
-    if (this.props.match.params.abstract == "true")
-    { 
-      abs_default = true
+    let abs_default = false;
+    if (this.props.match.params.abstract == 'true') {
+      abs_default = true;
     }
     getSearchData([
-      'metabolites/concentration/?abstract=' + abs_default + '&species='
-      + this.props.match.params.organism + '&metabolite=' + this.props.match.params.molecule
-    ]).then(response => {
-      this.formatData(response.data);
-    }).catch(err => {
-    alert("Nothing Found");
-    this.setState({ orig_json: null })
-  }
-
-    );
-  
-
+      'metabolites/concentration/?abstract=' +
+        abs_default +
+        '&species=' +
+        this.props.match.params.organism +
+        '&metabolite=' +
+        this.props.match.params.molecule,
+    ])
+      .then(response => {
+        this.formatData(response.data);
+      })
+      .catch(err => {
+        alert('Nothing Found');
+        this.setState({ orig_json: null });
+      });
   }
 
   getNewSearch(response) {
@@ -132,7 +97,6 @@ class MetabConcs extends Component {
       this.setState({ newSearch: true });
     }
   }
-
 
   formatData(data) {
     if (data != null) {
@@ -237,7 +201,6 @@ class MetabConcs extends Component {
         }
       }
 
-      
       this.props.dispatch(setTotalData(f_concentrations));
       this.setState({
         data_arrived: true,
@@ -255,7 +218,6 @@ class MetabConcs extends Component {
       return <Redirect to={this.state.new_url} push />;
     }
 
-    const Search = Input.Search;
     let styles = {
       marginTop: 50,
     };
@@ -275,10 +237,9 @@ class MetabConcs extends Component {
         <br />
         <div className="results">
           <ConcentrationsTable
-            //json_data={this.state.orig_json}
-            data_arrived = {this.state.data_arrived}
+            data_arrived={this.state.data_arrived}
             handleAbstract={this.getAbstractSearch}
-            tanitomo = {this.state.tanitomo}
+            tanitomo={this.state.tanitomo}
           />
         </div>
       </div>

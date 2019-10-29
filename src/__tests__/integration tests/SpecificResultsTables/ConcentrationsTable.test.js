@@ -43,7 +43,7 @@ jest.runAllTimers();
 
 
 
-test('hello world', async () => {
+test.skip('hello world', async () => {
 
   await getSearchData([
   'metabolites/concentration/?abstract=' + false + '&species='

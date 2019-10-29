@@ -109,9 +109,18 @@ it('test include similar compounds', async () => {
   jest.runAllTimers();
 
   expect(getByText("Molecular Similarity"))
- 
+
+});
 
 
+it('mocks window.location.reload', () => {
+  const { location } = window;
+  delete window.location;
+  window.location = { reload: jest.fn() };
 
+  expect(window.location.reload).not.toHaveBeenCalled();
+  window.location.reload();
+  expect(window.location.reload).toHaveBeenCalled();
+  window.location = location;
 });
 
