@@ -153,7 +153,7 @@ class OrthologyDefinition extends Component {
       {
             dataField: 'ko_number',
             text: 'KO Number',
-            formatter :this.colFormatterKO,
+            //formatter :this.colFormatterKO,
 
           },
       

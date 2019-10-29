@@ -169,7 +169,7 @@ class ProteinPage extends Component {
 
     for (var i = start; i < data.length; i++) {
       let meta = {}
-      meta["ko_number"] = [data[i].ko_number, data[i].uniprot_id]
+      meta["ko_number"] = data[i].ko_number
       meta["ko_name"] = data[i].ko_name
       let uni_ids = data[i].uniprot_ids
       //meta["uniprot_ids"] = uni_ids
@@ -184,7 +184,7 @@ class ProteinPage extends Component {
     let start = 0
     let uni_ids = []
     let meta = {}
-    meta["ko_number"] = [data[0].ko_number, data[0].uniprot_id]
+    meta["ko_number"] = data[0].ko_number
     meta["ko_name"] = data[0].ko_name
 
     for (var i = start; i < data.length; i++) {
