@@ -1,31 +1,12 @@
 import React, { Component } from 'react';
-import BootstrapTable from 'react-bootstrap-table-next';
-//import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
-import filterFactory, {
-  textFilter,
-  selectFilter,
-  numberFilter,
-  Comparator,
-} from 'react-bootstrap-table2-filter';
-import ReactDOM from 'react-dom';
-import { Input, Button } from 'antd';
 import 'antd/dist/antd.css';
-import Chart3 from './Chart3.js';
-import { Slider } from 'antd';
 import { withRouter } from 'react-router';
-
 import './ConcentrationsTable.css';
-
-import { ResultsTable, getSelectedData } from './ResultsTable.js';
-//import { getTotalColumns } from './Columns2.js';
-
+import { ResultsTable } from './ResultsTable.js';
 import { TaxonFilter } from '~/components/Results/Filters/TaxonFilter';
 import { TanitomoFilter } from '~/components/Results/Filters/TanitomoFilter';
-
 import { Consensus } from './Consensus.js';
 import { connect } from 'react-redux';
-
-
 
 @connect(store => {
   return {
@@ -39,22 +20,17 @@ class ConcentrationsTable extends Component {
     this.state = {
       asked_consensus: false,
       tanitomo: false,
-
       f_concentrations: [],
-
     };
     this.handleUpdate = this.handleUpdate.bind(this);
   }
-
 
   handleUpdate() {
     this.setState({
       asked_consensus: true,
       consensus_prompt: 'Update Consensus',
     });
-    //this.props.dispatch(filter_taxon(3))
   }
-
 
   render() {
     console.log('Rendering ConcentrationsTable');
