@@ -56,6 +56,7 @@ class MetabConcs extends Component {
       data_arrived: false,
       newSearch: false,
       new_url: '',
+      tanitomo: false
     };
 
     this.getNewSearch = this.getNewSearch.bind(this);
@@ -277,6 +278,7 @@ class MetabConcs extends Component {
             //json_data={this.state.orig_json}
             data_arrived = {this.state.data_arrived}
             handleAbstract={this.getAbstractSearch}
+            tanitomo = {this.state.tanitomo}
           />
         </div>
       </div>

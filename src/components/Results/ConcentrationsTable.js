@@ -220,7 +220,7 @@ class ConcentrationsTable extends Component {
       <div className="total_table">
         <div className="slider">
           <TaxonFilter />
-          <TanitomoFilter tanitomo={this.state.tanitomo} />
+          <TanitomoFilter tanitomo={this.props.tanitomo} />
         </div>
         <div className="results">
           <div className="concTable">
@@ -237,7 +237,7 @@ class ConcentrationsTable extends Component {
                 'growth_conditions',
                 'growth_media',
               ]}
-              potential_columns={{'tanitomo':this.state.tanitomo}}
+              potential_columns={{'tanitomo':this.props.tanitomo}}
             />
           </div>
           <div className="consensus">
