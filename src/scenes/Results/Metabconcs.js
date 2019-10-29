@@ -36,6 +36,12 @@ import { OrganismInput } from '~/components/SearchField/OrganismInput';
 import { setNewUrl, abstractMolecule } from '~/data/actions/pageAction';
 
 import store from '~/data/Store';
+import {
+  getTotalColumns,
+  filter_taxon,
+  set_lineage,
+  setTotalData,
+} from '~/data/actions/resultsAction';
 
 @connect(store => {
   return {
@@ -47,12 +53,13 @@ class MetabConcs extends Component {
     super(props);
     this.state = {
       dataSource: [],
-      orig_json: null,
+      data_arrived: false,
       newSearch: false,
       new_url: '',
     };
 
     this.getNewSearch = this.getNewSearch.bind(this);
+    this.formatData = this.formatData.bind(this);
   }
   componentDidMount() {
     this.setState({
@@ -103,7 +110,7 @@ class MetabConcs extends Component {
       'metabolites/concentration/?abstract=' + abs_default + '&species='
       + this.props.match.params.organism + '&metabolite=' + this.props.match.params.molecule
     ]).then(response => {
-      this.setState({ orig_json: response.data });
+      this.formatData(response.data);
     }).catch(err => {
     alert("Nothing Found");
     this.setState({ orig_json: null })
@@ -122,6 +129,121 @@ class MetabConcs extends Component {
     ) {
       this.setState({ new_url: url });
       this.setState({ newSearch: true });
+    }
+  }
+
+
+  formatData(data) {
+    if (data != null) {
+      var f_concentrations = [];
+
+      this.props.dispatch(set_lineage(data[2][0]));
+
+      for (var n = data[0].length; n > 0; n--) {
+        if (data[0][n - 1].tanitomo_similarity < 1) {
+          this.setState({ tanitomo: true });
+        } else {
+          this.setState({ tanitomo: false });
+        }
+
+        var concs = data[0][n - 1].concentrations;
+        if (concs != null) {
+          if (!Array.isArray(concs.concentration)) {
+            for (var key in concs) {
+              // check if the property/key is defined in the object itself, not in parent
+              if (concs.hasOwnProperty(key)) {
+                concs[key] = [concs[key]];
+              }
+            }
+          }
+          for (var i = concs.concentration.length - 1; i >= 0; i--) {
+            var growth_phase = '';
+            var organism = 'Escherichia coli';
+
+            if (concs.growth_status[i] != null) {
+              if (
+                concs.growth_status[i].toLowerCase().indexOf('stationary') >= 0
+              ) {
+                growth_phase = 'Stationary Phase';
+              } else if (
+                concs.growth_status[i].toLowerCase().indexOf('log') >= 0
+              ) {
+                growth_phase = 'Log Phase';
+              }
+            }
+            if ('strain' in concs) {
+              if (concs.strain != null) {
+                if (concs.strain[i] != null) {
+                  organism = organism + ' ' + concs.strain[i];
+                }
+              }
+            }
+
+            f_concentrations.push({
+              name: data[0][n - 1].name,
+              concentration: parseFloat(concs.concentration[i]),
+              units: concs.concentration_units[i],
+              error: concs.error[i],
+              growth_phase: growth_phase,
+              organism: organism,
+              growth_conditions: concs.growth_system[i],
+              growth_media: concs.growth_media[i],
+              taxonomic_proximity: data[0][n - 1].taxon_distance,
+              tanitomo_similarity: data[0][n - 1].tanitomo_similarity,
+            });
+          }
+        }
+      }
+
+      for (var n = data[1].length; n > 0; n--) {
+        if (data[1][n - 1].tanitomo_similarity < 1) {
+          this.setState({ tanitomo: true });
+        }
+
+        var concs = data[1][n - 1].concentrations;
+        if (concs != null) {
+          if (!Array.isArray(concs.concentration)) {
+            for (var key in concs) {
+              // check if the property/key is defined in the object itself, not in parent
+              if (concs.hasOwnProperty(key)) {
+                concs[key] = [concs[key]];
+              }
+            }
+          }
+          for (var i = concs.concentration.length - 1; i >= 0; i--) {
+            var growth_phase = '';
+            var organism = data[1][n - 1].species;
+            if ('strain' in concs) {
+              if (concs.strain != null) {
+                if (concs.strain[i] != null) {
+                  organism = organism + ' ' + concs.strain[i];
+                }
+              }
+            }
+
+            f_concentrations.push({
+              name: data[1][n - 1].name,
+              concentration: parseFloat(concs.concentration[i]),
+              units: concs.concentration_units[i],
+              error: concs.error[i],
+              growth_phase: growth_phase,
+              organism: organism,
+              growth_media: concs.growth_media[i],
+              taxonomic_proximity: data[1][n - 1].taxon_distance,
+              tanitomo_similarity: data[1][n - 1].tanitomo_similarity,
+            });
+          }
+        }
+      }
+
+      
+      this.props.dispatch(setTotalData(f_concentrations));
+      this.setState({
+        data_arrived: true,
+        //displayed_data: f_concentrations
+      });
+    } else {
+      //alert('Nothing Found');
     }
   }
 
@@ -152,7 +274,8 @@ class MetabConcs extends Component {
         <br />
         <div className="results">
           <ConcentrationsTable
-            json_data={this.state.orig_json}
+            //json_data={this.state.orig_json}
+            data_arrived = {this.state.data_arrived}
             handleAbstract={this.getAbstractSearch}
           />
         </div>

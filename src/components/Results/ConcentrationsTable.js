@@ -212,7 +212,7 @@ class ConcentrationsTable extends Component {
     console.log("Rendering ConcentrationsTable")
     let basic_columns
 
-    if (!this.props.json_data) {
+    if (!this.props.data_arrived) {
       return(<div></div>)
     }
     else{
