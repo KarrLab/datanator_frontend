@@ -37,9 +37,6 @@ it('render protein page', async () => {
   const { getByTestId, getByText, getAllByText, getByPlaceholderText  } =  renderComponent('uniprot', 'P01112');
 
   await waitForElement(() => getByText('K02833', { exact: false }));
-  //expect(getByTestId('test_table'))
-  //expect(getAllByText('Escherichia coli K12 NCM3722', { exact: false }))
-  //expect(getAllByText('Saccharomyces cerevisiae', { exact: false }))
 
 });
 

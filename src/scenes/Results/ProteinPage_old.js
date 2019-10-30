@@ -109,11 +109,9 @@ class ProteinPage extends Component {
     this.setState({ newSearch: false });
     this.setState({ new_url: url });
     this.getSearchData();
-    console.log("yo yo man")
   }
 
   getSearchData() {
-    console.log("Calling getSearchData")
     if (this.props.match.params.searchType == 'uniprot') {
       getSearchData([
         'proteins',
@@ -143,7 +141,6 @@ class ProteinPage extends Component {
   }
 
   formatProteinMetadata(data){
-    console.log("Calling formatProteinMetadata")
     let newProteinMetadata = []
     let start = 0
     console.log(data[0])
@@ -169,7 +166,6 @@ class ProteinPage extends Component {
 
 
   formatOrthologyMetadata(data){
-    console.log("Calling formatOrthologyMetadata")
     let newOrthologyMetadata = []
     let start = 0
 
@@ -186,7 +182,6 @@ class ProteinPage extends Component {
   }
 
   formatOrthologyMetadataUniprot(data){
-    console.log("Calling formatOrthologyMetadataUniprot")
     let newOrthologyMetadata = []
     let start = 0
     let uni_ids = []
@@ -210,7 +205,6 @@ class ProteinPage extends Component {
 
 
   processProteinData(data){
-    console.log("Calling processProteinData")
     if (typeof(data) != "string"){
       this.setState({ orig_json: data })
       if (this.props.match.params.searchType == 'uniprot') {
@@ -264,7 +258,6 @@ class ProteinPage extends Component {
   }
 
    processProteinDataUniprot(data) {
-    console.log("Calling processProteinDataUniprot")
     if (typeof(data) != "string"){
       this.setState({ orig_json: data })
       var f_abundances = [];
@@ -311,7 +304,6 @@ class ProteinPage extends Component {
 
 
   formatData(data, uniprot_to_dist) {
-    console.log("Calling formatData")
     var f_abundances = [];
     console.log(data)
     if ((data != null) && (typeof(data) != "string")) {
@@ -347,7 +339,6 @@ class ProteinPage extends Component {
 
 
   getNewSearch(url) {
-    console.log("Calling getNewSearch")
     if (url !== this.state.new_url) {
       this.setState({ newSearch: true, new_url: url });
     }
