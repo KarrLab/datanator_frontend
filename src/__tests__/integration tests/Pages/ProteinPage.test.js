@@ -62,3 +62,13 @@ it('filter and update consensus', async () => {
   expect(getAllByText('.745', { exact: false }))
 
 });
+
+
+
+it('render protein name search', async () => {
+  // Render new instance in every test to prevent leaking state
+  const {getByText, getAllByText, getByPlaceholderText  } =  renderComponent('name', 'phosphofructokinase', false);
+
+  await waitForElement(() => getByText('F4JGR5,', { exact: false }));
+
+});
