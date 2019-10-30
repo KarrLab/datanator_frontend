@@ -93,6 +93,7 @@ class ProteinPage extends Component {
       this.props.match.params.searchType != prevProps.match.params.searchType
     ) {
       this.checkURL();
+    console.log('chicken');
     }
   }
 
@@ -157,6 +158,7 @@ class ProteinPage extends Component {
 
     }
     console.log(newProteinMetadata)
+    console.log("baloon animal")
     console.log(data)
     this.setState({proteinMetadata:newProteinMetadata})
 
@@ -197,6 +199,7 @@ class ProteinPage extends Component {
     console.log(meta["uniprot_ids"])
     newOrthologyMetadata.push(meta)
     this.setState({orthologyMetadata:newOrthologyMetadata})
+    this.formatProteinMetadata(data)
   }
 
 
@@ -288,7 +291,7 @@ class ProteinPage extends Component {
         'meta/meta_combo?' + end_query
       ]).then(response => {this.formatOrthologyMetadataUniprot(response.data);
         this.formatData(response.data, uniprot_to_dist)
-        this.setState({proteinMetadata:null});
+        //this.setState({proteinMetadata:null});
         console.log(response.data)
       });
 
