@@ -195,7 +195,7 @@ class ProteinPage extends Component {
     meta["ko_name"] = data[0].ko_name
 
     for (var i = start; i < data.length; i++) {
-      uni_ids.push(data[i].uniprot_id)
+      uni_ids.push(data[i].uniprot_id + " (" + data[i].species_name + ") ")
 
     }
     meta["uniprot_ids"] = uni_ids
