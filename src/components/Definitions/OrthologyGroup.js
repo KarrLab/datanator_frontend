@@ -105,8 +105,9 @@ class UniprotDefinition extends Component {
   colFormatter = (cell, row) => {
     console.log(cell)
     if (cell){
-      console.log("grumble")
+      console.log("grumble2")
     let url = "/protein/uniprot/" + cell
+
     return (
       <Link to={url}>
         {cell.toString()}
@@ -201,10 +202,9 @@ class OrthologyDefinition extends Component {
     if (cell){
       let links = []
       console.log("grumble")
-    let url = "/protein/uniprot/" + cell
 
     {for (var i = cell.length - 1; i >= 0; i--) {
-        let url = "/protein/uniprot/" + cell[i]
+        let url = "/protein/uniprot/" + cell[i].toString().split(" (")[0]
         links.push(
           <Link to={url}>
         {cell[i].toString() + ", "}
