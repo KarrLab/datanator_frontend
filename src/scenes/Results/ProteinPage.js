@@ -67,6 +67,7 @@ class ProteinPage extends Component {
       orig_json: null,
       newSearch: false,
       new_url: '',
+      isFlushed: false,
     };
 
     this.getNewSearch = this.getNewSearch.bind(this);
@@ -91,10 +92,25 @@ class ProteinPage extends Component {
       this.props.match.params.organism != prevProps.match.params.organism ||
       this.props.match.params.searchType != prevProps.match.params.searchType
     ) {
+      this.setState({search: '',
+      proteinMetadata:[
+        ],
+      orthologyMetadata:[],
+      f_abundances:null,
+      organism: '',
+      dataSource: [],
+      orig_json: null,
+      newSearch: false,
+      new_url: '',
+      isFlushed: false,
+      })
       this.checkURL();
+
     console.log('chicken');
     }
   }
+
+
 
   checkURL() {
     console.log("Calling checkURL")

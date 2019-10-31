@@ -108,7 +108,7 @@ class UniprotDefinition extends Component {
     let url = "/protein/uniprot/" + cell
 
     return (
-      <Link to={url}>
+      <Link  to={url}>
         {cell.toString()}
       </Link>
     )
@@ -205,7 +205,8 @@ class OrthologyDefinition extends Component {
     {for (var i = cell.length - 1; i >= 0; i--) {
         let url = "/protein/uniprot/" + cell[i].toString().split(" (")[0]
         links.push(
-          <Link to={url}>
+          //<Link to={url}>
+      <Link to= {url}>
         {cell[i].toString() + ", "}
       </Link>
       )
