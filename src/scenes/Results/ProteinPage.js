@@ -1,4 +1,3 @@
-// App.js
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -98,6 +97,7 @@ class ProteinPage extends Component {
   }
 
   checkURL() {
+    console.log("Calling checkURL")
     let url =
       '/protein/' +
       this.props.match.params.searchType +
@@ -172,6 +172,7 @@ class ProteinPage extends Component {
     console.log("Calling formatOrthologyMetadata")
     let newOrthologyMetadata = []
     let start = 0
+    let end_query = ""
 
     for (var i = start; i < data.length; i++) {
       let meta = {}
@@ -179,15 +180,35 @@ class ProteinPage extends Component {
       meta["ko_name"] = data[i].ko_name
       let uni_ids = data[i].uniprot_ids
       //meta["uniprot_ids"] = uni_ids
-      meta["uniprot_ids"] = Object.keys(uni_ids) .filter(function(k){return uni_ids[k]}) .map(String)
-      newOrthologyMetadata.push(meta)
+      //meta["uniprot_ids"]
+      let filtered_ids = Object.keys(uni_ids) .filter(function(k){return uni_ids[k]}) .map(String)
+
+      for (var f = filtered_ids.length - 1; f >= 0; f--) {
+        end_query = end_query + "uniprot_id=" + filtered_ids[f] +"&"
+      }
+      console.log(end_query)
+
+
+     getSearchData([
+        'proteins',
+        'meta/meta_combo?' + end_query
+      ]).then(response => {this.formatOrthologyMetadataUniprot(response.data);
+        //this.formatData(response.data, uniprot_to_dist)
+        newOrthologyMetadata.push(meta)
+        //this.setState({proteinMetadata:null});
+        console.log(response.data)
+      });
+
+
+
+      //newOrthologyMetadata.push(meta)
     }
     this.setState({orthologyMetadata:newOrthologyMetadata})
   }
 
   formatOrthologyMetadataUniprot(data){
     console.log("Calling formatOrthologyMetadataUniprot")
-    let newOrthologyMetadata = []
+    let newOrthologyMetadata = this.state.orthologyMetadata
     let start = 0
     let uni_ids = []
     let meta = {}
@@ -204,7 +225,7 @@ class ProteinPage extends Component {
     console.log(meta["uniprot_ids"])
     newOrthologyMetadata.push(meta)
     this.setState({orthologyMetadata:newOrthologyMetadata})
-    this.formatProteinMetadata(data)
+    //this.formatProteinMetadata(data)
   }
 
 
@@ -297,6 +318,7 @@ class ProteinPage extends Component {
         'proteins',
         'meta/meta_combo?' + end_query
       ]).then(response => {this.formatOrthologyMetadataUniprot(response.data);
+        this.formatProteinMetadata(response.data)
         this.formatData(response.data, uniprot_to_dist)
         //this.setState({proteinMetadata:null});
         console.log(response.data)
