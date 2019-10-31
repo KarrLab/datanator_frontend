@@ -128,7 +128,6 @@ class ProteinPage extends Component {
         'meta/meta_single/?name=' + this.props.match.params.molecule
       ]).then(response => {this.formatOrthologyMetadata(response.data);
         this.setState({proteinMetadata:null});
-        console.log(response.data)
       });
       this.setState({f_abundances:null})
     }
@@ -146,7 +145,7 @@ class ProteinPage extends Component {
     console.log("Calling formatProteinMetadata")
     let newProteinMetadata = []
     let start = 0
-    console.log(data[0])
+    //console.log(data[0])
       if (data[0].length==1){
         start = 1
       }
@@ -160,9 +159,9 @@ class ProteinPage extends Component {
 
 
     }
-    console.log(newProteinMetadata)
+    //console.log(newProteinMetadata)
     console.log("baloon animal")
-    console.log(data)
+    //console.log(data)
     this.setState({proteinMetadata:newProteinMetadata})
 
   }
@@ -196,7 +195,7 @@ class ProteinPage extends Component {
         //this.formatData(response.data, uniprot_to_dist)
         newOrthologyMetadata.push(meta)
         //this.setState({proteinMetadata:null});
-        console.log(response.data)
+        //console.log(response.data)
       });
 
 
@@ -222,7 +221,7 @@ class ProteinPage extends Component {
     meta["uniprot_ids"] = uni_ids
     //meta["uniprot_ids"] = Object.keys(uni_ids) .filter(function(k){return uni_ids[k]}) .map(String)
     console.log("corn cob")
-    console.log(meta["uniprot_ids"])
+    //console.log(meta["uniprot_ids"])
     newOrthologyMetadata.push(meta)
     this.setState({orthologyMetadata:newOrthologyMetadata})
     //this.formatProteinMetadata(data)
@@ -253,10 +252,10 @@ class ProteinPage extends Component {
       }
       meta["ko_number"] = [data[0].ko_number, uniprot_id]
       newOrthologyMetadata.push(meta)
-      console.log(newOrthologyMetadata)
+      //console.log(newOrthologyMetadata)
       console.log("octo")
       this.setState({orthologyMetadata:newOrthologyMetadata})
-      console.log(data)
+      //console.log(data)
 
       
       
@@ -274,7 +273,7 @@ class ProteinPage extends Component {
         let meta = {}
         meta["ko_number"] = [response.data[0].ko_number, response.data[1].uniprot_id]
         newOrthologyMetadata.push(meta)
-        console.log(newOrthologyMetadata)
+        //console.log(newOrthologyMetadata)
         console.log("octo")
         this.setState({orthologyMetadata:newOrthologyMetadata})
 
@@ -305,13 +304,13 @@ class ProteinPage extends Component {
           }
         }
       }
-      console.log(uniprot_to_dist)
+      //console.log(uniprot_to_dist)
       let total_ids = Object.keys(uniprot_to_dist)
       let end_query = ""
       for (var f = total_ids.length - 1; f >= 0; f--) {
         end_query = end_query + "uniprot_id=" + total_ids[f] +"&"
       }
-      console.log(end_query)
+      //console.log(end_query)
 
 
      getSearchData([
@@ -321,7 +320,7 @@ class ProteinPage extends Component {
         this.formatProteinMetadata(response.data)
         this.formatData(response.data, uniprot_to_dist)
         //this.setState({proteinMetadata:null});
-        console.log(response.data)
+        //console.log(response.data)
       });
 
 
@@ -335,15 +334,15 @@ class ProteinPage extends Component {
   formatData(data, uniprot_to_dist) {
     console.log("Calling formatData")
     var f_abundances = [];
-    console.log(data)
+    //console.log(data)
     if ((data != null) && (typeof(data) != "string")) {
-      console.log(data)
+      //console.log(data)
       let start = 0
       if (Object.size(data[0])==1){
         start = 1
       }
       for (var i = start; i < data.length; i++) {
-        console.log(data[i])
+        //console.log(data[i])
         let uniprot = data[i]
         for (var n = 0; n < uniprot.abundances.length; n++){
           let row = {}
@@ -357,7 +356,7 @@ class ProteinPage extends Component {
           f_abundances.push(row)
         }
       }
-      console.log(f_abundances)
+      //console.log(f_abundances)
       this.setState({
         f_abundances: f_abundances,
       });
@@ -380,7 +379,6 @@ class ProteinPage extends Component {
       console.log('Redirecting');
       return <Redirect to={this.state.new_url} push />;
     }
-    console.log(this.state.proteinMetadata)
     console.log('Rendering ProteinPage');
 
     const Search = Input.Search;

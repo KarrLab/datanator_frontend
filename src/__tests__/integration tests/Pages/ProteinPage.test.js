@@ -69,6 +69,6 @@ it('render protein name search', async () => {
   // Render new instance in every test to prevent leaking state
   const {getByText, getAllByText, getByPlaceholderText  } =  renderComponent('name', 'phosphofructokinase', false);
 
-  await waitForElement(() => getByText('F4JGR5,', { exact: false }));
+  await waitForElement(() => getByText('F4JGR5 (A.thaliana)', { exact: false }));
 
 });

@@ -195,7 +195,7 @@ class ProtSearch extends Component {
       };
     } else {
       styles = {
-        'text-align': 'left',
+        'textAlign': 'left',
         display: 'flex',
         flexDirection: 'row',
       };
