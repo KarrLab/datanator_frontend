@@ -184,22 +184,26 @@ class ProteinPage extends Component {
       //meta["uniprot_ids"]
       let filtered_ids = Object.keys(uni_ids) .filter(function(k){return uni_ids[k]}) .map(String)
       console.log("TOTAL KO: " +filtered_ids)
+      if (filtered_ids.length > 0){
 
-      for (var f = filtered_ids.length - 1; f >= 0; f--) {
-        end_query = end_query + "uniprot_id=" + filtered_ids[f] +"&"
+
+
+        for (var f = filtered_ids.length - 1; f >= 0; f--) {
+          end_query = end_query + "uniprot_id=" + filtered_ids[f] +"&"
+        }
+        console.log("retrieving: " + end_query)
+
+
+       getSearchData([
+          'proteins',
+          'meta/meta_combo?' + end_query
+        ]).then(response => {this.formatOrthologyMetadataUniprot(response.data);
+          //this.formatData(response.data, uniprot_to_dist)
+          newOrthologyMetadata.push(meta)
+          //this.setState({proteinMetadata:null});
+          //console.log(response.data)
+        });
       }
-      console.log("retrieving: " + end_query)
-
-
-     getSearchData([
-        'proteins',
-        'meta/meta_combo?' + end_query
-      ]).then(response => {this.formatOrthologyMetadataUniprot(response.data);
-        //this.formatData(response.data, uniprot_to_dist)
-        newOrthologyMetadata.push(meta)
-        //this.setState({proteinMetadata:null});
-        //console.log(response.data)
-      });
 
 
 
