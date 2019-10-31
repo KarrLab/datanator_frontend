@@ -171,21 +171,24 @@ class ProteinPage extends Component {
     console.log("Calling formatOrthologyMetadata")
     let newOrthologyMetadata = []
     let start = 0
-    let end_query = ""
+    //let end_query = ""
 
     for (var i = start; i < data.length; i++) {
+      let end_query = ""
       let meta = {}
       meta["ko_number"] = data[i].ko_number
+      console.log("TOTAL KO: " + data[i].ko_number)
       meta["ko_name"] = data[i].ko_name
       let uni_ids = data[i].uniprot_ids
       //meta["uniprot_ids"] = uni_ids
       //meta["uniprot_ids"]
       let filtered_ids = Object.keys(uni_ids) .filter(function(k){return uni_ids[k]}) .map(String)
+      console.log("TOTAL KO: " +filtered_ids)
 
       for (var f = filtered_ids.length - 1; f >= 0; f--) {
         end_query = end_query + "uniprot_id=" + filtered_ids[f] +"&"
       }
-      console.log(end_query)
+      console.log("retrieving: " + end_query)
 
 
      getSearchData([
@@ -202,7 +205,7 @@ class ProteinPage extends Component {
 
       //newOrthologyMetadata.push(meta)
     }
-    this.setState({orthologyMetadata:newOrthologyMetadata})
+    //this.setState({orthologyMetadata:newOrthologyMetadata})
   }
 
   formatOrthologyMetadataUniprot(data){
