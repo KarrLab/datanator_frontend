@@ -18,6 +18,14 @@ const selectOptions = {
 };
 
 
+function swap(json){
+  var ret = {};
+  for(var key in json){
+    ret[json[key]] = key;
+  }
+  return ret;
+}
+
 
 @connect(store => {
   return {
@@ -52,26 +60,38 @@ class TaxonFilter extends Component {
   formatSlider(lineage) {
     //const lineage = this.props.lineage;
     console.log(this.props.lineage)
-    this.setState({ sliderLen: lineage.length - 1 });
-    this.setState({ sliderValue: lineage.length - 1 });
+    this.setState({ sliderLen: 26 });
+    this.setState({ sliderValue: 26 });
 
     var new_marks = {};
     var new_numToNode = {};
     var n = lineage.length - 1;
     for (var i = 0; i < lineage.length; i++) {
-      new_numToNode[i] = lineage[n];
-      new_marks[i] = i;
+      new_numToNode[Object.values(lineage[i])[0] - 1 ] = Object.keys(lineage[i])[0];
+      //new_marks[i] = Object.values(lineage[i])[0] - 1 ;
+      new_marks[Object.values(lineage[i])[0] - 1] = Object.values(lineage[i])[0] - 1 
       n--;
     }
     console.log(new_numToNode)
 
-    new_numToNode = {}
-    new_numToNode = Object.assign({}, new_numToNode, lineage[n])
-    for (var i = 0; i < lineage.length; i++) {
-      new_numToNode = Object.assign({}, new_numToNode, lineage[n])
-      n--;
+    //new_numToNode = lineage
+
+    
+    /*
+    let newer_numToNode = {}
+    //new_numToNode = Object.assign({}, new_numToNode, lineage[n])
+    for (var i = 0; i < new_numToNode.length; i++) {
+      newer_numToNode = Object.assign({}, newer_numToNode, new_numToNode[i])
+      i--;
     }
+    console.log(newer_numToNode)
+
+    new_numToNode = swap(newer_numToNode)
     console.log(new_numToNode)
+
+    */
+
+    
 
 
     this.setState({

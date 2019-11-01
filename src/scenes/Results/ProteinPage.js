@@ -182,7 +182,7 @@ class ProteinPage extends Component {
         ]).then(
 
         response => {
-          this.props.dispatch(set_lineage(response))
+          this.props.dispatch(set_lineage(response.data))
         });
 
       }
