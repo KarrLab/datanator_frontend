@@ -60,8 +60,9 @@ class TaxonFilter extends Component {
   formatSlider(lineage) {
     //const lineage = this.props.lineage;
     console.log(this.props.lineage)
-    this.setState({ sliderLen: 26 });
-    this.setState({ sliderValue: 26 });
+    let max = Object.values(lineage[lineage.length-1])[0] - 1 
+    this.setState({ sliderLen: max });
+    this.setState({ sliderValue: max });
 
     var new_marks = {};
     var new_numToNode = {};
