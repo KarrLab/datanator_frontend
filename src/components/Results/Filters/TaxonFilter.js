@@ -130,7 +130,7 @@ class TaxonFilter extends Component {
     console.log("Rendering TaxonFilter")
         
 return (
-        <div className="slider">
+        <div className="taxon_slider">
           Taxonomic Distance
           <div className="taxon_slider_bar">
             <Slider

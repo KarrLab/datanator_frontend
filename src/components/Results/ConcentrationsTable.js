@@ -41,6 +41,7 @@ class ConcentrationsTable extends Component {
       return (
         <div className="total_table">
           <div className="slider">
+          <img src={require('~/images/filter.png')} alt="results" />
             <TaxonFilter />
             <TanitomoFilter tanitomo={this.props.tanitomo} />
           </div>

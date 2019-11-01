@@ -19,18 +19,22 @@
   border-style: solid;
   border-color: #fcd1d1;
   flex-wrap: wrap;
-  flex-flow: row wrap
+  flex-flow: row wrap;
 
 
 }
 
 
 
-.slider .taxon_slider_bar {
-  width: 85%;
+.slider .taxon_slider {
+  width: 30%;
+  border-style: solid;
+  border-color: #fcd1d1;
 }
 .slider .slider_bar2 {
-  width: 25%;
+  width: 30%;
+  border-style: solid;
+  border-color: #fcd1d1;
 }
 
 .results .concTable{
