@@ -174,6 +174,8 @@ class ProteinPage extends Component {
       meta["protein_name"] = data[i].protein_name
       meta["gene_name"] = data[i].gene_name
       meta["organism"] = data[i].species_name
+      let root_species = {}
+      root_species[data[i].species_name] = 1
       newProteinMetadata.push(meta)
 
       getSearchData([
@@ -182,7 +184,7 @@ class ProteinPage extends Component {
         ]).then(
 
         response => {
-          this.props.dispatch(set_lineage(response.data))
+          this.props.dispatch(set_lineage([ root_species].concat(response.data)  ))
         });
 
       }
