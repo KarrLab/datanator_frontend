@@ -12,6 +12,7 @@
 
 
 .slider {
+  margin-top: 5px;
   background-color: #fceded;
   text-align: left;
   display:flex; 
