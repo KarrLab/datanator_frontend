@@ -52,6 +52,9 @@ class MetabConcs extends Component {
     if (!(this.props.match.params.abstract == 'true')) {
       if (this.props.moleculeAbstract == true) {
         this.props.dispatch(abstractMolecule(false));
+        let url = '/metabconcs/' + this.props.match.params.molecule + '/' + this.props.match.params.organism +"/"+ "true";
+        this.setState({ new_url: url });
+        this.setState({ newSearch: true });
       }
     }
 
