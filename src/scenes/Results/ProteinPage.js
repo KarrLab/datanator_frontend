@@ -36,6 +36,9 @@ import { UniprotDefinition, OrthologyDefinition } from '~/components/Definitions
 
 import { setNewUrl, abstractMolecule } from '~/data/actions/pageAction';
 import  '~/scenes/Results/ProteinPage.css';
+import {Header} from '~/components/Layout/Header/Header';
+import {Footer} from '~/components/Layout/Footer/Footer';
+
 import {
   set_lineage,
 } from '~/data/actions/resultsAction';
@@ -427,6 +430,7 @@ class ProteinPage extends Component {
     console.log(this.props.match.params.organism);
     return (
       <div className="container" style={styles}>
+      <Header/>
         <style>{'body { background-color: #f7fdff; }'}</style>
         <div className="search">
           <ProtSearch
@@ -456,6 +460,7 @@ class ProteinPage extends Component {
             handleAbstract={this.getAbstractSearch}
           />
         </div>
+        <Footer/>
       </div>
     );
   }

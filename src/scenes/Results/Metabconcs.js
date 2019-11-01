@@ -22,6 +22,10 @@ import {
   setTotalData,
 } from '~/data/actions/resultsAction';
 
+import {Header} from '~/components/Layout/Header/Header';
+import {Footer} from '~/components/Layout/Footer/Footer';
+
+
 @connect(store => {
   return {
     moleculeAbstract: store.page.moleculeAbstract,
@@ -227,6 +231,7 @@ class MetabConcs extends Component {
 
     return (
       <div className="container" style={styles}>
+      <Header/>
         <style>{'body { background-color: #f7fdff; }'}</style>
         <div className="search">
           <ConcSearch
@@ -245,6 +250,7 @@ class MetabConcs extends Component {
             tanitomo={this.state.tanitomo}
           />
         </div>
+        <Footer/>
       </div>
     );
   }
