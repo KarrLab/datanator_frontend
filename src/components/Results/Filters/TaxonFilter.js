@@ -51,6 +51,7 @@ class TaxonFilter extends Component {
 
   formatSlider(lineage) {
     //const lineage = this.props.lineage;
+    console.log(this.props.lineage)
     this.setState({ sliderLen: lineage.length - 1 });
     this.setState({ sliderValue: lineage.length - 1 });
 
@@ -62,6 +63,16 @@ class TaxonFilter extends Component {
       new_marks[i] = i;
       n--;
     }
+    console.log(new_numToNode)
+
+    new_numToNode = {}
+    new_numToNode = Object.assign({}, new_numToNode, lineage[n])
+    for (var i = 0; i < lineage.length; i++) {
+      new_numToNode = Object.assign({}, new_numToNode, lineage[n])
+      n--;
+    }
+    console.log(new_numToNode)
+
 
     this.setState({
       numToNode: new_numToNode,

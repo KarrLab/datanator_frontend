@@ -36,7 +36,9 @@ import { UniprotDefinition, OrthologyDefinition } from '~/components/Definitions
 
 import { setNewUrl, abstractMolecule } from '~/data/actions/pageAction';
 import  '~/scenes/Results/ProteinPage.css';
-
+import {
+  set_lineage,
+} from '~/data/actions/resultsAction';
 import store from '~/data/Store';
 Object.size = function(obj) {
     var size = 0, key;
@@ -166,12 +168,25 @@ class ProteinPage extends Component {
         start = 1
       }
     for (var i = start; i < data.length; i++) {
-      let meta = {}
+      if (data[i].uniprot_id == this.props.match.params.molecule){
+        let meta = {}
       meta["uniprot"] = data[i].uniprot_id
       meta["protein_name"] = data[i].protein_name
       meta["gene_name"] = data[i].gene_name
       meta["organism"] = data[i].species_name
       newProteinMetadata.push(meta)
+
+      getSearchData([
+          'taxon',
+          'canon_rank_distance/?ncbi_id=' + data[i].ncbi_taxonomy_id
+        ]).then(
+
+        response => {
+          this.props.dispatch(set_lineage(response))
+        });
+
+      }
+
 
 
     }
@@ -423,14 +438,14 @@ class ProteinPage extends Component {
             searchType={this.props.match.params.searchType}
           />
         </div>
+        <div className="uniprot_definition_data">
+          <UniprotDefinition
+          proteinMetadata={this.state.proteinMetadata}
+          />
+        </div>
         <div className="orthology_definition_data">
         <OrthologyDefinition
           proteinMetadata={this.state.orthologyMetadata}
-          />
-        </div>
-          <div className="uniprot_definition_data">
-          <UniprotDefinition
-          proteinMetadata={this.state.proteinMetadata}
           />
         </div>
         <br />
