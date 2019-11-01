@@ -60,7 +60,7 @@ class TaxonFilter extends Component {
   formatSlider(lineage) {
     //const lineage = this.props.lineage;
     console.log(this.props.lineage)
-    let max = Object.values(lineage[lineage.length-1])[0] - 1 
+    let max = Object.values(lineage[lineage.length-1])[0]
     this.setState({ sliderLen: max });
     this.setState({ sliderValue: max });
 
@@ -68,9 +68,9 @@ class TaxonFilter extends Component {
     var new_numToNode = {};
     var n = lineage.length - 1;
     for (var i = 0; i < lineage.length; i++) {
-      new_numToNode[Object.values(lineage[i])[0] - 1 ] = Object.keys(lineage[i])[0];
+      new_numToNode[Object.values(lineage[i])[0] ] = Object.keys(lineage[i])[0];
       //new_marks[i] = Object.values(lineage[i])[0] - 1 ;
-      new_marks[Object.values(lineage[i])[0] - 1] = Object.values(lineage[i])[0] - 1 
+      new_marks[Object.values(lineage[i])[0]] = Object.values(lineage[i])[0]
       n--;
     }
     console.log(new_numToNode)
@@ -136,6 +136,7 @@ return (
             <Slider
               marks={this.state.marks}
               value={this.state.sliderValue}
+              step={null}
               //defaultValue={this.state.sliderLen}
               tipFormatter={this.formatter}
               onChange={this.filter_taxon_inner}
