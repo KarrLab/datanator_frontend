@@ -25,7 +25,7 @@ let f_concentrations = []
 store.dispatch(set_lineage(["kingdom", "genus", "species"]))
 
 
-test('hello world', async () => {
+test.skip('hello world', async () => {
   const { getByText, getByPlaceholderText, getByTestId, toHaveTextContent, container, getByLabelText, getAllByText, queryByText } = render(
   	<Provider store={store}>
     	<TaxonFilter />

@@ -136,7 +136,7 @@ return (
             <Slider
               marks={this.state.marks}
               value={this.state.sliderValue}
-              step={null}
+              //step={null}
               //defaultValue={this.state.sliderLen}
               tipFormatter={this.formatter}
               onChange={this.filter_taxon_inner}

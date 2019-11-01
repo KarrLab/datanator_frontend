@@ -13,6 +13,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { withRouter } from "react-router";
 import { Grid, Row, Col } from 'react-flexbox-grid';
 //import { setNewUrl } from '~/data/actions/pageAction';
+import {Header} from '~/components/Layout/Header/Header';
 
 import '~/scenes/Home/HomeOld.css';
 
@@ -66,8 +67,8 @@ class HomeOld extends Component {
 
     return (
 
-		  
     <Grid fluid>
+    	
     	<Row center="xs">
     	<Col  xs={"100%"}>
     	{this.state.currentSearch == "metab" &&

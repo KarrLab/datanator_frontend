@@ -109,7 +109,15 @@ class MetabConcs extends Component {
     if (data != null) {
       var f_concentrations = [];
 
-      this.props.dispatch(set_lineage(data[2][0]));
+      //this.props.dispatch(set_lineage(data[2][0]));
+      getSearchData([
+          'taxon',
+          'canon_rank_distance_by_name/?name=' + this.props.match.params.organism
+        ]).then(
+
+        response => {
+          this.props.dispatch(set_lineage(response.data))
+        });
 
       for (var n = data[0].length; n > 0; n--) {
         if (data[0][n - 1].tanitomo_similarity < 1) {
@@ -231,7 +239,7 @@ class MetabConcs extends Component {
 
     return (
       <div className="container" style={styles}>
-      <Header/>
+      <Header />
         <style>{'body { background-color: #f7fdff; }'}</style>
         <div className="search">
           <ConcSearch

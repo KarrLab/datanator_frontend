@@ -9,13 +9,7 @@ const Header = () => {
       <Navbar.Group className="logo-holder">
         <Logo className="logo" />
       </Navbar.Group>
-      <Navbar.Group className="searchbar">
-        <InputGroup
-          className="searchbar-input"
-          leftIcon="search"
-          placeholder="Search..."
-        />
-      </Navbar.Group>
+
       <Navbar.Group align className="page-links">
         <AnchorButton
           minimal="true"
