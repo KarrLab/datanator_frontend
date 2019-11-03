@@ -12,7 +12,9 @@ import {
 } from '~/data/actions/resultsAction';
 import { connect } from 'react-redux';
 
-
+/**
+ * Constant to keep track of the checkboxes in the table
+ */
 const selectRow = {
   mode: 'checkbox',
   selected: [],
@@ -26,14 +28,23 @@ const selectRow = {
   },
 };
 
+
+/**
+ * Variable to allow direct access to the table
+ */
 let tableRef = null;
 
+/**
+ * Constant to make default table sorting based on proximity
+ */
 const defaultSorted = [
   {
     dataField: 'taxonomic_proximity', // if dataField is not match to any column you defined, it will be ignored.
     order: 'asc', // desc or asc
   },
 ];
+
+
 
 /**
  * Class to render the results. This table uses react-bootsrap-table2, but adds three additional pieces of functionality
@@ -56,7 +67,8 @@ const defaultSorted = [
 class ResultsTable extends Component {
   static propTypes = {
     
-    /** The data must be a list of dictionaries. Each dictionary cooresponds a single row. Each key is the proper column,
+    /** 
+     *REDUX: The data must be a list of dictionaries. Each dictionary cooresponds a single row. Each key is the proper column,
      * and each value gets entered into the corresponding cell.
      * For example:
      * data = [
@@ -68,20 +80,17 @@ class ResultsTable extends Component {
      */
     totalData: PropTypes.array.isRequired,
 
-    /** This is a list of strings corresponding to a column name
-     *  
-     * 
-     *  
-     *  
-     *   { name: "Adenosine triphosphate", concentration: 3829, units: "uM"},
-     * ]
-     * after that, you would need to set the total data in the redux state. For example:
-     * this.props.dispatch(setTotalData(data))
+    /** 
+     *REDUX: This is a list of strings corresponding to a the column names
+     *  For example:
+     *    col_list = ['concentration', 'error', 'molecule']
+     *  This value is set in Redux state)
      */
     col_list: PropTypes.array.isRequired,
 
 
-    /** This must be a list of columns that can be used in a react-bootstrap-table2 table. The docs for that can be
+    /** 
+     *This must be a list of columns that can be used in a react-bootstrap-table2 table. The docs for that can be
      * found here - https://react-bootstrap-table.github.io/react-bootstrap-table2/docs/getting-started.html
      *
      * This is used to define the columns that show up in the table. Each column represented as a dictionary with
@@ -106,17 +115,22 @@ class ResultsTable extends Component {
     super(props);
 
     this.state = {
+    /** 
+     * This must be a list of rows. It keeps track of which data is displayed.
+     * This is important to know becuase certain functions, like get consensus, require knowledge
+     * of which values are displayed
+     */
       displayed_data: [],
-      table_size: 0,
+
+    /** 
+     * Value to keep track of whether advanced columns are displayed
+     */
       toggleLabel: 'Advanced',
     };
     this.correctlyRenderSelectRow = this.correctlyRenderSelectRow.bind(this);
     this.setTable = this.setTable.bind(this);
     this.setPotentialColumns = this.setPotentialColumns.bind(this);
-
-    this.handleBasicToAdvancedToggle = this.handleBasicToAdvancedToggle.bind(
-      this,
-    );
+    this.handleBasicToAdvancedToggle = this.handleBasicToAdvancedToggle.bind(this);
   }
 
   /**
@@ -124,7 +138,6 @@ class ResultsTable extends Component {
    */
   setSelected() {
     let data = this.props.totalData;
-    //this.setState({displayed_data:this.props.data})
 
     for (var i = data.length - 1; i >= 0; i--) {
       data[i]['key'] = i;
@@ -155,12 +168,6 @@ class ResultsTable extends Component {
     if (!this.state.advanced) {
       this.setState({ toggleLabel: 'Basic' });
       this.props.dispatch(reveal_columns(this.props.advanced_columns));
-
-
-
-
-
-
     } else {
       this.setState({ toggleLabel: 'Advanced' });
       this.props.dispatch(hide_columns(this.props.advanced_columns));
