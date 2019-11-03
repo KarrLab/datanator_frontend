@@ -73,5 +73,11 @@ it('render protein name search', async () => {
   await waitForElement(() => getByText('F4JGR5 (A.thaliana)', { exact: false }));
   await waitForElement(() => getByText('6-phosphofructo-2-kinase', { exact: false }));
   await waitForElement(() => getByText("P0AEW9 (E.coli)", { exact: false }));
+  expect(getByText("6-phosphofructo-2-kinase", { exact: false }))
+  expect(getByText("1-phosphofructokinase", { exact: false }))
+  expect(getByText("P0AEW9 (E.coli)", { exact: false }))
 
+"6-phosphofructo-2-kinase"
+"1-phosphofructokinase"
+"P0AEW9 (E.coli) ,"
 });
