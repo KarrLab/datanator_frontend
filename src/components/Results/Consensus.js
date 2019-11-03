@@ -1,100 +1,31 @@
 import React, { Component } from 'react';
-import BootstrapTable from 'react-bootstrap-table-next';
-import filterFactory, {
-  textFilter,
-  selectFilter,
-  numberFilter,
-  Comparator,
-} from 'react-bootstrap-table2-filter';
-import ReactDOM from 'react-dom';
-import { Input, Button, Row, Col } from 'antd';
+import {Button, Row, Col, Statistic } from 'antd';
 import 'antd/dist/antd.css';
 import Chart3 from './Chart3.js';
-import { Slider, Statistic } from 'antd';
-import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import DownloadLink from "react-download-link";
-
 import './Consensus.css';
-
-import { ResultsTable, getSelectedData } from './ResultsTable.js';
-//import { getTotalColumns } from './Columns2.js';
-
 import { connect } from 'react-redux';
-
-import store from '~/data/Store';
 import {
-  getTotalColumns,
-  filter_taxon,
-  set_lineage,
   refreshSelectedData,
 } from '~/data/actions/resultsAction';
 import {
   mean,
   median,
-  mode,
   range,
   standardDeviation,
-} from '~/components/Results/mathTools.js';
-function round(value, decimals) {
-  return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
-}
+  round, 
+  JSONToCSVConvertor,
+
+} from '~/components/Results/utils.js';
 
 
-function JSONToCSVConvertor(JSONData, ReportTitle) {     
 
-//If JSONData is not an object then JSON.parse will parse the JSON string in an Object
-var arrData = typeof JSONData != 'object' ? JSON.parse(JSONData) : JSONData;
-var CSV = '';    
-let ShowLabel = true
-//This condition will generate the Label/Header
-if (ShowLabel) {
-    var row = "";
-
-    //This loop will extract the label from 1st index of on array
-    for (var index in arrData[0]) {
-        //Now convert each value to string and comma-seprated
-        row += index + ',';
-    }
-    row = row.slice(0, -1);
-    //append Label row with line break
-    CSV += row + '\r\n';
-}
-
-//1st loop is to extract each row
-for (var i = 0; i < arrData.length; i++) {
-    var row = "";
-    //2nd loop will extract each column and convert it in string comma-seprated
-    for (var index in arrData[i]) {
-        row += '"' + arrData[i][index] + '",';
-    }
-    row.slice(0, row.length - 1);
-    //add a line break after each row
-    CSV += row + '\r\n';
-}
-
-if (CSV == '') {        
-    alert("Invalid data");
-    return;
-}   
-
-//this trick will generate a temp "a" tag
-var link = document.createElement("a");    
-link.id="lnkDwnldLnk";
-
-//this part will append the anchor tag and remove it after automatic click
-document.body.appendChild(link);
-
-var csv = CSV;  
-return(csv)
-
-}
 /**
- * Class to render the Consensus of results. 
+ * Class to render the Consensus of results, and the save the total data to CSV file 
  * This class takes the data from the store, and summarizes the data with mean, median, range, standard deviation, and a chart at bottom. 
  * This class mostly handles the rendering, while the logic is handled elsewhere
  */
-
 
 @connect(store => {
   return {
@@ -105,8 +36,20 @@ return(csv)
 class Consensus extends Component {
 
   static propTypes = {
-    /** This prop tells the consensus what column contains the values that need to be summarized. 
-     * Fo example, in metabolite concentrations, we want the summarize the value of "concentration",
+    /** 
+     * REDUX: this is a list of rows of all the selected data. This is used to generate consensus
+     * only of the displayed data
+     */
+    selectedData: PropTypes.array.isRequired,
+
+    /** 
+     * REDUX: This is a list of all the data. This is recorded in the CSV file 
+     */
+    totalData: PropTypes.array.isRequired,
+
+    /** 
+     * This prop tells the consensus what column contains the values that need to be summarized. 
+     * For example, in metabolite concentrations, we want the summarize the value of "concentration",
      * so we need to tell the compomenet to look for the column labeled "concentration"
      */
     relevantColumn: PropTypes.string.isRequired,
@@ -114,20 +57,36 @@ class Consensus extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      consensus: [],
+      /**The mean of the selected data*/
       mean: null,
+
+      /**The median of the selected data*/
       median: null,
+
+      /**The standard deviation of the selected data*/
       std_dev: null,
+
+      /**The IQR of the selected data*/
       iqr: null,
+
+      /**The range of the selected data*/
       range: null,
+
+      /**Whether the user asked for the consensus again*/
       asked_consensus: false,
+
+      /** What the prompt on the consensus button should be. Initially it is 'Get Consensus'*/
       consensus_prompt: 'Get Consensus',
     };
-    this.setMean = this.setMean.bind(this);
+    this.setSummaryStats = this.setSummaryStats.bind(this);
     this.recordData = this.recordData.bind(this);
   }
 
-  setMean(data) {
+
+  /** 
+   * Sets the summary statistics for consensus
+   */
+  setSummaryStats(data) {
     //console.log(data)
     var total_conc = 0;
     let total_data = [];
@@ -136,7 +95,6 @@ class Consensus extends Component {
       total_data.push(parseFloat(data[i][this.props.relevantColumn]));
       total_conc = total_conc + parseFloat(data[i][this.props.relevantColumn]);
     }
-    var average_conc = round(total_conc / data.length, 3);
     var new_mean = round(mean(total_data), 3);
     var new_median = round(median(total_data), 3);
     var new_std_dev = round(standardDeviation(total_data), 3);
@@ -152,15 +110,7 @@ class Consensus extends Component {
   }
 
   recordData(){
-    let response = {}
     return(JSONToCSVConvertor(JSON.stringify(this.props.totalData)))
-    /*
-    response["total_data"] = this.props.totalData
-    response["filtered_data"] = this.props.selectedData
-    response["consensus"] = {mean:this.state.mean, median:this.state.median, 
-      standard_deviation:this.state.standardDeviation, range:this.state.range}
-    return(response)
-    */
   }
 
   handleUpdate() {
@@ -173,9 +123,9 @@ class Consensus extends Component {
 
   componentDidMount() {
     if (this.props.totalData != null) {
-      this.setMean(this.props.totalData);
+      this.setSummaryStats(this.props.totalData);
     }
-    //this.setMean(this.props.totalData);
+    //this.setSummaryStats(this.props.totalData);
     //this.refs.taxonCol.applyFilter(28)
   }
 
@@ -183,9 +133,9 @@ class Consensus extends Component {
     // You don't have to do this check first, but it can help prevent an unneeded render
     //this.props.dispatch(refreshSelectedData())
     if (prevProps.totalData != this.props.totalData) {
-      this.setMean(this.props.totalData);
+      this.setSummaryStats(this.props.totalData);
     } else if (prevProps.selectedData != this.props.selectedData) {
-      this.setMean(this.props.selectedData);
+      this.setSummaryStats(this.props.selectedData);
     }
   }
 
