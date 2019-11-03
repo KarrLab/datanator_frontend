@@ -7,8 +7,6 @@ import { Button } from 'antd';
 import PropTypes from 'prop-types';
 import {
   getTotalColumns,
-  filter_taxon,
-  set_lineage,
   hide_columns,
   reveal_columns,
 } from '~/data/actions/resultsAction';
@@ -51,14 +49,6 @@ const defaultSorted = [
 
 @connect(store => {
   return {
-    /** The data must be a list of dictionaries. Each dictionary cooresponds a single row. Each key is the proper column,
-     * and each value gets entered into the corresponding cell.
-     * For example:
-     * data = [
-     *   { name: "Adenosine triphosphate", concentration: 4150, units: "uM"},
-     *   { name: "Adenosine triphosphate", concentration: 3829, units: "uM"},
-     * ]
-     */
     totalData: store.results.totalData,
     col_list: store.results.column_list,
   };
@@ -66,6 +56,30 @@ const defaultSorted = [
 class ResultsTable extends Component {
   static propTypes = {
     
+    /** The data must be a list of dictionaries. Each dictionary cooresponds a single row. Each key is the proper column,
+     * and each value gets entered into the corresponding cell.
+     * For example:
+     * data = [
+     *   { name: "Adenosine triphosphate", concentration: 4150, units: "uM"},
+     *   { name: "Adenosine triphosphate", concentration: 3829, units: "uM"},
+     * ]
+     * after that, you would need to set the total data in the redux state. For example:
+     * this.props.dispatch(setTotalData(data))
+     */
+    totalData: PropTypes.array.isRequired,
+
+    /** This is a list of strings corresponding to a column name
+     *  
+     * 
+     *  
+     *  
+     *   { name: "Adenosine triphosphate", concentration: 3829, units: "uM"},
+     * ]
+     * after that, you would need to set the total data in the redux state. For example:
+     * this.props.dispatch(setTotalData(data))
+     */
+    col_list: PropTypes.array.isRequired,
+
 
     /** This must be a list of columns that can be used in a react-bootstrap-table2 table. The docs for that can be
      * found here - https://react-bootstrap-table.github.io/react-bootstrap-table2/docs/getting-started.html
@@ -83,6 +97,9 @@ class ResultsTable extends Component {
 
     /** Optional advanced columns that can be added*/
     advanced_columns: PropTypes.array,
+
+    /** Other optional columns that can be added*/
+    optional_columns: PropTypes.array,
   };
 
   constructor(props) {
