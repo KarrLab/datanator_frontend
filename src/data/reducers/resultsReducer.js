@@ -12,7 +12,7 @@ const selectOptions = {
   'Log Phase': 'Log Phase',
 };
 
-let defaultState = {
+export const defaultState = {
   columns: {},
   column_list: [],
   taxon_lineage: null,

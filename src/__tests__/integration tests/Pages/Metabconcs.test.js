@@ -19,25 +19,27 @@ let the_json = ""
 
 //jest.useFakeTimers();
 
-const store = createStore
+//const store = createStore
 
 //jest.runAllTimers();
 
 const renderComponent = (molecule, organism, abstract) =>
+  //const store = createStore
   render (
     <MemoryRouter initialEntries={['/metabconcs/' + molecule + '/' + organism + '/' + abstract]}>
       <Route path="/metabconcs/:molecule/:organism/:abstract?/">
-       <Provider store={store}>
+       <Provider store={createStore}>
         <Metabconcs />
         </Provider>
       </Route>
     </MemoryRouter>
   );
 
+describe('Page Rendering and Consensus', () => {
 
 it('render metabconcs page', async () => {
   // Render new instance in every test to prevent leaking state
-  const { getByTestId, getByText, getAllByText, getByPlaceholderText  } =  renderComponent('ATP', 'escherichia coli', false);
+  const { getByTestId, getByText, getAllByText, getByPlaceholderText  } =  renderComponent('ATP', 'Bacillus subtilis', false);
 
   await waitForElement(() => getByText('9640', { exact: false }));
   expect(getByTestId('test_table'))
@@ -47,7 +49,7 @@ it('render metabconcs page', async () => {
 });
 
 
-it('filter and update consensus', async () => {
+it.skip('filter and update consensus', async () => {
   // Render new instance in every test to prevent leaking state
   const {getByText, getAllByText, getByPlaceholderText  } =  renderComponent('ATP', 'escherichia coli', false);
 
@@ -69,9 +71,12 @@ it('filter and update consensus', async () => {
   expect(getAllByText('4,755', { exact: false }))
 
 });
+});
 
 
-it.skip('test taxonomy filter', async () => {
+describe('Taxon Filtering', () => {
+
+it('test taxonomy filter', async () => {
   // Render new instance in every test to prevent leaking state
   const { container, getByText, getAllByText, queryAllByText, queryByText, findAllByText, findByText, getByPlaceholderText  } =  renderComponent( 'AMP', 'Saccharomyces cerevisiae', false);
 
@@ -97,8 +102,9 @@ it.skip('test taxonomy filter', async () => {
   console.log("done")
 
 });
+})
 
-
+describe('Tanitomo Filtering', () => {
 it('test include similar compounds', async () => {
   // Render new instance in every test to prevent leaking state
   const { getByTestId, getByText, getAllByText, queryAllByText, queryByText, findAllByText, findByText, getByPlaceholderText  } =  renderComponent( 'ATP', 'Saccharomyces cerevisiae', true);
@@ -123,4 +129,4 @@ it('mocks window.location.reload', () => {
   expect(window.location.reload).toHaveBeenCalled();
   window.location = location;
 });
-
+})
