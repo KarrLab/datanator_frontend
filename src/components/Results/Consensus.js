@@ -87,11 +87,9 @@ class Consensus extends Component {
    * Sets the summary statistics for consensus
    */
   setSummaryStats(data) {
-    //console.log(data)
     var total_conc = 0;
     let total_data = [];
     for (var i = data.length - 1; i >= 0; i--) {
-      //console.log(parseFloat(data[i][this.props.relevantColumn]))
       total_data.push(parseFloat(data[i][this.props.relevantColumn]));
       total_conc = total_conc + parseFloat(data[i][this.props.relevantColumn]);
     }
@@ -100,7 +98,6 @@ class Consensus extends Component {
     var new_std_dev = round(standardDeviation(total_data), 3);
     var new_range = range(total_data);
 
-    //var new_median = round(median(total_data), 3)
     this.setState({
       mean: new_mean,
       median: new_median,
@@ -109,10 +106,19 @@ class Consensus extends Component {
     });
   }
 
+  /** 
+   * Gets a CSV version of the table rows to then be returned as a CSV file
+   */
   recordData(){
     return(JSONToCSVConvertor(JSON.stringify(this.props.totalData)))
   }
 
+
+  /** 
+   * When the 'Get Consensus' button is pushed, the state should know 
+   * the user asked for consensus, and it should update the button display
+   * to 'Update Consensus'
+   */
   handleUpdate() {
     this.setState({
       asked_consensus: true,
@@ -121,17 +127,20 @@ class Consensus extends Component {
     this.props.dispatch(refreshSelectedData());
   }
 
+  /** 
+   * When mounted, this component should set summary stats
+   * if the total data exists 
+   */
   componentDidMount() {
     if (this.props.totalData != null) {
       this.setSummaryStats(this.props.totalData);
     }
-    //this.setSummaryStats(this.props.totalData);
-    //this.refs.taxonCol.applyFilter(28)
   }
 
+  /** 
+   * If total data gets updated, then the summary stats should update too
+   */
   componentDidUpdate(prevProps) {
-    // You don't have to do this check first, but it can help prevent an unneeded render
-    //this.props.dispatch(refreshSelectedData())
     if (prevProps.totalData != this.props.totalData) {
       this.setSummaryStats(this.props.totalData);
     } else if (prevProps.selectedData != this.props.selectedData) {
@@ -154,7 +163,6 @@ class Consensus extends Component {
       >
               Save to disk
       </DownloadLink>
-
         {this.state.asked_consensus && (
           <div className="summary">
             <Row >
