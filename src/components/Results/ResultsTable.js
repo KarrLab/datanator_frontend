@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
 //import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
 import filterFactory from 'react-bootstrap-table2-filter';
-
 import { Button } from 'antd';
 import PropTypes from 'prop-types';
 import {
@@ -28,7 +27,6 @@ const selectRow = {
   },
 };
 
-
 /**
  * Variable to allow direct access to the table
  */
@@ -43,8 +41,6 @@ const defaultSorted = [
     order: 'asc', // desc or asc
   },
 ];
-
-
 
 /**
  * Class to render the results. This table uses react-bootsrap-table2, but adds three additional pieces of functionality
@@ -66,8 +62,7 @@ const defaultSorted = [
 })
 class ResultsTable extends Component {
   static propTypes = {
-    
-    /** 
+    /**
      *REDUX: The data must be a list of dictionaries. Each dictionary cooresponds a single row. Each key is the proper column,
      * and each value gets entered into the corresponding cell.
      * For example:
@@ -80,7 +75,7 @@ class ResultsTable extends Component {
      */
     totalData: PropTypes.array.isRequired,
 
-    /** 
+    /**
      *REDUX: This is a list of strings corresponding to a the column names
      *  For example:
      *    col_list = ['concentration', 'error', 'molecule']
@@ -88,8 +83,7 @@ class ResultsTable extends Component {
      */
     col_list: PropTypes.array.isRequired,
 
-
-    /** 
+    /**
      *This must be a list of columns that can be used in a react-bootstrap-table2 table. The docs for that can be
      * found here - https://react-bootstrap-table.github.io/react-bootstrap-table2/docs/getting-started.html
      *
@@ -115,16 +109,16 @@ class ResultsTable extends Component {
     super(props);
 
     this.state = {
-    /** 
-     * This must be a list of rows. It keeps track of which data is displayed.
-     * This is important to know becuase certain functions, like get consensus, require knowledge
-     * of which values are displayed
-     */
+      /**
+       * This must be a list of rows. It keeps track of which data is displayed.
+       * This is important to know becuase certain functions, like get consensus, require knowledge
+       * of which values are displayed
+       */
       displayed_data: [],
 
-    /** 
-     * Value to keep track of whether advanced columns are displayed
-     */
+      /**
+       * Value to keep track of whether advanced columns are displayed
+       */
       toggleLabel: 'Advanced',
     };
     this.correctlyRenderSelectRow = this.correctlyRenderSelectRow.bind(this);
@@ -137,7 +131,7 @@ class ResultsTable extends Component {
    * The table begins with all the data points being selected. This selects them all.
    */
   setSelected() {
-    console.log("ResultsTable: Calling setSelected")
+    console.log('ResultsTable: Calling setSelected');
     let data = this.props.totalData;
     for (var i = data.length - 1; i >= 0; i--) {
       data[i]['key'] = i;
@@ -151,7 +145,7 @@ class ResultsTable extends Component {
    * At each render, the selectRow object must be reinitialized with the correct selections from the data.
    */
   correctlyRenderSelectRow() {
-    console.log("ResultsTable: Calling correctlyRenderSelectRow")
+    console.log('ResultsTable: Calling correctlyRenderSelectRow');
     let selected = [];
     for (var i = this.state.displayed_data.length - 1; i >= 0; i--) {
       if (this.state.displayed_data[i]['selected'])
@@ -164,7 +158,7 @@ class ResultsTable extends Component {
    * Toggle back and forth between basic and advanced columns
    */
   handleBasicToAdvancedToggle() {
-    console.log("ResultsTable: Calling handleBasicToAdvancedToggle")
+    console.log('ResultsTable: Calling handleBasicToAdvancedToggle');
     if (!this.state.advanced) {
       this.setState({ toggleLabel: 'Basic' });
       this.props.dispatch(reveal_columns(this.props.advanced_columns));
@@ -176,25 +170,30 @@ class ResultsTable extends Component {
     this.setState({ advanced: !this.state.advanced });
   }
 
-  componentDidMount() {
-    console.log("ResultsTable: Calling componentDidMount")
-    this.setTable();
-  }
+  
 
+  /**
+   * Sets the correct columns in redux. It uses the initial string of columns provided in basic_columns, advanced_columns
+   * and potential_columns, to set the correct columns on the table. Also sets whether those columns should be initially hidden
+   * or revealed
+   * Last, it should call setSelected to initiate all displayed entries with selection on
+   */
   setTable() {
-    console.log("ResultsTable: Calling setTable")
+    console.log('ResultsTable: Calling setTable');
     this.props.dispatch(
       getTotalColumns(
-        this.props.basic_columns.concat(this.props.advanced_columns).concat(Object.keys(this.props.potential_columns)),
+        this.props.basic_columns
+          .concat(this.props.advanced_columns)
+          .concat(Object.keys(this.props.potential_columns)),
       ),
     );
-    let col_to_hide = this.props.advanced_columns
+    let col_to_hide = this.props.advanced_columns;
     for (const [key, value] of Object.entries(this.props.potential_columns)) {
-      if (!value){
-        col_to_hide.push(key)
+      if (!value) {
+        col_to_hide.push(key);
       }
     }
-  
+
     this.props.dispatch(hide_columns(col_to_hide));
     if (typeof this.node !== 'undefined') {
       tableRef = this.node.table;
@@ -204,30 +203,40 @@ class ResultsTable extends Component {
     }
   }
 
-  setPotentialColumns(){
-    console.log("ResultsTable: Calling setPotentialColumns")
-    let rev_col = []
-    let hid_col = []
+  /**
+   * Whenever any of the values for potential columns is changed (e.g. from hidden to revealed)
+   * this method changes their value in redux
+   */
+  setPotentialColumns() {
+    console.log('ResultsTable: Calling setPotentialColumns');
+    let rev_col = [];
+    let hid_col = [];
     for (const [key, value] of Object.entries(this.props.potential_columns)) {
-          if (value){
-            rev_col.push(key)
-          }
-        else{
-          hid_col.push(key)
-        }
+      if (value) {
+        rev_col.push(key);
+      } else {
+        hid_col.push(key);
+      }
     }
-    this.props.dispatch(reveal_columns(rev_col))
-    this.props.dispatch(reveal_columns(hid_col))
+    this.props.dispatch(reveal_columns(rev_col));
+    this.props.dispatch(reveal_columns(hid_col));
+  }
+
+
+
+  componentDidMount() {
+    console.log('ResultsTable: Calling componentDidMount');
+    this.setTable();
   }
 
   componentDidUpdate(prevProps) {
-    console.log("ResultsTable: Calling componentDidUpdate")
+    console.log('ResultsTable: Calling componentDidUpdate');
     if (this.props.totalData !== prevProps.totalData) {
       this.setSelected();
     }
     if (!compare(this.props.potential_columns, prevProps.potential_columns)) {
-      this.setPotentialColumns()
-  }
+      this.setPotentialColumns();
+    }
 
     if (typeof this.node !== 'undefined') {
       tableRef = this.node.table;
@@ -235,7 +244,7 @@ class ResultsTable extends Component {
   }
 
   render() {
-    console.log("Rendering ResultsTable")
+    console.log('Rendering ResultsTable');
     this.correctlyRenderSelectRow();
 
     return (
@@ -249,9 +258,8 @@ class ResultsTable extends Component {
           {this.state.toggleLabel}{' '}
         </Button>
 
-
-        <div className="bootstrap" data-testid = "test_table">
-          {(this.props.col_list.length > 0) && (
+        <div className="bootstrap" data-testid="test_table">
+          {this.props.col_list.length > 0 && (
             <BootstrapTable
               ref={n => (this.node = n)}
               striped
@@ -284,7 +292,6 @@ function getSelectedData() {
   }
   return selected_data;
 }
-
 
 function compare(a, b) {
   return JSON.stringify(a) === JSON.stringify(b);
