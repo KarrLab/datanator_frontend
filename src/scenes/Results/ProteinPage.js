@@ -428,8 +428,6 @@ class ProteinPage extends Component {
         <br />
         <div className="results">
           <ProtAbundancesTable
-            f_abundances={this.state.f_abundances}
-            handleAbstract={this.getAbstractSearch}
             data_arrived={this.state.data_arrived}
           />
         </div>

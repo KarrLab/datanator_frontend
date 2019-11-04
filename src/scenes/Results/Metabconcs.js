@@ -254,7 +254,6 @@ class MetabConcs extends Component {
         <div className="results">
           <ConcentrationsTable
             data_arrived={this.state.data_arrived}
-            handleAbstract={this.getAbstractSearch}
             tanitomo={this.state.tanitomo}
           />
         </div>
