@@ -84,13 +84,11 @@ class ProteinPage extends Component {
     this.checkURL = this.checkURL.bind(this);
   }
   componentDidMount() {
-    console.log('hello');
     this.checkURL();
   }
 
   componentDidUpdate(prevProps) {
     // respond to parameter change in scenario 3
-    console.log('comp');
 
     if (
       this.props.match.params.molecule != prevProps.match.params.molecule ||
@@ -111,8 +109,6 @@ class ProteinPage extends Component {
         data_arrived: false,
       });
       this.checkURL();
-
-      console.log('chicken');
     }
   }
 
@@ -129,7 +125,6 @@ class ProteinPage extends Component {
     this.setState({ newSearch: false });
     this.setState({ new_url: url });
     this.getSearchData();
-    console.log('yo yo man');
   }
 
   getSearchData() {
@@ -188,9 +183,7 @@ class ProteinPage extends Component {
         });
       }
     }
-    //console.log(newProteinMetadata)
-    console.log('baloon animal');
-    //console.log(data)
+
     this.setState({ proteinMetadata: newProteinMetadata });
   }
 
@@ -204,7 +197,6 @@ class ProteinPage extends Component {
       let end_query = '';
       let meta = {};
       meta['ko_number'] = data[i].ko_number;
-      console.log('TOTAL KO: ' + data[i].ko_number);
       meta['ko_name'] = data[i].ko_name;
       let uni_ids = data[i].uniprot_ids;
       //meta["uniprot_ids"] = uni_ids
@@ -214,27 +206,19 @@ class ProteinPage extends Component {
           return uni_ids[k];
         })
         .map(String);
-      console.log('TOTAL KO: ' + filtered_ids);
       if (filtered_ids.length > 0) {
         for (var f = filtered_ids.length - 1; f >= 0; f--) {
           end_query = end_query + 'uniprot_id=' + filtered_ids[f] + '&';
         }
-        console.log('retrieving: ' + end_query);
-
         getSearchData(['proteins', 'meta/meta_combo?' + end_query]).then(
           response => {
             this.formatOrthologyMetadataUniprot(response.data);
-            //this.formatData(response.data, uniprot_to_dist)
             newOrthologyMetadata.push(meta);
-            //this.setState({proteinMetadata:null});
-            //console.log(response.data)
+
           },
         );
       }
-
-      //newOrthologyMetadata.push(meta)
     }
-    //this.setState({orthologyMetadata:newOrthologyMetadata})
   }
 
   formatOrthologyMetadataUniprot(data) {
@@ -250,9 +234,6 @@ class ProteinPage extends Component {
       uni_ids.push(data[i].uniprot_id + ' (' + data[i].species_name + ') ');
     }
     meta['uniprot_ids'] = uni_ids;
-    //meta["uniprot_ids"] = Object.keys(uni_ids) .filter(function(k){return uni_ids[k]}) .map(String)
-    console.log('corn cob');
-    //console.log(meta["uniprot_ids"])
     newOrthologyMetadata.push(meta);
     this.setState({ orthologyMetadata: newOrthologyMetadata });
     //this.formatProteinMetadata(data)
@@ -279,10 +260,7 @@ class ProteinPage extends Component {
       }
       meta['ko_number'] = [data[0].ko_number, uniprot_id];
       newOrthologyMetadata.push(meta);
-      //console.log(newOrthologyMetadata)
-      console.log('octo');
       this.setState({ orthologyMetadata: newOrthologyMetadata });
-      //console.log(data)
     } else {
       getSearchData([
         'proteins',
@@ -298,8 +276,6 @@ class ProteinPage extends Component {
           response.data[1].uniprot_id,
         ];
         newOrthologyMetadata.push(meta);
-        //console.log(newOrthologyMetadata)
-        console.log('octo');
         this.setState({ orthologyMetadata: newOrthologyMetadata });
       });
     }
@@ -325,21 +301,16 @@ class ProteinPage extends Component {
           }
         }
       }
-      //console.log(uniprot_to_dist)
       let total_ids = Object.keys(uniprot_to_dist);
       let end_query = '';
       for (var f = total_ids.length - 1; f >= 0; f--) {
         end_query = end_query + 'uniprot_id=' + total_ids[f] + '&';
       }
-      //console.log(end_query)
-
       getSearchData(['proteins', 'meta/meta_combo?' + end_query]).then(
         response => {
           this.formatOrthologyMetadataUniprot(response.data);
           this.formatProteinMetadata(response.data);
           this.formatData(response.data, uniprot_to_dist);
-          //this.setState({proteinMetadata:null});
-          //console.log(response.data)
         },
       );
     }
@@ -348,17 +319,13 @@ class ProteinPage extends Component {
   formatData(data, uniprot_to_dist) {
     console.log('Calling formatData');
     var f_abundances = [];
-    //console.log(data)
     if (data != null && typeof data != 'string') {
-      console.log("MONKEY FARMER")
-      console.log(data[0])
       if (!(data[0].uniprot_id == "Please try another input combination")) {
         let start = 0;
         if (Object.size(data[0]) == 1) {
           start = 1;
         }
         for (var i = start; i < data.length; i++) {
-          //console.log(data[i])
           let uniprot = data[i];
           for (var n = 0; n < uniprot.abundances.length; n++) {
             let row = {};
@@ -372,7 +339,6 @@ class ProteinPage extends Component {
             f_abundances.push(row);
           }
         }
-        //console.log(f_abundances)
         this.props.dispatch(setTotalData(f_abundances));
         this.setState({ data_arrived: true });
       }
@@ -402,8 +368,6 @@ class ProteinPage extends Component {
     let styles = {
       marginTop: 50,
     };
-    console.log(this.props.match.params.molecule);
-    console.log(this.props.match.params.organism);
     return (
       <div className="container" style={styles}>
         <Header />

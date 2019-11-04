@@ -6,6 +6,7 @@ import { ResultsTable } from './components/ResultsTable.js';
 import { TaxonFilter } from '~/components/Results/components/Filters/TaxonFilter';
 import { Consensus } from './components/Consensus.js';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 @connect(store => {
   return {
