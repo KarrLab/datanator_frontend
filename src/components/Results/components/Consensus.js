@@ -14,7 +14,7 @@ import {
   standardDeviation,
   round,
   JSONToCSVConvertor,
-} from '~/components/Results/utils.js';
+} from '~/components/Results/components/utils.js';
 
 /**
  * Class to render the Consensus of results, and the save the total data to CSV file

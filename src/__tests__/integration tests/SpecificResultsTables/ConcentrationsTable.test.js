@@ -4,8 +4,6 @@ import { ReactReduxContext } from 'react-redux'
 import { Provider } from 'react-redux'
 import { Link, Route, Router, Switch } from 'react-router-dom'
 import { createMemoryHistory } from 'history'
-
-import { ResultsTable, getSelectedData } from '~/components/Results/ResultsTable.js';
 import createStore from '~/data/Store.js'
 import {
   getTotalColumns,

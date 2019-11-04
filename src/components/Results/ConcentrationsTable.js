@@ -2,34 +2,39 @@ import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 import { withRouter } from 'react-router';
 import './ConcentrationsTable.css';
-import { ResultsTable } from './ResultsTable.js';
-import { TaxonFilter } from '~/components/Results/Filters/TaxonFilter';
-import { TanitomoFilter } from '~/components/Results/Filters/TanitomoFilter';
-import { Consensus } from './Consensus.js';
+import { ResultsTable } from './components/ResultsTable.js';
+import { TaxonFilter } from '~/components/Results/components/Filters/TaxonFilter';
+import { TanitomoFilter } from '~/components/Results/components/Filters/TanitomoFilter';
+import { Consensus } from './components/Consensus.js';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 @connect(store => {
   return {
     columns: store.results.columns,
   };
 })
+
+/**
+ * Class putting together the components of Results to construct the 
+ * correct table for metabolite concentrations
+ */
 class ConcentrationsTable extends Component {
+  static propTypes = {
+    /**
+     * Value to keep track of whether the JSON data has arrived
+     * If this value is false, then the render should return a blank div 
+     */
+    data_arrived: PropTypes.bool.isRequired,
+
+    /**
+     * Value to keep track of whether the tanitomo column should be displayed
+     */
+    tanitomo: PropTypes.bool.isRequired,
+
+  };
   constructor(props) {
     super(props);
-
-    this.state = {
-      asked_consensus: false,
-      tanitomo: false,
-      f_concentrations: [],
-    };
-    this.handleUpdate = this.handleUpdate.bind(this);
-  }
-
-  handleUpdate() {
-    this.setState({
-      asked_consensus: true,
-      consensus_prompt: 'Update Consensus',
-    });
   }
 
   render() {
@@ -41,7 +46,7 @@ class ConcentrationsTable extends Component {
       return (
         <div className="total_table">
           <div className="slider">
-          <img src={require('~/images/filter.png')} alt="results" />
+            <img src={require('~/images/filter.png')} alt="results" />
             <TaxonFilter />
             <TanitomoFilter tanitomo={this.props.tanitomo} />
           </div>

@@ -2,13 +2,10 @@ import React from 'react';
 import { render, } from '@testing-library/react';
 import { Provider } from 'react-redux'
 import {Route, Switch } from 'react-router-dom'
-import { createMemoryHistory } from 'history'
 
 import Metabconcs from '~/scenes/Results/Metabconcs';
 import { MemoryRouter } from "react-router-dom";
-import { ResultsTable, getSelectedData } from '~/components/Results/ResultsTable.js';
 import createStore from '~/data/Store.js'
-
 import {fireEvent, waitForElement } from '@testing-library/react'
 
 jest.useFakeTimers();

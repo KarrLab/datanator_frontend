@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import { ReactReduxContext } from 'react-redux'
 import { Provider } from 'react-redux'
 
-import { ResultsTable, getSelectedData } from '~/components/Results/ResultsTable.js';
+import { ResultsTable, getSelectedData } from '~/components/Results/components/ResultsTable.js';
 import createStore from '~/data/Store.js'
 import {
   getTotalColumns,

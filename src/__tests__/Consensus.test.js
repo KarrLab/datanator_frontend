@@ -1,20 +1,13 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { ReactReduxContext } from 'react-redux'
 import { Provider } from 'react-redux'
-import { Consensus } from '~/components/Results/Consensus.js';
-import { ResultsTable, getSelectedData } from '~/components/Results/ResultsTable.js';
+import { Consensus } from '~/components/Results/components/Consensus.js';
+import { ResultsTable } from '~/components/Results/components/ResultsTable.js';
 
 
 import createStore from '~/data/Store.js'
-import {
-  getTotalColumns,
-  filter_taxon,
-  set_lineage,
-  setTotalData,
-} from '~/data/actions/resultsAction';
+import { setTotalData } from '~/data/actions/resultsAction';
 
-import axiosMock from 'axios'
 import { fireEvent, waitForElement } from '@testing-library/react'
 
 const store = createStore

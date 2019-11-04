@@ -6,7 +6,6 @@ import { createMemoryHistory } from 'history'
 
 import ProteinPage from '~/scenes/Results/ProteinPage';
 import { MemoryRouter } from "react-router-dom";
-import { ResultsTable, getSelectedData } from '~/components/Results/ResultsTable.js';
 import createStore from '~/data/Store.js'
 
 import {fireEvent, waitForElement } from '@testing-library/react'

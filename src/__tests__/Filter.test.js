@@ -2,9 +2,9 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { ReactReduxContext } from 'react-redux'
 import { Provider } from 'react-redux'
-import { TaxonFilter } from '~/components/Results/Filters/TaxonFilter';
+import { TaxonFilter } from '~/components/Results/components/Filters/TaxonFilter';
 
-import { ResultsTable, getSelectedData } from '~/components/Results/ResultsTable.js';
+import { ResultsTable, getSelectedData } from '~/components/Results/components/ResultsTable.js';
 import createStore from '~/data/Store.js'
 import {
   getTotalColumns,

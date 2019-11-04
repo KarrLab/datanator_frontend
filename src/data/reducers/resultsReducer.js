@@ -5,7 +5,7 @@ import filterFactory, {
   Comparator,
 } from 'react-bootstrap-table2-filter';
 import ReactDOM from 'react-dom';
-import { getSelectedData } from '~/components/Results/ResultsTable.js';
+import { getSelectedData } from '~/components/Results/components/ResultsTable.js';
 
 const selectOptions = {
   'Stationary Phase': 'Stationary Phase',
