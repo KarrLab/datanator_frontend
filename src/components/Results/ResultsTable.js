@@ -137,15 +137,13 @@ class ResultsTable extends Component {
    * The table begins with all the data points being selected. This selects them all.
    */
   setSelected() {
+    console.log("ResultsTable: Calling setSelected")
     let data = this.props.totalData;
-
     for (var i = data.length - 1; i >= 0; i--) {
       data[i]['key'] = i;
       selectRow['selected'].push(i);
-
       data[i]['selected'] = true;
     }
-
     this.setState({ displayed_data: data });
   }
 
@@ -153,6 +151,7 @@ class ResultsTable extends Component {
    * At each render, the selectRow object must be reinitialized with the correct selections from the data.
    */
   correctlyRenderSelectRow() {
+    console.log("ResultsTable: Calling correctlyRenderSelectRow")
     let selected = [];
     for (var i = this.state.displayed_data.length - 1; i >= 0; i--) {
       if (this.state.displayed_data[i]['selected'])
@@ -165,6 +164,7 @@ class ResultsTable extends Component {
    * Toggle back and forth between basic and advanced columns
    */
   handleBasicToAdvancedToggle() {
+    console.log("ResultsTable: Calling handleBasicToAdvancedToggle")
     if (!this.state.advanced) {
       this.setState({ toggleLabel: 'Basic' });
       this.props.dispatch(reveal_columns(this.props.advanced_columns));
@@ -177,10 +177,12 @@ class ResultsTable extends Component {
   }
 
   componentDidMount() {
+    console.log("ResultsTable: Calling componentDidMount")
     this.setTable();
   }
 
   setTable() {
+    console.log("ResultsTable: Calling setTable")
     this.props.dispatch(
       getTotalColumns(
         this.props.basic_columns.concat(this.props.advanced_columns).concat(Object.keys(this.props.potential_columns)),
@@ -203,6 +205,7 @@ class ResultsTable extends Component {
   }
 
   setPotentialColumns(){
+    console.log("ResultsTable: Calling setPotentialColumns")
     let rev_col = []
     let hid_col = []
     for (const [key, value] of Object.entries(this.props.potential_columns)) {
@@ -218,12 +221,11 @@ class ResultsTable extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    console.log("ResultsTable: Calling componentDidUpdate")
     if (this.props.totalData !== prevProps.totalData) {
       this.setSelected();
     }
     if (!compare(this.props.potential_columns, prevProps.potential_columns)) {
-      console.log(this.props.potential_columns)
-      console.log(prevProps.potential_columns)
       this.setPotentialColumns()
   }
 
