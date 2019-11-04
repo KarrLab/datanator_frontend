@@ -87,6 +87,7 @@ class Consensus extends Component {
    * Sets the summary statistics for consensus
    */
   setSummaryStats(data) {
+    console.log("Consensus: Calling setSummaryStats")
     var total_conc = 0;
     let total_data = [];
     for (var i = data.length - 1; i >= 0; i--) {
@@ -110,6 +111,7 @@ class Consensus extends Component {
    * Gets a CSV version of the table rows to then be returned as a CSV file
    */
   recordData(){
+    console.log("Consensus: Calling recordData")
     return(JSONToCSVConvertor(JSON.stringify(this.props.totalData)))
   }
 
@@ -120,6 +122,7 @@ class Consensus extends Component {
    * to 'Update Consensus'
    */
   handleUpdate() {
+    console.log("Consensus: Calling handleUpdate")
     this.setState({
       asked_consensus: true,
       consensus_prompt: 'Update Consensus',
@@ -132,6 +135,7 @@ class Consensus extends Component {
    * if the total data exists 
    */
   componentDidMount() {
+    console.log("Consensus: Calling componentDidMount")
     if (this.props.totalData != null) {
       this.setSummaryStats(this.props.totalData);
     }
@@ -141,6 +145,7 @@ class Consensus extends Component {
    * If total data gets updated, then the summary stats should update too
    */
   componentDidUpdate(prevProps) {
+    console.log("Consensus: Calling componentDidUpdate")
     if (prevProps.totalData != this.props.totalData) {
       this.setSummaryStats(this.props.totalData);
     } else if (prevProps.selectedData != this.props.selectedData) {
