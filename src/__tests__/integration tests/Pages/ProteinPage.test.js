@@ -84,13 +84,9 @@ it('render protein name search', async () => {
 
 
 it('test no results found', async () => {
-  //const { location } = window;
-  
-  //const { location } = window;
   window.alert = jest.fn();
   const {getByText} =  renderComponent('uniprot', 'fake_id_for_the_win', false);
   await waitForElement(() => getByText('Please try', { exact: false }))
-  //jest.runAllTimers();
   expect(window.alert).toHaveBeenCalled()
 
 })
