@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
-//import 'bootstrap/dist/css/bootstrap.min.css';
 import BootstrapTable from 'react-bootstrap-table-next';
 import axios from 'axios';
-//import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
-/*import filterFactory, {
-	textFilter,
-	selectFilter
-} from 'react-bootstrap-table2-filter';
-*/
+
 import ReactDOM from 'react-dom';
 
 import {

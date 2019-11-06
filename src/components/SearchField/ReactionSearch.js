@@ -41,7 +41,7 @@ class ReactionSearch extends Component {
       uniprot:'',
       organism: '',
       buttonValue: 1,
-      selectedSearch: 'name',
+      selectedSearch: 'reactants',
       dataSource: [
         'Escherichia coli',
         'Bacillus subtilis',
@@ -138,19 +138,18 @@ class ReactionSearch extends Component {
     this.handleClickInner = this.handleClickInner.bind(this);
     this.goBack = this.goBack.bind(this); //
     this.buttonChange = this.buttonChange.bind(this);
-    //this.handleSearch = this.handleSearch.bind(this);
   }
 
   handleClickInner() {
     console.log("handling click!!")
-    if (this.state.selectedSearch == 'name') {
+    if (this.state.selectedSearch == 'reactants') {
       this.props.handleClick(
-        '/protein/name/' + this.state.protein + '/' + this.state.organism,
+        '/reactions/reactants/' + this.state.protein + '/' + this.state.organism,
       );
     }
     else if(this.state.selectedSearch=="uniprot"){
       this.props.handleClick(
-        '/protein/uniprot/' + this.state.uniprot,
+        '/reactions/id/' + this.state.uniprot,
       );
     }
   }
@@ -169,7 +168,7 @@ class ReactionSearch extends Component {
       this.setState({selectedSearch: this.props.searchType})
       this.setState({"buttonValue":2})
     }
-    else if (this.props.searchType=="name"){
+    else if (this.props.searchType=="reactants"){
       this.setState({selectedSearch: this.props.searchType})
       this.setState({"buttonValue":1})
     }
@@ -177,7 +176,7 @@ class ReactionSearch extends Component {
     //this.refs.taxonCol.applyFilter(28)
   }
   buttonChange(e) {
-    var searches = ['name', 'uniprot'];
+    var searches = ['reactants', 'uniprot'];
     this.setState({
       buttonValue: e.target.value,
       selectedSearch: searches[e.target.value - 1],
@@ -202,7 +201,7 @@ class ReactionSearch extends Component {
     }
     let selectedSearch = this.state.selectedSearch;
     return (
-      <div className="ProtSearch" style={styles}>
+      <div className="ReactionSearch" style={styles}>
         {this.props.landing && (
           <img src={require('~/images/search_logo.png')} />
         )}
@@ -214,25 +213,77 @@ class ReactionSearch extends Component {
             value={this.state.buttonValue}
           >
             <Radio style={radioStyle} value={1}>
-              Protein Name
+              Reactants
             </Radio>
             <Radio style={radioStyle} value={2}>
-              Uniprot ID
+              Reaction ID
               {this.state.value === 2 ? (
                 <Input style={{ width: 100, marginLeft: 10 }} />
               ) : null}
             </Radio>
           </Radio.Group>
 
-          {selectedSearch == 'name' && (
-            <Input
-              style={{ width: '30%' }}
-              defaultValue={this.props.defaultMolecule}
-              addonBefore="Protein"
-              onChange={event => {
-                this.setState({ protein: event.target.value });
-              }}
+          {selectedSearch == 'reactants' && (
+            <InputGroup compact style={{ width: '70%' }}>
+
+              <InputGroup compact>
+                <Input
+                  style={{ width: '33%' }}
+                  defaultValue={this.props.defaultMolecule}
+                  addonBefore="Substrates"
+                  onChange={event => {
+                    this.setState({ protein: event.target.value });
+                  }}
+                />
+                <Input
+                  style={{ width: '33%' }}
+                  defaultValue={this.props.defaultMolecule}
+                  onChange={event => {
+                    this.setState({ protein: event.target.value });
+                  }}
+                />
+                <Input
+                  style={{ width: '33%' }}
+                  defaultValue={this.props.defaultMolecule}
+                  onChange={event => {
+                    this.setState({ protein: event.target.value });
+                  }}
+                />
+                <br/>
+
+                <Input
+                  style={{ width: '33%' }}
+                  defaultValue={this.props.defaultMolecule}
+                  addonBefore="Products"
+                  onChange={event => {
+                    this.setState({ protein: event.target.value });
+                  }}
+                />
+                <Input
+                  style={{ width: '33%' }}
+                  defaultValue={this.props.defaultMolecule}
+                  onChange={event => {
+                    this.setState({ protein: event.target.value });
+                  }}
+                />
+                <Input
+                  style={{ width: '33%' }}
+                  defaultValue={this.props.defaultMolecule}
+                  onChange={event => {
+                    this.setState({ protein: event.target.value });
+                  }}
+                />
+            </InputGroup>
+            <br/>
+            <Button
+            type="primary"
+            shape="circle"
+            icon="search"
+            onClick={this.handleClickInner}
             />
+            </InputGroup>
+
+
           )}
          
 
@@ -240,18 +291,13 @@ class ReactionSearch extends Component {
             <Input
               style={{ width: '30%' }}
               defaultValue={this.props.defaultMolecule}
-              addonBefore="Uniprot ID"
+              addonBefore="Reaction ID"
               onChange={event => {
                 this.setState({ uniprot: event.target.value });
               }}
             />
           )}
-          <Button
-            type="primary"
-            shape="circle"
-            icon="search"
-            onClick={this.handleClickInner}
-          />
+
         </InputGroup>
       </div>
     );
