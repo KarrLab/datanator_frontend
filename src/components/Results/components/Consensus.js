@@ -158,6 +158,7 @@ class Consensus extends Component {
     var searches = ['reactants', 'reaction_id'];
     console.log("Consensus: "+ e.target.value)
     this.setSummaryStats(this.props.selectedData, this.props.relevantColumns[e.target.value-1])
+    this.handleUpdate()
     this.setState({
       buttonValue: e.target.value,
       selected_column: this.props.relevantColumns[e.target.value-1],
