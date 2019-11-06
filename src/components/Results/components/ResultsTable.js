@@ -248,7 +248,7 @@ class ResultsTable extends Component {
     this.correctlyRenderSelectRow();
 
     return (
-      <div className="concTable2">
+      <div className="table">
         <img src={require('~/images/result.png')} alt="results" />
         <Button
           type="primary"

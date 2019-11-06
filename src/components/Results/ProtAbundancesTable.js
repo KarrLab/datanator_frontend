@@ -37,8 +37,8 @@ class ProtAbundancesTable extends Component {
             <img src={require('~/images/filter.png')} alt="results" />
             <TaxonFilter />
           </div>
-          <div className="results">
-            <div className="concTable">
+          <div className="table_and_consensus">
+            <div className="conc_table">
               <ResultsTable
                 basic_columns={[
                   'protein_name',

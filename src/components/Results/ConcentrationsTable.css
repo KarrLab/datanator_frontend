@@ -1,13 +1,10 @@
 
-.results {
+.table_and_consensus {
   text-align: left;
   display:flex; 
   flex-direction:row;
   flex-wrap: wrap;
-  flex-flow: row wrap
-
-
-
+  flex-flow: row wrap;
 }
 
 
@@ -38,7 +35,7 @@
   border-color: #fcd1d1;
 }
 
-.results .concTable{
+.table_and_consensus .conc_table{
 	width: 76%;
 	background-color: #e2f7ff;
 	border-style: solid;
@@ -47,9 +44,9 @@
     margin-right: .4%;
 
 	}
-.total_table .results .consensus{width: 23.6%; background-color: #d1fafc; border-style: solid; border-color: #1bf0fa; margin-top: 5px;}
+.total_table .table_and_consensus .consensus{width: 23.6%; background-color: #d1fafc; border-style: solid; border-color: #1bf0fa; margin-top: 5px;}
 
-.total_table .results .concTable{
+.total_table .table_and_consensus .conc_table{
 overflow-x:scroll !important;
 
 }

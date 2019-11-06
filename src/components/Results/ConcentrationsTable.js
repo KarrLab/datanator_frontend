@@ -50,8 +50,8 @@ class ConcentrationsTable extends Component {
             <TaxonFilter />
             <TanitomoFilter tanitomo={this.props.tanitomo} />
           </div>
-          <div className="results">
-            <div className="concTable">
+          <div className="table_and_consensus">
+            <div className="conc_table">
               <ResultsTable
                 basic_columns={[
                   'concentration',
