@@ -92,9 +92,13 @@ class Consensus extends Component {
 
       /** What the prompt on the consensus button should be. Initially it is 'Get Consensus'*/
       consensus_prompt: 'Get Consensus',
+
+      buttonValue: 1,
+
     };
     this.setSummaryStats = this.setSummaryStats.bind(this);
     this.recordData = this.recordData.bind(this);
+    this.buttonChange = this.buttonChange.bind(this);
   }
 
   /**
@@ -102,7 +106,7 @@ class Consensus extends Component {
    */
   setSummaryStats(data, selected_column) {
     console.log('Consensus: Calling setSummaryStats');
-    console.log("Consensus: " + this.props.relevantColumns)
+    console.log("Consensus: " + this.props.relevantColumns[1])
     console.log("Consensus: " + selected_column)
     var total_conc = 0;
     let total_data = [];
@@ -119,7 +123,7 @@ class Consensus extends Component {
       mean: new_mean,
       median: new_median,
       std_dev: new_std_dev,
-      selected_column: selected_column,
+      //selected_column: selected_column,
       range:
         round(new_range[0], 3) +
         '-' +
@@ -149,6 +153,17 @@ class Consensus extends Component {
     this.props.dispatch(refreshSelectedData());
   }
 
+  buttonChange(e) {
+    console.log('Consensus: Calling buttonChange')
+    var searches = ['reactants', 'reaction_id'];
+    console.log("Consensus: "+ e.target.value)
+    this.setSummaryStats(this.props.selectedData, this.props.relevantColumns[e.target.value-1])
+    this.setState({
+      buttonValue: e.target.value,
+      selected_column: this.props.relevantColumns[e.target.value-1],
+    });
+  }
+
   /**
    * When mounted, this component should set summary stats
    * if the total data exists
@@ -157,6 +172,7 @@ class Consensus extends Component {
     console.log('Consensus: Calling componentDidMount');
     if (this.props.totalData != null) {
       this.setSummaryStats(this.props.totalData, this.props.relevantColumns[0]);
+      this.setState({selected_column:this.props.relevantColumns[0]})
     }
   }
 
@@ -166,8 +182,11 @@ class Consensus extends Component {
   componentDidUpdate(prevProps) {
     console.log('Consensus: Calling componentDidUpdate');
     if (prevProps.totalData != this.props.totalData) {
-      this.setSummaryStats(this.props.totalData, this.props.relevantColumns[0]);
+      this.setSummaryStats(this.props.totalData, this.props.relevantColumns[0])
+      this.setState({selected_column:this.props.relevantColumns[0]});
     } else if (prevProps.selectedData != this.props.selectedData) {
+      console.log('Consensus: Calling blueblueblueblue')
+      console.log("Consensus: Calling greengreengreen" + this.state.selected_column)
       this.setSummaryStats(this.props.selectedData, this.state.selected_column);
     }
   }
@@ -183,21 +202,13 @@ class Consensus extends Component {
             onChange={this.buttonChange}
             value={this.state.buttonValue}
           >
-            <Radio style={radioStyle} value={1}>
-              Reactants
-            </Radio>
-            <Radio style={radioStyle} value={2}>
-              Reaction ID
-              {this.state.value === 2 ? (
-                <Input style={{ width: 100, marginLeft: 10 }} />
-              ) : null}
-            </Radio>
-            <Button
-            type="primary"
-            shape="circle"
-            icon="search"
-            onClick={this.handleClickInner}
-            />
+
+           {this.props.relevantColumns.map((value, index) => {
+            return <Radio style={radioStyle} value={index+1}>
+                    {value}
+                  </Radio>
+          })}
+
           </Radio.Group>
         }
 
