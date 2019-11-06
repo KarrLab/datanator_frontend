@@ -1,5 +1,5 @@
 
-.table_and_consensus {
+.total_table .table_and_consensus {
   text-align: left;
   display:flex; 
   flex-direction:row;
@@ -7,8 +7,7 @@
   flex-flow: row wrap;
 }
 
-
-.slider {
+.total_table .slider {
   margin-top: 5px;
   background-color: #fceded;
   text-align: left;
@@ -18,33 +17,27 @@
   border-color: #fcd1d1;
   flex-wrap: wrap;
   flex-flow: row wrap;
-
-
 }
 
-.slider .taxon_slider {
+.total_table .slider .taxon_slider {
   width: 30%;
   border-style: solid;
   border-color: #fcd1d1;
 }
-.slider .tanitomo_slider {
+.total_table .slider .tanitomo_slider {
   width: 30%;
   border-style: solid;
   border-color: #fcd1d1;
 }
 
-.table_and_consensus .results_table{
+.total_table .table_and_consensus .results_table{
 	width: 76%;
 	background-color: #e2f7ff;
 	border-style: solid;
-    border-color: #76e1f2;
-    margin-top: 5px;
-    margin-right: .4%;
-
+  border-color: #76e1f2;
+  margin-top: 5px;
+  margin-right: .4%;
+  overflow-x:scroll !important;
 	}
 .total_table .table_and_consensus .consensus{width: 23.6%; background-color: #d1fafc; border-style: solid; border-color: #1bf0fa; margin-top: 5px;}
 
-.total_table .table_and_consensus .results_table{
-overflow-x:scroll !important;
-
-}
