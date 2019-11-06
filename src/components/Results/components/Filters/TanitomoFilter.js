@@ -9,7 +9,11 @@ import { Input, Button } from 'antd';
 import 'antd/dist/antd.css';
 import { Slider } from 'antd';
 import { connect } from 'react-redux';
-import { getTotalColumns, filter_tanitomo, refreshSelectedData } from '~/data/actions/resultsAction';
+import {
+  getTotalColumns,
+  filter_tanitomo,
+  refreshSelectedData,
+} from '~/data/actions/resultsAction';
 import { abstractMolecule } from '~/data/actions/pageAction';
 
 const selectOptions = {
@@ -17,69 +21,56 @@ const selectOptions = {
   'Log Phase': 'Log Phase',
 };
 
-
-
 @connect(store => {
-  return {
-  };
+  return {};
 })
 class TanitomoFilter extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
-    };
+    this.state = {};
     this.filter_tanitomo = this.filter_tanitomo.bind(this);
-    this.setAbstractUrl = this.setAbstractUrl.bind(this)
+    this.setAbstractUrl = this.setAbstractUrl.bind(this);
   }
-
-  
-
 
   filter_tanitomo(value) {
-    this.props.dispatch(filter_tanitomo(value))
+    this.props.dispatch(filter_tanitomo(value));
   }
 
-  setAbstractUrl(){
-
-    this.props.dispatch(abstractMolecule(true))
+  setAbstractUrl() {
+    this.props.dispatch(abstractMolecule(true));
   }
-
-
-
-
-
 
   render() {
-    console.log("Rendering TanitomoFilter")
-        
-return (
+    console.log('Rendering TanitomoFilter');
 
-          <div className="slider_bar2">
+    return (
+      <div className="tanitomo_slider">
+        {!this.props.tanitomo && (
+          <Button
+            type="primary"
+            onClick={() => this.setAbstractUrl()}
+            data-testid="tanitomo_button"
+          >
+            {' '}
+            Include Similar Compounds{' '}
+          </Button>
+        )}
 
-            {!this.props.tanitomo && (
-              <Button type="primary" onClick={() => this.setAbstractUrl()} data-testid = "tanitomo_button">
-                {' '}
-                Include Similar Compounds{' '}
-              </Button>
-            )}
-
-            {this.props.tanitomo && (
-              <div className="tani">
-              Molecular Similarity 
-              <Slider
-                step={0.01}
-                defaultValue={0.65}
-                min={0.65}
-                max={1}
-                onChange={this.filter_tanitomo}
-              />
-              </div>
-            )}
-
-        </div>
-  )}
-
+        {this.props.tanitomo && (
+          <div className="tani">
+            Molecular Similarity
+            <Slider
+              step={0.01}
+              defaultValue={0.65}
+              min={0.65}
+              max={1}
+              onChange={this.filter_tanitomo}
+            />
+          </div>
+        )}
+      </div>
+    );
+  }
 }
-
 
 export { TanitomoFilter };
