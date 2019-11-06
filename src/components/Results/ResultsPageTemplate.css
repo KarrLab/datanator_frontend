@@ -35,7 +35,7 @@
   border-color: #fcd1d1;
 }
 
-.table_and_consensus .conc_table{
+.table_and_consensus .results_table{
 	width: 76%;
 	background-color: #e2f7ff;
 	border-style: solid;
@@ -46,7 +46,7 @@
 	}
 .total_table .table_and_consensus .consensus{width: 23.6%; background-color: #d1fafc; border-style: solid; border-color: #1bf0fa; margin-top: 5px;}
 
-.total_table .table_and_consensus .conc_table{
+.total_table .table_and_consensus .results_table{
 overflow-x:scroll !important;
 
 }

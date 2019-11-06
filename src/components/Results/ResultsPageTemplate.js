@@ -29,7 +29,7 @@ class ResultsPageTemplate extends Component {
             {this.props.filters}
           </div>
           <div className="table_and_consensus">
-            <div className="conc_table">
+            <div className="results_table">
             {this.props.table}
             </div>
             <div className="consensus">
