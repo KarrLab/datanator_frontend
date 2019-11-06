@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Button, Row, Col, Statistic } from 'antd';
 import 'antd/dist/antd.css';
 import Chart3 from './Chart3.js';
 import PropTypes from 'prop-types';
@@ -15,6 +14,26 @@ import {
   round,
   JSONToCSVConvertor,
 } from '~/components/Results/components/utils.js';
+
+import {
+  Input,
+  Col,
+  Row,
+  Select,
+  InputNumber,
+  DatePicker,
+  AutoComplete,
+  Cascade,
+  Button,
+  Radio,
+  Statistic
+} from 'antd'
+
+const radioStyle = {
+  display: 'block',
+  height: '30px',
+  lineHeight: '30px',
+};
 
 /**
  * Class to render the Consensus of results, and the save the total data to CSV file
@@ -158,6 +177,30 @@ class Consensus extends Component {
     return (
       <div className="consensus_data">
         <img src={require('~/images/consensus.png')} />
+
+        {(this.props.relevantColumns.length>1) &&
+        <Radio.Group
+            onChange={this.buttonChange}
+            value={this.state.buttonValue}
+          >
+            <Radio style={radioStyle} value={1}>
+              Reactants
+            </Radio>
+            <Radio style={radioStyle} value={2}>
+              Reaction ID
+              {this.state.value === 2 ? (
+                <Input style={{ width: 100, marginLeft: 10 }} />
+              ) : null}
+            </Radio>
+            <Button
+            type="primary"
+            shape="circle"
+            icon="search"
+            onClick={this.handleClickInner}
+            />
+          </Radio.Group>
+        }
+
         <Button type="primary" onClick={event => this.handleUpdate()}>
           {' '}
           {this.state.consensus_prompt}{' '}
