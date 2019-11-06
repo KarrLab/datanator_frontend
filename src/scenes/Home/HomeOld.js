@@ -5,6 +5,8 @@ import React, { Component } from 'react';
 //import '~/../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import ConcSearch from '~/components/SearchField/ConcSearch.js';
 import ProtSearch from '~/components/SearchField/ProtSearch.js';
+import ReactionSearch from '~/components/SearchField/ReactionSearch.js';
+
 
 import { BrowserRouter, Redirect } from 'react-router-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
@@ -58,6 +60,9 @@ class HomeOld extends Component {
             {this.state.currentSearch == 'protein' && (
               <ProtSearch handleClick={this.getSearchDataProt} landing={true} />
             )}
+            {this.state.currentSearch == 'reaction' && (
+              <ReactionSearch handleClick={this.getNewSearchMetab} landing={true} />
+            )}
           </Col>
         </Row>
 
@@ -84,6 +89,7 @@ class HomeOld extends Component {
             <img
               src={require('~/scenes/Home/images/reaction.png')}
               style={{ width: '100px' }}
+              onClick={() => this.setState({ currentSearch: 'reaction' })}
             />
             <p>Reaction Kinetics</p>
           </Col>
