@@ -32,8 +32,8 @@ class ReactionSearch extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      protein: '',
-      uniprot:'',
+      substrates:[null, null, null],
+      products: [null, null, null],
       organism: '',
       buttonValue: 1,
       selectedSearch: 'reactants',
@@ -137,13 +137,15 @@ class ReactionSearch extends Component {
 
   handleClickInner() {
     if (this.state.selectedSearch == 'reactants') {
+      console.log(this.state.substrates)
       this.props.handleClick(
-        '/reactions/reactants/' + this.state.protein + '/' + this.state.organism,
+        '/reaction/?substrates=' + this.state.substrates.filter((obj) => obj ) + 
+        '&?products=' + this.state.products.filter((obj) => obj ) + '',
       );
     }
     else if(this.state.selectedSearch=="reaction_id"){
       this.props.handleClick(
-        '/reactions/reaction_id/' + this.state.uniprot,
+        '/reaction/reaction_id/' + this.state.uniprot,
       );
     }
   }
@@ -233,21 +235,21 @@ class ReactionSearch extends Component {
                   defaultValue={this.props.defaultMolecule}
                   addonBefore="Substrates"
                   onChange={event => {
-                    this.setState({ protein: event.target.value });
+                    this.setState({ substrates: [event.target.value, this.state.substrates[1], this.state.substrates[2]] });
                   }}
                 />
                 <Input
                   style={{ width: '33%' }}
                   defaultValue={this.props.defaultMolecule}
                   onChange={event => {
-                    this.setState({ protein: event.target.value });
+                    this.setState({ substrates:  [this.state.substrates[0], event.target.value, this.state.substrates[2]]  });
                   }}
                 />
                 <Input
                   style={{ width: '33%' }}
                   defaultValue={this.props.defaultMolecule}
                   onChange={event => {
-                    this.setState({ protein: event.target.value });
+                    this.setState({ substrates: [this.state.substrates[0], this.state.substrates[1], event.target.value ]});
                   }}
                 />
                 <br/>
@@ -257,21 +259,21 @@ class ReactionSearch extends Component {
                   defaultValue={this.props.defaultMolecule}
                   addonBefore="Products"
                   onChange={event => {
-                    this.setState({ protein: event.target.value });
+                    this.setState({ products: [event.target.value, this.state.products[1], this.state.products[2]] });
                   }}
                 />
                 <Input
                   style={{ width: '33%' }}
                   defaultValue={this.props.defaultMolecule}
                   onChange={event => {
-                    this.setState({ protein: event.target.value });
+                    this.setState({ products:  [this.state.products[0], event.target.value, this.state.products[2]]  });
                   }}
                 />
                 <Input
                   style={{ width: '33%' }}
                   defaultValue={this.props.defaultMolecule}
                   onChange={event => {
-                    this.setState({ protein: event.target.value });
+                    this.setState({ products: [this.state.products[0], this.state.products[1], event.target.value ]});
                   }}
                 />
             </InputGroup>

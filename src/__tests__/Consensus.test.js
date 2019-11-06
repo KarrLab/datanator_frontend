@@ -52,7 +52,7 @@ test('hello world', async () => {
               advanced_columns={[]}
               potential_columns={{}}
       />
-      <Consensus relevantColumn={'concentration'} />
+      <Consensus relevantColumns={['concentration']} />
   </Provider>
   )
   

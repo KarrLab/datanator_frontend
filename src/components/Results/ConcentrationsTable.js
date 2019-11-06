@@ -69,7 +69,7 @@ class ConcentrationsTable extends Component {
                 ]}
                 potential_columns={{ tanitomo: this.props.tanitomo }}
               />}
-              relevantColumn = {'concentration'}
+              relevantColumns = {['concentration']}
           />
         </div>
       );

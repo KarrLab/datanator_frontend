@@ -69,7 +69,8 @@ class ReactionTable extends Component {
                 ]}
                 potential_columns={{ tanitomo: this.props.tanitomo }}
               />}
-              relevantColumn = {'concentration'}
+              relevantColumns = {["concentration", "error"]}
+              //optional_columns = {["error"]}
           />
         </div>
       );

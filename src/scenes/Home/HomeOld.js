@@ -25,6 +25,8 @@ class HomeOld extends Component {
     };
     this.getSearchDataProt = this.getSearchDataProt.bind(this);
     this.getNewSearchMetab = this.getNewSearchMetab.bind(this);
+
+    this.getSearchDataReaction = this.getSearchDataReaction.bind(this);
   }
 
   getSearchDataProt(url) {
@@ -45,6 +47,15 @@ class HomeOld extends Component {
     }
   }
 
+
+  getSearchDataReaction(url) {
+    this.setState({ nextUrl: url });
+    console.log(url);
+    this.setState({ newSearch: true });
+  }
+
+
+
   render() {
     if (this.state.newSearch == true) {
       return <Redirect to={this.state.nextUrl} push />;
@@ -61,7 +72,7 @@ class HomeOld extends Component {
               <ProtSearch handleClick={this.getSearchDataProt} landing={true} />
             )}
             {this.state.currentSearch == 'reaction' && (
-              <ReactionSearch handleClick={this.getNewSearchMetab} landing={true} />
+              <ReactionSearch handleClick={this.getSearchDataReaction} landing={true} />
             )}
           </Col>
         </Row>

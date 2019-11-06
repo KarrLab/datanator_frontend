@@ -40,7 +40,7 @@ const SiteRouter = () => {
       />
 
       <Route
-        path="/reaction/:molecule/:organism/"
+        path="/reaction/"
         component={ReactionPage}
       />
     </Router>

@@ -53,7 +53,7 @@ class ProtAbundancesTable extends Component {
                 advanced_columns={[]}
                 potential_columns={{}}
               />}
-              relevantColumn = {'abundance'}
+              relevantColumns = {['abundance']}
           />
         </div>
       );

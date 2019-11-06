@@ -23,6 +23,7 @@ import {
 
 import {Header} from '~/components/Layout/Header/Header';
 import {Footer} from '~/components/Layout/Footer/Footer';
+const queryString = require('query-string');
 
 
 @connect(store => {
@@ -65,10 +66,9 @@ class ReactionPage extends Component {
     getSearchData([
       'metabolites/concentration/?abstract=' +
         false +
-        '&species=' +
-        this.props.match.params.organism +
+        '&species=' + 'Escherichia coli' +
         '&metabolite=' +
-        this.props.match.params.molecule,
+        'ATP',
     ])
       .then(response => {
         this.formatData(response.data);
@@ -97,7 +97,7 @@ class ReactionPage extends Component {
       //this.props.dispatch(set_lineage(data[2][0]));
       getSearchData([
           'taxon',
-          'canon_rank_distance_by_name/?name=' + this.props.match.params.organism
+          'canon_rank_distance_by_name/?name=' + 'Escherichia coli'
         ]).then(
 
         response => {
@@ -213,6 +213,10 @@ class ReactionPage extends Component {
 
   render() {
     console.log('Rendering MetabConcs');
+    const values = queryString.parse(this.props.location.search)
+    console.log(values.substrates.split(",")[0])
+
+
     if (this.state.newSearch == true) {
       console.log('Redirecting');
       return <Redirect to={this.state.new_url} push />;

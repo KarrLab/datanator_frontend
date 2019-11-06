@@ -46,7 +46,7 @@ class Consensus extends Component {
      * For example, in metabolite concentrations, we want the summarize the value of "concentration",
      * so we need to tell the compomenet to look for the column labeled "concentration"
      */
-    relevantColumn: PropTypes.string.isRequired,
+    relevantColumns: PropTypes.string.isRequired,
   };
   constructor(props) {
     super(props);
@@ -69,6 +69,8 @@ class Consensus extends Component {
       /**Whether the user asked for the consensus again*/
       asked_consensus: false,
 
+      selected_column: "",
+
       /** What the prompt on the consensus button should be. Initially it is 'Get Consensus'*/
       consensus_prompt: 'Get Consensus',
     };
@@ -79,13 +81,15 @@ class Consensus extends Component {
   /**
    * Sets the summary statistics for consensus
    */
-  setSummaryStats(data) {
+  setSummaryStats(data, selected_column) {
     console.log('Consensus: Calling setSummaryStats');
+    console.log("Consensus: " + this.props.relevantColumns)
+    console.log("Consensus: " + selected_column)
     var total_conc = 0;
     let total_data = [];
     for (var i = data.length - 1; i >= 0; i--) {
-      total_data.push(parseFloat(data[i][this.props.relevantColumn]));
-      total_conc = total_conc + parseFloat(data[i][this.props.relevantColumn]);
+      total_data.push(parseFloat(data[i][selected_column]));
+      total_conc = total_conc + parseFloat(data[i][selected_column]);
     }
     var new_mean = round(mean(total_data), 3);
     var new_median = round(median(total_data), 3);
@@ -96,6 +100,7 @@ class Consensus extends Component {
       mean: new_mean,
       median: new_median,
       std_dev: new_std_dev,
+      selected_column: selected_column,
       range:
         round(new_range[0], 3) +
         '-' +
@@ -132,7 +137,7 @@ class Consensus extends Component {
   componentDidMount() {
     console.log('Consensus: Calling componentDidMount');
     if (this.props.totalData != null) {
-      this.setSummaryStats(this.props.totalData);
+      this.setSummaryStats(this.props.totalData, this.props.relevantColumns[0]);
     }
   }
 
@@ -142,9 +147,9 @@ class Consensus extends Component {
   componentDidUpdate(prevProps) {
     console.log('Consensus: Calling componentDidUpdate');
     if (prevProps.totalData != this.props.totalData) {
-      this.setSummaryStats(this.props.totalData);
+      this.setSummaryStats(this.props.totalData, this.props.relevantColumns[0]);
     } else if (prevProps.selectedData != this.props.selectedData) {
-      this.setSummaryStats(this.props.selectedData);
+      this.setSummaryStats(this.props.selectedData, this.state.selected_column);
     }
   }
 
@@ -189,7 +194,7 @@ class Consensus extends Component {
           <Chart3
             original_data={this.props.totalData}
             data={this.props.selectedData}
-            relevantColumn={this.props.relevantColumn}
+            relevantColumn={this.state.selected_column}
           />
         )}
       </div>

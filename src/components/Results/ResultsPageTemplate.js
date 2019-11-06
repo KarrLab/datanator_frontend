@@ -33,7 +33,10 @@ class ResultsPageTemplate extends Component {
             {this.props.table}
             </div>
             <div className="consensus">
-              <Consensus relevantColumn={this.props.relevantColumn} />
+              <Consensus 
+              relevantColumns={this.props.relevantColumns} 
+              optional_columns = {this.props.optional_columns}
+              />
             </div>
           </div>
         </div>
