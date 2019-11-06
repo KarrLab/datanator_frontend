@@ -2,12 +2,7 @@ import React, { Component } from 'react';
 //import 'bootstrap/dist/css/bootstrap.min.css';
 import BootstrapTable from 'react-bootstrap-table-next';
 import axios from 'axios';
-//import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
-/*import filterFactory, {
-	textFilter,
-	selectFilter
-} from 'react-bootstrap-table2-filter';
-*/
+
 import ReactDOM from 'react-dom';
 
 import {
@@ -141,15 +136,14 @@ class ReactionSearch extends Component {
   }
 
   handleClickInner() {
-    console.log("handling click!!")
     if (this.state.selectedSearch == 'reactants') {
       this.props.handleClick(
         '/reactions/reactants/' + this.state.protein + '/' + this.state.organism,
       );
     }
-    else if(this.state.selectedSearch=="uniprot"){
+    else if(this.state.selectedSearch=="reaction_id"){
       this.props.handleClick(
-        '/reactions/id/' + this.state.uniprot,
+        '/reactions/reaction_id/' + this.state.uniprot,
       );
     }
   }
@@ -160,11 +154,10 @@ class ReactionSearch extends Component {
 
   componentDidMount() {
     this.setState({
-      protein: this.props.defaultMolecule,
-      uniprot: this.props.defaultUniprot,
-      organism: this.props.defaultOrganism,
+      reactants: this.props.defaultMolecule,
+      reaction_id: this.props.defaultUniprot,
     });
-    if (this.props.searchType=="uniprot"){
+    if (this.props.searchType=="reaction_id"){
       this.setState({selectedSearch: this.props.searchType})
       this.setState({"buttonValue":2})
     }
@@ -176,7 +169,7 @@ class ReactionSearch extends Component {
     //this.refs.taxonCol.applyFilter(28)
   }
   buttonChange(e) {
-    var searches = ['reactants', 'uniprot'];
+    var searches = ['reactants', 'reaction_id'];
     this.setState({
       buttonValue: e.target.value,
       selectedSearch: searches[e.target.value - 1],
@@ -221,7 +214,15 @@ class ReactionSearch extends Component {
                 <Input style={{ width: 100, marginLeft: 10 }} />
               ) : null}
             </Radio>
+            <Button
+            type="primary"
+            shape="circle"
+            icon="search"
+            onClick={this.handleClickInner}
+            />
           </Radio.Group>
+
+
 
           {selectedSearch == 'reactants' && (
             <InputGroup compact style={{ width: '70%' }}>
@@ -275,25 +276,19 @@ class ReactionSearch extends Component {
                 />
             </InputGroup>
             <br/>
-            <Button
-            type="primary"
-            shape="circle"
-            icon="search"
-            onClick={this.handleClickInner}
-            />
             </InputGroup>
 
 
           )}
          
 
-          {selectedSearch == 'uniprot' && (
+          {selectedSearch == 'reaction_id' && (
             <Input
               style={{ width: '30%' }}
               defaultValue={this.props.defaultMolecule}
               addonBefore="Reaction ID"
               onChange={event => {
-                this.setState({ uniprot: event.target.value });
+                this.setState({ reaction_id: event.target.value });
               }}
             />
           )}
