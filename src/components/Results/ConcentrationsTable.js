@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 import { withRouter } from 'react-router';
-import './ConcentrationsTable.css';
+//import './ConcentrationsTable.css';
 import { ResultsTable } from './components/ResultsTable.js';
 import { TaxonFilter } from '~/components/Results/components/Filters/TaxonFilter';
 import { TanitomoFilter } from '~/components/Results/components/Filters/TanitomoFilter';
 import { Consensus } from './components/Consensus.js';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
+import { ResultsPageTemplate } from '~/components/Results/ResultsPageTemplate';
+
 
 @connect(store => {
   return {
@@ -37,6 +40,7 @@ class ConcentrationsTable extends Component {
     super(props);
   }
 
+
   render() {
     console.log('Rendering ConcentrationsTable');
 
@@ -44,15 +48,13 @@ class ConcentrationsTable extends Component {
       return <div></div>;
     } else {
       return (
-        <div className="total_table">
-          <div className="slider">
-            <img src={require('~/images/filter.png')} alt="results" />
-            <TaxonFilter />
-            <TanitomoFilter tanitomo={this.props.tanitomo} />
-          </div>
-          <div className="table_and_consensus">
-            <div className="conc_table">
-              <ResultsTable
+        <div >
+          <ResultsPageTemplate
+              filters = {[
+                <TaxonFilter />,
+                <TanitomoFilter tanitomo={this.props.tanitomo} />
+                ]}
+              table = {<ResultsTable
                 basic_columns={[
                   'concentration',
                   'error',
@@ -66,12 +68,9 @@ class ConcentrationsTable extends Component {
                   'growth_media',
                 ]}
                 potential_columns={{ tanitomo: this.props.tanitomo }}
-              />
-            </div>
-            <div className="consensus">
-              <Consensus relevantColumn={'concentration'} />
-            </div>
-          </div>
+              />}
+              relevantColumn = {'concentration'}
+          />
         </div>
       );
     }
@@ -79,3 +78,4 @@ class ConcentrationsTable extends Component {
 }
 
 export default withRouter(ConcentrationsTable);
+
