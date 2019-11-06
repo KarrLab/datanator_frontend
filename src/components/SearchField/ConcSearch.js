@@ -176,6 +176,7 @@ class ConcSearch extends Component {
           <Input
             style={{ width: '30%' }}
             defaultValue={this.props.defaultMolecule}
+            data-testid="molecule_input"
             addonBefore="Molecule"
             onChange={event => {
               this.setState({ molecule: event.target.value });
@@ -200,9 +201,10 @@ class ConcSearch extends Component {
                 .indexOf(inputValue.toUpperCase()) !== -1
             }
           >
-            <Input defaultValue="" addonBefore="Organism" />
+            <Input defaultValue="" addonBefore="Organism" data-testid="organism_input"/>
           </AutoComplete>
           <Button
+            data-testid="search_button"
             type="primary"
             shape="circle"
             icon="search"
@@ -214,4 +216,4 @@ class ConcSearch extends Component {
   }
 }
 
-export default withRouter(ConcSearch);
+export default (ConcSearch);

@@ -110,4 +110,4 @@ class HomeOld extends Component {
   }
 }
 
-export default withRouter(HomeOld);
+export default (HomeOld);

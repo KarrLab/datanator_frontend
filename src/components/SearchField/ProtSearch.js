@@ -258,4 +258,4 @@ class ProtSearch extends Component {
   }
 }
 
-export default withRouter(ProtSearch);
+export default (ProtSearch);

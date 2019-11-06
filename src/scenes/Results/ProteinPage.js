@@ -29,8 +29,6 @@ import { withRouter } from 'react-router';
 import './MetabConcs.css';
 
 import { getSearchData } from '~/services/MongoApi';
-import { MetaboliteInput } from '~/components/SearchField/MetaboliteInput';
-import { OrganismInput } from '~/components/SearchField/OrganismInput';
 import {
   UniprotDefinition,
   OrthologyDefinition,
