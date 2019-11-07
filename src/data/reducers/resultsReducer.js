@@ -131,11 +131,32 @@ let total_columns = {
     },
   },
 
+  ph: {
+    dataField: 'ph',
+    text: 'pH',
+    headerStyle: (colum, colIndex) => {
+      return { width: '9%', textAlign: 'left' };
+    },
+  },
+
+  temperature: {
+    dataField: 'temperature',
+    text: 'Temp. C',
+    headerStyle: (colum, colIndex) => {
+      return { width: '9%', textAlign: 'left' };
+    },
+  },
+
   organ: {
     dataField: 'organ',
     text: 'Organ',
-    
     filter: textFilter({ getFilter: filter => (filters['organ'] = filter) }),
+  },
+
+  enzyme: {
+    dataField: 'enzyme',
+    text: 'Enzyme',
+    filter: textFilter({ getFilter: filter => (filters['enzyme'] = filter) }),
   },
 
   gene_symbol: {

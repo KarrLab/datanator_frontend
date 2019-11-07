@@ -15,7 +15,6 @@ import { ResultsPageTemplate } from '~/components/Results/ResultsPageTemplate';
 
 const default_first_columns = ['kcat',]
 const default_second_columns = [
-                  'error',
                   'molecule',
                   'organism',
                   'taxonomic_proximity',
@@ -63,9 +62,9 @@ class ReactionTable extends Component {
       basic_columns:default_first_columns.concat(default_second_columns),
 
       advanced_columns:[
-                  'growth_phase',
-                  'growth_conditions',
-                  'growth_media',
+                  'ph',
+                  'temperature',
+                  'enzyme'
                 ],
 
     }
@@ -86,7 +85,7 @@ class ReactionTable extends Component {
     for (var i = km_values.length - 1; i >= 0; i--) {
       total_columns[km_values[i]] = {
         dataField: km_values[i],
-        text: 'Km ' + km_values[i].split("_")[1] + 'M',
+        text: 'Km ' + km_values[i].split("_")[1] + ' (M)',
         headerStyle: (colum, colIndex) => {
           return { width: '9%', textAlign: 'left' };
         }
