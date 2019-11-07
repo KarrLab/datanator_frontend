@@ -68,14 +68,6 @@ class ReactionTable extends Component {
                 ],
 
     }
-
-    total_columns["g_cat"] = {
-        dataField: 'g_cat',
-        text: 'Gcat (s^-1)',
-        headerStyle: (colum, colIndex) => {
-          return { width: '9%', textAlign: 'left' };
-        }
-      }
   };
 
 
@@ -131,7 +123,7 @@ class ReactionTable extends Component {
               table = {<ResultsTable
                 basic_columns={this.state.basic_columns}
                 advanced_columns={this.state.advanced_columns}
-                potential_columns={{ tanitomo: this.props.tanitomo }}
+                potential_columns={{}}
               />}
               relevantColumns = {["kcat"].concat(this.props.km_values)}
               //optional_columns = {["error"]}
