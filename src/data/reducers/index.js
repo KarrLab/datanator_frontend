@@ -1,5 +1,5 @@
 import organismReducer from './organismReducer';
-import resultsReducer from './resultsReducer';
+import {resultsReducer} from './resultsReducer';
 import pageReducer from './pageReducer';
 function combined(state = {}, action) {
   return {

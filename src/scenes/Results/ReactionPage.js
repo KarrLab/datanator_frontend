@@ -244,6 +244,7 @@ class ReactionPage extends Component {
           <ReactionTable
             data_arrived={this.state.data_arrived}
             tanitomo={this.state.tanitomo}
+            km_values = {["km_ATP", "km_AMP"]}
           />
         </div>
         <Footer/>

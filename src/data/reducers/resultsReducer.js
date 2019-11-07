@@ -24,7 +24,7 @@ let taxonFilter;
 
 let filters = {};
 
-const total_columns = {
+let total_columns = {
   concentration: {
     dataField: 'concentration',
     text: 'Conc. (µM)',
@@ -118,6 +118,14 @@ const total_columns = {
   abundance: {
     dataField: 'abundance',
     text: 'Abundance (ppm)',
+    headerStyle: (colum, colIndex) => {
+      return { width: '9%', textAlign: 'left' };
+    },
+  },
+
+  k_cat: {
+    dataField: 'k_cat',
+    text: 'Kcat (s^-1)',
     headerStyle: (colum, colIndex) => {
       return { width: '9%', textAlign: 'left' };
     },
@@ -270,4 +278,4 @@ function resultsReducer(state = defaultState, action) {
     }
   }
 }
-export default resultsReducer;
+export {resultsReducer, total_columns} ;
