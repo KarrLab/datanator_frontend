@@ -123,7 +123,7 @@ let total_columns = {
     },
   },
 
-  k_cat: {
+  kcat: {
     dataField: 'k_cat',
     text: 'Kcat (s^-1)',
     headerStyle: (colum, colIndex) => {

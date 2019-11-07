@@ -12,9 +12,9 @@ import {total_columns} from '~/data/reducers/resultsReducer';
 import { ResultsPageTemplate } from '~/components/Results/ResultsPageTemplate';
 
 
-const default_columns = [
-                  'concentration',
-                  'g_cat',
+
+const default_first_columns = ['kcat',]
+const default_second_columns = [
                   'error',
                   'molecule',
                   'organism',
@@ -60,7 +60,7 @@ class ReactionTable extends Component {
 
     this.state = {
 
-      basic_columns:default_columns,
+      basic_columns:default_first_columns.concat(default_second_columns),
 
       advanced_columns:[
                   'growth_phase',
@@ -86,7 +86,7 @@ class ReactionTable extends Component {
     for (var i = km_values.length - 1; i >= 0; i--) {
       total_columns[km_values[i]] = {
         dataField: km_values[i],
-        text: 'Km ' + km_values[i].split("_")[1],
+        text: 'Km ' + km_values[i].split("_")[1] + 'M',
         headerStyle: (colum, colIndex) => {
           return { width: '9%', textAlign: 'left' };
         }
@@ -94,7 +94,8 @@ class ReactionTable extends Component {
       new_columns.push(km_values[i])
     }
 
-    let final_columns = new_columns.concat(default_columns)
+    let final_columns = default_first_columns.concat(new_columns)
+   final_columns = final_columns.concat(default_second_columns)
     this.setState({basic_columns:final_columns})
 
 
@@ -133,7 +134,7 @@ class ReactionTable extends Component {
                 advanced_columns={this.state.advanced_columns}
                 potential_columns={{ tanitomo: this.props.tanitomo }}
               />}
-              relevantColumns = {["concentration"].concat(this.props.km_values)}
+              relevantColumns = {["kcat"].concat(this.props.km_values)}
               //optional_columns = {["error"]}
           />
         </div>
