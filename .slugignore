@@ -1,0 +1,19 @@
+# Heres a comment
+* @blueprintjs/icons
+* @blueprintjs/select
+* @blueprintjs/table
+* @reach/router
+* @svgr/webpack
+* bootstrap
+* browserify-fs
+* fetch-mock
+* identity-obj-proxy
+* jest-resolve
+* jquery
+* node-sass
+* react-bootstrap
+* redux-mock-store
+* sass-loader
+* semver
+* babel-plugin-import
+/test

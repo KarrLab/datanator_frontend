@@ -62,7 +62,7 @@ class ReactionPage extends Component {
   }
 
   getSearchData() {
-//s
+
     getSearchData([
       'metabolites/concentration/?abstract=' +
         false +
