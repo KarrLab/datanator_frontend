@@ -20,6 +20,8 @@ import {
   set_lineage,
   setTotalData,
 } from '~/data/actions/resultsAction';
+import {ReactionDefinition} from '~/components/Definitions/ReactionDefinition';
+
 
 import {Header} from '~/components/Layout/Header/Header';
 import {Footer} from '~/components/Layout/Footer/Footer';
@@ -38,7 +40,7 @@ class ReactionPage extends Component {
       data_arrived: false,
       newSearch: false,
       new_url: '',
-      tanitomo: false,
+      reactionMetadata: [],
     };
 
     this.getNewSearch = this.getNewSearch.bind(this);
@@ -64,11 +66,7 @@ class ReactionPage extends Component {
   getSearchData() {
 
     getSearchData([
-      'metabolites/concentration/?abstract=' +
-        false +
-        '&species=' + 'Escherichia coli' +
-        '&metabolite=' +
-        'ATP',
+      'reactions/kinlaw_by_rxn/?substrates=XTWYTFMLZFPYCI-KQYNXXCUSA-N&products=UDMBCSSLTHHNCD-KQYNXXCUSA-N&_from=0&size=10&dof=0'
     ])
       .then(response => {
         this.formatData(response.data);
@@ -239,11 +237,13 @@ class ReactionPage extends Component {
           />
         </div>
         <br />
+        <div className="uniprot_definition_data">
+          <ReactionDefinition reactionMetadata={this.state.reactionMetadata} />
+        </div>
         <br />
         <div className="results">
           <ReactionTable
             data_arrived={this.state.data_arrived}
-            tanitomo={this.state.tanitomo}
             km_values = {["km_ATP", "km_AMP"]}
           />
         </div>
