@@ -66,6 +66,7 @@ class ReactionDefinition extends Component {
 
             dataField: 'substrates',
             text: 'Substrates',
+            formatter :this.partFormatter,
           },
 
           {
@@ -111,6 +112,29 @@ class ReactionDefinition extends Component {
       <Link  to={url}>
         {cell.toString()}
       </Link>
+    )
+    }
+    else{
+      return(<div></div>)
+    }
+
+  }
+
+
+  partFormatter = (cell, row) => {
+    let participants = ""
+    let url = "/protein/uniprot/" + cell
+    if (cell){
+      console.log("grumble2")
+      for (var i = cell.length - 1; i >= 0; i--) {
+        participants = participants + cell[i] + " + "
+      }
+
+    return (
+
+      <div>
+        {participants}
+      </div>
     )
     }
     else{
