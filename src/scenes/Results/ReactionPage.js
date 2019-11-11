@@ -293,7 +293,7 @@ let start = 0;
       new_dict['reactionID'] = reactionID
       new_dict['substrates'] = substrates
       new_dict['products'] = products
-      new_dict['equation'] = formatPart(substrates) + " ==> " + formatPart(products)
+      new_dict['equation'] = [formatPart(substrates) + " ==> " + formatPart(products), reactionID]
       newReactionMetadataDict[reactionID] = new_dict
       console.log(new_dict)
       //newReactionMetadataDict.push(meta);

@@ -93,11 +93,11 @@ class ReactionDefinition extends Component {
   colFormatter = (cell, row) => {
     if (cell){
       console.log("grumble2")
-    let url = "/protein/uniprot/" + cell
+    let url = "/reaction/data/" + cell[1]
 
     return (
       <Link  to={url}>
-        {cell.toString()}
+        {cell[0].toString()}
       </Link>
     )
     }
