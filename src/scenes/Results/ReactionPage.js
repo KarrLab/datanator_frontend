@@ -28,6 +28,29 @@ import {Footer} from '~/components/Layout/Footer/Footer';
 const queryString = require('query-string');
 
 
+function getReactionID(resource){
+ for (var i = 0; i < resource.length; i++)
+  if (resource[i].namespace == "sabiork.reaction"){
+    return(resource[i].id)
+  }
+}
+
+function getSubstrates(substrate){
+ let subNames = []
+ for (var i = 0; i < substrate.length; i++){
+  subNames.push(substrate[i].substrate_name)
+  }
+  return(subNames)
+}
+
+function getProducts(product){
+ let subNames = []
+ for (var i = 0; i < product.length; i++){
+  subNames.push(product[i].product_name)
+  }
+  return(subNames)
+}
+
 @connect(store => {
   return {
   };
@@ -69,7 +92,7 @@ class ReactionPage extends Component {
       'reactions/kinlaw_by_rxn/?substrates=XTWYTFMLZFPYCI-KQYNXXCUSA-N&products=UDMBCSSLTHHNCD-KQYNXXCUSA-N&_from=0&size=10&dof=0'
     ])
       .then(response => {
-        this.formatData(response.data);
+        this.formatReactionMetadata(response.data);
       })
       .catch(err => {
         alert('Nothing Found');
@@ -208,6 +231,39 @@ class ReactionPage extends Component {
       //alert('Nothing Found');
     }
   }
+
+
+  formatReactionMetadata(data) {
+    let newReactionMetadataDict = {};
+let start = 0;
+//console.log(data[0])
+//if (data[0].length == 1) {
+//  start = 1; 
+//}
+    for (var i = start; i < data.length; i++) {
+      let meta = {};
+      meta['uniprot'] = data[i].uniprot_id;
+      meta['protein_name'] = data[i].protein_name;
+      meta['gene_name'] = data[i].gene_name;
+      meta['organism'] = data[i].species_name;
+      console.log(getReactionID(data[i].resource))
+      let reactionID = getReactionID(data[i].resource)
+      let new_dict = newReactionMetadataDict[reactionID]
+      if (!new_dict){
+        new_dict = {}
+      }
+      new_dict['reactionID'] = reactionID
+      new_dict['substrates'] = getSubstrates(data[i].reaction_participant[0].substrate)
+      new_dict['products'] = getProducts(data[i].reaction_participant[1].product)
+      newReactionMetadataDict[reactionID] = new_dict
+      console.log(new_dict)
+      //newReactionMetadataDict.push(meta);
+    }
+
+        this.setState({ reactionMetadata: Object.keys(newReactionMetadataDict).map(function(key){
+    return newReactionMetadataDict[key];})})
+
+}
 
   render() {
     console.log('Rendering MetabConcs');

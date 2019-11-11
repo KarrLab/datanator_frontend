@@ -55,8 +55,8 @@ class ReactionDefinition extends Component {
     this.state = {
       total_columns:  [
       {
-            dataField: 'uniprot',
-            text: 'Uniprot ID',
+            dataField: 'reactionID',
+            text: 'Reaction ID',
             formatter :this.colFormatter,
 
           },
@@ -64,13 +64,13 @@ class ReactionDefinition extends Component {
 
           {
 
-            dataField: 'protein_name',
-            text: 'Protein',
+            dataField: 'substrates',
+            text: 'Substrates',
           },
 
           {
-            dataField: 'gene_name',
-            text: 'Gene Name',
+            dataField: 'products',
+            text: 'Products',
           },
 
           {
@@ -90,14 +90,14 @@ class ReactionDefinition extends Component {
   componentDidMount() {
     console.log('hello');
 
-    this.setState({total_data:this.props.proteinMetadata})
+    this.setState({total_data:this.props.reactionMetadata})
   }
 
   componentDidUpdate(prevProps) {
     console.log('hello');
 
-    if (this.props.proteinMetadata !== prevProps.proteinMetadata){
-      this.setState({total_data:this.props.proteinMetadata})
+    if (this.props.reactionMetadata !== prevProps.reactionMetadata){
+      this.setState({total_data:this.props.reactionMetadata})
     }
 
   }
