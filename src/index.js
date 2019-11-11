@@ -40,7 +40,7 @@ const SiteRouter = () => {
       />
 
       <Route
-        path="/reaction/"
+        path="/reaction/:dataType/"
         component={ReactionPage}
       />
     </Router>

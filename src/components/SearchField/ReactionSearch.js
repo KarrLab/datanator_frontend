@@ -139,7 +139,7 @@ class ReactionSearch extends Component {
     if (this.state.selectedSearch == 'reactants') {
       console.log(this.state.substrates)
       this.props.handleClick(
-        '/reaction/?substrates=' + this.state.substrates.filter((obj) => obj ) + 
+        '/reaction/meta/?substrates=' + this.state.substrates.filter((obj) => obj ) + 
         '&?products=' + this.state.products.filter((obj) => obj ) + '',
       );
     }

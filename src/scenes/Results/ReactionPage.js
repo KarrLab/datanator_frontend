@@ -51,6 +51,20 @@ function getProducts(product){
   return(subNames)
 }
 
+function formatPart(parts){
+ let participants_string = ""
+ for (var i = parts.length - 1; i >= 0; i--) {
+        participants_string = participants_string + parts[i] + " + "
+      }
+      participants_string = participants_string.substring(0,participants_string.length-3)
+  return(participants_string)
+}
+
+
+
+
+
+
 @connect(store => {
   return {
   };
@@ -73,20 +87,27 @@ class ReactionPage extends Component {
     this.setState({
       newSearch: false,
     });
-    this.getSearchData();
+    if (this.props.match.params.dataType == 'meta') {
+      this.getMetaData();
+    }
   }
 
   componentDidUpdate(prevProps) {
     if (
       this.props.match.params.molecule != prevProps.match.params.molecule ||
       this.props.match.params.organism != prevProps.match.params.organism 
-    ) {
+    )
+    if (this.props.match.params.dataType == 'meta') {
       this.setState({ newSearch: false });
-      this.getSearchData();
+      this.getMetaData();
+    }
+    if (this.props.match.params.dataType == 'data') {
+      this.setState({ newSearch: false });
+      this.getMetaData();
     }
   }
 
-  getSearchData() {
+  getMetaData() {
 
     getSearchData([
       'reactions/kinlaw_by_rxn/?substrates=XTWYTFMLZFPYCI-KQYNXXCUSA-N&products=UDMBCSSLTHHNCD-KQYNXXCUSA-N&_from=0&size=10&dof=0'
@@ -99,6 +120,21 @@ class ReactionPage extends Component {
         this.setState({ orig_json: null });
       });
   }
+
+  getResultsData() {
+
+    getSearchData([
+      'reactions/kinlaw_by_rxn/?substrates=XTWYTFMLZFPYCI-KQYNXXCUSA-N&products=UDMBCSSLTHHNCD-KQYNXXCUSA-N&_from=0&size=10&dof=0'
+    ])
+      .then(response => {
+        this.formatReactionMetadata(response.data);
+      })
+      .catch(err => {
+        alert('Nothing Found');
+        this.setState({ orig_json: null });
+      });
+    }
+
 
   getNewSearch(response) {
     let url = '/metabconcs/' + response[0] + '/' + response[1];
@@ -252,9 +288,12 @@ let start = 0;
       if (!new_dict){
         new_dict = {}
       }
+      let substrates = getSubstrates(data[i].reaction_participant[0].substrate)
+      let products = getProducts(data[i].reaction_participant[1].product)
       new_dict['reactionID'] = reactionID
-      new_dict['substrates'] = getSubstrates(data[i].reaction_participant[0].substrate)
-      new_dict['products'] = getProducts(data[i].reaction_participant[1].product)
+      new_dict['substrates'] = substrates
+      new_dict['products'] = products
+      new_dict['equation'] = formatPart(substrates) + " ==> " + formatPart(products)
       newReactionMetadataDict[reactionID] = new_dict
       console.log(new_dict)
       //newReactionMetadataDict.push(meta);

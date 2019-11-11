@@ -57,26 +57,13 @@ class ReactionDefinition extends Component {
       {
             dataField: 'reactionID',
             text: 'Reaction ID',
+
+          },
+
+          {
+            dataField: 'equation',
+            text: 'Reaction Equation',
             formatter :this.colFormatter,
-
-          },
-      
-
-          {
-
-            dataField: 'substrates',
-            text: 'Substrates',
-            formatter :this.partFormatter,
-          },
-
-          {
-            dataField: 'products',
-            text: 'Products',
-          },
-
-          {
-            dataField: 'organism',
-            text: 'Organism',
           },
         
           
@@ -123,13 +110,11 @@ class ReactionDefinition extends Component {
 
   partFormatter = (cell, row) => {
     let participants = ""
-    let url = "/protein/uniprot/" + cell
     if (cell){
-      console.log("grumble2")
       for (var i = cell.length - 1; i >= 0; i--) {
         participants = participants + cell[i] + " + "
       }
-
+      participants = participants.substring(0,participants.length-3)
     return (
 
       <div>
