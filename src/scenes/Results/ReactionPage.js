@@ -198,6 +198,7 @@ class ReactionPage extends Component {
           reaction_id: data[i]['kinlaw_id'],
           kcat: getKcat(data[i].parameter)["kcat"],
           wildtype_mutant:wildtype_mutant,
+          organism: data[i].taxon_name
           //km_ATP:5,
           //concentration: parseFloat(concs.concentration[i]),
           //units: concs.concentration_units[i],

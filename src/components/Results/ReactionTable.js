@@ -118,7 +118,6 @@ class ReactionTable extends Component {
           <ResultsPageTemplate
               filters = {[
                 <TaxonFilter />,
-                <TanitomoFilter tanitomo={this.props.tanitomo} />
                 ]}
               table = {<ResultsTable
                 basic_columns={this.state.basic_columns}

@@ -103,6 +103,8 @@ it('test taxonomy filter', async () => {
 describe('Tanitomo Filtering', () => {
 it('test include similar compounds', async () => {
   // Render new instance in every test to prevent leaking state
+  jest.runAllTimers();
+
   const { getByTestId, getByText, getAllByText, queryAllByText, queryByText, findAllByText, findByText, getByPlaceholderText  } =  renderComponent( 'ATP', 'Saccharomyces cerevisiae', true);
 
   //await waitForElement(() => getByTestId("tanitomo_button"));

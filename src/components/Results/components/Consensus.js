@@ -99,6 +99,7 @@ class Consensus extends Component {
     this.setSummaryStats = this.setSummaryStats.bind(this);
     this.recordData = this.recordData.bind(this);
     this.buttonChange = this.buttonChange.bind(this);
+    this.standardRound = this.standardRound.bind(this);
   }
 
   /**
@@ -115,9 +116,9 @@ class Consensus extends Component {
       total_conc = total_conc + parseFloat(data[i][selected_column]);
     }
     total_data = total_data.filter(function (el) { return !(isNaN(el)); })
-    var new_mean = round(mean(total_data), 3);
-    var new_median = round(median(total_data), 3);
-    var new_std_dev = round(standardDeviation(total_data), 3);
+    var new_mean = this.standardRound(mean(total_data));
+    var new_median = this.standardRound(median(total_data));
+    var new_std_dev = this.standardRound(standardDeviation(total_data));
     var new_range = range(total_data);
 
     this.setState({
@@ -130,6 +131,17 @@ class Consensus extends Component {
         '-' +
         round(new_range[new_range.length - 1], 3),
     });
+  }
+
+  standardRound(number){
+    let rounder = null
+    if (number > 1){
+      rounder = 3
+    }
+    else{
+      rounder=7
+    }
+    return(round(number, rounder))
   }
 
   /**
