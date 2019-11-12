@@ -83,11 +83,10 @@ function getKcat(parameters) {
 }
 
 function getKm(parameters, substrates) {
-  let metabolites = ["ATP", "AMP"]
   let kms = {};
   for (var i = 0; i < parameters.length; i++) {
-    if (parameters[i].observed_name.toLowerCase() == 'km' && substrates.includes(parameters[i]['name'])){
-      kms[(parameters[i]['name'])] = parameters[i].value
+    if (parameters[i].type == '27' && substrates.includes(parameters[i]['name'])){
+      kms["km_" + parameters[i]['name']] = parameters[i].value
     }
   }
   return kms;
@@ -199,6 +198,7 @@ class ReactionPage extends Component {
           reaction_id: data[i]['kinlaw_id'],
           kcat: getKcat(data[i].parameter)["kcat"],
           wildtype_mutant:wildtype_mutant,
+          //km_ATP:5,
           //concentration: parseFloat(concs.concentration[i]),
           //units: concs.concentration_units[i],
           //error: concs.error[i],
@@ -210,6 +210,7 @@ class ReactionPage extends Component {
           //tanitomo_similarity: data[0][n - 1].tanitomo_similarity,
         }
         let row_with_km = Object.assign({}, row, getKm(data[i].parameter, substrates))
+        console.log(row_with_km)
         total_rows.push(row_with_km)
       }
 
