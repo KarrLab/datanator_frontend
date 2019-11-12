@@ -169,6 +169,12 @@ class ReactionPage extends Component {
   formatReactionData(data) {
     if (data != null) {
       var total_rows = [];
+      let substrates = getSubstrates(data[0].reaction_participant[0].substrate);
+      let km_values = []
+      for (var k = substrates.length - 1; k >= 0; k--) {
+        km_values.push("km_" + substrates[k])
+      }
+      this.setState({km_values:km_values})
 
       let start = 0;
       for (var i = start; i < data.length; i++) {
@@ -281,7 +287,7 @@ class ReactionPage extends Component {
         <div className="results">
           <ReactionTable
             data_arrived={this.state.data_arrived}
-            km_values={['km_ATP', 'km_AMP']}
+            km_values={this.state.km_values}
           />
         </div>
         <Footer />
