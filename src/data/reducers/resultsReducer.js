@@ -12,6 +12,12 @@ const selectOptions = {
   'Log Phase': 'Log Phase',
 };
 
+
+const selectOptionsGenetics = {
+  'wildtype': 'wildtype',
+  'mutant': 'mutant',
+};
+
 export const defaultState = {
   columns: {},
   column_list: [],
@@ -78,6 +84,17 @@ let total_columns = {
     }),
   },
 
+  wildtype_mutant: {
+    dataField: 'wildtype_mutant',
+    text: 'Wildtype/Mutant',
+    //defaultValue:"wildtype",
+    formatter: cell => selectOptionsGenetics[cell],
+    filter: selectFilter({
+      getFilter: filter => (filters['wildtype_mutant'] = filter),
+      options: selectOptionsGenetics,
+    }),
+  },
+
   growth_conditions: {
     dataField: 'growth_conditions',
     text: 'Conditions',
@@ -128,7 +145,7 @@ let total_columns = {
   },
 
   kcat: {
-    dataField: 'k_cat',
+    dataField: 'kcat',
     text: 'Kcat (s^-1)',
     headerStyle: (colum, colIndex) => {
       return { width: '9%', textAlign: 'left' };

@@ -72,6 +72,17 @@ function getProductInchiKey(product) {
   return inchiKeys;
 }
 
+function getKineticParameters(parameters) {
+  let metabolites = ["ATP", "AMP"]
+  let kinetic_params = {};
+  for (var i = 0; i < parameters.length; i++) {
+    if (parameters[i].name == 'k_cat'){
+      kinetic_params["kcat"] = parameters[i].value
+    }
+  }
+  return kinetic_params;
+}
+
 @connect(store => {
   return {};
 }) //the names given here will be the names of props
@@ -84,6 +95,7 @@ class ReactionPage extends Component {
       newSearch: false,
       new_url: '',
       reactionMetadata: [],
+      km_values:[],
     };
 
     this.formatReactionData = this.formatReactionData.bind(this);
@@ -160,8 +172,17 @@ class ReactionPage extends Component {
 
       let start = 0;
       for (var i = start; i < data.length; i++) {
+        let wildtype_mutant = null
+        if (data[i]['taxon_wildtype'] == '1'){
+          wildtype_mutant = "wildtype"
+        }
+        else if (data[i]['taxon_wildtype'] == '0'){
+          wildtype_mutant = "mutant"
+        }
         total_rows.push({
-          reaction_id: getReactionID(data[i].resource),
+          reaction_id: data[i]['kinlaw_id'],
+          kcat: getKineticParameters(data[i].parameter)["kcat"],
+          wildtype_mutant:wildtype_mutant,
           //concentration: parseFloat(concs.concentration[i]),
           //units: concs.concentration_units[i],
           //error: concs.error[i],

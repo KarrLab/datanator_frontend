@@ -15,7 +15,7 @@ import { ResultsPageTemplate } from '~/components/Results/ResultsPageTemplate';
 
 const default_first_columns = ['reaction_id','kcat',]
 const default_second_columns = [
-                  'molecule',
+                  'wildtype_mutant',
                   'organism',
                   'taxonomic_proximity',
                 ];
