@@ -29,6 +29,10 @@ let total_columns = {
     dataField: 'concentration',
     text: 'Conc. (µM)',
   },
+  reaction_id: {
+    dataField: 'reaction_id',
+    text: 'Reaction ID',
+  },
 
   error: {
     dataField: 'error',

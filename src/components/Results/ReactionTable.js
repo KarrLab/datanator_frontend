@@ -13,7 +13,7 @@ import { ResultsPageTemplate } from '~/components/Results/ResultsPageTemplate';
 
 
 
-const default_first_columns = ['kcat',]
+const default_first_columns = ['reaction_id','kcat',]
 const default_second_columns = [
                   'molecule',
                   'organism',
