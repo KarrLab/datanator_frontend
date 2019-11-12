@@ -198,17 +198,9 @@ class ReactionPage extends Component {
           reaction_id: data[i]['kinlaw_id'],
           kcat: getKcat(data[i].parameter)["kcat"],
           wildtype_mutant:wildtype_mutant,
-          organism: data[i].taxon_name
-          //km_ATP:5,
-          //concentration: parseFloat(concs.concentration[i]),
-          //units: concs.concentration_units[i],
-          //error: concs.error[i],
-          //growth_phase: growth_phase,
-          //organism: organism,
-          //growth_conditions: concs.growth_system[i],
-          //growth_media: concs.growth_media[i],
-          //taxonomic_proximity: data[0][n - 1].taxon_distance,
-          //tanitomo_similarity: data[0][n - 1].tanitomo_similarity,
+          organism: data[i].taxon_name,
+          ph: data[i].ph,
+          temperature: data[i].temperature
         }
         let row_with_km = Object.assign({}, row, getKm(data[i].parameter, substrates))
         console.log(row_with_km)
