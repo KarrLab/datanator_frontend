@@ -140,7 +140,7 @@ class ReactionSearch extends Component {
       console.log(this.state.substrates)
       this.props.handleClick(
         '/reaction/meta/?substrates=' + this.state.substrates.filter((obj) => obj ) + 
-        '&?products=' + this.state.products.filter((obj) => obj ) + '',
+        '&products=' + this.state.products.filter((obj) => obj ) + '',
       );
     }
     else if(this.state.selectedSearch=="reaction_id"){

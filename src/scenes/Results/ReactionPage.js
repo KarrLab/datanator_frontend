@@ -60,7 +60,21 @@ function formatPart(parts){
   return(participants_string)
 }
 
+function getSubstrateInchiKey(substrate){
+ let inchiKeys = []
+ for (var i = 0; i < substrate.length; i++){
+  inchiKeys.push(substrate[i].substrate_structure[0].InChI_Key)
+  }
+  return(inchiKeys)
+}
 
+function getProductInchiKey(product){
+ let inchiKeys = []
+ for (var i = 0; i < product.length; i++){
+  inchiKeys.push(product[i].product_structure[0].InChI_Key)
+  }
+  return(inchiKeys)
+}
 
 
 
@@ -90,27 +104,35 @@ class ReactionPage extends Component {
     if (this.props.match.params.dataType == 'meta') {
       this.getMetaData();
     }
+
+    if (this.props.match.params.dataType == 'data') {
+      this.getResultsData();
+    }
   }
 
   componentDidUpdate(prevProps) {
+    let values = queryString.parse(this.props.location.search)
+    console.log("Here yo: ")
+    console.log(values)
     if (
-      this.props.match.params.molecule != prevProps.match.params.molecule ||
-      this.props.match.params.organism != prevProps.match.params.organism 
-    )
+      this.props.match.params.substrates != prevProps.match.params.substrates ||
+      this.props.match.params.products != prevProps.match.params.products || 
+      this.props.match.params.dataType != prevProps.match.params.dataType
+    ){
     if (this.props.match.params.dataType == 'meta') {
       this.setState({ newSearch: false });
       this.getMetaData();
     }
     if (this.props.match.params.dataType == 'data') {
       this.setState({ newSearch: false });
-      this.getMetaData();
-    }
+      this.getResultsData();
+    }}
   }
 
   getMetaData() {
 
     getSearchData([
-      'reactions/kinlaw_by_rxn/?substrates=XTWYTFMLZFPYCI-KQYNXXCUSA-N&products=UDMBCSSLTHHNCD-KQYNXXCUSA-N&_from=0&size=10&dof=0'
+      'reactions/kinlaw_by_rxn/?products=XTWYTFMLZFPYCI-KQYNXXCUSA-N&substrates=UDMBCSSLTHHNCD-KQYNXXCUSA-N&_from=0&size=1000&dof=0&bound=loose'
     ])
       .then(response => {
         this.formatReactionMetadata(response.data);
@@ -122,15 +144,17 @@ class ReactionPage extends Component {
   }
 
   getResultsData() {
+    let values = queryString.parse(this.props.location.search)
 
     getSearchData([
-      'reactions/kinlaw_by_rxn/?substrates=XTWYTFMLZFPYCI-KQYNXXCUSA-N&products=UDMBCSSLTHHNCD-KQYNXXCUSA-N&_from=0&size=10&dof=0'
+      'reactions/kinlaw_by_rxn/?products=' + values.products + '&substrates=' + values.substrates 
+      + '&_from=0&size=1000&dof=0&bound=tight'
     ])
       .then(response => {
         this.formatReactionMetadata(response.data);
       })
       .catch(err => {
-        alert('Nothing Found');
+        //alert('Nothing Found');
         this.setState({ orig_json: null });
       });
     }
@@ -293,7 +317,14 @@ let start = 0;
       new_dict['reactionID'] = reactionID
       new_dict['substrates'] = substrates
       new_dict['products'] = products
-      new_dict['equation'] = [formatPart(substrates) + " ==> " + formatPart(products), reactionID]
+
+
+      let sub_inchis = getSubstrateInchiKey(data[i].reaction_participant[0].substrate)
+      let prod_inchis = getProductInchiKey(data[i].reaction_participant[1].product)
+      //console.log(sub_inchis)
+
+
+      new_dict['equation'] = [formatPart(substrates) + " ==> " + formatPart(products), {sub_inchis:sub_inchis, prod_inchis:prod_inchis}]
       newReactionMetadataDict[reactionID] = new_dict
       console.log(new_dict)
       //newReactionMetadataDict.push(meta);
