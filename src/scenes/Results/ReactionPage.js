@@ -72,8 +72,7 @@ function getProductInchiKey(product) {
   return inchiKeys;
 }
 
-function getKineticParameters(parameters) {
-  let metabolites = ["ATP", "AMP"]
+function getKcat(parameters) {
   let kinetic_params = {};
   for (var i = 0; i < parameters.length; i++) {
     if (parameters[i].name == 'k_cat'){
@@ -81,6 +80,17 @@ function getKineticParameters(parameters) {
     }
   }
   return kinetic_params;
+}
+
+function getKm(parameters, substrates) {
+  let metabolites = ["ATP", "AMP"]
+  let kms = {};
+  for (var i = 0; i < parameters.length; i++) {
+    if (parameters[i].observed_name.toLowerCase() == 'km' && substrates.includes(parameters[i]['name'])){
+      kms[(parameters[i]['name'])] = parameters[i].value
+    }
+  }
+  return kms;
 }
 
 @connect(store => {
@@ -160,10 +170,10 @@ class ReactionPage extends Component {
         this.formatReactionMetadata(response.data);
         this.formatReactionData(response.data);
       })
-      .catch(err => {
+      //.catch(err => {
         //alert('Nothing Found');
-        this.setState({ orig_json: null });
-      });
+        //this.setState({ orig_json: null });
+      //});
   }
 
   formatReactionData(data) {
@@ -185,9 +195,9 @@ class ReactionPage extends Component {
         else if (data[i]['taxon_wildtype'] == '0'){
           wildtype_mutant = "mutant"
         }
-        total_rows.push({
+        let row = {
           reaction_id: data[i]['kinlaw_id'],
-          kcat: getKineticParameters(data[i].parameter)["kcat"],
+          kcat: getKcat(data[i].parameter)["kcat"],
           wildtype_mutant:wildtype_mutant,
           //concentration: parseFloat(concs.concentration[i]),
           //units: concs.concentration_units[i],
@@ -198,7 +208,9 @@ class ReactionPage extends Component {
           //growth_media: concs.growth_media[i],
           //taxonomic_proximity: data[0][n - 1].taxon_distance,
           //tanitomo_similarity: data[0][n - 1].tanitomo_similarity,
-        });
+        }
+        let row_with_km = Object.assign({}, row, getKm(data[i].parameter, substrates))
+        total_rows.push(row_with_km)
       }
 
       this.props.dispatch(setTotalData(total_rows));

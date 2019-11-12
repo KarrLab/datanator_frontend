@@ -114,6 +114,8 @@ class Consensus extends Component {
       total_data.push(parseFloat(data[i][selected_column]));
       total_conc = total_conc + parseFloat(data[i][selected_column]);
     }
+    total_data = total_data.filter(function (el) { return !(isNaN(el)); })
+    console.log(total_data)
     var new_mean = round(mean(total_data), 3);
     var new_median = round(median(total_data), 3);
     var new_std_dev = round(standardDeviation(total_data), 3);
