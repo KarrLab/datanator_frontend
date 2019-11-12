@@ -108,6 +108,7 @@ class ReactionPage extends Component {
     };
 
     this.formatReactionData = this.formatReactionData.bind(this);
+    this.getSearchDataReaction = this.getSearchDataReaction.bind(this);
   }
   componentDidMount() {
     this.setState({
@@ -124,13 +125,25 @@ class ReactionPage extends Component {
 
   componentDidUpdate(prevProps) {
     let values = queryString.parse(this.props.location.search);
+    let old_values = queryString.parse(prevProps.location.search);
     console.log('Here yo: ');
     console.log(values);
+    console.log(this.props.match.params.substrates)
+    console.log(prevProps.match.params.substrates)
     if (
-      this.props.match.params.substrates != prevProps.match.params.substrates ||
-      this.props.match.params.products != prevProps.match.params.products ||
+      values.substrates != old_values.substrates ||
+      values.products != old_values.products ||
       this.props.match.params.dataType != prevProps.match.params.dataType
     ) {
+      this.setState({
+      dataSource: [],
+      data_arrived: false,
+      newSearch: false,
+      new_url: '',
+      reactionMetadata: [],
+      km_values:[],
+    })
+    console.log("RE-UP")
       if (this.props.match.params.dataType == 'meta') {
         this.setState({ newSearch: false });
         this.getMetaData();
@@ -143,8 +156,9 @@ class ReactionPage extends Component {
   }
 
   getMetaData() {
+    let values = queryString.parse(this.props.location.search)
     getSearchData([
-      'reactions/kinlaw_by_rxn/?products=XTWYTFMLZFPYCI-KQYNXXCUSA-N&substrates=UDMBCSSLTHHNCD-KQYNXXCUSA-N&_from=0&size=1000&dof=0&bound=loose',
+      'reactions/kinlaw_by_name/?products=' + values.products + '&substrates='+ values.substrates + '&_from=0&size=1000&bound=loose',
     ])
       .then(response => {
         this.formatReactionMetadata(response.data);
@@ -216,7 +230,7 @@ class ReactionPage extends Component {
   }
 
   getSearchDataReaction(url) {
-    this.setState({ nextUrl: url });
+    this.setState({ new_url: url });
     console.log(url);
     this.setState({ newSearch: true });
   }
@@ -278,12 +292,7 @@ class ReactionPage extends Component {
         <Header />
         <style>{'body { background-color: #f7fdff; }'}</style>
         <div className="search">
-          <ReactionSearch
-            handleClick={this.getSearchDataReaction}
-            landing={false}
-            //defaultMolecule={this.props.match.params.molecule}
-            //defaultOrganism={this.props.match.params.organism}
-          />
+          <ReactionSearch handleClick={this.getSearchDataReaction} landing={false} />
         </div>
         <br />
         <div className="uniprot_definition_data">

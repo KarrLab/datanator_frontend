@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 //import 'bootstrap/dist/css/bootstrap.min.css';
 import BootstrapTable from 'react-bootstrap-table-next';
 import axios from 'axios';
-
 import ReactDOM from 'react-dom';
 
 import {
@@ -21,6 +20,7 @@ import {
 //import 'antd/dist/antd.css';
 import { PropTypes } from 'react';
 import { withRouter } from 'react-router';
+const queryString = require('query-string');
 
 const InputGroup = Input.Group;
 const radioStyle = {
@@ -28,6 +28,7 @@ const radioStyle = {
   height: '30px',
   lineHeight: '30px',
 };
+
 class ReactionSearch extends Component {
   constructor(props) {
     super(props);
@@ -155,9 +156,12 @@ class ReactionSearch extends Component {
   }
 
   componentDidMount() {
+    const values = queryString.parse(this.props.location.search)
     this.setState({
       reactants: this.props.defaultMolecule,
       reaction_id: this.props.defaultUniprot,
+      substrates: values.substrates.split(","),
+      products: values.products.split(","),
     });
     if (this.props.searchType=="reaction_id"){
       this.setState({selectedSearch: this.props.searchType})
@@ -182,6 +186,8 @@ class ReactionSearch extends Component {
     console.log("Rendering Search")
     const Search = Input.Search;
     let styles;
+
+    const values = queryString.parse(this.props.location.search)
 
     if (this.props.landing) {
       styles = {
@@ -232,7 +238,7 @@ class ReactionSearch extends Component {
               <InputGroup compact>
                 <Input
                   style={{ width: '33%' }}
-                  defaultValue={this.props.defaultMolecule}
+                  defaultValue={values.substrates.split(",")[0]}
                   addonBefore="Substrates"
                   onChange={event => {
                     this.setState({ substrates: [event.target.value, this.state.substrates[1], this.state.substrates[2]] });
@@ -240,14 +246,14 @@ class ReactionSearch extends Component {
                 />
                 <Input
                   style={{ width: '33%' }}
-                  defaultValue={this.props.defaultMolecule}
+                  defaultValue={values.substrates.split(",")[1]}
                   onChange={event => {
                     this.setState({ substrates:  [this.state.substrates[0], event.target.value, this.state.substrates[2]]  });
                   }}
                 />
                 <Input
                   style={{ width: '33%' }}
-                  defaultValue={this.props.defaultMolecule}
+                  defaultValue={values.substrates.split(",")[2]}
                   onChange={event => {
                     this.setState({ substrates: [this.state.substrates[0], this.state.substrates[1], event.target.value ]});
                   }}
@@ -256,7 +262,7 @@ class ReactionSearch extends Component {
 
                 <Input
                   style={{ width: '33%' }}
-                  defaultValue={this.props.defaultMolecule}
+                  defaultValue={values.products.split(",")[0]}
                   addonBefore="Products"
                   onChange={event => {
                     this.setState({ products: [event.target.value, this.state.products[1], this.state.products[2]] });
@@ -264,14 +270,14 @@ class ReactionSearch extends Component {
                 />
                 <Input
                   style={{ width: '33%' }}
-                  defaultValue={this.props.defaultMolecule}
+                  defaultValue={values.products.split(",")[1]}
                   onChange={event => {
                     this.setState({ products:  [this.state.products[0], event.target.value, this.state.products[2]]  });
                   }}
                 />
                 <Input
                   style={{ width: '33%' }}
-                  defaultValue={this.props.defaultMolecule}
+                  defaultValue={values.products.split(",")[2]}
                   onChange={event => {
                     this.setState({ products: [this.state.products[0], this.state.products[1], event.target.value ]});
                   }}
@@ -301,4 +307,4 @@ class ReactionSearch extends Component {
   }
 }
 
-export default (ReactionSearch);
+export default withRouter(ReactionSearch);
