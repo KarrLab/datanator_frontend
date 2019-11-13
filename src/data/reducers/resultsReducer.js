@@ -6,6 +6,8 @@ import filterFactory, {
 } from 'react-bootstrap-table2-filter';
 import ReactDOM from 'react-dom';
 import { getSelectedData } from '~/components/Results/components/ResultsTable.js';
+import React from 'react';
+import {Link, Redirect } from 'react-router-dom'
 
 const selectOptions = {
   'Stationary Phase': 'Stationary Phase',
@@ -30,6 +32,19 @@ let taxonFilter;
 
 let filters = {};
 
+const linkFormatter = (cell, row) => {
+    if (cell){
+    let url = "http://sabiork.h-its.org/reacdetails.jsp?reactid=" + cell
+    return (
+      <a href={url} >{"SabioRK ID: " + cell.toString()} </a>
+    )
+    }
+    else{
+      return(<div></div>)
+    }
+
+  }
+
 let total_columns = {
   concentration: {
     dataField: 'concentration',
@@ -37,7 +52,8 @@ let total_columns = {
   },
   reaction_id: {
     dataField: 'reaction_id',
-    text: 'Reaction ID',
+    text: 'Source Link',
+    formatter : linkFormatter,
   },
 
   error: {
