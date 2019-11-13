@@ -72,7 +72,12 @@ class HomeOld extends Component {
               <ProtSearch handleClick={this.getSearchDataProt} landing={true} />
             )}
             {this.state.currentSearch == 'reaction' && (
-              <ReactionSearch handleClick={this.getSearchDataReaction} landing={true} />
+              <ReactionSearch 
+              handleClick={this.getSearchDataReaction} 
+              landing={true} 
+              default_substrates = {[null, null, null]}
+              default_products = {[null, null, null]}
+              />
             )}
           </Col>
         </Row>
