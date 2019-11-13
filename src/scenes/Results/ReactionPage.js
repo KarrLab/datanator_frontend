@@ -279,7 +279,7 @@ class ReactionPage extends Component {
         { sub_inchis: sub_inchis, prod_inchis: prod_inchis },
       ];
       newReactionMetadataDict[reactionID] = new_dict;
-      //console.log(new_dict);
+      console.log(new_dict);
       //newReactionMetadataDict.push(meta);
     }
 
@@ -292,6 +292,7 @@ class ReactionPage extends Component {
 
   render() {
     console.log('ReactionPage: Rendering ReactionPage');
+    console.log(this.state.reactionMetadata)
     const values = queryString.parse(this.props.location.search);
     //console.log(values.substrates.split(',')[0]);
 
