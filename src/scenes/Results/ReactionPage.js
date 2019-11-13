@@ -105,12 +105,14 @@ class ReactionPage extends Component {
       new_url: '',
       reactionMetadata: [],
       km_values:[],
+      redirect: false,
     };
 
     this.formatReactionData = this.formatReactionData.bind(this);
     this.getSearchDataReaction = this.getSearchDataReaction.bind(this);
   }
   componentDidMount() {
+    console.log("ReactionPage: Calling componentDidMount")
     this.setState({
       newSearch: false,
     });
@@ -124,16 +126,18 @@ class ReactionPage extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    console.log('ReactionPage: Calling componentDidUpdate')
     let values = queryString.parse(this.props.location.search);
     let old_values = queryString.parse(prevProps.location.search);
     console.log('Here yo: ');
     console.log(values);
-    console.log(this.props.match.params.substrates)
-    console.log(prevProps.match.params.substrates)
+    console.log(values.substrates)
+    console.log(old_values.substrates)
     if (
       values.substrates != old_values.substrates ||
       values.products != old_values.products ||
-      this.props.match.params.dataType != prevProps.match.params.dataType
+      this.props.match.params.dataType != prevProps.match.params.dataType ||
+      this.state.redirect
     ) {
       this.setState({
       dataSource: [],
@@ -142,6 +146,7 @@ class ReactionPage extends Component {
       new_url: '',
       reactionMetadata: [],
       km_values:[],
+      redirect: false
     })
     console.log("RE-UP")
       if (this.props.match.params.dataType == 'meta') {
@@ -156,6 +161,7 @@ class ReactionPage extends Component {
   }
 
   getMetaData() {
+    console.log('ReactionPage: Calling getMetaData');
     let values = queryString.parse(this.props.location.search)
     getSearchData([
       'reactions/kinlaw_by_name/?products=' + values.products + '&substrates='+ values.substrates + '&_from=0&size=1000&bound=loose',
@@ -170,6 +176,7 @@ class ReactionPage extends Component {
   }
 
   getResultsData() {
+    console.log('ReactionPage: Calling getResultsData');
     let values = queryString.parse(this.props.location.search);
 
     getSearchData([
@@ -190,6 +197,7 @@ class ReactionPage extends Component {
   }
 
   formatReactionData(data) {
+    console.log('ReactionPage: Calling formatReactionData');
     if (data != null) {
       var total_rows = [];
       let substrates = getSubstrates(data[0].reaction_participant[0].substrate);
@@ -230,12 +238,16 @@ class ReactionPage extends Component {
   }
 
   getSearchDataReaction(url) {
-    this.setState({ new_url: url });
+    console.log('ReactionPage: Calling getSearchDataReaction');
+    if (url != this.state.new_url){
+      this.setState({ new_url: url, redirect:true });
     console.log(url);
     this.setState({ newSearch: true });
+    }
   }
 
   formatReactionMetadata(data) {
+    console.log('ReactionPage: Calling formatReactionMetadata');
     let newReactionMetadataDict = {};
     let start = 0;
     for (var i = start; i < data.length; i++) {
@@ -274,7 +286,7 @@ class ReactionPage extends Component {
   }
 
   render() {
-    console.log('Rendering MetabConcs');
+    console.log('ReactionPage: Rendering ReactionPage');
     const values = queryString.parse(this.props.location.search);
     console.log(values.substrates.split(',')[0]);
 
