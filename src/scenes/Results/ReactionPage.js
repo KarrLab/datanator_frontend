@@ -173,7 +173,7 @@ class ReactionPage extends Component {
         this.formatReactionMetadata(response.data);
       })
       .catch(err => {
-        alert('Nothing Found');
+        //alert('Nothing Found');
         this.setState({ orig_json: null });
       });
   }
@@ -310,7 +310,12 @@ class ReactionPage extends Component {
         <Header />
         <style>{'body { background-color: #f7fdff; }'}</style>
         <div className="search">
-          <ReactionSearch handleClick={this.getSearchDataReaction} landing={false} />
+          <ReactionSearch 
+          handleClick={this.getSearchDataReaction} 
+          landing={false} 
+          default_substrates = {values.substrates.split(",")}
+          default_products = {values.products.split(",")}
+          />
         </div>
         <br />
         <div className="uniprot_definition_data">

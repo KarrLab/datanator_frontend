@@ -149,6 +149,7 @@ class ReactionSearch extends Component {
         '/reaction/reaction_id/' + this.state.uniprot,
       );
     }
+
   }
 
   goBack() {
@@ -161,8 +162,8 @@ class ReactionSearch extends Component {
       this.setState({
         reactants: this.props.defaultMolecule,
         reaction_id: this.props.defaultUniprot,
-        substrates: values.substrates.split(","),
-        products: values.products.split(","),
+        substrates: this.props.default_substrates,
+        products: this.props.default_substrates,
       });
     }
     if (this.props.searchType=="reaction_id"){
@@ -176,6 +177,23 @@ class ReactionSearch extends Component {
 
     //this.refs.taxonCol.applyFilter(28)
   }
+
+  /*
+  componentDidUpdate(prepProps) {
+    if (
+      this.props.default_substrates != prepProps.substrates ||
+      this.props.default_products != prepProps.products 
+    ) { 
+      this.setState({substrates:[null, null, null],
+      products: [null, null, null],})
+      }
+    }
+
+    */
+
+
+
+
   buttonChange(e) {
     var searches = ['reactants', 'reaction_id'];
     this.setState({
@@ -239,7 +257,7 @@ class ReactionSearch extends Component {
               <InputGroup compact>
                 <Input
                   style={{ width: '33%' }}
-                  //defaultValue={values.substrates.split(",")[0]}
+                  defaultValue={this.props.default_substrates[0]}
                   addonBefore="Substrates"
                   onChange={event => {
                     this.setState({ substrates: [event.target.value, this.state.substrates[1], this.state.substrates[2]] });
@@ -247,14 +265,14 @@ class ReactionSearch extends Component {
                 />
                 <Input
                   style={{ width: '33%' }}
-                  //defaultValue={values.substrates.split(",")[1]}
+                  defaultValue={this.props.default_substrates[1]}
                   onChange={event => {
                     this.setState({ substrates:  [this.state.substrates[0], event.target.value, this.state.substrates[2]]  });
                   }}
                 />
                 <Input
                   style={{ width: '33%' }}
-                  //defaultValue={values.substrates.split(",")[2]}
+                  defaultValue={this.props.default_substrates[2]}
                   onChange={event => {
                     this.setState({ substrates: [this.state.substrates[0], this.state.substrates[1], event.target.value ]});
                   }}
@@ -263,7 +281,7 @@ class ReactionSearch extends Component {
 
                 <Input
                   style={{ width: '33%' }}
-                  //defaultValue={values.products.split(",")[0]}
+                  defaultValue={this.props.default_products[0]}
                   addonBefore="Products"
                   onChange={event => {
                     this.setState({ products: [event.target.value, this.state.products[1], this.state.products[2]] });
@@ -271,14 +289,14 @@ class ReactionSearch extends Component {
                 />
                 <Input
                   style={{ width: '33%' }}
-                  //defaultValue={values.products.split(",")[1]}
+                  defaultValue={this.props.default_products[1]}
                   onChange={event => {
                     this.setState({ products:  [this.state.products[0], event.target.value, this.state.products[2]]  });
                   }}
                 />
                 <Input
                   style={{ width: '33%' }}
-                  //defaultValue={values.products.split(",")[2]}
+                  defaultValue={this.props.default_products[2]}
                   onChange={event => {
                     this.setState({ products: [this.state.products[0], this.state.products[1], event.target.value ]});
                   }}
