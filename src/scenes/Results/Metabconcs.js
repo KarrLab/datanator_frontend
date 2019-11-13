@@ -119,12 +119,17 @@ class MetabConcs extends Component {
           this.props.dispatch(set_lineage(response.data))
         });
 
+
+      let tani = false
       for (var n = data[0].length; n > 0; n--) {
         if (data[0][n - 1].tanitomo_similarity < 1) {
           this.setState({ tanitomo: true });
+          tani = true       
         } else {
           this.setState({ tanitomo: false });
+          //this.props.dispatch(abstractMolecule(false))
         }
+
 
         var concs = data[0][n - 1].concentrations;
         if (concs != null) {
@@ -178,6 +183,7 @@ class MetabConcs extends Component {
       for (var n = data[1].length; n > 0; n--) {
         if (data[1][n - 1].tanitomo_similarity < 1) {
           this.setState({ tanitomo: true });
+          tani=true
         }
 
         var concs = data[1][n - 1].concentrations;
@@ -214,6 +220,14 @@ class MetabConcs extends Component {
             });
           }
         }
+      }
+      if (tani){
+        //this.props.dispatch(abstractMolecule(true))
+        this.setState({"tanitomo":true})
+      }
+      else{
+        //this.props.dispatch(abstractMolecule(false))
+        this.setState({"tanitomo":false})
       }
 
       this.props.dispatch(setTotalData(f_concentrations));

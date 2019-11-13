@@ -156,13 +156,15 @@ class ReactionSearch extends Component {
   }
 
   componentDidMount() {
-    const values = queryString.parse(this.props.location.search)
-    this.setState({
-      reactants: this.props.defaultMolecule,
-      reaction_id: this.props.defaultUniprot,
-      substrates: values.substrates.split(","),
-      products: values.products.split(","),
-    });
+    if (!(this.props.landing)){
+      const values = queryString.parse(this.props.location.search)
+      this.setState({
+        reactants: this.props.defaultMolecule,
+        reaction_id: this.props.defaultUniprot,
+        substrates: values.substrates.split(","),
+        products: values.products.split(","),
+      });
+    }
     if (this.props.searchType=="reaction_id"){
       this.setState({selectedSearch: this.props.searchType})
       this.setState({"buttonValue":2})
@@ -234,11 +236,10 @@ class ReactionSearch extends Component {
 
           {selectedSearch == 'reactants' && (
             <InputGroup compact style={{ width: '70%' }}>
-
               <InputGroup compact>
                 <Input
                   style={{ width: '33%' }}
-                  defaultValue={values.substrates.split(",")[0]}
+                  //defaultValue={values.substrates.split(",")[0]}
                   addonBefore="Substrates"
                   onChange={event => {
                     this.setState({ substrates: [event.target.value, this.state.substrates[1], this.state.substrates[2]] });
@@ -246,14 +247,14 @@ class ReactionSearch extends Component {
                 />
                 <Input
                   style={{ width: '33%' }}
-                  defaultValue={values.substrates.split(",")[1]}
+                  //defaultValue={values.substrates.split(",")[1]}
                   onChange={event => {
                     this.setState({ substrates:  [this.state.substrates[0], event.target.value, this.state.substrates[2]]  });
                   }}
                 />
                 <Input
                   style={{ width: '33%' }}
-                  defaultValue={values.substrates.split(",")[2]}
+                  //defaultValue={values.substrates.split(",")[2]}
                   onChange={event => {
                     this.setState({ substrates: [this.state.substrates[0], this.state.substrates[1], event.target.value ]});
                   }}
@@ -262,7 +263,7 @@ class ReactionSearch extends Component {
 
                 <Input
                   style={{ width: '33%' }}
-                  defaultValue={values.products.split(",")[0]}
+                  //defaultValue={values.products.split(",")[0]}
                   addonBefore="Products"
                   onChange={event => {
                     this.setState({ products: [event.target.value, this.state.products[1], this.state.products[2]] });
@@ -270,14 +271,14 @@ class ReactionSearch extends Component {
                 />
                 <Input
                   style={{ width: '33%' }}
-                  defaultValue={values.products.split(",")[1]}
+                  //defaultValue={values.products.split(",")[1]}
                   onChange={event => {
                     this.setState({ products:  [this.state.products[0], event.target.value, this.state.products[2]]  });
                   }}
                 />
                 <Input
                   style={{ width: '33%' }}
-                  defaultValue={values.products.split(",")[2]}
+                  //defaultValue={values.products.split(",")[2]}
                   onChange={event => {
                     this.setState({ products: [this.state.products[0], this.state.products[1], event.target.value ]});
                   }}
