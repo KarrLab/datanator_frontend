@@ -105,7 +105,6 @@ class ReactionPage extends Component {
       new_url: '',
       reactionMetadata: [],
       km_values:[],
-      redirect: false,
     };
 
     this.formatReactionData = this.formatReactionData.bind(this);
@@ -129,16 +128,21 @@ class ReactionPage extends Component {
     console.log('ReactionPage: Calling componentDidUpdate')
     let values = queryString.parse(this.props.location.search);
     let old_values = queryString.parse(prevProps.location.search);
-    console.log('Here yo: ');
-    console.log(values);
-    console.log(values.substrates)
-    console.log(old_values.substrates)
+    //console.log('Here yo: ');
+    //console.log(values);
+    //console.log(values.substrates)
+    //console.log(old_values.substrates)
     if (
       values.substrates != old_values.substrates ||
       values.products != old_values.products ||
-      this.props.match.params.dataType != prevProps.match.params.dataType ||
-      this.state.redirect
+      this.props.match.params.dataType != prevProps.match.params.dataType
     ) {
+      console.log("blue")
+      console.log("Substrate values: " + values.substrates != old_values.substrates)
+      console.log("Substrate values: "+ (values.substrates != old_values.substrates))
+      console.log(values.substrates)
+      console.log(old_values.substrates)
+      console.log("Redirect value: "+ this.state.redirect)
       this.setState({
       dataSource: [],
       data_arrived: false,
@@ -146,9 +150,8 @@ class ReactionPage extends Component {
       new_url: '',
       reactionMetadata: [],
       km_values:[],
-      redirect: false
     })
-    console.log("RE-UP")
+    //console.log("RE-UP")
       if (this.props.match.params.dataType == 'meta') {
         this.setState({ newSearch: false });
         this.getMetaData();
@@ -225,7 +228,7 @@ class ReactionPage extends Component {
           temperature: data[i].temperature
         }
         let row_with_km = Object.assign({}, row, getKm(data[i].parameter, substrates))
-        console.log(row_with_km)
+        //console.log(row_with_km)
         total_rows.push(row_with_km)
       }
 
@@ -239,9 +242,11 @@ class ReactionPage extends Component {
 
   getSearchDataReaction(url) {
     console.log('ReactionPage: Calling getSearchDataReaction');
-    if (url != this.state.new_url){
-      this.setState({ new_url: url, redirect:true });
-    console.log(url);
+    console.log('ReactionPageLoc: ' + ( '/reaction' + window.location.toString().split('/reaction')[1]))
+    console.log('ReactionPageLoc: ' + url)
+    if (url != ( '/reaction' + window.location.toString().split('/reaction')[1])){
+      this.setState({ new_url: url});
+    //console.log(url);
     this.setState({ newSearch: true });
     }
   }
@@ -274,7 +279,7 @@ class ReactionPage extends Component {
         { sub_inchis: sub_inchis, prod_inchis: prod_inchis },
       ];
       newReactionMetadataDict[reactionID] = new_dict;
-      console.log(new_dict);
+      //console.log(new_dict);
       //newReactionMetadataDict.push(meta);
     }
 
@@ -288,7 +293,7 @@ class ReactionPage extends Component {
   render() {
     console.log('ReactionPage: Rendering ReactionPage');
     const values = queryString.parse(this.props.location.search);
-    console.log(values.substrates.split(',')[0]);
+    //console.log(values.substrates.split(',')[0]);
 
     if (this.state.newSearch == true) {
       console.log('Redirecting');
