@@ -184,9 +184,9 @@ class ReactionPage extends Component {
 
     getSearchData([
       'reactions/kinlaw_by_rxn/?products=' +
-        values.products +
+        values.products_inchi +
         '&substrates=' +
-        values.substrates +
+        values.substrates_inchi +
         '&_from=0&size=1000&dof=0&bound=tight',
     ])
       .then(response => {
@@ -315,6 +315,8 @@ class ReactionPage extends Component {
           landing={false} 
           default_substrates = {values.substrates.split(",")}
           default_products = {values.products.split(",")}
+          substrates_inchi = {values.substrates_inchi.split(",")}
+          products_inchi = {values.products_inchi.split(",")}
           />
         </div>
         <br />
