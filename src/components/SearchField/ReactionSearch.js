@@ -142,8 +142,8 @@ class ReactionSearch extends Component {
       this.props.handleClick(
         '/reaction/meta/?substrates=' + this.state.substrates.filter((obj) => obj ) + 
         '&products=' + this.state.products.filter((obj) => obj ) + ''+
-        '&substrates_inchi=' + this.props.substrates_inchi.filter((obj) => obj ) + ''+
-        '&products_inchi=' + this.props.products_inchi.filter((obj) => obj ) + '',
+        '&substrates_inchi=' + //this.props.substrates_inchi.filter((obj) => obj ) + ''+
+        '&products_inchi=' //+ this.props.products_inchi.filter((obj) => obj ) + '',
       );
     }
     else if(this.state.selectedSearch=="reaction_id"){
@@ -165,7 +165,7 @@ class ReactionSearch extends Component {
         reactants: this.props.defaultMolecule,
         reaction_id: this.props.defaultUniprot,
         substrates: this.props.default_substrates,
-        products: this.props.default_substrates,
+        products: this.props.default_products,
       });
     }
     if (this.props.searchType=="reaction_id"){
@@ -192,6 +192,11 @@ class ReactionSearch extends Component {
     }
 
     */
+
+  componentDidUpdate(prepProps) {
+    console.log("ReactionSearch: Products (state)" + this.state.products)
+    console.log("ReactionSearch: Products (props)" + this.props.default_products)
+  }
 
 
 
