@@ -194,6 +194,8 @@ class ProteinPage extends Component {
     for (var i = start; i < data.length; i++) {
       let end_query = '';
       let meta = {};
+      console.log("KO HERE: " + data[i].ko_number + " " + (data[i].ko_number==""))
+      if (!(data[i].ko_number =="no number")){
       meta['ko_number'] = data[i].ko_number;
       meta['ko_name'] = data[i].ko_name;
       let uni_ids = data[i].uniprot_ids;
@@ -216,7 +218,7 @@ class ProteinPage extends Component {
           },
         );
       }
-    }
+    }}
   }
 
   formatOrthologyMetadataUniprot(data) {
