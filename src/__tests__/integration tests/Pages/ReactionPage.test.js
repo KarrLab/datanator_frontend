@@ -46,6 +46,20 @@ it('render reaction meta page', async () => {
 
 });
 
+it('render reaction data page', async () => {
+  // Render new instance in every test to prevent leaking state
+  let searchType = 'data'
+  let substrates = ["ATP", "AMP"]
+  let products = ['ADP']
+  let sub_inchis = ["ZKHQWZAMYRWXGA-KQYNXXCUSA-J","UDMBCSSLTHHNCD-KQYNXXCUSA-N"]
+  let prod_inchis = ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
+  const { getByTestId, getByText, getAllByText, getByPlaceholderText  } =  renderComponent(searchType, substrates, products, sub_inchis, prod_inchis);
+
+  await waitForElement(() => getByText('AMP + ATP ==> ADP', { exact: false }));
+  expect(getByText('82', { exact: false }))
+
+});
+
 /*
 it('filter and update consensus', async () => {
   // Render new instance in every test to prevent leaking state
