@@ -22,6 +22,13 @@ import { PropTypes } from 'react';
 import { withRouter } from 'react-router';
 const queryString = require('query-string');
 
+
+const clickHandler = (event) => {
+    if (event.key === 'Enter'){
+      // do some stuff
+    }
+  }
+
 const InputGroup = Input.Group;
 const radioStyle = {
   display: 'block',
@@ -201,6 +208,7 @@ class ReactionSearch extends Component {
 
 
 
+
   buttonChange(e) {
     var searches = ['reactants', 'reaction_id'];
     this.setState({
@@ -215,6 +223,9 @@ class ReactionSearch extends Component {
     let styles;
 
     const values = queryString.parse(this.props.location.search)
+
+
+
 
     if (this.props.landing) {
       styles = {
@@ -235,7 +246,7 @@ class ReactionSearch extends Component {
         )}
         {!this.props.landing && <img src={require('~/images/DT.png')} />}
 
-        <InputGroup compact>
+        <InputGroup onPressEnter={console.log("green")} compact>
           <Radio.Group
             onChange={this.buttonChange}
             value={this.state.buttonValue}
@@ -254,6 +265,7 @@ class ReactionSearch extends Component {
             shape="circle"
             icon="search"
             onClick={this.handleClickInner}
+            onSearch={console.log("blue")}
             />
           </Radio.Group>
 

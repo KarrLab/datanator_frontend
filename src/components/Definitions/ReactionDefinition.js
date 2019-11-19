@@ -93,14 +93,17 @@ class ReactionDefinition extends Component {
   colFormatter = (cell, row) => {
     if (cell){
       console.log(cell[1])
-    let url = "/reaction/data/?substrates=" + cell[1]['sub_inchis'] + "&products=" + cell[1]['prod_inchis']
+      let substrates = cell[0].toString().split("==>")[0].split(" + ")
+      let products = cell[0].toString().split("==>")[1].split(" + ")
+      let url = "/reaction/data/?substrates=" + substrates + "&products=" + products
+      + "&substrates_inchi="+ cell[1]['sub_inchis'] + "&products_inchi=" + cell[1]['prod_inchis']
 
-    return (
-      <Link  to={url}>
-        {cell[0].toString()}
-      </Link>
-    )
-    }
+      return (
+        <Link  to={url}>
+          {cell[0].toString()}
+        </Link>
+      )
+      }
     else{
       return(<div></div>)
     }
