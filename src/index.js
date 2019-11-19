@@ -24,6 +24,7 @@ import HomeOld from '~/scenes/Home/HomeOld';
 import Metabconcs from '~/scenes/Results/Metabconcs';
 import ProteinPage from '~/scenes/Results/ProteinPage';
 import ReactionPage from '~/scenes/Results/ReactionPage';
+import GeneralPage from '~/scenes/Results/GeneralPage';
 
 const SiteRouter = () => {
   return (
@@ -42,6 +43,10 @@ const SiteRouter = () => {
       <Route
         path="/reaction/:dataType/"
         component={ReactionPage}
+      />
+      <Route
+        path="/general/"
+        component={GeneralPage}
       />
     </Router>
   );
