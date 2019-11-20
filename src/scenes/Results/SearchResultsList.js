@@ -11,7 +11,7 @@ import IconButton from '@material-ui/core/IconButton';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Grid from '@material-ui/core/Grid'
+import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import FolderIcon from '@material-ui/icons/Folder';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -74,22 +74,19 @@ export default function InteractiveList() {
           </Typography>
           <div className={classes.demo}>
             <List dense={dense}>
-                <ListItem>
-                  <ListItemIcon>
-                  </ListItemIcon>
-                  <ListItemText secondary="google">
-                    <a href={"www.google.com"} >{"SabioRK ID: "} </a>
-                  </ListItemText>
-                </ListItem> 
-                <ListItem>
-                  <ListItemIcon>
-                  </ListItemIcon>
-                  <ListItemText secondary="google">
-                    <a href={"www.google.com"} >{"SabioRK ID: "} </a>
-                  </ListItemText>
-                  <Divider variant="inset" component="li" />
-                </ListItem>               
-              
+              <ListItem>
+                <ListItemIcon></ListItemIcon>
+                <ListItemText secondary="ATP + AMP ==> ADP">
+                  <a href={'/reaction/data/?substrates=AMP,ATP%20&products=%20ADP&substrates_inchi=ZKHQWZAMYRWXGA-KQYNXXCUSA-J,UDMBCSSLTHHNCD-KQYNXXCUSA-N&products_inchi=XTWYTFMLZFPYCI-KQYNXXCUSA-N'}>{'ADP Synthase'} </a>
+                </ListItemText>
+              </ListItem>
+              <ListItem>
+                <ListItemIcon></ListItemIcon>
+                <ListItemText secondary="google">
+                  <a href={'www.google.com'}>{'SabioRK ID: '} </a>
+                </ListItemText>
+                <Divider variant="inset" component="li" />
+              </ListItem>
             </List>
           </div>
         </Grid>
