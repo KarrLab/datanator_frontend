@@ -76,16 +76,13 @@ export default function InteractiveList() {
             <List dense={dense}>
                 <ListItem>
                   <ListItemIcon>
-                    <FolderIcon />
                   </ListItemIcon>
                   <ListItemText secondary="google">
                     <a href={"www.google.com"} >{"SabioRK ID: "} </a>
                   </ListItemText>
                 </ListItem> 
-                <Divider variant="inset" component="li" />
                 <ListItem>
                   <ListItemIcon>
-                    <FolderIcon />
                   </ListItemIcon>
                   <ListItemText secondary="google">
                     <a href={"www.google.com"} >{"SabioRK ID: "} </a>
@@ -93,78 +90,6 @@ export default function InteractiveList() {
                   <Divider variant="inset" component="li" />
                 </ListItem>               
               
-            </List>
-          </div>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Typography variant="h6" className={classes.title}>
-            Icon with text
-          </Typography>
-          <div className={classes.demo}>
-            <List dense={dense}>
-              {generate(
-                <ListItem>
-                  <ListItemIcon>
-                    <FolderIcon />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary="Single-line item"
-                    secondary={secondary ? 'Secondary text' : null}
-                  />
-                </ListItem>,
-                <Divider variant="inset" component="li" />,
-              )}
-            </List>
-          </div>
-        </Grid>
-      </Grid>
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={6}>
-          <Typography variant="h6" className={classes.title}>
-            Avatar with text
-          </Typography>
-          <div className={classes.demo}>
-            <List dense={dense}>
-              {generate(
-                <ListItem>
-                  <ListItemAvatar>
-                    <Avatar>
-                      <FolderIcon />
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText
-                    primary="Single-line item"
-                    secondary={secondary ? 'Secondary text' : null}
-                  />
-                </ListItem>,
-              )}
-            </List>
-          </div>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Typography variant="h6" className={classes.title}>
-            Avatar with text and icon
-          </Typography>
-          <div className={classes.demo}>
-            <List dense={dense}>
-              {generate(
-                <ListItem>
-                  <ListItemAvatar>
-                    <Avatar>
-                      <FolderIcon />
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText
-                    primary="Single-line item"
-                    secondary={secondary ? 'Secondary text' : null}
-                  />
-                  <ListItemSecondaryAction>
-                    <IconButton edge="end" aria-label="delete">
-                      <DeleteIcon />
-                    </IconButton>
-                  </ListItemSecondaryAction>
-                </ListItem>,
-              )}
             </List>
           </div>
         </Grid>
