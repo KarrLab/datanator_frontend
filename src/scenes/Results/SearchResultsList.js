@@ -30,6 +30,8 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const results = []
+
 function generate(element) {
   return [0, 1, 2].map(value =>
     React.cloneElement(element, {
@@ -38,10 +40,30 @@ function generate(element) {
   );
 }
 
-export default function InteractiveList() {
+
+function add_results(primary_text, secondary_text, url){
+  results.push(<ListItem>
+    <ListItemIcon></ListItemIcon>
+    <ListItemText secondary={secondary_text}>
+      <a href={url}>{primary_text} </a>
+    </ListItemText>
+  </ListItem>)
+}
+
+export default function InteractiveList(list_results) {
   const classes = useStyles();
   const [dense, setDense] = React.useState(false);
   const [secondary, setSecondary] = React.useState(false);
+  let url = "reaction/data/?substrates=AMP,ATP%20&products=%20ADP&substrates_inchi=ZKHQWZAMYRWXGA-KQYNXXCUSA-J,UDMBCSSLTHHNCD-KQYNXXCUSA-N&products_inchi=XTWYTFMLZFPYCI-KQYNXXCUSA-N"
+  add_results("ATP Synthetase", "ATP + AMP ==> ADP", url)
+
+  //let url = "'/reaction/data/?substrates=AMP,ATP%20&products=%20ADP&substrates_inchi=ZKHQWZAMYRWXGA-KQYNXXCUSA-J,UDMBCSSLTHHNCD-KQYNXXCUSA-N&products_inchi=XTWYTFMLZFPYCI-KQYNXXCUSA-N"
+  //add_results("ATP Synthetase", "ATP + AMP ==> ADP", url)
+  //add_results("ATP Synthetase", "ATP + AMP ==> ADP", url)
+  let reaction_results = list_results
+  for (var i = reaction_results.length - 1; i >= 0; i--) {
+    add_results(reaction_results[i])
+  }
 
   return (
     <div className={classes.root}>
@@ -74,19 +96,7 @@ export default function InteractiveList() {
           </Typography>
           <div className={classes.demo}>
             <List dense={dense}>
-              <ListItem>
-                <ListItemIcon></ListItemIcon>
-                <ListItemText secondary="ATP + AMP ==> ADP">
-                  <a href={'/reaction/data/?substrates=AMP,ATP%20&products=%20ADP&substrates_inchi=ZKHQWZAMYRWXGA-KQYNXXCUSA-J,UDMBCSSLTHHNCD-KQYNXXCUSA-N&products_inchi=XTWYTFMLZFPYCI-KQYNXXCUSA-N'}>{'ADP Synthase'} </a>
-                </ListItemText>
-              </ListItem>
-              <ListItem>
-                <ListItemIcon></ListItemIcon>
-                <ListItemText secondary="google">
-                  <a href={'www.google.com'}>{'SabioRK ID: '} </a>
-                </ListItemText>
-                <Divider variant="inset" component="li" />
-              </ListItem>
+              {results}
             </List>
           </div>
         </Grid>

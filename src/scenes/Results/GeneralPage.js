@@ -12,7 +12,7 @@ import { Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
 import './MetabConcs.css';
-import SearchResultsList from './SearchResultsList.js';
+import InteractiveList from './SearchResultsList.js';
 
 
 import { getSearchData } from '~/services/MongoApi';
@@ -120,7 +120,7 @@ function generate(element) {
 }
 
 
-
+const url = "reaction/data/?substrates=AMP,ATP%20&products=%20ADP&substrates_inchi=ZKHQWZAMYRWXGA-KQYNXXCUSA-J,UDMBCSSLTHHNCD-KQYNXXCUSA-N&products_inchi=XTWYTFMLZFPYCI-KQYNXXCUSA-N"
 
 
 @connect(store => {
@@ -136,16 +136,19 @@ class GeneralPage extends Component {
       new_url: '',
       reactionMetadata: [],
       km_values:[],
+      reaction_results : [["ATP Synthetase1 ", "ATP + AMP ==> ADP", url], ["ATP Synthetase2 ", "ATP + AMP ==> ADP", url]]
     };
     
   }
-
 
   render() {
 
 
     return (
-      <SearchResultsList />
+      <InteractiveList 
+      list_results = {()=>this.state.reaction_results}
+
+      />
       )
      
   }
