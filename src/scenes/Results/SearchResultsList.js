@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component }  from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -50,57 +50,42 @@ function add_results(primary_text, secondary_text, url){
   </ListItem>)
 }
 
-export default function InteractiveList(list_results) {
-  const classes = useStyles();
-  const [dense, setDense] = React.useState(false);
-  const [secondary, setSecondary] = React.useState(false);
-  let url = "reaction/data/?substrates=AMP,ATP%20&products=%20ADP&substrates_inchi=ZKHQWZAMYRWXGA-KQYNXXCUSA-J,UDMBCSSLTHHNCD-KQYNXXCUSA-N&products_inchi=XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-  add_results("ATP Synthetase", "ATP + AMP ==> ADP", url)
+export default class InteractiveList extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+    };
+    
+  }
+
+  render() {
+
+  //let url = "reaction/data/?substrates=AMP,ATP%20&products=%20ADP&substrates_inchi=ZKHQWZAMYRWXGA-KQYNXXCUSA-J,UDMBCSSLTHHNCD-KQYNXXCUSA-N&products_inchi=XTWYTFMLZFPYCI-KQYNXXCUSA-N"
+  //add_results("ATP Synthetase", "ATP + AMP ==> ADP", url)
 
   //let url = "'/reaction/data/?substrates=AMP,ATP%20&products=%20ADP&substrates_inchi=ZKHQWZAMYRWXGA-KQYNXXCUSA-J,UDMBCSSLTHHNCD-KQYNXXCUSA-N&products_inchi=XTWYTFMLZFPYCI-KQYNXXCUSA-N"
   //add_results("ATP Synthetase", "ATP + AMP ==> ADP", url)
   //add_results("ATP Synthetase", "ATP + AMP ==> ADP", url)
-  let reaction_results = list_results
+  let reaction_results = this.props.reaction_results
   for (var i = reaction_results.length - 1; i >= 0; i--) {
-    add_results(reaction_results[i])
+    add_results(reaction_results[i][0], reaction_results[i][1], reaction_results[i][2])
   }
 
   return (
-    <div className={classes.root}>
-      <FormGroup row>
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={dense}
-              onChange={event => setDense(event.target.checked)}
-              value="dense"
-            />
-          }
-          label="Enable dense"
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={secondary}
-              onChange={event => setSecondary(event.target.checked)}
-              value="secondary"
-            />
-          }
-          label="Enable secondary text"
-        />
-      </FormGroup>
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={6}>
-          <Typography variant="h6" className={classes.title}>
-            Text only
-          </Typography>
-          <div className={classes.demo}>
-            <List dense={dense}>
-              {results}
-            </List>
-          </div>
-        </Grid>
-      </Grid>
-    </div>
-  );
+    <div className="google results">
+      <FormGroup row>
+      </FormGroup>
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={6}>
+          <div>
+            <List>
+              {results}
+            </List>
+          </div>
+        </Grid>
+      </Grid>
+    </div>
+  );
+}
 }

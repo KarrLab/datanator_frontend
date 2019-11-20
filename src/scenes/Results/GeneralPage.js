@@ -146,7 +146,7 @@ class GeneralPage extends Component {
 
     return (
       <InteractiveList 
-      list_results = {()=>this.state.reaction_results}
+      reaction_results = {this.state.reaction_results}
 
       />
       )
