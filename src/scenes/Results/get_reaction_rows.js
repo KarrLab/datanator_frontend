@@ -128,7 +128,7 @@ function getKm(parameters, substrates) {
 
 
       newReactionMetadataDict[reactionID] = new_dict;
-      console.log(new_dict);
+      //console.log(new_dict);
       //newReactionMetadataDict.push(meta);
     }
 

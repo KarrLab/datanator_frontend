@@ -53,8 +53,14 @@ const queryString = require('query-string');
 
 const url = "reaction/data/?substrates=AMP,ATP%20&products=%20ADP&substrates_inchi=ZKHQWZAMYRWXGA-KQYNXXCUSA-J,UDMBCSSLTHHNCD-KQYNXXCUSA-N&products_inchi=XTWYTFMLZFPYCI-KQYNXXCUSA-N"
 //const results = [["ATP Synthetase1 ", "ATP + AMP ==> ADP", url], ["ATP Synthetase2 ", "ATP + AMP ==> ADP", url]]
-const results = [{primary_text: "ATP Synthetase1 ", secondary_text: "ATP + AMP ==> ADP", url:url}, {primary_text: "ATP Synthetase1 ", secondary_text: "ATP + AMP ==> ADP", url:url}]
+const resultss = [{primary_text: "ATP Synthetase1 ", secondary_text: "ATP + AMP ==> ADP", url:url}, {primary_text: "ATP Synthetase1 ", secondary_text: "ATP + AMP ==> ADP", url:url}]
 
+const results = [{primary_text: "some name",
+products: [ "D-Glucose", "Phosphate" ],
+reactionID: "796",
+secondary_text: "D-Glucose 6-phosphate + H2O ==> Phosphate + D-Glucose",
+substrates:  [ "H2O", "D-Glucose 6-phosphate" ],
+url: "&substrates_inchi=XLYOFNOQVPJJNP-UHFFFAOYSA-N,NBSCHQHZLSJFNQ-GASJEMHNSA-N&products_inchi=WQZGKKKJIJFFOK-GASJEMHNSA-N,NBIIXXVUZAFLBC-UHFFFAOYSA-N"}]
 @connect(store => {
   return {};
 }) //the names given here will be the names of props
@@ -68,11 +74,14 @@ class GeneralPage extends Component {
       new_url: '',
       reactionMetadata: [],
       km_values:[],
-      reaction_results : results
+      reaction_results : results,
+      meh:false,
     };
 
     this.getNewSearch = this.getNewSearch.bind(this);
     this.fetch_data = this.fetch_data.bind(this);
+    this.formatData = this.formatData.bind(this);
+
 
     
   }
@@ -84,6 +93,7 @@ class GeneralPage extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    console.log(this.state.reaction_results)
     console.log('GeneralPage: Calling componentDidUpdate')
     let values = queryString.parse(this.props.location.search);
     let old_values = queryString.parse(prevProps.location.search);
@@ -93,12 +103,28 @@ class GeneralPage extends Component {
     }
   }
 
-  fetch_data(){
-    console.log("BLUEBERRYYYY")
-    this.setState({reaction_results:results})
+  fetch_data(query){
+    console.log("GeneralSearch: Calling fetch_data")
+    let url = "ftx/text_search/frontend_num_of_index/?query_message=" + query + "&indices=ecmdb%2Cymdb%2Cmetabolites_meta%2Cprotein%2Csabio_rk&size=10&fields=protein_name&fields=synonyms&fields=enzymes&fields=ko_name&fields=gene_name&fields=name&fields=reaction_participant.substrate.substrate_name&fields=reaction_participant.substrate.substrate_synonym&fields=reaction_participant.product.product_name&fields=reaction_participant.product.substrate_synonym&fields=enzymes.enzyme.enzyme_name&fields=enzymes.subunit.canonical_sequence&fields=species"
+  
+    getSearchData([url])
+      .then(response => {
+        this.formatData(response.data);
+      })
+  }
+
+  formatData(data){
+    console.log("GeneralSearch: Calling FormatData")
+    let reaction_data = data[4]['sabio_rk']
+    let reaction_metadata = formatReactionMetadata(reaction_data)
+    console.log(reaction_metadata)
+    this.setState({reaction_results:reaction_metadata})
+    this.setState({meh:  true})
   }
 
   render() {
+    console.log("GeneralSearch: Calling render")
+    console.log(this.state.reaction_results)
     let values = queryString.parse(this.props.location.search);
 
     if (this.state.newSearch == true) {
@@ -112,6 +138,7 @@ class GeneralPage extends Component {
       <GeneralSearch handleClick={this.getNewSearch} defaultQuery={values.q} defaultOrganism={values.organism}/>
       <InteractiveList 
       reaction_results = {this.state.reaction_results}
+      blue = {this.state.meh}
       />
       </div>
       )

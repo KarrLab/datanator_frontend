@@ -60,6 +60,8 @@ export default class InteractiveList extends Component {
   }
 
   render() {
+    console.log("SearchResultList: Calling Render")
+    console.log(this.props.reaction_results)
 
   //let url = "reaction/data/?substrates=AMP,ATP%20&products=%20ADP&substrates_inchi=ZKHQWZAMYRWXGA-KQYNXXCUSA-J,UDMBCSSLTHHNCD-KQYNXXCUSA-N&products_inchi=XTWYTFMLZFPYCI-KQYNXXCUSA-N"
   //add_results("ATP Synthetase", "ATP + AMP ==> ADP", url)
