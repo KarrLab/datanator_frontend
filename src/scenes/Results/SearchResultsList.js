@@ -41,8 +41,8 @@ function generate(element) {
 }
 
 
-function add_results(primary_text, secondary_text, url){
-  results.push(<ListItem>
+function format_results(primary_text, secondary_text, url){
+  return(<ListItem>
     <ListItemIcon></ListItemIcon>
     <ListItemText secondary={secondary_text}>
       <a href={url}>{primary_text} </a>
@@ -55,8 +55,33 @@ export default class InteractiveList extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      reaction_results:[]
     };
+
+    this.create_search_results = this.create_search_results.bind(this);
     
+  }
+  componentDidMount(){
+
+    this.create_search_results()
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.reaction_results != prevProps.reaction_results){
+      this.create_search_results()
+    }
+  }
+
+  create_search_results() {
+    console.log("SearchResultList: Calling create_search_results")
+    let reaction_results = this.props.reaction_results
+    let new_results = []
+    for (var i = reaction_results.length - 1; i >= 0; i--) {
+      new_results.push(format_results(reaction_results[i]['primary_text'], reaction_results[i]['secondary_text'], reaction_results[i]['url']))
+    }
+    console.log(new_results)
+    this.setState({"reaction_results": new_results})
+
   }
 
   render() {
@@ -69,10 +94,13 @@ export default class InteractiveList extends Component {
   //let url = "'/reaction/data/?substrates=AMP,ATP%20&products=%20ADP&substrates_inchi=ZKHQWZAMYRWXGA-KQYNXXCUSA-J,UDMBCSSLTHHNCD-KQYNXXCUSA-N&products_inchi=XTWYTFMLZFPYCI-KQYNXXCUSA-N"
   //add_results("ATP Synthetase", "ATP + AMP ==> ADP", url)
   //add_results("ATP Synthetase", "ATP + AMP ==> ADP", url)
-  let reaction_results = this.props.reaction_results
+  /*
+  let reaction_results = this.state.reaction_results
+  console.log(this.state.reaction_results)
   for (var i = reaction_results.length - 1; i >= 0; i--) {
-    add_results(reaction_results[i]['primary_text'], reaction_results[i]['secondary_text'], reaction_results[i]['url'])
+    format_results(reaction_results[i]['primary_text'], reaction_results[i]['secondary_text'], reaction_results[i]['url'])
   }
+  */
 
   return (
     <div className="google results">
@@ -82,7 +110,7 @@ export default class InteractiveList extends Component {
         <Grid item xs={12} md={6}>
           <div>
             <List>
-              {results}
+              {this.state.reaction_results}
             </List>
           </div>
         </Grid>
