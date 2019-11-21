@@ -104,8 +104,7 @@ export default class InteractiveList extends Component {
 
   return (
     <div className="google results">
-      <FormGroup row>
-      </FormGroup>
+
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
           <div>
