@@ -114,8 +114,10 @@ function getKm(parameters, substrates) {
       new_dict['products'] = products;
 
 
-      new_dict['primary_text'] = "some name"
+      new_dict['primary_text'] = "blue" + data[i]['enzymes'][0]['enzyme_name']
       new_dict['secondary_text'] = formatPart(substrates) + ' ==> ' + formatPart(products)
+
+      //formatPart(substrates) + ' ==> ' + formatPart(products)
 
       let sub_inchis = getSubstrateInchiKey(
         data[i].reaction_participant[0].substrate,
@@ -124,7 +126,7 @@ function getKm(parameters, substrates) {
         data[i].reaction_participant[1].product,
       );
 
-      new_dict['url'] = "&substrates_inchi="+ sub_inchis + "&products_inchi=" + prod_inchis
+      new_dict['url'] = "/reaction/data/?substrates_inchi="+ sub_inchis + "&products_inchi=" + prod_inchis
 
 
       newReactionMetadataDict[reactionID] = new_dict;

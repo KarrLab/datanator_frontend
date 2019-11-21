@@ -10,6 +10,7 @@ import ReactionSearch from '~/components/SearchField/ReactionSearch.js';
 import { PropTypes } from 'react';
 import { Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router';
+import GeneralSearch from '~/components/SearchField/GeneralSearch.js';
 
 import './MetabConcs.css';
 
@@ -310,6 +311,7 @@ class ReactionPage extends Component {
         <Header />
         <style>{'body { background-color: #f7fdff; }'}</style>
         <div className="search">
+        {/*
           <ReactionSearch 
           handleClick={this.getSearchDataReaction} 
           landing={false} 
@@ -317,7 +319,8 @@ class ReactionPage extends Component {
           default_products = {values.products.split(",")}
           substrates_inchi = {values.substrates_inchi.split(",")}
           products_inchi = {values.products_inchi.split(",")}
-          />
+          />*/}
+          <GeneralSearch handleClick={this.getNewSearch} defaultQuery={values.q} defaultOrganism={values.organism}/>
         </div>
         <br />
         <div className="uniprot_definition_data">

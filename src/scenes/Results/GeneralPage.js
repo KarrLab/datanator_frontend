@@ -91,6 +91,10 @@ class GeneralPage extends Component {
     this.setState({ new_url: url });
     this.setState({ newSearch: true });
   }
+  componentDidMount() {
+    let values = queryString.parse(this.props.location.search);
+    this.fetch_data(values.q)
+  }
 
   componentDidUpdate(prevProps) {
     console.log(this.state.reaction_results)
@@ -105,7 +109,7 @@ class GeneralPage extends Component {
 
   fetch_data(query){
     console.log("GeneralSearch: Calling fetch_data")
-    let url = "ftx/text_search/frontend_num_of_index/?query_message=" + query + "&indices=ecmdb%2Cymdb%2Cmetabolites_meta%2Cprotein%2Csabio_rk&size=30&fields=protein_name&fields=synonyms&fields=enzymes&fields=ko_name&fields=gene_name&fields=name&fields=reaction_participant.substrate.substrate_name&fields=reaction_participant.substrate.substrate_synonym&fields=reaction_participant.product.product_name&fields=reaction_participant.product.substrate_synonym&fields=enzymes.enzyme.enzyme_name&fields=enzymes.subunit.canonical_sequence&fields=species"
+    let url = "ftx/text_search/frontend_num_of_index/?query_message=" + query + "&indices=ecmdb%2Cymdb%2Cmetabolites_meta%2Cprotein%2Csabio_rk&size=10&fields=protein_name&fields=synonyms&fields=enzymes&fields=ko_name&fields=gene_name&fields=name&fields=reaction_participant.substrate.substrate_name&fields=reaction_participant.substrate.substrate_synonym&fields=reaction_participant.product.product_name&fields=reaction_participant.product.substrate_synonym&fields=enzymes.enzyme.enzyme_name&fields=enzymes.subunit.canonical_sequence&fields=species"
   
     getSearchData([url])
       .then(response => {
