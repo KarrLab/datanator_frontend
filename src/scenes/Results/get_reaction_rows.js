@@ -114,8 +114,10 @@ function getKm(parameters, substrates) {
       new_dict['products'] = products;
 
 
-      new_dict['primary_text'] = "blue" + data[i]['enzymes'][0]['enzyme_name']
+      new_dict['primary_text'] = data[i]['enzymes'][0]['enzyme'][0]['enzyme_name']
       new_dict['secondary_text'] = formatPart(substrates) + ' ==> ' + formatPart(products)
+
+
 
       //formatPart(substrates) + ' ==> ' + formatPart(products)
 
