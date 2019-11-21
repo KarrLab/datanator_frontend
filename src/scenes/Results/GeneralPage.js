@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { Input } from 'antd';
 import 'antd/dist/antd.css';
 import ReactionTable from '~/components/Results/ReactionTable.js';
-import ReactionSearch from '~/components/SearchField/ReactionSearch.js';
+import GeneralSearch from '~/components/SearchField/GeneralSearch.js';
 import { PropTypes } from 'react';
 import { Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router';
@@ -18,6 +18,9 @@ import InteractiveList from './SearchResultsList.js';
 import { getSearchData } from '~/services/MongoApi';
 import { set_lineage, setTotalData } from '~/data/actions/resultsAction';
 import { ReactionDefinition } from '~/components/Definitions/ReactionDefinition';
+import { formatReactionMetadata } from '~/scenes/Results/get_reaction_rows';
+
+
 
 import { Header } from '~/components/Layout/Header/Header';
 import { Footer } from '~/components/Layout/Footer/Footer';
@@ -39,89 +42,18 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import FolderIcon from '@material-ui/icons/Folder';
 import DeleteIcon from '@material-ui/icons/Delete';
-
-
-
 const queryString = require('query-string');
 
-function getReactionID(resource) {
-  for (var i = 0; i < resource.length; i++)
-    if (resource[i].namespace == 'sabiork.reaction') {
-      return resource[i].id;
-    }
-}
-
-function getSubstrates(substrate) {
-  let subNames = [];
-  for (var i = 0; i < substrate.length; i++) {
-    subNames.push(substrate[i].substrate_name);
-  }
-  return subNames;
-}
-
-function getProducts(product) {
-  let subNames = [];
-  for (var i = 0; i < product.length; i++) {
-    subNames.push(product[i].product_name);
-  }
-  return subNames;
-}
-
-function formatPart(parts) {
-  let participants_string = '';
-  for (var i = parts.length - 1; i >= 0; i--) {
-    participants_string = participants_string + parts[i] + ' + ';
-  }
-  participants_string = participants_string.substring(
-    0,
-    participants_string.length - 3,
-  );
-  return participants_string;
-}
-
-function getSubstrateInchiKey(substrate) {
-  let inchiKeys = [];
-  for (var i = 0; i < substrate.length; i++) {
-    inchiKeys.push(substrate[i].substrate_structure[0].InChI_Key);
-  }
-  return inchiKeys;
-}
-
-function getProductInchiKey(product) {
-  let inchiKeys = [];
-  for (var i = 0; i < product.length; i++) {
-    inchiKeys.push(product[i].product_structure[0].InChI_Key);
-  }
-  return inchiKeys;
-}
 
 
 
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-    maxWidth: 752,
-  },
-  demo: {
-    backgroundColor: theme.palette.background.paper,
-  },
-  title: {
-    margin: theme.spacing(4, 0, 2),
-  },
-}));
 
-function generate(element) {
-  return [0, 1, 2].map(value =>
-    React.cloneElement(element, {
-      key: value,
-    }),
-  );
-}
 
 
 const url = "reaction/data/?substrates=AMP,ATP%20&products=%20ADP&substrates_inchi=ZKHQWZAMYRWXGA-KQYNXXCUSA-J,UDMBCSSLTHHNCD-KQYNXXCUSA-N&products_inchi=XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-
+//const results = [["ATP Synthetase1 ", "ATP + AMP ==> ADP", url], ["ATP Synthetase2 ", "ATP + AMP ==> ADP", url]]
+const results = [{primary_text: "ATP Synthetase1 ", secondary_text: "ATP + AMP ==> ADP", url:url}, {primary_text: "ATP Synthetase1 ", secondary_text: "ATP + AMP ==> ADP", url:url}]
 
 @connect(store => {
   return {};
@@ -136,19 +68,52 @@ class GeneralPage extends Component {
       new_url: '',
       reactionMetadata: [],
       km_values:[],
-      reaction_results : [["ATP Synthetase1 ", "ATP + AMP ==> ADP", url], ["ATP Synthetase2 ", "ATP + AMP ==> ADP", url]]
+      reaction_results : results
     };
+
+    this.getNewSearch = this.getNewSearch.bind(this);
+    this.fetch_data = this.fetch_data.bind(this);
+
     
   }
 
+  getNewSearch(response) {
+    let url = '/general/?q=' + response[0] + '&organism=' + response[1];
+    this.setState({ new_url: url });
+    this.setState({ newSearch: true });
+  }
+
+  componentDidUpdate(prevProps) {
+    console.log('GeneralPage: Calling componentDidUpdate')
+    let values = queryString.parse(this.props.location.search);
+    let old_values = queryString.parse(prevProps.location.search);
+    if (values.q != old_values.q){
+      this.fetch_data(values.q)
+      this.setState({ newSearch: false })
+    }
+  }
+
+  fetch_data(){
+    console.log("BLUEBERRYYYY")
+    this.setState({reaction_results:results})
+  }
+
   render() {
+    let values = queryString.parse(this.props.location.search);
+
+    if (this.state.newSearch == true) {
+      console.log('Redirecting');
+      return <Redirect to={this.state.new_url} push />;
+    }
 
 
     return (
+      <div>
+      <GeneralSearch handleClick={this.getNewSearch} defaultQuery={values.q} defaultOrganism={values.organism}/>
       <InteractiveList 
       reaction_results = {this.state.reaction_results}
-
       />
+      </div>
       )
      
   }

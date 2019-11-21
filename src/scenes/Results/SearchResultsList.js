@@ -69,7 +69,7 @@ export default class InteractiveList extends Component {
   //add_results("ATP Synthetase", "ATP + AMP ==> ADP", url)
   let reaction_results = this.props.reaction_results
   for (var i = reaction_results.length - 1; i >= 0; i--) {
-    add_results(reaction_results[i][0], reaction_results[i][1], reaction_results[i][2])
+    add_results(reaction_results[i]['primary_text'], reaction_results[i]['secondary_text'], reaction_results[i]['url'])
   }
 
   return (
