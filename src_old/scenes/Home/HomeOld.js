@@ -62,8 +62,8 @@ class HomeOld extends Component {
     }
 
     return (
+      <div className="container">
       <Grid fluid>
-        <style>{'body { background-color: #f7fdff; }'}</style>
         <Row center="xs">
           <Col xs={'100%'}>
             {this.state.currentSearch == 'metab' && (
@@ -112,6 +112,7 @@ class HomeOld extends Component {
           </Col>
         </Row>
       </Grid>
+      </div>
     );
   }
 }

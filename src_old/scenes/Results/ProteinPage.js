@@ -382,11 +382,9 @@ class ProteinPage extends Component {
             searchType={this.props.match.params.searchType}
           />
         </div>
-        { this.state.proteinMetadata && 
-        <div className="uniprot_definition_data">       
+        <div className="uniprot_definition_data">
           <UniprotDefinition proteinMetadata={this.state.proteinMetadata} />
         </div>
-      }
         <div className="orthology_definition_data">
           <OrthologyDefinition proteinMetadata={this.state.orthologyMetadata} />
         </div>

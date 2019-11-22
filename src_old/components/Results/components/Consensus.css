@@ -1,0 +1,20 @@
+
+.consensus {
+
+border-style: solid;
+  border-color: #fcd1d5;
+}
+
+
+.consensus .summary {
+  text-align: left;
+  display:flex; 
+  flex-direction:row;
+  border-style: solid;
+  border-color: #fcd1d1;
+  flex-wrap: wrap;
+  flex-flow: row wrap
+
+
+}
+
