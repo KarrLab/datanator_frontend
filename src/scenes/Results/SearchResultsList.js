@@ -72,9 +72,11 @@ export default class InteractiveList extends Component {
   create_search_results() {
     console.log('SearchResultList: Calling create_search_results');
     let reaction_results = this.props.reaction_results;
-    let new_results = [];
+    let protein_results = this.props.protein_results
+    let new_reaction_results = [];
+    let new_protein_results = [];
     for (var i = reaction_results.length - 1; i >= 0; i--) {
-      new_results.push(
+      new_reaction_results.push(
         format_results(
           reaction_results[i]['primary_text'],
           reaction_results[i]['secondary_text'],
@@ -82,8 +84,20 @@ export default class InteractiveList extends Component {
         ),
       );
     }
-    console.log(new_results);
-    this.setState({ reaction_results: new_results });
+
+      for (var i = protein_results.length - 1; i >= 0; i--) {
+      new_protein_results.push(
+        format_results(
+          protein_results[i]['primary_text'],
+          protein_results[i]['secondary_text'],
+          protein_results[i]['url'],
+        ),
+      );
+
+
+    }
+    this.setState({ reaction_results: new_reaction_results,
+    protein_results: new_protein_results });
   }
 
   render() {
@@ -123,7 +137,7 @@ export default class InteractiveList extends Component {
           </Typography>
           <div className="google results">
             <List disablePadding={true}>
-                  {this.state.reaction_results}       
+                  {this.state.protein_results}       
             </List>
           </div>
 

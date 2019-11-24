@@ -19,6 +19,7 @@ import { getSearchData } from '~/services/MongoApi';
 import { set_lineage, setTotalData } from '~/data/actions/resultsAction';
 import { ReactionDefinition } from '~/components/Definitions/ReactionDefinition';
 import { formatReactionMetadata } from '~/scenes/Results/get_reaction_rows';
+import { formatProteinMetadata } from '~/scenes/Results/get_protein_rows';
 
 
 
@@ -76,6 +77,7 @@ class GeneralPage extends Component {
       reactionMetadata: [],
       km_values:[],
       reaction_results : [],
+      protein_results : [],
       meh:false,
     };
 
@@ -122,10 +124,12 @@ class GeneralPage extends Component {
   formatData(data){
     console.log("GeneralSearch: Calling FormatData")
     let reaction_data = data[4]['sabio_rk']
+    let protein_data = data[3]['protein']
     let reaction_metadata = formatReactionMetadata(reaction_data)
+    let protein_metadata = formatProteinMetadata(protein_data)
     console.log(reaction_metadata)
-    this.setState({reaction_results:reaction_metadata})
-    this.setState({meh:  true})
+    this.setState({reaction_results:reaction_metadata,
+      protein_results:protein_metadata})
   }
 
   render() {
@@ -149,6 +153,7 @@ class GeneralPage extends Component {
       <GeneralSearch handleClick={this.getNewSearch} defaultQuery={values.q} defaultOrganism={values.organism}/>
       <InteractiveList 
       reaction_results = {this.state.reaction_results}
+      protein_results = {this.state.protein_results}
       blue = {this.state.meh}
       />
       </div>
