@@ -1,4 +1,4 @@
-import React, { Component }  from 'react';
+import React, { Component } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const results = []
+const results = [];
 
 function generate(element) {
   return [0, 1, 2].map(value =>
@@ -40,61 +40,63 @@ function generate(element) {
   );
 }
 
-
-function format_results(primary_text, secondary_text, url){
-  return(<ListItem>
-    <ListItemIcon></ListItemIcon>
-    <ListItemText secondary={secondary_text}>
-      <a href={url}>{primary_text} </a>
-    </ListItemText>
-  </ListItem>)
+function format_results(primary_text, secondary_text, url) {
+  return (
+    <ListItem padding={0}>
+      <ListItemText secondary={secondary_text}>
+        <a href={url}>{primary_text} </a>
+      </ListItemText>
+    </ListItem>
+  );
 }
 
 export default class InteractiveList extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      reaction_results:[]
+      reaction_results: [],
     };
 
     this.create_search_results = this.create_search_results.bind(this);
-    
   }
-  componentDidMount(){
-
-    this.create_search_results()
+  componentDidMount() {
+    this.create_search_results();
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.reaction_results != prevProps.reaction_results){
-      this.create_search_results()
+    if (this.props.reaction_results != prevProps.reaction_results) {
+      this.create_search_results();
     }
   }
 
   create_search_results() {
-    console.log("SearchResultList: Calling create_search_results")
-    let reaction_results = this.props.reaction_results
-    let new_results = []
+    console.log('SearchResultList: Calling create_search_results');
+    let reaction_results = this.props.reaction_results;
+    let new_results = [];
     for (var i = reaction_results.length - 1; i >= 0; i--) {
-      new_results.push(format_results(reaction_results[i]['primary_text'], reaction_results[i]['secondary_text'], reaction_results[i]['url']))
+      new_results.push(
+        format_results(
+          reaction_results[i]['primary_text'],
+          reaction_results[i]['secondary_text'],
+          reaction_results[i]['url'],
+        ),
+      );
     }
-    console.log(new_results)
-    this.setState({"reaction_results": new_results})
-
+    console.log(new_results);
+    this.setState({ reaction_results: new_results });
   }
 
   render() {
-    console.log("SearchResultList: Calling Render")
-    console.log(this.props.reaction_results)
+    console.log('SearchResultList: Calling Render');
+    console.log(this.props.reaction_results);
 
-  //let url = "reaction/data/?substrates=AMP,ATP%20&products=%20ADP&substrates_inchi=ZKHQWZAMYRWXGA-KQYNXXCUSA-J,UDMBCSSLTHHNCD-KQYNXXCUSA-N&products_inchi=XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-  //add_results("ATP Synthetase", "ATP + AMP ==> ADP", url)
+    //let url = "reaction/data/?substrates=AMP,ATP%20&products=%20ADP&substrates_inchi=ZKHQWZAMYRWXGA-KQYNXXCUSA-J,UDMBCSSLTHHNCD-KQYNXXCUSA-N&products_inchi=XTWYTFMLZFPYCI-KQYNXXCUSA-N"
+    //add_results("ATP Synthetase", "ATP + AMP ==> ADP", url)
 
-  //let url = "'/reaction/data/?substrates=AMP,ATP%20&products=%20ADP&substrates_inchi=ZKHQWZAMYRWXGA-KQYNXXCUSA-J,UDMBCSSLTHHNCD-KQYNXXCUSA-N&products_inchi=XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-  //add_results("ATP Synthetase", "ATP + AMP ==> ADP", url)
-  //add_results("ATP Synthetase", "ATP + AMP ==> ADP", url)
-  /*
+    //let url = "'/reaction/data/?substrates=AMP,ATP%20&products=%20ADP&substrates_inchi=ZKHQWZAMYRWXGA-KQYNXXCUSA-J,UDMBCSSLTHHNCD-KQYNXXCUSA-N&products_inchi=XTWYTFMLZFPYCI-KQYNXXCUSA-N"
+    //add_results("ATP Synthetase", "ATP + AMP ==> ADP", url)
+    //add_results("ATP Synthetase", "ATP + AMP ==> ADP", url)
+    /*
   let reaction_results = this.state.reaction_results
   console.log(this.state.reaction_results)
   for (var i = reaction_results.length - 1; i >= 0; i--) {
@@ -102,19 +104,32 @@ export default class InteractiveList extends Component {
   }
   */
 
-  return (
-    <div className="google results">
+    return (
+      <div className="google results">
+        <Grid>
+          <br />
+          <Typography variant="h6" className={'green'}>
+            Reactions
+          </Typography>
+          <div className="google results">
+            <List disablePadding={true}>
+                  {this.state.reaction_results}       
+            </List>
+          </div>
 
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={6}>
-          <div>
-            <List>
-              {this.state.reaction_results}
-            </List>
-          </div>
-        </Grid>
-      </Grid>
-    </div>
-  );
-}
+          <br />
+          <Typography variant="h6" className={'green'}>
+            Proteins
+          </Typography>
+          <div className="google results">
+            <List disablePadding={true}>
+                  {this.state.reaction_results}       
+            </List>
+          </div>
+
+
+        </Grid>
+      </div>
+    );
+  }
 }

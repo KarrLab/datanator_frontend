@@ -11,7 +11,7 @@ import { PropTypes } from 'react';
 import { Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
-import './MetabConcs.css';
+import './General.css';
 import InteractiveList from './SearchResultsList.js';
 
 
@@ -143,12 +143,15 @@ class GeneralPage extends Component {
 
     return (
       <div>
+      <Header />
+      <div className="general">
       <style>{'body { background-color: #f7fdff; }'}</style>
       <GeneralSearch handleClick={this.getNewSearch} defaultQuery={values.q} defaultOrganism={values.organism}/>
       <InteractiveList 
       reaction_results = {this.state.reaction_results}
       blue = {this.state.meh}
       />
+      </div>
       </div>
       )
      
