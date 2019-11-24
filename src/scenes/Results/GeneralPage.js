@@ -132,6 +132,7 @@ class GeneralPage extends Component {
     console.log("GeneralSearch: Calling render")
     console.log(this.state.reaction_results)
     let values = queryString.parse(this.props.location.search);
+    console.log("QUERY VALUE: " + values.q)
 
     if (this.state.newSearch == true) {
       console.log('Redirecting');

@@ -137,7 +137,7 @@ class GeneralSearch extends Component {
 
   componentDidMount() {
     this.setState({
-      query: this.props.defaultquery,
+      query: this.props.defaultQuery,
       organism: this.props.defaultOrganism,
     });
     //this.refs.taxonCol.applyFilter(28)
