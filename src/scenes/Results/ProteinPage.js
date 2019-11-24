@@ -159,12 +159,14 @@ class ProteinPage extends Component {
         this.processProteinDataUniprot(response.data);
       });
 
-      getSearchData([
+      if ((values.organism != null) && (values.organism != "undefined")){
+        getSearchData([
           'taxon',
           'canon_rank_distance_by_name/?name=' + values.organism,
         ]).then(response => {
           this.props.dispatch(set_lineage(response.data));
         });
+      }
 
 
     }
