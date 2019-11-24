@@ -398,7 +398,7 @@ class ProteinPage extends Component {
             searchType={this.props.match.params.searchType}
           />
         </div>
-        { this.state.proteinMetadata && 
+        { this.state.proteinMetadata && (this.props.match.params.searchType != "ko") &&
         <div className="uniprot_definition_data">       
           <UniprotDefinition proteinMetadata={this.state.proteinMetadata} />
         </div>

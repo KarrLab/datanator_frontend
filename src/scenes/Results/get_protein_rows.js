@@ -19,7 +19,7 @@ import { Header } from '~/components/Layout/Header/Header';
 import { Footer } from '~/components/Layout/Footer/Footer';
 const queryString = require('query-string');
 
-function formatProteinMetadata(data) {
+function formatProteinMetadata(data, organism) {
   console.log('Calling formatOrthologyMetadataUniprot');
   let start = 0;
   let newProteinMetadataDict = {};
@@ -32,7 +32,7 @@ function formatProteinMetadata(data) {
 
     new_dict['primary_text'] = ko_number + ": " + data[i]["ko_name"][0]
     new_dict['secondary_text'] = ""
-    new_dict["url"] = ""
+    new_dict["url"] = "/protein/ko/mol/?ko=" + ko_number + "&organism=" + organism
 
     newProteinMetadataDict[ko_number] = new_dict;
   }

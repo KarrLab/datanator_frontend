@@ -123,10 +123,11 @@ class GeneralPage extends Component {
 
   formatData(data){
     console.log("GeneralSearch: Calling FormatData")
+    let values = queryString.parse(this.props.location.search);
     let reaction_data = data[4]['sabio_rk']
     let protein_data = data[3]['protein']
     let reaction_metadata = formatReactionMetadata(reaction_data)
-    let protein_metadata = formatProteinMetadata(protein_data)
+    let protein_metadata = formatProteinMetadata(protein_data, values.organism)
     console.log(reaction_metadata)
     this.setState({reaction_results:reaction_metadata,
       protein_results:protein_metadata})
