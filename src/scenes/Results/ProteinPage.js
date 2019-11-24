@@ -42,6 +42,9 @@ import { setTotalData } from '~/data/actions/resultsAction';
 
 import { set_lineage } from '~/data/actions/resultsAction';
 import store from '~/data/Store';
+const queryString = require('query-string');
+
+
 Object.size = function(obj) {
   var size = 0,
     key;
@@ -126,6 +129,7 @@ class ProteinPage extends Component {
   }
 
   getSearchData() {
+    let values = queryString.parse(this.props.location.search);
     console.log('Calling getSearchData');
     if (this.props.match.params.searchType == 'uniprot') {
       getSearchData([
@@ -149,10 +153,20 @@ class ProteinPage extends Component {
     } else if (this.props.match.params.searchType == 'ko') {
       getSearchData([
         'proteins',
-        'super/same-kegg?uniprot_id=' + this.props.match.params.molecule,
+        'proximity_abundance/proximity_abundance_kegg/?kegg_id=' + values.ko + 
+        "&anchor=" + values.organism + "&distance=100&depth=100",
       ]).then(response => {
-        this.processProteinData(response.data);
+        this.processProteinDataUniprot(response.data);
       });
+
+      getSearchData([
+          'taxon',
+          'canon_rank_distance_by_name/?name=' + values.organism,
+        ]).then(response => {
+          this.props.dispatch(set_lineage(response.data));
+        });
+
+
     }
   }
 
@@ -165,7 +179,7 @@ class ProteinPage extends Component {
       start = 1;
     }
     for (var i = start; i < data.length; i++) {
-      if (data[i].uniprot_id == this.props.match.params.molecule) {
+      if ((data[i].uniprot_id == this.props.match.params.molecule) && (this.props.match.params.searchType != "ko")) {
         let meta = {};
         meta['uniprot'] = data[i].uniprot_id;
         meta['protein_name'] = data[i].protein_name;
