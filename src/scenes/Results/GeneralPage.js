@@ -71,6 +71,7 @@ class GeneralPage extends Component {
       dataSource: [],
       data_arrived: false,
       newSearch: false,
+      newResults: false,
       new_url: '',
       reactionMetadata: [],
       km_values:[],
@@ -101,9 +102,10 @@ class GeneralPage extends Component {
     console.log('GeneralPage: Calling componentDidUpdate')
     let values = queryString.parse(this.props.location.search);
     let old_values = queryString.parse(prevProps.location.search);
-    if (values.q != old_values.q){
+    if (this.state.newResults){
       this.fetch_data(values.q)
       this.setState({ newSearch: false })
+      this.setState({newResults:false})
     }
   }
 
@@ -133,12 +135,14 @@ class GeneralPage extends Component {
 
     if (this.state.newSearch == true) {
       console.log('Redirecting');
+      this.setState({newResults:true})
       return <Redirect to={this.state.new_url} push />;
     }
 
 
     return (
       <div>
+      <style>{'body { background-color: #f7fdff; }'}</style>
       <GeneralSearch handleClick={this.getNewSearch} defaultQuery={values.q} defaultOrganism={values.organism}/>
       <InteractiveList 
       reaction_results = {this.state.reaction_results}
