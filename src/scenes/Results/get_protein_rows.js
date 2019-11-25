@@ -31,9 +31,9 @@ function formatProteinMetadata(data, organism) {
     if (!new_dict) {
       new_dict = {};
     }
-
-    new_dict['primary_text'] = ko_number + ": " + data[i]["ko_name"][0]
-    new_dict['secondary_text'] = ""
+    let name = data[i]["ko_name"][0]
+    new_dict['primary_text'] = name[0].toUpperCase() + name.substring(1,name.length)
+    new_dict['secondary_text'] = "Kegg ID: " + ko_number
     new_dict["url"] = "/protein/ko/mol/?ko=" + ko_number + "&organism=" + organism
 
     newProteinMetadataDict[ko_number] = new_dict;}

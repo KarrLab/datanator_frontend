@@ -116,7 +116,7 @@ function getKm(parameters, substrates) {
       let reaction_name = data[i]['enzymes'][0]['enzyme'][0]['enzyme_name']
       let reaction_equation = formatPart(substrates) + ' ==> ' + formatPart(products)
       if (reaction_name){
-        new_dict['primary_text'] = data[i]['enzymes'][0]['enzyme'][0]['enzyme_name']
+        new_dict['primary_text'] = reaction_name[0].toUpperCase() + reaction_name.substring(1,reaction_name.length)
       }
       else{
         new_dict['primary_text'] = reaction_equation
