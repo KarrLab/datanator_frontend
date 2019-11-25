@@ -86,19 +86,7 @@ it('render protein name search', async () => {
 it('test no results found', async () => {
   window.alert = jest.fn();
   const {getByText} =  renderComponent('uniprot', 'fake_id_for_the_win', false);
-  await waitForElement(() => getByText('Please try', { exact: false }))
-  expect(window.alert).toHaveBeenCalled()
+  await waitForElement(() => getByText('Nothing Found.', { exact: false }))
 
 })
 
-it('test alert where results found', async () => {
-  //const { location } = window;
-  
-  //const { location } = window;
-  window.alert = jest.fn();
-  const {getByText} =  renderComponent('uniprot', 'P01112', false);
-  await waitForElement(() => getByText('K02833', { exact: false }))
-  //jest.runAllTimers();
-  expect(window.alert).not.toHaveBeenCalled()
-
-})
