@@ -13,6 +13,9 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import { Header } from '~/components/Layout/Header/Header';
+import GeneralSearch from '~/components/SearchField/GeneralSearch.js';
+
+
 import '~/scenes/Home/HomeOld.css';
 class HomeOld extends Component {
   constructor(props) {
@@ -21,17 +24,22 @@ class HomeOld extends Component {
       dataSource: [],
       newSearch: false,
       currentSearch: 'metab',
-      nextUrl: '',
+      new_url: "",
     };
     this.getSearchDataProt = this.getSearchDataProt.bind(this);
     this.getNewSearchMetab = this.getNewSearchMetab.bind(this);
-
+    this.getNewSearch = this.getNewSearch.bind(this);
     this.getSearchDataReaction = this.getSearchDataReaction.bind(this);
   }
 
   getSearchDataProt(url) {
     this.setState({ nextUrl: url });
     console.log(url);
+    this.setState({ newSearch: true });
+  }
+  getNewSearch(response) {
+    let url = '/general/?q=' + response[0] + '&organism=' + response[1];
+    this.setState({ new_url: url });
     this.setState({ newSearch: true });
   }
 
@@ -58,7 +66,7 @@ class HomeOld extends Component {
 
   render() {
     if (this.state.newSearch == true) {
-      return <Redirect to={this.state.nextUrl} push />;
+      return <Redirect to={this.state.new_url} push />;
     }
 
     return (
@@ -66,20 +74,7 @@ class HomeOld extends Component {
         <style>{'body { background-color: #f7fdff; }'}</style>
         <Row center="xs">
           <Col xs={'100%'}>
-            {this.state.currentSearch == 'metab' && (
-              <ConcSearch handleClick={this.getNewSearchMetab} landing={true} />
-            )}
-            {this.state.currentSearch == 'protein' && (
-              <ProtSearch handleClick={this.getSearchDataProt} landing={true} />
-            )}
-            {this.state.currentSearch == 'reaction' && (
-              <ReactionSearch 
-              handleClick={this.getSearchDataReaction} 
-              landing={true} 
-              default_substrates = {[null, null, null]}
-              default_products = {[null, null, null]}
-              />
-            )}
+            <GeneralSearch handleClick={this.getNewSearch} defaultQuery={""} defaultOrganism={""} landing={true}/>
           </Col>
         </Row>
 
