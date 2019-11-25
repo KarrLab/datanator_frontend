@@ -16,6 +16,7 @@ import Typography from '@material-ui/core/Typography';
 import FolderIcon from '@material-ui/icons/Folder';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Divider from '@material-ui/core/Divider';
+import { Link } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -44,7 +45,13 @@ function format_results(primary_text, secondary_text, url) {
   return (
     <ListItem padding={0}>
       <ListItemText secondary={secondary_text}>
+            <style>{'MuiTypography-root:link { text-decoration: none; }'}</style>
+            <style>{'MuiTypography-root:visited { text-decoration: none; }'}</style>
+            <style>{'MuiTypography-root:hover { text-decoration: underline; }'}</style>
+            <style>{'MuiTypography-root:active {  text-decoration: underline; }'}</style>
+        <Link>
         <a href={url}>{primary_text} </a>
+        </Link>
       </ListItemText>
     </ListItem>
   );
@@ -133,7 +140,7 @@ export default class InteractiveList extends Component {
 
     return (
       <div className="google results">
-        <Grid>
+        <Grid md={6}>
           <br />
           <Typography variant="h6" className={'green'}>
             Metabolites

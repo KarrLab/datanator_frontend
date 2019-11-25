@@ -34,9 +34,15 @@ function formatMetaboliteMetadata(data, organism) {
     }
     let name = data[i]["name"]
     new_dict['primary_text'] = name[0].toUpperCase() + name.substring(1,name.length)
-    //new_dict['secondary_text'] = "Kegg ID: " + ko_number
-    //new_dict["url"] = "/metabolite/ko/mol/?ko=" + ko_number + "&organism=" + organism
-
+    let description = data[i]["description"]
+    let max_len = 150
+    if (description.length <= max_len){
+      new_dict['secondary_text'] = description
+    }
+    else{
+      new_dict['secondary_text'] = description.substring(0, description.indexOf(" ", max_len)) + " ..."
+    }
+    new_dict["url"] = "/metabconcs/" + name + "/" + organism
     newMetaboliteMetadataDict[inchi_key] = new_dict;}
   }
 

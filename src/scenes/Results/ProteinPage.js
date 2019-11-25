@@ -359,10 +359,10 @@ class ProteinPage extends Component {
         this.setState({ data_arrived: true });
       }
         else {
-          alert('Nothing Found');
+          //alert('Nothing Found');
         }
     } else {
-        alert('Nothing Found');
+        //alert('Nothing Found');
     }
   }
 

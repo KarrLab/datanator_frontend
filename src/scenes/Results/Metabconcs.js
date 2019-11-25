@@ -89,7 +89,7 @@ class MetabConcs extends Component {
         this.formatData(response.data);
       })
       .catch(err => {
-        alert('Nothing Found');
+        //alert('Nothing Found');
         this.setState({ orig_json: null });
       });
   }

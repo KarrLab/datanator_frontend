@@ -45,7 +45,7 @@ class ConcentrationsTable extends Component {
     console.log('Rendering ConcentrationsTable');
 
     if (!this.props.data_arrived) {
-      return <div></div>;
+      return <div><p>Nothing Found. Either our database has no data, or we have it recoreded under a different name</p></div>;
     } else {
       return (
         <div >
