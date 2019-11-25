@@ -45,12 +45,16 @@ function format_results(primary_text, secondary_text, url) {
   return (
     <ListItem padding={0}>
       <ListItemText secondary={secondary_text}>
-            <style>{'MuiTypography-root:link { text-decoration: none; }'}</style>
-            <style>{'MuiTypography-root:visited { text-decoration: none; }'}</style>
-            <style>{'MuiTypography-root:hover { text-decoration: underline; }'}</style>
-            <style>{'MuiTypography-root:active {  text-decoration: underline; }'}</style>
+        <style>{'MuiTypography-root:link { text-decoration: none; }'}</style>
+        <style>{'MuiTypography-root:visited { text-decoration: none; }'}</style>
+        <style>
+          {'MuiTypography-root:hover { text-decoration: underline; }'}
+        </style>
+        <style>
+          {'MuiTypography-root:active {  text-decoration: underline; }'}
+        </style>
         <Link>
-        <a href={url}>{primary_text} </a>
+          <a href={url}>{primary_text} </a>
         </Link>
       </ListItemText>
     </ListItem>
@@ -62,6 +66,8 @@ export default class InteractiveList extends Component {
     super(props);
     this.state = {
       reaction_results: [],
+      protein_results: [],
+      metabolite_results: [],
     };
 
     this.create_search_results = this.create_search_results.bind(this);
@@ -79,8 +85,8 @@ export default class InteractiveList extends Component {
   create_search_results() {
     console.log('SearchResultList: Calling create_search_results');
     let reaction_results = this.props.reaction_results;
-    let protein_results = this.props.protein_results
-    let metabolite_results = this.props.metabolite_results
+    let protein_results = this.props.protein_results;
+    let metabolite_results = this.props.metabolite_results;
     let new_reaction_results = [];
     let new_protein_results = [];
     let new_metabolite_results = [];
@@ -94,7 +100,7 @@ export default class InteractiveList extends Component {
       );
     }
 
-      for (var i = protein_results.length - 1; i >= 0; i--) {
+    for (var i = protein_results.length - 1; i >= 0; i--) {
       new_protein_results.push(
         format_results(
           protein_results[i]['primary_text'],
@@ -104,7 +110,7 @@ export default class InteractiveList extends Component {
       );
     }
 
-      for (var i = metabolite_results.length - 1; i >= 0; i--) {
+    for (var i = metabolite_results.length - 1; i >= 0; i--) {
       new_metabolite_results.push(
         format_results(
           metabolite_results[i]['primary_text'],
@@ -112,12 +118,12 @@ export default class InteractiveList extends Component {
           metabolite_results[i]['url'],
         ),
       );
-
     }
-    this.setState({ reaction_results: new_reaction_results,
-    protein_results: new_protein_results,
-    metabolite_results: new_metabolite_results,
-     });
+    this.setState({
+      reaction_results: new_reaction_results,
+      protein_results: new_protein_results,
+      metabolite_results: new_metabolite_results,
+    });
   }
 
   render() {
@@ -142,38 +148,45 @@ export default class InteractiveList extends Component {
       <div className="google results">
         <Grid md={6}>
           <br />
-          <Typography variant="h6" className={'green'}>
-            Metabolites
-          </Typography>
-          <div className="google results">
-            <List disablePadding={true}>
-                  {this.state.metabolite_results}       
-            </List>
-          </div>
-          <br />
+          {this.state.metabolite_results.length>0 && (
+            <div>
+              <Typography variant="h6" className={'green'}>
+                Metabolites
+              </Typography>
+              <div className="google results">
+                <List disablePadding={true}>
+                      {this.state.metabolite_results}       
+                </List>
+              </div>
+              <br />
+            </div>
+          )}
 
-
-
-          <Typography variant="h6" className={'green'}>
-            Reactions
-          </Typography>
-          <div className="google results">
-            <List disablePadding={true}>
-                  {this.state.reaction_results}       
-            </List>
-          </div>
-
-          <br />
-          <Typography variant="h6" className={'green'}>
-            Proteins
-          </Typography>
-          <div className="google results">
-            <List disablePadding={true}>
-                  {this.state.protein_results}       
-            </List>
-          </div>
-
-          
+          {this.state.reaction_results.length>0 && (
+            <div>
+              <Typography variant="h6" className={'green'}>
+                Reactions
+              </Typography>
+              <div className="google results">
+                <List disablePadding={true}>
+                      {this.state.reaction_results}       
+                </List>
+              </div>
+              <br />
+            </div>
+          )}
+          {this.state.protein_results.length>0 && (
+            <div>
+              <Typography variant="h6" className={'green'}>
+                Proteins
+              </Typography>
+              <div className="google results">
+                <List disablePadding={true}>
+                      {this.state.protein_results}       
+                </List>
+              </div>
+            </div>
+          )}
         </Grid>
       </div>
     );
