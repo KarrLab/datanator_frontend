@@ -73,8 +73,10 @@ export default class InteractiveList extends Component {
     console.log('SearchResultList: Calling create_search_results');
     let reaction_results = this.props.reaction_results;
     let protein_results = this.props.protein_results
+    let metabolite_results = this.props.metabolite_results
     let new_reaction_results = [];
     let new_protein_results = [];
+    let new_metabolite_results = [];
     for (var i = reaction_results.length - 1; i >= 0; i--) {
       new_reaction_results.push(
         format_results(
@@ -93,11 +95,22 @@ export default class InteractiveList extends Component {
           protein_results[i]['url'],
         ),
       );
+    }
 
+      for (var i = metabolite_results.length - 1; i >= 0; i--) {
+      new_metabolite_results.push(
+        format_results(
+          metabolite_results[i]['primary_text'],
+          metabolite_results[i]['secondary_text'],
+          metabolite_results[i]['url'],
+        ),
+      );
 
     }
     this.setState({ reaction_results: new_reaction_results,
-    protein_results: new_protein_results });
+    protein_results: new_protein_results,
+    metabolite_results: new_metabolite_results,
+     });
   }
 
   render() {
@@ -123,6 +136,18 @@ export default class InteractiveList extends Component {
         <Grid>
           <br />
           <Typography variant="h6" className={'green'}>
+            Metabolites
+          </Typography>
+          <div className="google results">
+            <List disablePadding={true}>
+                  {this.state.metabolite_results}       
+            </List>
+          </div>
+          <br />
+
+
+
+          <Typography variant="h6" className={'green'}>
             Reactions
           </Typography>
           <div className="google results">
@@ -141,7 +166,7 @@ export default class InteractiveList extends Component {
             </List>
           </div>
 
-
+          
         </Grid>
       </div>
     );

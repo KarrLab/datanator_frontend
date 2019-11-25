@@ -20,6 +20,7 @@ import { set_lineage, setTotalData } from '~/data/actions/resultsAction';
 import { ReactionDefinition } from '~/components/Definitions/ReactionDefinition';
 import { formatReactionMetadata } from '~/scenes/Results/get_reaction_rows';
 import { formatProteinMetadata } from '~/scenes/Results/get_protein_rows';
+import { formatMetaboliteMetadata } from '~/scenes/Results/get_metabolite_rows';
 
 
 
@@ -78,6 +79,7 @@ class GeneralPage extends Component {
       km_values:[],
       reaction_results : [],
       protein_results : [],
+      metabolite_results: [],
       meh:false,
     };
 
@@ -126,11 +128,15 @@ class GeneralPage extends Component {
     let values = queryString.parse(this.props.location.search);
     let reaction_data = data[4]['sabio_rk']
     let protein_data = data[3]['protein']
+    let metabolite_data = data[0]['ecmdb'].concat(data[1]["ymdb"])
+
     let reaction_metadata = formatReactionMetadata(reaction_data)
     let protein_metadata = formatProteinMetadata(protein_data, values.organism)
+    let metabolite_metadata = formatMetaboliteMetadata(metabolite_data, values.organism)
     console.log(reaction_metadata)
     this.setState({reaction_results:reaction_metadata,
-      protein_results:protein_metadata})
+      protein_results:protein_metadata,
+      metabolite_results: metabolite_metadata})
   }
 
   render() {
@@ -155,7 +161,7 @@ class GeneralPage extends Component {
       <InteractiveList 
       reaction_results = {this.state.reaction_results}
       protein_results = {this.state.protein_results}
-      blue = {this.state.meh}
+      metabolite_results = {this.state.metabolite_results}
       />
       </div>
       </div>

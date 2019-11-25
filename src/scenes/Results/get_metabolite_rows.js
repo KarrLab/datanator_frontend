@@ -19,33 +19,36 @@ import { Header } from '~/components/Layout/Header/Header';
 import { Footer } from '~/components/Layout/Footer/Footer';
 const queryString = require('query-string');
 
-function formatProteinMetadata(data, organism) {
-  console.log('Calling formatOrthologyMetadataUniprot');
+function formatMetaboliteMetadata(data, organism) {
+  console.log('Calling formatMetaboliteMetadata');
+  console.log(data)
   let start = 0;
-  let newProteinMetadataDict = {};
+  let newMetaboliteMetadataDict = {};
   for (var i = start; i < data.length; i++) {
-    if (data[i].ko_number){
-    let ko_number = data[i].ko_number;
-    let new_dict = newProteinMetadataDict[ko_number];
+    if (data[i].inchikey){
+    let inchi_key = data[i].inchikey;
+    console.log("INCHI: " + inchi_key)
+    let new_dict = newMetaboliteMetadataDict[inchi_key];
     if (!new_dict) {
       new_dict = {};
     }
-    let name = data[i]["ko_name"][0]
+    let name = data[i]["name"]
     new_dict['primary_text'] = name[0].toUpperCase() + name.substring(1,name.length)
-    new_dict['secondary_text'] = "Kegg ID: " + ko_number
-    new_dict["url"] = "/protein/ko/mol/?ko=" + ko_number + "&organism=" + organism
+    //new_dict['secondary_text'] = "Kegg ID: " + ko_number
+    //new_dict["url"] = "/metabolite/ko/mol/?ko=" + ko_number + "&organism=" + organism
 
-    newProteinMetadataDict[ko_number] = new_dict;}
+    newMetaboliteMetadataDict[inchi_key] = new_dict;}
   }
 
-    let proteinMetadata = Object.keys(newProteinMetadataDict).map(function(key) {
-    return newProteinMetadataDict[key];});
+    let metaboliteMetadata = Object.keys(newMetaboliteMetadataDict).map(function(key) {
+    return newMetaboliteMetadataDict[key];});
     console.log("HERE!!!!")
-  return proteinMetadata;
+    console.log(metaboliteMetadata)
+  return metaboliteMetadata;
 
 
   
 }
 
 
-export { formatProteinMetadata };
+export { formatMetaboliteMetadata };
