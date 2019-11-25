@@ -25,6 +25,7 @@ import { PropTypes } from 'react';
 import { BrowserRouter, Redirect } from 'react-router-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { withRouter } from 'react-router';
+import GeneralSearch from '~/components/SearchField/GeneralSearch.js';
 
 import './MetabConcs.css';
 
@@ -126,6 +127,12 @@ class ProteinPage extends Component {
     this.setState({ newSearch: false });
     this.setState({ new_url: url });
     this.getSearchData();
+  }
+
+  getNewSearch(response) {
+    let url = '/general/?q=' + response[0] + '&organism=' + response[1];
+    this.setState({ new_url: url });
+    this.setState({ newSearch: true });
   }
 
   getSearchData() {
@@ -366,12 +373,6 @@ class ProteinPage extends Component {
     }
   }
 
-  getNewSearch(url) {
-    console.log('Calling getNewSearch');
-    if (url !== this.state.new_url) {
-      this.setState({ newSearch: true, new_url: url });
-    }
-  }
 
   render() {
     if (this.state.newSearch == true) {
@@ -379,6 +380,8 @@ class ProteinPage extends Component {
       return <Redirect to={this.state.new_url} push />;
     }
     console.log('Rendering ProteinPage');
+    const values = queryString.parse(this.props.location.search);
+
 
     const Search = Input.Search;
     let styles = {
@@ -389,14 +392,7 @@ class ProteinPage extends Component {
         <Header />
         <style>{'body { background-color: #f7fdff; }'}</style>
         <div className="search">
-          <ProtSearch
-            handleClick={this.getNewSearch}
-            landing={false}
-            defaultMolecule={this.props.match.params.molecule}
-            defaultUniprot={this.props.match.params.molecule}
-            defaultOrganism={this.props.match.params.organism}
-            searchType={this.props.match.params.searchType}
-          />
+          <GeneralSearch handleClick={this.getNewSearch} defaultQuery={values.q} defaultOrganism={values.organism}/>
         </div>
         { this.state.proteinMetadata && (this.props.match.params.searchType != "ko") &&
         <div className="uniprot_definition_data">       

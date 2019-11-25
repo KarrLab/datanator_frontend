@@ -110,6 +110,8 @@ class ReactionPage extends Component {
 
     this.formatReactionData = this.formatReactionData.bind(this);
     this.getSearchDataReaction = this.getSearchDataReaction.bind(this);
+    this.getNewSearch = this.getNewSearch.bind(this);
+
   }
   componentDidMount() {
     console.log("ReactionPage: Calling componentDidMount")
@@ -250,6 +252,11 @@ class ReactionPage extends Component {
     //console.log(url);
     this.setState({ newSearch: true });
     }
+  }
+  getNewSearch(response) {
+    let url = '/general/?q=' + response[0] + '&organism=' + response[1];
+    this.setState({ new_url: url });
+    this.setState({ newSearch: true });
   }
 
   formatReactionMetadata(data) {

@@ -12,6 +12,7 @@ import ConcSearch from '~/components/SearchField/ConcSearch.js';
 import { PropTypes } from 'react';
 import {Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router';
+import GeneralSearch from '~/components/SearchField/GeneralSearch.js';
 
 import './MetabConcs.css';
 
@@ -24,6 +25,7 @@ import {
 
 import {Header} from '~/components/Layout/Header/Header';
 import {Footer} from '~/components/Layout/Footer/Footer';
+const queryString = require('query-string');
 
 
 @connect(store => {
@@ -94,16 +96,6 @@ class MetabConcs extends Component {
       });
   }
 
-  getNewSearch(response) {
-    let url = '/metabconcs/' + response[0] + '/' + response[1];
-    if (
-      response[0] !== this.props.match.params.molecule ||
-      response[1] !== this.props.match.params.organism
-    ) {
-      this.setState({ new_url: url });
-      this.setState({ newSearch: true });
-    }
-  }
 
   formatData(data) {
     if (data != null) {
@@ -240,12 +232,19 @@ class MetabConcs extends Component {
     }
   }
 
+  getNewSearch(response) {
+    let url = '/general/?q=' + response[0] + '&organism=' + response[1];
+    this.setState({ new_url: url });
+    this.setState({ newSearch: true });
+  }
+
   render() {
     console.log('Rendering MetabConcs');
     if (this.state.newSearch == true) {
       console.log('Redirecting');
       return <Redirect to={this.state.new_url} push />;
     }
+    const values = queryString.parse(this.props.location.search);
 
     let styles = {
       marginTop: 50,
@@ -256,12 +255,7 @@ class MetabConcs extends Component {
       <Header />
         <style>{'body { background-color: #f7fdff; }'}</style>
         <div className="search">
-          <ConcSearch
-            handleClick={this.getNewSearch}
-            landing={false}
-            defaultMolecule={this.props.match.params.molecule}
-            defaultOrganism={this.props.match.params.organism}
-          />
+          <GeneralSearch handleClick={this.getNewSearch} defaultQuery={values.q} defaultOrganism={values.organism}/>
         </div>
         <br />
         <br />
