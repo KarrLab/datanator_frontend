@@ -113,9 +113,15 @@ function getKm(parameters, substrates) {
       new_dict['substrates'] = substrates;
       new_dict['products'] = products;
 
-
-      new_dict['primary_text'] = data[i]['enzymes'][0]['enzyme'][0]['enzyme_name']
-      new_dict['secondary_text'] = formatPart(substrates) + ' ==> ' + formatPart(products)
+      let reaction_name = data[i]['enzymes'][0]['enzyme'][0]['enzyme_name']
+      let reaction_equation = formatPart(substrates) + ' ==> ' + formatPart(products)
+      if (reaction_name){
+        new_dict['primary_text'] = data[i]['enzymes'][0]['enzyme'][0]['enzyme_name']
+      }
+      else{
+        new_dict['primary_text'] = reaction_equation
+      }
+      new_dict['secondary_text'] = reaction_equation
 
 
 
