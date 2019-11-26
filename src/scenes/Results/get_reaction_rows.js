@@ -102,7 +102,7 @@ function getKm(parameters, substrates) {
     let reaction_results = []
     let start = 0;
     for (var i = start; i < data.length; i++) {
-      let reactionID = getReactionID(data[i].resource);
+      let reactionID = data[i]['rxn_id']//getReactionID(data[i].resource);
       let new_dict = newReactionMetadataDict[reactionID];
       if (!new_dict) {
         new_dict = {};
