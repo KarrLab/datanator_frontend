@@ -107,13 +107,14 @@ function getKm(parameters, substrates) {
       if (!new_dict) {
         new_dict = {};
       }
-      let substrates = getSubstrates(data[i].reaction_participant[0].substrate);
-      let products = getProducts(data[i].reaction_participant[1].product);
+      let substrates = data[i]['substrate_names']
+      //getSubstrates(data[i].reaction_participant[0].substrate);
+      let products =  data[i]['product_names'];
       new_dict['reactionID'] = reactionID;
       new_dict['substrates'] = substrates;
       new_dict['products'] = products;
 
-      let reaction_name = data[i]['enzymes'][0]['enzyme'][0]['enzyme_name']
+      let reaction_name = data[i]['enzyme_names'][0]
       let reaction_equation = formatPart(substrates) + ' -> ' + formatPart(products)
       if (reaction_name){
         new_dict['primary_text'] = reaction_name[0].toUpperCase() + reaction_name.substring(1,reaction_name.length)
@@ -127,12 +128,8 @@ function getKm(parameters, substrates) {
 
       //formatPart(substrates) + ' ==> ' + formatPart(products)
 
-      let sub_inchis = getSubstrateInchiKey(
-        data[i].reaction_participant[0].substrate,
-      );
-      let prod_inchis = getProductInchiKey(
-        data[i].reaction_participant[1].product,
-      );
+      let sub_inchis = data[i]["substrates"];
+      let prod_inchis = data[i]["products"];
 
       new_dict['url'] = "/reaction/data/?substrates_inchi="+ sub_inchis + "&products_inchi=" + prod_inchis
 
