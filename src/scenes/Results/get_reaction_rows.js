@@ -131,7 +131,7 @@ function getKm(parameters, substrates) {
       let sub_inchis = data[i]["substrates"];
       let prod_inchis = data[i]["products"];
 
-      new_dict['url'] = "/reaction/data/?substrates_inchi="+ sub_inchis + "&products_inchi=" + prod_inchis
+      new_dict['url'] = "/reaction/data/?substrates_inchi="+ substrates + "&products_inchi=" + products
 
 
       newReactionMetadataDict[reactionID] = new_dict;

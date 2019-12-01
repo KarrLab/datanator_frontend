@@ -60,7 +60,9 @@ function formatPart(parts) {
 function getSubstrateInchiKey(substrate) {
   let inchiKeys = [];
   for (var i = 0; i < substrate.length; i++) {
-    inchiKeys.push(substrate[i].substrate_structure[0].InChI_Key);
+    if (substrate[i].substrate_structure[0]){
+      inchiKeys.push(substrate[i].substrate_structure[0].InChI_Key);
+    }
   }
   return inchiKeys;
 }
@@ -68,7 +70,9 @@ function getSubstrateInchiKey(substrate) {
 function getProductInchiKey(product) {
   let inchiKeys = [];
   for (var i = 0; i < product.length; i++) {
-    inchiKeys.push(product[i].product_structure[0].InChI_Key);
+    if (product[i].product_structure[0]){
+      inchiKeys.push(product[i].product_structure[0].InChI_Key);
+    }
   }
   return inchiKeys;
 }
@@ -186,11 +190,11 @@ class ReactionPage extends Component {
     let values = queryString.parse(this.props.location.search);
 
     getSearchData([
-      'reactions/kinlaw_by_rxn/?products=' +
+      'reactions/kinlaw_by_name/?products=' +
         values.products_inchi +
         '&substrates=' +
         values.substrates_inchi +
-        '&_from=0&size=1000&dof=0&bound=tight',
+        '&_from=0&size=1000&bound=loose',
     ])
       .then(response => {
         this.formatReactionMetadata(response.data);
