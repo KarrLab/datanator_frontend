@@ -174,7 +174,7 @@ class ReactionPage extends Component {
     console.log('ReactionPage: Calling getMetaData');
     let values = queryString.parse(this.props.location.search)
     getSearchData([
-      'reactions/kinlaw_by_name/?products=' + values.products + '&substrates='+ values.substrates + '&_from=0&size=1000&bound=loose',
+      'reactions/kinlaw_by_name/?products=' + values.products + '&substrates='+ values.substrates + '&_from=0&size=1000&bound=tight',
     ])
       .then(response => {
         this.formatReactionMetadata(response.data);
@@ -194,7 +194,7 @@ class ReactionPage extends Component {
         values.products_inchi +
         '&substrates=' +
         values.substrates_inchi +
-        '&_from=0&size=1000&bound=loose',
+        '&_from=0&size=1000&bound=tight',
     ])
       .then(response => {
         this.formatReactionMetadata(response.data);

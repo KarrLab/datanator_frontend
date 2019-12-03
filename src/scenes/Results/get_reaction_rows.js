@@ -93,6 +93,17 @@ function getKm(parameters, substrates) {
 }
 
 
+function getParticipant(participants) {
+  let partNames = [];
+  console.log("REACTION STUFF " + participants.toString())
+  for (var i = 0; i < participants.length; i++) {
+    console.log("REACTION STUFF " + participants[i][participants[i].length-1])
+    partNames.push(participants[i][participants[i].length-1]);
+  }
+  console.log("REACTION STUFF " + partNames.toString())
+  return partNames;
+}
+
 
 
 
@@ -107,12 +118,12 @@ function getKm(parameters, substrates) {
       if (!new_dict) {
         new_dict = {};
       }
-      let substrates = data[i]['substrate_names']
+      let substrates = getParticipant(data[i]['substrate_names'])
       //getSubstrates(data[i].reaction_participant[0].substrate);
-      let products =  data[i]['product_names'];
+      let products =  getParticipant(data[i]['product_names']);
       new_dict['reactionID'] = reactionID;
-      new_dict['substrates'] = substrates;
-      new_dict['products'] = products;
+      new_dict['substrates'] = substrates
+      new_dict['products'] = products
 
       let reaction_name = data[i]['enzyme_names'][0]
       let reaction_equation = formatPart(substrates) + ' -> ' + formatPart(products)
