@@ -1,5 +1,12 @@
 
 .general {
-  margin-top: 70px;
+  padding-top: 70px;
   margin-left: 50px;
 }
+
+.anchor {
+  position: relative;
+  left: 0px;
+  top: -40px;
+}
+

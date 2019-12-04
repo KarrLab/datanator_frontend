@@ -130,6 +130,7 @@ export default class InteractiveList extends Component {
   render() {
     console.log('SearchResultList: Calling Render');
     console.log(this.props.reaction_results);
+    console.log(this.state.metabolite_results)
 
     //let url = "reaction/data/?substrates=AMP,ATP%20&products=%20ADP&substrates_inchi=ZKHQWZAMYRWXGA-KQYNXXCUSA-J,UDMBCSSLTHHNCD-KQYNXXCUSA-N&products_inchi=XTWYTFMLZFPYCI-KQYNXXCUSA-N"
     //add_results("ATP Synthetase", "ATP + AMP ==> ADP", url)
@@ -152,44 +153,34 @@ export default class InteractiveList extends Component {
           <br />
           {this.state.metabolite_results.length>0 && (
             <div>
+              <div className="anchor">
               <a id="metabolites"></a>
-              <Typography variant="h6" className={'green'}>
+              </div><Typography variant="h6" className={'green'}>
                 Metabolites
-              </Typography>
-              <div className="google results">
-                <List disablePadding={true} dense={true}>
-                      {this.state.metabolite_results}       
-                </List>
-              </div>
+              </Typography><div className="google results"><List disablePadding={true} dense={true}> {this.state.metabolite_results}</List></div>
               <br />
             </div>
           )}
 
           {this.state.reaction_results.length>0 && (
             <div>
-            <a id="reactions"></a>
+             <div className="anchor">
+              <a id="reactions"></a>
+              </div>
               <Typography variant="h6" className={'green'}>
                 Reactions
-              </Typography>
-              <div className="google results">
-                <List disablePadding={true} dense={true}>
-                      {this.state.reaction_results}       
-                </List>
-              </div>
+              </Typography><div className="google results"><List disablePadding={true} dense={true}> {this.state.reaction_results}</List></div>
               <br />
             </div>
           )}
           {this.state.protein_results.length>0 && (
             <div>
-            <a id="proteins"></a>
+             <div className="anchor">
+              <a id="proteins"></a>
+              </div>
               <Typography variant="h6" className={'green'}>
                 Proteins
-              </Typography>
-              <div className="google results">
-                <List disablePadding={true} dense={true}>
-                      {this.state.protein_results}       
-                </List>
-              </div>
+              </Typography><div className="google results"><List disablePadding={true} dense={true}> {this.state.protein_results}</List></div>
             </div>
           )}
         </Grid>
