@@ -24,18 +24,18 @@ function formatProteinMetadata(data, organism) {
   let start = 0;
   let newProteinMetadataDict = {};
   for (var i = start; i < data.length; i++) {
-    if (data[i].ko_number){
-    let ko_number = data[i].ko_number;
+    let ko_number = data[i]['key'];
     let new_dict = newProteinMetadataDict[ko_number];
     if (!new_dict) {
       new_dict = {};
     }
-    let name = data[i]["ko_name"][0]
+    let name = data[i].top_ko.hits.hits[0]._source.ko_name[0]
+    console.log(name)
     new_dict['primary_text'] = name[0].toUpperCase() + name.substring(1,name.length)
     new_dict['secondary_text'] = "Kegg ID: " + ko_number
     new_dict["url"] = "/protein/ko/mol/?ko=" + ko_number + "&organism=" + organism
 
-    newProteinMetadataDict[ko_number] = new_dict;}
+    newProteinMetadataDict[ko_number] = new_dict;
   }
 
     let proteinMetadata = Object.keys(newProteinMetadataDict).map(function(key) {
