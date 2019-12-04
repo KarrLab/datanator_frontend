@@ -23,6 +23,8 @@ import { withRouter } from 'react-router';
 const InputGroup = Input.Group;
 
 class GeneralSearch extends Component {
+
+
   constructor(props) {
     super(props);
     this.state = {
@@ -143,6 +145,8 @@ class GeneralSearch extends Component {
     //this.refs.taxonCol.applyFilter(28)
   }
 
+
+
   render() {
     console.log("Rendering GeneralSearch")
     const Search = Input.Search;
@@ -175,6 +179,7 @@ class GeneralSearch extends Component {
             onChange={event => {
               this.setState({ query: event.target.value });
             }}
+            onKeyPress={ (event) => {if (event.key === "Enter") { this.handleClickInner() } }}
           />
           <AutoComplete
             dataSource={this.state.dataSource}
