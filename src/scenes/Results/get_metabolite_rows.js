@@ -34,7 +34,7 @@ function formatMetaboliteMetadata(data, organism) {
     }
     let name = data[i]["synonyms"][0]
     new_dict['primary_text'] = name[0].toUpperCase() + name.substring(1,name.length)
-    let description = "YMDB ID: " + data[i]["ymdb_id"] + "ECMDB ID: " + data[i]["m2m_id"]
+    let description = "YMDB ID: " + data[i]["ymdb_id"] + ", ECMDB ID: " + data[i]["m2m_id"]
     let max_len = 150
     if (description.length <= max_len || description == null){
       new_dict['secondary_text'] = description
