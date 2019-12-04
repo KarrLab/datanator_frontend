@@ -32,7 +32,10 @@ function formatMetaboliteMetadata(data, organism) {
     if (!new_dict) {
       new_dict = {};
     }
-    let name = data[i]["synonyms"][0]
+    let name = data[i]["name"]
+    if (name == "No metabolite found."){
+      name = data[i]['synonyms'][0]
+    }
     new_dict['primary_text'] = name[0].toUpperCase() + name.substring(1,name.length)
     let description = "YMDB ID: " + data[i]["ymdb_id"] + ", ECMDB ID: " + data[i]["m2m_id"]
     let max_len = 150
