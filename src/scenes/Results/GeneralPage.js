@@ -128,8 +128,8 @@ class GeneralPage extends Component {
     let values = queryString.parse(this.props.location.search);
     let reaction_data = data[4]['sabio_reaction_entries']
     let protein_data = data[3]['protein']
-    let metabolite_data = data[0]['ecmdb'].concat(data[1]["ymdb"])
-
+    //let metabolite_data = data[0]['ecmdb'].concat(data[1]["ymdb"])
+    let metabolite_data = data[2]['metabolites_meta']
     let reaction_metadata = formatReactionMetadata(reaction_data)
     let protein_metadata = formatProteinMetadata(protein_data, values.organism)
     let metabolite_metadata = formatMetaboliteMetadata(metabolite_data, values.organism)

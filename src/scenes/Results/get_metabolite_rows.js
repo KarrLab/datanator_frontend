@@ -25,18 +25,18 @@ function formatMetaboliteMetadata(data, organism) {
   let start = 0;
   let newMetaboliteMetadataDict = {};
   for (var i = start; i < data.length; i++) {
-    if (data[i].inchikey){
-    let inchi_key = data[i].inchikey;
+    if (data[i].InChI_Key){
+    let inchi_key = data[i].InChI_Key;
     console.log("INCHI: " + inchi_key)
     let new_dict = newMetaboliteMetadataDict[inchi_key];
     if (!new_dict) {
       new_dict = {};
     }
-    let name = data[i]["name"]
+    let name = data[i]["synonyms"][0]
     new_dict['primary_text'] = name[0].toUpperCase() + name.substring(1,name.length)
-    let description = data[i]["description"]
+    let description = "YMDB ID: " + data[i]["ymdb_id"] + "ECMDB ID: " + data[i]["m2m_id"]
     let max_len = 150
-    if (description.length <= max_len){
+    if (description.length <= max_len || description == null){
       new_dict['secondary_text'] = description
     }
     else{
