@@ -41,6 +41,7 @@ function generate(element) {
   );
 }
 
+
 function format_results(primary_text, secondary_text, url) {
   return (
     <ListItem padding={0}>
@@ -144,17 +145,19 @@ export default class InteractiveList extends Component {
   }
   */
 
+
     return (
       <div className="google results">
         <Grid md={6}>
           <br />
           {this.state.metabolite_results.length>0 && (
             <div>
+              <a id="metabolites"></a>
               <Typography variant="h6" className={'green'}>
                 Metabolites
               </Typography>
               <div className="google results">
-                <List disablePadding={true}>
+                <List disablePadding={true} dense={true}>
                       {this.state.metabolite_results}       
                 </List>
               </div>
@@ -164,11 +167,12 @@ export default class InteractiveList extends Component {
 
           {this.state.reaction_results.length>0 && (
             <div>
+            <a id="reactions"></a>
               <Typography variant="h6" className={'green'}>
                 Reactions
               </Typography>
               <div className="google results">
-                <List disablePadding={true}>
+                <List disablePadding={true} dense={true}>
                       {this.state.reaction_results}       
                 </List>
               </div>
@@ -177,11 +181,12 @@ export default class InteractiveList extends Component {
           )}
           {this.state.protein_results.length>0 && (
             <div>
+            <a id="proteins"></a>
               <Typography variant="h6" className={'green'}>
                 Proteins
               </Typography>
               <div className="google results">
-                <List disablePadding={true}>
+                <List disablePadding={true} dense={true}>
                       {this.state.protein_results}       
                 </List>
               </div>
