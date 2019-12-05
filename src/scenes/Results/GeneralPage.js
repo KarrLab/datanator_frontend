@@ -160,7 +160,8 @@ class GeneralPage extends Component {
       <style>{'body { background-color: #f7fdff; }'}</style>
       <GeneralSearch handleClick={this.getNewSearch} defaultQuery={values.q} defaultOrganism={values.organism}/>
       <br />
-      <Grid>
+      <Grid md={2}>
+      <div className="contents">
         <h3>Contents</h3>
       <ol>
       <li><Link>
@@ -173,6 +174,7 @@ class GeneralPage extends Component {
           <a href={'/general/?q=' + values.q + '&' + 'organism=' + values.organism + '#proteins'}>{"Proteins"} </a>
       </Link></li>
       </ol>
+      </div>
       </Grid>
       <InteractiveList 
       reaction_results = {this.state.reaction_results}
