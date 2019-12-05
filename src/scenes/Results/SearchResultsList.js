@@ -150,7 +150,6 @@ export default class InteractiveList extends Component {
     return (
       <div className="google results">
         <Grid md={6}>
-          <br />
           {this.state.metabolite_results.length>0 && (
             <div>
               <div className="anchor">

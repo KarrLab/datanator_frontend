@@ -159,17 +159,21 @@ class GeneralPage extends Component {
       <div className="general">
       <style>{'body { background-color: #f7fdff; }'}</style>
       <GeneralSearch handleClick={this.getNewSearch} defaultQuery={values.q} defaultOrganism={values.organism}/>
-      <Link>
+      <br />
+      <Grid>
+        <h3>Contents</h3>
+      <ol>
+      <li><Link>
           <a href={'/general/?q=' + values.q + '&' + 'organism=' + values.organism + '#metabolites'}>{"Metabolites"} </a>
-      </Link>
-      <br/>
-      <Link>
+      </Link></li>
+      <li><Link>
           <a href={'/general/?q=' + values.q + '&' + 'organism=' + values.organism + '#reactions'}>{"Reactions"} </a>
-      </Link>
-      <br/>
-      <Link>
+      </Link></li>
+      <li><Link>
           <a href={'/general/?q=' + values.q + '&' + 'organism=' + values.organism + '#proteins'}>{"Proteins"} </a>
-      </Link>
+      </Link></li>
+      </ol>
+      </Grid>
       <InteractiveList 
       reaction_results = {this.state.reaction_results}
       protein_results = {this.state.protein_results}
