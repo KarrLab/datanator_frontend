@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from '@material-ui/core';
 
 import { Input } from 'antd';
 import 'antd/dist/antd.css';
@@ -154,10 +155,21 @@ class GeneralPage extends Component {
 
     return (
       <div>
-      api<Header />
+      <Header />
       <div className="general">
       <style>{'body { background-color: #f7fdff; }'}</style>
       <GeneralSearch handleClick={this.getNewSearch} defaultQuery={values.q} defaultOrganism={values.organism}/>
+      <Link>
+          <a href={'/general/?q=' + values.q + '&' + 'organism=' + values.organism + '#metabolites'}>{"Metabolites"} </a>
+      </Link>
+      <br/>
+      <Link>
+          <a href={'/general/?q=' + values.q + '&' + 'organism=' + values.organism + '#reactions'}>{"Reactions"} </a>
+      </Link>
+      <br/>
+      <Link>
+          <a href={'/general/?q=' + values.q + '&' + 'organism=' + values.organism + '#proteins'}>{"Proteins"} </a>
+      </Link>
       <InteractiveList 
       reaction_results = {this.state.reaction_results}
       protein_results = {this.state.protein_results}
