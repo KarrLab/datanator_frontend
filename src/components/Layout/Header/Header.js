@@ -18,13 +18,7 @@ const Header = () => {
           text="Home"
           href="/"
         />
-        <AnchorButton
-          minimal="true"
-          className="navbutton"
-          icon="document"
-          text="Data"
-          href="/data/"
-        />
+
       </Navbar.Group>
     </Navbar>
   );
