@@ -44,7 +44,7 @@ class HomeOld extends Component {
   }
 
   componentDidMount() {
-    this.props.history.push('/');
+    //this.props.history.push('/');
   }
 
   getNewSearchMetab(response) {
