@@ -21,20 +21,6 @@ const Header = () => {
         <AnchorButton
           minimal="true"
           className="navbutton"
-          icon="info-sign"
-          text="About"
-          href="/about/"
-        />
-        <AnchorButton
-          minimal="true"
-          className="navbutton"
-          icon="search"
-          text="Search"
-          href="/search/"
-        />
-        <AnchorButton
-          minimal="true"
-          className="navbutton"
           icon="document"
           text="Data"
           href="/data/"

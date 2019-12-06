@@ -160,7 +160,7 @@ class GeneralPage extends Component {
       <style>{'body { background-color: #f7fdff; }'}</style>
       <GeneralSearch handleClick={this.getNewSearch} defaultQuery={values.q} defaultOrganism={values.organism}/>
       <br />
-      <Grid md={2}>
+      <Grid md={3}>
       <div className="contents">
         <h3>Contents</h3>
       <ol>

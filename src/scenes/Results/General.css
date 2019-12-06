@@ -11,12 +11,14 @@
 }
 
 .contents {
-  background-color: #add8e6;
-
+  background-color: #eaecee;
+  border-style: solid;
+  border-color: #939393;
+  border-width: thin;
 }
 
 
 ul, ol {
- margin-left: 15px;
+ margin-left: 18px;
  padding-left: 0px;
 }
