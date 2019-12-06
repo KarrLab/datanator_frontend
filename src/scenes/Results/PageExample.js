@@ -36,10 +36,10 @@ uniprot_id
 */
 
 const data = [
-  { name: 'Trajan', concentration: 98, gene_symbol: 'dhs' },
-  { name: 'Hadrian', concentration: 117, gene_symbol: 'asa' },
-  { name: 'Antoninus ', concentration: 138, gene_symbol: 'ynd' },
-  { name: 'Marcus ', concentration: 161, gene_symbol: 'erx' },
+  { name: 'Trajan', concentration: 98, abundance: 117, gene_symbol: 'dhs',},
+  { name: 'Hadrian', concentration: 117, abundance: 138, gene_symbol: 'asa' },
+  { name: 'Antoninus ', concentration: 138, abundance: 161, gene_symbol: 'ynd' },
+  { name: 'Marcus ', concentration: 161, abundance: 180, gene_symbol: 'erx' },
 ];
 
 @connect(store => {

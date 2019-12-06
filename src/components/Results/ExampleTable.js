@@ -41,12 +41,12 @@ class ExampleTable extends Component {
             filters={[<TaxonFilter />]}
             table={
               <ResultsTable
-                basic_columns={['molecule', 'concentration', 'gene_symbol']}
+                basic_columns={['molecule', 'concentration', 'abundance', 'gene_symbol']}
                 advanced_columns={[]}
                 potential_columns={{}}
               />
             }
-            relevantColumns={['concentration']}
+            relevantColumns={['concentration', 'abundance']}
           />
         </div>
       );
