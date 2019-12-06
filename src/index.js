@@ -25,6 +25,7 @@ import Metabconcs from '~/scenes/Results/Metabconcs';
 import ProteinPage from '~/scenes/Results/ProteinPage';
 import ReactionPage from '~/scenes/Results/ReactionPage';
 import GeneralPage from '~/scenes/Results/GeneralPage';
+import PageExample from '~/scenes/Results/PageExample';
 
 const SiteRouter = () => {
   return (
@@ -47,6 +48,10 @@ const SiteRouter = () => {
       <Route
         path="/general/"
         component={GeneralPage}
+      />
+      <Route
+        path="/example/"
+        component={PageExample}
       />
     </Router>
   );
