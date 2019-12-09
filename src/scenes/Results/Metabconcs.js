@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import {
   Input,
 } from 'antd';
-import 'antd/dist/antd.css';
+//import 'antd/dist/antd.css';
 import ConcentrationsTable from '~/components/Results/ConcentrationsTable.js';
 import ConcSearch from '~/components/SearchField/ConcSearch.js';
 import { PropTypes } from 'react';
@@ -14,7 +14,6 @@ import {Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import GeneralSearch from '~/components/SearchField/GeneralSearch.js';
 
-import './MetabConcs.css';
 
 import { getSearchData } from '~/services/MongoApi';
 import { abstractMolecule } from '~/data/actions/pageAction';
@@ -25,12 +24,35 @@ import {
 
 import {Header} from '~/components/Layout/Header/Header';
 import {Footer} from '~/components/Layout/Footer/Footer';
-const queryString = require('query-string');
 
+import { AgGridReact } from 'ag-grid-react';
+import { AllModules } from "ag-grid-enterprise";
+import AGGrid from '~/scenes/Results/AGGrid';
+
+
+
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-balham.css';
+
+const queryString = require('query-string');
+const sideBar = {
+    toolPanels: [{
+        id: 'columns',
+        labelDefault: 'Columns',
+        labelKey: 'columns',
+        iconKey: 'columns',
+        toolPanel: 'agColumnsToolPanel',
+        toolPanelParams: {
+            suppressRowGroups: true,
+            suppressValues: true,
+        }
+    }]
+}
 
 @connect(store => {
   return {
     moleculeAbstract: store.page.moleculeAbstract,
+    totalData: store.results.totalData,
   };
 }) //the names given here will be the names of props
 class MetabConcs extends Component {
@@ -42,6 +64,15 @@ class MetabConcs extends Component {
       newSearch: false,
       new_url: '',
       tanitomo: false,
+      columnDefs: [
+        { headerName: "Molecule", field: "name", checkboxSelection: true, filter: "agTextColumnFilter" },
+        { headerName: "Conc.", field: "concentration", sortable: true, filter: "agNumberColumnFilter" },
+        { headerName: "Error", field: "error" },
+        { headerName: "Organism", field: "organism" },
+        { headerName: "Taxonomic Distance", field: "taxonomic_proximity" },
+        { headerName: "Growth Phase", field: "growth_phase" },
+        { headerName: "Conditions", field: "growth_conditions" },
+        { headerName: "Media", field: "growth_media" }],
     };
 
     this.getNewSearch = this.getNewSearch.bind(this);
@@ -246,24 +277,19 @@ class MetabConcs extends Component {
     }
     const values = queryString.parse(this.props.location.search);
 
-    let styles = {
-      marginTop: 50,
-    };
+
 
     return (
-      <div className="container" style={styles}>
+      <div className="container2" >
       <Header />
-        <style>{'body { background-color: #f7fdff; }'}</style>
-        <div className="search">
-          <GeneralSearch handleClick={this.getNewSearch} defaultQuery={values.q} defaultOrganism={values.organism}/>
-        </div>
-        <br />
-        <br />
-        <div className="results">
-          <ConcentrationsTable
-            data_arrived={this.state.data_arrived}
-            tanitomo={this.state.tanitomo}
-          />
+      <div className="ag-theme-balham" style={ {height: '300px', width: '800px', marginTop: 50} }>
+       <AgGridReact
+            columnDefs={this.state.columnDefs}
+            sideBar = {true}
+            rowData={this.props.totalData}
+            gridOptions = {{floatingFilter:true}}
+            >
+        </AgGridReact>
         </div>
         <Footer/>
       </div>

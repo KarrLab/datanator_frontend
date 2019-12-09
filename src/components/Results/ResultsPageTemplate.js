@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import 'antd/dist/antd.css';
+//import 'antd/dist/antd.css';
 import { withRouter } from 'react-router';
 import { ResultsTable } from './components/ResultsTable.js';
 import { TaxonFilter } from '~/components/Results/components/Filters/TaxonFilter';
@@ -7,7 +7,7 @@ import { TanitomoFilter } from '~/components/Results/components/Filters/Tanitomo
 import { Consensus } from './components/Consensus.js';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import './ResultsPageTemplate.css';
+//import './ResultsPageTemplate.css';
 
 
 

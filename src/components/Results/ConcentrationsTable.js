@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import 'antd/dist/antd.css';
+//import 'antd/dist/antd.css';
 import { withRouter } from 'react-router';
 //import './ConcentrationsTable.css';
 import { ResultsTable } from './components/ResultsTable.js';
@@ -10,7 +10,25 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { ResultsPageTemplate } from '~/components/Results/ResultsPageTemplate';
+import { AgGridReact } from 'ag-grid-react';
+import { AllModules } from "ag-grid-enterprise";
 
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-balham.css';
+
+const sideBar = {
+    toolPanels: [{
+        id: 'columns',
+        labelDefault: 'Columns',
+        labelKey: 'columns',
+        iconKey: 'columns',
+        toolPanel: 'agColumnsToolPanel',
+        toolPanelParams: {
+            suppressRowGroups: true,
+            suppressValues: true,
+        }
+    }]
+}
 
 @connect(store => {
   return {
@@ -35,9 +53,21 @@ class ConcentrationsTable extends Component {
      */
     tanitomo: PropTypes.bool.isRequired,
 
+
   };
   constructor(props) {
     super(props);
+    this.state = {
+      columnDefs: [
+        { headerName: "Molecule", field: "name", checkboxSelection: true, filter: "agTextColumnFilter" },
+        { headerName: "Conc.", field: "concentration", sortable: true, filter: "agNumberColumnFilter" },
+        { headerName: "Error", field: "error" },
+        { headerName: "Organism", field: "organism" },
+        { headerName: "Taxonomic Distance", field: "taxonomic_proximity" },
+        { headerName: "Growth Phase", field: "growth_phase" },
+        { headerName: "Conditions", field: "growth_conditions" },
+        { headerName: "Media", field: "growth_media" }],
+    }
   }
 
 
@@ -54,21 +84,13 @@ class ConcentrationsTable extends Component {
                 <TaxonFilter />,
                 <TanitomoFilter tanitomo={this.props.tanitomo} />
                 ]}
-              table = {<ResultsTable
-                basic_columns={[
-                  'concentration',
-                  'error',
-                  'molecule',
-                  'organism',
-                  'taxonomic_proximity',
-                ]}
-                advanced_columns={[
-                  'growth_phase',
-                  'growth_conditions',
-                  'growth_media',
-                ]}
-                potential_columns={{ tanitomo: this.props.tanitomo }}
-              />}
+              table = {<AgGridReact
+            columnDefs={this.state.columnDefs}
+            sideBar = {true}
+            rowData={this.props.totalData}
+            gridOptions = {{floatingFilter:true}}
+            >
+        </AgGridReact>}
               relevantColumns = {['concentration']}
           />
         </div>
