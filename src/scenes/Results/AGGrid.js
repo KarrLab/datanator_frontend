@@ -13,7 +13,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 
 import { AgGridReact } from 'ag-grid-react';
-//import { AllModules } from "@ag-grid-enterprise/all-modules";
+import { AllModules } from "ag-grid-enterprise";
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
@@ -99,7 +99,6 @@ class AGGrid extends Component {
           'taxon',
           'canon_rank_distance_by_name/?name=' + this.props.match.params.organism
         ]).then(
-
         response => {
           this.props.dispatch(set_lineage(response.data))
         });
