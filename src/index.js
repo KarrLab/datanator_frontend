@@ -26,6 +26,7 @@ import ProteinPage from '~/scenes/Results/ProteinPage';
 import ReactionPage from '~/scenes/Results/ReactionPage';
 import GeneralPage from '~/scenes/Results/GeneralPage';
 import PageExample from '~/scenes/Results/PageExample';
+import AGGrid from '~/scenes/Results/AGGrid';
 
 const SiteRouter = () => {
   return (
@@ -52,6 +53,10 @@ const SiteRouter = () => {
       <Route
         path="/example/"
         component={PageExample}
+      />
+      <Route
+        path="/ag/"
+        component={AGGrid}
       />
     </Router>
   );
