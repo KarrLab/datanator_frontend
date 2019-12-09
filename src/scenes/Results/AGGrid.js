@@ -38,7 +38,11 @@ class AGGrid extends Component {
         { headerName: "Molecule", field: "name", checkboxSelection: true },
         { headerName: "Conc.", field: "concentration", sortable: true, filter: true },
         { headerName: "Error", field: "error" },
-        { headerName: "Organism", field: "organism" }],
+        { headerName: "Organism", field: "organism" },
+        { headerName: "Taxonomic Distance", field: "taxonomic_proximity" },
+        { headerName: "Growth Phase", field: "growth_phase" },
+        { headerName: "Conditions", field: "growth_conditions" },
+        { headerName: "Media", field: "growth_media" }],
       rowData: [
         { make: "Toyota", model: "Celica", price: 35000 },
         { make: "Ford", model: "Mondeo", price: 32000 },
@@ -224,7 +228,7 @@ class AGGrid extends Component {
   render() {
     console.log(this.state.displayed_data)
     return (
-      <div className="ag-theme-balham" style={ {height: '200px', width: '600px'} }>
+      <div className="ag-theme-balham" style={ {height: '300px', width: '800px'} }>
         <AgGridReact
             columnDefs={this.state.columnDefs}
             rowData={this.props.totalData}>
