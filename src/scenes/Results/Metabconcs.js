@@ -36,17 +36,24 @@ import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 
 const queryString = require('query-string');
 const sideBar = {
-    toolPanels: [{
-        id: 'columns',
-        labelDefault: 'Columns',
-        labelKey: 'columns',
-        iconKey: 'columns',
-        toolPanel: 'agColumnsToolPanel',
-        toolPanelParams: {
-            suppressRowGroups: true,
-            suppressValues: true,
+    toolPanels: [
+        {
+            id: 'columns',
+            labelDefault: 'Columns',
+            labelKey: 'columns',
+            iconKey: 'columns',
+            toolPanel: 'agColumnsToolPanel',
+        },
+        {
+            id: 'filters',
+            labelDefault: 'Filters',
+            labelKey: 'filters',
+            iconKey: 'filter',
+            toolPanel: 'agFiltersToolPanel',
         }
-    }]
+    ],
+    position: 'left',
+    defaultToolPanel: 'filters'
 }
 
 @connect(store => {
@@ -285,7 +292,7 @@ class MetabConcs extends Component {
       <div className="ag-theme-balham" style={ {height: '300px', width: '800px', marginTop: 50} }>
        <AgGridReact
             columnDefs={this.state.columnDefs}
-            sideBar = {true}
+            sideBar = {sideBar}
             rowData={this.props.totalData}
             gridOptions = {{floatingFilter:true}}
             >
