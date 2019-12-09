@@ -9,8 +9,11 @@ import { ReactionDefinition } from '~/components/Definitions/ReactionDefinition'
 import { Header } from '~/components/Layout/Header/Header';
 import { Footer } from '~/components/Layout/Footer/Footer';
 import ExampleTable from '~/components/Results/ExampleTable.js';
+import { makeStyles } from '@material-ui/core/styles';
+
 
 import { AgGridReact } from 'ag-grid-react';
+//import { AllModules } from "@ag-grid-enterprise/all-modules";
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
@@ -35,8 +38,8 @@ class AGGrid extends Component {
     super(props);
     this.state = {
       columnDefs: [
-        { headerName: "Molecule", field: "name", checkboxSelection: true },
-        { headerName: "Conc.", field: "concentration", sortable: true, filter: true },
+        { headerName: "Molecule", field: "name", checkboxSelection: true, filter: "agTextColumnFilter" },
+        { headerName: "Conc.", field: "concentration", sortable: true, filter: "agNumberColumnFilter" },
         { headerName: "Error", field: "error" },
         { headerName: "Organism", field: "organism" },
         { headerName: "Taxonomic Distance", field: "taxonomic_proximity" },
@@ -227,11 +230,29 @@ class AGGrid extends Component {
 
   render() {
     console.log(this.state.displayed_data)
+
+    let sideBar = {
+    toolPanels: [{
+        id: 'columns',
+        labelDefault: 'Columns',
+        labelKey: 'columns',
+        iconKey: 'columns',
+        toolPanel: 'agColumnsToolPanel',
+        toolPanelParams: {
+            suppressRowGroups: true,
+            suppressValues: true,
+        }
+    }]
+}
+    
     return (
       <div className="ag-theme-balham" style={ {height: '300px', width: '800px'} }>
         <AgGridReact
             columnDefs={this.state.columnDefs}
-            rowData={this.props.totalData}>
+            sideBar = {true}
+            rowData={this.props.totalData}
+            gridOptions = {{floatingFilter:true}}
+            >
         </AgGridReact>
       </div>
     );
