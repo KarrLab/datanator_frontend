@@ -85,6 +85,7 @@ class MetabConcs extends Component {
 
     this.getNewSearch = this.getNewSearch.bind(this);
     this.formatData = this.formatData.bind(this);
+    this.onFirstDataRendered = this.onFirstDataRendered.bind(this);
   }
   componentDidMount() {
     this.setState({
@@ -277,6 +278,19 @@ class MetabConcs extends Component {
     this.setState({ newSearch: true });
   }
 
+
+
+  onFirstDataRendered(params) {
+    //params.columnApi.autoSizeColumns(['concentration'])
+
+    var allColumnIds = [];
+    params.columnApi.getAllColumns().forEach(function(column) {
+      allColumnIds.push(column.colId);
+    });
+    params.columnApi.autoSizeColumns(allColumnIds)
+    //params.gridColumnApi.autoSizeColumns(allColumnIds, false);
+  }
+
   render() {
     console.log('Rendering MetabConcs');
     if (this.state.newSearch == true) {
@@ -299,6 +313,7 @@ class MetabConcs extends Component {
             sideBar = {sideBar}
             rowData={this.props.totalData}
             gridOptions = {{floatingFilter:true}}
+            onFirstDataRendered={this.onFirstDataRendered.bind(this)}
             >
         </AgGridReact>
         </div>

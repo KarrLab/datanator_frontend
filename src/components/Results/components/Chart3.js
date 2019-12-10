@@ -56,7 +56,7 @@ class Chart3 extends React.Component {
           data={to_chart}
           layout={{
             width: 270,
-            height: 400,
+            height: 350,
             title: 'Distribution',
             plot_bgcolor: 'rgba(0,0,0,0)',
             paper_bgcolor: 'rgba(0,0,0,0)',
