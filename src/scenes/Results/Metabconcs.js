@@ -13,6 +13,7 @@ import { PropTypes } from 'react';
 import {Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import GeneralSearch from '~/components/SearchField/GeneralSearch.js';
+import { Consensus } from '~/components/Results/components/Consensus.js';
 
 
 import { getSearchData } from '~/services/MongoApi';
@@ -289,7 +290,10 @@ class MetabConcs extends Component {
     return (
       <div className="container2" >
       <Header />
-      <div className="ag-theme-balham" style={ {height: '300px', width: '800px', marginTop: 50} }>
+      <div className="container3" style={ {marginTop: 50, 'display':'flex','flex-direction':'row',
+  'flex-wrap': 'wrap',
+  'flex-flow': 'row wrap',} }>
+      <div className="ag-theme-balham" style={ {height: '400px', width: '800px',}}>
        <AgGridReact
             columnDefs={this.state.columnDefs}
             sideBar = {sideBar}
@@ -297,6 +301,11 @@ class MetabConcs extends Component {
             gridOptions = {{floatingFilter:true}}
             >
         </AgGridReact>
+        </div>
+        <Consensus 
+              relevantColumns={['concentration']} 
+              optional_columns = {[]}
+              />
         </div>
         <Footer/>
       </div>
