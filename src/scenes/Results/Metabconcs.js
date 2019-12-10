@@ -81,6 +81,17 @@ class MetabConcs extends Component {
         { headerName: "Growth Phase", field: "growth_phase", filter: "agTextColumnFilter" },
         { headerName: "Conditions", field: "growth_conditions", filter: "agTextColumnFilter" },
         { headerName: "Media", field: "growth_media", filter: "agTextColumnFilter" }],
+
+
+        rowData: null,
+      rowSelection: "multiple",
+      autoGroupColumnDef: {
+        headerName: "Conc",
+        field: "concentration",
+        width: 200,
+        cellRenderer: "agGroupCellRenderer",
+        cellRendererParams: { checkbox: true }
+      }
     };
 
     this.getNewSearch = this.getNewSearch.bind(this);
@@ -314,6 +325,12 @@ class MetabConcs extends Component {
             rowData={this.props.totalData}
             gridOptions = {{floatingFilter:true}}
             onFirstDataRendered={this.onFirstDataRendered.bind(this)}
+
+            rowSelection={this.state.rowSelection}
+            groupSelectsChildren={true}
+            suppressRowClickSelection={true}
+            //autoGroupColumnDef={this.state.autoGroupColumnDef}
+            onGridReady={this.onGridReady}
             >
         </AgGridReact>
         </div>
