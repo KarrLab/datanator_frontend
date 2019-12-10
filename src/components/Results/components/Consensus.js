@@ -208,9 +208,7 @@ class Consensus extends Component {
   render() {
     console.log('Rendering Consensus');
     return (
-      <div className="consensus_data" style={ {'display':'flex','flex-direction':'row',
-  'flex-wrap': 'wrap',
-  'flex-flow': 'row wrap',} }>
+      <div className="consensus_data">
       {/*
         <img src={require('~/images/consensus.png')} />
 
@@ -272,36 +270,28 @@ class Consensus extends Component {
         }
         {this.props.totalData && (
 
+          <div>
+
+          <div className="summary">
+          <p><b>Mean: </b>{this.state.mean}<br/>
+          <b>Median: </b>{this.state.median}<br/>
+          <b>Standard Deviation: </b>{this.state.std_dev}<br/>
+          <b>Range: </b>{this.state.range}</p>
+          </div>
+
 
         <Chart3
             original_data={this.props.totalData}
             data={this.props.selectedData}
             relevantColumn={this.state.selected_column}
-          />)}
+          />
+          </div>)}
 
 
-        <div className="summary">
-            <Row>
-              <Col span={22}>
-                <Statistic title="Mean" value={this.state.mean} />
-              </Col>
-              <Col span={2}>
-                <Statistic title="Median" value={this.state.median} />
-              </Col>
-            </Row>
 
-            <Row>
-              <Col span={15}>
-                <Statistic
-                  title="Standard Deviation"
-                  value={this.state.std_dev}
-                />
-              </Col>
-              <Col span={2}>
-                <Statistic title="Range" value={this.state.range} />
-              </Col>
-            </Row>
-          </div>
+
+
+        
 
 
 
