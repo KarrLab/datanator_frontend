@@ -76,11 +76,11 @@ class MetabConcs extends Component {
         { headerName: "Molecule", field: "name", checkboxSelection: true, filter: "agTextColumnFilter" },
         { headerName: "Conc.", field: "concentration", sortable: true, filter: "agNumberColumnFilter" },
         { headerName: "Error", field: "error" },
-        { headerName: "Organism", field: "organism" },
+        { headerName: "Organism", field: "organism", filter: "agTextColumnFilter" },
         { headerName: "Taxonomic Distance", field: "taxonomic_proximity" },
-        { headerName: "Growth Phase", field: "growth_phase" },
-        { headerName: "Conditions", field: "growth_conditions" },
-        { headerName: "Media", field: "growth_media" }],
+        { headerName: "Growth Phase", field: "growth_phase", filter: "agTextColumnFilter" },
+        { headerName: "Conditions", field: "growth_conditions", filter: "agTextColumnFilter" },
+        { headerName: "Media", field: "growth_media", filter: "agTextColumnFilter" }],
     };
 
     this.getNewSearch = this.getNewSearch.bind(this);
