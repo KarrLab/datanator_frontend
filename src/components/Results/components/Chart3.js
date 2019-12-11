@@ -55,12 +55,12 @@ class Chart3 extends React.Component {
         <Plot
           data={to_chart}
           layout={{
-            width: 270,
-            height: 350,
-            title: 'Distribution',
+            width: 200,
+            height: 300,
             plot_bgcolor: 'rgba(0,0,0,0)',
             paper_bgcolor: 'rgba(0,0,0,0)',
             yaxis: { title: { text: 'Concentration (µM)' } },
+            displayModeBar: false
           }}
         />
       </div>

@@ -29,7 +29,7 @@ import {Footer} from '~/components/Layout/Footer/Footer';
 import { AgGridReact } from 'ag-grid-react';
 import { AllModules } from "ag-grid-enterprise";
 import AGGrid from '~/scenes/Results/AGGrid';
-
+import CustomToolPanel from "~/scenes/Results/CustomToolPanel.js";
 
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
@@ -51,10 +51,17 @@ const sideBar = {
             labelKey: 'filters',
             iconKey: 'filter',
             toolPanel: 'agFiltersToolPanel',
-        }
+        },
+          {
+            id: "customStats",
+            labelDefault: "Custom Stats",
+            labelKey: "customStats",
+            iconKey: "custom-stats",
+            toolPanel: "CustomToolPanel"
+          }
     ],
     position: 'left',
-    defaultToolPanel: 'filters'
+    defaultToolPanel: 'customStats',
 }
 
 @connect(store => {
@@ -322,6 +329,7 @@ class MetabConcs extends Component {
        <AgGridReact
             columnDefs={this.state.columnDefs}
             sideBar = {sideBar}
+            frameworkComponents={{CustomToolPanel: CustomToolPanel }}
             rowData={this.props.totalData}
             gridOptions = {{floatingFilter:true}}
             onFirstDataRendered={this.onFirstDataRendered.bind(this)}
