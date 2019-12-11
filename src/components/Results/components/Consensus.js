@@ -272,12 +272,7 @@ class Consensus extends Component {
 
           <div>
 
-          <div className="summary">
-          <p><b>Mean: </b>{this.state.mean}<br/>
-          <b>Median: </b>{this.state.median}<br/>
-          <b>Standard Deviation: </b>{this.state.std_dev}<br/>
-          <b>Range: </b>{this.state.range}</p>
-          </div>
+          
 
 
         <Chart3
@@ -285,6 +280,13 @@ class Consensus extends Component {
             data={this.props.selectedData}
             relevantColumn={this.state.selected_column}
           />
+
+          <div className="summary" style={ {marginTop: 10}}>
+          <p><b>Mean: </b>{this.state.mean}<br/>
+          <b>Median: </b>{this.state.median}<br/>
+          <b>Standard Deviation: </b>{this.state.std_dev}<br/>
+          <b>Range: </b>{this.state.range}</p>
+          </div>
           </div>)}
 
 
