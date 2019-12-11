@@ -72,4 +72,12 @@ function setTotalData(totalData) {
     });
   };
 }
-export { getTotalColumns, filter_taxon, filter_tanitomo, set_lineage, hide_columns, reveal_columns, refreshSelectedData, setTotalData };
+function setSelectedData(selectedData) {
+    return function(dispatch) {
+    dispatch({
+      type: 'SET_SELECTED_DATA',
+      payload: selectedData,
+    });
+  };
+}
+export { getTotalColumns, filter_taxon, filter_tanitomo, set_lineage, hide_columns, reveal_columns, refreshSelectedData, setTotalData, setSelectedData };

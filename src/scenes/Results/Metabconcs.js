@@ -21,6 +21,7 @@ import { abstractMolecule } from '~/data/actions/pageAction';
 import {
   set_lineage,
   setTotalData,
+  setSelectedData,
 } from '~/data/actions/resultsAction';
 
 import {Header} from '~/components/Layout/Header/Header';
@@ -80,7 +81,8 @@ class MetabConcs extends Component {
       new_url: '',
       tanitomo: false,
       columnDefs: [
-        { headerName: "Molecule", field: "name", checkboxSelection: true, filter: "agTextColumnFilter" },
+        { headerName: "Molecule", field: "name", checkboxSelection: true, headerCheckboxSelection: true,
+          headerCheckboxSelectionFilteredOnly: true, filter: "agTextColumnFilter" },
         { headerName: "Conc.", field: "concentration", sortable: true, filter: "agNumberColumnFilter" },
         { headerName: "Error", field: "error", hide:true },
         { headerName: "Organism", field: "organism", filter: "agTextColumnFilter" },
@@ -309,6 +311,12 @@ class MetabConcs extends Component {
     //params.gridColumnApi.autoSizeColumns(allColumnIds, false);
   }
 
+  onRowSelected(event) {
+    //window.alert("row " + event.node.data.athlete + " selected = " + event.node.selected);
+    console.log("eyooo")
+    this.props.dispatch(setSelectedData(event.node.data))
+  }
+
   render() {
     console.log('Rendering MetabConcs');
     if (this.state.newSearch == true) {
@@ -339,13 +347,11 @@ class MetabConcs extends Component {
             suppressRowClickSelection={true}
             //autoGroupColumnDef={this.state.autoGroupColumnDef}
             onGridReady={this.onGridReady}
+            onRowSelected={this.onRowSelected.bind(this)}
             >
         </AgGridReact>
         </div>
-        <Consensus 
-              relevantColumns={['concentration']} 
-              optional_columns = {[]}
-              />
+
         </div>
         <Footer/>
       </div>

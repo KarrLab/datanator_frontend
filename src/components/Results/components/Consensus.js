@@ -274,7 +274,7 @@ class Consensus extends Component {
 
           
 
-
+          <p><b>Consensus</b></p>
         <Chart3
             original_data={this.props.totalData}
             data={this.props.selectedData}

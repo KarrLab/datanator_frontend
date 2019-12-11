@@ -321,6 +321,13 @@ function resultsReducer(state = defaultState, action) {
         totalData: action.payload,
       };
     }
+    case 'SET_SELECTED_DATA': {
+      return {
+        ...state,
+
+        selectedData: action.payload,
+      };
+    }
 
     case 'REFRESH_SELECTED_DATA': {
       let newSelectedData = getSelectedData();
