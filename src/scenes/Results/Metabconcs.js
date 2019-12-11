@@ -75,12 +75,12 @@ class MetabConcs extends Component {
       columnDefs: [
         { headerName: "Molecule", field: "name", checkboxSelection: true, filter: "agTextColumnFilter" },
         { headerName: "Conc.", field: "concentration", sortable: true, filter: "agNumberColumnFilter" },
-        { headerName: "Error", field: "error" },
+        { headerName: "Error", field: "error", hide:true },
         { headerName: "Organism", field: "organism", filter: "agTextColumnFilter" },
-        { headerName: "Taxonomic Distance", field: "taxonomic_proximity" },
-        { headerName: "Growth Phase", field: "growth_phase", filter: "agTextColumnFilter" },
-        { headerName: "Conditions", field: "growth_conditions", filter: "agTextColumnFilter" },
-        { headerName: "Media", field: "growth_media", filter: "agTextColumnFilter" }],
+        { headerName: "Taxonomic Distance", field: "taxonomic_proximity", hide:true},
+        { headerName: "Growth Phase", field: "growth_phase", filter: "agTextColumnFilter",hide:true },
+        { headerName: "Conditions", field: "growth_conditions", filter: "agTextColumnFilter",hide:true },
+        { headerName: "Media", field: "growth_media", filter: "agTextColumnFilter",hide:true }],
 
 
         rowData: null,
