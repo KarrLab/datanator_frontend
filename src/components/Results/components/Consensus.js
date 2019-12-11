@@ -195,6 +195,8 @@ class Consensus extends Component {
    */
   componentDidUpdate(prevProps) {
     console.log('Consensus: Calling componentDidUpdate');
+    console.log(this.props.totalData)
+    console.log(this.props.selectedData)
     if (prevProps.totalData != this.props.totalData) {
       this.setSummaryStats(this.props.totalData, this.props.relevantColumns[0])
       this.setState({selected_column:this.props.relevantColumns[0]});

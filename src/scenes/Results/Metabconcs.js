@@ -106,6 +106,8 @@ class MetabConcs extends Component {
     this.getNewSearch = this.getNewSearch.bind(this);
     this.formatData = this.formatData.bind(this);
     this.onFirstDataRendered = this.onFirstDataRendered.bind(this);
+    this.onRowSelected = this.onRowSelected.bind(this);
+
   }
   componentDidMount() {
     this.setState({
@@ -314,7 +316,12 @@ class MetabConcs extends Component {
   onRowSelected(event) {
     //window.alert("row " + event.node.data.athlete + " selected = " + event.node.selected);
     console.log("eyooo")
-    this.props.dispatch(setSelectedData(event.node.data))
+    console.log(event.api.getSelectedNodes())
+    let selectedRows = []
+    for (var i = event.api.getSelectedNodes().length - 1; i >= 0; i--) {
+      selectedRows.push(event.api.getSelectedNodes()[i].data)
+    }
+    this.props.dispatch(setSelectedData(selectedRows))
   }
 
   render() {
@@ -347,7 +354,7 @@ class MetabConcs extends Component {
             suppressRowClickSelection={true}
             //autoGroupColumnDef={this.state.autoGroupColumnDef}
             onGridReady={this.onGridReady}
-            onRowSelected={this.onRowSelected.bind(this)}
+            onSelectionChanged={this.onRowSelected.bind(this)}
             >
         </AgGridReact>
         </div>
