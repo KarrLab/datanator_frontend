@@ -340,7 +340,7 @@ class MetabConcs extends Component {
       <div className="container3" style={ {marginTop: 50, 'display':'flex','flex-direction':'row',
   'flex-wrap': 'wrap',
   'flex-flow': 'row wrap',} }>
-      <div className="ag-theme-balham" style={ {height: '400px', width: '800px',}}>
+      <div className="ag-theme-balham" style={ {height: '400px', width: "100%",}}>
        <AgGridReact
             columnDefs={this.state.columnDefs}
             sideBar = {sideBar}
@@ -355,6 +355,7 @@ class MetabConcs extends Component {
             //autoGroupColumnDef={this.state.autoGroupColumnDef}
             onGridReady={this.onGridReady}
             onSelectionChanged={this.onRowSelected.bind(this)}
+            domLayout={"autoHeight"}
             >
         </AgGridReact>
         </div>
