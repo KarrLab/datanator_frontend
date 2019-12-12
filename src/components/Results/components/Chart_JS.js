@@ -89,6 +89,7 @@ export default class Chart_JS extends Component {
         legend: {
           display: false,
         },
+        animation:null,
         title: {
           display: false,
         },
