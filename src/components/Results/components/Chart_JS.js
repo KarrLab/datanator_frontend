@@ -21,6 +21,7 @@ export default class Chart_JS extends Component {
     x = [];
     let total_conc;
     total_conc = [];
+    let total_f_conc = []
     let data;
     data = this.props.original_data;
     let total_scatter_1 = [];
@@ -31,22 +32,25 @@ export default class Chart_JS extends Component {
       total_scatter_1.push({
         x: "Total",
         y: parseFloat(data[i][this.props.relevantColumn]),
-      });
+      })
       x.push(1);
     }
     let to_chart = [];
     to_chart.push(total_conc);
     if (this.props.data != null) {
       if (this.props.original_data.length != this.props.data.length) {
-        let total_f_conc;
-        total_f_conc = [];
         for (var i = this.props.data.length - 1; i >= 0; i--) {
             total_f_conc.push(parseFloat(this.props.data[i][this.props.relevantColumn]));
+            total_scatter_2.push({
+              x: "Selected",
+              y: parseFloat(this.props.data[i][this.props.relevantColumn]),
+            })
         }
         to_chart.push(total_f_conc);
       }
     }
     console.log(to_chart[1])
+    console.log(total_scatter_2)
     console.log(this.props.data)
 
     let boxplotData = {
@@ -66,6 +70,12 @@ export default class Chart_JS extends Component {
           backgroundColor: 'black',
           borderColor: 'black',
           data: total_scatter_1,
+          type: 'scatter',
+        },
+        {
+          backgroundColor: 'black',
+          borderColor: 'black',
+          data: total_scatter_2,
           type: 'scatter',
         },
       ],
