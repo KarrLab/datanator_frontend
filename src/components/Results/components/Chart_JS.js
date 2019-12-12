@@ -143,7 +143,7 @@ export default class Chart_JS extends Component {
     let original_data = this.props.original_data;
     return (
       <div>
-        <canvas id="myChart" ref={this.chartRef} width="250" height="400" />
+        <canvas id="myChart" ref={this.chartRef} width="190" height="400" />
       </div>
     );
   }
