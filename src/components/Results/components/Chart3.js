@@ -58,6 +58,8 @@ class Chart3 extends React.Component {
           data={to_chart}
           layout={{
             showlegend:false,
+            width: 240,
+            height: 500,
             autosize:true,
             plot_bgcolor: 'rgba(0,0,0,0)',
             paper_bgcolor: 'rgba(0,0,0,0)',
