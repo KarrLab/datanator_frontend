@@ -58,8 +58,8 @@ export default class Chart_JS extends Component {
       labels: ['Total', 'Selected'],
       datasets: [
         {
-          backgroundColor: 'rgba(255,0,0,0.5)',
-          borderColor: 'red',
+          backgroundColor: '#99ceff',
+          borderColor: '#1890ff',
           borderWidth: 1,
           outlierColor: '#999999',
           padding: 10,
