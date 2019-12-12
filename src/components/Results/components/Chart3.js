@@ -51,16 +51,16 @@ class Chart3 extends React.Component {
       }
     }
     return (
-      <div className="Chart3"  style={ {marginTop: -80, marginBottom:-70}}>
+      <div className="Chart3"  style={ {marginTop: -80, marginBottom:-70, marginLeft:-45, "margin-right":-80}}>
         <Plot
           data={to_chart}
           layout={{
-            width: 200,
-            height: 300,
+            showlegend:false,
+            width: 300,
+            height: 500,
             plot_bgcolor: 'rgba(0,0,0,0)',
             paper_bgcolor: 'rgba(0,0,0,0)',
-            yaxis: { title: { text: 'Concentration (µM)' },
-          },
+            yaxis: { title: { text: 'Concentration (µM)' }},
 
           }}
           config = {{displayModeBar:false}}
