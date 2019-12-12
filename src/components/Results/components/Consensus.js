@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 import Chart3 from './Chart3.js';
+import Chart_JS from './Chart_JS.js';
+
 import PropTypes from 'prop-types';
 import DownloadLink from 'react-download-link';
 import './Consensus.css';
@@ -277,7 +279,7 @@ class Consensus extends Component {
           
 
           <p><b>Consensus</b></p>
-        <Chart3
+        <Chart_JS
             original_data={this.props.totalData}
             data={this.props.selectedData}
             relevantColumn={this.state.selected_column}
