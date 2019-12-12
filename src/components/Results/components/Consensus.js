@@ -28,8 +28,8 @@ import {
   Cascade,
   Button,
   Radio,
-  Statistic,
-} from 'antd';
+  Statistic
+} from 'antd'
 
 const radioStyle = {
   display: 'block',
@@ -90,12 +90,13 @@ class Consensus extends Component {
       /**Whether the user asked for the consensus again*/
       asked_consensus: false,
 
-      selected_column: '',
+      selected_column: "",
 
       /** What the prompt on the consensus button should be. Initially it is 'Get Consensus'*/
       consensus_prompt: 'Get Consensus',
 
       buttonValue: 1,
+
     };
     this.setSummaryStats = this.setSummaryStats.bind(this);
     this.recordData = this.recordData.bind(this);
@@ -108,17 +109,15 @@ class Consensus extends Component {
    */
   setSummaryStats(data, selected_column) {
     console.log('Consensus: Calling setSummaryStats');
-    console.log('Consensus: ' + this.props.relevantColumns[1]);
-    console.log('Consensus: ' + selected_column);
+    console.log("Consensus: " + this.props.relevantColumns[1])
+    console.log("Consensus: " + selected_column)
     var total_conc = 0;
     let total_data = [];
     for (var i = data.length - 1; i >= 0; i--) {
       total_data.push(parseFloat(data[i][selected_column]));
       total_conc = total_conc + parseFloat(data[i][selected_column]);
     }
-    total_data = total_data.filter(function(el) {
-      return !isNaN(el);
-    });
+    total_data = total_data.filter(function (el) { return !(isNaN(el)); })
     var new_mean = this.standardRound(mean(total_data));
     var new_median = this.standardRound(median(total_data));
     var new_std_dev = this.standardRound(standardDeviation(total_data));
@@ -136,14 +135,15 @@ class Consensus extends Component {
     });
   }
 
-  standardRound(number) {
-    let rounder = null;
-    if (number > 1) {
-      rounder = 3;
-    } else {
-      rounder = 7;
+  standardRound(number){
+    let rounder = null
+    if (number > 1){
+      rounder = 3
     }
-    return round(number, rounder);
+    else{
+      rounder=7
+    }
+    return(round(number, rounder))
   }
 
   /**
@@ -169,17 +169,14 @@ class Consensus extends Component {
   }
 
   buttonChange(e) {
-    console.log('Consensus: Calling buttonChange');
+    console.log('Consensus: Calling buttonChange')
     var searches = ['reactants', 'reaction_id'];
-    console.log('Consensus: ' + e.target.value);
-    this.setSummaryStats(
-      this.props.selectedData,
-      this.props.relevantColumns[e.target.value - 1],
-    );
-    this.handleUpdate();
+    console.log("Consensus: "+ e.target.value)
+    this.setSummaryStats(this.props.selectedData, this.props.relevantColumns[e.target.value-1])
+    this.handleUpdate()
     this.setState({
       buttonValue: e.target.value,
-      selected_column: this.props.relevantColumns[e.target.value - 1],
+      selected_column: this.props.relevantColumns[e.target.value-1],
     });
   }
 
@@ -191,7 +188,7 @@ class Consensus extends Component {
     console.log('Consensus: Calling componentDidMount');
     if (this.props.totalData != null) {
       this.setSummaryStats(this.props.totalData, this.props.relevantColumns[0]);
-      this.setState({ selected_column: this.props.relevantColumns[0] });
+      this.setState({selected_column:this.props.relevantColumns[0]})
     }
   }
 
@@ -200,56 +197,46 @@ class Consensus extends Component {
    */
   componentDidUpdate(prevProps) {
     console.log('Consensus: Calling componentDidUpdate');
-    console.log(this.props.totalData);
-    console.log(this.props.selectedData);
+    console.log(this.props.totalData)
+    console.log(this.props.selectedData)
     if (prevProps.totalData != this.props.totalData) {
-      this.setSummaryStats(this.props.totalData, this.props.relevantColumns[0]);
-      this.setState({ selected_column: this.props.relevantColumns[0] });
+      this.setSummaryStats(this.props.totalData, this.props.relevantColumns[0])
+      this.setState({selected_column:this.props.relevantColumns[0]});
     } else if (prevProps.selectedData != this.props.selectedData) {
-      console.log('Consensus: Calling blueblueblueblue');
-      console.log(
-        'Consensus: Calling greengreengreen' + this.state.selected_column,
-      );
+      console.log('Consensus: Calling blueblueblueblue')
+      console.log("Consensus: Calling greengreengreen" + this.state.selected_column)
       this.setSummaryStats(this.props.selectedData, this.state.selected_column);
     }
   }
 
   render() {
     console.log('Rendering Consensus');
-    if (this.props.totalData == null) {
-      return <div></div>;
-    } else {
-      return (
-        <div className="consensus_data">
-          <div>
-            <p>
-              <b>Consensus</b>
-            </p>
-            <Chart_JS
-              original_data={this.props.totalData}
-              data={this.props.selectedData}
-              relevantColumn={this.state.selected_column}
-            />
-
-            <div className="summary" style={{ marginTop: 10 }}>
-              <p>
-                <b>Mean: </b>
-                {this.state.mean}
-                <br />
-                <b>Median: </b>
-                {this.state.median}
-                <br />
-                <b>Standard Deviation: </b>
-                {this.state.std_dev}
-                <br />
-                <b>Range: </b>
-                {this.state.range}
-              </p>
-            </div>
-          </div>
-        </div>
-      );
+    if (this.props.totalData == null){
+      return(<div></div>)
     }
+    else{
+    return (
+      <div className="consensus_data">
+
+          <div>
+
+          <p><b>Concentrations</b></p>
+        <Chart_JS
+            original_data={this.props.totalData}
+            data={this.props.selectedData}
+            relevantColumn={this.state.selected_column}
+          />
+
+          <div className="summary" style={ {marginTop: 10}}>
+          <p><b>Mean: </b>{this.state.mean}<br/>
+          <b>Median: </b>{this.state.median}<br/>
+          <b>Standard Deviation: </b>{this.state.std_dev}<br/>
+          <b>Range: </b>{this.state.range}</p>
+          </div>
+          </div>
+
+      </div>
+    );}
   }
 }
 

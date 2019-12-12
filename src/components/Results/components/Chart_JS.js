@@ -23,11 +23,12 @@ export default class Chart_JS extends Component {
     total_conc = [];
     let data;
     data = this.props.original_data;
-    let total_scatter = [];
+    let total_scatter_1 = [];
+    let total_scatter_2 = [];
 
     for (var i = data.length - 1; i >= 0; i--) {
       total_conc.push(parseFloat(data[i][this.props.relevantColumn]));
-      total_scatter.push({
+      total_scatter_1.push({
         x: "Total",
         y: parseFloat(data[i][this.props.relevantColumn]),
       });
@@ -40,18 +41,17 @@ export default class Chart_JS extends Component {
         let total_f_conc;
         total_f_conc = [];
         for (var i = this.props.data.length - 1; i >= 0; i--) {
-          total_f_conc.push(
-            parseFloat(this.props.data[i][this.props.relevantColumn]),
-          );
+            total_f_conc.push(parseFloat(this.props.data[i][this.props.relevantColumn]));
         }
         to_chart.push(total_f_conc);
       }
     }
-    console.log(total_scatter)
+    console.log(to_chart[1])
+    console.log(this.props.data)
 
     let boxplotData = {
       // define label tree
-      labels: ['Total'],
+      labels: ['Total', 'Selected'],
       datasets: [
         {
           backgroundColor: 'rgba(255,0,0,0.5)',
@@ -60,69 +60,16 @@ export default class Chart_JS extends Component {
           outlierColor: '#999999',
           padding: 10,
           itemRadius: 0,
-          data: [to_chart[0]],
+          data: [to_chart[0], to_chart[1]],
         },
         {
           backgroundColor: 'black',
           borderColor: 'black',
-          data: total_scatter,
+          data: total_scatter_1,
           type: 'scatter',
         },
       ],
     };
-
-    const boxplotData2 = {
-      // define label tree
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-      datasets: [
-        {
-          label: 'Dataset 1',
-          backgroundColor: 'rgba(255,0,0,0.5)',
-          borderColor: 'red',
-          borderWidth: 1,
-          outlierColor: '#999999',
-          padding: 10,
-          itemRadius: 0,
-          data: [
-            randomValues(100, 0, 100),
-            randomValues(100, 0, 20),
-            randomValues(100, 20, 70),
-            randomValues(100, 60, 100),
-            randomValues(40, 50, 100),
-            randomValues(100, 60, 120),
-            randomValues(100, 80, 100),
-          ],
-        },
-        {
-          label: 'Dataset 2',
-          backgroundColor: 'rgba(0,0,255,0.5)',
-          borderColor: 'blue',
-          borderWidth: 1,
-          outlierColor: '#999999',
-          padding: 10,
-          itemRadius: 0,
-          data: [
-            randomValues(100, 60, 100),
-            randomValues(100, 0, 100),
-            randomValues(100, 0, 20),
-            randomValues(100, 20, 70),
-            randomValues(40, 60, 120),
-            randomValues(100, 20, 100),
-            randomValues(100, 80, 100),
-          ],
-        },
-      ],
-    };
-    console.log([
-      randomValues(100, 60, 100),
-      randomValues(100, 0, 100),
-      randomValues(100, 0, 20),
-      randomValues(100, 20, 70),
-      randomValues(40, 60, 120),
-      randomValues(100, 20, 100),
-      randomValues(100, 80, 100),
-    ]);
-    console.log(to_chart[0]);
 
     new Chart(myChartRef, {
       type: 'boxplot',
@@ -133,8 +80,7 @@ export default class Chart_JS extends Component {
           display: false,
         },
         title: {
-          display: true,
-          text: 'Chart.js Box Plot Chart',
+          display: false,
         },
       },
     });
