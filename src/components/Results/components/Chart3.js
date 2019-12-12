@@ -28,6 +28,7 @@ class Chart3 extends React.Component {
         boxpoints: 'all',
         pointpos: 0,
         paper_bgcolor: 'rgb(233,233,233)',
+        hoverinfo:'skip'
       },
     ];
     if (this.props.data != null) {
@@ -47,21 +48,21 @@ class Chart3 extends React.Component {
           boxpoints: 'all',
           pointpos: 0,
           paper_bgcolor: 'rgb(233,233,233)',
+          hoverinfo:'skip'
         });
       }
     }
     return (
-      <div className="Chart3"  style={ {marginTop: -80, marginBottom:-70, marginLeft:-45, "margin-right":-80}}>
+      <div className="Chart3"  style={ {marginTop: -80, marginBottom:-70, marginLeft:-45}}>
         <Plot
           data={to_chart}
           layout={{
             showlegend:false,
-            width: 300,
+            width: 280,
             height: 500,
             plot_bgcolor: 'rgba(0,0,0,0)',
             paper_bgcolor: 'rgba(0,0,0,0)',
             yaxis: { title: { text: 'Concentration (µM)' }},
-
           }}
           config = {{displayModeBar:false}}
         />
