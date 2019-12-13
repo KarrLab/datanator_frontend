@@ -65,18 +65,21 @@ export default class Chart_JS extends Component {
           padding: 10,
           itemRadius: 0,
           data: [to_chart[0], to_chart[1]],
+          order:1
         },
         {
           backgroundColor: 'black',
           borderColor: 'black',
           data: total_scatter_1,
           type: 'scatter',
+          order:2
         },
         {
           backgroundColor: 'black',
           borderColor: 'black',
           data: total_scatter_2,
           type: 'scatter',
+          order:2
         },
       ],
     };

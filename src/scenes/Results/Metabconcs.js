@@ -32,6 +32,8 @@ import CustomToolPanel from '~/scenes/Results/CustomToolPanel.js';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 
+import './ag_styles.css'
+
 const queryString = require('query-string');
 const sideBar = {
   toolPanels: [
@@ -53,7 +55,7 @@ const sideBar = {
       id: 'customStats',
       labelDefault: 'Custom Stats',
       labelKey: 'customStats',
-      iconKey: 'custom-stats',
+      iconKey: 'customstats',
       toolPanel: 'CustomToolPanel',
     },
   ],
