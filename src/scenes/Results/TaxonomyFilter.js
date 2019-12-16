@@ -55,9 +55,22 @@ class TaxonomyFilter extends Component {
 
     this.onSubmit = this.onSubmit.bind(this);
     this.formatButtons = this.formatButtons.bind(this);
+    this.setMarks = this.setMarks.bind(this);
   }
 
   componentDidMount() {
+    
+    if (this.props.lineage != null){
+      this.setMarks()
+    }
+  }
+  componentDidUpdate(prevProps){
+    if (this.props.lineage != prevProps.lineage){
+      this.setMarks()
+    }
+  }
+
+  setMarks(){
     let lineage = this.props.lineage;
     let buttons =  []
     console.log(lineage)
@@ -132,7 +145,7 @@ class TaxonomyFilter extends Component {
     let marks = this.state.marks
     return (
       <div style={{height:"150px", width:"220px"}}>
-      <div className={"slider_2"} style={{height:100}}>
+      <div className={"slider_2"} style={{height:120}}>
       <br/>
         <Slider
           orientation="vertical"
