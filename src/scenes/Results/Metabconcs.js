@@ -63,7 +63,7 @@ const sideBar = {
     },
   ],
   position: 'left',
-  defaultToolPanel: 'customStats',
+  defaultToolPanel: 'filters',
 };
 
 @connect(store => {
@@ -77,6 +77,7 @@ class MetabConcs extends Component {
     super(props);
     this.state = {
       modules: AllCommunityModules,
+      lineage:[],
       dataSource: [],
       data_arrived: false,
       newSearch: false,
@@ -90,6 +91,7 @@ class MetabConcs extends Component {
           headerCheckboxSelection: true,
           headerCheckboxSelectionFilteredOnly: true,
           filter: 'taxonomyFilter',
+          filterComponent: "agNumberColumnFilter",
           menuTabs: ["filterMenuTab"]
         },
         {
@@ -242,6 +244,7 @@ class MetabConcs extends Component {
         'canon_rank_distance_by_name/?name=' + this.props.match.params.organism,
       ]).then(response => {
         this.props.dispatch(set_lineage(response.data));
+        this.setState({lineage:response.data})
       });
 
       let tani = false;
@@ -404,6 +407,7 @@ class MetabConcs extends Component {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     params.api.sizeColumnsToFit();
+
   };
 
   render() {

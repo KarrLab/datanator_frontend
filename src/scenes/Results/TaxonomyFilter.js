@@ -48,14 +48,16 @@ class TaxonomyFilter extends Component {
       filter: '',
       numToNode: null,
       marks: [],
-      buttons:[<div><label>blue</label> <input type="radio" name="gender" value="male"></input></div>, <div><label>blue</label> <input type="radio" name="gender" value="male"></input></div>]
+      buttons:[]
     };
 
     this.valueGetter = this.props.valueGetter;
 
-    this.onSubmit = this.onSubmit.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.isFilterActive = this.isFilterActive.bind(this);
     this.formatButtons = this.formatButtons.bind(this);
     this.setMarks = this.setMarks.bind(this);
+    this.sliderChange = this.sliderChange.bind(this);
   }
 
   componentDidMount() {
@@ -79,7 +81,7 @@ class TaxonomyFilter extends Component {
     var n = lineage.length - 1;
     for (var i = 0; i < lineage.length; i++) {
       //new_numToNode[Object.values(lineage[i])[0]] = Object.keys(lineage[i])[0];
-      //new_numToNode[Object.keys(lineage[i])[0]] = Object.values(lineage[i])[0]
+      new_numToNode[i] = Object.values(lineage[i])[0]
       new_marks.push({value:i, label:Object.keys(lineage[i])[0]})
       buttons.push(<div> <input type="radio" name="gender" value={Object.values(lineage[i])[0]}></input><label>{Object.keys(lineage[i])[0]}</label></div>)
 
@@ -98,12 +100,11 @@ class TaxonomyFilter extends Component {
   }
 
   doesFilterPass(params) {
-    const filter = this.state.filter.split('-');
-    const gt = Number(filter[0]);
-    const lt = Number(filter[1]);
+    console.log("does it pass")
+    const filter = this.state.filter;
     const value = this.valueGetter(params.node);
 
-    return value >= gt && value <= lt;
+    return value <= filter;
   }
 
   getModel() {
@@ -119,17 +120,18 @@ class TaxonomyFilter extends Component {
     this.input.current.focus();
   }
 
-  onSubmit(event) {
-    event.preventDefault();
+  onChange(event) {
+        let filter = event.target.value;
+        if (this.state.filter !== filter) {
+            this.setState({
+                filter: filter
+            }, () => {
+              console.log("firetruck")
+                this.props.filterChangedCallback();
+            });
 
-    let filter = event.target.elements.filter.value;
-
-    if (this.state.filter !== filter) {
-      this.setState({ filter: filter }, () => {
-        this.props.filterChangedCallback();
-      });
+        }
     }
-  }
 
   formatButtons(lineage){
       let buttons =  []
@@ -138,6 +140,11 @@ class TaxonomyFilter extends Component {
       }
       return(buttons)
     }
+
+  sliderChange(value){
+    this.setState({filter:7})
+    console.log("hi man")
+  }
 
   render() {
 
@@ -148,6 +155,7 @@ class TaxonomyFilter extends Component {
       <div className={"slider_2"} style={{height:140,}}>
       <br/>
         <Slider
+        onChange = {this.onChange}
           orientation="vertical"
           aria-labelledby="vertical-slider"
           getAriaValueText={valuetext}
