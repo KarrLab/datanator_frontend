@@ -28,11 +28,14 @@ import { AgGridReact } from 'ag-grid-react';
 import { AllModules } from 'ag-grid-enterprise';
 import AGGrid from '~/scenes/Results/AGGrid';
 import CustomToolPanel from '~/scenes/Results/CustomToolPanel.js';
+import { AllCommunityModules } from "@ag-grid-community/all-modules";
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 
 import './ag_styles.css'
+import {TaxonomyFilter} from '~/scenes/Results/TaxonomyFilter.js'
+
 
 const queryString = require('query-string');
 const sideBar = {
@@ -73,6 +76,7 @@ class MetabConcs extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      modules: AllCommunityModules,
       dataSource: [],
       data_arrived: false,
       newSearch: false,
@@ -85,7 +89,8 @@ class MetabConcs extends Component {
           checkboxSelection: true,
           headerCheckboxSelection: true,
           headerCheckboxSelectionFilteredOnly: true,
-          filter: 'agTextColumnFilter',
+          filter: 'taxonomyFilter',
+          menuTabs: ["filterMenuTab"]
         },
         {
           headerName: 'Concentrations',
@@ -129,7 +134,8 @@ class MetabConcs extends Component {
         {
           headerName: 'Taxonomic Distance',
           field: 'taxonomic_proximity',
-          hide: true,
+          //hide: true,
+          filter: 'taxonomyFilter'
         },
         {
           headerName: 'Growth Phase',
@@ -160,6 +166,7 @@ class MetabConcs extends Component {
         cellRenderer: 'agGroupCellRenderer',
         cellRendererParams: { checkbox: true },
       },
+       frameworkComponents: { CustomToolPanel: CustomToolPanel, taxonomyFilter: TaxonomyFilter }
     };
 
     this.getNewSearch = this.getNewSearch.bind(this);
@@ -386,6 +393,19 @@ class MetabConcs extends Component {
     this.props.dispatch(setSelectedData(selectedRows));
   }
 
+  onClicked() {
+    this.gridApi
+      .getFilterInstance("name")
+      .getFrameworkComponentInstance()
+      .componentMethod("Hello World!");
+  }
+
+  onGridReady = params => {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    params.api.sizeColumnsToFit();
+  };
+
   render() {
     console.log('Rendering MetabConcs');
     if (this.state.newSearch == true) {
@@ -412,9 +432,11 @@ class MetabConcs extends Component {
             style={{ height: '400px', width: '100%' }}
           >
             <AgGridReact
+            modules={this.state.modules}
+            frameworkComponents={this.state.frameworkComponents}
               columnDefs={this.state.columnDefs}
               sideBar={sideBar}
-              frameworkComponents={{ CustomToolPanel: CustomToolPanel }}
+              
               rowData={this.props.totalData}
               gridOptions={{ floatingFilter: true }}
               onFirstDataRendered={this.onFirstDataRendered.bind(this)}
