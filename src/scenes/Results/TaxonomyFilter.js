@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Slider from '@material-ui/core/Slider';
 import { makeStyles } from '@material-ui/core/styles';
+import store from '~/data/Store';
+import ReactDOM from 'react-dom';
 
 const useStyles = makeStyles({
   slider: {
@@ -32,11 +34,7 @@ function VerticalSlider(marks) {
   );
 }
 
-@connect(store => {
-  return {
-    lineage: store.results.taxon_lineage,
-  };
-})
+
 class TaxonomyFilter extends Component {
 
   constructor(props) {
@@ -59,21 +57,24 @@ class TaxonomyFilter extends Component {
     this.setMarks = this.setMarks.bind(this);
     this.sliderChange = this.sliderChange.bind(this);
   }
+  isFilterActive() {
+        return true;
+    }
 
   componentDidMount() {
     
-    if (this.props.lineage != null){
+    if (this.props.agGridReact.props.lineage != null){
       this.setMarks()
     }
   }
   componentDidUpdate(prevProps){
-    if (this.props.lineage != prevProps.lineage){
+    if (this.props.agGridReact.props.lineage != prevProps.agGridReact.props.lineage){
       this.setMarks()
     }
   }
 
   setMarks(){
-    let lineage = this.props.lineage;
+    let lineage = this.props.agGridReact.props.lineage;
     let buttons =  []
     console.log(lineage)
     var new_marks = [];
@@ -95,8 +96,8 @@ class TaxonomyFilter extends Component {
     });
   }
 
-  isFilterActive() {
-    return this.state.filter !== '';
+  isFilterActive2() {
+    return(this.state.filter !== '');
   }
 
   doesFilterPass(params) {
@@ -108,25 +109,34 @@ class TaxonomyFilter extends Component {
   }
 
   getModel() {
-    return { filter: this.state.filter };
-  }
+        return {value: this.state.text};
+    }
 
-  setModel(model) {
-    const filter = model ? model.filter : '';
-    this.setState({ filter: filter });
-  }
+    setModel(model) {
+        this.state.text = model ? model.value : '';
+    }
 
-  afterGuiAttached(params) {
-    this.input.current.focus();
-  }
+    afterGuiAttached(params) {
+        this.focus();
+    }
+
+    focus() {
+        window.setTimeout(() => {
+            let container = ReactDOM.findDOMNode(this.refs.input);
+            if (container) {
+                container.focus();
+            }
+        });
+    }
 
   onChange(event) {
         let filter = event.target.value;
+        console.log("Value: " + filter)
         if (this.state.filter !== filter) {
             this.setState({
                 filter: filter
             }, () => {
-              console.log("firetruck")
+              console.log(store.getState().results.taxon_lineage)
                 this.props.filterChangedCallback();
             });
 
