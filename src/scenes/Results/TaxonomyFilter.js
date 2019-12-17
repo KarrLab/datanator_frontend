@@ -129,8 +129,8 @@ class TaxonomyFilter extends Component {
         });
     }
 
-  onChange(event) {
-        let filter = event.target.value;
+  onChange(event, newValue) {
+        let filter = this.state.numToNode[newValue]
         console.log("Value: " + filter)
         if (this.state.filter !== filter) {
             this.setState({
