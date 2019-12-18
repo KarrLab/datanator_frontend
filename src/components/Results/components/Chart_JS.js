@@ -88,6 +88,7 @@ export default class Chart_JS extends Component {
       type: 'boxplot',
       data: boxplotData,
       options: {
+        events:[],
         responsive: true,
         legend: {
           display: false,

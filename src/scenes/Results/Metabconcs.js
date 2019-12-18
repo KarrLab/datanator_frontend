@@ -399,6 +399,20 @@ class MetabConcs extends Component {
     this.props.dispatch(setSelectedData(selectedRows));
   }
 
+  onFiltered(event) {
+    //window.alert("row " + event.node.data.athlete + " selected = " + event.node.selected);
+    console.log('eyooo');
+    console.log(event)
+    console.log(event.api.getSelectedNodes());
+    let selectedRows = [];
+    if (selectedRows.length > 0){
+      for (var i = event.api.getSelectedNodes().length - 1; i >= 0; i--) {
+        selectedRows.push(event.api.getSelectedNodes()[i].data);
+      }
+      this.props.dispatch(setSelectedData(selectedRows));
+  }
+  }
+
   
 
   onGridReady = params => {
@@ -443,9 +457,7 @@ class MetabConcs extends Component {
             className="ag-theme-balham"
             style={{ height: '400px', width: '100%' }}
           >
-          <button style={{ marginBottom: "5px" }} onClick={this.onClicked.bind(this)} className="btn btn-primary">
-          Invoke Filter Instance Method
-        </button>
+
             <AgGridReact
             modules={this.state.modules}
             frameworkComponents={this.state.frameworkComponents}
@@ -462,6 +474,7 @@ class MetabConcs extends Component {
               //onGridReady={this.onGridReady}
               lineage={this.state.lineage}
               onSelectionChanged={this.onRowSelected.bind(this)}
+              onFilterChanged = {this.onFiltered.bind(this)}
               domLayout={'autoHeight'}
               onGridReady={this.onGridReady}
             ></AgGridReact>
