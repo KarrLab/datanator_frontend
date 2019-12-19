@@ -161,7 +161,9 @@ class GeneralPage extends Component {
       <GeneralSearch handleClick={this.getNewSearch} defaultQuery={values.q} defaultOrganism={values.organism}/>
       <br />
       <Grid md={3}>
-      <div className="contents">
+      <div className="contents" style={{
+            marginLeft: -20,
+          }}>
         <h3>Contents</h3>
       <ol>
       <li><Link>
