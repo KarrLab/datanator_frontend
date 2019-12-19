@@ -37,6 +37,7 @@ build/Release
 node_modules/
 node_modules_old/
 jspm_packages/
+build/
 
 # TypeScript v1 declaration files
 typings/

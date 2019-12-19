@@ -44,8 +44,10 @@ function generate(element) {
 
 function format_results(primary_text, secondary_text, url) {
   return (
-    <ListItem padding={0}>
-      <ListItemText secondary={secondary_text}>
+      <ListItemText secondary={secondary_text} dense={true} styles = {{marginTop:0}}>
+      <style>
+          {'MuiListItemText-root { margin-top: 0; }'}
+        </style>
         <style>{'MuiTypography-root:link { text-decoration: none; }'}</style>
         <style>{'MuiTypography-root:visited { text-decoration: none; }'}</style>
         <style>
@@ -58,7 +60,6 @@ function format_results(primary_text, secondary_text, url) {
           <a href={url}>{primary_text} </a>
         </Link>
       </ListItemText>
-    </ListItem>
   );
 }
 
@@ -151,35 +152,33 @@ export default class InteractiveList extends Component {
       <div className="google results">
         <Grid md={6}>
           {this.state.metabolite_results.length>0 && (
-            <div>
-              <div className="anchor">
+            <div style={{ marginTop:10}}>
+              <div className="anchor" >
               <a id="metabolites"></a>
               </div><Typography variant="h6" className={'green'}>
                 Metabolites
-              </Typography><div className="google results"><List disablePadding={true} dense={true}> {this.state.metabolite_results}</List></div>
-              <br />
+              </Typography><div className="google results"  style = {{marginLeft:20}}><List disablePadding={true} dense={true}> {this.state.metabolite_results}</List></div>
             </div>
           )}
 
           {this.state.reaction_results.length>0 && (
-            <div>
+            <div style={{ marginTop:10}}>
              <div className="anchor">
               <a id="reactions"></a>
               </div>
               <Typography variant="h6" className={'green'}>
                 Reactions
-              </Typography><div className="google results"><List disablePadding={true} dense={true}> {this.state.reaction_results}</List></div>
-              <br />
+              </Typography><div className="google results" style = {{marginLeft:20}}><List disablePadding={true} dense={true}> {this.state.reaction_results}</List></div>
             </div>
           )}
           {this.state.protein_results.length>0 && (
-            <div>
+            <div style={{ marginTop:10}}>
              <div className="anchor">
               <a id="proteins"></a>
               </div>
               <Typography variant="h6" className={'green'}>
                 Proteins
-              </Typography><div className="google results"><List disablePadding={true} dense={true}> {this.state.protein_results}</List></div>
+              </Typography><div className="google results" style = {{marginLeft:20}}><List disablePadding={true} dense={true}> {this.state.protein_results}</List></div>
             </div>
           )}
         </Grid>
