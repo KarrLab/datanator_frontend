@@ -126,7 +126,7 @@ function getParticipant(participants) {
       new_dict['products'] = products
 
       let reaction_name = data[i]['enzyme_names'][0]
-      let reaction_equation = formatPart(substrates) + ' -> ' + formatPart(products)
+      let reaction_equation = formatPart(substrates) + ' → ' + formatPart(products)
       if (reaction_name){
         new_dict['primary_text'] = reaction_name[0].toUpperCase() + reaction_name.substring(1,reaction_name.length)
       }

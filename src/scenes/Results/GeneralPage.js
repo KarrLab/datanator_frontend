@@ -158,8 +158,6 @@ class GeneralPage extends Component {
       <Header />
       <div className="general">
       <style>{'body { background-color: #f7fdff; }'}</style>
-      <GeneralSearch handleClick={this.getNewSearch} defaultQuery={values.q} defaultOrganism={values.organism}/>
-      <br />
       <Grid md={3}>
       <div className="contents" style={{
             marginLeft: -20,
