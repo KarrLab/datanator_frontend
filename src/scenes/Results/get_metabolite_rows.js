@@ -46,7 +46,7 @@ function formatMetaboliteMetadata(data, organism) {
     let description = []
     if (data[i]["ymdb_id"] != null){
       //description = description + "YMDB: " + data[i]["ymdb_id"]
-      let href_ymdb = "http://www.ymdb.ca/compounds/" + data[i]["ymdb_id"]
+      href_ymdb = "http://www.ymdb.ca/compounds/" + data[i]["ymdb_id"]
       ymdb_preface = "YMDB: " 
        //ymdb_secondary = 'YMDB: <a href={href} rel="noopener"> {data[i]["ymdb_id"] } </a>'
 
@@ -61,7 +61,7 @@ function formatMetaboliteMetadata(data, organism) {
       }
       
       //description = description + "ECMDB: " + data[i]["m2m_id"]
-      let href_ecmdb = "http://ecmdb.ca/compounds/" + data[i]["m2m_id"]
+      href_ecmdb = "http://ecmdb.ca/compounds/" + data[i]["m2m_id"]
       ecmdb_preface = "ECMDB: "
       //ecmdb_secondary = 'ECMDB: <a href={href} rel="noopener"> {data[i]["m2m_id"]} </a>'
     } 
@@ -69,7 +69,7 @@ function formatMetaboliteMetadata(data, organism) {
     new_dict['secondary_text'] = 
     <p> 
 
-    {ymdb_preface} <a href={href_ymdb} rel="noopener">{data[i]["ymdb_id"]}</a>{comma}{ecmdb_preface} <a href={href_ecmdb} rel="noopener"> {data[i]["m2m_id"]} </a>
+    {ymdb_preface} <a href={href_ymdb}>{data[i]["ymdb_id"]}</a>{comma}{ecmdb_preface} <a href={href_ecmdb} rel="noopener"> {data[i]["m2m_id"]} </a>
 
 
      </p>
