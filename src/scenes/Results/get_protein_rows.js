@@ -32,7 +32,7 @@ function formatProteinMetadata(data, organism) {
     let name = data[i].top_ko.hits.hits[0]._source.ko_name[0]
     console.log(name)
     new_dict['primary_text'] = name[0].toUpperCase() + name.substring(1,name.length)
-    new_dict['secondary_text'] = "Kegg ID: " + ko_number
+    new_dict['secondary_text'] = "Kegg: " + ko_number
     new_dict["url"] = "/protein/ko/mol/?ko=" + ko_number + "&organism=" + organism
 
     newProteinMetadataDict[ko_number] = new_dict;

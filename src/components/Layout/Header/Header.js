@@ -5,7 +5,7 @@ import { Logo } from '~/components/Layout/Logo';
 
 const Header = () => {
   return (
-     <Navbar fixedToTop="true" className="bp3-dark navbar">
+     <Navbar fixedToTop="true" className="bp3-dark navbar" style={{ "background-color": "#1890ff"}}>
       <Navbar.Group className="logo-holder">
         <Logo className="logo" />
       </Navbar.Group>
