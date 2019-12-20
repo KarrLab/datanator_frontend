@@ -51,12 +51,12 @@ function format_results(primary_text, secondary_text, url) {
         <style>{'MuiTypography-root:link { text-decoration: none; }'}</style>
         <style>{'MuiTypography-root:visited { text-decoration: none; }'}</style>
         <style>
-          {'MuiTypography-root:hover { text-decoration: underline; }'}
+          {'MuiTypography-root:hover { text-decoration: none; }'}
         </style>
         <style>
-          {'MuiTypography-root:active {  text-decoration: underline; }'}
+          {'MuiTypography-root:active {  text-decoration: none; }'}
         </style>
-        <Link>
+        <Link underline='none'>
           <a href={url}>{primary_text} </a>
         </Link>
       </ListItemText>
