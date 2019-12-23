@@ -20,7 +20,6 @@ import { formatMetaboliteMetadata } from '~/scenes/Results/get_metabolite_rows';
 import { Header } from '~/components/Layout/Header/Header';
 import { Footer } from '~/components/Layout/Footer/Footer';
 
-
 import Grid from '@material-ui/core/Grid';
 const queryString = require('query-string');
 

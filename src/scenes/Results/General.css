@@ -23,6 +23,10 @@ ul, ol {
     color: #fff;
 }
 
+.bp3-popover-target{
+    width:100%;
+}
+
 /* page content */
 .general {
     margin: 0 auto;
