@@ -137,3 +137,13 @@ br {
 }
 
 .MuiGrid-root p{margin-bottom: 0}
+
+
+.google.results .MuiGrid-root .MuiTypography-colorPrimary a{
+    color: black;
+    font-weight: bold;
+}
+
+.google.results .MuiGrid-root .MuiTypography-colorTextSecondary a{
+    color: black;
+}
