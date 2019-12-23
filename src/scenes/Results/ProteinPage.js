@@ -1,39 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import BootstrapTable from 'react-bootstrap-table-next';
-import axios from 'axios';
-import filterFactory, {
-  textFilter,
-  selectFilter,
-} from 'react-bootstrap-table2-filter';
+
 import ReactDOM from 'react-dom';
-import {
-  Input,
-  Col,
-  Row,
-  Select,
-  InputNumber,
-  DatePicker,
-  AutoComplete,
-  Cascade,
-  Button,
-} from 'antd';
-import 'antd/dist/antd.css';
-import ProtAbundancesTable from '~/components/Results/ProtAbundancesTable.js';
-import ProtSearch from '~/components/SearchField/ProtSearch.js';
+
 import { PropTypes } from 'react';
 import { BrowserRouter, Redirect } from 'react-router-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { withRouter } from 'react-router';
-import GeneralSearch from '~/components/SearchField/GeneralSearch.js';
-
-import './MetabConcs.css';
 
 import { getSearchData } from '~/services/MongoApi';
-import {
-  UniprotDefinition,
-  OrthologyDefinition,
-} from '~/components/Definitions/OrthologyGroup';
+
 
 import { setNewUrl, abstractMolecule } from '~/data/actions/pageAction';
 import '~/scenes/Results/ProteinPage.css';
@@ -383,32 +359,12 @@ class ProteinPage extends Component {
     const values = queryString.parse(this.props.location.search);
 
 
-    const Search = Input.Search;
     let styles = {
       marginTop: 50,
     };
     return (
       <div className="container" style={styles}>
         <Header />
-        <style>{'body { background-color: #f7fdff; }'}</style>
-        <div className="search">
-          <GeneralSearch handleClick={this.getNewSearch} defaultQuery={values.q} defaultOrganism={values.organism}/>
-        </div>
-        { this.state.proteinMetadata && (this.props.match.params.searchType != "ko") &&
-        <div className="uniprot_definition_data">       
-          <UniprotDefinition proteinMetadata={this.state.proteinMetadata} />
-        </div>
-      }
-        <div className="orthology_definition_data">
-          <OrthologyDefinition proteinMetadata={this.state.orthologyMetadata} />
-        </div>
-        <br />
-        <br />
-        <div className="results">
-          <ProtAbundancesTable
-            data_arrived={this.state.data_arrived}
-          />
-        </div>
         <Footer />
       </div>
     );

@@ -2,30 +2,11 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import BootstrapTable from 'react-bootstrap-table-next';
-import axios from 'axios';
-import filterFactory, {
-  textFilter,
-  selectFilter,
-  numberFilter,
-  Comparator,
-} from 'react-bootstrap-table2-filter';
+
 import ReactDOM from 'react-dom';
-import {
-  Input,
-  Col,
-  Row,
-  Select,
-  InputNumber,
-  DatePicker,
-  AutoComplete,
-  Cascade,
-  Button,
-} from 'antd';
-import 'antd/dist/antd.css';
+
 //import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
 
-import './OrthologyGroup.css';
 import { Link, Redirect } from 'react-router-dom';
 
 import { PropTypes } from 'react';

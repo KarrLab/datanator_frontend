@@ -1,5 +1,0 @@
-env:
-  browser: true
-  es6: true
-  jest: true
-extends: ['last', 'prettier/react', 'plugin:react/recommended']

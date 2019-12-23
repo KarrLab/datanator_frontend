@@ -3,15 +3,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { Input } from 'antd';
+//import { Input } from 'antd';
 //import 'antd/dist/antd.css';
-import ConcentrationsTable from '~/components/Results/ConcentrationsTable.js';
-import ConcSearch from '~/components/SearchField/ConcSearch.js';
-import { PropTypes } from 'react';
+//import ConcentrationsTable from '~/components/Results/ConcentrationsTable.js';
+//import ConcSearch from '~/components/SearchField/ConcSearch.js';
+//import { PropTypes } from 'react';
 import { Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router';
-import GeneralSearch from '~/components/SearchField/GeneralSearch.js';
-import { Consensus } from '~/components/Results/components/Consensus.js';
+//import GeneralSearch from '~/components/SearchField/GeneralSearch.js';
+//import { Consensus } from '~/components/Results/components/Consensus.js';
 
 import { getSearchData } from '~/services/MongoApi';
 import { abstractMolecule } from '~/data/actions/pageAction';
@@ -26,7 +26,6 @@ import { Footer } from '~/components/Layout/Footer/Footer';
 
 import { AgGridReact } from 'ag-grid-react';
 import { AllModules } from 'ag-grid-enterprise';
-import AGGrid from '~/scenes/Results/AGGrid';
 import CustomToolPanel from '~/scenes/Results/CustomToolPanel.js';
 import { AllCommunityModules } from "@ag-grid-community/all-modules";
 

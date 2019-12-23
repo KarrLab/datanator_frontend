@@ -1,25 +1,10 @@
 // App.js
 
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-
-import { Input } from 'antd';
-import 'antd/dist/antd.css';
-import ReactionTable from '~/components/Results/ReactionTable.js';
-import ReactionSearch from '~/components/SearchField/ReactionSearch.js';
-import { PropTypes } from 'react';
-import { Redirect } from 'react-router-dom';
-import { withRouter } from 'react-router';
 
 import './MetabConcs.css';
 
-import { getSearchData } from '~/services/MongoApi';
-import { set_lineage, setTotalData } from '~/data/actions/resultsAction';
-import { ReactionDefinition } from '~/components/Definitions/ReactionDefinition';
 
-import { Header } from '~/components/Layout/Header/Header';
-import { Footer } from '~/components/Layout/Footer/Footer';
-const queryString = require('query-string');
 
 function getReactionID(resource) {
   for (var i = 0; i < resource.length; i++)

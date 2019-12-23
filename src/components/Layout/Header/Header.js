@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navbar, AnchorButton, InputGroup } from '@blueprintjs/core';
-import './header.scss';
+import './header.css';
 import { Logo } from '~/components/Layout/Logo';
 
 const Header = () => {

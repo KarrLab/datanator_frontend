@@ -5,6 +5,7 @@ const {
   useBabelRc,
 } = require('customize-cra');
 
+
 const rootImportConfig = [
   'babel-plugin-root-import',
   {

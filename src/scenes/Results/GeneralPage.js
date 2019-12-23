@@ -3,12 +3,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from '@material-ui/core';
-
-import { Input } from 'antd';
-import 'antd/dist/antd.css';
-import ReactionTable from '~/components/Results/ReactionTable.js';
-import GeneralSearch from '~/components/SearchField/GeneralSearch.js';
-import { PropTypes } from 'react';
 import { Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
@@ -17,8 +11,6 @@ import InteractiveList from './SearchResultsList.js';
 
 
 import { getSearchData } from '~/services/MongoApi';
-import { set_lineage, setTotalData } from '~/data/actions/resultsAction';
-import { ReactionDefinition } from '~/components/Definitions/ReactionDefinition';
 import { formatReactionMetadata } from '~/scenes/Results/get_reaction_rows';
 import { formatProteinMetadata } from '~/scenes/Results/get_protein_rows';
 import { formatMetaboliteMetadata } from '~/scenes/Results/get_metabolite_rows';
@@ -29,22 +21,7 @@ import { Header } from '~/components/Layout/Header/Header';
 import { Footer } from '~/components/Layout/Footer/Footer';
 
 
-import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import ListItemText from '@material-ui/core/ListItemText';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import FolderIcon from '@material-ui/icons/Folder';
-import DeleteIcon from '@material-ui/icons/Delete';
 const queryString = require('query-string');
 
 

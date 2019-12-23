@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import 'antd/dist/antd.css';
-import Chart3 from './Chart3.js';
+//import Chart3 from './Chart3.js';
 import Chart_JS from './Chart_JS.js';
 
 import PropTypes from 'prop-types';
-import DownloadLink from 'react-download-link';
+//import DownloadLink from 'react-download-link';
 import './Consensus.css';
 import { connect } from 'react-redux';
-import { refreshSelectedData } from '~/data/actions/resultsAction';
 import {
   mean,
   median,
@@ -17,25 +15,9 @@ import {
   JSONToCSVConvertor,
 } from '~/components/Results/components/utils.js';
 
-import {
-  Input,
-  Col,
-  Row,
-  Select,
-  InputNumber,
-  DatePicker,
-  AutoComplete,
-  Cascade,
-  Button,
-  Radio,
-  Statistic
-} from 'antd'
 
-const radioStyle = {
-  display: 'block',
-  height: '30px',
-  lineHeight: '30px',
-};
+
+
 
 /**
  * Class to render the Consensus of results, and the save the total data to CSV file
@@ -100,7 +82,6 @@ class Consensus extends Component {
     };
     this.setSummaryStats = this.setSummaryStats.bind(this);
     this.recordData = this.recordData.bind(this);
-    this.buttonChange = this.buttonChange.bind(this);
     this.standardRound = this.standardRound.bind(this);
   }
 
@@ -154,31 +135,8 @@ class Consensus extends Component {
     return JSONToCSVConvertor(JSON.stringify(this.props.totalData));
   }
 
-  /**
-   * When the 'Get Consensus' button is pushed, the state should know
-   * the user asked for consensus, and it should update the button display
-   * to 'Update Consensus'
-   */
-  handleUpdate() {
-    console.log('Consensus: Calling handleUpdate');
-    this.setState({
-      asked_consensus: true,
-      consensus_prompt: 'Update Consensus',
-    });
-    this.props.dispatch(refreshSelectedData());
-  }
 
-  buttonChange(e) {
-    console.log('Consensus: Calling buttonChange')
-    var searches = ['reactants', 'reaction_id'];
-    console.log("Consensus: "+ e.target.value)
-    this.setSummaryStats(this.props.selectedData, this.props.relevantColumns[e.target.value-1])
-    this.handleUpdate()
-    this.setState({
-      buttonValue: e.target.value,
-      selected_column: this.props.relevantColumns[e.target.value-1],
-    });
-  }
+
 
   /**
    * When mounted, this component should set summary stats

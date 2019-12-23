@@ -2,10 +2,6 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-import { Input } from 'antd';
-import 'antd/dist/antd.css';
-
 import { PropTypes } from 'react';
 import { Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router';

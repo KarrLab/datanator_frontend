@@ -3,16 +3,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { Input } from 'antd';
-import 'antd/dist/antd.css';
-import ReactionTable from '~/components/Results/ReactionTable.js';
-import ReactionSearch from '~/components/SearchField/ReactionSearch.js';
 import { PropTypes } from 'react';
 import { Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router';
-import GeneralSearch from '~/components/SearchField/GeneralSearch.js';
 
-import './MetabConcs.css';
 
 import { getSearchData } from '~/services/MongoApi';
 import { set_lineage, setTotalData } from '~/data/actions/resultsAction';
@@ -320,30 +314,6 @@ class ReactionPage extends Component {
     return (
       <div className="container" style={styles}>
         <Header />
-        <style>{'body { background-color: #f7fdff; }'}</style>
-        <div className="search">
-        {/*
-          <ReactionSearch 
-          handleClick={this.getSearchDataReaction} 
-          landing={false} 
-          default_substrates = {values.substrates.split(",")}
-          default_products = {values.products.split(",")}
-          substrates_inchi = {values.substrates_inchi.split(",")}
-          products_inchi = {values.products_inchi.split(",")}
-          />*/}
-          <GeneralSearch handleClick={this.getNewSearch} defaultQuery={values.q} defaultOrganism={values.organism}/>
-        </div>
-        <br />
-        <div className="uniprot_definition_data">
-          <ReactionDefinition reactionMetadata={this.state.reactionMetadata} />
-        </div>
-        <br />
-        <div className="results">
-          <ReactionTable
-            data_arrived={this.state.data_arrived}
-            km_values={this.state.km_values}
-          />
-        </div>
         <Footer />
       </div>
     );

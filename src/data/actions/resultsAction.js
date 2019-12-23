@@ -1,31 +1,7 @@
 
-function getTotalColumns(desired_columns) {
-    return function(dispatch) {
-    dispatch({
-      type: 'CREATE_COLUMNS',
-      payload: desired_columns,
-    });
-  };
-}
 
 
-function filter_taxon(value) {
-    return function(dispatch) {
-    dispatch({
-      type: 'FILTER_TAXON',
-      payload: value,
-    });
-  };
-}
 
-function filter_tanitomo(value) {
-    return function(dispatch) {
-    dispatch({
-      type: 'FILTER_TANITOMO',
-      payload: value,
-    });
-  };
-}
 
 function set_lineage(lineage_list) {
     return function(dispatch) {
@@ -37,32 +13,8 @@ function set_lineage(lineage_list) {
 }
 
 
-function hide_columns(to_display_columns) {
-    return function(dispatch) {
-    dispatch({
-      type: 'HIDE_COLUMNS',
-      payload: to_display_columns,
-    });
-  };
-}
 
 
-function reveal_columns(to_display_columns) {
-    return function(dispatch) {
-    dispatch({
-      type: 'REVEAL_COLUMNS',
-      payload: to_display_columns,
-    });
-  };
-}
-
-function refreshSelectedData() {
-    return function(dispatch) {
-    dispatch({
-      type: 'REFRESH_SELECTED_DATA',
-    });
-  };
-}
 
 function setTotalData(totalData) {
     return function(dispatch) {
@@ -80,4 +32,4 @@ function setSelectedData(selectedData) {
     });
   };
 }
-export { getTotalColumns, filter_taxon, filter_tanitomo, set_lineage, hide_columns, reveal_columns, refreshSelectedData, setTotalData, setSelectedData };
+export { set_lineage, setTotalData, setSelectedData};

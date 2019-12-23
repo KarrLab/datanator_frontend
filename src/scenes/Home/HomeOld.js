@@ -3,9 +3,6 @@
 
 import React, { Component } from 'react';
 //import '~/../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import ConcSearch from '~/components/SearchField/ConcSearch.js';
-import ProtSearch from '~/components/SearchField/ProtSearch.js';
-import ReactionSearch from '~/components/SearchField/ReactionSearch.js';
 
 
 import { BrowserRouter, Redirect } from 'react-router-dom';
