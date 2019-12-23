@@ -67,43 +67,13 @@ class HomeOld extends Component {
     }
 
     return (
-      <Grid fluid>
-        <style>{'body { background-color: #f7fdff; }'}</style>
-        <Row center="xs">
-          <Col xs={'100%'}>
-            <GeneralSearch handleClick={this.getNewSearch} defaultQuery={""} defaultOrganism={""} landing={true}/>
-          </Col>
-        </Row>
+      <div>
+      <Header 
+        handleClick={this.getNewSearch}
 
-        <Row center="xs" bottom="xs">
-          <Col xs={4}>
-            <img
-              src={require('~/scenes/Home/images/molecule.png')}
-              style={{ width: '50px' }}
-              onClick={() => this.setState({ currentSearch: 'metab' })}
-            />
-            <p>Metabolite Concentrations</p>
-          </Col>
+      />
 
-          <Col xs={4}>
-            <img
-              src={require('~/scenes/Home/images/protein.png')}
-              style={{ width: '60px' }}
-              onClick={() => this.setState({ currentSearch: 'protein' })}
-            />
-            <p>Protein Concentrations</p>
-          </Col>
-
-          <Col xs={4}>
-            <img
-              src={require('~/scenes/Home/images/reaction.png')}
-              style={{ width: '100px' }}
-              onClick={() => this.setState({ currentSearch: 'reaction' })}
-            />
-            <p>Reaction Kinetics</p>
-          </Col>
-        </Row>
-      </Grid>
+      </div>
     );
   }
 }
