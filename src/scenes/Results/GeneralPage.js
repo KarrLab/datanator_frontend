@@ -132,7 +132,11 @@ class GeneralPage extends Component {
 
     return (
       <div>
-      <Header handleClick={this.getNewSearch}/>
+      <Header 
+        handleClick={this.getNewSearch}
+        defaultQuery={values.q}
+        defaultOrganism={values.organism}
+      />
       <div className="general">
       <style>{'body { background-color: #f7fdff; }'}</style>
       <Grid md={3}>

@@ -20,6 +20,14 @@ class Header extends Component {
 
   }
 
+  componentDidMount() {
+    this.setState({
+      query: this.props.defaultQuery,
+      organism: this.props.defaultOrganism,
+    });
+    //this.refs.taxonCol.applyFilter(28)
+  }
+
   render() {
   return (
      <Navbar fixedToTop="true" className="bp3-dark navbar" style={{ "background-color": "#1890ff"}}>
@@ -31,6 +39,7 @@ class Header extends Component {
           className="searchbar-input"
           leftIcon="search"
           placeholder="Search for..."
+          defaultValue={this.state.query}
           onChange={event => {
               this.setState({query:event.target.value});
             }}
@@ -39,6 +48,7 @@ class Header extends Component {
           className="searchbar-input"
           //leftIcon="search"
           placeholder="In organism..."
+          defaultValue={this.state.organism}
           onChange={event => {
               this.setState({organism:event.target.value})
             }}
