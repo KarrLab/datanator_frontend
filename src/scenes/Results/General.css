@@ -135,3 +135,5 @@ ul, ol {
 br {
     display: none;
 }
+
+.MuiGrid-root p{margin-bottom: 0}
