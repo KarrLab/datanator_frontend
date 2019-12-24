@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Navbar, AnchorButton, InputGroup } from '@blueprintjs/core';
 import { Classes, MenuItem } from "@blueprintjs/core";
-import { Button, } from "@blueprintjs/core";
-import { Suggest, ISelectItemRendererProps, Select } from '@blueprintjs/select';
+import { Button } from "@blueprintjs/core";
+import { Suggest, ISelectItemRendererProps, Select,  } from '@blueprintjs/select';
 
 import './header.css';
 import { Logo } from '~/components/Layout/Logo';
@@ -135,6 +135,7 @@ class Header extends Component {
     }
 
     this.handleClickInner = this.handleClickInner.bind(this);
+    this.handleClickInnerAuto = this.handleClickInnerAuto.bind(this);
     this.filterFilm = this.filterFilm.bind(this);
 
 
@@ -143,6 +144,11 @@ class Header extends Component {
 
   handleClickInner() {
     this.props.handleClick([this.state.query, this.state.organism])
+
+  }
+
+  handleClickInnerAuto(autocomplete_organism) {
+    this.props.handleClick([this.state.query, autocomplete_organism])
 
   }
 
@@ -172,18 +178,25 @@ class Header extends Component {
       <Navbar.Group className="logo-holder">
         <Logo className="logo" />
       </Navbar.Group>
-      <Navbar.Group className="searchbar" >
+      <Navbar.Group className="searchbar">
+      <form className="searchbar-input"  onSubmit={this.handleClickInner} >
+
+        <Button type="submit" onClick={this.handleClickInner} style={{display: "none"}}/>
+        
         <InputGroup
-          onKeyPress={ (event) => {if (event.key === "Enter") { this.handleClickInner() } }}
+          //onKeyPress={ (event) => {if (event.key === "Enter") { (this.handleClickInner()) } }}
+          //type='text'
           className="searchbar-input"
           leftIcon="search"
           placeholder="Search for..."
+          
           defaultValue={this.state.query}
           onChange={event => {
             console.log("hello")
               this.setState({query:event.target.value});
             }}
         />
+        </form>
 
         <Suggest
         className="searchbar-input"
@@ -201,24 +214,31 @@ class Header extends Component {
             }}
         inputValueRenderer={renderInputValue}
         //onKeyPress={ (event) => {if (event.key === "Enter") { this.handleClickInner() } }}
+
+        
         onItemSelect={(value, event) => {
           console.log(event)
-          if (event.key === "Enter") { this.handleClickInner() } }}
-              //this.setState({query:event.target.value})}}
+          //if (event.key === "Enter") //{ this.handleClickInner() } }}
+              this.setState({organism:value})
+              if (event.key === "Enter"){
+                console.log("woooooo")
+                this.handleClickInnerAuto(value)
+              }
+            }
+          }
+            
+        
     >
+
         {/* children become the popover target; render value here */}
          <InputGroup
           //className="searchbar-input"
           leftIcon="search"
           placeholder="Search for..."
-          defaultValue={this.state.organism}
-          onKeyPress={ (event) => {if (event.key === "Enter") { this.handleClickInner() } }}
+          //defaultValue={this.state.organism}
+          //onKeyPress={ (event) => {if (event.key === "Enter") { this.handleClickInner() } }}
         />
     </Suggest>
-
-        
-
-
 
         
       </Navbar.Group>
