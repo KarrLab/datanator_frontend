@@ -15,6 +15,7 @@ const filterFilm = (query, film) => {
 };
 
 const renderFilm = (film, { handleClick, modifiers }) => {
+
     if (!modifiers.matchesPredicate) {
         return null;
     }
@@ -132,6 +133,7 @@ class Header extends Component {
     }
 
     this.handleClickInner = this.handleClickInner.bind(this);
+    this.filterFilm = this.filterFilm.bind(this);
 
 
 
@@ -153,6 +155,11 @@ class Header extends Component {
 
 
 
+   filterFilm(query, film) {
+    return film.toLowerCase().indexOf(query.toLowerCase()) >= 0;};   
+
+
+
 
 
 
@@ -170,6 +177,7 @@ class Header extends Component {
           placeholder="Search for..."
           defaultValue={this.state.query}
           onChange={event => {
+            console.log("hello")
               this.setState({query:event.target.value});
             }}
         />
@@ -179,10 +187,14 @@ class Header extends Component {
         items={ORGANISMS}
         openOnKeyDown={true}
         //itemPredicate={Films.itemPredicate}
-        itemPredicate={filterFilm} 
+        itemPredicate={this.filterFilm} 
         itemRenderer={renderFilm}
 
         noResults={<MenuItem disabled={true} text="No results." />}
+        onQueryChange={query => {
+            console.log(query)
+              this.setState({organism:query});
+            }}
         //onItemSelect={event => {
               //this.setState({query:event.target.value})}}
     >
@@ -192,9 +204,6 @@ class Header extends Component {
           leftIcon="search"
           placeholder="Search for..."
           defaultValue={this.state.organism}
-          onChange={event => {
-              this.setState({organism:event.target.value});
-            }}
         />
     </Suggest>
 
