@@ -75,7 +75,9 @@ class GeneralPage extends Component {
   }
   componentDidMount() {
     let values = queryString.parse(this.props.location.search);
-    this.fetch_data(values.q)
+    this.fetch_data("metabolites_meta", 10)
+      this.fetch_data("sabio_reaction_entries", 10)
+      this.fetch_data("protein", 10)
   }
 
   componentDidUpdate(prevProps) {
@@ -84,15 +86,18 @@ class GeneralPage extends Component {
     let values = queryString.parse(this.props.location.search);
     let old_values = queryString.parse(prevProps.location.search);
     if (this.state.newResults){
-      this.fetch_data(values.q)
+      this.fetch_data("metabolites_meta", 10)
+      this.fetch_data("sabio_reaction_entries", 10)
+      this.fetch_data("protein", 10)
       this.setState({ newSearch: false })
       this.setState({newResults:false})
     }
   }
 
-  fetch_data(query){
+  fetch_data(indices, size){
+    let values = queryString.parse(this.props.location.search);
     console.log("GeneralSearch: Calling fetch_data")
-    let url = "ftx/text_search/frontend_num_of_index/?query_message=" + query +"&indices=ecmdb%2Cymdb%2Cmetabolites_meta%2Cprotein%2Csabio_reaction_entries&size=10&fields=protein_name&fields=synonyms&fields=enzymes&fields=ko_name&fields=gene_name&fields=name&fields=enzyme_name&fields=product_names&fields=substrate_names&fields=enzymes.subunit.canonical_sequence&fields=species"
+    let url = "ftx/text_search/frontend_num_of_index/?query_message=" + values.q +"&indices=" + indices + "&size=" + size + "&fields=protein_name&fields=synonyms&fields=enzymes&fields=ko_name&fields=gene_name&fields=name&fields=enzyme_name&fields=product_names&fields=substrate_names&fields=enzymes.subunit.canonical_sequence&fields=species"
   
     getSearchData([url])
       .then(response => {
@@ -103,17 +108,28 @@ class GeneralPage extends Component {
   formatData(data){
     console.log("GeneralSearch: Calling FormatData")
     let values = queryString.parse(this.props.location.search);
-    let reaction_data = data[4]['sabio_reaction_entries']
-    let protein_data = data[3]['top_kos']['buckets']
-    //let metabolite_data = data[0]['ecmdb'].concat(data[1]["ymdb"])
-    let metabolite_data = data[2]['metabolites_meta']
-    let reaction_metadata = formatReactionMetadata(reaction_data)
-    let protein_metadata = formatProteinMetadata(protein_data, values.organism)
-    let metabolite_metadata = formatMetaboliteMetadata(metabolite_data, values.organism)
-    console.log(reaction_metadata)
-    this.setState({reaction_results:reaction_metadata,
-      protein_results:protein_metadata,
-      metabolite_results: metabolite_metadata})
+    for (var i = data.length - 1; i >= 0; i--) {
+      if ('metabolites_meta' in data[i]){
+        console.log("corn flakes2")
+        let metabolite_data = data[i]['metabolites_meta']
+        let metabolite_metadata = formatMetaboliteMetadata(metabolite_data, values.organism)
+        this.setState({metabolite_results: metabolite_metadata})
+      }
+
+      if ('top_kos' in data[i]){
+        let protein_data = data[i]['top_kos']['buckets']
+        let protein_metadata = this.state.protein_results.concat(formatProteinMetadata(protein_data, values.organism))
+        this.setState({protein_results:protein_metadata})
+      }
+
+
+      if ('sabio_reaction_entries' in data[i]){
+        let reaction_data = data[i]['sabio_reaction_entries']
+        let reaction_metadata = this.state.reaction_results.concat(formatReactionMetadata(reaction_data))
+        this.setState({reaction_results:reaction_metadata})
+      }
+    }
+
   }
 
   render() {
@@ -160,6 +176,7 @@ class GeneralPage extends Component {
       reaction_results = {this.state.reaction_results}
       protein_results = {this.state.protein_results}
       metabolite_results = {this.state.metabolite_results}
+      handle_fetch_data = {this.fetch_data}
       />
       </div>
       </div>

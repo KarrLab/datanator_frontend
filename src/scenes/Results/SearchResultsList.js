@@ -70,18 +70,31 @@ export default class InteractiveList extends Component {
       reaction_results: [],
       protein_results: [],
       metabolite_results: [],
+
+      metab_counter:2,
+      reaction_couner:2,
     };
 
     this.create_search_results = this.create_search_results.bind(this);
+    this.handleFetchMetab = this.handleFetchMetab.bind(this);
   }
   componentDidMount() {
     this.create_search_results();
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.reaction_results != prevProps.reaction_results) {
+    if (this.props.reaction_results != prevProps.reaction_results ||
+      this.props.protein_results != prevProps.protein_results ||
+      this.props.metabolite_results != prevProps.metabolite_results) {
       this.create_search_results();
     }
+  }
+
+  handleFetchMetab(index){
+    console.log("pushed")
+    let counter = 10*this.state.metab_counter
+    this.props.handle_fetch_data(index, counter)
+    this.setState({metab_counter:this.state.metab_counter+1})
   }
 
   create_search_results() {
@@ -158,6 +171,7 @@ export default class InteractiveList extends Component {
               </div><Typography variant="h6" className={'green'}>
                 Metabolites
               </Typography><div className="google results"  style = {{marginLeft:20}}><List disablePadding={true} dense={true}> {this.state.metabolite_results}</List></div>
+            <button type="button" onClick={() => {this.handleFetchMetab('metabolites_meta')}} >Load More (+10)</button>
             </div>
           )}
 
