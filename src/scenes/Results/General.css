@@ -27,6 +27,11 @@ ul, ol {
     width:100%;
 }
 
+.bp3-menu{
+    height:200px;
+    overflow-x: scroll;
+}
+
 /* page content */
 .general {
     margin: 0 auto;

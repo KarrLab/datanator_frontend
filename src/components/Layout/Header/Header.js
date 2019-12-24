@@ -29,6 +29,8 @@ const renderFilm = (film, { handleClick, modifiers }) => {
     );
 };
 
+const renderInputValue = (organism) => organism;
+
   //const [value, setValue] = React.useState(null);
 
 const ORGANISMS = [
@@ -170,8 +172,9 @@ class Header extends Component {
       <Navbar.Group className="logo-holder">
         <Logo className="logo" />
       </Navbar.Group>
-      <Navbar.Group className="searchbar" onKeyPress={ (event) => {if (event.key === "Enter") { this.handleClickInner() } }}>
+      <Navbar.Group className="searchbar" >
         <InputGroup
+          onKeyPress={ (event) => {if (event.key === "Enter") { this.handleClickInner() } }}
           className="searchbar-input"
           leftIcon="search"
           placeholder="Search for..."
@@ -189,13 +192,18 @@ class Header extends Component {
         //itemPredicate={Films.itemPredicate}
         itemPredicate={this.filterFilm} 
         itemRenderer={renderFilm}
+        selectedItem={this.state.organism}
 
         noResults={<MenuItem disabled={true} text="No results." />}
         onQueryChange={query => {
             console.log(query)
               this.setState({organism:query});
             }}
-        //onItemSelect={event => {
+        inputValueRenderer={renderInputValue}
+        //onKeyPress={ (event) => {if (event.key === "Enter") { this.handleClickInner() } }}
+        onItemSelect={(value, event) => {
+          console.log(event)
+          if (event.key === "Enter") { this.handleClickInner() } }}
               //this.setState({query:event.target.value})}}
     >
         {/* children become the popover target; render value here */}
@@ -204,6 +212,7 @@ class Header extends Component {
           leftIcon="search"
           placeholder="Search for..."
           defaultValue={this.state.organism}
+          onKeyPress={ (event) => {if (event.key === "Enter") { this.handleClickInner() } }}
         />
     </Suggest>
 
