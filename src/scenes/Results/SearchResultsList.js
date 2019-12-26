@@ -76,7 +76,7 @@ export default class InteractiveList extends Component {
     };
 
     this.create_search_results = this.create_search_results.bind(this);
-    this.handleFetchMetab = this.handleFetchMetab.bind(this);
+    this.handleFetch = this.handleFetch.bind(this);
   }
   componentDidMount() {
     this.create_search_results();
@@ -90,10 +90,10 @@ export default class InteractiveList extends Component {
     }
   }
 
-  handleFetchMetab(index){
+  handleFetch(index){
     console.log("pushed")
     let counter = 10*this.state.metab_counter
-    this.props.handle_fetch_data(index, counter)
+    this.props.handle_fetch_data(index, 10)
     this.setState({metab_counter:this.state.metab_counter+1})
   }
 
@@ -171,7 +171,7 @@ export default class InteractiveList extends Component {
               </div><Typography variant="h6" className={'green'}>
                 Metabolites
               </Typography><div className="google results"  style = {{marginLeft:20}}><List disablePadding={true} dense={true}> {this.state.metabolite_results}</List></div>
-            <button type="button" onClick={() => {this.handleFetchMetab('metabolites_meta')}} >Load More (+10)</button>
+            <button type="button" onClick={() => {this.handleFetch('metabolites_meta')}} >Load More (+10)</button>
             </div>
           )}
 
@@ -183,6 +183,7 @@ export default class InteractiveList extends Component {
               <Typography variant="h6" className={'green'}>
                 Reactions
               </Typography><div className="google results" style = {{marginLeft:20}}><List disablePadding={true} dense={true}> {this.state.reaction_results}</List></div>
+              <button type="button" onClick={() => {this.handleFetch('sabio_reaction_entries')}} >Load More (+10)</button>
             </div>
           )}
           {this.state.protein_results.length>0 && (

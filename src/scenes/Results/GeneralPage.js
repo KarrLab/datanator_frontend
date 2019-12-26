@@ -58,6 +58,11 @@ class GeneralPage extends Component {
       protein_results : [],
       metabolite_results: [],
       meh:false,
+      page_index_counter:{
+        metabolites_meta : 0,
+        sabio_reaction_entries : 0,
+        protein : 0,
+      }
     };
 
     this.getNewSearch = this.getNewSearch.bind(this);
@@ -94,41 +99,46 @@ class GeneralPage extends Component {
     }
   }
 
-  fetch_data(indices, size){
+  fetch_data(indices, size,){
     let values = queryString.parse(this.props.location.search);
+
+    let from_ = this.state.page_index_counter[indices] * 10
+    let new_counters = this.state.page_index_counter
+    new_counters[indices] = new_counters[indices] + 1
     console.log("GeneralSearch: Calling fetch_data")
-    let url = "ftx/text_search/frontend_num_of_index/?query_message=" + values.q +"&indices=" + indices + "&size=" + size + "&fields=protein_name&fields=synonyms&fields=enzymes&fields=ko_name&fields=gene_name&fields=name&fields=enzyme_name&fields=product_names&fields=substrate_names&fields=enzymes.subunit.canonical_sequence&fields=species"
-  
+    let url = "ftx/text_search/num_of_index/?query_message=" + values.q +"&index=" + indices + "&from_=" + from_ + "&size=" + size + "&fields=protein_name&fields=synonyms&fields=enzymes&fields=ko_name&fields=gene_name&fields=name&fields=enzyme_name&fields=product_names&fields=substrate_names&fields=enzymes.subunit.canonical_sequence&fields=species"
     getSearchData([url])
       .then(response => {
         this.formatData(response.data);
       })
+    this.setState({page_index_counter: new_counters})
   }
 
   formatData(data){
     console.log("GeneralSearch: Calling FormatData")
     let values = queryString.parse(this.props.location.search);
-    for (var i = data.length - 1; i >= 0; i--) {
-      if ('metabolites_meta' in data[i]){
-        console.log("corn flakes2")
-        let metabolite_data = data[i]['metabolites_meta']
-        let metabolite_metadata = formatMetaboliteMetadata(metabolite_data, values.organism)
-        this.setState({metabolite_results: metabolite_metadata})
-      }
+    console.log(data)
 
-      if ('top_kos' in data[i]){
-        let protein_data = data[i]['top_kos']['buckets']
-        let protein_metadata = this.state.protein_results.concat(formatProteinMetadata(protein_data, values.organism))
-        this.setState({protein_results:protein_metadata})
-      }
-
-
-      if ('sabio_reaction_entries' in data[i]){
-        let reaction_data = data[i]['sabio_reaction_entries']
-        let reaction_metadata = this.state.reaction_results.concat(formatReactionMetadata(reaction_data))
-        this.setState({reaction_results:reaction_metadata})
-      }
+    if ('metabolites_meta' in data){
+      console.log("corn flakes2")
+      let metabolite_data = data['metabolites_meta']
+      let metabolite_metadata = this.state.metabolite_results.concat(formatMetaboliteMetadata(metabolite_data, values.organism))
+      this.setState({metabolite_results: metabolite_metadata})
     }
+
+    if ('protein' in data){
+      let protein_data = data['top_kos']['buckets']
+      let protein_metadata = this.state.protein_results.concat(formatProteinMetadata(protein_data, values.organism))
+      this.setState({protein_results:protein_metadata})
+    }
+
+
+    if ('sabio_reaction_entries' in data){
+      let reaction_data = data['sabio_reaction_entries']
+      let reaction_metadata = this.state.reaction_results.concat(formatReactionMetadata(reaction_data))
+      this.setState({reaction_results:reaction_metadata})
+    }
+  
 
   }
 
