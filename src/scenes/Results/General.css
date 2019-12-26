@@ -101,6 +101,14 @@ ul, ol {
     max-width: unset;
     flex-basis: unset;
 }
+
+.google.results button{ 
+        background-color: #0084ff !important;
+    border: #0a89ff!important;
+ font-size: 16px;
+    color: white;
+
+}
 .google.results > .MuiGrid-root > div {
     width: 100%;
     border: 1px solid #1890ff;
