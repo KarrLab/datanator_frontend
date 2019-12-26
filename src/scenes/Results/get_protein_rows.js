@@ -21,7 +21,9 @@ function formatProteinMetadata(data, organism) {
   let newProteinMetadataDict = {};
   for (var i = start; i < data.length; i++) {
     let ko_number = data[i]['key'];
-    let new_dict = newProteinMetadataDict[ko_number];
+    if (ko_number != "nan"){
+
+      let new_dict = newProteinMetadataDict[ko_number];
     if (!new_dict) {
       new_dict = {};
     }
@@ -39,6 +41,9 @@ function formatProteinMetadata(data, organism) {
     new_dict["url"] = "/protein/ko/mol/?ko=" + ko_number + "&organism=" + organism
 
     newProteinMetadataDict[ko_number] = new_dict;
+
+    }
+
   }
 
     let proteinMetadata = Object.keys(newProteinMetadataDict).map(function(key) {
