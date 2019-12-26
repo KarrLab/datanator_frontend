@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 //Redux (used for state management)
 import { Provider } from 'react-redux';
 import store from '~/data/Store';
+import {Helmet} from "react-helmet";
 
 //Styles for @Blueprint JS (Template Components)
 import './index.css';
@@ -54,6 +55,7 @@ const SiteRouter = () => {
 };
 const SiteProvider = () => {
   return (
+    
     <Provider store={store}>
       <SiteRouter />
     </Provider>
