@@ -157,7 +157,16 @@ class GeneralPage extends Component {
 
     if (this.state.newSearch == true) {
       console.log('Redirecting');
-      this.setState({newResults:true})
+      this.setState({newResults:true,
+      reaction_results:[],
+protein_results:[],
+metabolite_results:[],
+page_index_counter:{
+        metabolites_meta : 0,
+        sabio_reaction_entries : 0,
+        protein : 0,
+      }
+})
       return <Redirect to={this.state.new_url} push />;
     }
 
