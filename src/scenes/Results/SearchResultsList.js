@@ -67,9 +67,9 @@ export default class InteractiveList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      reaction_results: [],
-      protein_results: [],
-      metabolite_results: [],
+      reaction_results: null,
+      protein_results: null,
+      metabolite_results: null,
 
       metab_counter:2,
       reaction_couner:2,
@@ -77,18 +77,94 @@ export default class InteractiveList extends Component {
 
     this.create_search_results = this.create_search_results.bind(this);
     this.handleFetch = this.handleFetch.bind(this);
+    this.add_reactions = this.add_reactions.bind(this);
+    this.add_proteins = this.add_proteins.bind(this);
+    this.add_metabolites = this.add_metabolites.bind(this);
   }
   componentDidMount() {
-    this.create_search_results();
+    if (this.props.reaction_results != null){
+      this.add_reactions()
+    }
+
+    if (this.props.protein_results != null){
+        this.add_proteins()
+    }
+
+    if (this.props.metabolite_results != null){
+        this.add_metabolites()
+    }
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.reaction_results != prevProps.reaction_results ||
-      this.props.protein_results != prevProps.protein_results ||
-      this.props.metabolite_results != prevProps.metabolite_results) {
-      this.create_search_results();
+
+
+    if ((this.props.reaction_results != prevProps.reaction_results) && this.props.reaction_results != null){
+      this.add_reactions()
     }
-  }
+
+    if ((this.props.protein_results != prevProps.protein_results) && this.props.protein_results != null){
+        this.add_proteins()
+    }
+
+    if ((this.props.metabolite_results != prevProps.metabolite_results) && this.props.metabolite_results != null){
+        this.add_metabolites()
+    }
+
+
+    
+}
+
+add_proteins(){
+  let protein_results = this.props.protein_results;
+      let new_protein_results = [];
+      for (var i = protein_results.length - 1; i >= 0; i--) {
+      new_protein_results.push(
+        format_results(
+          protein_results[i]['primary_text'],
+          protein_results[i]['secondary_text'],
+          protein_results[i]['url'],
+        ),
+      )
+    }
+    this.setState({ protein_results: new_protein_results})
+}
+
+add_reactions(){
+  console.log("called add_Reactions")
+  console.log(this.props.reaction_results)
+  let reaction_results = this.props.reaction_results;
+  let new_reaction_results = [];
+    for (var i = reaction_results.length - 1; i >= 0; i--) {
+      new_reaction_results.push(
+        format_results(
+          reaction_results[i]['primary_text'],
+          reaction_results[i]['secondary_text'],
+          reaction_results[i]['url'],
+        ),
+      );
+    }
+    this.setState({ reaction_results: new_reaction_results})
+
+
+}
+
+add_metabolites(){
+  let metabolite_results = this.props.metabolite_results;
+      let new_metabolite_results = [];
+      for (var i = metabolite_results.length - 1; i >= 0; i--) {
+      new_metabolite_results.push(
+        format_results(
+          metabolite_results[i]['primary_text'],
+          metabolite_results[i]['secondary_text'],
+          metabolite_results[i]['url'],
+        ),
+      )
+    }
+    this.setState({ metabolite_results: new_metabolite_results})
+}
+
+
+
 
   handleFetch(index){
     console.log("pushed")
@@ -164,37 +240,43 @@ export default class InteractiveList extends Component {
     return (
       <div className="google results">
         <Grid md={6}>
-          {this.state.metabolite_results.length>0 && (
+        {(this.state.metabolite_results != null) && (
             <div style={{ marginTop:10}}>
               <div className="anchor" >
               <a id="metabolites"></a>
               </div><Typography variant="h6" className={'green'}>
                 Metabolites
-              </Typography><div className="google results"  style = {{marginLeft:20}}><List disablePadding={true} dense={true}> {this.state.metabolite_results}</List></div>
-            <button type="button" onClick={() => {this.handleFetch('metabolites_meta')}} >Load More (+10)</button>
+              </Typography><div className="google results"  style = {{marginLeft:20}}>
+              {this.state.metabolite_results.length>0 && (<List disablePadding={true} dense={true}> {this.state.metabolite_results}</List>)}</div>
+              {(this.state.metabolite_results.length == 0) && (<p> No Metabolite Results Found </p>)}
+            {this.state.metabolite_results.length>0 && <button type="button" onClick={() => {this.handleFetch('metabolites_meta')}} >Load More (+10)</button>}
             </div>
-          )}
-
-          {this.state.reaction_results.length>0 && (
+            )}
+        {(this.state.reaction_results != null) && (
             <div style={{ marginTop:10}}>
              <div className="anchor">
               <a id="reactions"></a>
               </div>
               <Typography variant="h6" className={'green'}>
                 Reactions
-              </Typography><div className="google results" style = {{marginLeft:20}}><List disablePadding={true} dense={true}> {this.state.reaction_results}</List></div>
-              <button type="button" onClick={() => {this.handleFetch('sabio_reaction_entries')}} >Load More (+10)</button>
+              </Typography>
+              {this.state.reaction_results.length>0 && (<div className="google results" style = {{marginLeft:20}}><List disablePadding={true} dense={true}> {this.state.reaction_results}</List></div>)}
+              {(this.state.reaction_results.length == 0) && (<p> No Reaction Results Found </p>)}
+              {this.state.reaction_results.length>0 && <button type="button" onClick={() => {this.handleFetch('sabio_reaction_entries')}} >Load More (+10)</button>}
             </div>
           )}
-          {this.state.protein_results.length>0 && (
+
+          {this.state.protein_results != null && (
             <div style={{ marginTop:10}}>
              <div className="anchor">
               <a id="proteins"></a>
               </div>
               <Typography variant="h6" className={'green'}>
                 Proteins
-              </Typography><div className="google results" style = {{marginLeft:20}}><List disablePadding={true} dense={true}> {this.state.protein_results}</List></div>
-              <button type="button" onClick={() => {this.handleFetch('protein')}} >Load More (+10)</button>
+              </Typography>
+              {this.state.protein_results.length>0 && (<div className="google results" style = {{marginLeft:20}}><List disablePadding={true} dense={true}> {this.state.protein_results}</List></div>)}
+              {(this.state.protein_results.length == 0) && (<p> No Protein Results Found </p>)}
+              {this.state.reaction_results.length>0 &&<button type="button" onClick={() => {this.handleFetch('protein')}} >Load More (+10)</button>}
 
             </div>
           )}

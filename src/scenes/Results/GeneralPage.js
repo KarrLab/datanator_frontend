@@ -54,9 +54,9 @@ class GeneralPage extends Component {
       new_url: '',
       reactionMetadata: [],
       km_values:[],
-      reaction_results : [],
-      protein_results : [],
-      metabolite_results: [],
+      reaction_results : null,
+      protein_results : null,
+      metabolite_results: null,
       meh:false,
       page_index_counter:{
         metabolites_meta : 0,
@@ -108,7 +108,7 @@ class GeneralPage extends Component {
     let url = ""
     console.log("GeneralSearch: Calling fetch_data")
     if (indices == "protein"){
-      url="ftx/text_search/protein_ranked_by_ko/?query_message=atp&from_=" + from_ + "&size=" + size + "&fields=protein_name&fields=synonyms&fields=enzymes&fields=ko_name&fields=gene_name&fields=name&fields=enzymes.enzyme.enzyme_name&fields=enzymes.subunit.canonical_sequence&fields=species"
+      url="ftx/text_search/protein_ranked_by_ko/?query_message=" + values.q +"&from_=" + from_ + "&size=" + size + "&fields=protein_name&fields=synonyms&fields=enzymes&fields=ko_name&fields=gene_name&fields=name&fields=enzymes.enzyme.enzyme_name&fields=enzymes.subunit.canonical_sequence&fields=species"
     }
     else{
       url = "ftx/text_search/num_of_index/?query_message=" + values.q +"&index=" + indices + "&from_=" + from_ + "&size=" + size + "&fields=protein_name&fields=synonyms&fields=enzymes&fields=ko_name&fields=gene_name&fields=name&fields=enzyme_name&fields=product_names&fields=substrate_names&fields=enzymes.subunit.canonical_sequence&fields=species"
@@ -129,20 +129,36 @@ class GeneralPage extends Component {
     if ('metabolites_meta' in data){
       console.log("corn flakes2")
       let metabolite_data = data['metabolites_meta']
-      let metabolite_metadata = this.state.metabolite_results.concat(formatMetaboliteMetadata(metabolite_data, values.organism))
+      let metabolite_metadata = formatMetaboliteMetadata(metabolite_data, values.organism)
+      if (this.state.metabolite_results != null){
+        metabolite_metadata = this.state.metabolite_results.concat(metabolite_metadata)
+      }
+      //let metabolite_metadata = this.state.metabolite_results.concat(formatMetaboliteMetadata(metabolite_data, values.organism))
       this.setState({metabolite_results: metabolite_metadata})
     }
 
     if ('top_kos' in data){
       let protein_data = data["top_kos"]['buckets']
-      let protein_metadata = this.state.protein_results.concat(formatProteinMetadata(protein_data, values.organism))
+      //let protein_metadata = this.state.protein_results.concat(formatProteinMetadata(protein_data, values.organism))
+      let protein_metadata = formatProteinMetadata(protein_data, values.organism)
+      if (this.state.protein_results != null){
+        protein_metadata = this.state.protein_results.concat(protein_metadata)
+      }
       this.setState({protein_results:protein_metadata})
     }
 
 
     if ('sabio_reaction_entries' in data){
       let reaction_data = data['sabio_reaction_entries']
-      let reaction_metadata = this.state.reaction_results.concat(formatReactionMetadata(reaction_data))
+
+      let reaction_metadata = formatReactionMetadata(reaction_data)
+      if (this.state.reaction_results != null){
+        reaction_metadata = this.state.reaction_results.concat(reaction_metadata)
+      }
+
+      console.log(reaction_metadata)
+
+      //let reaction_metadata = this.state.reaction_results.concat(formatReactionMetadata(reaction_data))
       this.setState({reaction_results:reaction_metadata})
     }
   
@@ -158,9 +174,9 @@ class GeneralPage extends Component {
     if (this.state.newSearch == true) {
       console.log('Redirecting');
       this.setState({newResults:true,
-      reaction_results:[],
-protein_results:[],
-metabolite_results:[],
+      reaction_results:null,
+protein_results:null,
+metabolite_results:null,
 page_index_counter:{
         metabolites_meta : 0,
         sabio_reaction_entries : 0,
@@ -169,6 +185,10 @@ page_index_counter:{
 })
       return <Redirect to={this.state.new_url} push />;
     }
+
+  if (true){
+    let a = "d"
+  }
 
 
     return (
@@ -198,6 +218,7 @@ page_index_counter:{
       </ol>
       </div>
       </Grid>
+
       <InteractiveList 
       reaction_results = {this.state.reaction_results}
       protein_results = {this.state.protein_results}
