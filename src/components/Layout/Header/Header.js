@@ -257,20 +257,7 @@ class Header extends Component {
           text="About"
           href="/about/"
         />
-        <AnchorButton
-          minimal="true"
-          className="navbutton"
-          icon="search"
-          text="Search"
-          href="/search/"
-        />
-        <AnchorButton
-          minimal="true"
-          className="navbutton"
-          icon="document"
-          text="Data"
-          href="/data/"
-        />
+
       </Navbar.Group>
 </Navbar>
   );
