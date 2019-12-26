@@ -222,19 +222,6 @@ add_metabolites(){
     console.log(this.props.reaction_results);
     console.log(this.state.metabolite_results)
 
-    //let url = "reaction/data/?substrates=AMP,ATP%20&products=%20ADP&substrates_inchi=ZKHQWZAMYRWXGA-KQYNXXCUSA-J,UDMBCSSLTHHNCD-KQYNXXCUSA-N&products_inchi=XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-    //add_results("ATP Synthetase", "ATP + AMP ==> ADP", url)
-
-    //let url = "'/reaction/data/?substrates=AMP,ATP%20&products=%20ADP&substrates_inchi=ZKHQWZAMYRWXGA-KQYNXXCUSA-J,UDMBCSSLTHHNCD-KQYNXXCUSA-N&products_inchi=XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-    //add_results("ATP Synthetase", "ATP + AMP ==> ADP", url)
-    //add_results("ATP Synthetase", "ATP + AMP ==> ADP", url)
-    /*
-  let reaction_results = this.state.reaction_results
-  console.log(this.state.reaction_results)
-  for (var i = reaction_results.length - 1; i >= 0; i--) {
-    format_results(reaction_results[i]['primary_text'], reaction_results[i]['secondary_text'], reaction_results[i]['url'])
-  }
-  */
 
   if (this.state.reaction_results == null &&
       this.state.protein_results == null &&
@@ -255,7 +242,9 @@ add_metabolites(){
               </Typography><div className="google results"  style = {{marginLeft:20}}>
               {this.state.metabolite_results.length>0 && (<List disablePadding={true} dense={true}> {this.state.metabolite_results}</List>)}</div>
               {(this.state.metabolite_results.length == 0) && (<p> No Metabolite Results Found </p>)}
-            {this.state.metabolite_results.length>0 && <button type="button" onClick={() => {this.handleFetch('metabolites_meta')}} >Load More (+10)</button>}
+            {this.state.metabolite_results.length>0 && 
+              this.props.metabolite_load && 
+              <button type="button" onClick={() => {this.handleFetch('metabolites_meta')}} >Load More (+10)</button>}
             </div>
             )}
         {(this.state.reaction_results != null) && (
@@ -268,7 +257,9 @@ add_metabolites(){
               </Typography>
               {this.state.reaction_results.length>0 && (<div className="google results" style = {{marginLeft:20}}><List disablePadding={true} dense={true}> {this.state.reaction_results}</List></div>)}
               {(this.state.reaction_results.length == 0) && (<p> No Reaction Results Found </p>)}
-              {this.state.reaction_results.length>0 && <button type="button" onClick={() => {this.handleFetch('sabio_reaction_entries')}} >Load More (+10)</button>}
+              {this.state.reaction_results.length>0 && 
+                this.props.reactions_load &&
+                <button type="button" onClick={() => {this.handleFetch('sabio_reaction_entries')}} >Load More (+10)</button>}
             </div>
           )}
 
@@ -282,7 +273,9 @@ add_metabolites(){
               </Typography>
               {this.state.protein_results.length>0 && (<div className="google results" style = {{marginLeft:20}}><List disablePadding={true} dense={true}> {this.state.protein_results}</List></div>)}
               {(this.state.protein_results.length == 0) && (<p> No Protein Results Found </p>)}
-              {this.state.protein_results.length>0 &&<button type="button" onClick={() => {this.handleFetch('protein')}} >Load More (+10)</button>}
+              {this.state.protein_results.length>0 &&
+                this.props.protein_load &&
+                <button type="button" onClick={() => {this.handleFetch('protein')}} >Load More (+10)</button>}
 
             </div>
           )}

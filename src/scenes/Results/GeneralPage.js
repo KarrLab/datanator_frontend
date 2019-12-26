@@ -62,7 +62,10 @@ class GeneralPage extends Component {
         metabolites_meta : 0,
         sabio_reaction_entries : 0,
         protein : 0,
-      }
+      },
+      metabolite_load:true,
+      protein_load:true,
+      reactions_load:true,
     };
 
     this.getNewSearch = this.getNewSearch.bind(this);
@@ -99,7 +102,7 @@ class GeneralPage extends Component {
     }
   }
 
-  fetch_data(indices, size,){
+  fetch_data(indices, size){
     let values = queryString.parse(this.props.location.search);
 
     let from_ = this.state.page_index_counter[indices] * 10
@@ -116,12 +119,12 @@ class GeneralPage extends Component {
     }
     getSearchData([url])
       .then(response => {
-        this.formatData(response.data);
+        this.formatData(response.data, size);
       })
     this.setState({page_index_counter: new_counters})
   }
 
-  formatData(data){
+  formatData(data, size){
     console.log("GeneralSearch: Calling FormatData")
     let values = queryString.parse(this.props.location.search);
     console.log(data)
@@ -130,17 +133,24 @@ class GeneralPage extends Component {
       console.log("corn flakes2")
       let metabolite_data = data['metabolites_meta']
       let metabolite_metadata = formatMetaboliteMetadata(metabolite_data, values.organism)
+      if (metabolite_metadata.length < size){
+        this.setState({metabolite_load:false})
+      }
       if (this.state.metabolite_results != null){
         metabolite_metadata = this.state.metabolite_results.concat(metabolite_metadata)
       }
       //let metabolite_metadata = this.state.metabolite_results.concat(formatMetaboliteMetadata(metabolite_data, values.organism))
       this.setState({metabolite_results: metabolite_metadata})
+
     }
 
     if ('top_kos' in data){
       let protein_data = data["top_kos"]['buckets']
       //let protein_metadata = this.state.protein_results.concat(formatProteinMetadata(protein_data, values.organism))
       let protein_metadata = formatProteinMetadata(protein_data, values.organism)
+      if (protein_metadata.length < size){
+        this.setState({protein_load:false})
+      }
       if (this.state.protein_results != null){
         protein_metadata = this.state.protein_results.concat(protein_metadata)
       }
@@ -152,6 +162,9 @@ class GeneralPage extends Component {
       let reaction_data = data['sabio_reaction_entries']
 
       let reaction_metadata = formatReactionMetadata(reaction_data)
+      if (reaction_metadata.length < size){
+        this.setState({reactions_load:false})
+      }
       if (this.state.reaction_results != null){
         reaction_metadata = this.state.reaction_results.concat(reaction_metadata)
       }
@@ -175,12 +188,12 @@ class GeneralPage extends Component {
       console.log('Redirecting');
       this.setState({newResults:true,
       reaction_results:null,
-protein_results:null,
-metabolite_results:null,
-page_index_counter:{
-        metabolites_meta : 0,
-        sabio_reaction_entries : 0,
-        protein : 0,
+      protein_results:null,
+      metabolite_results:null,
+      page_index_counter:{
+      metabolites_meta : 0,
+      sabio_reaction_entries : 0,
+      protein : 0,
       }
 })
       return <Redirect to={this.state.new_url} push />;
@@ -220,6 +233,9 @@ page_index_counter:{
       protein_results = {this.state.protein_results}
       metabolite_results = {this.state.metabolite_results}
       handle_fetch_data = {this.fetch_data}
+      reactions_load = {this.state.reactions_load}
+      protein_load = {this.state.protein_load}
+      metabolite_load = {this.state.metabolite_load}
       />
       </div>
       </div>
