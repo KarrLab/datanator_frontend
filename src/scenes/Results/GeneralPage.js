@@ -194,10 +194,11 @@ class GeneralPage extends Component {
       metabolites_meta : 0,
       sabio_reaction_entries : 0,
       protein : 0,
+      
+      },
       metabolite_load:true,
       protein_load:true,
       reactions_load:true,
-      }
 })
       return <Redirect to={this.state.new_url} push />;
     }
