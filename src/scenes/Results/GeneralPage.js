@@ -105,8 +105,15 @@ class GeneralPage extends Component {
     let from_ = this.state.page_index_counter[indices] * 10
     let new_counters = this.state.page_index_counter
     new_counters[indices] = new_counters[indices] + 1
+    let url = ""
     console.log("GeneralSearch: Calling fetch_data")
-    let url = "ftx/text_search/num_of_index/?query_message=" + values.q +"&index=" + indices + "&from_=" + from_ + "&size=" + size + "&fields=protein_name&fields=synonyms&fields=enzymes&fields=ko_name&fields=gene_name&fields=name&fields=enzyme_name&fields=product_names&fields=substrate_names&fields=enzymes.subunit.canonical_sequence&fields=species"
+    if (indices == "protein"){
+      url="ftx/text_search/protein_ranked_by_ko/?query_message=atp&from_=" + from_ + "&size=" + size + "&fields=protein_name&fields=synonyms&fields=enzymes&fields=ko_name&fields=gene_name&fields=name&fields=enzymes.enzyme.enzyme_name&fields=enzymes.subunit.canonical_sequence&fields=species"
+    }
+    else{
+      url = "ftx/text_search/num_of_index/?query_message=" + values.q +"&index=" + indices + "&from_=" + from_ + "&size=" + size + "&fields=protein_name&fields=synonyms&fields=enzymes&fields=ko_name&fields=gene_name&fields=name&fields=enzyme_name&fields=product_names&fields=substrate_names&fields=enzymes.subunit.canonical_sequence&fields=species"
+
+    }
     getSearchData([url])
       .then(response => {
         this.formatData(response.data);
@@ -126,8 +133,8 @@ class GeneralPage extends Component {
       this.setState({metabolite_results: metabolite_metadata})
     }
 
-    if ('protein' in data){
-      let protein_data = data['top_kos']['buckets']
+    if ('top_kos' in data){
+      let protein_data = data["top_kos"]['buckets']
       let protein_metadata = this.state.protein_results.concat(formatProteinMetadata(protein_data, values.organism))
       this.setState({protein_results:protein_metadata})
     }

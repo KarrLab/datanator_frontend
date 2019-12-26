@@ -194,6 +194,8 @@ export default class InteractiveList extends Component {
               <Typography variant="h6" className={'green'}>
                 Proteins
               </Typography><div className="google results" style = {{marginLeft:20}}><List disablePadding={true} dense={true}> {this.state.protein_results}</List></div>
+              <button type="button" onClick={() => {this.handleFetch('protein')}} >Load More (+10)</button>
+
             </div>
           )}
         </Grid>
