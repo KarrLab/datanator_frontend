@@ -454,7 +454,12 @@ class MetabConcs extends Component {
 
     return (
       <div className="container2">
-        <Header />
+        
+      <Header 
+        handleClick={this.getNewSearch}
+        defaultQuery={values.q}
+        defaultOrganism={values.organism}
+      />
 
 
         <div className="metabolite_definition_data"  style={{
