@@ -186,10 +186,6 @@ page_index_counter:{
       return <Redirect to={this.state.new_url} push />;
     }
 
-  if (true){
-    let a = "d"
-  }
-
 
     return (
       <div>

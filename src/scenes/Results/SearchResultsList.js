@@ -236,6 +236,12 @@ add_metabolites(){
   }
   */
 
+  if (this.state.reaction_results == null &&
+      this.state.protein_results == null &&
+      this.state.metabolite_results == null){
+    return ( <div class="loader"></div> )
+  }
+
 
     return (
       <div className="google results">
@@ -276,7 +282,7 @@ add_metabolites(){
               </Typography>
               {this.state.protein_results.length>0 && (<div className="google results" style = {{marginLeft:20}}><List disablePadding={true} dense={true}> {this.state.protein_results}</List></div>)}
               {(this.state.protein_results.length == 0) && (<p> No Protein Results Found </p>)}
-              {this.state.reaction_results.length>0 &&<button type="button" onClick={() => {this.handleFetch('protein')}} >Load More (+10)</button>}
+              {this.state.protein_results.length>0 &&<button type="button" onClick={() => {this.handleFetch('protein')}} >Load More (+10)</button>}
 
             </div>
           )}
