@@ -223,11 +223,6 @@ add_metabolites(){
     console.log(this.state.metabolite_results)
 
 
-  if (this.state.reaction_results == null &&
-      this.state.protein_results == null &&
-      this.state.metabolite_results == null){
-    return ( <div class="loader"></div> )
-  }
 
 
     return (

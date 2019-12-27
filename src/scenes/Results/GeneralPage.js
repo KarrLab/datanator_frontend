@@ -204,6 +204,21 @@ class GeneralPage extends Component {
     }
 
 
+    if (this.state.reaction_results == null &&
+          this.state.protein_results == null &&
+          this.state.metabolite_results == null){
+        return ( <div>
+
+          <Header 
+        handleClick={this.getNewSearch}
+        defaultQuery={values.q}
+        defaultOrganism={values.organism}
+      />
+      <div class="loader"></div> 
+      </div>)
+      }
+
+
     return (
 
 
