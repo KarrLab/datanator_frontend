@@ -28,7 +28,6 @@ const renderFilm = (film, { handleClick, modifiers }) => {
         />
     );
 };
-
 const renderInputValue = (organism) => organism;
 
   //const [value, setValue] = React.useState(null);
@@ -223,12 +222,21 @@ class Header extends Component {
               this.setState({organism:value})
               if (event.key === "Enter"){
                 console.log("woooooo")
-                this.handleClickInnerAuto(value)
+                //this.handleClickInnerAuto(value)
               }
             }
           }
 
-          inputProps={{placeholder:"organism..."}}
+           inputProps={{placeholder:"organism...",
+
+        onChange:((event) => {
+            console.log("hello")
+              this.setState({query:event.target.value});
+            }),
+
+        //onKeyPress:((event) => {if (event.key === "Enter") { (this.handleClickInner()) }})
+
+          }}
             
         
     >
@@ -262,9 +270,7 @@ class Header extends Component {
         />
 
       </Navbar.Group>
-          }
-          }
-          }
+
 </Navbar>
   );
 };}
@@ -285,7 +291,6 @@ export { Header };
           //leftIcon="search"
           placeholder="In organism..."
           defaultValue={this.state.organism}
-
           onChange={event => {
               this.setState({organism:event.target.value})
             }}
@@ -293,3 +298,4 @@ export { Header };
         )}
       />
 */
+
