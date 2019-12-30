@@ -131,6 +131,7 @@ class Header extends Component {
     this.state = {
       query: this.props.defaultQuery,
       organism: this.props.defaultOrganism,
+      wait_for_autocomplete:true,
     }
 
     this.handleClickInner = this.handleClickInner.bind(this);
@@ -171,7 +172,12 @@ class Header extends Component {
 
 
 
+
+
+
+
   render() {
+
   return (
      <Navbar fixedToTop="true" className="bp3-dark navbar" style={{ "background-color": "#1890ff"}}>
       <Navbar.Group className="logo-holder">
@@ -205,13 +211,17 @@ class Header extends Component {
         itemPredicate={this.filterFilm} 
         itemRenderer={renderFilm}
         selectedItem={this.state.organism}
+        //activeItem = {null}
 
-        noResults={<MenuItem disabled={true} text="No results." />}
-        onQueryChange={query => {
-            console.log(query)
+        noResults={<MenuItem disabled={true} text="No results." 
+      />}
+        onQueryChange={(query, event) => {
+            console.log(event)
               this.setState({organism:query});
+              //first_enter = true
             }}
         inputValueRenderer={renderInputValue}
+        //onQueryChange={() => first_enter = true}
         //activeItem={this.state.organism}
         //onKeyPress={ (event) => {if (event.key === "Enter") { this.handleClickInner() } }}
 
@@ -222,19 +232,35 @@ class Header extends Component {
               this.setState({organism:value})
               if (event.key === "Enter"){
                 console.log("woooooo")
-                //this.handleClickInnerAuto(value)
+                //this.setState({wait_for_autocomplete:false})
+                this.handleClickInnerAuto(value)
               }
             }
           }
 
-           inputProps={{placeholder:"organism...",
+
+        onKeyPress= {(event) => {
+          //console.log(this.state.wait_for_autocomplete)
+          if ((event.key === "Enter") && (!this.state.wait_for_autocomplete)) { (this.handleClickInner()) }
+
+        }}
+
+        inputProps={{placeholder:"organism...",
 
         onChange:((event) => {
             console.log("hello")
               this.setState({query:event.target.value});
             }),
 
-        //onKeyPress:((event) => {if (event.key === "Enter") { (this.handleClickInner()) }})
+         
+
+        onKeyPress:((event) => {
+          //console.log(this.state.wait_for_autocomplete)
+          if ((event.key === "Enter") && (!this.state.wait_for_autocomplete)) { (this.handleClickInner()) }
+
+        })
+
+      
 
           }}
             
