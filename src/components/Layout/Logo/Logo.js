@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
+import logo from './logo_orange.png';
 const Logo = props => {
   return (
     <div className="logo">
@@ -8,8 +8,8 @@ const Logo = props => {
           src={logo}
           padding="0"
           height="100%"
-          className="logo-image"
-          alt="Datanator Logo"
+          //className="logo-image"
+          //alt="Datanator Logo"
         />
       </a>
     </div>
