@@ -204,6 +204,7 @@ class GeneralPage extends Component {
     }
 
 
+
     if (this.state.reaction_results == null &&
           this.state.protein_results == null &&
           this.state.metabolite_results == null){
@@ -214,7 +215,9 @@ class GeneralPage extends Component {
         defaultQuery={values.q}
         defaultOrganism={values.organism}
       />
+      <div class="loader_container">
       <div class="loader"></div> 
+      </div>
       </div>)
       }
 
@@ -245,7 +248,7 @@ class GeneralPage extends Component {
         defaultOrganism={values.organism}
       />
 
-      {/*
+
       <div className="general">
       <style>{'body { background-color: #f7fdff; }'}</style>
       <Grid md={3}>
@@ -279,7 +282,7 @@ class GeneralPage extends Component {
       </div>
 
 
-*/}
+
 
       </div>
       )

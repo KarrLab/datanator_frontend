@@ -132,6 +132,7 @@ class Header extends Component {
       query: this.props.defaultQuery,
       organism: this.props.defaultOrganism,
       wait_for_autocomplete:true,
+      show_search:false,
     }
 
     this.handleClickInner = this.handleClickInner.bind(this);
@@ -178,11 +179,21 @@ class Header extends Component {
 
   render() {
 
+    let show_search = this.state.show_search
+    let icon = "search"
+    let search_text = "Search"
+    if (show_search){
+      icon = ""
+      search_text = "Hide Search"
+    }
+
   return (
      <Navbar fixedToTop="true" className="bp3-dark navbar" style={{ "background-color": "#1890ff"}}>
       <Navbar.Group className="logo-holder">
         <Logo className="logo" />
       </Navbar.Group>
+
+      { show_search &&
       <Navbar.Group className="searchbar">
       <form className="searchbar-input"  onSubmit={this.handleClickInner} >
 
@@ -286,7 +297,16 @@ class Header extends Component {
 
         
       </Navbar.Group>
+    }
       <Navbar.Group align className="page-links">
+
+      <AnchorButton
+          minimal="true"
+          className="navbutton"
+          icon={icon}
+          text={search_text}
+          onClick={() => this.setState({show_search:!this.state.show_search})}
+      />
         <AnchorButton
           minimal="true"
           className="navbutton"
