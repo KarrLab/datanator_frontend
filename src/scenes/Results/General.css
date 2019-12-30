@@ -32,6 +32,9 @@ ul, ol {
     overflow-x: scroll;
 }
 
+.bp3-input-group {
+    background-color: #70BBFD
+}
 .bp3-input-group input::placeholder {
   color: #e8e8e8 !important;
   font-size:15px;
