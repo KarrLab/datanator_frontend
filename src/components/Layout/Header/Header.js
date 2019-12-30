@@ -23,7 +23,7 @@ const renderFilm = (film, { handleClick, modifiers }) => {
         <MenuItem
             active={modifiers.active}
             key={film}
-            onClick={() => console.log("gggdddsss")}
+            onClick={(event) => {handleClick(event); console.log(event)}}
             text={film}
         />
     );
@@ -213,6 +213,7 @@ class Header extends Component {
               this.setState({organism:query});
             }}
         inputValueRenderer={renderInputValue}
+        //activeItem={this.state.organism}
         //onKeyPress={ (event) => {if (event.key === "Enter") { this.handleClickInner() } }}
 
         
@@ -226,6 +227,8 @@ class Header extends Component {
               }
             }
           }
+
+          inputProps={{placeholder:"organism..."}}
             
         
     >
@@ -234,7 +237,7 @@ class Header extends Component {
          <InputGroup
           //className="searchbar-input"
           leftIcon="search"
-          placeholder="Search for..."
+          //placeholder="Search for..."
           //defaultValue={this.state.organism}
           //onKeyPress={ (event) => {if (event.key === "Enter") { this.handleClickInner() } }}
         />
@@ -259,6 +262,9 @@ class Header extends Component {
         />
 
       </Navbar.Group>
+          }
+          }
+          }
 </Navbar>
   );
 };}
