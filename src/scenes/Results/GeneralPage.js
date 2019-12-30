@@ -244,6 +244,8 @@ class GeneralPage extends Component {
         defaultQuery={values.q}
         defaultOrganism={values.organism}
       />
+
+      {/*
       <div className="general">
       <style>{'body { background-color: #f7fdff; }'}</style>
       <Grid md={3}>
@@ -275,6 +277,10 @@ class GeneralPage extends Component {
       metabolite_load = {this.state.metabolite_load}
       />
       </div>
+
+
+*/}
+
       </div>
       )
      

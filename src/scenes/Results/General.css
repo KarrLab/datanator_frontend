@@ -32,7 +32,18 @@ ul, ol {
     overflow-x: scroll;
 }
 
+.bp3-input-group input::placeholder {
+  color: #e8e8e8 !important;
+  font-size:15px;
+}
 
+.bp3-navbar-group .in{
+    color: #e8e8e8;
+    margin-right: 5px;
+    margin-left: 5px;
+    margin-top: 29px;
+    font-size:30px;
+}
 
 /* page content */
 .general {

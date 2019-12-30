@@ -201,7 +201,13 @@ class Header extends Component {
               this.setState({query:event.target.value});
             }}
         />
+
+
         </form>
+
+        <div className="in">
+        <p>in</p>
+        </div>
 
         <Suggest
         className="searchbar-input"
@@ -266,6 +272,7 @@ class Header extends Component {
             
         
     >
+
 
         {/* children become the popover target; render value here */}
          <InputGroup
