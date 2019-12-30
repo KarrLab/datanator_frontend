@@ -183,7 +183,7 @@ class Header extends Component {
     let icon = "search"
     let search_text = "Search"
     if (show_search){
-      icon = ""
+      icon = null
       search_text = "Hide Search"
     }
 

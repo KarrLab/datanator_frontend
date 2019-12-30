@@ -34,7 +34,8 @@ ul, ol {
 }
 
 .bp3-input-group {
-    background-color: #70BBFD
+    background-color: #70BBFD;
+    border-radius: 3px;
 }
 .bp3-input-group input::placeholder {
   color: #e8e8e8 !important;
@@ -47,6 +48,10 @@ ul, ol {
     margin-left: 5px;
     margin-top: 29px;
     font-size:30px;
+}
+
+.bp3-icon{
+    color:white  !important;;
 }
 
 /* page content */
