@@ -32,12 +32,14 @@ function formatProteinMetadata(data, organism) {
     new_dict['primary_text'] = name[0].toUpperCase() + name.substring(1,name.length)
     let href = "https://www.genome.jp/dbget-bin/www_bget?ko:" + ko_number
     new_dict['secondary_text'] = 
+    <div className="external_links">
     <p> 
 
     KEGG: <a href={href} rel="noopener"> {ko_number} </a>
 
 
      </p>
+     </div>
     new_dict["url"] = "/protein/ko/mol/?ko=" + ko_number + "&organism=" + organism
 
     newProteinMetadataDict[ko_number] = new_dict;

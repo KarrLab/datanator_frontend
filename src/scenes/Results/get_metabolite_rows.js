@@ -64,12 +64,14 @@ function formatMetaboliteMetadata(data, organism) {
     } 
     let max_len = 150
     new_dict['secondary_text'] = 
+    <div className="external_links">
     <p> 
 
     {ymdb_preface} <a href={href_ymdb}>{data[i]["ymdb_id"]}</a>{comma}{ecmdb_preface} <a href={href_ecmdb} rel="noopener"> {data[i]["m2m_id"]} </a>
 
 
      </p>
+     </div>
     /*
     if (description.length <= max_len || description == null){
       new_dict['secondary_text'] = description

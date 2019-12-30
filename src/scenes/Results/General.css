@@ -167,6 +167,12 @@ br {
     color: black;
 }
 
+.google.results .MuiGrid-root .MuiTypography-colorTextSecondary .external_links a{
+    color: #1890ff;
+    font-size:13px;
+}
+
+
 
 .loader {
   border: 16px solid #f3f3f3; /* Light grey */
