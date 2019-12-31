@@ -247,11 +247,11 @@ br {
     text-align: center;
 }
 
-.home_purpose .home_logo {
+ .home_logo img{
 
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: auto !important;;
+  margin-right: auto !important;;
   width: 50%;
 
 

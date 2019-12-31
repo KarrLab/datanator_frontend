@@ -63,14 +63,15 @@ class HomeOld extends Component {
             <p>Datanator is a tool for discovering the data needed to build, calibrate, and validate biological models. Datanator is composed of an integrated database of experimental data for whole-cell modeling and tools for identifying relevant data for modeling a specific organism and environmental condition. Datanator has a web-based graphical interface, and a REST API.</p>
         <div>
             <H2> Workflow </H2>
-          </div>
+        </div>
+
         </div>
       <div className={"home_logo"}>
         <img
       src={home_logo}
     />
+    </div>
     <div className = {"home_purpose"}>
-        </div>
             <H2> About</H2>
             <p> Datanator was created by the Karr Lab</p>
             <H2> Whole Cell Modeling</H2>
