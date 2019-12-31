@@ -157,7 +157,7 @@ ul, ol {
     padding: 0;
     margin: 0;
 }
-.google.results li:not(:first-child) {
+.google.results. .contents li:not(:first-child) {
     margin-top: 1.0rem;
 }
 .google.results li .MuiListItemText-multiline {
@@ -229,4 +229,12 @@ br {
     margin-left:10px;
     margin-top:7px; 
     margin-bottom:7px; 
+}
+
+.about_paragraph ol {
+    list-style-type: circle;
+    padding: 0;
+    margin: 0;
+    margin-left: 1.1rem;
+    margin-top: 0;
 }

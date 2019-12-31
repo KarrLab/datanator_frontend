@@ -309,7 +309,21 @@ similarity (NCBI taxonomy), molecular similarity (tanitomo string comparison), r
               </Typography>
 
               <div className="about_paragraph">
-                <p> No Reaction Results Found </p>
+                <p> Datanator was developed by the <a href={"https://www.karrlab.org/"}> Karr Lab</a> at the Icahn School of Medicine at Mount Sinai in New York, US.</p>
+              </div>
+              <div className="about_paragraph">
+                <ol>
+                <li>
+                  Jonathan Karr
+                </li><li>
+                  Zhouyang Lian
+                </li><li>
+                  Saahith Pochiraju
+                </li><li>
+                  Yosef Roth
+                </li>
+                </ol>
+
               </div>
 
             </div>
@@ -341,7 +355,7 @@ similarity (NCBI taxonomy), molecular similarity (tanitomo string comparison), r
               <div className="about_paragraph">
                <p>
                  
-                 BpForms is available open-source from <a href={"https://github.com/KarrLab/datanator"} >GitHub</a> and is released under the <a href={"https://github.com/KarrLab/datanator/blob/master/LICENSE"}>MIT license</a>.
+                 Datanator is available open-source from <a href={"https://github.com/KarrLab/datanator"} >GitHub</a> and is released under the <a href={"https://github.com/KarrLab/datanator/blob/master/LICENSE"}>MIT license</a>.
                </p>
               </div>
 
