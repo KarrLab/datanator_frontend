@@ -284,8 +284,19 @@ class GeneralPage extends Component {
               </Typography>
 
               <div className="about_paragraph">
-                <p> No Metabolite Results Found </p> 
-                </div>
+                <p> Systems biology aims to understand how genotype influences phenotype. Comprehensive mechanistic models, such as whole-cell models, can be used to explore cell dynamics. However, the data required to construct these models are contained across many different databases -- often with inconsistent identifiers and formats. In addition, the time required to manually collect this data impedes the creation of large-scale models.</p> 
+              </div>
+              <div className="about_paragraph">
+                <p>To accelerate whole-cell modeling, we developed Datanator, an integrated database and search engine. Datanator allows a modeler to input a desired biological parameter (e.g. molecular concentration, reaction rate, etc.) with desired search criteria (e.g. organism, environmental conditions, etc.), and Datanator returns a list of the most relevant observations.</p> 
+              </div>
+              <div className="about_paragraph">
+                <p> Datanator integrates, proteomic data (Pax-DB), kinetic data (SABIO-RK), and metabolite
+concentration data (ECMDB, YMDB). Datanator’s search engine can identify the most relevant
+data from a combination of search criteria: genetic similarity (KEGG orthology), taxonomic
+similarity (NCBI taxonomy), molecular similarity (tanitomo string comparison), reaction similarity
+(EC number), and environmental similarity.
+ </p> 
+              </div>
             </div>
 
             <div style={{ marginTop:10}}>
@@ -328,7 +339,10 @@ class GeneralPage extends Component {
               </Typography>
 
               <div className="about_paragraph">
-               <p> Datanator was developed with support from the Center for Reproducible Biomodeling Modeling from the National Institute of Bioimaging and Bioengineering and the National Institute of General Medical Sciences of the National Institutes of Health and the National Science Foundation (award P41EB023912) </p>
+               <p>
+                 
+                 BpForms is available open-source from <a href={"https://github.com/KarrLab/datanator"} >GitHub</a> and is released under the <a href={"https://github.com/KarrLab/datanator/blob/master/LICENSE"}>MIT license</a>.
+               </p>
               </div>
 
 
