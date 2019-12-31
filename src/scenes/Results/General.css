@@ -238,3 +238,23 @@ br {
     margin-left: 1.1rem;
     margin-top: 0;
 }
+
+
+.home_purpose{
+    margin:auto;
+    width: 50%;
+    margin-top:50px;
+    text-align: center;
+}
+
+.home_purpose .home_logo {
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+
+
+
+  
+}

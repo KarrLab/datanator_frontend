@@ -321,11 +321,12 @@ similarity (NCBI taxonomy), molecular similarity (tanitomo string comparison), r
                   Saahith Pochiraju
                 </li><li>
                   Yosef Roth
+                </li><li>
+                  Bilal Shaikh
                 </li>
                 </ol>
 
               </div>
-
             </div>
 
             <div style={{ marginTop:10}}>
