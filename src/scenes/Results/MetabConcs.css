@@ -1,4 +1,88 @@
+.total_container{
+	background: #f3f9ff;
+}
 
-.search {
-  margin-top: 70px;
+.metabolite_definition_data{
+	margin-top: 60px;
+
+	width: 100%;
+    border: 1px solid #1890ff;
+    border-radius: 4px;
+    background: #f3f9ff;
+    box-shadow: 3px 3px 5px #00000066;
+
+}
+.metadata_picture{
+float:left;
+margin-left:10px;
+
+}
+.metadata_description{
+
+	margin-top: 10px;
+    margin-left:220px;
+
+}
+
+.metadata_description p{
+
+	margin-bottom: 9px;
+}
+
+.metadata_picture{
+	position: absolute;
+
+}
+.metadata_picture img {
+    vertical-align: middle;
+    display:block;
+    height: auto;
+    border-style: none;
+    width: 60%;
+    height: auto;
+    margin-top: 5px;
+}
+
+
+.ag_chart {
+	margin-top: 10px;
+}
+
+
+
+.metabolite_definition_data .MuiTypography-h6 {
+    color: #fff;
+    background: #1890ff;
+    font-weight: 700;
+    padding-left: .5rem;
+    padding-right: .5rem;
+
+}
+
+
+
+
+
+.google.results > .MuiGrid-root > div {
+    width: 100%;
+    border: 1px solid #1890ff;
+    border-radius: 4px;
+    background: #f3f9ff;
+    box-shadow: 3px 3px 5px #00000066;
+}
+.google.results > .MuiGrid-root > div:not(:first-child) {
+    margin-top: 2rem;
+}
+
+.google.results .MuiTypography-h6 {
+    color: #fff;
+    background: #1890ff;    
+    font-weight: bold;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.google.results .MuiList-root {
+    width: 100%;
+    padding: 1rem;
 }

@@ -331,7 +331,7 @@ similarity (NCBI taxonomy), molecular similarity (tanitomo string comparison), r
 
             <div style={{ marginTop:10}}>
              <div className="anchor">
-              <a id="proteins"></a>
+              <a id="acknowledgements"></a>
               </div>
               <Typography variant="h6" className={'green'}>
                 3. Acknowledgements

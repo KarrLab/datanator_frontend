@@ -33,6 +33,7 @@ import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 
 import './ag_styles.css'
+import './MetabConcs.css'
 import {TaxonomyFilter} from '~/scenes/Results/TaxonomyFilter.js'
 import PartialMatchFilter from "./PartialMatchFilter.js";
 
@@ -453,7 +454,7 @@ class MetabConcs extends Component {
     const values = queryString.parse(this.props.location.search);
 
     return (
-      <div className="container2">
+      <div className="total_container">
         
       <Header 
         handleClick={this.getNewSearch}
@@ -461,23 +462,13 @@ class MetabConcs extends Component {
         defaultOrganism={values.organism}
       />
 
-
-        <div className="metabolite_definition_data"  style={{
-            marginTop: 50,
-          }}>       
+ 
           <MetaboliteDefinition metaboliteMetadata={this.state.metaboliteMetadata} />
-        </div>
 
 
         <div
-          className="container3"
-          style={{
-            marginTop: 80,
-            //display: 'flex',
-            //'flex-direction': 'row',
-            //'flex-wrap': 'wrap',
-            //'flex-flow': 'row wrap',
-          }}
+          className="ag_chart"
+          
         >
           <div
             className="ag-theme-balham"

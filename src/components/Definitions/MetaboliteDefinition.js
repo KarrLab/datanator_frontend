@@ -10,6 +10,7 @@ import ReactDOM from 'react-dom';
 import { Link, Redirect } from 'react-router-dom';
 
 import { PropTypes } from 'react';
+import Typography from '@material-ui/core/Typography';
 
 const products = [{ id: '3', name: 'bob' }];
 const columns = [
@@ -108,21 +109,14 @@ class MetaboliteDefinition extends Component {
 
     return (
       <div
-        className="container_blue"
-        style={{
-          //display: "inline-block",
-          marginTop: 50,
-          //float:'left',
-          //width: 1000,
-          //display: 'flex',
-          //'flex-direction': 'row',
-          //'flex-wrap': 'wrap',
-          //'flex-flow': 'row wrap',
-        }}
+        className="metabolite_definition_data"
       >
 
+      <Typography variant="h6" className={'green'}>
+        {metaboliteMetadata.name}
+      </Typography>
 
-        <div  className="container_blue_1" style={{ float:'left', marginLeft:10}}>
+        <div  className="metadata_picture" >
           <a href="https://www.ebi.ac.uk">
             <img
               border="0"
@@ -134,13 +128,7 @@ class MetaboliteDefinition extends Component {
           </a>
         </div>
 
-        <div  className="container_blue_2"  style={{
-          marginTop: 90,
-          marginLeft:220,
-          //display: "inline-block",
-          //float:'left'
-
-        }}>
+        <div  className="metadata_description" >
             <p><b>Name:</b> {metaboliteMetadata.name}</p>
             <p><b>Chemical Formula:</b> {metaboliteMetadata.chemical_formula}</p>
             <div style={{"overflow-wrap": "break-word"}}><p><b>InChI:</b> <font size="2">{metaboliteMetadata.inchi}</font></p></div>
