@@ -161,9 +161,14 @@ class Consensus extends Component {
       this.setSummaryStats(this.props.totalData, this.props.relevantColumns[0])
       this.setState({selected_column:this.props.relevantColumns[0]});
     } else if (prevProps.selectedData != this.props.selectedData) {
-      console.log('Consensus: Calling blueblueblueblue')
-      console.log("Consensus: Calling greengreengreen" + this.state.selected_column)
-      this.setSummaryStats(this.props.selectedData, this.state.selected_column);
+      if (this.props.selectedData.length == 0){
+        this.setSummaryStats(this.props.totalData, this.props.relevantColumns[0])
+      }
+      else{
+        console.log('Consensus: Calling blueblueblueblue')
+        console.log("Consensus: Calling greengreengreen" + this.state.selected_column)
+        this.setSummaryStats(this.props.selectedData, this.state.selected_column);
+      }
     }
   }
 
