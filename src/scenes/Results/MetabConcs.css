@@ -12,15 +12,10 @@
     box-shadow: 3px 3px 5px #00000066;
 
 }
-.metadata_picture{
-float:left;
-margin-left:10px;
 
-}
 .metadata_description{
 
-	margin-top: 10px;
-    margin-left:220px;
+    margin-left:180px;
 
 }
 
@@ -36,9 +31,21 @@ margin-left:10px;
     border-style: none;
     width: 60%;
     height: auto;
-    margin-top: 5px;
+    margin-top: 0px;
 }
 
+
+.metadata_picture {
+    float:left;
+margin-left:10px;
+    vertical-align: middle;
+    display:block;
+    height: auto;
+    border-style: none;
+    height: auto;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
 
 .ag_chart {
 	margin-top: 10px;
@@ -91,4 +98,28 @@ margin-left:10px;
 .slider_container {
     height:150px;
     width:220px;
+}
+
+
+
+
+.vertical_center {
+    width:200px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.vertical_center img{
+    margin-left: 20px;
+    width:60%;
+    height:60%;
+}
+
+.photo_and_description{
+ position: relative;
+ margin-top: 10px;
+
 }

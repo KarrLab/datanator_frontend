@@ -123,8 +123,11 @@ class MetaboliteDefinition extends Component {
         {metaboliteMetadata.name}
       </Typography>
 
-        <div  className="metadata_picture" >
-          <a href="https://www.ebi.ac.uk">
+      <div
+        className="photo_and_description"
+      >
+
+        <div  className="vertical_center" >
             <img
               border="0"
               alt="W3Schools"
@@ -132,7 +135,6 @@ class MetaboliteDefinition extends Component {
               width="200"
               height="200"
             ></img>
-          </a>
         </div>
 
         <div  className="metadata_description" >
@@ -141,6 +143,7 @@ class MetaboliteDefinition extends Component {
             <div style={{"overflow-wrap": "break-word"}}><p><b>InChI:</b> <font size="2">{metaboliteMetadata.inchi}</font></p></div>
             <p><b>InChIKey:</b> {metaboliteMetadata.inchiKey}</p>
 
+      </div>
       </div>
 
       </div>
