@@ -128,7 +128,7 @@ class MetaboliteDefinition extends Component {
             <img
               border="0"
               alt="W3Schools"
-              src="https://www.ebi.ac.uk/chebi/displayImage.do;jsessionid=25AAC07D77FBB12EBEFA4D5FEE270CD4?defaultImage=true&imageIndex=0&chebiId=15713"
+              src={"https://www.ebi.ac.uk/chebi/displayImage.do;jsessionid=25AAC07D77FBB12EBEFA4D5FEE270CD4?defaultImage=true&imageIndex=0&chebiId=" + metaboliteMetadata.chebi_id}
               width="200"
               height="200"
             ></img>

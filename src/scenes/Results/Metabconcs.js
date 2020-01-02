@@ -355,6 +355,26 @@ class MetabConcs extends Component {
               }
             }
           }
+
+          let new_dict = newMetaboliteMetadataDict[data[1][n - 1].inchikey];
+            if (!new_dict) {
+              new_dict = {};
+            }
+          new_dict = {
+
+           name:data[1][n - 1].name,
+           kegg_id:data[1][n - 1].kegg_id,
+          chebi_id:data[1][n - 1].chebi_id,
+          inchi:data[1][n - 1].inchi,
+          inchiKey:data[1][n - 1].inchikey,
+          SMILES:data[1][n - 1].smiles,
+          chemical_formula:data[1][n - 1].chemical_formula,
+          }
+
+          newMetaboliteMetadataDict[data[1][n - 1].inchikey] = new_dict
+
+
+
           for (var i = concs.concentration.length - 1; i >= 0; i--) {
             var growth_phase = '';
             var organism = data[1][n - 1].species;
