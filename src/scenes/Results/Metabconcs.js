@@ -59,7 +59,7 @@ const sideBar = {
     },
     {
       id: 'customStats',
-      labelDefault: 'Custom Stats',
+      labelDefault: 'Consensus',
       labelKey: 'customStats',
       iconKey: 'customstats',
       toolPanel: 'CustomToolPanel',
