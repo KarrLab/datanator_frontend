@@ -161,9 +161,8 @@ class TaxonomyFilter extends Component {
     let buttons = this.state.buttons
     let marks = this.state.marks
     return (
-      <div style={{height:"180px", width:"220px"}}>
+      <div className= {"slider_container"}>
       <div className={"slider_2"} style={{height:140,}}>
-      <br/>
         <Slider
         onChange = {this.onChange}
           orientation="vertical"
