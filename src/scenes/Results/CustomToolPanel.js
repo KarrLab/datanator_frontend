@@ -17,12 +17,10 @@ export default class CustomToolPanel extends Component {
 
         return (
             <div style={{textAlign: "center"}}>
-                <span>
                     <Consensus 
               relevantColumns={['concentration']} 
               optional_columns = {[]}
               />
-                </span>
             </div>
         );
     }
