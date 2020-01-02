@@ -107,6 +107,13 @@ class MetaboliteDefinition extends Component {
   render() {
     let metaboliteMetadata = this.props.metaboliteMetadata
 
+    if (metaboliteMetadata.length == 0){
+      return(<div></div>)
+    }
+    console.log(metaboliteMetadata)
+    console.log(metaboliteMetadata[0])
+    metaboliteMetadata = metaboliteMetadata[0]
+
     return (
       <div
         className="metabolite_definition_data"

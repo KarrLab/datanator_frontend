@@ -79,15 +79,8 @@ class MetabConcs extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      metaboliteMetadata:{
-        kegg_id: "C00075",
-        chebi_id:"15713",
-        name: "Uridine triphosphate",
-        inchi:"InChI=1S/C9H15N2O15P3/c12-5-1-2-11(9(15)10-5)8-7(14)6(13)4(24-8)3-23-28(19,20)26-29(21,22)25-27(16,17)18/h1-2,4,6-8,13-14H,3H2,(H,19,20)(H,21,22)(H,10,12,15)(H2,16,17,18)/t4-,6-,7-,8-/m1/s1",
-        inchiKey:"PGAVKCOVUIYSFO-XVFCMESISA-N",
-        SMILES:"O[C@H]1[C@@H](O)[C@@H](O[C@@H]1COP(O)(=O)OP(O)(=O)OP(O)(O)=O)N1C=CC(=O)NC1=O",
-        chemical_formula: "C9H15N2O15P3"
-      },
+      
+      metaboliteMetadata:[],
       modules: AllCommunityModules,
       lineage:[],
       dataSource: [],
@@ -261,6 +254,8 @@ class MetabConcs extends Component {
     if (data != null) {
       var f_concentrations = [];
 
+      let newMetaboliteMetadataDict = {}
+
       //this.props.dispatch(set_lineage(data[2][0]));
 
       let tani = false;
@@ -284,6 +279,26 @@ class MetabConcs extends Component {
               }
             }
           }
+
+          let new_dict = newMetaboliteMetadataDict[data[0][n - 1].inchikey];
+            if (!new_dict) {
+              new_dict = {};
+            }
+          new_dict = {
+
+           name:data[0][n - 1].name,
+           kegg_id:data[0][n - 1].kegg_id,
+          chebi_id:data[0][n - 1].chebi_id,
+          inchi:data[0][n - 1].inchi,
+          inchiKey:data[0][n - 1].inchikey,
+          SMILES:data[0][n - 1].smiles,
+          chemical_formula:data[0][n - 1].chemical_formula,
+          }
+
+          newMetaboliteMetadataDict[data[0][n - 1].inchikey] = new_dict
+
+
+
           for (var i = concs.concentration.length - 1; i >= 0; i--) {
             var growth_phase = '';
             var organism = 'Escherichia coli';
@@ -374,9 +389,13 @@ class MetabConcs extends Component {
         this.setState({ tanitomo: false });
       }
 
+      let metaboliteMetadata = Object.keys(newMetaboliteMetadataDict).map(function(key) {
+    return newMetaboliteMetadataDict[key];})
+
       this.props.dispatch(setTotalData(f_concentrations));
       this.setState({
         data_arrived: true,
+        metaboliteMetadata:metaboliteMetadata,
         //displayed_data: f_concentrations
       });
     } else {
@@ -451,7 +470,27 @@ class MetabConcs extends Component {
       console.log('Redirecting');
       return <Redirect to={this.state.new_url} push />;
     }
+
     const values = queryString.parse(this.props.location.search);
+
+
+    if (this.state.metaboliteMetadata.length == 0 ||
+              this.props.totalData == null ){
+        return ( <div>
+
+          <Header 
+        handleClick={this.getNewSearch}
+        defaultQuery={values.q}
+        defaultOrganism={values.organism}
+      />
+      <div class="loader_container">
+      <div class="loader"></div> 
+      </div>
+      </div>)
+      }
+
+
+
 
     return (
       <div className="total_container">
