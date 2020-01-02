@@ -171,9 +171,6 @@ ul, ol {
 }
 
 /* general styling */
-br {
-    display: none;
-}
 
 .MuiGrid-root p{margin-bottom: 0}
 
@@ -247,7 +244,7 @@ br {
     text-align: center;
 }
 
- .home_logo img{
+.home_purpose .home_logo img{
 
   display: block;
   margin-left: auto !important;;
