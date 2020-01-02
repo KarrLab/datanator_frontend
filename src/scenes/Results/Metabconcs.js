@@ -527,11 +527,12 @@ class MetabConcs extends Component {
 
         <div
           className="ag_chart"
+          style={{width: '100%', height:"1000px" }}
           
         >
           <div
             className="ag-theme-balham"
-            style={{ height: '400px', width: '100%' }}
+            style={{width: '100%', height:"100%"}}
           >
 
             <AgGridReact
