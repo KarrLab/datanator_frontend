@@ -140,6 +140,7 @@ class GeneralPage extends Component {
         metabolite_metadata = this.state.metabolite_results.concat(metabolite_metadata)
       }
       //let metabolite_metadata = this.state.metabolite_results.concat(formatMetaboliteMetadata(metabolite_data, values.organism))
+      console.log(metabolite_metadata)
       this.setState({metabolite_results: metabolite_metadata})
 
     }

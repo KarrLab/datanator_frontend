@@ -134,7 +134,7 @@ add_reactions(){
   console.log(this.props.reaction_results)
   let reaction_results = this.props.reaction_results;
   let new_reaction_results = [];
-    for (var i = reaction_results.length - 1; i >= 0; i--) {
+    for (var i = 0; i < reaction_results.length ; i++) {
       new_reaction_results.push(
         format_results(
           reaction_results[i]['primary_text'],
@@ -151,7 +151,7 @@ add_reactions(){
 add_metabolites(){
   let metabolite_results = this.props.metabolite_results;
       let new_metabolite_results = [];
-      for (var i = metabolite_results.length - 1; i >= 0; i--) {
+      for (var i = 0; i < metabolite_results.length ; i++) {
       new_metabolite_results.push(
         format_results(
           metabolite_results[i]['primary_text'],
