@@ -11,6 +11,7 @@ import { Link, Redirect } from 'react-router-dom';
 
 import { PropTypes } from 'react';
 import Typography from '@material-ui/core/Typography';
+import { abstractMolecule } from '~/data/actions/pageAction';
 
 const products = [{ id: '3', name: 'bob' }];
 const columns = [
@@ -28,6 +29,10 @@ const columns = [
   },
 ];
 
+
+@connect(store => {
+  return {};
+})
 class MetaboliteDefinition extends Component {
   constructor(props) {
     super(props);
@@ -185,6 +190,7 @@ class MetaboliteDefinition extends Component {
             <p><b>Chemical Formula:</b> {metaboliteMetadata.chemical_formula}</p>
             <div style={{"overflow-wrap": "break-word"}}><p><b>InChI:</b> <font size="2">{metaboliteMetadata.inchi}</font></p></div>
             <p><b>InChIKey:</b> {metaboliteMetadata.inchiKey}</p>
+             <button type="button" onClick={() => {this.props.dispatch(abstractMolecule(true))}} >Include Structurally Similar Molecules</button>
 
       </div>
       </div>

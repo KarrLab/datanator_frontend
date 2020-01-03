@@ -22,9 +22,7 @@
 .metadata_description_abstract{
 
     margin-left:20px;
-    border: 1px solid #1890ff;
-    border-radius: 4px;
-    margin-top:3px ;
+    margin-top:10px ;
     margin-bottom:3px;
 
 
@@ -32,7 +30,7 @@
 
 .metadata_description_abstract p{
 
-    margin-bottom: 2px;
+    margin-bottom: 1px;
 }
 
 .metadata_description p{
@@ -146,4 +144,14 @@ margin-left:10px;
 
 .summary{
     margin-left: 15px
+}
+
+
+.metadata_description button{ 
+        background-color: #0084ff !important;
+    border: #0a89ff!important;
+ font-size: 16px;
+    color: white;
+    margin-bottom: 2px; 
+
 }
