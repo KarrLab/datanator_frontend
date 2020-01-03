@@ -35,6 +35,9 @@ import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 import './ag_styles.css'
 import './MetabConcs.css'
 import {TaxonomyFilter} from '~/scenes/Results/TaxonomyFilter.js'
+import {TanitomoFilter} from '~/scenes/Results/TanitomoFilter.js'
+
+
 import PartialMatchFilter from "./PartialMatchFilter.js";
 
 import {MetaboliteDefinition} from '~/components/Definitions/MetaboliteDefinition';
@@ -141,8 +144,14 @@ class MetabConcs extends Component {
         {
           headerName: 'Taxonomic Distance',
           field: 'taxonomic_proximity',
-          //hide: true,
+          hide: true,
           filter: 'taxonomyFilter',
+        },
+        {
+          headerName: 'Tanitomo Similarity',
+          field: 'tanitomo_similarity',
+          hide: true,
+          filter: 'tanitomoFilter',
         },
         {
           headerName: 'Growth Phase',
@@ -173,7 +182,8 @@ class MetabConcs extends Component {
         cellRenderer: 'agGroupCellRenderer',
         cellRendererParams: { checkbox: true },
       },
-       frameworkComponents: { CustomToolPanel: CustomToolPanel, taxonomyFilter: TaxonomyFilter, partialMatchFilter: PartialMatchFilter }
+       frameworkComponents: { CustomToolPanel: CustomToolPanel, taxonomyFilter: TaxonomyFilter, partialMatchFilter: PartialMatchFilter, 
+        tanitomoFilter: TanitomoFilter }
     };
 
     this.getNewSearch = this.getNewSearch.bind(this);
