@@ -278,6 +278,7 @@ class MetabConcs extends Component {
           this.setState({ tanitomo: false });
           //this.props.dispatch(abstractMolecule(false))
         }
+      console.log(tani)
 
         var concs = data[0][n - 1].concentrations;
         if (concs != null) {
@@ -534,7 +535,7 @@ class MetabConcs extends Component {
  
           <MetaboliteDefinition 
           metaboliteMetadata={this.state.metaboliteMetadata} 
-          abstract={this.props.match.params.abstract}
+          abstract={this.state.tanitomo}
           molecule={this.props.match.params.molecule}
           organism={this.props.match.params.organism}
           />

@@ -112,7 +112,7 @@ class MetaboliteDefinition extends Component {
     }
 
 
-    if (this.props.abstract=='true'){
+    if (this.props.abstract==true){
 
       let names = ""
       for (var i = metaboliteMetadata.length - 1; i >= 0; i--) {
