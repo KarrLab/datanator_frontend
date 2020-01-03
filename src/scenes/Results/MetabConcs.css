@@ -19,6 +19,22 @@
 
 }
 
+.metadata_description_abstract{
+
+    margin-left:20px;
+    border: 1px solid #1890ff;
+    border-radius: 4px;
+    margin-top:3px ;
+    margin-bottom:3px;
+
+
+}
+
+.metadata_description_abstract p{
+
+    margin-bottom: 2px;
+}
+
 .metadata_description p{
 
 	margin-bottom: 9px;

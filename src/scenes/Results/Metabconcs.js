@@ -532,7 +532,11 @@ class MetabConcs extends Component {
       />
 
  
-          <MetaboliteDefinition metaboliteMetadata={this.state.metaboliteMetadata} />
+          <MetaboliteDefinition 
+          metaboliteMetadata={this.state.metaboliteMetadata} 
+          abstract={this.props.match.params.abstract}
+          molecule={this.props.match.params.molecule}
+          />
 
 
         <div
