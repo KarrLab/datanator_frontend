@@ -123,7 +123,7 @@ class MetaboliteDefinition extends Component {
       for (var i = metaboliteMetadata.length - 1; i >= 0; i--) {
         descriptions.push(
         <div  className="metadata_description_abstract" >
-            <p><b>Name:</b> {metaboliteMetadata[i].name}</p>
+            <p><b>Name:</b> <a href={"/metabconcs/" + metaboliteMetadata[i].name + "/" + this.props.organism}>{metaboliteMetadata[i].name}</a></p>
             <p><b>Chemical Formula:</b> {metaboliteMetadata[i].chemical_formula}</p>
       </div>)
       }

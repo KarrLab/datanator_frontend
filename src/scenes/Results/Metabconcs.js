@@ -536,6 +536,7 @@ class MetabConcs extends Component {
           metaboliteMetadata={this.state.metaboliteMetadata} 
           abstract={this.props.match.params.abstract}
           molecule={this.props.match.params.molecule}
+          organism={this.props.match.params.organism}
           />
 
 
