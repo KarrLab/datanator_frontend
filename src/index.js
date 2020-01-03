@@ -60,7 +60,6 @@ const SiteRouter = () => {
 };
 const SiteProvider = () => {
   return (
-    
     <Provider store={store}>
       <SiteRouter />
     </Provider>
