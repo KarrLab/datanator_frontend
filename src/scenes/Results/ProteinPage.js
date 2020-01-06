@@ -457,10 +457,12 @@ class ProteinPage extends Component {
           let docs = data[i].documents;
           for (var q = docs.length - 1; q >= 0; q--) {
             var uniprot = docs[q].abundances;
+            if (uniprot != undefined){
             for (var n = 0; n < uniprot.length; n++) {
               let row = {};
               uniprot_to_dist[docs[q].uniprot_id] = data[i].distance;
             }
+          }
           }
         }
       }
@@ -490,6 +492,7 @@ class ProteinPage extends Component {
         }
         for (var i = start; i < data.length; i++) {
           let uniprot = data[i];
+          if (uniprot.abundances != undefined){
           for (var n = 0; n < uniprot.abundances.length; n++) {
             let row = {};
             row['abundance'] = uniprot.abundances[n].abundance;
@@ -507,6 +510,7 @@ class ProteinPage extends Component {
             row['source_link'] = { uniprot_id: uniprot.uniprot_id }
             f_abundances.push(row);
           }
+        }
         }
         this.props.dispatch(setTotalData(f_abundances));
         this.setState({ data_arrived: true });

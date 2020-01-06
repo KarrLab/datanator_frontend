@@ -159,7 +159,7 @@ class ProteinDefinition extends Component {
 
         <div  className="metadata_description" >
             <p><b>Name:</b> {proteinMetadata.ko_name[0]}</p>
-            <p><b>Ko Number:</b> {proteinMetadata.ko_number}</p>
+            <p><b>KO Number:</b> <a href={"https://www.genome.jp/dbget-bin/www_bget?ko:" + proteinMetadata.ko_number}> {proteinMetadata.ko_number}</a></p>
             <p><b>Uniprot IDs:</b> {uniprot_links}</p>
 
       </div>
