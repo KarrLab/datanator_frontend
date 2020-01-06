@@ -129,6 +129,9 @@ class ProteinDefinition extends Component {
     let uniprot_links = []
     for (var i = uniprot_ids.length - 1; i >= 0; i--) {
      let a =  uniprot_ids[i]
+     let link = ""
+     link = <a href={"https://www.uniprot.org/uniprot/" + uniprot_ids[i]} > {uniprot_ids[i]}, </a>
+     uniprot_links.push(link)
     }
 
     return (
@@ -157,7 +160,7 @@ class ProteinDefinition extends Component {
         <div  className="metadata_description" >
             <p><b>Name:</b> {proteinMetadata.ko_name[0]}</p>
             <p><b>Ko Number:</b> {proteinMetadata.ko_number}</p>
-            <p><b>Uniprot IDs:</b> {uniprot_ids}</p>
+            <p><b>Uniprot IDs:</b> {uniprot_links}</p>
 
       </div>
       </div>

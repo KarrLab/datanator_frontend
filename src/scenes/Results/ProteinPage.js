@@ -394,7 +394,7 @@ class ProteinPage extends Component {
     meta['ko_name'] = data[0].ko_name;
 
     for (var i = start; i < data.length; i++) {
-      uni_ids.push(data[i].uniprot_id + ' (' + data[i].species_name + ') ');
+      uni_ids.push(data[i].uniprot_id);
     }
     meta['uniprot_ids'] = uni_ids;
     newOrthologyMetadata.push(meta);
@@ -583,6 +583,22 @@ class ProteinPage extends Component {
     }
     console.log('Rendering ProteinPage');
     const values = queryString.parse(this.props.location.search);
+
+
+    if (this.state.orthologyMetadata.length == 0 ||
+              this.props.totalData == null ){
+        return ( <div>
+
+          <Header 
+        handleClick={this.getNewSearch}
+        defaultQuery={values.q}
+        defaultOrganism={values.organism}
+      />
+      <div class="loader_container">
+      <div class="loader"></div> 
+      </div>
+      </div>)
+      }
 
 
     let styles = {
