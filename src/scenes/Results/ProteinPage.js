@@ -124,7 +124,6 @@ class ProteinPage extends Component {
           sortable: true,
           filter: 'agNumberColumnFilter',
         },
-        { headerName: 'Error', field: 'error', hide: true },
         {
           headerName: 'Organism',
           field: 'organism',
@@ -142,6 +141,32 @@ class ProteinPage extends Component {
                 params.value.uniprot_id +
                 '"rel="noopener">' +
                 'PAXdb' +
+                '</a>'
+              );
+            } else {
+              return (
+                '<a href="http://www.ymdb.ca/compounds/' +
+                params.value.id +
+                '"rel="noopener">' +
+                'YMDB' +
+                '</a>'
+              );
+            }
+          },
+        },
+
+        {
+          headerName: 'Uniprot',
+          field: 'uniprot_source',
+
+          cellRenderer: function(params) {
+            console.log(params);
+            if (true) {
+              return (
+                '<a href="https://www.uniprot.org/uniprot/' +
+                params.value.uniprot_id +
+                '"rel="noopener">' +
+                params.value.uniprot_id +
                 '</a>'
               );
             } else {
@@ -176,31 +201,7 @@ class ProteinPage extends Component {
           filter: 'agTextColumnFilter',
           hide: true,
         },
-        {
-          headerName: 'Uniprot',
-          field: 'uniprot_source',
-
-          cellRenderer: function(params) {
-            console.log(params);
-            if (true) {
-              return (
-                '<a href="https://www.uniprot.org/uniprot/' +
-                params.value.uniprot_id +
-                '"rel="noopener">' +
-                params.value.uniprot_id +
-                '</a>'
-              );
-            } else {
-              return (
-                '<a href="http://www.ymdb.ca/compounds/' +
-                params.value.id +
-                '"rel="noopener">' +
-                'YMDB' +
-                '</a>'
-              );
-            }
-          },
-        },
+        
       ],
 
       rowData: null,
@@ -309,7 +310,7 @@ class ProteinPage extends Component {
           'taxon',
           'canon_rank_distance_by_name/?name=' + values.organism,
         ]).then(response => {
-          this.props.dispatch(set_lineage(response.data));
+          this.setState({lineage:response.data});
         });
       }
 
@@ -496,8 +497,12 @@ class ProteinPage extends Component {
             row['organism'] = uniprot.species_name;
             row['uniprot_id'] = uniprot.uniprot_id;
             row['uniprot_source'] = { uniprot_id: uniprot.uniprot_id }
-            row['protein_name'] = uniprot.protein_name;
-            row['taxonomic_proximity'] = uniprot_to_dist[uniprot.uniprot_id];
+            let protein_name = uniprot.protein_name
+            if (protein_name.includes("(")){
+              protein_name = protein_name.substring(0,protein_name.indexOf("("))
+            }
+            row['protein_name'] = protein_name;
+            row['taxonomic_proximity'] = uniprot_to_dist[uniprot.uniprot_id]+1;
             row['source_link'] = { uniprot_id: uniprot.uniprot_id }
             f_abundances.push(row);
           }
