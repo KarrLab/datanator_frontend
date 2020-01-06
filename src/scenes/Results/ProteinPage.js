@@ -25,7 +25,7 @@ import store from '~/data/Store';
 
 import { AgGridReact } from 'ag-grid-react';
 import { AllModules } from 'ag-grid-enterprise';
-import CustomToolPanel from '~/scenes/Results/CustomToolPanel.js';
+import CustomToolPanelProtein from '~/scenes/Results/CustomToolPanelProtein.js';
 import { AllCommunityModules } from "@ag-grid-community/all-modules";
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
@@ -60,7 +60,7 @@ const sideBar = {
       labelDefault: 'Consensus',
       labelKey: 'customStats',
       iconKey: 'customstats',
-      toolPanel: 'CustomToolPanel',
+      toolPanel: 'CustomToolPanelProtein',
     },
   ],
   position: 'left',
@@ -213,7 +213,7 @@ class ProteinPage extends Component {
         cellRenderer: 'agGroupCellRenderer',
         cellRendererParams: { checkbox: true },
       },
-       frameworkComponents: { CustomToolPanel: CustomToolPanel, taxonomyFilter: TaxonomyFilter, partialMatchFilter: PartialMatchFilter, 
+       frameworkComponents: { CustomToolPanelProtein: CustomToolPanelProtein, taxonomyFilter: TaxonomyFilter, partialMatchFilter: PartialMatchFilter, 
         tanitomoFilter: TanitomoFilter }
     };
 
