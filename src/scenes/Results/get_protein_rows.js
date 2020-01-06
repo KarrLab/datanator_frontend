@@ -22,7 +22,7 @@ function formatProteinMetadata(data, organism) {
   for (var i = start; i < data.length; i++) {
     let ko_number = data[i]['key'];
     if (ko_number != "nan"){
-
+      ko_number = ko_number[0].toUpperCase() + ko_number.substring(1, ko_number.length)
       let new_dict = newProteinMetadataDict[ko_number];
     if (!new_dict) {
       new_dict = {};

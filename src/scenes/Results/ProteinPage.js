@@ -10,16 +10,63 @@ import { withRouter } from 'react-router';
 
 import { getSearchData } from '~/services/MongoApi';
 
+import {
+  set_lineage,
+  setTotalData,
+  setSelectedData,
+} from '~/data/actions/resultsAction';
 
 import { setNewUrl, abstractMolecule } from '~/data/actions/pageAction';
 import '~/scenes/Results/ProteinPage.css';
 import { Header } from '~/components/Layout/Header/Header';
 import { Footer } from '~/components/Layout/Footer/Footer';
-import { setTotalData } from '~/data/actions/resultsAction';
 
-import { set_lineage } from '~/data/actions/resultsAction';
 import store from '~/data/Store';
+
+import { AgGridReact } from 'ag-grid-react';
+import { AllModules } from 'ag-grid-enterprise';
+import CustomToolPanel from '~/scenes/Results/CustomToolPanel.js';
+import { AllCommunityModules } from "@ag-grid-community/all-modules";
+
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-balham.css';
+
+import {TaxonomyFilter} from '~/scenes/Results/TaxonomyFilter.js'
+import {TanitomoFilter} from '~/scenes/Results/TanitomoFilter.js'
+import PartialMatchFilter from "./PartialMatchFilter.js";
+import './ag_styles.css'
+import './MetabConcs.css'
+
+
 const queryString = require('query-string');
+const sideBar = {
+  toolPanels: [
+    {
+      id: 'columns',
+      labelDefault: 'Columns',
+      labelKey: 'columns',
+      iconKey: 'columns',
+      toolPanel: 'agColumnsToolPanel',
+    },
+    {
+      id: 'filters',
+      labelDefault: 'Filters',
+      labelKey: 'filters',
+      iconKey: 'filter',
+      toolPanel: 'agFiltersToolPanel',
+    },
+    {
+      id: 'customStats',
+      labelDefault: 'Consensus',
+      labelKey: 'customStats',
+      iconKey: 'customstats',
+      toolPanel: 'CustomToolPanel',
+    },
+  ],
+  position: 'left',
+  defaultToolPanel: 'filters',
+};
+
 
 
 Object.size = function(obj) {
@@ -35,6 +82,7 @@ Object.size = function(obj) {
   return {
     //currentUrl: store.page.url,
     moleculeAbstract: store.page.moleculeAbstract,
+    totalData: store.results.totalData,
   };
 }) //the names given here will be the names of props
 class ProteinPage extends Component {
@@ -52,6 +100,120 @@ class ProteinPage extends Component {
       new_url: '',
       isFlushed: false,
       data_arrived: false,
+      modules: AllCommunityModules,
+      lineage:[],
+      dataSource: [],
+      data_arrived: false,
+      newSearch: false,
+      new_url: '',
+      tanitomo: false,
+      columnDefs: [
+        {
+          headerName: 'Protein',
+          field: 'protein_name',
+          checkboxSelection: true,
+          headerCheckboxSelection: true,
+          headerCheckboxSelectionFilteredOnly: true,
+          //filter: 'taxonomyFilter',
+          filter: "agNumberColumnFilter",
+          menuTabs: ["filterMenuTab"]
+        },
+        {
+          headerName: 'Abundance',
+          field: 'abundance',
+          sortable: true,
+          filter: 'agNumberColumnFilter',
+        },
+        { headerName: 'Error', field: 'error', hide: true },
+        {
+          headerName: 'Organism',
+          field: 'organism',
+          filter: 'agTextColumnFilter',
+        },
+        {
+          headerName: 'Source Link',
+          field: 'source_link',
+
+          cellRenderer: function(params) {
+            console.log(params);
+            if (true) {
+              return (
+                '<a href="https://pax-db.org/search?q=' +
+                params.value.uniprot_id +
+                '"rel="noopener">' +
+                'PAXdb' +
+                '</a>'
+              );
+            } else {
+              return (
+                '<a href="http://www.ymdb.ca/compounds/' +
+                params.value.id +
+                '"rel="noopener">' +
+                'YMDB' +
+                '</a>'
+              );
+            }
+          },
+        },
+
+
+        {
+          headerName: 'Taxonomic Distance',
+          field: 'taxonomic_proximity',
+          hide: true,
+          filter: 'taxonomyFilter',
+        },
+
+        {
+          headerName: 'Organ',
+          field: 'organ',
+          filter: 'agTextColumnFilter',
+          hide: true,
+        },
+        {
+          headerName: 'Gene Symbol',
+          field: 'gene_symbol',
+          filter: 'agTextColumnFilter',
+          hide: true,
+        },
+        {
+          headerName: 'Uniprot',
+          field: 'uniprot_source',
+
+          cellRenderer: function(params) {
+            console.log(params);
+            if (true) {
+              return (
+                '<a href="https://www.uniprot.org/uniprot/' +
+                params.value.uniprot_id +
+                '"rel="noopener">' +
+                params.value.uniprot_id +
+                '</a>'
+              );
+            } else {
+              return (
+                '<a href="http://www.ymdb.ca/compounds/' +
+                params.value.id +
+                '"rel="noopener">' +
+                'YMDB' +
+                '</a>'
+              );
+            }
+          },
+        },
+      ],
+
+      rowData: null,
+      rowSelection: 'multiple',
+      autoGroupColumnDef: {
+        headerName: 'Conc',
+        field: 'concentration',
+        width: 200,
+        cellRenderer: 'agGroupCellRenderer',
+        cellRendererParams: { checkbox: true },
+      },
+       frameworkComponents: { CustomToolPanel: CustomToolPanel, taxonomyFilter: TaxonomyFilter, partialMatchFilter: PartialMatchFilter, 
+        tanitomoFilter: TanitomoFilter }
     };
 
     this.getNewSearch = this.getNewSearch.bind(this);
@@ -333,8 +495,10 @@ class ProteinPage extends Component {
             row['gene_symbol'] = uniprot.gene_name;
             row['organism'] = uniprot.species_name;
             row['uniprot_id'] = uniprot.uniprot_id;
+            row['uniprot_source'] = { uniprot_id: uniprot.uniprot_id }
             row['protein_name'] = uniprot.protein_name;
             row['taxonomic_proximity'] = uniprot_to_dist[uniprot.uniprot_id];
+            row['source_link'] = { uniprot_id: uniprot.uniprot_id }
             f_abundances.push(row);
           }
         }
@@ -347,6 +511,68 @@ class ProteinPage extends Component {
     } else {
         //alert('Nothing Found');
     }
+  }
+
+
+  getNewSearch(response) {
+    let url = '/general/?q=' + response[0] + '&organism=' + response[1];
+    this.setState({ new_url: url });
+    this.setState({ newSearch: true });
+  }
+
+  onFirstDataRendered(params) {
+    //params.columnApi.autoSizeColumns(['concentration'])
+
+    var allColumnIds = [];
+    params.columnApi.getAllColumns().forEach(function(column) {
+      allColumnIds.push(column.colId);
+    });
+    params.columnApi.autoSizeColumns(allColumnIds);
+    //params.gridColumnApi.autoSizeColumns(allColumnIds, false);
+  }
+
+  onRowSelected(event) {
+    //window.alert("row " + event.node.data.athlete + " selected = " + event.node.selected);
+    console.log('eyooo');
+    console.log(event.api.getSelectedNodes());
+    let selectedRows = [];
+    for (var i = event.api.getSelectedNodes().length - 1; i >= 0; i--) {
+      selectedRows.push(event.api.getSelectedNodes()[i].data);
+    }
+    this.props.dispatch(setSelectedData(selectedRows));
+  }
+
+  onFiltered(event) {
+    //window.alert("row " + event.node.data.athlete + " selected = " + event.node.selected);
+    console.log('eyooo');
+    console.log(event)
+    console.log(event.api.getSelectedNodes());
+    let selectedRows = [];
+    if (event.api.getSelectedNodes() > 0){
+      for (var i = event.api.getSelectedNodes().length - 1; i >= 0; i--) {
+        selectedRows.push(event.api.getSelectedNodes()[i].data);
+      }
+      this.props.dispatch(setSelectedData(selectedRows));
+  }
+  }
+
+  
+
+  onGridReady = params => {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    params.api.sizeColumnsToFit();
+
+  };
+
+
+
+  onClicked() {
+    console.log(this)
+    this.gridApi
+      .getFilterInstance("taxonomic_proximity")
+      .getFrameworkComponentInstance()
+      .componentMethod2("Hello World!");
   }
 
 
@@ -363,8 +589,54 @@ class ProteinPage extends Component {
       marginTop: 50,
     };
     return (
-      <div className="container" style={styles}>
-        <Header />
+      <div className="total_container">
+        
+      <Header 
+        handleClick={this.getNewSearch}
+        defaultQuery={values.q}
+        defaultOrganism={values.organism}
+      />
+
+      <div className="metabolite_definition_data">
+      </div>
+
+
+
+
+
+        <div
+          className="ag_chart"
+          style={{width: '100%', height:"1000px" }}
+          
+        >
+          <div
+            className="ag-theme-balham"
+            style={{width: '100%', height:"100%"}}
+          >
+
+            <AgGridReact
+            modules={this.state.modules}
+            frameworkComponents={this.state.frameworkComponents}
+              columnDefs={this.state.columnDefs}
+              sideBar={sideBar}
+              
+              rowData={this.props.totalData}
+              gridOptions={{ floatingFilter: true }}
+              onFirstDataRendered={this.onFirstDataRendered.bind(this)}
+              rowSelection={this.state.rowSelection}
+              groupSelectsChildren={true}
+              suppressRowClickSelection={true}
+              //autoGroupColumnDef={this.state.autoGroupColumnDef}
+              //onGridReady={this.onGridReady}
+              lineage={this.state.lineage}
+              onSelectionChanged={this.onRowSelected.bind(this)}
+              onFilterChanged = {this.onFiltered.bind(this)}
+              domLayout={'autoHeight'}
+               domLayout={'autoWidth'}
+              onGridReady={this.onGridReady}
+            ></AgGridReact>
+          </div>
+        </div>
         <Footer />
       </div>
     );

@@ -39,7 +39,7 @@ const SiteRouter = () => {
       />
       <Route
         path="/protein/:searchType/:molecule/:organism?/"
-        component={Metabconcs}
+        component={ProteinPage}
       />
 
       <Route
