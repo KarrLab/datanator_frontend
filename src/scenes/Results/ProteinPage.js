@@ -36,6 +36,7 @@ import {TanitomoFilter} from '~/scenes/Results/TanitomoFilter.js'
 import PartialMatchFilter from "./PartialMatchFilter.js";
 import './ag_styles.css'
 import './MetabConcs.css'
+import {ProteinDefinition} from '~/components/Definitions/ProteinDefinition';
 
 
 const queryString = require('query-string');
@@ -134,7 +135,7 @@ class ProteinPage extends Component {
           field: 'source_link',
 
           cellRenderer: function(params) {
-            console.log(params);
+            //console.log(params);
             if (true) {
               return (
                 '<a href="https://pax-db.org/search?q=' +
@@ -160,7 +161,7 @@ class ProteinPage extends Component {
           field: 'uniprot_source',
 
           cellRenderer: function(params) {
-            console.log(params);
+            //console.log(params);
             if (true) {
               return (
                 '<a href="https://www.uniprot.org/uniprot/' +
@@ -385,7 +386,7 @@ class ProteinPage extends Component {
 
   formatOrthologyMetadataUniprot(data) {
     console.log('Calling formatOrthologyMetadataUniprot');
-    let newOrthologyMetadata = this.state.orthologyMetadata;
+    let newOrthologyMetadata = [];
     let start = 0;
     let uni_ids = [];
     let meta = {};
@@ -596,8 +597,11 @@ class ProteinPage extends Component {
         defaultOrganism={values.organism}
       />
 
-      <div className="metabolite_definition_data">
-      </div>
+      <ProteinDefinition 
+          proteinMetadata={this.state.orthologyMetadata} 
+          //molecule={this.props.match.params.molecule}
+          organism={values.organism}
+      />
 
 
 
