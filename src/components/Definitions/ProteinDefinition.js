@@ -147,13 +147,13 @@ class ProteinDefinition extends Component {
         className="photo_and_description"
       >
 
-        <div  className="vertical_center" >
+        <div  className="vertical_center_protein" >
             <img
               border="0"
               alt="W3Schools"
               src={"https://image.flaticon.com/icons/png/512/1951/1951420.png"}
-              width="180"
-              height="180"
+              width="80%"
+              height="80%"
             ></img>
         </div>
 

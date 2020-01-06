@@ -135,6 +135,20 @@ margin-left:10px;
     height:60%;
 }
 
+.vertical_center_protein {
+    width:200px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.vertical_center_protein img{
+    margin-left: 20px;
+    width:45%;
+    height:50%;
+}
+
 .photo_and_description{
  position: relative;
  margin-top: 10px;
