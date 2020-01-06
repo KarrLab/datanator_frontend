@@ -219,7 +219,8 @@ class MetabConcs extends Component {
       this.props.match.params.organism != prevProps.match.params.organism ||
       this.props.match.params.abstract != prevProps.match.params.abstract
     ) {
-      this.setState({ newSearch: false });
+      this.setState({ newSearch: false,
+      metaboliteMetadata: [] });
       this.getSearchData();
     }
 
