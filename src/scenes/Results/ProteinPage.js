@@ -550,16 +550,10 @@ class ProteinPage extends Component {
   onFiltered(event) {
     //window.alert("row " + event.node.data.athlete + " selected = " + event.node.selected);
     console.log('eyooo');
-    console.log(event)
-    console.log(event.api.getSelectedNodes());
-    let selectedRows = [];
-    if (event.api.getSelectedNodes() > 0){
-      for (var i = event.api.getSelectedNodes().length - 1; i >= 0; i--) {
-        selectedRows.push(event.api.getSelectedNodes()[i].data);
-      }
-      this.props.dispatch(setSelectedData(selectedRows));
+    event.api.deselectAll()
+    this.props.dispatch(setSelectedData([]));
   }
-  }
+
 
   
 
