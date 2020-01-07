@@ -130,7 +130,12 @@ class ProteinDefinition extends Component {
     for (var i = uniprot_ids.length - 1; i >= 0; i--) {
      let a =  uniprot_ids[i]
      let link = ""
-     link = <a href={"https://www.uniprot.org/uniprot/" + uniprot_ids[i]} > {uniprot_ids[i]}, </a>
+     if (i == 0){
+      link = <a href={"https://www.uniprot.org/uniprot/" + uniprot_ids[i]} > {uniprot_ids[i]} </a>
+     }
+     else{
+      link = <a href={"https://www.uniprot.org/uniprot/" + uniprot_ids[i]} > {uniprot_ids[i]}, </a>
+     }
      uniprot_links.push(link)
     }
 
