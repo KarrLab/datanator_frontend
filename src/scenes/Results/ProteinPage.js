@@ -194,7 +194,7 @@ class ProteinPage extends Component {
           headerName: 'Organ',
           field: 'organ',
           filter: 'agTextColumnFilter',
-          hide: true,
+          hide: false,
         },
         {
           headerName: 'Gene Symbol',
