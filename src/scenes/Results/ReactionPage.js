@@ -369,7 +369,7 @@ class ReactionPage extends Component {
           organism: data[i].taxon_name,
           ph: data[i].ph,
           temperature: data[i].temperature,
-          source_link:{ reactionID: reactionID},
+          source_link:{ reactionID: getReactionID(data[i].resource)},
         }
         let row_with_km = Object.assign({}, row, getKm(data[i].parameter, substrates))
         //console.log(row_with_km)
@@ -527,6 +527,10 @@ class ReactionPage extends Component {
         defaultQuery={values.q}
         defaultOrganism={values.organism}
       />
+
+      <div
+        className="metabolite_definition_data"
+      ></div>
 
 
 
