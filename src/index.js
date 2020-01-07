@@ -44,7 +44,7 @@ const SiteRouter = () => {
 
       <Route
         path="/reaction/:dataType/"
-        component={Metabconcs}
+        component={ReactionPage}
       />
       <Route
         path="/general/"

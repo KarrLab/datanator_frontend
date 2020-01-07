@@ -9,12 +9,58 @@ import { withRouter } from 'react-router';
 
 
 import { getSearchData } from '~/services/MongoApi';
-import { set_lineage, setTotalData } from '~/data/actions/resultsAction';
-import { ReactionDefinition } from '~/components/Definitions/ReactionDefinition';
+import {
+  set_lineage,
+  setTotalData,
+  setSelectedData,
+} from '~/data/actions/resultsAction';import { ReactionDefinition } from '~/components/Definitions/ReactionDefinition';
 
 import { Header } from '~/components/Layout/Header/Header';
 import { Footer } from '~/components/Layout/Footer/Footer';
+
+import { AgGridReact } from 'ag-grid-react';
+import { AllModules } from 'ag-grid-enterprise';
+import CustomToolPanelReaction from '~/scenes/Results/CustomToolPanelReaction.js';
+import { AllCommunityModules } from "@ag-grid-community/all-modules";
+
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-balham.css';
+
+import {TaxonomyFilter} from '~/scenes/Results/TaxonomyFilter.js'
+import {TanitomoFilter} from '~/scenes/Results/TanitomoFilter.js'
+import PartialMatchFilter from "./PartialMatchFilter.js";
+
+
+import './ag_styles.css'
+import './MetabConcs.css'
 const queryString = require('query-string');
+const sideBar = {
+  toolPanels: [
+    {
+      id: 'columns',
+      labelDefault: 'Columns',
+      labelKey: 'columns',
+      iconKey: 'columns',
+      toolPanel: 'agColumnsToolPanel',
+    },
+    {
+      id: 'filters',
+      labelDefault: 'Filters',
+      labelKey: 'filters',
+      iconKey: 'filter',
+      toolPanel: 'agFiltersToolPanel',
+    },
+    {
+      id: 'customStats',
+      labelDefault: 'Consensus',
+      labelKey: 'customStats',
+      iconKey: 'customstats',
+      toolPanel: 'CustomToolPanelReaction',
+    },
+  ],
+  position: 'left',
+  defaultToolPanel: 'filters',
+};
 
 function getReactionID(resource) {
   for (var i = 0; i < resource.length; i++)
@@ -90,20 +136,116 @@ function getKm(parameters, substrates) {
   }
   return kms;
 }
+/*
+reaction_id
+kcat
+wildtype_mutant
+organism
+ph
+temperature
 
+*/
 @connect(store => {
-  return {};
+  return {totalData: store.results.totalData,};
 }) //the names given here will be the names of props
 class ReactionPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      reactionMetadata: [],
+      km_values:[],
+      modules: AllCommunityModules,
+      lineage:[],
       dataSource: [],
       data_arrived: false,
       newSearch: false,
       new_url: '',
-      reactionMetadata: [],
-      km_values:[],
+      tanitomo: false,
+      columnDefs: [
+        {
+          headerName: 'Molecule',
+          field: 'name',
+          checkboxSelection: true,
+          headerCheckboxSelection: true,
+          headerCheckboxSelectionFilteredOnly: true,
+          //filter: 'taxonomyFilter',
+          filter: "agNumberColumnFilter",
+          menuTabs: ["filterMenuTab"]
+        },
+        {
+          headerName: 'Kcat',
+          field: 'kcat',
+          sortable: true,
+          filter: 'agNumberColumnFilter',
+        },
+        { headerName: 'Error', field: 'error', hide: true },
+        {
+          headerName: 'Organism',
+          field: 'organism',
+          filter: 'agTextColumnFilter',
+        },
+        {
+          headerName: 'Source Link',
+          field: 'source_link',
+
+          cellRenderer: function(params) {
+            console.log(params);
+            if (true) {
+              return (
+                '<a href="http://sabio.h-its.org/reacdetails.jsp?reactid=' +
+                params.value.reactionID +
+                '"rel="noopener">' +
+                'SABIO-RK' +
+                '</a>'
+              );
+            }
+          },
+        },
+
+
+        {
+          headerName: 'Taxonomic Distance',
+          field: 'taxonomic_proximity',
+          hide: true,
+          filter: 'taxonomyFilter',
+        },
+        {
+          headerName: 'Tanitomo Similarity',
+          field: 'tanitomo_similarity',
+          hide: true,
+          filter: 'tanitomoFilter',
+        },
+        {
+          headerName: 'Growth Phase',
+          field: 'growth_phase',
+          filter: 'agTextColumnFilter',
+          hide: true,
+        },
+        {
+          headerName: 'Conditions',
+          field: 'growth_conditions',
+          filter: 'agTextColumnFilter',
+          hide: true,
+        },
+        {
+          headerName: 'Media',
+          field: 'growth_media',
+          filter: 'agTextColumnFilter',
+          hide: true,
+        },
+      ],
+
+      rowData: null,
+      rowSelection: 'multiple',
+      autoGroupColumnDef: {
+        headerName: 'Conc',
+        field: 'concentration',
+        width: 200,
+        cellRenderer: 'agGroupCellRenderer',
+        cellRendererParams: { checkbox: true },
+      },
+       frameworkComponents: { CustomToolPanelReaction: CustomToolPanelReaction, taxonomyFilter: TaxonomyFilter, partialMatchFilter: PartialMatchFilter, 
+        tanitomoFilter: TanitomoFilter }
     };
 
     this.formatReactionData = this.formatReactionData.bind(this);
@@ -226,7 +368,8 @@ class ReactionPage extends Component {
           wildtype_mutant:wildtype_mutant,
           organism: data[i].taxon_name,
           ph: data[i].ph,
-          temperature: data[i].temperature
+          temperature: data[i].temperature,
+          source_link:{ reactionID: reactionID},
         }
         let row_with_km = Object.assign({}, row, getKm(data[i].parameter, substrates))
         //console.log(row_with_km)
@@ -296,6 +439,55 @@ class ReactionPage extends Component {
     });
   }
 
+  onFirstDataRendered(params) {
+    //params.columnApi.autoSizeColumns(['concentration'])
+
+    var allColumnIds = [];
+    params.columnApi.getAllColumns().forEach(function(column) {
+      allColumnIds.push(column.colId);
+    });
+    params.columnApi.autoSizeColumns(allColumnIds);
+    //params.gridColumnApi.autoSizeColumns(allColumnIds, false);
+  }
+
+  onRowSelected(event) {
+    //window.alert("row " + event.node.data.athlete + " selected = " + event.node.selected);
+    console.log('eyooo');
+    console.log(event.api.getSelectedNodes());
+    let selectedRows = [];
+    for (var i = event.api.getSelectedNodes().length - 1; i >= 0; i--) {
+      selectedRows.push(event.api.getSelectedNodes()[i].data);
+    }
+    this.props.dispatch(setSelectedData(selectedRows));
+  }
+
+  onFiltered(event) {
+    //window.alert("row " + event.node.data.athlete + " selected = " + event.node.selected);
+    console.log('eyooo');
+    event.api.deselectAll()
+    this.props.dispatch(setSelectedData([]));
+  }
+
+
+  
+
+  onGridReady = params => {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    params.api.sizeColumnsToFit();
+
+  };
+
+
+
+  onClicked() {
+    console.log(this)
+    this.gridApi
+      .getFilterInstance("taxonomic_proximity")
+      .getFrameworkComponentInstance()
+      .componentMethod2("Hello World!");
+  }
+
   render() {
     console.log('ReactionPage: Rendering ReactionPage');
     console.log(this.state.reactionMetadata)
@@ -307,13 +499,74 @@ class ReactionPage extends Component {
       return <Redirect to={this.state.new_url} push />;
     }
 
+    if (this.props.totalData == null ){
+        return ( <div>
+
+          <Header 
+        handleClick={this.getNewSearch}
+        defaultQuery={values.q}
+        defaultOrganism={values.organism}
+      />
+      <div class="loader_container">
+      <div class="loader"></div> 
+      </div>
+      </div>)
+      }
+
+
+
     let styles = {
       marginTop: 50,
     };
 
     return (
-      <div className="container" style={styles}>
-        <Header />
+      <div className="total_container">
+        
+      <Header 
+        handleClick={this.getNewSearch}
+        defaultQuery={values.q}
+        defaultOrganism={values.organism}
+      />
+
+
+
+
+
+
+
+        <div
+          className="ag_chart"
+          style={{width: '100%', height:"1000px" }}
+          
+        >
+          <div
+            className="ag-theme-balham"
+            style={{width: '100%', height:"100%"}}
+          >
+
+            <AgGridReact
+            modules={this.state.modules}
+            frameworkComponents={this.state.frameworkComponents}
+              columnDefs={this.state.columnDefs}
+              sideBar={sideBar}
+              
+              rowData={this.props.totalData}
+              gridOptions={{ floatingFilter: true }}
+              onFirstDataRendered={this.onFirstDataRendered.bind(this)}
+              rowSelection={this.state.rowSelection}
+              groupSelectsChildren={true}
+              suppressRowClickSelection={true}
+              //autoGroupColumnDef={this.state.autoGroupColumnDef}
+              //onGridReady={this.onGridReady}
+              lineage={this.state.lineage}
+              onSelectionChanged={this.onRowSelected.bind(this)}
+              onFilterChanged = {this.onFiltered.bind(this)}
+              domLayout={'autoHeight'}
+               domLayout={'autoWidth'}
+              onGridReady={this.onGridReady}
+            ></AgGridReact>
+          </div>
+        </div>
         <Footer />
       </div>
     );
