@@ -284,7 +284,7 @@ class ProteinPage extends Component {
         'proximity_abundance',
         '?uniprot_id=' +
           this.props.match.params.molecule +
-          '&distance=100&depth=100',
+          '&distance=40&depth=40',
       ]).then(response => {
         this.processProteinDataUniprot(response.data);
       });
@@ -301,7 +301,7 @@ class ProteinPage extends Component {
       getSearchData([
         'proteins',
         'proximity_abundance/proximity_abundance_kegg/?kegg_id=' + values.ko + 
-        "&anchor=" + values.organism + "&distance=100&depth=100",
+        "&anchor=" + values.organism + "&distance=40&depth=40",
       ]).then(response => {
         this.processProteinDataUniprot(response.data);
       });
