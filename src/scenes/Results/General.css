@@ -255,3 +255,4 @@ ul, ol {
 
   
 }
+.google.results>.MuiGrid-root>div:not(:first-child) { margin-top: 2rem; }

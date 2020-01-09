@@ -142,7 +142,7 @@ similarity (NCBI taxonomy), molecular similarity (tanitomo string comparison), r
               </div>
             </div>
 
-            <div style={{ marginTop:10}}>
+            <div>
              <div className="anchor">
               <a id="team"></a>
               </div>
@@ -172,7 +172,7 @@ similarity (NCBI taxonomy), molecular similarity (tanitomo string comparison), r
               </div>
             </div>
 
-            <div style={{ marginTop:10}}>
+            <div>
              <div className="anchor">
               <a id="acknowledgements"></a>
               </div>
@@ -188,7 +188,7 @@ similarity (NCBI taxonomy), molecular similarity (tanitomo string comparison), r
             </div>
 
 
-            <div style={{ marginTop:10}}>
+            <div>
              <div className="anchor">
               <a id="source_and_license"></a>
               </div>
