@@ -103,7 +103,7 @@ class AboutPage extends Component {
         <h3>Contents</h3>
       <ol>
       <li><Link>
-          <a href={'/about#purpose'}>{"Purpose"} </a>
+          <a href={'/about#purpose'}>{"Features"} </a>
       </Link></li>
       <li><Link>
           <a href={'/about#team'}>{"Team"} </a>
@@ -123,18 +123,18 @@ class AboutPage extends Component {
               <div className="anchor" >
               <a id="purpose"></a>
               </div><Typography variant="h6" className={'green'}>
-                1. Purpose
+                1. Motivation and Features
               </Typography>
 
               <div className="about_paragraph">
-                <p> Systems biology aims to understand how genotype influences phenotype. Comprehensive mechanistic models, such as whole-cell models, can be used to explore cell dynamics. However, the data required to construct these models are contained across many different databases -- often with inconsistent identifiers and formats. In addition, the time required to manually collect this data impedes the creation of large-scale models.</p> 
+                <p> Systems biology aims to understand how genotype influences phenotype. Comprehensive mechanistic models, such as whole-cell models, can be used to explore cell dynamics. However, the data required to construct these models are contained across many different databases &mdash; often with inconsistent identifiers and formats. In addition, the time required to manually collect this data impedes the creation of large-scale models.</p> 
               </div>
               <div className="about_paragraph">
-                <p>To accelerate whole-cell modeling, we developed Datanator, an integrated database and search engine. Datanator allows a modeler to input a desired biological parameter (e.g. molecular concentration, reaction rate, etc.) with desired search criteria (e.g. organism, environmental conditions, etc.), and Datanator returns a list of the most relevant observations.</p> 
+                <p>To accelerate <a href = "https://www.wholecell.org/">whole-cell modeling</a>, we developed <i>Datanator</i>, an integrated database and search engine. <i>Datanator</i> allows a modeler to input a desired biological parameter (e.g. molecular concentration, reaction rate, etc.) with desired search criteria (e.g. organism, environmental conditions, etc.), and <i>Datanator</i> returns a list of the most relevant observations.</p> 
               </div>
               <div className="about_paragraph">
-                <p> Datanator integrates, proteomic data (Pax-DB), kinetic data (SABIO-RK), and metabolite
-concentration data (ECMDB, YMDB). Datanator’s search engine can identify the most relevant
+                <p> <i>Datanator</i> integrates, proteomic data (Pax-DB), kinetic data (SABIO-RK), and metabolite
+concentration data (ECMDB, YMDB). <i>Datanator</i> search engine can identify the most relevant
 data from a combination of search criteria: genetic similarity (KEGG orthology), taxonomic
 similarity (NCBI taxonomy), molecular similarity (tanitomo string comparison), reaction similarity
 (EC number), and environmental similarity.
@@ -152,7 +152,7 @@ similarity (NCBI taxonomy), molecular similarity (tanitomo string comparison), r
               </Typography>
 
               <div className="about_paragraph">
-                <p> Datanator was developed by the <a href={"https://www.karrlab.org/"}> Karr Lab</a> at the Icahn School of Medicine at Mount Sinai in New York, US.</p>
+                <p> <i>Datanator</i> was developed by the <a href={"https://www.karrlab.org/"}> Karr Lab</a> at the Icahn School of Medicine at Mount Sinai in New York, US.</p>
               </div>
               <div className="about_paragraph">
                 <ol>
@@ -181,7 +181,7 @@ similarity (NCBI taxonomy), molecular similarity (tanitomo string comparison), r
               </Typography>
 
               <div className="about_paragraph">
-               <p> Datanator was developed with support from the Center for Reproducible Biomodeling Modeling from the National Institute of Bioimaging and Bioengineering and the National Institute of General Medical Sciences of the National Institutes of Health and the National Science Foundation (award P41EB023912) </p>
+               <p> <i>Datanator</i> was developed with support from the Center for Reproducible Biomodeling Modeling from the National Institute of Bioimaging and Bioengineering and the National Institute of General Medical Sciences of the National Institutes of Health and the National Science Foundation (award P41EB023912) </p>
               </div>
 
 
@@ -193,13 +193,13 @@ similarity (NCBI taxonomy), molecular similarity (tanitomo string comparison), r
               <a id="source_and_license"></a>
               </div>
               <Typography variant="h6" className={'green'}>
-                4. Source Code and License
+                4. Source Code
               </Typography>
 
               <div className="about_paragraph">
                <p>
                  
-                 Datanator is available open-source from <a href={"https://github.com/KarrLab/datanator"} >GitHub</a> and is released under the <a href={"https://github.com/KarrLab/datanator/blob/master/LICENSE"}>MIT license</a>.
+                 <i>Datanator</i> is available open-source from <a href={"https://github.com/KarrLab/datanator"} >GitHub</a> and is released under the <a href={"https://github.com/KarrLab/datanator/blob/master/LICENSE"}>MIT license</a>.
                </p>
               </div>
 
