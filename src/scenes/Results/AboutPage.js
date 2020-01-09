@@ -119,7 +119,7 @@ class AboutPage extends Component {
       </Grid>
       <div className="google results">
        <Grid md={6}>
-            <div style={{ marginTop:10}}>
+            <div>
               <div className="anchor" >
               <a id="purpose"></a>
               </div><Typography variant="h6" className={'green'}>
