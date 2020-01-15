@@ -6,7 +6,7 @@ const Logo = props => {
       <a href="/">
         <img
           src={logo}
-          //className="logo-image"
+          className="logo-image"
           alt="Datanator Logo"
         />
       </a>
