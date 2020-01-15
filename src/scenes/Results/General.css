@@ -164,11 +164,7 @@ ul, ol {
     margin: 0;
 }
 
-.google.results li a {
-    color: #000;
-    font-weight: bold;
-    font-size: 1rem;    
-}
+
 
 /* general styling */
 
@@ -235,6 +231,12 @@ ul, ol {
     margin-left: 1.1rem;
     margin-top: 0;
 }
+
+
+.about_paragraph ul {
+    margin-bottom: 0px
+}
+
 
 
 .home_purpose{

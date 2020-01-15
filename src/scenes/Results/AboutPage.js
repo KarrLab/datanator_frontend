@@ -109,13 +109,16 @@ class AboutPage extends Component {
           <a href={'/about#data'}>{"Data Types"} </a>
       </Link></li>
       <li><Link>
-          <a href={'/about#team'}>{"Team"} </a>
+          <a href={'/about#data'}>{"Data Types"} </a>
+      </Link></li>
+      <li><Link>
+          <a href={'/about#searching'}>{"Searching"} </a>
       </Link></li>
       <li><Link>
           <a href={'/about#acknowledgements'}>{"Acknowledgements"} </a>
       </Link></li>
       <li><Link>
-          <a href={'/about#source_and_license'}>{"Source Code and License"} </a>
+          <a href={'/about#source_and_license'}>{"Source Code"} </a>
       </Link></li>
       </ol>
       </div>
@@ -149,7 +152,22 @@ class AboutPage extends Component {
               </div>
             </div>
 
-
+            <div>
+              <div className="anchor" >
+              <a id="searching"></a>
+              </div><Typography variant="h6" className={'green'}>
+                3. Searching and Filtering for Data About Specific Cells
+              </Typography>
+              <div className="about_paragraph">
+              <p>To help investigators find data about specific cells in specific environments, <i>Datanator</i> provides multiple tools for searching and filtering the integrated database.</p>
+              <ul>
+              <li>Full text search: Users can use the search form on the home page to identify metabolites, proteins, and reactions that they would like information.</li>
+              <li>Molecular similarity: Users can identify measurements of similar metabolites according to the <a href={"http://openbabel.org/docs/dev/Features/Fingerprints.html"}>tanitomo distance</a> of their structures. Users can identify measurements of similar proteins according to their <a href={"https://www.genome.jp/kegg/ko.html"}>orthology and sequence similarity</a>. Users can identify measurements of similar reactions according to their <a href={"https://en.wikipedia.org/wiki/Enzyme_Commission_number"}>Enzyme Classification</a>.</li>
+              <li>Phylogenetic similarity: Users can identify measurements observed in closely related taxa to their taxon of interest by filtering measurements according to their distance along the NCBI Taxonomy tree.</li>
+              <li>Environmental similarity: Users can filter for measurements from similar temperatures, pHs, and media conditions.</li></ul>
+              </div>
+            </div>
+            
 
 
             <div>
@@ -191,7 +209,7 @@ class AboutPage extends Component {
               </Typography>
 
               <div className="about_paragraph">
-               <p> <i>Datanator</i> was developed with support from the Center for Reproducible Biomodeling Modeling from the National Institute of Bioimaging and Bioengineering and the National Institute of General Medical Sciences of the National Institutes of Health and the National Science Foundation (award P41EB023912) </p>
+               <p> <i>Datanator</i> was developed with support from the <a href={"https://reproduciblebiomodels.org/"}>Center for Reproducible Biomodeling</a> from the National Institute of Bioimaging and Bioengineering and the National Institute of General Medical Sciences of the National Institutes of Health and the National Science Foundation (award P41EB023912). </p>
               </div>
 
 
