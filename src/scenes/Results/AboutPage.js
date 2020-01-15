@@ -66,6 +66,10 @@ class AboutPage extends Component {
 
   render() {
 
+    if (this.state.newSearch == true) {
+      return <Redirect to={this.state.new_url} push />;
+    }
+
    
 
 
