@@ -18,6 +18,10 @@ body {
     color: #000;
 }
 
+:focus {
+    outline: none;
+}
+
 
 /* page content */
 .general {

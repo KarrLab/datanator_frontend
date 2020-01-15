@@ -5,6 +5,10 @@
 }
 
 .logo-holder {
+    height: 40px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 10px;
     order: 1;
 }
 
@@ -12,10 +16,15 @@
     height: 100%;
 }
 
+.logo-image {
+    height: 100%;
+}
+
 .page-links {
     height: 100%;
     margin: 0;
     order: 3;
+    font-weight: bold;
 }
 
 .searchbar{
@@ -40,17 +49,6 @@
 .bp3-navbar.bp3-dark.navbar {
     background-color: #1890ff;
     box-shadow: 0 2px 2px #00000066;
-}
-
-.logo-holder {
-    height: 40px;
-    margin-top: 5px;    
-    margin-bottom: 5px;
-    margin-right: 10px;
-}
-
-.logo-image {
-    height: 100%;
 }
 
 .bp3-dark .bp3-button: not([class*=bp3-intent-]) .bp3-icon {
@@ -83,6 +81,17 @@
     font-size: 30px;
 }
 
-.bp3-icon{
-    color: white  !important;;
+.bp3-dark .bp3-button:not([class*="bp3-intent-"]) .bp3-icon {
+    color: white;
+}
+
+.bp3-dark .bp3-button.bp3-minimal:hover,
+.bp3-dark .bp3-button.bp3-minimal:active {
+  background: unset;
+  color: #FFC306;
+}
+
+.bp3-dark .bp3-button.bp3-minimal:hover .bp3-icon,
+.bp3-dark .bp3-button.bp3-minimal:active .bp3-icon {
+  color: #FFC306;
 }
