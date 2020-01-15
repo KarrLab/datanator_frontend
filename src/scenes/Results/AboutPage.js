@@ -22,6 +22,12 @@ import Typography from '@material-ui/core/Typography';
 import lian from '~/images/lian.thumb.png';
 import roth from '~/images/roth.thumb.png';
 import karr from '~/images/karr.thumb.png';
+
+import nih from '~/images/nih.svg';
+import nibib from '~/images/nibib.svg';
+import nigms from '~/images/nigms.svg';
+import nsf from '~/images/nsf.svg';
+
 import { SocialIcon } from 'react-social-icons';
 
 import Grid from '@material-ui/core/Grid';
@@ -178,7 +184,7 @@ class AboutPage extends Component {
               </div>
 
               <Typography variant="h6" className={'green'}>
-                3. Development Team
+                4. Development Team
               </Typography>
 
               <div className="about_paragraph">
@@ -208,14 +214,20 @@ class AboutPage extends Component {
               <a id="acknowledgements"></a>
               </div>
               <Typography variant="h6" className={'green'}>
-                4. Acknowledgements
+                5. Acknowledgements
               </Typography>
 
               <div className="about_paragraph">
                <p> <i>Datanator</i> was developed with support from the <a href={"https://reproduciblebiomodels.org/"}>Center for Reproducible Biomodeling</a> from the National Institute of Bioimaging and Bioengineering and the National Institute of General Medical Sciences of the National Institutes of Health and the National Science Foundation (award P41EB023912). </p>
+                <div className="funding_icons">
+                <p>
+                <img src={nih}/>
+                <img src={nibib}/>
+                <img src={nigms}/>
+                <img src={nsf}/>
+                </p>
               </div>
-
-
+            </div>
             </div>
 
 
@@ -224,7 +236,7 @@ class AboutPage extends Component {
               <a id="source_and_license"></a>
               </div>
               <Typography variant="h6" className={'green'}>
-                5. Source Code
+                6. Source Code
               </Typography>
 
               <div className="about_paragraph">
