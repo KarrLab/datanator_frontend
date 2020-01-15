@@ -1,68 +1,77 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![License](https://img.shields.io/github/license/KarrLab/datanator_frontend.svg)](LICENSE)
+![Analytics](https://ga-beacon.appspot.com/UA-86759801-1/datanator_frontend/README.md?pixel)
 
-## Available Scripts
+# Datanator-frontend
+Web-based graphical user interface of [Datanator](https://datanator.info), a toolkit for discovering the data needed for modeling the biochemistry of cells.
 
-In the project directory, you can run:
+## Contents
+* [Overview](#overview)
+* [Usage and installation](#usage-and-installation)
+* [License](#license)
+* [Development team](#development-team)
+* [Questions and comments](#questions-and-comments)
 
-### `yarn start`
+## Overview
+A central goal of synthetic biology is to rationally design organisms. Similarly, a central goal of precision medicine is to tailor therapy to each patient based on their unique genome. Many engineering fields use computer-aided design (CAD) tools driven by mechanistic models to efficiently design complex systems such as planes. Analogously, more comprehensive and more predictive models of biological systems, such as [whole-cell models](https://www.wholecell.org), are needed to help bioengineers and physicians design biomachines and medical therapy.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+One of the biggest bottlenecks to achieving such models is collecting and aggregating the large amount of data needed for model construction and verification. Due to advances in genomics and increased emphasis on data sharing, there is now extensive data about a wide range of biochemical entities and processes such as data about metabolite concentrations, RNA and protein abundances, and reaction rates. However, it remains difficult to utilize this information for modeling because the data scattered across numerous databases and publications; the data is described using different formats, identifiers, and units; and there are inadequate tools for finding relevant data for modeling a specific biological system in a specific environment.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+The *Datanator* toolkit seeks to address these problems for biochemical modeling by providing investigators an integrated database of molecular data and tools for discovering relevant data for modeling projects and other meta analyses. The *Datanator* toolkit is composed of the following packages:
+- [*Datanator*](https://github.com/KarrLab/datanator): Tools for aggregating and integrating diverse data from diverse sources into a single dataset and searching these datasets
+- [*Datanator-data*](https://open.quiltdata.com/b/karrlab/packages/karrlab/datanator): An integrated dataset of data for modeling cellular biochemistry
+- *Datanator-db*: MongoDB server for *Datanator-data*
+- *Datanator-fulltext-db*: ElasticSearch server for *Datanator-data*
+- [*Datanator-query-python*](https://github.com/KarrLab/datanator_query_python): Tools for querying *Datanator-db* and *Datanator-fulltext-db*
+- [*Datanator-rest-api*](https://github.com/KarrLab/datanator_rest_api): REST interface for *Datanator-query-python*
+- *Datanator-frontend*: This package, a web-based graphical user interface to *Datanator-db*.
 
-### `yarn test`
+This package provides a web-based graphical user interface to *Datanator-db*. A public, hosted version of the package is freely available at [https://datanator.info](https://datanator.info). The package provides investigators tools for browsing and searching *Datanator-db* to find data about biochemical entities of interest (e.g., metabolites, proteins, reactions). This includes tools for finding experimental observations from chemically and genetically similar entities (according to structural and sequence similarity) in phylogenetically similar organism (according to the NCBI Taxonomy tree) under similar enviromental conditions (e.g., temperature, pH). The package is implemented using [React](https://reactjs.org/).
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Usage and installation
 
-### `yarn build`
+### Users: use the public, hosted deployment
+We recommend that users use the public, hosted version of *Datanator-frontend* at [https://datanator.info](https://datanator.info).
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Developers: install and deploy *Datanator-frontend* locally
+We recommend that developers install and run *Datanator-frontend* locally. Below are instructions for installing and running *Datanator-frontend* locally.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+1. Install `git`
+  ```
+  apt-get install git
+  ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Install `npm`
+  ```
+  apt-get install npm
+  ```
 
-### `yarn eject`
+3. Clone this repository
+  ```
+  git clone https://github.com/karrlab/datanator_frontend
+  ```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+4. Install this package
+  ```    
+  cd /path/to/datanator_frontend
+  npm install .
+  ```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+5. Launch a server. This will compile the application. As you make changes to the source code, the server will automatically incrementally compile the application and refresh your browser.
+  ```
+  npm start
+  ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+6. Navigate your browser to [http://localhost:3000](http://localhost:3000/).
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## License
+This package is released under the [MIT license](LICENSE).
 
-## Learn More
+## Development team
+This package was developed by the [Karr Lab](https://www.karrlab.org) at the Icahn School of Medicine at Mount Sinai in New York.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* Yosef Roth
+* Yang Lian
+* [Jonathan Karr](https://www.karrlab.org)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## Questions and comments
+Please contact the [Karr Lab](info@karrlab.org) with any questions or comments.
