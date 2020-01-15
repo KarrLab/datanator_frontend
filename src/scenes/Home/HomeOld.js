@@ -16,7 +16,7 @@ import Grid from '@material-ui/core/Grid';
 import workflow_icons from '~/components/Layout/Logo/workflow_icons.png';
 
 
-import '~/scenes/Home/HomeOld.css';
+import '~/scenes/Home/Home.css';
 class HomeOld extends Component {
   constructor(props) {
     super(props);
