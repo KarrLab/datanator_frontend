@@ -106,6 +106,9 @@ class AboutPage extends Component {
           <a href={'/about#purpose'}>{"Features"} </a>
       </Link></li>
       <li><Link>
+          <a href={'/about#data'}>{"Data Types"} </a>
+      </Link></li>
+      <li><Link>
           <a href={'/about#team'}>{"Team"} </a>
       </Link></li>
       <li><Link>
@@ -127,20 +130,27 @@ class AboutPage extends Component {
               </Typography>
 
               <div className="about_paragraph">
-                <p> Systems biology aims to understand how genotype influences phenotype. Comprehensive mechanistic models, such as whole-cell models, can be used to explore cell dynamics. However, the data required to construct these models are contained across many different databases &mdash; often with inconsistent identifiers and formats. In addition, the time required to manually collect this data impedes the creation of large-scale models.</p> 
+<p>Systems biology aims to understand how genotype influences phenotype. Mechanistic models, such as <a href="https://www.wholecell.org" target="_blank">whole-cell models</a>, are a promising tool for understanding the molecular determinants of behavior. However, it is difficult to obtain the large and varied data needed for mechanistic modeling. Although substantial data is already publicly available, the data is difficult to obtain because it is scattered across numerous databases and publications and described with different identifiers, units, and formats. In addition, there are few tools for finding data that is relevant to modeling a specific cell in a specific environment. These barriers impede mechanistic modeling.</p>
               </div>
               <div className="about_paragraph">
-                <p>To accelerate <a href = "https://www.wholecell.org/">whole-cell modeling</a>, we developed <i>Datanator</i>, an integrated database and search engine. <i>Datanator</i> allows a modeler to input a desired biological parameter (e.g. molecular concentration, reaction rate, etc.) with desired search criteria (e.g. organism, environmental conditions, etc.), and <i>Datanator</i> returns a list of the most relevant observations.</p> 
-              </div>
-              <div className="about_paragraph">
-                <p> <i>Datanator</i> integrates, proteomic data (Pax-DB), kinetic data (SABIO-RK), and metabolite
-concentration data (ECMDB, YMDB). <i>Datanator</i> search engine can identify the most relevant
-data from a combination of search criteria: genetic similarity (KEGG orthology), taxonomic
-similarity (NCBI taxonomy), molecular similarity (tanitomo string comparison), reaction similarity
-(EC number), and environmental similarity.
- </p> 
+<p>To accelerate cell modeling, we developed <i>Datanator</i>, a toolkit for systematically discovering data for modeling a specific cell in a specific environment. <i>Datanator</i> includes an integrated database of genomic and biochemical data about several aspects of cells, this web application for searching the database for data relevant to specific cells, and a REST API and Python library for programmatically aggregating data for large models. The web application enables investigators to search for experimental measurements of biochemical parameters (e.g. metabolite concentration, reaction rate, etc.) relevant to a specific cell (taxon, cell type) in a specific environment (e.g., temperature, pH, growth media, etc.). For each search, this web application displays a filterable and sortable list of relevant experimental measurements aggregated from a range of sources.</p>
               </div>
             </div>
+
+
+            <div>
+              <div className="anchor" >
+              <a id="data"></a>
+              </div><Typography variant="h6" className={'green'}>
+                2. Data Types and Sources
+              </Typography>
+              <div className="about_paragraph">
+                  <p>Currently, <i>Datanator</i> includes measured metabolite concentrations, protein abundances, and reaction rate parameters integrated from <a href={"http://ecmdb.ca/"}>ECMDB</a>, <a href={"https://pax-db.org/"}>PAX-DB</a>, <a href={"https://sabiork.h-its.org/"}>SABIO-RK</a>, and <a href={"http://www.ymdb.ca/"}>YMDB</a>. We aim to continually incorporate additional data from additional sources.</p>
+              </div>
+            </div>
+
+
+
 
             <div>
              <div className="anchor">
@@ -148,7 +158,7 @@ similarity (NCBI taxonomy), molecular similarity (tanitomo string comparison), r
               </div>
 
               <Typography variant="h6" className={'green'}>
-                2. Development Team
+                3. Development Team
               </Typography>
 
               <div className="about_paragraph">
@@ -177,7 +187,7 @@ similarity (NCBI taxonomy), molecular similarity (tanitomo string comparison), r
               <a id="acknowledgements"></a>
               </div>
               <Typography variant="h6" className={'green'}>
-                3. Acknowledgements
+                4. Acknowledgements
               </Typography>
 
               <div className="about_paragraph">
@@ -193,7 +203,7 @@ similarity (NCBI taxonomy), molecular similarity (tanitomo string comparison), r
               <a id="source_and_license"></a>
               </div>
               <Typography variant="h6" className={'green'}>
-                4. Source Code
+                5. Source Code
               </Typography>
 
               <div className="about_paragraph">
