@@ -20,7 +20,6 @@ import '@blueprintjs/icons/lib/css/blueprint-icons.css';
 import '@blueprintjs/core/lib/scss/variables.scss';
 
 //Website pages (scenes)
-import { Home } from '~/scenes/Home/Home';
 import HomeOld from '~/scenes/Home/HomeOld';
 import Metabconcs from '~/scenes/Results/Metabconcs';
 import ProteinPage from '~/scenes/Results/ProteinPage';
