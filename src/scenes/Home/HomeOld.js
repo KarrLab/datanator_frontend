@@ -13,7 +13,7 @@ import {Row, Col } from 'react-flexbox-grid';
 import { Header } from '~/components/Layout/Header/Header';
 import GeneralSearch from '~/components/SearchField/GeneralSearch.js';
 import Grid from '@material-ui/core/Grid';
-import home_logo from '~/components/Layout/Logo/home_logo.png';
+import workflow_icons from '~/components/Layout/Logo/workflow_icons.png';
 
 
 import '~/scenes/Home/HomeOld.css';
@@ -66,9 +66,9 @@ class HomeOld extends Component {
         </div>
 
         </div>
-      <div className={"home_logo"}>
+      <div className={"workflow_icons"}>
         <img
-      src={home_logo}
+      src={workflow_icons}
     />
     </div>
     <div className = {"home_purpose"}>
