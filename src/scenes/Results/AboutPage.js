@@ -171,7 +171,7 @@ class AboutPage extends Component {
               <ul>
               <li>Full text search: Users can use the search form on the home page to identify metabolites, proteins, and reactions that they would like information.</li>
               <li>Molecular similarity: Users can identify measurements of similar metabolites according to the <a href={"http://openbabel.org/docs/dev/Features/Fingerprints.html"}>tanitomo distance</a> of their structures. Users can identify measurements of similar proteins according to their <a href={"https://www.genome.jp/kegg/ko.html"}>orthology and sequence similarity</a>. Users can identify measurements of similar reactions according to their <a href={"https://en.wikipedia.org/wiki/Enzyme_Commission_number"}>Enzyme Classification</a>.</li>
-              <li>Phylogenetic similarity: Users can identify measurements observed in closely related taxa to their taxon of interest by filtering measurements according to their distance along the NCBI Taxonomy tree.</li>
+              <li>Phylogenetic similarity: Users can identify measurements observed in closely related taxa to their taxon of interest by filtering measurements according to their distance along the <a href={"https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi"}>NCBI Taxonomy tree</a>.</li>
               <li>Environmental similarity: Users can filter for measurements from similar temperatures, pHs, and media conditions.</li></ul>
               </div>
             </div>
