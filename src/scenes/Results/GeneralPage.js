@@ -251,7 +251,6 @@ class GeneralPage extends Component {
 
 
       <div className="general">
-      <style>{'body { background-color: #f7fdff; }'}</style>
       <Grid md={3}>
       <div className="contents" style={{
             marginLeft: -20,
