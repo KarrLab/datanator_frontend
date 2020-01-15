@@ -20,7 +20,7 @@ import '@blueprintjs/icons/lib/css/blueprint-icons.css';
 import '@blueprintjs/core/lib/scss/variables.scss';
 
 //Website pages (scenes)
-import HomeOld from '~/scenes/Home/HomeOld';
+import Home from '~/scenes/Home/Home';
 import Metabconcs from '~/scenes/Results/Metabconcs';
 import ProteinPage from '~/scenes/Results/ProteinPage';
 import ReactionPage from '~/scenes/Results/ReactionPage';
@@ -30,8 +30,7 @@ import AboutPage from '~/scenes/Results/AboutPage';
 const SiteRouter = () => {
   return (
     <Router>
-      <Route path="/" exact component={HomeOld} />
-      <Route path="/old" component={HomeOld} />
+      <Route path="/" exact component={Home} />
       <Route
         path="/metabconcs/:molecule/:organism/:abstract?/"
         component={Metabconcs}

@@ -17,7 +17,7 @@ import workflow_icons from '~/components/Layout/Logo/workflow_icons.png';
 
 
 import '~/scenes/Home/Home.css';
-class HomeOld extends Component {
+class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -83,4 +83,4 @@ class HomeOld extends Component {
   }
 }
 
-export default HomeOld;
+export default Home;
