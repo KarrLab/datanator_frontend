@@ -242,7 +242,19 @@ class AboutPage extends Component {
               <div className="about_paragraph">
                <p>
                  
-                 <i>Datanator</i> is available open-source from <a href={"https://github.com/KarrLab/datanator"} >GitHub</a> and is released under the <a href={"https://github.com/KarrLab/datanator/blob/master/LICENSE"}>MIT license</a>.
+                 <i>Datanator</i> is available open-source from GitHub and is released under the <a href={"https://github.com/KarrLab/datanator/blob/master/LICENSE"}>MIT license</a>.
+               
+                  <ol>
+                <li>
+                  <a href={"https://github.com/KarrLab/datanator"}>Datanator</a>
+                </li><li>
+                  <a href={"https://github.com/KarrLab/datanator_frontend"}>Datanator Webpage</a>
+                </li><li>
+                  <a href={"https://github.com/KarrLab/datanator_rest_api"}>Datanator Rest API</a>
+                </li><li>
+                  <a href={"https://github.com/KarrLab/datanator_query_python"}>Datanator Python Interface</a>
+                </li>
+                </ol>
                </p>
               </div>
             </div>
