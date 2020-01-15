@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styles from "./HomeOld.css";
+import styles from "./Home.css";
 import {H1, H2, H3, H4, H5, H6, OL, UL} from "@blueprintjs/core"
 import {Default} from "~/Layouts/Default/Default"
 class Home extends Component {
