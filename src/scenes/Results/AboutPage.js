@@ -22,6 +22,7 @@ import Typography from '@material-ui/core/Typography';
 import lian from '~/images/lian.thumb.png';
 import roth from '~/images/roth.thumb.png';
 import karr from '~/images/karr.thumb.png';
+import { SocialIcon } from 'react-social-icons';
 
 import Grid from '@material-ui/core/Grid';
 const queryString = require('query-string');
@@ -187,15 +188,15 @@ class AboutPage extends Component {
                 <div className="developer_photos">
                   <div className="photo">
                     <img src={lian}/>
-                    <p>Zhouyang Lian</p>
+                    <p>Zhouyang Lian <SocialIcon url="https://www.linkedin.com/in/zlian/"/></p>
                   </div>
                   <div className="photo">
                     <img src={roth}/>
-                    <p>Yosef Roth</p>
+                    <p>Yosef Roth <SocialIcon url="https://www.linkedin.com/in/yosef-roth-a80a378a"/></p>
                   </div>
                   <div className="photo">
                     <img src={karr}/>
-                    <p>Jonathan Karr</p>
+                    <p>Jonathan Karr <SocialIcon url="https://www.linkedin.com/in/jonrkarr/"/></p>
                   </div>
                 </div>
                 <p> Datanator was also developed with Bilal Shaikh and Saahith Pochiraju.</p>

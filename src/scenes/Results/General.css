@@ -273,3 +273,8 @@ ul, ol {
     float:left;
     width:33%;
 }
+
+.social-icon{
+    height: 15px !important;
+    width: 15px !important;
+}
