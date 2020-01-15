@@ -19,15 +19,12 @@ import {Helmet} from "react-helmet";
 import { Header } from '~/components/Layout/Header/Header';
 import { Footer } from '~/components/Layout/Footer/Footer';
 import Typography from '@material-ui/core/Typography';
+import lian from '~/images/lian.thumb.png';
+import roth from '~/images/roth.thumb.png';
+import karr from '~/images/karr.thumb.png';
 
 import Grid from '@material-ui/core/Grid';
 const queryString = require('query-string');
-
-
-
-
-
-
 
 
 
@@ -187,20 +184,21 @@ class AboutPage extends Component {
                 <p> <i>Datanator</i> was developed by the <a href={"https://www.karrlab.org/"}> Karr Lab</a> at the Icahn School of Medicine at Mount Sinai in New York, US.</p>
               </div>
               <div className="about_paragraph">
-                <ol>
-                <li>
-                  Jonathan Karr
-                </li><li>
-                  Zhouyang Lian
-                </li><li>
-                  Saahith Pochiraju
-                </li><li>
-                  Yosef Roth
-                </li><li>
-                  Bilal Shaikh
-                </li>
-                </ol>
-
+                <div className="developer_photos">
+                  <div className="photo">
+                    <img src={lian}/>
+                    <p>Zhouyang Lian</p>
+                  </div>
+                  <div className="photo">
+                    <img src={roth}/>
+                    <p>Yosef Roth</p>
+                  </div>
+                  <div className="photo">
+                    <img src={karr}/>
+                    <p>Jonathan Karr</p>
+                  </div>
+                </div>
+                <p> Datanator was also developed with Bilal Shaikh and Saahith Pochiraju.</p>
               </div>
             </div>
 
@@ -234,18 +232,9 @@ class AboutPage extends Component {
                  <i>Datanator</i> is available open-source from <a href={"https://github.com/KarrLab/datanator"} >GitHub</a> and is released under the <a href={"https://github.com/KarrLab/datanator/blob/master/LICENSE"}>MIT license</a>.
                </p>
               </div>
-
-
             </div>
-
-
-
         </Grid>
         </div>
-
-
-
-
       </div>
       </div>
       )

@@ -258,3 +258,18 @@ ul, ol {
   
 }
 .google.results>.MuiGrid-root>div:not(:first-child) { margin-top: 2rem; }
+
+
+
+.developer_photos {
+    text-align: center;
+}
+
+.developer_photos p{
+    font-size: 17px;
+}
+
+.developer_photos .photo{
+    float:left;
+    width:33%;
+}
