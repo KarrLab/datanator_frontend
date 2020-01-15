@@ -273,13 +273,6 @@ class Header extends Component {
           <AnchorButton
             minimal="true"
             className="navbutton"
-            icon="home"
-            text="Home"
-            href="/"
-          />
-          <AnchorButton
-            minimal="true"
-            className="navbutton"
             icon="info-sign"
             text="About"
             href="/about/"

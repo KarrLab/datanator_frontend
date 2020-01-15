@@ -5,7 +5,6 @@ import React, { Component } from 'react';
 //import '~/../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import {H1, H2, H3, H4, H5, H6, OL, UL} from "@blueprintjs/core"
 
-
 import { BrowserRouter, Redirect } from 'react-router-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { withRouter } from 'react-router';
@@ -14,7 +13,6 @@ import { Header } from '~/components/Layout/Header/Header';
 import GeneralSearch from '~/components/SearchField/GeneralSearch.js';
 import Grid from '@material-ui/core/Grid';
 import workflow_icons from '~/scenes/Home/images/workflow_icons.png';
-
 
 import '~/scenes/Home/Home.css';
 class Home extends Component {
@@ -29,7 +27,6 @@ class Home extends Component {
     this.getNewSearch = this.getNewSearch.bind(this);
   }
 
-
   getNewSearch(response) {
     let url = '/general/?q=' + response[0] + '&organism=' + response[1];
     this.setState({ new_url: url });
@@ -39,11 +36,6 @@ class Home extends Component {
   componentDidMount() {
     //this.props.history.push('/');
   }
-
-
-
-
-
 
   render() {
     if (this.state.newSearch == true) {

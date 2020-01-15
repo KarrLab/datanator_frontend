@@ -18,56 +18,6 @@ body {
     color: #000;
 }
 
-/* top navigation bar */
-.bp3-navbar.bp3-dark.navbar {
-    background-color: #1890ff;
-    box-shadow: 0 2px 2px #00000066;
-}
-
-.logo-holder {
-    height: 40px;
-    margin-top: 5px;    
-    margin-bottom: 5px;
-    margin-right: 10px;
-}
-
-.logo-image {
-    height: 100%;
-}
-
-.bp3-dark .bp3-button: not([class*=bp3-intent-]) .bp3-icon {
-    color: #fff;
-}
-
-.bp3-popover-target{
-    width: 100%;
-}
-
-.bp3-menu{
-    height: 200px;
-    overflow-x: scroll;
-}
-
-.bp3-input-group {
-    background-color: #70BBFD;
-    border-radius: 3px;
-}
-.bp3-input-group input: : placeholder {
-    color: #e8e8e8 !important;
-    font-size: 15px;
-}
-
-.bp3-navbar-group .in{
-    color: #e8e8e8;
-    margin-right: 5px;
-    margin-left: 5px;
-    margin-top: 29px;
-    font-size: 30px;
-}
-
-.bp3-icon{
-    color: white  !important;;
-}
 
 /* page content */
 .general {
