@@ -13,7 +13,7 @@ import {Row, Col } from 'react-flexbox-grid';
 import { Header } from '~/components/Layout/Header/Header';
 import GeneralSearch from '~/components/SearchField/GeneralSearch.js';
 import Grid from '@material-ui/core/Grid';
-import workflow_icons from '~/components/Layout/Logo/workflow_icons.png';
+import workflow_icons from '~/scenes/Home/images/workflow_icons.png';
 
 
 import '~/scenes/Home/Home.css';
