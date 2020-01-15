@@ -4,11 +4,10 @@ ul, ol {
 }
 
 
-* top navigation bar */
-.bp3-dark .bp3-navbar {
-    background: #1890ff !important;
-    background-color: #1890ff !important;
-    box-shadow: 0 2px 3px #00000066;
+/* top navigation bar */
+.bp3-navbar.bp3-dark.navbar {
+    background-color: #1890ff;
+    box-shadow: 0 2px 2px #00000066;
 }
 
 .logo-holder {

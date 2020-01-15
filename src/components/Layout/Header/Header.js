@@ -188,7 +188,7 @@ class Header extends Component {
     }
 
   return (
-     <Navbar fixedToTop="true" className="bp3-dark navbar" style={{ "background-color": "#1890ff"}}>
+     <Navbar fixedToTop="true" className="bp3-dark navbar">
       <Navbar.Group className="logo-holder">
         <Logo className="logo" />
       </Navbar.Group>
