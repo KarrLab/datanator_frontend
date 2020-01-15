@@ -3,6 +3,20 @@ ul, ol {
     padding-left: 0px;
 }
 
+p {
+    margin-bottom: 0;
+}
+p:not(:last-child) {
+    margin-bottom: 1rem;
+}
+
+body {
+    color: #444;
+}
+
+.bp3-heading {
+    color: #000;
+}
 
 /* top navigation bar */
 .bp3-navbar.bp3-dark.navbar {
@@ -88,6 +102,7 @@ ul, ol {
     position: sticky;
     top: calc(50px + 2rem);
 }
+
 .contents h3 {
     margin: 0;
     margin-top: -0.25rem;
@@ -96,18 +111,22 @@ ul, ol {
     padding: 0;
     line-height: 100%;
 }
+
 .contents ol {
     list-style-type: circle;
     padding: 0;
     margin: 0;
     margin-left: 1.1rem;
 }
+
 .contents a {
     margin-left: -0.125rem;
 }
+
 .contents a {
     color: #333;    
 }
+
 .contents a: hover {
     text-decoration: none;
 }

@@ -1,15 +1,33 @@
 .container {
-  margin-top: 50;
+    margin-top: calc(50px + 2rem);
+    margin-bottom: 2rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;    
 }
 
-.container .menu777{
-  margin-top: 30px;
-  text-align: center;
-  display:flex; 
-  flex-direction:row;
-  flex-wrap: wrap;
-  flex-flow: row wrap;
-  
-
+h1, h2 {
+    text-align: center;
+}
+h1.bp3-heading {    
+    line-height: 28px;
+    color: #1890ff;
+}
+h2.bp3-heading {
+    line-height: 22px;
+    color: #333;    
 }
 
+.section {
+    text-align: center;
+}
+.section:not(:last-child) {
+    margin-bottom: 2rem; 
+}
+
+.intro h2 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-style: italic;    
+}
