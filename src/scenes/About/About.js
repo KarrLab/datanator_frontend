@@ -42,7 +42,7 @@ class About extends Component {
       <div>
         <Header handleClick={this.getNewSearch} />
 
-        <div className="content-container columns about">
+        <div className="content-container content-container-columns content-container-about-scene">
           <div className="content-block table-of-contents">
             <h2 className="content-block-heading">Contents</h2>
             <ol className="content-block-content">
@@ -289,7 +289,7 @@ class About extends Component {
                     </div>
                   </div>
                 </div>
-                <div className="developers-group additional-developers">
+                <div className="developers-group additional-developers-group">
                   <h3>Additional contributors</h3>
                   <div className="additional-developers-group-list">
                     <div className="developer-name">

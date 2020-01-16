@@ -172,13 +172,13 @@ class Header extends Component {
     }
 
     return (
-      <Navbar fixedToTop="true" className="navbar">
+      <Navbar fixedToTop="true" className="header-component">
         <Navbar.Group className="logo-container">
           <Logo className="logo" />
         </Navbar.Group>
 
         { show_search &&
-        <Navbar.Group className="searchbar">
+        <Navbar.Group className="search-container">
           <form className="searchbar-input" onSubmit={this.handleClickInner} >
 
             <InputGroup

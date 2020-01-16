@@ -39,7 +39,7 @@ class Home extends Component {
     return (
       <div>
         <Header handleClick={this.getNewSearch} />
-        <div className="content-container home">
+        <div className="content-container content-container-home-scene">
           <div className="section intro">
             <h1>Datanator</h1>
             <h2>Discovering data for modeling cellular biochemistry</h2>
