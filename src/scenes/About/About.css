@@ -13,32 +13,49 @@
     margin-bottom: 0px
 }
 
-.about .developer-photos {
-    text-align: center;
+/* developers */
+.about .developers-group {
+    margin-top: 1rem;
 }
 
-.about .developer-photos .photo {
-    float: left;
-}
-.about .developer-photos .photo:not(:first-child) {
-    margin-left: 1rem;
+.about .developers-group h3 {
+    font-weight: bold;
+    color: #1890ff;
 }
 
-.about .developer-photos:after {
+.about .developers-group.additional-developers h3 {
+    margin-bottom: 0;
+}
+
+.about .main-developers-group-list:after {
     content: "";
     clear: both;
     display: table;
 }
 
+.about .main-developer {
+    float: left;
+}
+
+.about .main-developer:not(:first-child) {
+    margin-left: 1rem;
+}
+
+.about .main-developer .developer-name {
+    margin-top: 0.25rem;
+    text-align: center;
+}
+
+.about .developer-name .social-icon {
+    margin-left: 0.25rem;
+    position: relative;
+    top: -1px;
+}
+
+/* funding */
 .about .funding-icons {
 }
 
 .about .funding-icons img:not(:first-child) {
     margin-left: 1rem;
-}
-
-.about .social-icon {
-    margin-left: 0.25rem;
-    position: relative;
-    top: -2px;
 }

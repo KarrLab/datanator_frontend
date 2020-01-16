@@ -1,5 +1,5 @@
 body {
-    color: #444;
+    color: #333;
 }
 
 /* paragraphs */
@@ -106,7 +106,7 @@ ul, ol {
 .table-of-contents ol {
     list-style-type: circle;
     margin: 0;
-    margin-left: 1.1rem;
+    margin-left: 1rem;
 }
 
 .table-of-contents a {
@@ -117,7 +117,7 @@ ul, ol {
     color: #333;
 }
 
-.table-of-contents a: hover {
+.table-of-contents a:hover {
     text-decoration: none;
 }
 
@@ -134,4 +134,13 @@ ul, ol {
 /* focus */
 :focus {
     outline: none;
+}
+
+/* hover zoom affect */
+.hover-zoom {
+    transition: all 0.5s;
+}
+
+.hover-zoom:hover {
+    transform: scale(1.08);
 }

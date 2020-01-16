@@ -128,50 +128,65 @@ class About extends Component {
               </div>
             </div>
 
-            <div className="content-block section">
+            <div className="content-block section developers">
               <a id="team"></a>
               <h2 className="content-block-heading">
                 4. Development Team
               </h2>
               <div className="content-block-content">
                 <p><i>Datanator</i> was developed by the <a href={"https://www.karrlab.org/"}> Karr Lab</a> at the Icahn School of Medicine at Mount Sinai in New York, US.</p>
-                <div className="developer-photos">
-                  <div className="photo">
-                    <img src={lian}/>
-                    <p>Zhouyang Lian
-                      <SocialIcon url="https://www.linkedin.com/in/zlian/" style={{ height: 15, width: 15 }}/>
-                    </p>
-                  </div>
-                  <div className="photo">
-                    <img src={roth}/>
-                    <p>Yosef Roth
-                      <SocialIcon url="https://www.linkedin.com/in/yosef-roth-a80a378a" style={{ height: 15, width: 15 }}/>
-                    </p>
-                  </div>
-                  <div className="photo">
-                    <img src={karr}/>
-                    <p>Jonathan Karr
-                      <SocialIcon url="https://www.linkedin.com/in/jonrkarr/" style={{ height: 15, width: 15 }}/>
-                    </p>
+                <div className="developers-group main-developers">
+                  <h3>Main developers</h3>
+                  <div className="main-developers-group-list">
+                    <div className="main-developer">
+                      <img src={roth} class="hover-zoom"/>
+                      <p className="developer-name">Yosef Roth
+                        <SocialIcon url="https://www.linkedin.com/in/yosef-roth-a80a378a" style={{ height: 15, width: 15 }}/>
+                      </p>
+                    </div>
+                    <div className="main-developer">
+                      <img src={lian} class="hover-zoom"/>
+                      <p className="developer-name">Zhouyang Lian
+                        <SocialIcon url="https://www.linkedin.com/in/zlian/" style={{ height: 15, width: 15 }}/>
+                      </p>
+                    </div>
+                    <div className="main-developer">
+                      <img src={karr} class="hover-zoom"/>
+                      <p className="developer-name">Jonathan Karr
+                        <SocialIcon url="https://www.linkedin.com/in/jonrkarr/" style={{ height: 15, width: 15 }}/>
+                      </p>
+                    </div>
                   </div>
                 </div>
-                <p>Datanator was also developed with Bilal Shaikh and Saahith Pochiraju.</p>
+                <div class="developers-group additional-developers">
+                  <h3>Additional contributors</h3>
+                  <div className="additional-developers-group-list">
+                    <div className="developer-name">
+                      Bilal Shaikh
+                      <SocialIcon url="https://www.linkedin.com/in/bilalshaikh42/" style={{ height: 15, width: 15 }}/>
+                    </div>
+                    <div className="developer-name">
+                      Saahith Pochiraju
+                      <SocialIcon url="https://www.linkedin.com/in/saahithpochiraju/" style={{ height: 15, width: 15 }}/>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div className="content-block section">
+            <div className="content-block section funding">
               <a id="acknowledgements"></a>
               <h2 className="content-block-heading">
                 5. Acknowledgements
               </h2>
 
               <div className="content-block-content">
-                <p><i>Datanator</i> was developed with support from the <a href={"https://reproduciblebiomodels.org/"}>Center for Reproducible Biomodeling</a> from the National Institute of Bioimaging and Bioengineering and the National Institute of General Medical Sciences of the National Institutes of Health and the National Science Foundation (award P41EB023912). </p>
+                <p><i>Datanator</i> was developed with support from the <a href={"https://reproduciblebiomodels.org/"}>Center for Reproducible Biomedical Modeling</a> from the National Institute of Bioimaging and Bioengineering and the National Institute of General Medical Sciences of the National Institutes of Health and the National Science Foundation (award P41EB023912). </p>
                 <div className="funding-icons">
-                  <img src={nih}/>
-                  <img src={nibib}/>
-                  <img src={nigms}/>
-                  <img src={nsf}/>
+                  <img src={nih} class="hover-zoom"/>
+                  <img src={nibib} class="hover-zoom"/>
+                  <img src={nigms} class="hover-zoom"/>
+                  <img src={nsf} class="hover-zoom"/>
                 </div>
               </div>
             </div>
@@ -188,16 +203,16 @@ class About extends Component {
                 </p>
                 <ul>
                   <li>
-                    <a href={"https://github.com/KarrLab/datanator"}>Datanator</a>
+                    <a href={"https://github.com/KarrLab/datanator"}>Core package</a>
                   </li>
                   <li>
-                    <a href={"https://github.com/KarrLab/datanator_frontend"}>Datanator Webpage</a>
+                    <a href={"https://github.com/KarrLab/datanator_frontend"}>Web application</a>
                   </li>
                   <li>
-                    <a href={"https://github.com/KarrLab/datanator_rest_api"}>Datanator Rest API</a>
+                    <a href={"https://github.com/KarrLab/datanator_rest_api"}>REST API</a>
                   </li>
                   <li>
-                    <a href={"https://github.com/KarrLab/datanator_query_python"}>Datanator Python Interface</a>
+                    <a href={"https://github.com/KarrLab/datanator_query_python"}>Python API</a>
                   </li>
                 </ul>
               </div>
