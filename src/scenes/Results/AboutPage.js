@@ -31,20 +31,7 @@ import nsf from '~/images/nsf.svg';
 import { SocialIcon } from 'react-social-icons';
 
 import Grid from '@material-ui/core/Grid';
-const queryString = require('query-string');
 
-
-
-const url = "reaction/data/?substrates=AMP,ATP%20&products=%20ADP&substrates_inchi=ZKHQWZAMYRWXGA-KQYNXXCUSA-J,UDMBCSSLTHHNCD-KQYNXXCUSA-N&products_inchi=XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-//const results = [["ATP Synthetase1 ", "ATP + AMP ==> ADP", url], ["ATP Synthetase2 ", "ATP + AMP ==> ADP", url]]
-const resultss = [{primary_text: "ATP Synthetase1 ", secondary_text: "ATP + AMP ==> ADP", url:url}, {primary_text: "ATP Synthetase1 ", secondary_text: "ATP + AMP ==> ADP", url:url}]
-
-const results = [{primary_text: "some name",
-products: [ "D-Glucose", "Phosphate" ],
-reactionID: "796",
-secondary_text: "D-Glucose 6-phosphate + H2O ==> Phosphate + D-Glucose",
-substrates:  [ "H2O", "D-Glucose 6-phosphate" ],
-url: "&substrates_inchi=XLYOFNOQVPJJNP-UHFFFAOYSA-N,NBSCHQHZLSJFNQ-GASJEMHNSA-N&products_inchi=WQZGKKKJIJFFOK-GASJEMHNSA-N,NBIIXXVUZAFLBC-UHFFFAOYSA-N"}]
 @connect(store => {
   return {};
 }) //the names given here will be the names of props

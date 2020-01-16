@@ -146,7 +146,7 @@ class ProteinPage extends Component {
               );
             } else {
               return (
-                '<a href="http://www.ymdb.ca/compounds/' +
+                '<a href="https://www.ymdb.ca/compounds/' +
                 params.value.id +
                 '"rel="noopener">' +
                 'YMDB' +
@@ -172,7 +172,7 @@ class ProteinPage extends Component {
               );
             } else {
               return (
-                '<a href="http://www.ymdb.ca/compounds/' +
+                '<a href="https://www.ymdb.ca/compounds/' +
                 params.value.id +
                 '"rel="noopener">' +
                 'YMDB' +
@@ -373,7 +373,7 @@ class ProteinPage extends Component {
         for (var f = filtered_ids.length - 1; f >= 0; f--) {
           end_query = end_query + 'uniprot_id=' + filtered_ids[f] + '&';
         }
-        getSearchData(['proteins', 'meta/meta_combo?' + end_query]).then(
+        getSearchData(['proteins', 'meta/meta_combo/?' + end_query]).then(
           response => {
             this.formatOrthologyMetadataUniprot(response.data);
             newOrthologyMetadata.push(meta);
@@ -471,7 +471,7 @@ class ProteinPage extends Component {
       for (var f = total_ids.length - 1; f >= 0; f--) {
         end_query = end_query + 'uniprot_id=' + total_ids[f] + '&';
       }
-      getSearchData(['proteins', 'meta/meta_combo?' + end_query]).then(
+      getSearchData(['proteins', 'meta/meta_combo/?' + end_query]).then(
         response => {
           this.formatOrthologyMetadataUniprot(response.data);
           this.formatProteinMetadata(response.data);
