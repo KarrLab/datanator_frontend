@@ -9,7 +9,6 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 //Redux (used for state management)
 import { Provider } from 'react-redux';
 import store from '~/data/Store';
-import {Helmet} from "react-helmet";
 
 //Styles for @Blueprint JS (Template Components)
 import './index.css';
@@ -21,16 +20,20 @@ import '@blueprintjs/core/lib/scss/variables.scss';
 
 //Website pages (scenes)
 import Home from '~/scenes/Home/Home';
+import GeneralPage from '~/scenes/Results/GeneralPage';
 import Metabconcs from '~/scenes/Results/Metabconcs';
 import ProteinPage from '~/scenes/Results/ProteinPage';
 import ReactionPage from '~/scenes/Results/ReactionPage';
-import GeneralPage from '~/scenes/Results/GeneralPage';
 import About from '~/scenes/About/About';
 
 const SiteRouter = () => {
   return (
     <Router>
       <Route path="/" exact component={Home} />
+      <Route
+        path="/general/"
+        component={GeneralPage}
+      />
       <Route
         path="/metabconcs/:molecule/:organism/:abstract?/"
         component={Metabconcs}
@@ -42,10 +45,6 @@ const SiteRouter = () => {
       <Route
         path="/reaction/:dataType/"
         component={ReactionPage}
-      />
-      <Route
-        path="/general/"
-        component={GeneralPage}
       />
       <Route
         path="/about/"
