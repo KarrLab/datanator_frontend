@@ -9,7 +9,6 @@ import { withRouter } from 'react-router';
 import '~/scenes/Results/General.css';
 import './About.css';
 
-import Helmet from "react-helmet";
 import { Header } from '~/components/Layout/Header/Header';
 import { Footer } from '~/components/Layout/Footer/Footer';
 import Typography from '@material-ui/core/Typography';
@@ -50,19 +49,6 @@ class About extends Component {
 
     return (
       <div>
-        <Helmet>
-          <meta charSet="utf-8" />
-          <title>Datanator: Molecular data for integrative research</title>
-          <meta name="description" content="Web application for simulating kinetic models of biological processes and visually analyzing their results" />
-          <meta name="keywords" content="biomodel, biochemical, molecular, cell, simulate, visualize, reproducible, standards, CellML, SBML, SED-ML, Vega" />
-          <meta name="language" content="EN"/>
-          <meta name="copyright" content="Center for Reproducible Biomedical Modeling" />
-          <meta name="author" content="Center for Reproducible Biomedical Modeling, info@reproduciblebiomodels.org" />
-          <meta name="reply-to" content="info@reproduciblebiomodels.org" />
-          <meta name="url" content="https://www.biosimulations.org"/>
-          <meta name="identifier-URL" content="https://www.biosimulations.org"/>
-        </Helmet>
-
         <Header
           handleClick={this.getNewSearch}
         />
