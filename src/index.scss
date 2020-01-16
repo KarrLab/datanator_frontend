@@ -150,6 +150,40 @@ a:hover {
   background: #1890ff;
 }
 
+/* autocomplete menu */
+.bp3-overlay {
+  .bp3-popover {
+    box-shadow:
+      0 0 0 1px rgba(0, 0, 0, 0.1),
+      0 2px 4px rgba(0, 0, 0, 0.2),
+      0 8px 24px rgba(0, 0, 0, 0.2);
+
+    .bp3-popover-arrow-fill {
+      fill: #1890ff;
+    }
+  }
+
+  .bp3-menu {
+    max-height: 200px;
+    overflow-x: hidden;
+    background: #1890ff;
+    color: #fff;
+
+    .bp3-menu-item.bp3-intent-primary.bp3-active {
+      background: #56aafe;
+    }
+
+    .bp3-menu-item:hover,
+    .bp3-menu-item:active {
+      background-color: #56aafe;
+    }
+
+    .bp3-menu-item.bp3-disabled {
+      color: #fff9 !important;
+    }
+  }
+}
+
 /* focus */
 :focus {
   outline: none;

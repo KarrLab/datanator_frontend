@@ -201,14 +201,16 @@ class Header extends Component {
                 selectedItem={this.state.organism}
                 //activeItem = {null}
 
-                noResults={<MenuItem disabled={true} text="No results." />}
+                noResults={
+                  <MenuItem disabled={true} text="No matching organisms." />
+                }
                 onQueryChange={(query, event) => {
                   this.setState({ organism: query });
                   //first_enter = true
                 }}
                 inputValueRenderer={renderInputValue}
                 //onQueryChange={() => first_enter = true}
-                //activeItem={this.state.organism}
+                activeItem=""
                 //onKeyPress={ (event) => {if (event.key === "Enter") { this.handleClickInner() } }}
 
                 onItemSelect={(value, event) => {
@@ -230,7 +232,7 @@ class Header extends Component {
                 inputProps={{
                   className: "search-input",
                   leftIcon: <FontAwesomeIcon icon="dna" />,
-                  placeholder: "organism (e.g., Escherichia coli)",
+                  placeholder: "Organism (e.g., Escherichia coli)",
 
                   onChange: event => {
                     this.setState({ query: event.target.value });
