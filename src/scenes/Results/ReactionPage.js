@@ -161,7 +161,8 @@ class ReactionPage extends Component {
       newSearch: false,
       new_url: '',
       tanitomo: false,
-      columnDefs: [
+      columnDefs:[],
+      first_columns: [
         {
           headerName: 'Molecule',
           field: 'name',
@@ -178,8 +179,8 @@ class ReactionPage extends Component {
           sortable: true,
           filter: 'agNumberColumnFilter',
         },
-        { headerName: 'Error', field: 'error', hide: true },
-        {
+      ],
+      second_columns: [{
           headerName: 'Organism',
           field: 'organism',
           filter: 'agTextColumnFilter',
@@ -251,6 +252,24 @@ class ReactionPage extends Component {
     this.formatReactionData = this.formatReactionData.bind(this);
     this.getSearchDataReaction = this.getSearchDataReaction.bind(this);
     this.getNewSearch = this.getNewSearch.bind(this);
+    this.setKmColumns = this.setKmColumns.bind(this);
+
+  }
+
+  setKmColumns(km_values){
+    let new_columns = []
+    for (var i = km_values.length - 1; i >= 0; i--) {
+      new_columns.push({
+          headerName: 'Km ' + km_values[i].split("_")[1] + ' (M)',
+          field: km_values[i],
+          sortable: true,
+          filter: 'agNumberColumnFilter',
+        })
+    }
+
+    let final_columns = this.state.first_columns.concat(new_columns).concat(this.state.second_columns)
+    //final_columns = final_columns.concat(default_second_columns)
+    this.setState({columnDefs:final_columns})
 
   }
   componentDidMount() {
@@ -351,6 +370,7 @@ class ReactionPage extends Component {
       for (var k = substrates.length - 1; k >= 0; k--) {
         km_values.push("km_" + substrates[k])
       }
+      this.setKmColumns(km_values)
       this.setState({km_values:km_values})
 
       let start = 0;

@@ -72,6 +72,7 @@ class GeneralPage extends Component {
   componentDidMount() {
     let values = queryString.parse(this.props.location.search);
     this.fetch_data("metabolites_meta", 10)
+    this.fetch_data("rna_halflife", 10)
     this.fetch_data("sabio_reaction_entries", 10)
     this.fetch_data("protein", 10)
   }
@@ -83,6 +84,7 @@ class GeneralPage extends Component {
     let old_values = queryString.parse(prevProps.location.search);
     if (this.state.newResults) {
       this.fetch_data("metabolites_meta", 10)
+      this.fetch_data("rna_halflife", 10)
       this.fetch_data("sabio_reaction_entries", 10)
       this.fetch_data("protein", 10)
       this.setState({ newSearch: false })
