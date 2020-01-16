@@ -4,8 +4,8 @@
   background-color: #1890ff;
   box-shadow: 0 2px 2px #0006;
 
-  /* logo */
-  .logo-container {
+  /* logo and title */
+  .logo-title-container {
     height: 40px;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -19,6 +19,24 @@
 
   .logo {
     height: 100%;
+  }
+
+  .titles {
+    color: #fff;
+    margin-left: 5px;
+
+    .title {
+      font-weight: bold;
+      font-size: 20px;
+      line-height: 20px;
+      margin-bottom: 2px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      line-height: 14px;
+      font-style: italic;
+    }
   }
 
   /* search form */
@@ -59,14 +77,15 @@
     z-index: 1;
     height: 16px;
     width: auto;
-    color: #ffffff66;
+    color: #fff6;
     margin-left: 7px;
   }
 
   .search-input.bp3-input-group > .bp3-icon,
   .search-input.bp3-input-group input::placeholder {
-    color: #ffffff66;
+    color: #fff6;
   }
+
   .search-input.bp3-input-group input::placeholder {
     font-size: 14px;
   }

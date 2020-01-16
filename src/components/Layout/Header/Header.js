@@ -6,7 +6,7 @@ import { Suggest } from "@blueprintjs/select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./header.scss";
-import { Logo } from "~/components/Layout/Logo";
+import { Logo } from "./Logo/Logo";
 
 const renderFilm = (film, { handleClick, modifiers }) => {
   if (!modifiers.matchesPredicate) {
@@ -166,8 +166,12 @@ class Header extends Component {
 
     return (
       <Navbar fixedToTop="true" className="header-component">
-        <Navbar.Group className="logo-container">
+        <Navbar.Group className="logo-title-container">
           <Logo className="logo" />
+          <div className="titles">
+            <div className="title">Datanator</div>
+            <div className="subtitle">Data for modeling cells</div>
+          </div>
         </Navbar.Group>
 
         {show_search && (
