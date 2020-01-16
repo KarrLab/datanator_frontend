@@ -4,7 +4,7 @@ import { Classes, MenuItem } from "@blueprintjs/core";
 import { Button } from "@blueprintjs/core";
 import { Suggest, ISelectItemRendererProps, Select,  } from '@blueprintjs/select';
 
-import './header.css';
+import './header.scss';
 import { Logo } from '~/components/Layout/Logo';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';

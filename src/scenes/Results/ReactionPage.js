@@ -31,8 +31,8 @@ import {TanitomoFilter} from '~/scenes/Results/TanitomoFilter.js'
 import PartialMatchFilter from "./PartialMatchFilter.js";
 
 
-import './ag_styles.css'
-import './MetabConcs.css'
+import './ag_styles.scss'
+import './MetabConcs.scss'
 const queryString = require('query-string');
 const sideBar = {
   toolPanels: [

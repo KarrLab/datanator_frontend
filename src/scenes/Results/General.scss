@@ -50,33 +50,35 @@
   margin-top: 2rem;
 }
 
-.google.results .MuiTypography-h6 {
-  color: #fff;
-  background: #1890ff;
-  font-weight: bold;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+.google.results {
+  .MuiTypography-h6 {
+    color: #fff;
+    background: #1890ff;
+    font-weight: bold;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .MuiList-root {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  li {
+    padding: 0;
+    margin: 0;
+
+    .MuiListItemText-multiline {
+      margin: 0;
+    }
+  }
+
+  .contents {
+    li:not(:first-child) {
+      margin-top: 1rem;
+    }
+  }
 }
-
-.google.results .MuiList-root {
-  width: 100%;
-  padding: 1rem;
-}
-
-.google.results li {
-  padding: 0;
-  margin: 0;
-}
-
-.google.results. .contents li:not(:first-child) {
-  margin-top: 1rem;
-}
-
-.google.results li .MuiListItemText-multiline {
-  margin: 0;
-}
-
-
 
 /* general styling */
 

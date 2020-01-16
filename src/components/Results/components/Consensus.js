@@ -4,7 +4,7 @@ import Chart_JS from './Chart_JS.js';
 
 import PropTypes from 'prop-types';
 //import DownloadLink from 'react-download-link';
-import './Consensus.css';
+import './Consensus.scss';
 import { connect } from 'react-redux';
 import {
   mean,

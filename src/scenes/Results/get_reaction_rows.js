@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 
-import './MetabConcs.css';
+import './MetabConcs.scss';
 
 
 

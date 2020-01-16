@@ -8,7 +8,7 @@ import { Redirect } from "react-router-dom";
 import { Header } from "~/components/Layout/Header/Header";
 import workflow_icons from "~/scenes/Home/images/workflow_icons.png";
 
-import "~/scenes/Home/Home.css";
+import "~/scenes/Home/Home.scss";
 class Home extends Component {
   constructor(props) {
     super(props);

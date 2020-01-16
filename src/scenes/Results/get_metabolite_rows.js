@@ -7,7 +7,7 @@ import { PropTypes } from 'react';
 import { Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
-import './MetabConcs.css';
+import './MetabConcs.scss';
 
 import { getSearchData } from '~/services/MongoApi';
 import { set_lineage, setTotalData } from '~/data/actions/resultsAction';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { H6 } from '@blueprintjs/core';
-import './Footer.css';
+import './Footer.scss';
 
 const Footer = props => {
   return (

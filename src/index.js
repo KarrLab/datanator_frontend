@@ -16,7 +16,7 @@ import "@blueprintjs/icons/lib/css/blueprint-icons.css";
 //import '@blueprintjs/select/lib/css/blueprint-select.css';
 //import '@blueprintjs/table/lib/css/table.css';
 import "@blueprintjs/core/lib/scss/variables.scss";
-import "./index.css";
+import "./index.scss";
 
 //Website pages (scenes)
 import Home from "~/scenes/Home/Home";

@@ -7,7 +7,7 @@ import ReactDOM from 'react-dom';
 
 //import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
 
-import './OrthologyGroup.css';
+import './OrthologyGroup.scss';
 import {Link, Redirect } from 'react-router-dom'
 
 import { PropTypes } from 'react';

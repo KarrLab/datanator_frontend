@@ -6,7 +6,7 @@ import { Link } from '@material-ui/core';
 import { Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
-import './General.css';
+import './General.scss';
 import InteractiveList from './SearchResultsList.js';
 
 import { getSearchData } from '~/services/MongoApi';

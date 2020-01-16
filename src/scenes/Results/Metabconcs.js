@@ -32,8 +32,8 @@ import { AllCommunityModules } from "@ag-grid-community/all-modules";
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 
-import './ag_styles.css'
-import './MetabConcs.css'
+import './ag_styles.scss'
+import './MetabConcs.scss'
 import {TaxonomyFilter} from '~/scenes/Results/TaxonomyFilter.js'
 import {TanitomoFilter} from '~/scenes/Results/TanitomoFilter.js'
 

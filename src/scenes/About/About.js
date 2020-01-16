@@ -4,8 +4,8 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { withRouter } from "react-router";
 
-import "~/scenes/Results/General.css";
-import "./About.css";
+import "~/scenes/Results/General.scss";
+import "./About.scss";
 
 import { Header } from "~/components/Layout/Header/Header";
 

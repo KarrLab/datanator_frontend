@@ -17,7 +17,7 @@ import {
 } from '~/data/actions/resultsAction';
 
 import { setNewUrl, abstractMolecule } from '~/data/actions/pageAction';
-import '~/scenes/Results/ProteinPage.css';
+import '~/scenes/Results/ProteinPage.scss';
 import { Header } from '~/components/Layout/Header/Header';
 import { Footer } from '~/components/Layout/Footer/Footer';
 
@@ -34,8 +34,8 @@ import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 import {TaxonomyFilter} from '~/scenes/Results/TaxonomyFilter.js'
 import {TanitomoFilter} from '~/scenes/Results/TanitomoFilter.js'
 import PartialMatchFilter from "./PartialMatchFilter.js";
-import './ag_styles.css'
-import './MetabConcs.css'
+import './ag_styles.scss'
+import './MetabConcs.scss'
 import {ProteinDefinition} from '~/components/Definitions/ProteinDefinition';
 
 
