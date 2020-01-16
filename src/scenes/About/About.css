@@ -1,43 +1,44 @@
-.about_paragraph {
-    margin-left: 10px;
-    margin-top: 7px; 
-    margin-bottom: 7px; 
+.about p {
+    margin-bottom: 0;
+}
+.about p:not(:last-child) {
+    margin-bottom: 1rem;
+}
+.about p.no-bottom-margin,
+.about p.no-bottom-margin:not(:last-child) {
+    margin-bottom: 0;
 }
 
-.about_paragraph ol {
-    list-style-type: circle;
-    padding: 0;
-    margin: 0;
-    margin-left: 1.1rem;
-    margin-top: 0;
-}
-
-.about_paragraph ul {
+.about ul:last-child {
     margin-bottom: 0px
 }
 
-.developer_photos {
+.about .developer-photos {
     text-align: center;
 }
 
-.developer_photos p{
-    font-size: 17px;
-}
-
-.developer_photos .photo{
+.about .developer-photos .photo {
     float: left;
-    width: 33%;
+}
+.about .developer-photos .photo:not(:first-child) {
+    margin-left: 1rem;
 }
 
-.funding_icons {
-    text-align: center;
+.about .developer-photos:after {
+    content: "";
+    clear: both;
+    display: table;
 }
 
-.funding_icons img{
-    padding: 5px;
+.about .funding-icons {
 }
 
-.social-icon{
-    height: 15px !important;
-    width: 15px !important;
+.about .funding-icons img:not(:first-child) {
+    margin-left: 1rem;
+}
+
+.about .social-icon {
+    margin-left: 0.25rem;
+    position: relative;
+    top: -2px;
 }

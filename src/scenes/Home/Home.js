@@ -44,25 +44,25 @@ class Home extends Component {
 
     return (
       <div>
-        <Header 
+        <Header
           handleClick={this.getNewSearch}
         />
-        <div className="container">
+        <div className="content-container home">
           <div className="section intro">
-            <H1>Datanator</H1>
-            <H2>Discovering data for modeling cellular biochemistry</H2>
+            <h1>Datanator</h1>
+            <h2>Discovering data for modeling cellular biochemistry</h2>
             <p>
               <i>Datanator</i> is a toolkit for discovering the data needed to build, calibrate, and validate mechanistic models of cells. <i>Datanator</i> is composed of an integrated database of genomic and biochemical data, this web application for identifying relevant data for modeling a specific organism in a specific environmental condition, and a REST API and Python library for programmatically discovering data for large models such as <a href="https://www.wholecell.org" target="_blank">whole-cell models</a>.
             </p>
           </div>
           <div className="section workflow">
-            <H2>Workflow</H2>
+            <h2>Workflow</h2>
             <img
               className="workflow-icons"
               src={workflow_icons} />
           </div>
           <div className="section about">
-            <H2>About <i>Datanator</i></H2>
+            <h2>About <i>Datanator</i></h2>
             <p>
               <i>Datanator</i> was developed by the <a href="https://www.karrlab.org" target="_blank">Karr Lab</a> at the Icahn School of Medicine at Mount Sinai in New York.
             </p>

@@ -193,7 +193,7 @@ class Header extends Component {
                 console.log("hello")
                 this.setState({query:event.target.value});
               }}
-            />          
+            />
 
             <div className="in">in</div>
 
