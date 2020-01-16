@@ -18,7 +18,6 @@ const renderFilm = (film, { handleClick, modifiers }) => {
       key={film}
       onClick={event => {
         handleClick(event);
-        console.log(event);
       }}
       text={film}
     />
@@ -182,7 +181,6 @@ class Header extends Component {
                 placeholder="Metabolite, protein, or reaction (e.g., glucose)"
                 defaultValue={this.state.query}
                 onChange={event => {
-                  console.log("hello");
                   this.setState({ query: event.target.value });
                 }}
               />
@@ -201,7 +199,6 @@ class Header extends Component {
 
                 noResults={<MenuItem disabled={true} text="No results." />}
                 onQueryChange={(query, event) => {
-                  console.log(event);
                   this.setState({ organism: query });
                   //first_enter = true
                 }}
@@ -211,17 +208,14 @@ class Header extends Component {
                 //onKeyPress={ (event) => {if (event.key === "Enter") { this.handleClickInner() } }}
 
                 onItemSelect={(value, event) => {
-                  console.log(event);
                   //if (event.key === "Enter") //{ this.handleClickInner() } }}
                   this.setState({ organism: value });
                   if (event.key === "Enter") {
-                    console.log("woooooo");
                     //this.setState({wait_for_autocomplete:false})
                     this.handleClickInnerAuto(value);
                   }
                 }}
                 onKeyPress={event => {
-                  //console.log(this.state.wait_for_autocomplete)
                   if (
                     event.key === "Enter" &&
                     !this.state.wait_for_autocomplete
@@ -235,12 +229,10 @@ class Header extends Component {
                   placeholder: "organism (e.g., Escherichia coli)",
 
                   onChange: event => {
-                    console.log("hello");
                     this.setState({ query: event.target.value });
                   },
 
                   onKeyPress: event => {
-                    //console.log(this.state.wait_for_autocomplete)
                     if (
                       event.key === "Enter" &&
                       !this.state.wait_for_autocomplete
