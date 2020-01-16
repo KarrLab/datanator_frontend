@@ -3,16 +3,16 @@ body {
 }
 
 /* paragraphs */
-p {
+#root p {
   margin-bottom: 0;
 }
 
-p:not(:last-child) {
+#root p:not(:last-child) {
   margin-bottom: 1rem;
 }
 
-p.no-bottom-margin,
-p.no-bottom-margin:not(:last-child) {
+#root p.no-bottom-margin,
+#root p.no-bottom-margin:not(:last-child) {
   margin-bottom: 0;
 }
 
@@ -21,6 +21,26 @@ ul,
 ol {
   margin-left: 18px;
   padding-left: 0;
+}
+
+ul:last-child,
+ol:last-child {
+  margin-bottom: 0;
+}
+
+ul.no-top-margin,
+ol.no-top-margin {
+  margin-top: 0;
+}
+
+/* links */
+a,
+a:hover {
+  color: #1890ff;
+}
+
+a:hover {
+  text-decoration: none;
 }
 
 /* content container */
@@ -117,7 +137,7 @@ ol {
 }
 
 .table-of-contents a:hover {
-  text-decoration: none;
+  color: #1890ff;
 }
 
 /* block section (section with a heading bar, background color, and border) */

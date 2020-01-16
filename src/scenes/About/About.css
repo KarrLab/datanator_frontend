@@ -1,20 +1,3 @@
-.about p {
-  margin-bottom: 0;
-}
-
-.about p:not(:last-child) {
-  margin-bottom: 1rem;
-}
-
-.about p.no-bottom-margin,
-.about p.no-bottom-margin:not(:last-child) {
-  margin-bottom: 0;
-}
-
-.about ul:last-child {
-  margin-bottom: 0;
-}
-
 /* developers */
 .about .developers-group {
   margin-top: 1rem;
