@@ -2,10 +2,10 @@ import React from 'react';
 import logo from './logo.svg';
 const Logo = props => {
   return (
-    <a href="/" className="logo">
+    <a href="/" className="logo-inner-container">
       <img
         src={logo}
-        className="logo-image"
+        className="logo"
         alt="Datanator Logo"
       />
     </a>

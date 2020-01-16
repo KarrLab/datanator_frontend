@@ -172,16 +172,14 @@ class Header extends Component {
     }
 
     return (
-      <Navbar fixedToTop="true" className="bp3-dark navbar">
-        <Navbar.Group className="logo-holder">
+      <Navbar fixedToTop="true" className="navbar">
+        <Navbar.Group className="logo-container">
           <Logo className="logo" />
         </Navbar.Group>
 
         { show_search &&
         <Navbar.Group className="searchbar">
           <form className="searchbar-input" onSubmit={this.handleClickInner} >
-
-            <Button type="submit" onClick={this.handleClickInner} style={{display: "none"}} />
 
             <InputGroup
               //onKeyPress={ (event) => {if (event.key === "Enter") { (this.handleClickInner()) } }}
@@ -195,70 +193,72 @@ class Header extends Component {
                 console.log("hello")
                 this.setState({query:event.target.value});
               }}
-            />
-          </form>
+            />          
 
-          <div className="in">in</div>
+            <div className="in">in</div>
 
-          <Suggest
-            className="searchbar-input"
-            items={ORGANISMS}
-            openOnKeyDown={true}
-            //itemPredicate={Films.itemPredicate}
-            itemPredicate={this.filterFilm}
-            itemRenderer={renderFilm}
-            selectedItem={this.state.organism}
-            //activeItem = {null}
+            <Suggest
+              className="searchbar-input"
+              items={ORGANISMS}
+              openOnKeyDown={true}
+              //itemPredicate={Films.itemPredicate}
+              itemPredicate={this.filterFilm}
+              itemRenderer={renderFilm}
+              selectedItem={this.state.organism}
+              //activeItem = {null}
 
-            noResults={<MenuItem disabled={true} text="No results." />}
-            onQueryChange={(query, event) => {
-              console.log(event)
-                this.setState({organism:query});
-                //first_enter = true
-              }}
-            inputValueRenderer={renderInputValue}
-            //onQueryChange={() => first_enter = true}
-            //activeItem={this.state.organism}
-            //onKeyPress={ (event) => {if (event.key === "Enter") { this.handleClickInner() } }}
-
-            onItemSelect={(value, event) => {
-              console.log(event)
-              //if (event.key === "Enter") //{ this.handleClickInner() } }}
-              this.setState({organism:value})
-              if (event.key === "Enter"){
-                console.log("woooooo")
-                //this.setState({wait_for_autocomplete:false})
-                this.handleClickInnerAuto(value)
-              }
-            }}
-
-            onKeyPress= {(event) => {
-              //console.log(this.state.wait_for_autocomplete)
-              if ((event.key === "Enter") && (!this.state.wait_for_autocomplete)) { (this.handleClickInner()) }
-            }}
-
-            inputProps={{placeholder:"organism...",
-
-              onChange:((event) => {
-                console.log("hello")
-                this.setState({query:event.target.value});
-              }),
-
-             onKeyPress:((event) => {
-              //console.log(this.state.wait_for_autocomplete)
-              if ((event.key === "Enter") && (!this.state.wait_for_autocomplete)) { (this.handleClickInner()) }
-              })
-            }}
-          >
-            {/* children become the popover target; render value here */}
-            <InputGroup
-              //className="searchbar-input"
-              leftIcon="search"
-              //placeholder="Search for..."
-              //defaultValue={this.state.organism}
+              noResults={<MenuItem disabled={true} text="No results." />}
+              onQueryChange={(query, event) => {
+                console.log(event)
+                  this.setState({organism:query});
+                  //first_enter = true
+                }}
+              inputValueRenderer={renderInputValue}
+              //onQueryChange={() => first_enter = true}
+              //activeItem={this.state.organism}
               //onKeyPress={ (event) => {if (event.key === "Enter") { this.handleClickInner() } }}
-            />
-          </Suggest>
+
+              onItemSelect={(value, event) => {
+                console.log(event)
+                //if (event.key === "Enter") //{ this.handleClickInner() } }}
+                this.setState({organism:value})
+                if (event.key === "Enter"){
+                  console.log("woooooo")
+                  //this.setState({wait_for_autocomplete:false})
+                  this.handleClickInnerAuto(value)
+                }
+              }}
+
+              onKeyPress= {(event) => {
+                //console.log(this.state.wait_for_autocomplete)
+                if ((event.key === "Enter") && (!this.state.wait_for_autocomplete)) { (this.handleClickInner()) }
+              }}
+
+              inputProps={{placeholder:"organism...",
+
+                onChange:((event) => {
+                  console.log("hello")
+                  this.setState({query:event.target.value});
+                }),
+
+               onKeyPress:((event) => {
+                //console.log(this.state.wait_for_autocomplete)
+                if ((event.key === "Enter") && (!this.state.wait_for_autocomplete)) { (this.handleClickInner()) }
+                })
+              }}
+            >
+              {/* children become the popover target; render value here */}
+              <InputGroup
+                //className="searchbar-input"
+                leftIcon="search"
+                //placeholder="Search for..."
+                //defaultValue={this.state.organism}
+                //onKeyPress={ (event) => {if (event.key === "Enter") { this.handleClickInner() } }}
+              />
+            </Suggest>
+
+            <Button type="submit" onClick={this.handleClickInner} style={{display: "none"}} />
+          </form>
         </Navbar.Group>
         }
 

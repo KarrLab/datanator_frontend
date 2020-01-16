@@ -1,10 +1,12 @@
 .navbar {
     display: flex;
     justify-content: space-between;
-    top: 0;
+    background-color: #1890ff;
+    box-shadow: 0 2px 2px #00000066;
 }
 
-.logo-holder {
+/* logo */
+.logo-container {
     height: 40px;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -12,22 +14,16 @@
     order: 1;
 }
 
+.logo-inner-container {
+    height: 100%;
+}
+
 .logo {
     height: 100%;
 }
 
-.logo-image {
-    height: 100%;
-}
-
-.page-links {
-    height: 100%;
-    margin: 0;
-    order: 3;
-    font-weight: bold;
-}
-
-.searchbar{
+/* search form */
+.searchbar {
     order: 2;
     flex: 1;
     align-self: center;
@@ -38,30 +34,6 @@
 
 .searchbar .searchbar-input {
     flex-basis: 95%;
-}
-
-.navbutton {
-    text-align: center;
-    padding-top: 0;
-    padding-bottom: 0;
-}
-
-.bp3-navbar.bp3-dark.navbar {
-    background-color: #1890ff;
-    box-shadow: 0 2px 2px #00000066;
-}
-
-.bp3-dark .bp3-button: not([class*=bp3-intent-]) .bp3-icon {
-    color: #fff;
-}
-
-.bp3-popover-target{
-    width: 100%;
-}
-
-.bp3-menu{
-    height: 200px;
-    overflow-x: scroll;
 }
 
 .bp3-input-group {
@@ -81,17 +53,34 @@
     font-size: 30px;
 }
 
-.bp3-dark .bp3-button:not([class*="bp3-intent-"]) .bp3-icon {
-    color: white;
+.bp3-popover-target{
+    width: 100%;
 }
 
-.bp3-dark .bp3-button.bp3-minimal:hover,
-.bp3-dark .bp3-button.bp3-minimal:active {
+.bp3-menu {
+    height: 200px;
+    overflow-x: scroll;
+}
+
+/* links to page */
+.page-links {
+    order: 3;
+    font-weight: bold;
+}
+
+.bp3-button:not([class*="bp3-intent-"]),
+.bp3-button:not([class*="bp3-intent-"]) .bp3-icon {
+    color: #fff;
+}
+
+.bp3-button.bp3-minimal:hover,
+.bp3-button.bp3-minimal:active {
   background: unset;
-  color: #FFC306;
 }
 
-.bp3-dark .bp3-button.bp3-minimal:hover .bp3-icon,
-.bp3-dark .bp3-button.bp3-minimal:active .bp3-icon {
+.bp3-button.bp3-minimal:hover,
+.bp3-button.bp3-minimal:active,
+.bp3-button.bp3-minimal:hover .bp3-icon,
+.bp3-button.bp3-minimal:active .bp3-icon {
   color: #FFC306;
 }

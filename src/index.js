@@ -25,7 +25,7 @@ import Metabconcs from '~/scenes/Results/Metabconcs';
 import ProteinPage from '~/scenes/Results/ProteinPage';
 import ReactionPage from '~/scenes/Results/ReactionPage';
 import GeneralPage from '~/scenes/Results/GeneralPage';
-import AboutPage from '~/scenes/Results/AboutPage';
+import About from '~/scenes/About/About';
 
 const SiteRouter = () => {
   return (
@@ -39,7 +39,6 @@ const SiteRouter = () => {
         path="/protein/:searchType/:molecule/:organism?/"
         component={ProteinPage}
       />
-
       <Route
         path="/reaction/:dataType/"
         component={ReactionPage}
@@ -50,9 +49,8 @@ const SiteRouter = () => {
       />
       <Route
         path="/about/"
-        component={AboutPage}
+        component={About}
       />
-
     </Router>
   );
 };
