@@ -19,8 +19,8 @@ import "@blueprintjs/core/lib/scss/variables.scss";
 import "./index.scss";
 
 // Font Awesome icons
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faAtom, faDna } from '@fortawesome/free-solid-svg-icons'
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faAtom, faDna } from "@fortawesome/free-solid-svg-icons";
 
 //Website pages (scenes)
 import Home from "~/scenes/Home/Home";
@@ -31,7 +31,7 @@ import ReactionPage from "~/scenes/Results/ReactionPage";
 import About from "~/scenes/About/About";
 
 // Setup Font Awesome icon library
-library.add(faAtom, faDna)
+library.add(faAtom, faDna);
 
 const SiteRouter = () => {
   return (
