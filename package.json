@@ -37,7 +37,9 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-logger": "^3.0.6",
     "redux-promise-middleware": "^6.1.2",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "stylelint": "^13.0.0",
+    "stylelint-config-standard": "^19.0.0"
   },
   "scripts": {
     "start": "react-app-rewired start",
@@ -47,6 +49,9 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "stylelint": {
+    "extends": "stylelint-config-standard"
   },
   "browserslist": {
     "production": [
