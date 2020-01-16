@@ -9,26 +9,16 @@ import { withRouter } from 'react-router';
 import './General.css';
 import InteractiveList from './SearchResultsList.js';
 
-
 import { getSearchData } from '~/services/MongoApi';
 import { formatReactionMetadata } from '~/scenes/Results/get_reaction_rows';
 import { formatProteinMetadata } from '~/scenes/Results/get_protein_rows';
 import { formatMetaboliteMetadata } from '~/scenes/Results/get_metabolite_rows';
 
-
-import {Helmet} from "react-helmet";
 import { Header } from '~/components/Layout/Header/Header';
 import { Footer } from '~/components/Layout/Footer/Footer';
 
 import Grid from '@material-ui/core/Grid';
 const queryString = require('query-string');
-
-
-
-
-
-
-
 
 const url = "reaction/data/?substrates=AMP,ATP%20&products=%20ADP&substrates_inchi=ZKHQWZAMYRWXGA-KQYNXXCUSA-J,UDMBCSSLTHHNCD-KQYNXXCUSA-N&products_inchi=XTWYTFMLZFPYCI-KQYNXXCUSA-N"
 //const results = [["ATP Synthetase1 ", "ATP + AMP ==> ADP", url], ["ATP Synthetase2 ", "ATP + AMP ==> ADP", url]]
@@ -58,7 +48,7 @@ class GeneralPage extends Component {
       protein_results : null,
       metabolite_results: null,
       meh:false,
-      page_index_counter:{
+      page_index_counter: {
         metabolites_meta : 0,
         sabio_reaction_entries : 0,
         protein : 0,
@@ -71,9 +61,6 @@ class GeneralPage extends Component {
     this.getNewSearch = this.getNewSearch.bind(this);
     this.fetch_data = this.fetch_data.bind(this);
     this.formatData = this.formatData.bind(this);
-
-
-    
   }
 
   getNewSearch(response) {
@@ -81,11 +68,12 @@ class GeneralPage extends Component {
     this.setState({ new_url: url });
     this.setState({ newSearch: true });
   }
+  
   componentDidMount() {
     let values = queryString.parse(this.props.location.search);
     this.fetch_data("metabolites_meta", 10)
-      this.fetch_data("sabio_reaction_entries", 10)
-      this.fetch_data("protein", 10)
+    this.fetch_data("sabio_reaction_entries", 10)
+    this.fetch_data("protein", 10)
   }
 
   componentDidUpdate(prevProps) {
@@ -93,7 +81,7 @@ class GeneralPage extends Component {
     console.log('GeneralPage: Calling componentDidUpdate')
     let values = queryString.parse(this.props.location.search);
     let old_values = queryString.parse(prevProps.location.search);
-    if (this.state.newResults){
+    if (this.state.newResults) {
       this.fetch_data("metabolites_meta", 10)
       this.fetch_data("sabio_reaction_entries", 10)
       this.fetch_data("protein", 10)
@@ -115,7 +103,6 @@ class GeneralPage extends Component {
     }
     else{
       url = "ftx/text_search/num_of_index/?query_message=" + values.q +"&index=" + indices + "&from_=" + from_ + "&size=" + size + "&fields=protein_name&fields=synonyms&fields=enzymes&fields=ko_name&fields=gene_name&fields=name&fields=enzyme_name&fields=product_names&fields=substrate_names&fields=enzymes.subunit.canonical_sequence&fields=species"
-
     }
     getSearchData([url])
       .then(response => {
@@ -142,7 +129,6 @@ class GeneralPage extends Component {
       //let metabolite_metadata = this.state.metabolite_results.concat(formatMetaboliteMetadata(metabolite_data, values.organism))
       console.log(metabolite_metadata)
       this.setState({metabolite_results: metabolite_metadata})
-
     }
 
     if ('top_kos' in data){
@@ -175,8 +161,6 @@ class GeneralPage extends Component {
       //let reaction_metadata = this.state.reaction_results.concat(formatReactionMetadata(reaction_data))
       this.setState({reaction_results:reaction_metadata})
     }
-  
-
   }
 
   render() {
@@ -188,105 +172,84 @@ class GeneralPage extends Component {
     if (this.state.newSearch == true) {
       console.log('Redirecting');
       this.setState({newResults:true,
-      reaction_results:null,
-      protein_results:null,
-      metabolite_results:null,
-      page_index_counter:{
-      metabolites_meta : 0,
-      sabio_reaction_entries : 0,
-      protein : 0,
-      
-      },
-      metabolite_load:true,
-      protein_load:true,
-      reactions_load:true,
-})
+        reaction_results: null,
+        protein_results: null,
+        metabolite_results: null,
+        page_index_counter:{
+          metabolites_meta : 0,
+          sabio_reaction_entries : 0,
+          protein : 0,
+        },
+        metabolite_load: true,
+        protein_load: true,
+        reactions_load: true,
+      });
       return <Redirect to={this.state.new_url} push />;
     }
 
-
-
     if (this.state.reaction_results == null &&
           this.state.protein_results == null &&
-          this.state.metabolite_results == null){
-        return ( <div>
-
-          <Header 
-        handleClick={this.getNewSearch}
-        defaultQuery={values.q}
-        defaultOrganism={values.organism}
-      />
-      <div class="loader_container">
-      <div class="loader"></div> 
-      </div>
-      </div>)
-      }
-
+          this.state.metabolite_results == null) {
+      return (
+        <div>
+          <Header
+            handleClick={this.getNewSearch}
+            defaultQuery={values.q}
+            defaultOrganism={values.organism}
+          />
+          <div class="loader_container">
+            <div class="loader"></div>
+          </div>
+        </div>
+      )
+    }
 
     return (
-
-
       <div>
+        <Header
+          handleClick={this.getNewSearch}
+          defaultQuery={values.q}
+          defaultOrganism={values.organism}
+        />
 
-      <Helmet>
-          <meta charSet="utf-8" />
-          <title>Datanator: Molecular data for integrative research</title>
-          <meta name="description" content="Web application for simulating kinetic models of biological processes and visually analyzing their results" />
-          <meta name="keywords" content="biomodel, biochemical, molecular, cell, simulate, visualize, reproducible, standards, CellML, SBML, SED-ML, Vega" />
-          <meta name="language" content="EN"/>
-          <meta name="copyright" content="Center for Reproducible Biomedical Modeling" />
-          <meta name="author" content="Center for Reproducible Biomedical Modeling, info@reproduciblebiomodels.org" />
-          <meta name="reply-to" content="info@reproduciblebiomodels.org" />
-          <meta name="url" content="https://www.biosimulations.org"/>
-          <meta name="identifier-URL" content="https://www.biosimulations.org"/>
-      </Helmet>
+        <div className="general">
+          <Grid md={3}>
+            <div className="contents" style={{
+              marginLeft: -20,
+            }}>
+              <h3>Contents</h3>
+              <ol>
+                <li>
+                  <Link>
+                    <a href={'/general/?q=' + values.q + '&' + 'organism=' + values.organism + '#metabolites'}>{"Metabolites"} </a>
+                  </Link>
+                </li>
+                <li>
+                  <Link>
+                    <a href={'/general/?q=' + values.q + '&' + 'organism=' + values.organism + '#reactions'}>{"Reactions"} </a>
+                  </Link>
+                </li>
+                <li>
+                  <Link>
+                    <a href={'/general/?q=' + values.q + '&' + 'organism=' + values.organism + '#proteins'}>{"Proteins"} </a>
+                  </Link>
+                </li>
+              </ol>
+            </div>
+          </Grid>
 
-
-      
-      <Header 
-        handleClick={this.getNewSearch}
-        defaultQuery={values.q}
-        defaultOrganism={values.organism}
-      />
-
-
-      <div className="general">
-      <Grid md={3}>
-      <div className="contents" style={{
-            marginLeft: -20,
-          }}>
-        <h3>Contents</h3>
-      <ol>
-      <li><Link>
-          <a href={'/general/?q=' + values.q + '&' + 'organism=' + values.organism + '#metabolites'}>{"Metabolites"} </a>
-      </Link></li>
-      <li><Link>
-          <a href={'/general/?q=' + values.q + '&' + 'organism=' + values.organism + '#reactions'}>{"Reactions"} </a>
-      </Link></li>
-      <li><Link>
-          <a href={'/general/?q=' + values.q + '&' + 'organism=' + values.organism + '#proteins'}>{"Proteins"} </a>
-      </Link></li>
-      </ol>
+          <InteractiveList
+            reaction_results = {this.state.reaction_results}
+            protein_results = {this.state.protein_results}
+            metabolite_results = {this.state.metabolite_results}
+            handle_fetch_data = {this.fetch_data}
+            reactions_load = {this.state.reactions_load}
+            protein_load = {this.state.protein_load}
+            metabolite_load = {this.state.metabolite_load}
+          />
+        </div>
       </div>
-      </Grid>
-
-      <InteractiveList 
-      reaction_results = {this.state.reaction_results}
-      protein_results = {this.state.protein_results}
-      metabolite_results = {this.state.metabolite_results}
-      handle_fetch_data = {this.fetch_data}
-      reactions_load = {this.state.reactions_load}
-      protein_load = {this.state.protein_load}
-      metabolite_load = {this.state.metabolite_load}
-      />
-      </div>
-
-
-
-
-      </div>
-      )
-     
+    )
   }
 }
 

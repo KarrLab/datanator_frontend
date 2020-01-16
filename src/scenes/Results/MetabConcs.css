@@ -1,127 +1,108 @@
-.total_container{
-	background: #f3f9ff;
+.total_container {
+  background: #f3f9ff;
 }
 
-.metabolite_definition_data{
-	margin-top: 60px;
-
-	width: 100%;
-    border: 1px solid #1890ff;
-    border-radius: 4px;
-    background: #f3f9ff;
-    box-shadow: 3px 3px 5px #00000066;
-
+.metabolite_definition_data {
+  margin-top: 60px;
+  width: 100%;
+  border: 1px solid #1890ff;
+  border-radius: 4px;
+  background: #f3f9ff;
+  box-shadow: 3px 3px 5px #0006;
 }
 
-.metadata_description{
-
-    margin-left:180px;
-
+.metadata_description {
+  margin-left: 180px;
 }
 
-.metadata_description_abstract{
-
-    margin-left:20px;
-    margin-top:10px ;
-    margin-bottom:3px;
-
-
+.metadata_description_abstract {
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 3px;
 }
 
-.metadata_description_abstract p{
-
-    margin-bottom: 1px;
+.metadata_description_abstract p {
+  margin-bottom: 1px;
 }
 
-.metadata_description p{
-
-	margin-bottom: 9px;
+.metadata_description p {
+  margin-bottom: 9px;
 }
 
 .metadata_picture img {
-    vertical-align: middle;
-    display:block;
-    height: auto;
-    border-style: none;
-    width: 60%;
-    height: auto;
-    margin-top: 0px;
+  vertical-align: middle;
+  display: block;
+  border-style: none;
+  width: 60%;
+  height: auto;
+  margin-top: 0;
 }
 
-
 .metadata_picture {
-    float:left;
-margin-left:10px;
-    vertical-align: middle;
-    display:block;
-    height: auto;
-    border-style: none;
-    height: auto;
-    margin-top: 10px;
-    margin-bottom: 5px;
+  float: left;
+  margin-left: 10px;
+  vertical-align: middle;
+  display: block;
+  border-style: none;
+  height: auto;
+  margin-top: 10px;
+  margin-bottom: 5px;
 }
 
 .ag_chart {
-	margin-top: 10px;
+  margin-top: 10px;
 }
-
-
 
 .metabolite_definition_data .MuiTypography-h6 {
-    color: #fff;
-    background: #1890ff;
-    font-weight: 700;
-    padding-left: .5rem;
-    padding-right: .5rem;
-
+  color: #fff;
+  background: #1890ff;
+  font-weight: 700;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
-
-
-
-
 
 .google.results > .MuiGrid-root > div {
-    width: 100%;
-    border: 1px solid #1890ff;
-    border-radius: 4px;
-    background: #f3f9ff;
-    box-shadow: 3px 3px 5px #00000066;
+  width: 100%;
+  border: 1px solid #1890ff;
+  border-radius: 4px;
+  background: #f3f9ff;
+  box-shadow: 3px 3px 5px #0006;
 }
+
 .google.results > .MuiGrid-root > div:not(:first-child) {
-    margin-top: 2rem;
+  margin-top: 2rem;
 }
 
 .google.results .MuiTypography-h6 {
-    color: #fff;
-    background: #1890ff;    
-    font-weight: bold;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+  color: #fff;
+  background: #1890ff;
+  font-weight: bold;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 .google.results .MuiList-root {
-    width: 100%;
-    padding: 1rem;
+  width: 100%;
+  padding: 1rem;
 }
 
 .slider_2 {
-    margin-top: 10px;
-    margin-bottom:-20px;
+  margin-top: 10px;
+  margin-bottom: -20px;
 }
 
 .slider_container {
-    height:150px;
-    width:220px;
+  height: 150px;
+  width: 220px;
 }
 
 .slider_2_tanitomo {
-    margin-left:20px;
-    margin-top:10px;
+  margin-left: 20px;
+  margin-top: 10px;
 }
 
-
 .vertical_center {
-    width:200px;
+  width: 200px;
   margin: 0;
   position: absolute;
   top: 50%;
@@ -129,43 +110,40 @@ margin-left:10px;
   transform: translateY(-50%);
 }
 
-.vertical_center img{
-    margin-left: 20px;
-    width:60%;
-    height:60%;
+.vertical_center img {
+  margin-left: 20px;
+  width: 60%;
+  height: 60%;
 }
 
 .vertical_center_protein {
-    width:200px;
+  width: 200px;
   margin: 0;
   position: absolute;
   top: 50%;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
-.vertical_center_protein img{
-    margin-left: 20px;
-    width:45%;
-    height:50%;
+
+.vertical_center_protein img {
+  margin-left: 20px;
+  width: 45%;
+  height: 50%;
 }
 
-.photo_and_description{
- position: relative;
- margin-top: 10px;
-
+.photo_and_description {
+  position: relative;
+  margin-top: 10px;
 }
 
-
-.summary{
-    margin-left: 15px
+.summary {
+  margin-left: 15px;
 }
 
-
-.metadata_description button{ 
-        background-color: #0084ff !important;
-    border: #0a89ff!important;
- font-size: 16px;
-    color: white;
-    margin-bottom: 2px; 
-
+.metadata_description button {
+  background-color: #0084ff !important;
+  border: #0a89ff !important;
+  font-size: 16px;
+  color: white;
+  margin-bottom: 2px;
 }

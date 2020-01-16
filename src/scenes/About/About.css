@@ -1,0 +1,60 @@
+.about p {
+  margin-bottom: 0;
+}
+
+.about p:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.about p.no-bottom-margin,
+.about p.no-bottom-margin:not(:last-child) {
+  margin-bottom: 0;
+}
+
+.about ul:last-child {
+  margin-bottom: 0;
+}
+
+/* developers */
+.about .developers-group {
+  margin-top: 1rem;
+}
+
+.about .developers-group h3 {
+  font-weight: bold;
+  color: #1890ff;
+}
+
+.about .developers-group.additional-developers h3 {
+  margin-bottom: 0;
+}
+
+.about .main-developers-group-list::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.about .main-developer {
+  float: left;
+}
+
+.about .main-developer:not(:first-child) {
+  margin-left: 1rem;
+}
+
+.about .main-developer .developer-name {
+  margin-top: 0.25rem;
+  text-align: center;
+}
+
+.about .developer-name .social-icon {
+  margin-left: 0.25rem;
+  position: relative;
+  top: -1px;
+}
+
+/* funding */
+.about .funding-icons img:not(:first-child) {
+  margin-left: 1rem;
+}

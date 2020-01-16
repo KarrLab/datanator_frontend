@@ -1,288 +1,97 @@
-
-
-ul, ol {
- margin-left: 18px;
- padding-left: 0px;
-}
-
-
-* top navigation bar */
-.bp3-dark .bp3-navbar {
-    background: #1890ff !important;
-    background-color: #1890ff !important;
-    box-shadow: 0 2px 3px #00000066;
-}
-
-.logo-holder {
-    height: 46px;
-    margin-top: 2px;
-    margin-right: 20px;
-    margin-bottom: 2px;
-}
-
-.bp3-dark .bp3-button:not([class*=bp3-intent-]) .bp3-icon {
-    color: #fff;
-}
-
-.bp3-popover-target{
-    width:100%;
-}
-
-.bp3-menu{
-    height:200px;
-    overflow-x: scroll;
-}
-
-.bp3-input-group {
-    background-color: #70BBFD;
-    border-radius: 3px;
-}
-.bp3-input-group input::placeholder {
-  color: #e8e8e8 !important;
-  font-size:15px;
-}
-
-.bp3-navbar-group .in{
-    color: #e8e8e8;
-    margin-right: 5px;
-    margin-left: 5px;
-    margin-top: 29px;
-    font-size:30px;
-}
-
-.bp3-icon{
-    color:white  !important;;
-}
-
 /* page content */
 .general {
-    margin: 0 auto;
-    margin-top: 50px;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    max-width: 1200px;
-    display: flex;
-    justify-content: space-between;
+  margin: 0 auto;
+  margin-top: 50px;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
 }
+
 .general > .MuiGrid-root {
-    max-width: 15%;
-    flex-basis: 15%;
-    margin-right: 2rem;    
+  max-width: 15%;
+  flex-basis: 15%;
+  margin-right: 2rem;
 }
 
 /* search input box */
 .ConcSearch {
-    display: none !important;
-}
-
-/* contents */
-.contents {
-    color: #333;
-    padding: 0.5rem;
-    margin: 0 !important;
-    border-radius: 4px;
-    border: 1px solid #ffc306;
-    background: #fffcf2; /* 95% lighten of primary color */
-    box-shadow: 3px 3px 5px #00000066;
-    position: sticky;
-    top: calc(50px + 2rem);
-}
-.contents h3 {
-    margin: 0;
-    margin-top: -0.25rem;
-    margin-bottom: 0.5rem;
-    height: auto;
-    padding: 0;
-    line-height: 100%;
-}
-.contents ol {
-    list-style-type: circle;
-    padding: 0;
-    margin: 0;
-    margin-left: 1.1rem;
-}
-.contents a {
-    margin-left: -0.125rem;
-}
-.contents a {
-    color: #333;    
-}
-.contents a:hover {
-    text-decoration: none;
+  display: none !important;
 }
 
 /* search results */
 .general > .google.results {
-    width: 100%;
+  width: 100%;
 }
 
 .google.results > .MuiGrid-root {
-    width: 100%;
-    max-width: unset;
-    flex-basis: unset;
+  width: 100%;
+  max-width: unset;
+  flex-basis: unset;
 }
 
-.google.results button{ 
-        background-color: #0084ff !important;
-    border: #0a89ff!important;
- font-size: 16px;
-    color: white;
-
+.google.results button {
+  background-color: #0084ff !important;
+  border: #0a89ff !important;
+  font-size: 16px;
+  color: white;
 }
+
 .google.results > .MuiGrid-root > div {
-    width: 100%;
-    border: 1px solid #1890ff;
-    border-radius: 4px;
-    background: #f3f9ff;
-    box-shadow: 3px 3px 5px #00000066;
+  width: 100%;
+  border: 1px solid #1890ff;
+  border-radius: 4px;
+  background: #f3f9ff;
+  box-shadow: 3px 3px 5px #0006;
 }
+
 .google.results > .MuiGrid-root > div:not(:first-child) {
-    margin-top: 2rem;
+  margin-top: 2rem;
 }
 
 .google.results .MuiTypography-h6 {
-    color: #fff;
-    background: #1890ff;    
-    font-weight: bold;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+  color: #fff;
+  background: #1890ff;
+  font-weight: bold;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 .google.results .MuiList-root {
-    width: 100%;
-    padding: 1rem;
+  width: 100%;
+  padding: 1rem;
 }
 
 .google.results li {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
+
 .google.results. .contents li:not(:first-child) {
-    margin-top: 1.0rem;
+  margin-top: 1rem;
 }
+
 .google.results li .MuiListItemText-multiline {
-    margin: 0;
+  margin: 0;
 }
 
 
 
 /* general styling */
 
-.MuiGrid-root p{margin-bottom: 0}
+.MuiGrid-root p { margin-bottom: 0; }
 
-
-.google.results .MuiGrid-root .MuiTypography-colorPrimary a{
-    color: black;
-    font-weight: bold;
+.google.results .MuiGrid-root .MuiTypography-colorPrimary a {
+  color: black;
+  font-weight: bold;
 }
 
-.google.results .MuiGrid-root .MuiTypography-colorTextSecondary a{
-    color: black;
+.google.results .MuiGrid-root .MuiTypography-colorTextSecondary a {
+  color: black;
 }
 
-.google.results .MuiGrid-root .MuiTypography-colorTextSecondary .external_links a{
-    color: #1890ff;
-    font-size:13px;
-}
-
-
-.loader_container{
-
-
-  margin-top:50px;
-
-}
-
-.loader {
-      border: 16px solid #f3f3f3; /* Light grey */
-  border-top: 16px solid #3498db; /* Blue */
-  border-radius: 50%;
-    height: 100px;
-    left: 50%;
-    margin-left: -50px;
-    margin-top: -50px;
-    position: fixed;
-    top: 50%;
-    width: 100px;
-    animation: spin 2s linear infinite;
-  transform: translate(-50%, -50%);
-
-
-
-  
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-
-.about_paragraph{
-    margin-left:10px;
-    margin-top:7px; 
-    margin-bottom:7px; 
-}
-
-.about_paragraph ol {
-    list-style-type: circle;
-    padding: 0;
-    margin: 0;
-    margin-left: 1.1rem;
-    margin-top: 0;
-}
-
-
-.about_paragraph ul {
-    margin-bottom: 0px
-}
-
-
-
-.home_purpose{
-    margin:auto;
-    width: 50%;
-    margin-top:50px;
-    text-align: center;
-}
-
-.home_logo img{
-
-  display: block;
-  margin-left: auto !important;;
-  margin-right: auto !important;;
-  width: 50%;
-
-
-
-  
-}
-.google.results>.MuiGrid-root>div:not(:first-child) { margin-top: 2rem; }
-
-
-
-.developer_photos {
-    text-align: center;
-}
-
-.developer_photos p{
-    font-size: 17px;
-}
-
-.developer_photos .photo{
-    float:left;
-    width:33%;
-}
-
-.funding_icons {
-    text-align: center;
-}
-
-.funding_icons img{
-    padding: 5px;
-}
-
-.social-icon{
-    height: 15px !important;
-    width: 15px !important;
+.google.results .MuiGrid-root .MuiTypography-colorTextSecondary .external_links a {
+  color: #1890ff;
+  font-size: 13px;
 }
