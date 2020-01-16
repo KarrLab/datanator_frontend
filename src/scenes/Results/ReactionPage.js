@@ -130,7 +130,7 @@ function getKcat(parameters) {
 function getKm(parameters, substrates) {
   let kms = {};
   for (var i = 0; i < parameters.length; i++) {
-    if (parameters[i].type == '27' && substrates.includes(parameters[i]['name'])){
+    if (parameters[i].type == '27' && substrates.includes(parameters[i]['name']) && parameters[i]['observed_name'].toLowerCase() == "km"){
       kms["km_" + parameters[i]['name']] = parameters[i].value
     }
   }
@@ -164,8 +164,8 @@ class ReactionPage extends Component {
       columnDefs:[],
       first_columns: [
         {
-          headerName: 'Molecule',
-          field: 'name',
+          headerName: 'Entry ID',
+          field: 'kinlaw_id',
           checkboxSelection: true,
           headerCheckboxSelection: true,
           headerCheckboxSelectionFilteredOnly: true,
@@ -383,7 +383,7 @@ class ReactionPage extends Component {
           wildtype_mutant = "mutant"
         }
         let row = {
-          reaction_id: data[i]['kinlaw_id'],
+          kinlaw_id: data[i]['kinlaw_id'],
           kcat: getKcat(data[i].parameter)["kcat"],
           wildtype_mutant:wildtype_mutant,
           organism: data[i].taxon_name,
