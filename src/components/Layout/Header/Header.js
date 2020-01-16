@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./header.scss";
 import { Logo } from "./Logo/Logo";
 
-const renderFilm = (film, { handleClick, modifiers }) => {
+const renderOrganism = (film, { handleClick, modifiers }) => {
   if (!modifiers.matchesPredicate) {
     return null;
   }
@@ -125,34 +125,29 @@ class Header extends Component {
     super(props);
     this.state = {
       query: this.props.defaultQuery,
-      organism: this.props.defaultOrganism,
-      wait_for_autocomplete: true,
+      organism: this.props.defaultOrganism || "",
+      searchFormValid:
+        this.props.defaultQuery && this.props.defaultQuery.trim() !== "",
       show_search: false
     };
 
-    this.handleClickInner = this.handleClickInner.bind(this);
-    this.handleClickInnerAuto = this.handleClickInnerAuto.bind(this);
-    this.filterFilm = this.filterFilm.bind(this);
-  }
-
-  handleClickInner() {
-    this.props.handleClick([this.state.query, this.state.organism]);
-  }
-
-  handleClickInnerAuto(autocomplete_organism) {
-    this.props.handleClick([this.state.query, autocomplete_organism]);
+    this.filterOrganisms = this.filterOrganisms.bind(this);
+    this.submitSearch = this.submitSearch.bind(this);
   }
 
   componentDidMount() {
     this.setState({
       query: this.props.defaultQuery,
-      organism: this.props.defaultOrganism
+      organism: this.props.defaultOrganism || ""
     });
-    //this.refs.taxonCol.applyFilter(28)
   }
 
-  filterFilm(query, film) {
+  filterOrganisms(query, film) {
     return film.toLowerCase().indexOf(query.toLowerCase()) >= 0;
+  }
+
+  submitSearch() {
+    this.props.handleClick([this.state.query, this.state.organism]);
   }
 
   render() {
@@ -176,16 +171,19 @@ class Header extends Component {
 
         {show_search && (
           <Navbar.Group className="search-container">
-            <form className="search-form" onSubmit={this.handleClickInner}>
+            <form className="search-form" onSubmit={this.submitSearch}>
               <InputGroup
-                //onKeyPress={ (event) => {if (event.key === "Enter") { (this.handleClickInner()) } }}
-                //type='text'
+                type="text"
                 className="search-form-el search-form-el-entity search-input"
                 leftIcon=<FontAwesomeIcon icon="atom" />
                 placeholder="Metabolite, protein, or reaction (e.g., glucose)"
                 defaultValue={this.state.query}
                 onChange={event => {
-                  this.setState({ query: event.target.value });
+                  this.setState({
+                    query: event.target.value,
+                    searchFormValid:
+                      event.target.value && event.target.value.trim() !== ""
+                  });
                 }}
               />
 
@@ -193,72 +191,40 @@ class Header extends Component {
 
               <Suggest
                 className="search-form-el search-form-el-organism"
+                inputProps={{
+                  className: "search-input",
+                  leftIcon: <FontAwesomeIcon icon="dna" />,
+                  placeholder: "Organism (e.g., Escherichia coli)",
+                  onChange: event => {
+                    this.setState({ query: event.target.value });
+                  }
+                }}
                 items={ORGANISMS}
                 openOnKeyDown={true}
                 //itemPredicate={Films.itemPredicate}
-                itemPredicate={this.filterFilm}
-                itemRenderer={renderFilm}
+                itemPredicate={this.filterOrganisms}
+                itemRenderer={renderOrganism}
                 selectedItem={this.state.organism}
-                //activeItem = {null}
-
+                activeItem={null}
+                inputValueRenderer={renderInputValue}
                 noResults={
                   <MenuItem disabled={true} text="No matching organisms." />
                 }
                 onQueryChange={(query, event) => {
                   this.setState({ organism: query });
-                  //first_enter = true
                 }}
-                inputValueRenderer={renderInputValue}
-                //onQueryChange={() => first_enter = true}
-                activeItem=""
-                //onKeyPress={ (event) => {if (event.key === "Enter") { this.handleClickInner() } }}
-
                 onItemSelect={(value, event) => {
-                  //if (event.key === "Enter") //{ this.handleClickInner() } }}
                   this.setState({ organism: value });
-                  if (event.key === "Enter") {
-                    //this.setState({wait_for_autocomplete:false})
-                    this.handleClickInnerAuto(value);
-                  }
-                }}
-                onKeyPress={event => {
-                  if (
-                    event.key === "Enter" &&
-                    !this.state.wait_for_autocomplete
-                  ) {
-                    this.handleClickInner();
-                  }
-                }}
-                inputProps={{
-                  className: "search-input",
-                  leftIcon: <FontAwesomeIcon icon="dna" />,
-                  placeholder: "Organism (e.g., Escherichia coli)",
-
-                  onChange: event => {
-                    this.setState({ query: event.target.value });
-                  },
-
-                  onKeyPress: event => {
-                    if (
-                      event.key === "Enter" &&
-                      !this.state.wait_for_autocomplete
-                    ) {
-                      this.handleClickInner();
-                    }
-                  }
                 }}
               >
-                {/* children become the popover target; render value here */}
-                <InputGroup
-                //defaultValue={this.state.organism}
-                //onKeyPress={ (event) => {if (event.key === "Enter") { this.handleClickInner() } }}
-                />
+                <InputGroup />
               </Suggest>
 
               <Button
                 type="submit"
-                onClick={this.handleClickInner}
-                style={{ display: "none" }}
+                className="search-submit"
+                icon="search"
+                disabled={!this.state.searchFormValid}
               />
             </form>
           </Navbar.Group>
@@ -287,25 +253,3 @@ class Header extends Component {
   }
 }
 export { Header };
-
-/*
-<Autocomplete
-  {...defaultProps}
-  id="disable-open-on-focus"
-  disableOpenOnFocus
-  renderInput={params => (
-    //<TextField {...params} label="disableOpenOnFocus" margin="normal" fullWidth />
-    <InputGroup
-      {...params}
-      label="disableOpenOnFocus"
-      className="searchbar-input"
-      //leftIcon="search"
-      placeholder="In organism..."
-      defaultValue={this.state.organism}
-      onChange={event => {
-        this.setState({organism:event.target.value})
-      }}
-    />
-  )}
-/>
-*/
