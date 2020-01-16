@@ -2,15 +2,15 @@
 <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="49.959961px" height="50px" viewBox="0 0 49.959961 50" style="enable-background:new 0 0 49.959961 50;"
+	 width="49.959961px" height="50px" viewBox="0 0 49.959961 50" style="enable-background: new 0 0 49.959961 50;"
 	 xml:space="preserve">
 <g id="NSF">
 	
 		<radialGradient id="SVGID_1_" cx="169.907227" cy="-154.038574" r="51.757538" gradientTransform="matrix(1 0 0 -1 -162 -146)" gradientUnits="userSpaceOnUse">
-		<stop  offset="0" style="stop-color:#E8E57B"/>
-		<stop  offset="1" style="stop-color:#C39336"/>
+		<stop  offset="0" style="stop-color: #e8e57b;"/>
+		<stop  offset="1" style="stop-color: #c39336;"/>
 	</radialGradient>
-	<path style="fill:url(#SVGID_1_);" d="M25.772461,0.006836c-0.049805,1.666016,0.302734,3.230957,1.716797,4.240723
+	<path style="fill: url(#SVGID_1_);" d="M25.772461,0.006836c-0.049805,1.666016,0.302734,3.230957,1.716797,4.240723
 		c2.322266,1.11084,5.805664,2.474121,8.178711,0.45459c0.504883-0.45459,0.908203-1.11084,1.261719-1.76709
 		c0.401367,0.133301,0.807617,0.353516,1.161133,0.605957c-0.213867,0.450195-0.40332,0.807617-0.605469,1.161133
 		c-0.555664,1.362793-0.455078,3.129883,0.504883,4.240723c1.71582,1.96875,3.836914,4.846191,6.764648,3.73584
@@ -113,7 +113,7 @@
 		c0.353516,1.3125,0.858398,2.575195,1.716797,3.634766c0.100586,0.101563,0.353516,0.152344,0.454102,0
 		c0.65625-0.958984,1.05957-2.019531,1.463867-3.079102c0-0.202148,0.202148-0.454102,0-0.605469
 		C25.671875,37.113281,24.308594,37.113281,23.198242,36.961914z"/>
-	<path style="fill:#FFFFFF;" d="M33.446289,17.979492c2.625,3.028809,3.230469,7.976563,1.514648,11.509766
+	<path style="fill: #fff;" d="M33.446289,17.979492c2.625,3.028809,3.230469,7.976563,1.514648,11.509766
 		c-1.767578,3.988281-5.90625,6.513672-10.248047,6.412109c-3.988281-0.152344-7.825195-2.473633-9.541992-6.209961
 		c-1.666016-3.381836-1.211914-8.12793,1.161133-11.055664c2.625-3.433105,6.714844-4.947266,11.005859-4.240723
 		C29.660156,14.950195,31.831055,16.061035,33.446289,17.979492z"/>
@@ -124,9 +124,9 @@
 					<rect id="SVGID_2_" x="13.90918" y="13.891113" width="22.482422" height="22.481934"/>
 				</defs>
 				<clipPath id="SVGID_3_">
-					<use xlink:href="#SVGID_2_"  style="overflow:visible;"/>
+					<use xlink:href="#SVGID_2_"  style="overflow: visible;"/>
 				</clipPath>
-				<g style="clip-path:url(#SVGID_3_);">
+				<g style="clip-path: url(#SVGID_3_);">
 					<g>
 						<defs>
 							<polyline id="SVGID_4_" points="24.319336,13.963379 26.525391,14.014648 28.421875,14.441895 30.056641,15.135742 
@@ -139,11 +139,11 @@
 								24.319336,13.963379 							"/>
 						</defs>
 						<clipPath id="SVGID_5_">
-							<use xlink:href="#SVGID_4_"  style="overflow:visible;"/>
+							<use xlink:href="#SVGID_4_"  style="overflow: visible;"/>
 						</clipPath>
-						<g transform="matrix(1 0 0 1 1.553173e-006 9.812738e-007)" style="clip-path:url(#SVGID_5_);">
+						<g transform="matrix(1 0 0 1 1.553173e-006 9.812738e-007)" style="clip-path: url(#SVGID_5_);">
 							
-								<image style="overflow:visible;enable-background:new    ;" width="314" height="314" xlink:href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAgED7gPuAAD/7AARRHVja3kAAQAEAAAAHgAA/+4AIUFkb2JlAGTAAAAAAQMA
+								<image style="overflow: visible; enable-background: new;" width="314" height="314" xlink:href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAgED7gPuAAD/7AARRHVja3kAAQAEAAAAHgAA/+4AIUFkb2JlAGTAAAAAAQMA
 EAMCAwYAAAkuAAAS9wAAJB3/2wCEABALCwsMCxAMDBAXDw0PFxsUEBAUGx8XFxcXFx8eFxoaGhoX
 Hh4jJSclIx4vLzMzLy9AQEBAQEBAQEBAQEBAQEABEQ8PERMRFRISFRQRFBEUGhQWFhQaJhoaHBoa
 JjAjHh4eHiMwKy4nJycuKzU1MDA1NUBAP0BAQEBAQEBAQEBAQP/CABEIAU8BTwMBIgACEQEDEQH/
@@ -312,12 +312,12 @@ a+lsIp4gCrW/xr//2Q==" transform="matrix(0.071595 0 0 0.071595 13.909178 13.89111
 				</g>
 			</g>
 			<g>
-				<path style="fill:#FFFFFF;" d="M15.685547,28.000977c0.606445-0.071289,0.888672-0.142578,0.888672-0.808594v-4.787109
+				<path style="fill: #fff;" d="M15.685547,28.000977c0.606445-0.071289,0.888672-0.142578,0.888672-0.808594v-4.787109
 					c-0.56543-0.696777-0.726563-0.727051-0.858398-0.727051v-0.252441h2.130859l3.504883,4.3125h0.019531v-3.060059
 					c0-0.605957-0.121094-0.939453-0.938477-1v-0.252441h2.170898v0.252441c-0.726563,0.09082-0.787109,0.323242-0.787109,0.808105
 					v5.948242h-0.283203l-4.494141-5.473633h-0.019531v4.040039c0,0.726563,0.211914,0.917969,0.958984,1v0.251953h-2.292969
 					V28.000977z"/>
-				<path style="fill:#FFFFFF;" d="M27.419922,23.455566c-0.182617-0.706543-0.788086-1.868164-1.980469-1.868164
+				<path style="fill: #fff;" d="M27.419922,23.455566c-0.182617-0.706543-0.788086-1.868164-1.980469-1.868164
 					c-0.524414,0-1.080078,0.303223-1.080078,0.959473c0,0.54541,0.191406,0.767578,1.040039,1.191406l1.485352,0.737305
 					c0.342773,0.171875,1.110352,0.757324,1.110352,1.858398c0,0.888672-0.646484,2.110352-2.504883,2.110352
 					c-0.958984,0-1.413086-0.34375-1.726563-0.34375c-0.211914,0-0.262695,0.182617-0.302734,0.34375h-0.292969v-2.494141h0.292969
@@ -325,7 +325,7 @@ a+lsIp4gCrW/xr//2Q==" transform="matrix(0.071595 0 0 0.071595 13.909178 13.89111
 					c0-0.675781-0.474609-0.917969-1.130859-1.231445l-0.676758-0.323242c-1.726563-0.827637-1.726563-1.696289-1.726563-2.161133
 					c0-0.615723,0.313477-1.989258,2.231445-1.989258c0.808594,0,1.283203,0.333496,1.576172,0.333496
 					c0.231445,0,0.282227-0.151855,0.333008-0.343262h0.302734v2.191406h-0.282227V23.455566z"/>
-				<path style="fill:#FFFFFF;" d="M28.588867,21.425781h5.726563v2.029785h-0.242188
+				<path style="fill: #fff;" d="M28.588867,21.425781h5.726563v2.029785h-0.242188
 					c-0.222656-1.050293-0.495117-1.686523-2.232422-1.686523c-0.544922,0-0.726563,0.040527-0.726563,0.475098v2.342773
 					c1.251953,0.02002,1.40332-0.696777,1.544922-1.504883h0.25293v3.413086h-0.25293
 					c-0.111328-0.827637-0.272461-1.564941-1.544922-1.564941v2.353027c0,0.666992,0.40332,0.686523,1.110352,0.717773v0.251953

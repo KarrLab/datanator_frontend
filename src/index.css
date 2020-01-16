@@ -1,146 +1,145 @@
 body {
-    color: #333;
+  color: #333;
 }
 
 /* paragraphs */
 p {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
+
 p:not(:last-child) {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 p.no-bottom-margin,
 p.no-bottom-margin:not(:last-child) {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 /* lists */
-ul, ol {
-    margin-left: 18px;
-    padding-left: 0px;
+ul,
+ol {
+  margin-left: 18px;
+  padding-left: 0;
 }
 
 /* content container */
 .content-container {
-    margin-top: calc(50px + 2rem);
-    margin-bottom: 2rem;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0;
+  margin-top: calc(50px + 2rem);
+  margin-bottom: 2rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
 }
 
 .content-container.columns {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 /* page loader */
-.loader_container{
-    margin-top: 50px;
+.loader_container {
+  margin-top: 50px;
 }
 
 .loader {
-    border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #3498db; /* Blue */
-    border-radius: 50%;
-    height: 100px;
-    left: 50%;
-    margin-left: -50px;
-    margin-top: -50px;
-    position: fixed;
-    top: 50%;
-    width: 100px;
-    animation: spin 2s linear infinite;
-    transform: translate(-50%, -50%);
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  height: 100px;
+  left: 50%;
+  margin-left: -50px;
+  margin-top: -50px;
+  position: fixed;
+  top: 50%;
+  width: 100px;
+  animation: spin 2s linear infinite;
+  transform: translate(-50%, -50%);
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 /* section blocks */
 .content-block {
-    border-width: 1px;
-    border-style: solid;
-    border-radius: 4px;
-    box-shadow: 3px 3px 5px #00000066;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 4px;
+  box-shadow: 3px 3px 5px #0006;
 }
 
 .content-block:not(:first-child) {
-    margin-top: 2rem;
+  margin-top: 2rem;
 }
 
 .content-block-heading {
-    font-size: 1.25rem;
-    font-weight: bold;
-    text-align: left;
-    padding-left: 0.5rem;
-    margin: 0;
-    color: #fff;
+  font-size: 1.25rem;
+  font-weight: bold;
+  text-align: left;
+  padding-left: 0.5rem;
+  margin: 0;
+  color: #fff;
 }
 
 .content-block-content {
-    padding: 0.5rem;
+  padding: 0.5rem;
 }
 
 /* table of contents */
 .table-of-contents {
-    color: #333;
-    height: min-content;
-    margin-right: 2rem;
-    border-color: #ffc306;
-    background: #fffcf2; /* 95% lighten of accent color */
-    position: sticky;
-    top: calc(50px + 2rem);
-    width: 160px;
-    min-width: 160px;
+  color: #333;
+  height: min-content;
+  margin-right: 2rem;
+  border-color: #ffc306;
+  background: #fffcf2; /* 95% lighten of accent color */
+  position: sticky;
+  top: calc(50px + 2rem);
+  width: 160px;
+  min-width: 160px;
 }
 
 .table-of-contents .content-block-heading {
-    background: #ffc306;
+  background: #ffc306;
 }
 
 .table-of-contents ol {
-    list-style-type: circle;
-    margin: 0;
-    margin-left: 1rem;
+  list-style-type: circle;
+  margin: 0;
+  margin-left: 1rem;
 }
 
 .table-of-contents a {
-    margin-left: -0.125rem;
-}
-
-.table-of-contents a {
-    color: #333;
+  margin-left: -0.125rem;
+  color: #333;
 }
 
 .table-of-contents a:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 /* block section (section with a heading bar, background color, and border) */
 .content-block.section {
-    border-color: #1890ff;
-    background: #f3f9ff;
+  border-color: #1890ff;
+  background: #f3f9ff;
 }
 
 .section .content-block-heading {
-    background: #1890ff;
+  background: #1890ff;
 }
 
 /* focus */
 :focus {
-    outline: none;
+  outline: none;
 }
 
 /* hover zoom affect */
 .hover-zoom {
-    transition: all 0.5s;
+  transition: all 0.5s;
 }
 
 .hover-zoom:hover {
-    transform: scale(1.08);
+  transform: scale(1.08);
 }

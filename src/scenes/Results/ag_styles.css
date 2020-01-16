@@ -1,8 +1,10 @@
 .ag-theme-balham .ag-icon-pin {
-    font-family: "Font Awesome 5 Free";
-    /* FontAwesome uses font-weight bold */
-    font-weight: bold;
+  font-family: "Font Awesome 5 Free";
+
+  /* FontAwesome uses font-weight bold */
+  font-weight: bold;
 }
+
 .ag-theme-balham .ag-icon-customstats::before {
-    content: '\f08d';
+  content: '\f08d';
 }

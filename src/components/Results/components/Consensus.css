@@ -1,20 +1,14 @@
 
 .consensus {
-
-border-style: solid;
+  border-style: solid;
   border-color: #fcd1d5;
 }
 
-
 .consensus .summary {
   text-align: left;
-  display:flex; 
-  flex-direction:row;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   border-style: solid;
   border-color: #fcd1d1;
-  flex-wrap: wrap;
-  flex-flow: row wrap
-
-
 }
-
