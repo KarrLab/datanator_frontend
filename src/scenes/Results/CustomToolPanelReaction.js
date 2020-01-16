@@ -9,7 +9,7 @@ export default class CustomToolPanelReaction extends Component {
         this.state = {numMedals: 0, numGold: 0, numSilver: 0, numBronze: 0};
 
         // calculate stats when new rows loaded, i.e. onModelUpdated
-        this.props.api.addEventListener('modelUpdated', this.updateTotals.bind(this));
+        //this.props.api.addEventListener('modelUpdated', this.updateTotals.bind(this));
     }
 
     render() {
@@ -18,7 +18,7 @@ export default class CustomToolPanelReaction extends Component {
         return (
             <div style={{textAlign: "center"}}>
                     <Consensus 
-              relevantColumns={['abundance']} 
+              relevantColumns={[this.props.relevant_column]} 
               optional_columns = {[]}
               />
             </div>

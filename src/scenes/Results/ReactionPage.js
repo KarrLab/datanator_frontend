@@ -33,6 +33,8 @@ import PartialMatchFilter from "./PartialMatchFilter.js";
 
 import './ag_styles.scss'
 import './MetabConcs.scss'
+
+
 const queryString = require('query-string');
 const sideBar = {
   toolPanels: [
@@ -245,7 +247,7 @@ class ReactionPage extends Component {
         cellRenderer: 'agGroupCellRenderer',
         cellRendererParams: { checkbox: true },
       },
-       frameworkComponents: { CustomToolPanelReaction: CustomToolPanelReaction, taxonomyFilter: TaxonomyFilter, partialMatchFilter: PartialMatchFilter, 
+       frameworkComponents: { CustomToolPanelReaction: (() => <CustomToolPanelReaction relevant_column={"kcat"} />), taxonomyFilter: TaxonomyFilter, partialMatchFilter: PartialMatchFilter, 
         tanitomoFilter: TanitomoFilter }
     };
 
