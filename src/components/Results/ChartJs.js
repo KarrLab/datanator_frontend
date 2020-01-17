@@ -8,7 +8,7 @@ function randomValues(count, min, max) {
   return Array.from({ length: count }).map(() => Math.random() * delta + min);
 }
 
-export default class Chart_JS extends Component {
+export default class ChartJs extends Component {
   chartRef = React.createRef();
 
   componentDidMount() {

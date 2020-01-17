@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 //import Chart3 from './Chart3.js';
-import Chart_JS from './Chart_JS.js';
+import ChartJs from './ChartJs.js';
 
 import PropTypes from 'prop-types';
 //import DownloadLink from 'react-download-link';
@@ -157,11 +157,11 @@ class Consensus extends Component {
     console.log('Consensus: Calling componentDidUpdate');
     console.log(this.props.totalData)
     console.log(this.props.selectedData)
-    if (prevProps.totalData != this.props.totalData) {
+    if (prevProps.totalData !== this.props.totalData) {
       this.setSummaryStats(this.props.totalData, this.props.relevantColumns[0])
       this.setState({selected_column:this.props.relevantColumns[0]});
-    } else if (prevProps.selectedData != this.props.selectedData) {
-      if (this.props.selectedData.length == 0){
+    } else if (prevProps.selectedData !== this.props.selectedData) {
+      if (this.props.selectedData.length === 0){
         this.setSummaryStats(this.props.totalData, this.props.relevantColumns[0])
       }
       else{
@@ -184,7 +184,7 @@ class Consensus extends Component {
           <div>
 
           <p><b>Concentrations</b></p>
-        <Chart_JS
+        <ChartJs
             original_data={this.props.totalData}
             data={this.props.selectedData}
             relevantColumn={this.state.selected_column}
