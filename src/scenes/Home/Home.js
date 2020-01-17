@@ -54,11 +54,12 @@ class Home extends Component {
               <p>
                 <i>Datanator</i> is a toolkit for discovering the data needed to
                 build, calibrate, and validate mechanistic models of cells.{" "}
-                <i>Datanator</i> is composed of an integrated database of genomic
-                and biochemical data, this web application for identifying
-                relevant data for modeling a specific organism in a specific
-                environmental condition, and a REST API and Python library for
-                programmatically discovering data for large models such as{" "}
+                <i>Datanator</i> is composed of an integrated database of
+                genomic and biochemical data, this web application for
+                identifying relevant data for modeling a specific organism in a
+                specific environmental condition, and a REST API and Python
+                library for programmatically discovering data for large models
+                such as{" "}
                 <a
                   href="https://www.wholecell.org"
                   target="_blank"
@@ -72,30 +73,32 @@ class Home extends Component {
           </div>
           <div className="section workflow">
             <div className="section-inner-container">
-              <h2>Systematic workflow for discovering data for modeling cells</h2>
+              <h2>
+                Systematically discover data for modeling cellular biochemistry
+              </h2>
               <div className="section-columns section-4-columns">
                 <div className="section-column">
                   <img src={searchIcon} className="section-column-icon" />
-                  <div class="section-column-title">Search</div>
-                  <div class="section-column-text">Brief description</div>
+                  <div className="section-column-title">1. Search</div>
+                  <div className="section-column-text">Brief description</div>
                 </div>
 
                 <div className="section-column">
                   <img src={filterIcon} className="section-column-icon" />
-                  <div class="section-column-title">Filter</div>
-                  <div class="section-column-text">Brief description</div>
+                  <div className="section-column-title">2. Filter</div>
+                  <div className="section-column-text">Brief description</div>
                 </div>
 
                 <div className="section-column">
                   <img src={analyzeIcon} className="section-column-icon" />
-                  <div class="section-column-title">Analyze</div>
-                  <div class="section-column-text">Brief description</div>
+                  <div className="section-column-title">3. Analyze</div>
+                  <div className="section-column-text">Brief description</div>
                 </div>
 
                 <div className="section-column">
                   <img src={exportIcon} className="section-column-icon" />
-                  <div class="section-column-title">Download</div>
-                  <div class="section-column-text">Brief description</div>
+                  <div className="section-column-title">4. Download</div>
+                  <div className="section-column-text">Brief description</div>
                 </div>
               </div>
             </div>

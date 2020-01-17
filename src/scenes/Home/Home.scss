@@ -26,7 +26,7 @@
 
   /* sections */
   .section {
-    text-align: center;    
+    text-align: center;
   }
 
   .section:not(:last-child) {
@@ -52,19 +52,19 @@
     align-content: flex-start;
     margin-top: 2rem;
   }
-  
+
   .section-4-columns {
     .section-column {
       width: calc(25% - 2rem);
     }
   }
-  
+
   .section-column {
     text-align: center;
     margin-left: 1rem;
     margin-right: 1rem;
   }
-  
+
   .section-column-icon {
     height: 64px;
   }
