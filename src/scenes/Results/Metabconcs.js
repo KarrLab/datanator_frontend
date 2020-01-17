@@ -6,11 +6,9 @@ import { connect } from 'react-redux';
 //import { Input } from 'antd';
 //import 'antd/dist/antd.css';
 //import ConcentrationsTable from '~/components/Results/ConcentrationsTable.js';
-//import ConcSearch from '~/components/SearchField/ConcSearch.js';
 //import { PropTypes } from 'react';
 import { Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router';
-//import GeneralSearch from '~/components/SearchField/GeneralSearch.js';
 //import { Consensus } from '~/components/Results/components/Consensus.js';
 
 import { getSearchData } from '~/services/MongoApi';
