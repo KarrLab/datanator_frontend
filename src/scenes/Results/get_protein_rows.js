@@ -1,8 +1,4 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { PropTypes } from 'react';
-import { Redirect } from 'react-router-dom';
-import { withRouter } from 'react-router';
+import React from 'react';
 
 import './MetabConcs.scss';
 
@@ -19,7 +15,7 @@ function formatProteinMetadata(data, organism) {
   let newProteinMetadataDict = {};
   for (var i = start; i < data.length; i++) {
     let ko_number = data[i]['key'];
-    if (ko_number != "nan"){
+    if (ko_number !== "nan"){
       ko_number = ko_number[0].toUpperCase() + ko_number.substring(1, ko_number.length)
       let new_dict = newProteinMetadataDict[ko_number];
     if (!new_dict) {

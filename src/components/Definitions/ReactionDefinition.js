@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-
-import ReactDOM from 'react-dom';
 
 //import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
 
-import {Link, Redirect } from 'react-router-dom'
-
-import { PropTypes } from 'react';
-
+import {Link } from 'react-router-dom'
 
 const products = [{id:"3", name:"bob"}];
 const columns = [{
@@ -21,12 +15,6 @@ const columns = [{
   dataField: 'price',
   text: 'Product Price'
 }];
-
-
-
-
-
-
 
 class ReactionDefinition extends Component {
   constructor(props) {

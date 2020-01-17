@@ -1,6 +1,3 @@
-import { BrowserRouter, Redirect } from 'react-router-dom';
-
-
 export const defaultState = {
 	url: "",
 	moleculeAbstract: false,

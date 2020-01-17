@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { PropTypes } from 'react';
 import { Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
@@ -17,7 +16,6 @@ import { Header } from '~/components/Header/Header';
 import { Footer } from '~/components/Footer/Footer';
 
 import { AgGridReact } from 'ag-grid-react';
-import { AllModules } from 'ag-grid-enterprise';
 import CustomToolPanelReaction from '~/scenes/Results/CustomToolPanelReaction.js';
 import { AllCommunityModules } from "@ag-grid-community/all-modules";
 
@@ -64,7 +62,7 @@ const sideBar = {
 
 function getReactionID(resource) {
   for (var i = 0; i < resource.length; i++)
-    if (resource[i].namespace == 'sabiork.reaction') {
+    if (resource[i].namespace === 'sabiork.reaction') {
       return resource[i].id;
     }
 }
@@ -120,7 +118,7 @@ function getProductInchiKey(product) {
 function getKcat(parameters) {
   let kinetic_params = {};
   for (var i = 0; i < parameters.length; i++) {
-    if (parameters[i].name == 'k_cat'){
+    if (parameters[i].name === 'k_cat'){
       kinetic_params["kcat"] = parameters[i].value
     }
   }
@@ -130,7 +128,7 @@ function getKcat(parameters) {
 function getKm(parameters, substrates) {
   let kms = {};
   for (var i = 0; i < parameters.length; i++) {
-    if (parameters[i].type == '27' && substrates.includes(parameters[i]['name']) && parameters[i]['observed_name'].toLowerCase() == "km"){
+    if (parameters[i].type === '27' && substrates.includes(parameters[i]['name']) && parameters[i]['observed_name'].toLowerCase() === "km"){
       kms["km_" + parameters[i]['name']] = parameters[i].value
     }
   }
@@ -277,11 +275,11 @@ class ReactionPage extends Component {
     this.setState({
       newSearch: false,
     });
-    if (this.props.match.params.dataType == 'meta') {
+    if (this.props.match.params.dataType === 'meta') {
       this.getMetaData();
     }
 
-    if (this.props.match.params.dataType == 'data') {
+    if (this.props.match.params.dataType === 'data') {
       this.getResultsData();
     }
   }
@@ -295,13 +293,13 @@ class ReactionPage extends Component {
     //console.log(values.substrates)
     //console.log(old_values.substrates)
     if (
-      values.substrates != old_values.substrates ||
-      values.products != old_values.products ||
-      this.props.match.params.dataType != prevProps.match.params.dataType
+      values.substrates !== old_values.substrates ||
+      values.products !== old_values.products ||
+      this.props.match.params.dataType !== prevProps.match.params.dataType
     ) {
       console.log("blue")
-      console.log("Substrate values: " + values.substrates != old_values.substrates)
-      console.log("Substrate values: "+ (values.substrates != old_values.substrates))
+      console.log("Substrate values: " + values.substrates !== old_values.substrates)
+      console.log("Substrate values: "+ (values.substrates !== old_values.substrates))
       console.log(values.substrates)
       console.log(old_values.substrates)
       console.log("Redirect value: "+ this.state.redirect)
@@ -314,11 +312,11 @@ class ReactionPage extends Component {
       km_values:[],
     })
     //console.log("RE-UP")
-      if (this.props.match.params.dataType == 'meta') {
+      if (this.props.match.params.dataType === 'meta') {
         this.setState({ newSearch: false });
         this.getMetaData();
       }
-      if (this.props.match.params.dataType == 'data') {
+      if (this.props.match.params.dataType === 'data') {
         this.setState({ newSearch: false });
         this.getResultsData();
       }
@@ -376,10 +374,10 @@ class ReactionPage extends Component {
       let start = 0;
       for (var i = start; i < data.length; i++) {
         let wildtype_mutant = null
-        if (data[i]['taxon_wildtype'] == '1'){
+        if (data[i]['taxon_wildtype'] === '1'){
           wildtype_mutant = "wildtype"
         }
-        else if (data[i]['taxon_wildtype'] == '0'){
+        else if (data[i]['taxon_wildtype'] === '0'){
           wildtype_mutant = "mutant"
         }
         let row = {
@@ -408,7 +406,7 @@ class ReactionPage extends Component {
     console.log('ReactionPage: Calling getSearchDataReaction');
     console.log('ReactionPageLoc: ' + ( '/reaction' + window.location.toString().split('/reaction')[1]))
     console.log('ReactionPageLoc: ' + url)
-    if (url != ( '/reaction' + window.location.toString().split('/reaction')[1])){
+    if (url !== ( '/reaction' + window.location.toString().split('/reaction')[1])){
       this.setState({ new_url: url});
     //console.log(url);
     this.setState({ newSearch: true });
@@ -514,7 +512,7 @@ class ReactionPage extends Component {
     const values = queryString.parse(this.props.location.search);
     //console.log(values.substrates.split(',')[0]);
 
-    if (this.state.newSearch == true) {
+    if (this.state.newSearch === true) {
       console.log('Redirecting');
       return <Redirect to={this.state.new_url} push />;
     }

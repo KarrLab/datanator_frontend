@@ -7,6 +7,7 @@ import "~/scenes/Results/General.scss";
 import "./About.scss";
 
 import { Header } from "~/components/Header/Header";
+import { Footer } from "~/components/Footer/Footer";
 
 import lianPhoto from "./images/lian.thumb.png";
 import rothPhoto from "./images/roth.thumb.png";
@@ -33,7 +34,7 @@ class About extends Component {
   }
 
   render() {
-    if (this.state.newSearch == true) {
+    if (this.state.newSearch === true) {
       return <Redirect to={this.state.new_url} push />;
     }
 
@@ -272,7 +273,7 @@ class About extends Component {
                   <h3>Main developers</h3>
                   <div className="main-developers-group-list">
                     <div className="main-developer">
-                      <img src={rothPhoto} className="hover-zoom" />
+                      <img src={rothPhoto} className="hover-zoom" alt="Yosef Roth headshot" />
                       <div className="developer-name">
                         Yosef Roth
                         <SocialIcon
@@ -282,7 +283,7 @@ class About extends Component {
                       </div>
                     </div>
                     <div className="main-developer">
-                      <img src={lianPhoto} className="hover-zoom" />
+                      <img src={lianPhoto} className="hover-zoom" alt="Zhouyang Lian headshot" />
                       <div className="developer-name">
                         Zhouyang Lian
                         <SocialIcon
@@ -292,7 +293,7 @@ class About extends Component {
                       </div>
                     </div>
                     <div className="main-developer">
-                      <img src={karrPhoto} className="hover-zoom" />
+                      <img src={karrPhoto} className="hover-zoom" alt="Jonathan Karr headshot" />
                       <div className="developer-name">
                         Jonathan Karr
                         <SocialIcon
@@ -352,28 +353,28 @@ class About extends Component {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <img src={nihIcon} className="hover-zoom" />
+                    <img src={nihIcon} className="hover-zoom" alt="National Institutes of Health logo" />
                   </a>
                   <a
                     href="https://nibib.nih.gov"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <img src={nibibIcon} className="hover-zoom" />
+                    <img src={nibibIcon} className="hover-zoom" alt="National Institute of Bioimaging and Bioengineering logo" />
                   </a>
                   <a
                     href="https://nigms.nih.gov"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <img src={nigmsIcon} className="hover-zoom" />
+                    <img src={nigmsIcon} className="hover-zoom" alt="National Institute of General Medical Sciences logo" />
                   </a>
                   <a
                     href="https://nsf.gov"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <img src={nsfIcon} className="hover-zoom" />
+                    <img src={nsfIcon} className="hover-zoom" alt="National Science Foundation logo" />
                   </a>
                 </div>
               </div>
@@ -439,6 +440,8 @@ class About extends Component {
             </div>
           </div>
         </div>
+
+        <Footer />
       </div>
     );
   }

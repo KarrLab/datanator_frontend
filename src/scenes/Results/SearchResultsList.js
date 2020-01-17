@@ -98,15 +98,15 @@ export default class InteractiveList extends Component {
   componentDidUpdate(prevProps) {
 
 
-    if ((this.props.reaction_results != prevProps.reaction_results) && this.props.reaction_results != null){
+    if ((this.props.reaction_results !== prevProps.reaction_results) && this.props.reaction_results != null){
       this.add_reactions()
     }
 
-    if ((this.props.protein_results != prevProps.protein_results) && this.props.protein_results != null){
+    if ((this.props.protein_results !== prevProps.protein_results) && this.props.protein_results != null){
         this.add_proteins()
     }
 
-    if ((this.props.metabolite_results != prevProps.metabolite_results) && this.props.metabolite_results != null){
+    if ((this.props.metabolite_results !== prevProps.metabolite_results) && this.props.metabolite_results != null){
         this.add_metabolites()
     }
 
@@ -236,7 +236,7 @@ add_metabolites(){
                 Metabolites
               </Typography><div className="google results"  style = {{marginLeft:20}}>
               {this.state.metabolite_results.length>0 && (<List disablePadding={true} dense={true}> {this.state.metabolite_results}</List>)}</div>
-              {(this.state.metabolite_results.length == 0) && (<p> No Metabolite Results Found </p>)}
+              {(this.state.metabolite_results.length === 0) && (<p> No Metabolite Results Found </p>)}
             {this.state.metabolite_results.length>0 && 
               this.props.metabolite_load && 
               <button type="button" onClick={() => {this.handleFetch('metabolites_meta')}} >Load More (+10)</button>}
@@ -251,7 +251,7 @@ add_metabolites(){
                 Reactions
               </Typography>
               {this.state.reaction_results.length>0 && (<div className="google results" style = {{marginLeft:20}}><List disablePadding={true} dense={true}> {this.state.reaction_results}</List></div>)}
-              {(this.state.reaction_results.length == 0) && (<p> No Reaction Results Found </p>)}
+              {(this.state.reaction_results.length === 0) && (<p> No Reaction Results Found </p>)}
               {this.state.reaction_results.length>0 && 
                 this.props.reactions_load &&
                 <button type="button" onClick={() => {this.handleFetch('sabio_reaction_entries')}} >Load More (+10)</button>}
@@ -267,7 +267,7 @@ add_metabolites(){
                 Proteins
               </Typography>
               {this.state.protein_results.length>0 && (<div className="google results" style = {{marginLeft:20}}><List disablePadding={true} dense={true}> {this.state.protein_results}</List></div>)}
-              {(this.state.protein_results.length == 0) && (<p> No Protein Results Found </p>)}
+              {(this.state.protein_results.length === 0) && (<p> No Protein Results Found </p>)}
               {this.state.protein_results.length>0 &&
                 this.props.protein_load &&
                 <button type="button" onClick={() => {this.handleFetch('protein')}} >Load More (+10)</button>}

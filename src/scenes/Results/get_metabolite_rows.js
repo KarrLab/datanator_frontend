@@ -1,9 +1,4 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-
-import { PropTypes } from 'react';
-import { Redirect } from 'react-router-dom';
-import { withRouter } from 'react-router';
+import React from 'react';
 
 import './MetabConcs.scss';
 
@@ -28,7 +23,7 @@ function formatMetaboliteMetadata(data, organism) {
       new_dict = {};
     }
     let name = data[i]["name"]
-    if (name == "No metabolite found."){
+    if (name === "No metabolite found."){
       name = data[i]['synonyms'][0]
     }
     let href_ymdb = null
@@ -51,7 +46,7 @@ function formatMetaboliteMetadata(data, organism) {
     
     if (data[i]["m2m_id"] != null){
       
-      if (ymdb_preface != ""){
+      if (ymdb_preface !== ""){
         comma = ", "
       }
       

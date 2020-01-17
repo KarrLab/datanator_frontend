@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-
 import { Redirect } from "react-router-dom";
+
 import { Header } from "~/components/Header/Header";
+import { Footer } from "~/components/Footer/Footer";
 
 import "~/scenes/Home/Home.scss";
 import logo from "./images/logo.svg";
@@ -51,18 +52,19 @@ class Home extends Component {
   }
 
   render() {
-    if (this.state.newSearch == true) {
+    if (this.state.newSearch === true) {
       return <Redirect to={this.state.new_url} push />;
     }
 
     return (
       <div>
         <Header handleClick={this.getNewSearch} />
+
         <div className="content-container full-width-content-container content-container-home-scene">
           <div className="section intro">
             <div className="section-inner-container">
               <h1>
-                <img src={logo} className="logo" />
+                <img src={logo} className="logo" alt="Datanator logo" />
                 Datanator
               </h1>
               <h2>Discovering data for modeling cellular biochemistry</h2>
@@ -94,7 +96,7 @@ class Home extends Component {
               </h2>
               <div className="section-columns section-3-columns">
                 <div className="section-column">
-                  <img src={metConcIcon} className="section-column-icon" />
+                  <img src={metConcIcon} className="section-column-icon" alt="Metabolite concentration icon" />
                   <div className="section-column-title">
                     Metabolite concentrations
                   </div>
@@ -102,13 +104,13 @@ class Home extends Component {
                 </div>
 
                 <div className="section-column">
-                  <img src={protConcIcon} className="section-column-icon" />
+                  <img src={protConcIcon} className="section-column-icon" alt="Protein abundance logo" />
                   <div className="section-column-title">Protein abundances</div>
                   <div className="section-column-text">Brief description</div>
                 </div>
 
                 <div className="section-column">
-                  <img src={rxnConstIcon} className="section-column-icon" />
+                  <img src={rxnConstIcon} className="section-column-icon" alt="Reaction rate constant logo" />
                   <div className="section-column-title">Reaction constants</div>
                   <div className="section-column-text">Brief description</div>
                 </div>
@@ -123,25 +125,25 @@ class Home extends Component {
               </h2>
               <div className="section-columns section-4-columns">
                 <div className="section-column">
-                  <img src={searchIcon} className="section-column-icon" />
+                  <img src={searchIcon} className="section-column-icon" alt="Search icon" />
                   <div className="section-column-title">1. Search</div>
                   <div className="section-column-text">Brief description</div>
                 </div>
 
                 <div className="section-column">
-                  <img src={filterIcon} className="section-column-icon" />
+                  <img src={filterIcon} className="section-column-icon" alt="Filter icon" />
                   <div className="section-column-title">2. Filter</div>
                   <div className="section-column-text">Brief description</div>
                 </div>
 
                 <div className="section-column">
-                  <img src={analyzeIcon} className="section-column-icon" />
+                  <img src={analyzeIcon} className="section-column-icon" alt="Analyze icon" />
                   <div className="section-column-title">3. Analyze</div>
                   <div className="section-column-text">Brief description</div>
                 </div>
 
                 <div className="section-column">
-                  <img src={exportIcon} className="section-column-icon" />
+                  <img src={exportIcon} className="section-column-icon" alt="Export icon" />
                   <div className="section-column-title">4. Download</div>
                   <div className="section-column-text">Brief description</div>
                 </div>
@@ -158,6 +160,7 @@ class Home extends Component {
                   <img
                     src={identifyUseCaseIcon}
                     className="section-column-icon"
+                    alt="Identify parameters icon"
                   />
                   <div className="section-column-title">
                     Identify missing quantitative parameters of kinetic models
@@ -169,6 +172,7 @@ class Home extends Component {
                   <img
                     src={constrainUseCaseIcon}
                     className="section-column-icon"
+                    alt="Constrain models icon"
                   />
                   <div className="section-column-title">
                     Add data-drive constraints to constraint-based models
@@ -180,6 +184,7 @@ class Home extends Component {
                   <img
                     src={recalibrateUseCaseIcon}
                     className="section-column-icon"
+                    alt="Recalibrate models icon"
                   />
                   <div className="section-column-title">
                     Recalibrate models to capture other organisms and cell types
@@ -215,14 +220,14 @@ class Home extends Component {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img src={karrLabIcon} className="hover-zoom" />
+                  <img src={karrLabIcon} className="hover-zoom" alt="Karr Lab logo"/>
                 </a>
                 <a
                   href="https://reproduciblebiomodels.org"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img src={crbmIcon} className="hover-zoom" />
+                  <img src={crbmIcon} className="hover-zoom" alt="Center for Reproducible Biomedical Modeling logo" />
                 </a>
                 <a
                   href="https://mssm.edu"
@@ -230,40 +235,42 @@ class Home extends Component {
                   rel="noopener noreferrer"
                   className="about-icon-mssm"
                 >
-                  <img src={sinaiIcon} className="hover-zoom" />
+                  <img src={sinaiIcon} className="hover-zoom" alt="Icahn School of Medicine at Mount Sinai logo" />
                 </a>
                 <a
                   href="https://nih.gov"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img src={nihIcon} className="hover-zoom" />
+                  <img src={nihIcon} className="hover-zoom" alt="National Institutes of Health logo" />
                 </a>
                 <a
                   href="https://nibib.nih.gov"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img src={nibibIcon} className="hover-zoom" />
+                  <img src={nibibIcon} className="hover-zoom" alt="National Institute of Bioimaging and Bioengineering logo" />
                 </a>
                 <a
                   href="https://nigms.nih.gov"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img src={nigmsIcon} className="hover-zoom" />
+                  <img src={nigmsIcon} className="hover-zoom" alt="National Institute of General Medical Sciences logo" />
                 </a>
                 <a
                   href="https://nsf.gov"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img src={nsfIcon} className="hover-zoom" />
+                  <img src={nsfIcon} className="hover-zoom" alt="National Science Foundation logo" />
                 </a>
               </div>
             </div>
           </div>
         </div>
+
+        <Footer />
       </div>
     );
   }

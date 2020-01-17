@@ -21,7 +21,6 @@ import { Header } from '~/components/Header/Header';
 import { Footer } from '~/components/Footer/Footer';
 
 import { AgGridReact } from 'ag-grid-react';
-import { AllModules } from 'ag-grid-enterprise';
 import CustomToolPanel from '~/scenes/Results/CustomToolPanel.js';
 import { AllCommunityModules } from "@ag-grid-community/all-modules";
 
@@ -116,7 +115,7 @@ class MetabConcs extends Component {
 
           cellRenderer: function(params) {
             console.log(params);
-            if (params.value['source'] == 'ecmdb') {
+            if (params.value['source'] === 'ecmdb') {
               return (
                 '<a href="http://ecmdb.ca/compounds/' +
                 params.value.id +
@@ -195,8 +194,8 @@ class MetabConcs extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (!(this.props.match.params.abstract == 'true')) {
-      if (this.props.moleculeAbstract == true) {
+    if (!(this.props.match.params.abstract === 'true')) {
+      if (this.props.moleculeAbstract === true) {
         this.props.dispatch(abstractMolecule(false));
         let url =
           '/metabconcs/' +
@@ -211,9 +210,9 @@ class MetabConcs extends Component {
     }
 
     if (
-      this.props.match.params.molecule != prevProps.match.params.molecule ||
-      this.props.match.params.organism != prevProps.match.params.organism ||
-      this.props.match.params.abstract != prevProps.match.params.abstract
+      this.props.match.params.molecule !== prevProps.match.params.molecule ||
+      this.props.match.params.organism !== prevProps.match.params.organism ||
+      this.props.match.params.abstract !== prevProps.match.params.abstract
     ) {
       this.setState({ newSearch: false,
       metaboliteMetadata: [] });
@@ -225,7 +224,7 @@ class MetabConcs extends Component {
 
   getSearchData() {
     let abs_default = false;
-    if (this.props.match.params.abstract == 'true') {
+    if (this.props.match.params.abstract === 'true') {
       abs_default = true;
     }
     
@@ -487,7 +486,7 @@ class MetabConcs extends Component {
 
   render() {
     console.log('Rendering MetabConcs');
-    if (this.state.newSearch == true) {
+    if (this.state.newSearch === true) {
       console.log('Redirecting');
       return <Redirect to={this.state.new_url} push />;
     }
@@ -495,7 +494,7 @@ class MetabConcs extends Component {
     const values = queryString.parse(this.props.location.search);
 
 
-    if (this.state.metaboliteMetadata.length == 0 ||
+    if (this.state.metaboliteMetadata.length === 0 ||
               this.props.totalData == null ){
         return ( <div>
 

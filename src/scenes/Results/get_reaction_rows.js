@@ -1,12 +1,8 @@
-import React, { Component } from 'react';
-
 import './MetabConcs.scss';
-
-
 
 function getReactionID(resource) {
   for (var i = 0; i < resource.length; i++)
-    if (resource[i].namespace == 'sabiork.reaction') {
+    if (resource[i].namespace === 'sabiork.reaction') {
       return resource[i].id;
     }
 }
@@ -58,7 +54,7 @@ function getProductInchiKey(product) {
 function getKcat(parameters) {
   let kinetic_params = {};
   for (var i = 0; i < parameters.length; i++) {
-    if (parameters[i].name == 'k_cat'){
+    if (parameters[i].name === 'k_cat'){
       kinetic_params["kcat"] = parameters[i].value
     }
   }
@@ -68,7 +64,7 @@ function getKcat(parameters) {
 function getKm(parameters, substrates) {
   let kms = {};
   for (var i = 0; i < parameters.length; i++) {
-    if (parameters[i].type == '27' && substrates.includes(parameters[i]['name'])){
+    if (parameters[i].type === '27' && substrates.includes(parameters[i]['name'])){
       kms["km_" + parameters[i]['name']] = parameters[i].value
     }
   }

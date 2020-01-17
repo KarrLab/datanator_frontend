@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import ReactDOM from 'react-dom';
-
 //import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
 
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import { PropTypes } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { abstractMolecule } from '~/data/actions/pageAction';
 
@@ -114,7 +111,7 @@ class ProteinDefinition extends Component {
     console.log("baloonanimal")
     console.log(proteinMetadata.length)
     //console.log(proteinMetadata[0].length)
-  if (proteinMetadata[0] === undefined || proteinMetadata[0].length == 0) {
+  if (proteinMetadata[0] === undefined || proteinMetadata[0].length === 0) {
       return(<div></div>)
     }
     proteinMetadata = proteinMetadata[0]
@@ -128,7 +125,7 @@ class ProteinDefinition extends Component {
     for (var i = uniprot_ids.length - 1; i >= 0; i--) {
      let a =  uniprot_ids[i]
      let link = ""
-     if (i == 0){
+     if (i === 0){
       link = <a href={"https://www.uniprot.org/uniprot/" + uniprot_ids[i]} > {uniprot_ids[i]} </a>
      }
      else{

@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import ReactDOM from 'react-dom';
-
-import { PropTypes } from 'react';
-import { BrowserRouter, Redirect } from 'react-router-dom';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
 import { getSearchData } from '~/services/MongoApi';
@@ -20,8 +16,6 @@ import { setNewUrl, abstractMolecule } from '~/data/actions/pageAction';
 import '~/scenes/Results/ProteinPage.scss';
 import { Header } from '~/components/Header/Header';
 import { Footer } from '~/components/Footer/Footer';
-
-import store from '~/data/Store';
 
 import { AgGridReact } from 'ag-grid-react';
 import { AllModules } from 'ag-grid-enterprise';
@@ -233,9 +227,9 @@ class ProteinPage extends Component {
     // respond to parameter change in scenario 3
 
     if (
-      this.props.match.params.molecule != prevProps.match.params.molecule ||
-      this.props.match.params.organism != prevProps.match.params.organism ||
-      this.props.match.params.searchType != prevProps.match.params.searchType
+      this.props.match.params.molecule !== prevProps.match.params.molecule ||
+      this.props.match.params.organism !== prevProps.match.params.organism ||
+      this.props.match.params.searchType !== prevProps.match.params.searchType
     ) {
       this.setState({
         search: '',
@@ -278,7 +272,7 @@ class ProteinPage extends Component {
   getSearchData() {
     let values = queryString.parse(this.props.location.search);
     console.log('Calling getSearchData');
-    if (this.props.match.params.searchType == 'uniprot') {
+    if (this.props.match.params.searchType === 'uniprot') {
       getSearchData([
         'proteins',
         'proximity_abundance',
@@ -288,7 +282,7 @@ class ProteinPage extends Component {
       ]).then(response => {
         this.processProteinDataUniprot(response.data);
       });
-    } else if (this.props.match.params.searchType == 'name') {
+    } else if (this.props.match.params.searchType === 'name') {
       getSearchData([
         'proteins',
         'meta/meta_single/?name=' + this.props.match.params.molecule,
@@ -297,7 +291,7 @@ class ProteinPage extends Component {
         this.setState({ proteinMetadata: null });
       });
       this.setState({ f_abundances: null });
-    } else if (this.props.match.params.searchType == 'ko') {
+    } else if (this.props.match.params.searchType === 'ko') {
       getSearchData([
         'proteins',
         'proximity_abundance/proximity_abundance_kegg/?kegg_id=' + values.ko + 
@@ -306,7 +300,7 @@ class ProteinPage extends Component {
         this.processProteinDataUniprot(response.data);
       });
 
-      if ((values.organism != null) && (values.organism != "undefined")){
+      if ((values.organism != null) && (values.organism !== "undefined")){
         getSearchData([
           'taxon',
           'canon_rank_distance_by_name/?name=' + values.organism,
@@ -324,11 +318,11 @@ class ProteinPage extends Component {
     let newProteinMetadata = [];
     let start = 0;
     //console.log(data[0])
-    if (data[0].length == 1) {
+    if (data[0].length === 1) {
       start = 1;
     }
     for (var i = start; i < data.length; i++) {
-      if ((data[i].uniprot_id == this.props.match.params.molecule) && (this.props.match.params.searchType != "ko")) {
+      if ((data[i].uniprot_id === this.props.match.params.molecule) && (this.props.match.params.searchType !== "ko")) {
         let meta = {};
         meta['uniprot'] = data[i].uniprot_id;
         meta['protein_name'] = data[i].protein_name;
@@ -357,8 +351,8 @@ class ProteinPage extends Component {
     for (var i = start; i < data.length; i++) {
       let end_query = '';
       let meta = {};
-      console.log("KO HERE: " + data[i].ko_number + " " + (data[i].ko_number==""))
-      if (!(data[i].ko_number =="no number")){
+      console.log("KO HERE: " + data[i].ko_number + " " + (data[i].ko_number===""))
+      if (!(data[i].ko_number ==="no number")){
       meta['ko_number'] = data[i].ko_number;
       meta['ko_name'] = data[i].ko_name;
       let uni_ids = data[i].uniprot_ids;
@@ -406,7 +400,7 @@ class ProteinPage extends Component {
     console.log('Calling processProteinData');
     if (typeof data != 'string') {
       this.setState({ orig_json: data });
-      if (this.props.match.params.searchType == 'uniprot') {
+      if (this.props.match.params.searchType === 'uniprot') {
         this.formatUniprotData(data);
       } else {
         this.formatData(data);
@@ -416,7 +410,7 @@ class ProteinPage extends Component {
       let newOrthologyMetadata = [];
       let meta = {};
       let uniprot_id = '';
-      if (Object.size(data[0]) == 1) {
+      if (Object.size(data[0]) === 1) {
         uniprot_id = data[1].uniprot_id;
       } else {
         uniprot_id = data[0].uniprot_id;
@@ -457,7 +451,7 @@ class ProteinPage extends Component {
           let docs = data[i].documents;
           for (var q = docs.length - 1; q >= 0; q--) {
             var uniprot = docs[q].abundances;
-            if (uniprot != undefined){
+            if (uniprot !== undefined){
             for (var n = 0; n < uniprot.length; n++) {
               let row = {};
               uniprot_to_dist[docs[q].uniprot_id] = data[i].distance;
@@ -485,14 +479,14 @@ class ProteinPage extends Component {
     console.log('Calling formatData');
     var f_abundances = [];
     if (data != null && typeof data != 'string') {
-      if (!(data[0].uniprot_id == "Please try another input combination")) {
+      if (!(data[0].uniprot_id === "Please try another input combination")) {
         let start = 0;
-        if (Object.size(data[0]) == 1) {
+        if (Object.size(data[0]) === 1) {
           start = 1;
         }
         for (var i = start; i < data.length; i++) {
           let uniprot = data[i];
-          if (uniprot.abundances != undefined){
+          if (uniprot.abundances !== undefined){
           for (var n = 0; n < uniprot.abundances.length; n++) {
             let row = {};
             row['abundance'] = uniprot.abundances[n].abundance;
@@ -523,12 +517,6 @@ class ProteinPage extends Component {
     }
   }
 
-
-  getNewSearch(response) {
-    let url = '/general/?q=' + response[0] + '&organism=' + response[1];
-    this.setState({ new_url: url });
-    this.setState({ newSearch: true });
-  }
 
   onFirstDataRendered(params) {
     //params.columnApi.autoSizeColumns(['concentration'])
@@ -581,7 +569,7 @@ class ProteinPage extends Component {
 
 
   render() {
-    if (this.state.newSearch == true) {
+    if (this.state.newSearch === true) {
       console.log('Redirecting');
       return <Redirect to={this.state.new_url} push />;
     }
@@ -589,7 +577,7 @@ class ProteinPage extends Component {
     const values = queryString.parse(this.props.location.search);
 
 
-    if (this.state.orthologyMetadata.length == 0 ||
+    if (this.state.orthologyMetadata.length === 0 ||
               this.props.totalData == null ){
         return ( <div>
 

@@ -13,14 +13,12 @@ export default class CustomToolPanel extends Component {
     }
 
     render() {
-        const totalStyle = {paddingBottom: '15px'};
-
         return (
             <div style={{textAlign: "center"}}>
-                    <Consensus 
-              relevantColumns={['concentration']} 
-              optional_columns = {[]}
-              />
+                <Consensus 
+                    relevantColumns={['concentration']} 
+                    optional_columns = {[]}
+                />
             </div>
         );
     }

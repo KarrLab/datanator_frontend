@@ -30,7 +30,7 @@ for (var i = 0; i < arrData.length; i++) {
     CSV += row + '\r\n';
 }
 
-if (CSV == '') {        
+if (CSV === '') {        
     alert("Invalid data");
     return;
 }   

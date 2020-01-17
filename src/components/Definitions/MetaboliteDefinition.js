@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import ReactDOM from 'react-dom';
-
 //import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
 
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import { PropTypes } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { abstractMolecule } from '~/data/actions/pageAction';
 
@@ -110,12 +107,12 @@ class MetaboliteDefinition extends Component {
   render() {
     let metaboliteMetadata = this.props.metaboliteMetadata
 
-    if (metaboliteMetadata.length == 0){
+    if (metaboliteMetadata.length === 0){
       return(<div></div>)
     }
 
 
-    if (this.props.abstract==true){
+    if (this.props.abstract === true){
 
       let names = ""
       for (var i = metaboliteMetadata.length - 1; i >= 0; i--) {

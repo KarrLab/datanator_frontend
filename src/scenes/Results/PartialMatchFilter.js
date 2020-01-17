@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import ReactDOM from "react-dom";
-import { connect } from 'react-redux';
 import store from '~/data/Store';
 
 
@@ -24,7 +23,7 @@ class PartialMatchFilter extends Component {
     }
 
     isFilterActive() {
-        return this.state.text !== null && this.state.text !== undefined && this.state.text !== '';
+        return this.state.text != null && this.state.text !== undefined && this.state.text !== '';
     }
 
     doesFilterPass(params) {

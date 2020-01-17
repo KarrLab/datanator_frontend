@@ -98,7 +98,7 @@ class GeneralPage extends Component {
     new_counters[indices] = new_counters[indices] + 1
     let url = ""
     console.log("GeneralSearch: Calling fetch_data")
-    if (indices == "protein"){
+    if (indices === "protein"){
       url="ftx/text_search/protein_ranked_by_ko/?query_message=" + values.q +"&from_=" + from_ + "&size=" + size + "&fields=protein_name&fields=synonyms&fields=enzymes&fields=ko_name&fields=gene_name&fields=name&fields=enzymes.enzyme.enzyme_name&fields=enzymes.subunit.canonical_sequence&fields=species"
     }
     else{
@@ -169,7 +169,7 @@ class GeneralPage extends Component {
     let values = queryString.parse(this.props.location.search);
     console.log("QUERY VALUE: " + values.q)
 
-    if (this.state.newSearch == true) {
+    if (this.state.newSearch === true) {
       console.log('Redirecting');
       this.setState({newResults:true,
         reaction_results: null,
@@ -200,6 +200,7 @@ class GeneralPage extends Component {
           <div class="loader_container">
             <div class="loader"></div>
           </div>
+          <Footer />
         </div>
       )
     }
@@ -248,6 +249,8 @@ class GeneralPage extends Component {
             metabolite_load = {this.state.metabolite_load}
           />
         </div>
+
+        <Footer />
       </div>
     )
   }

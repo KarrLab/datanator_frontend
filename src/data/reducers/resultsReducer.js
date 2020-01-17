@@ -1,13 +1,9 @@
-
-import ReactDOM from 'react-dom';
 import React from 'react';
-import {Link, Redirect } from 'react-router-dom'
 
 const selectOptions = {
   'Stationary Phase': 'Stationary Phase',
   'Log Phase': 'Log Phase',
 };
-
 
 const selectOptionsGenetics = {
   'wildtype': 'wildtype',

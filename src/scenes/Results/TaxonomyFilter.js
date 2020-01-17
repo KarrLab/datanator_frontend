@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import Slider from '@material-ui/core/Slider';
 import { makeStyles } from '@material-ui/core/styles';
 import store from '~/data/Store';
@@ -68,7 +67,7 @@ class TaxonomyFilter extends Component {
     }
   }
   componentDidUpdate(prevProps){
-    if (this.props.agGridReact.props.lineage != prevProps.agGridReact.props.lineage){
+    if (this.props.agGridReact.props.lineage !== prevProps.agGridReact.props.lineage){
       this.setMarks()
     }
   }

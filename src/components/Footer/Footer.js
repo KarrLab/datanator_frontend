@@ -1,11 +1,10 @@
 import React from 'react';
-import { H6 } from '@blueprintjs/core';
 import './Footer.scss';
 
 const Footer = props => {
   return (
     <div className="footer">
-      <H6 className="copyright">Karr Lab ©2019</H6>
+      Karr Lab &copy;2019-2020
     </div>
   );
 };
