@@ -203,24 +203,25 @@ class Home extends Component {
                 Institutes of Health and the National Science Foundation.
               </p>
               <div className="about-icons">
-               <a
+                <a
                   href="https://karrlab.org"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <img src={karrLabIcon} className="hover-zoom" />
-              </a>
-               <a
+                </a>
+                <a
                   href="https://reproduciblebiomodels.org"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <img src={crbmIcon} className="hover-zoom" />
-              </a>
-               <a
+                </a>
+                <a
                   href="https://mssm.edu"
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="about-icon-mssm"
                 >
                   <img src={sinaiIcon} className="hover-zoom" />
                 </a>

@@ -125,6 +125,11 @@
     a:not(:first-child) {
       margin-left: 1rem;
     }
+
+    a.about-icon-mssm {
+      margin-left: 0;
+    }
+
     img {
       height: 64px;
     }
