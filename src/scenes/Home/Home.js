@@ -11,7 +11,7 @@ import "~/scenes/Home/Home.scss";
 import logo from "./images/logo.svg";
 
 import metConcIcon from "./images/atom.svg";
-import protConcIcon from "./images/search.svg";
+import protConcIcon from "./images/protein.svg";
 import rxnConstIcon from "./images/left-right-arrows.svg";
 
 import searchIcon from "./images/search.svg";
@@ -159,7 +159,10 @@ class Home extends Component {
               </h2>
               <div className="section-columns section-3-columns">
                 <div className="section-column">
-                  <img src={identifyUseCaseIcon} className="section-column-icon" />
+                  <img
+                    src={identifyUseCaseIcon}
+                    className="section-column-icon"
+                  />
                   <div className="section-column-title">
                     Identify missing quantitative parameters of kinetic models
                   </div>
@@ -167,7 +170,10 @@ class Home extends Component {
                 </div>
 
                 <div className="section-column">
-                  <img src={constrainUseCaseIcon} className="section-column-icon" />
+                  <img
+                    src={constrainUseCaseIcon}
+                    className="section-column-icon"
+                  />
                   <div className="section-column-title">
                     Add data-drive constraints to constraint-based models
                   </div>
@@ -175,7 +181,10 @@ class Home extends Component {
                 </div>
 
                 <div className="section-column">
-                  <img src={recalibrateUseCaseIcon} className="section-column-icon" />
+                  <img
+                    src={recalibrateUseCaseIcon}
+                    className="section-column-icon"
+                  />
                   <div className="section-column-title">
                     Recalibrate models to capture other organisms and cell types
                   </div>
