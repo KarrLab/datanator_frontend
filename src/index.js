@@ -25,7 +25,7 @@ import { faAtom, faDna } from "@fortawesome/free-solid-svg-icons";
 //Website pages (scenes)
 import Home from "~/scenes/Home/Home";
 import GeneralPage from "~/scenes/Results/GeneralPage";
-import Metabconcs from "~/scenes/Results/Metabconcs";
+import MetabConcs from "~/scenes/Results/MetabConcs";
 import ProteinPage from "~/scenes/Results/ProteinPage";
 import ReactionPage from "~/scenes/Results/ReactionPage";
 import About from "~/scenes/About/About";
@@ -40,7 +40,7 @@ const SiteRouter = () => {
       <Route path="/general/" component={GeneralPage} />
       <Route
         path="/metabconcs/:molecule/:organism/:abstract?/"
-        component={Metabconcs}
+        component={MetabConcs}
       />
       <Route
         path="/protein/:searchType/:molecule/:organism?/"
