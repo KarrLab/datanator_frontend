@@ -21,6 +21,10 @@ import exportIcon from "./images/export.svg";
 
 import useCaseIcon from "./images/search.svg";
 
+import karrLabIcon from "./images/karr-lab.svg";
+import crbmIcon from "./images/crbm.svg";
+import sinaiIcon from "./images/sinai.svg";
+
 import nihIcon from "../About/images/nih.svg";
 import nibibIcon from "../About/images/nibib.svg";
 import nigmsIcon from "../About/images/nigms.svg";
@@ -198,7 +202,28 @@ class Home extends Component {
                 <i>Datanator</i> was developed with support from the National
                 Institutes of Health and the National Science Foundation.
               </p>
-              <div className="funding-icons">
+              <div className="about-icons">
+               <a
+                  href="https://karrlab.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={karrLabIcon} className="hover-zoom" />
+              </a>
+               <a
+                  href="https://reproduciblebiomodels.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={crbmIcon} className="hover-zoom" />
+              </a>
+               <a
+                  href="https://mssm.edu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={sinaiIcon} className="hover-zoom" />
+                </a>
                 <a
                   href="https://nih.gov"
                   target="_blank"

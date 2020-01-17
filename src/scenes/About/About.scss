@@ -35,6 +35,10 @@
       margin-top: 0.25rem;
       text-align: center;
     }
+
+    img {
+      height: 138px;
+    }
   }
 
   .main-developer:not(:first-child) {
@@ -50,7 +54,13 @@
   }
 
   /* funding */
-  .funding-icons a:not(:first-child) {
-    margin-left: 1rem;
+  .funding-icons {
+    a:not(:first-child) {
+      margin-left: 1rem;
+    }
+
+    img {
+      height: 64px;
+    }
   }
 }

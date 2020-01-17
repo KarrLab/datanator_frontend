@@ -120,10 +120,13 @@
     max-width: 100%;
   }
 
-  /* funding */
-  .funding-icons {
+  /* about */
+  .about-icons {
     a:not(:first-child) {
       margin-left: 1rem;
+    }
+    img {
+      height: 64px;
     }
   }
 }
