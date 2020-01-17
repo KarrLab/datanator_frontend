@@ -163,7 +163,7 @@ class About extends Component {
               </div>
             </div>
 
-            <div className="content-block section">
+            <div className="content-block section search-filtering">
               <a id="searching"></a>
               <h2 className="content-block-heading">
                 3. Searching and Filtering for Data About Specific Cells
@@ -190,7 +190,7 @@ class About extends Component {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      tanitomo distance
+                      Tanimoto distance
                     </a>{" "}
                     of their structures. Users can identify measurements of
                     similar proteins according to their{" "}
