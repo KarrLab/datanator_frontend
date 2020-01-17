@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { Navbar, AnchorButton, InputGroup } from "@blueprintjs/core";
 import { MenuItem } from "@blueprintjs/core";
 import { Button } from "@blueprintjs/core";
@@ -240,13 +241,14 @@ class Header extends Component {
               this.setState({ show_search: !this.state.show_search })
             }
           />
-          <AnchorButton
-            minimal="true"
-            className="navbutton"
-            icon="info-sign"
-            text="About"
-            href="/about/"
-          />
+          <Link to="/about">
+            <AnchorButton
+              minimal="true"
+              className="navbutton"
+              icon="info-sign"
+              text="About"
+            />
+          </Link>
         </Navbar.Group>
       </Navbar>
     );

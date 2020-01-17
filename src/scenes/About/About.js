@@ -3,6 +3,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { withRouter } from "react-router";
+import { HashLink } from "react-router-hash-link";
 
 import "~/scenes/Results/General.scss";
 import "./About.scss";
@@ -47,22 +48,22 @@ class About extends Component {
             <h2 className="content-block-heading">Contents</h2>
             <ol className="content-block-content">
               <li>
-                <a href="#features">Features</a>
+                <HashLink to="#features">Features</HashLink>
               </li>
               <li>
-                <a href="#data">Data Types</a>
+                <HashLink to="#data">Data Types</HashLink>
               </li>
               <li>
-                <a href="#searching">Searching</a>
+                <HashLink to="#searching">Searching</HashLink>
               </li>
               <li>
-                <a href="#team">Team</a>
+                <HashLink to="#team">Team</HashLink>
               </li>
               <li>
-                <a href="#acknowledgements">Acknowledgements</a>
+                <HashLink to="#acknowledgements">Acknowledgements</HashLink>
               </li>
               <li>
-                <a href="#source">Source Code</a>
+                <HashLink to="#source">Source Code</HashLink>
               </li>
             </ol>
           </div>
