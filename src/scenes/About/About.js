@@ -39,6 +39,10 @@ class About extends Component {
       return <Redirect to={this.state.new_url} push />;
     }
 
+    let scrollTo = el => {
+      window.scrollTo({ behavior: "smooth", top: el.offsetTop - 52 });
+    };
+
     return (
       <div>
         <Header handleClick={this.getNewSearch} />
@@ -48,29 +52,40 @@ class About extends Component {
             <h2 className="content-block-heading">Contents</h2>
             <ol className="content-block-content">
               <li>
-                <HashLink to="#features">Features</HashLink>
+                <HashLink to="#features" scroll={scrollTo}>
+                  Features
+                </HashLink>
               </li>
               <li>
-                <HashLink to="#data">Data Types</HashLink>
+                <HashLink to="#data" scroll={scrollTo}>
+                  Data Types
+                </HashLink>
               </li>
               <li>
-                <HashLink to="#searching">Searching</HashLink>
+                <HashLink to="#searching" scroll={scrollTo}>
+                  Searching
+                </HashLink>
               </li>
               <li>
-                <HashLink to="#team">Team</HashLink>
+                <HashLink to="#team" scroll={scrollTo}>
+                  Team
+                </HashLink>
               </li>
               <li>
-                <HashLink to="#acknowledgements">Acknowledgements</HashLink>
+                <HashLink to="#acknowledgements" scroll={scrollTo}>
+                  Acknowledgements
+                </HashLink>
               </li>
               <li>
-                <HashLink to="#source">Source Code</HashLink>
+                <HashLink to="#source" scroll={scrollTo}>
+                  Source Code
+                </HashLink>
               </li>
             </ol>
           </div>
 
-          <div className="content-column">
+          <div className="content-column" id="features">
             <div className="content-block section">
-              <a id="features"></a>
               <h2 className="content-block-heading">
                 1. Motivation and Features
               </h2>
@@ -116,8 +131,7 @@ class About extends Component {
               </div>
             </div>
 
-            <div className="content-block section">
-              <a id="data"></a>
+            <div className="content-block section" id="data">
               <h2 className="content-block-heading">
                 2. Data Types and Sources
               </h2>
@@ -163,8 +177,10 @@ class About extends Component {
               </div>
             </div>
 
-            <div className="content-block section search-filtering">
-              <a id="searching"></a>
+            <div
+              className="content-block section search-filtering"
+              id="searching"
+            >
               <h2 className="content-block-heading">
                 3. Searching and Filtering for Data About Specific Cells
               </h2>
@@ -238,8 +254,7 @@ class About extends Component {
               </div>
             </div>
 
-            <div className="content-block section developers">
-              <a id="team"></a>
+            <div className="content-block section developers" id="team">
               <h2 className="content-block-heading">4. Development Team</h2>
               <div className="content-block-content">
                 <p>
@@ -312,8 +327,10 @@ class About extends Component {
               </div>
             </div>
 
-            <div className="content-block section funding">
-              <a id="acknowledgements"></a>
+            <div
+              className="content-block section funding"
+              id="acknowledgements"
+            >
               <h2 className="content-block-heading">5. Acknowledgements</h2>
 
               <div className="content-block-content">
@@ -364,8 +381,7 @@ class About extends Component {
               </div>
             </div>
 
-            <div className="content-block section">
-              <a id="source"></a>
+            <div className="content-block section" id="source">
               <h2 className="content-block-heading">6. Source Code</h2>
 
               <div className="content-block-content">
