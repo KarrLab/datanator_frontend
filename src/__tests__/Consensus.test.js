@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux'
-import { Consensus } from '~/components/Results/components/Consensus.js';
-import { ResultsTable } from '~/components/Results/components/ResultsTable.js';
+import { Consensus } from '~/components/Results/Consensus.js';
+import { ResultsTable } from '~/components/Results/ResultsTable.js';
 
 
 import createStore from '~/data/Store.js'

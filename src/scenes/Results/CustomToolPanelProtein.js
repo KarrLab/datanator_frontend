@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Consensus } from '~/components/Results/components/Consensus.js';
+import { Consensus } from '~/components/Results/Consensus.js';
 
 export default class CustomToolPanelProtein extends Component {
 

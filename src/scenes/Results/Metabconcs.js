@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 //import { PropTypes } from 'react';
 import { Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router';
-//import { Consensus } from '~/components/Results/components/Consensus.js';
+//import { Consensus } from '~/components/Results/Consensus.js';
 
 import { getSearchData } from '~/services/MongoApi';
 import { abstractMolecule } from '~/data/actions/pageAction';

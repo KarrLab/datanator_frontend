@@ -13,7 +13,7 @@ import {
   standardDeviation,
   round,
   JSONToCSVConvertor,
-} from '~/components/Results/components/utils.js';
+} from './utils.js';
 
 
 
