@@ -1,0 +1,56 @@
+<svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    viewBox="149 -7 214 526">
+    <style>
+        rect, line {
+            stroke: #ffc306;
+            stroke-width: 14px;
+        }
+        rect {
+            fill: #ffc306;
+            fill-opacity: 0.5;
+        }
+    </style>
+    <rect 
+        x="156"
+        y="75"
+        width="200"
+        height="362"
+    />
+    <line
+        stroke="#ffc306" 
+        stroke-width="14" 
+        x1="256" y1="0"
+        x2="256" y2="150"
+    />
+    <line
+        stroke="#ffc306" 
+        stroke-width="14" 
+        x1="256" y1="512"
+        x2="256" y2="362"
+    />
+    <line
+        stroke="#ffc306" 
+        stroke-width="14" 
+        x1="206" y1="0"
+        x2="306" y2="0"
+    />
+    <line
+        stroke="#ffc306" 
+        stroke-width="14" 
+        x1="206" y1="150"
+        x2="306" y2="150"
+    />
+    <line
+        stroke="#ffc306" 
+        stroke-width="14" 
+        x1="206" y1="362"
+        x2="306" y2="362"
+    />
+    <line
+        stroke="#ffc306" 
+        stroke-width="14" 
+        x1="206" y1="512"
+        x2="306" y2="512"
+    />
+</svg>

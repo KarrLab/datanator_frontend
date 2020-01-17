@@ -6,10 +6,13 @@ import React, { Component } from "react";
 
 import { Redirect } from "react-router-dom";
 import { Header } from "~/components/Layout/Header/Header";
-import workflow_icons from "~/scenes/Home/images/workflow_icons.png";
 
 import "~/scenes/Home/Home.scss";
-import logo from "./logo.svg";
+import logo from "./images/logo.svg";
+import searchIcon from "./images/search.svg";
+import filterIcon from "./images/filter.svg";
+import analyzeIcon from "./images/analyze.svg";
+import exportIcon from "./images/export.svg";
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -69,8 +72,32 @@ class Home extends Component {
           </div>
           <div className="section workflow">
             <div className="section-inner-container">
-              <h2>Workflow</h2>
-              <img className="workflow-icons" src={workflow_icons} />
+              <h2>Systematic workflow for discovering data for modeling cells</h2>
+              <div className="section-columns section-4-columns">
+                <div className="section-column">
+                  <img src={searchIcon} className="section-column-icon" />
+                  <div class="section-column-title">Search</div>
+                  <div class="section-column-text">Brief description</div>
+                </div>
+
+                <div className="section-column">
+                  <img src={filterIcon} className="section-column-icon" />
+                  <div class="section-column-title">Filter</div>
+                  <div class="section-column-text">Brief description</div>
+                </div>
+
+                <div className="section-column">
+                  <img src={analyzeIcon} className="section-column-icon" />
+                  <div class="section-column-title">Analyze</div>
+                  <div class="section-column-text">Brief description</div>
+                </div>
+
+                <div className="section-column">
+                  <img src={exportIcon} className="section-column-icon" />
+                  <div class="section-column-title">Download</div>
+                  <div class="section-column-text">Brief description</div>
+                </div>
+              </div>
             </div>
           </div>
           <div className="section about">
