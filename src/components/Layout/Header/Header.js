@@ -191,6 +191,7 @@ class Header extends Component {
               <div className="search-in">in</div>
 
               <Suggest
+                ref="organismSuggest"
                 className="search-form-el search-form-el-organism"
                 inputProps={{
                   className: "search-input",
@@ -216,6 +217,8 @@ class Header extends Component {
                 }}
                 onItemSelect={(value, event) => {
                   this.setState({ organism: value });
+                  const input = this.refs.organismSuggest.input;
+                  input.focus();
                 }}
               >
                 <InputGroup />
