@@ -9,10 +9,23 @@ import { Header } from "~/components/Layout/Header/Header";
 
 import "~/scenes/Home/Home.scss";
 import logo from "./images/logo.svg";
+
+import metConcIcon from "./images/search.svg";
+import protConcIcon from "./images/search.svg";
+import rxnConstIcon from "./images/search.svg";
+
 import searchIcon from "./images/search.svg";
 import filterIcon from "./images/filter.svg";
 import analyzeIcon from "./images/analyze.svg";
 import exportIcon from "./images/export.svg";
+
+import useCaseIcon from "./images/search.svg";
+
+import nihIcon from "../About/images/nih.svg";
+import nibibIcon from "../About/images/nibib.svg";
+import nigmsIcon from "../About/images/nigms.svg";
+import nsfIcon from "../About/images/nsf.svg";
+
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -71,10 +84,40 @@ class Home extends Component {
               </p>
             </div>
           </div>
+          <div className="section data-types">
+            <div className="section-inner-container">
+              <h2>
+                <i>Datanator</i>&apos;s integrated database contains key data
+                for cell modeling
+              </h2>
+              <div className="section-columns section-3-columns">
+                <div className="section-column">
+                  <img src={metConcIcon} className="section-column-icon" />
+                  <div className="section-column-title">
+                    Metabolite concentrations
+                  </div>
+                  <div className="section-column-text">Brief description</div>
+                </div>
+
+                <div className="section-column">
+                  <img src={protConcIcon} className="section-column-icon" />
+                  <div className="section-column-title">Protein abundances</div>
+                  <div className="section-column-text">Brief description</div>
+                </div>
+
+                <div className="section-column">
+                  <img src={rxnConstIcon} className="section-column-icon" />
+                  <div className="section-column-title">Reaction constants</div>
+                  <div className="section-column-text">Brief description</div>
+                </div>
+              </div>
+            </div>
+          </div>
           <div className="section workflow">
             <div className="section-inner-container">
               <h2>
-                Systematically discover data for modeling cellular biochemistry
+                <i>Datanator</i>&apos;s software enables systematic discovery of
+                data for modeling
               </h2>
               <div className="section-columns section-4-columns">
                 <div className="section-column">
@@ -103,6 +146,38 @@ class Home extends Component {
               </div>
             </div>
           </div>
+          <div className="section use-cases">
+            <div className="section-inner-container">
+              <h2>
+                <i>Datanator</i> can facilitate a wide range of modeling tasks
+              </h2>
+              <div className="section-columns section-3-columns">
+                <div className="section-column">
+                  <img src={useCaseIcon} className="section-column-icon" />
+                  <div className="section-column-title">
+                    Identify initial conditions and rate parameters
+                  </div>
+                  <div className="section-column-text">Brief description</div>
+                </div>
+
+                <div className="section-column">
+                  <img src={useCaseIcon} className="section-column-icon" />
+                  <div className="section-column-title">
+                    Augment constraint-based models with additional data
+                  </div>
+                  <div className="section-column-text">Brief description</div>
+                </div>
+
+                <div className="section-column">
+                  <img src={useCaseIcon} className="section-column-icon" />
+                  <div className="section-column-title">
+                    Recalibrate models to capture other organisms
+                  </div>
+                  <div className="section-column-text">Brief description</div>
+                </div>
+              </div>
+            </div>
+          </div>
           <div className="section about">
             <div className="section-inner-container">
               <h2>
@@ -119,6 +194,40 @@ class Home extends Component {
                 </a>{" "}
                 at the Icahn School of Medicine at Mount Sinai in New York.
               </p>
+              <p>
+                <i>Datanator</i> was developed with support from the National
+                Institutes of Health and the National Science Foundation.
+              </p>
+              <div className="funding-icons">
+                <a
+                  href="https://nih.gov"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={nihIcon} className="hover-zoom" />
+                </a>
+                <a
+                  href="https://nibib.nih.gov"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={nibibIcon} className="hover-zoom" />
+                </a>
+                <a
+                  href="https://nigms.nih.gov"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={nigmsIcon} className="hover-zoom" />
+                </a>
+                <a
+                  href="https://nsf.gov"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={nsfIcon} className="hover-zoom" />
+                </a>
+              </div>
             </div>
           </div>
         </div>

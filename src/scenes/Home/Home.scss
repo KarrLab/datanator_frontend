@@ -39,8 +39,8 @@
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
   }
 
   .section-columns {
@@ -53,9 +53,21 @@
     margin-top: 2rem;
   }
 
+  .section-3-columns {
+    .section-column {
+      width: calc(100% / 3 - 2rem);
+    }
+  }
+
   .section-4-columns {
     .section-column {
-      width: calc(25% - 2rem);
+      width: calc(100% / 4 - 2rem);
+    }
+  }
+
+  .section-5-columns {
+    .section-column {
+      width: calc(100% / 5 - 2rem);
     }
   }
 
@@ -106,5 +118,12 @@
   /* workflow */
   .workflow-icons {
     max-width: 100%;
+  }
+
+  /* funding */
+  .funding-icons {
+    a:not(:first-child) {
+      margin-left: 1rem;
+    }
   }
 }

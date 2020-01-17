@@ -10,14 +10,14 @@ import "./About.scss";
 
 import { Header } from "~/components/Layout/Header/Header";
 
-import lian from "./images/lian.thumb.png";
-import roth from "./images/roth.thumb.png";
-import karr from "./images/karr.thumb.png";
+import lianPhoto from "./images/lian.thumb.png";
+import rothPhoto from "./images/roth.thumb.png";
+import karrPhoto from "./images/karr.thumb.png";
 
-import nih from "./images/nih.svg";
-import nibib from "./images/nibib.svg";
-import nigms from "./images/nigms.svg";
-import nsf from "./images/nsf.svg";
+import nihIcon from "./images/nih.svg";
+import nibibIcon from "./images/nibib.svg";
+import nigmsIcon from "./images/nigms.svg";
+import nsfIcon from "./images/nsf.svg";
 
 import { SocialIcon } from "react-social-icons";
 
@@ -259,7 +259,7 @@ class About extends Component {
                   <h3>Main developers</h3>
                   <div className="main-developers-group-list">
                     <div className="main-developer">
-                      <img src={roth} className="hover-zoom" />
+                      <img src={rothPhoto} className="hover-zoom" />
                       <div className="developer-name">
                         Yosef Roth
                         <SocialIcon
@@ -269,7 +269,7 @@ class About extends Component {
                       </div>
                     </div>
                     <div className="main-developer">
-                      <img src={lian} className="hover-zoom" />
+                      <img src={lianPhoto} className="hover-zoom" />
                       <div className="developer-name">
                         Zhouyang Lian
                         <SocialIcon
@@ -279,7 +279,7 @@ class About extends Component {
                       </div>
                     </div>
                     <div className="main-developer">
-                      <img src={karr} className="hover-zoom" />
+                      <img src={karrPhoto} className="hover-zoom" />
                       <div className="developer-name">
                         Jonathan Karr
                         <SocialIcon
@@ -332,10 +332,34 @@ class About extends Component {
                   Foundation (award P41EB023912).{" "}
                 </p>
                 <div className="funding-icons">
-                  <img src={nih} className="hover-zoom" />
-                  <img src={nibib} className="hover-zoom" />
-                  <img src={nigms} className="hover-zoom" />
-                  <img src={nsf} className="hover-zoom" />
+                  <a
+                    href="https://nih.gov"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img src={nihIcon} className="hover-zoom" />
+                  </a>
+                  <a
+                    href="https://nibib.nih.gov"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img src={nibibIcon} className="hover-zoom" />
+                  </a>
+                  <a
+                    href="https://nigms.nih.gov"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img src={nigmsIcon} className="hover-zoom" />
+                  </a>
+                  <a
+                    href="https://nsf.gov"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img src={nsfIcon} className="hover-zoom" />
+                  </a>
                 </div>
               </div>
             </div>
