@@ -46,8 +46,8 @@ a:hover {
 
 /* content container */
 .content-container {
-  margin-top: calc(50px + 2rem);
-  margin-bottom: 2rem;
+  margin-top: calc(50px + 3rem);
+  margin-bottom: 3rem;
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
@@ -99,7 +99,7 @@ a:hover {
 }
 
 .content-block:not(:first-child) {
-  margin-top: 2rem;
+  margin-top: 3rem;
 }
 
 .content-block-heading {
@@ -119,11 +119,11 @@ a:hover {
 .table-of-contents {
   color: #333;
   height: min-content;
-  margin-right: 2rem;
+  margin-right: 3rem;
   border-color: #ffc306;
   background: #fffcf2; /* 95% lighten of accent color */
   position: sticky;
-  top: calc(50px + 2rem);
+  top: calc(50px + 3rem);
   width: 160px;
   min-width: 160px;
 }

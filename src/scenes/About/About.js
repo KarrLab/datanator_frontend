@@ -273,7 +273,11 @@ class About extends Component {
                   <h3>Main developers</h3>
                   <div className="main-developers-group-list">
                     <div className="main-developer">
-                      <img src={rothPhoto} className="hover-zoom" alt="Yosef Roth headshot" />
+                      <img
+                        src={rothPhoto}
+                        className="hover-zoom"
+                        alt="Yosef Roth headshot"
+                      />
                       <div className="developer-name">
                         Yosef Roth
                         <SocialIcon
@@ -283,7 +287,11 @@ class About extends Component {
                       </div>
                     </div>
                     <div className="main-developer">
-                      <img src={lianPhoto} className="hover-zoom" alt="Zhouyang Lian headshot" />
+                      <img
+                        src={lianPhoto}
+                        className="hover-zoom"
+                        alt="Zhouyang Lian headshot"
+                      />
                       <div className="developer-name">
                         Zhouyang Lian
                         <SocialIcon
@@ -293,7 +301,11 @@ class About extends Component {
                       </div>
                     </div>
                     <div className="main-developer">
-                      <img src={karrPhoto} className="hover-zoom" alt="Jonathan Karr headshot" />
+                      <img
+                        src={karrPhoto}
+                        className="hover-zoom"
+                        alt="Jonathan Karr headshot"
+                      />
                       <div className="developer-name">
                         Jonathan Karr
                         <SocialIcon
@@ -353,28 +365,44 @@ class About extends Component {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <img src={nihIcon} className="hover-zoom" alt="National Institutes of Health logo" />
+                    <img
+                      src={nihIcon}
+                      className="hover-zoom"
+                      alt="National Institutes of Health logo"
+                    />
                   </a>
                   <a
                     href="https://nibib.nih.gov"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <img src={nibibIcon} className="hover-zoom" alt="National Institute of Bioimaging and Bioengineering logo" />
+                    <img
+                      src={nibibIcon}
+                      className="hover-zoom"
+                      alt="National Institute of Bioimaging and Bioengineering logo"
+                    />
                   </a>
                   <a
                     href="https://nigms.nih.gov"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <img src={nigmsIcon} className="hover-zoom" alt="National Institute of General Medical Sciences logo" />
+                    <img
+                      src={nigmsIcon}
+                      className="hover-zoom"
+                      alt="National Institute of General Medical Sciences logo"
+                    />
                   </a>
                   <a
                     href="https://nsf.gov"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <img src={nsfIcon} className="hover-zoom" alt="National Science Foundation logo" />
+                    <img
+                      src={nsfIcon}
+                      className="hover-zoom"
+                      alt="National Science Foundation logo"
+                    />
                   </a>
                 </div>
               </div>

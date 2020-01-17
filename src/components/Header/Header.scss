@@ -119,7 +119,10 @@
   /* links to page */
   .page-links {
     order: 3;
-    font-weight: bold;
+
+    .bp3-button {
+      font-weight: bold;
+    }
 
     .bp3-button,
     .bp3-button .bp3-icon {

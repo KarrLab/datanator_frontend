@@ -1,6 +1,6 @@
 .content-container-home-scene {
   margin-top: 50px;
-  margin-bottom: 0;
+  margin-bottom: 1.5rem;
 
   h1,
   h2 {
@@ -29,18 +29,13 @@
     text-align: center;
   }
 
-  .section:not(:last-child) {
-    .section-inner-container {
-      border-bottom: 1px solid #ccc;
-    }
-  }
-
   .section-inner-container {
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
     padding-top: 3rem;
     padding-bottom: 3rem;
+    border-bottom: 1px solid #ccc;
   }
 
   .section-columns {

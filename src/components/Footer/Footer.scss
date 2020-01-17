@@ -1,8 +1,23 @@
-.footer {
-  background: #ffc30699;
-  border-top: 2px solid #ffc306;
+.footer-component {
+  padding-bottom: 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1200px;
+  text-align: center;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  .footer-item:not(:last-child)::after {
+    content: "|";
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+  }
+
+  color: #1890ff99;
+
+  a {
+    color: #1890ff99;
+  }
+
+  a:hover {
+    color: #1890ff;
+  }
 }

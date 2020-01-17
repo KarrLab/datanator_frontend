@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { Navbar, AnchorButton, InputGroup } from "@blueprintjs/core";
+import { Navbar, InputGroup } from "@blueprintjs/core";
 import { MenuItem } from "@blueprintjs/core";
 import { Button } from "@blueprintjs/core";
 import { Suggest } from "@blueprintjs/select";
@@ -129,11 +130,19 @@ class Header extends Component {
       organism: this.props.defaultOrganism || "",
       searchFormValid:
         this.props.defaultQuery && this.props.defaultQuery.trim() !== "",
-      show_search: true
+      showSearch: true
     };
 
     this.filterOrganisms = this.filterOrganisms.bind(this);
     this.submitSearch = this.submitSearch.bind(this);
+  }
+
+  static get propTypes() {
+    return {
+      defaultQuery: PropTypes.string,
+      defaultOrganism: PropTypes.string,
+      handleClick: PropTypes.func
+    };
   }
 
   componentDidMount() {
@@ -152,10 +161,10 @@ class Header extends Component {
   }
 
   render() {
-    let show_search = this.state.show_search;
+    let showSearch = this.state.showSearch;
     let icon = "search";
     let search_text = "Search";
-    if (show_search) {
+    if (showSearch) {
       icon = null;
       search_text = "Hide Search";
     }
@@ -170,7 +179,7 @@ class Header extends Component {
           </div>
         </Navbar.Group>
 
-        {show_search && (
+        {showSearch && (
           <Navbar.Group className="search-container">
             <form className="search-form" onSubmit={this.submitSearch}>
               <InputGroup
@@ -191,7 +200,9 @@ class Header extends Component {
               <div className="search-in">in</div>
 
               <Suggest
-                ref="organismSuggest"
+                ref={el => {
+                  this.organismSuggest = el;
+                }}
                 className="search-form-el search-form-el-organism"
                 inputProps={{
                   className: "search-input",
@@ -212,13 +223,12 @@ class Header extends Component {
                 noResults={
                   <MenuItem disabled={true} text="No matching organisms." />
                 }
-                onQueryChange={(query, event) => {
+                onQueryChange={query => {
                   this.setState({ organism: query });
                 }}
-                onItemSelect={(value, event) => {
+                onItemSelect={value => {
                   this.setState({ organism: value });
-                  const input = this.refs.organismSuggest.input;
-                  input.focus();
+                  this.organismSuggest.input.focus();
                 }}
               >
                 <InputGroup />
@@ -235,17 +245,17 @@ class Header extends Component {
         )}
 
         <Navbar.Group align className="page-links">
-          <AnchorButton
+          <Button
             minimal="true"
             className="navbutton"
             icon={icon}
             text={search_text}
             onClick={() =>
-              this.setState({ show_search: !this.state.show_search })
+              this.setState({ showSearch: !this.state.showSearch })
             }
           />
           <Link to="/about">
-            <AnchorButton
+            <Button
               minimal="true"
               className="navbutton"
               icon="info-sign"
