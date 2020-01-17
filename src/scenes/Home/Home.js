@@ -1,8 +1,4 @@
-// App.js
-//import './App.css';
-
 import React, { Component } from "react";
-//import '~/../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 import { Redirect } from "react-router-dom";
 import { Header } from "~/components/Layout/Header/Header";
