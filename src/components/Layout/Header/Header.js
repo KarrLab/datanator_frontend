@@ -5,7 +5,7 @@ import { Button } from "@blueprintjs/core";
 import { Suggest } from "@blueprintjs/select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import "./header.scss";
+import "./Header.scss";
 import { Logo } from "./Logo/Logo";
 
 const renderOrganism = (film, { handleClick, modifiers }) => {
@@ -162,7 +162,7 @@ class Header extends Component {
     return (
       <Navbar fixedToTop="true" className="header-component">
         <Navbar.Group className="logo-title-container">
-          <Logo className="logo" />
+          <Logo />
           <div className="titles">
             <div className="title">Datanator</div>
             <div className="subtitle">Data for modeling cells</div>
