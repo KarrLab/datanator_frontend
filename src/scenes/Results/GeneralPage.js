@@ -14,8 +14,8 @@ import { formatReactionMetadata } from '~/scenes/Results/get_reaction_rows';
 import { formatProteinMetadata } from '~/scenes/Results/get_protein_rows';
 import { formatMetaboliteMetadata } from '~/scenes/Results/get_metabolite_rows';
 
-import { Header } from '~/components/Layout/Header/Header';
-import { Footer } from '~/components/Layout/Footer/Footer';
+import { Header } from '~/components/Header/Header';
+import { Footer } from '~/components/Footer/Footer';
 
 import Grid from '@material-ui/core/Grid';
 const queryString = require('query-string');

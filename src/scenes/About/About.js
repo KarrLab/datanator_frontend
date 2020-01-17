@@ -8,7 +8,7 @@ import { HashLink } from "react-router-hash-link";
 import "~/scenes/Results/General.scss";
 import "./About.scss";
 
-import { Header } from "~/components/Layout/Header/Header";
+import { Header } from "~/components/Header/Header";
 
 import lianPhoto from "./images/lian.thumb.png";
 import rothPhoto from "./images/roth.thumb.png";

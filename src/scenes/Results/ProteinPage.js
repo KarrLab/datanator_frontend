@@ -18,8 +18,8 @@ import {
 
 import { setNewUrl, abstractMolecule } from '~/data/actions/pageAction';
 import '~/scenes/Results/ProteinPage.scss';
-import { Header } from '~/components/Layout/Header/Header';
-import { Footer } from '~/components/Layout/Footer/Footer';
+import { Header } from '~/components/Header/Header';
+import { Footer } from '~/components/Footer/Footer';
 
 import store from '~/data/Store';
 

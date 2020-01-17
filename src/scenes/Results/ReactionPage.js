@@ -15,8 +15,8 @@ import {
   setSelectedData,
 } from '~/data/actions/resultsAction';import { ReactionDefinition } from '~/components/Definitions/ReactionDefinition';
 
-import { Header } from '~/components/Layout/Header/Header';
-import { Footer } from '~/components/Layout/Footer/Footer';
+import { Header } from '~/components/Header/Header';
+import { Footer } from '~/components/Footer/Footer';
 
 import { AgGridReact } from 'ag-grid-react';
 import { AllModules } from 'ag-grid-enterprise';

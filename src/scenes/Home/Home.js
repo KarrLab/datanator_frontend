@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import { Redirect } from "react-router-dom";
-import { Header } from "~/components/Layout/Header/Header";
+import { Header } from "~/components/Header/Header";
 
 import "~/scenes/Home/Home.scss";
 import logo from "./images/logo.svg";

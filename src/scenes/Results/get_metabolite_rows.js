@@ -12,8 +12,8 @@ import './MetabConcs.scss';
 import { getSearchData } from '~/services/MongoApi';
 import { set_lineage, setTotalData } from '~/data/actions/resultsAction';
 
-import { Header } from '~/components/Layout/Header/Header';
-import { Footer } from '~/components/Layout/Footer/Footer';
+import { Header } from '~/components/Header/Header';
+import { Footer } from '~/components/Footer/Footer';
 const queryString = require('query-string');
 
 function formatMetaboliteMetadata(data, organism) {
