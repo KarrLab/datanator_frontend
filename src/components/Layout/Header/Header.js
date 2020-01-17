@@ -129,7 +129,7 @@ class Header extends Component {
       organism: this.props.defaultOrganism || "",
       searchFormValid:
         this.props.defaultQuery && this.props.defaultQuery.trim() !== "",
-      show_search: false
+      show_search: true
     };
 
     this.filterOrganisms = this.filterOrganisms.bind(this);
