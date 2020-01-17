@@ -32,7 +32,7 @@ f_concentrations.push({
               organism: "escherichia coli",
               growth_media: "gutnick",
               taxonomic_proximity: 3,
-              tanitomo_similarity: 0.7,
+              tanimoto_similarity: 0.7,
             })
 
 f_concentrations.push({
@@ -44,7 +44,7 @@ f_concentrations.push({
               organism: "escherichia coli",
               growth_media: "blue media",
               taxonomic_proximity: 1,
-              tanitomo_similarity: 0.9,
+              tanimoto_similarity: 0.9,
             });
 
 store.dispatch(setTotalData(f_concentrations))
@@ -65,7 +65,7 @@ test('hello world', async () => {
                 'growth_conditions',
                 'growth_media',
               ]}
-              potential_columns={{'tanitomo':true}}
+              potential_columns={{'tanimoto':true}}
     	/>
   </Provider>
   )

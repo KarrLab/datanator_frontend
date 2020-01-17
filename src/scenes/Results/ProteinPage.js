@@ -32,7 +32,7 @@ import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 
 import {TaxonomyFilter} from '~/scenes/Results/TaxonomyFilter.js'
-import {TanitomoFilter} from '~/scenes/Results/TanitomoFilter.js'
+import {TanimotoFilter} from '~/scenes/Results/TanimotoFilter.js'
 import PartialMatchFilter from "./PartialMatchFilter.js";
 import './ag_styles.scss'
 import './MetabConcs.scss'
@@ -107,7 +107,7 @@ class ProteinPage extends Component {
       data_arrived: false,
       newSearch: false,
       new_url: '',
-      tanitomo: false,
+      tanimoto: false,
       columnDefs: [
         {
           headerName: 'Protein',
@@ -215,7 +215,7 @@ class ProteinPage extends Component {
         cellRendererParams: { checkbox: true },
       },
        frameworkComponents: { CustomToolPanelProtein: CustomToolPanelProtein, taxonomyFilter: TaxonomyFilter, partialMatchFilter: PartialMatchFilter, 
-        tanitomoFilter: TanitomoFilter }
+        tanimotoFilter: TanimotoFilter }
     };
 
     this.getNewSearch = this.getNewSearch.bind(this);

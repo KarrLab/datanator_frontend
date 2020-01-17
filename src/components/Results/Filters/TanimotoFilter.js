@@ -11,7 +11,7 @@ import { Slider } from 'antd';
 import { connect } from 'react-redux';
 import {
   getTotalColumns,
-  filter_tanitomo,
+  filter_tanimoto,
   refreshSelectedData,
 } from '~/data/actions/resultsAction';
 import { abstractMolecule } from '~/data/actions/pageAction';
@@ -24,16 +24,16 @@ const selectOptions = {
 @connect(store => {
   return {};
 })
-class TanitomoFilter extends Component {
+class TanimotoFilter extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.filter_tanitomo = this.filter_tanitomo.bind(this);
+    this.filter_tanimoto = this.filter_tanimoto.bind(this);
     this.setAbstractUrl = this.setAbstractUrl.bind(this);
   }
 
-  filter_tanitomo(value) {
-    this.props.dispatch(filter_tanitomo(value));
+  filter_tanimoto(value) {
+    this.props.dispatch(filter_tanimoto(value));
   }
 
   setAbstractUrl() {
@@ -41,22 +41,22 @@ class TanitomoFilter extends Component {
   }
 
   render() {
-    console.log('Rendering TanitomoFilter');
+    console.log('Rendering TanimotoFilter');
 
     return (
-      <div className="tanitomo_slider">
-        {!this.props.tanitomo && (
+      <div className="tanimoto_slider">
+        {!this.props.tanimoto && (
           <Button
             type="primary"
             onClick={() => this.setAbstractUrl()}
-            data-testid="tanitomo_button"
+            data-testid="tanimoto_button"
           >
             {' '}
             Include Similar Compounds{' '}
           </Button>
         )}
 
-        {this.props.tanitomo && (
+        {this.props.tanimoto && (
           <div className="tani">
             Molecular Similarity
             <Slider
@@ -64,7 +64,7 @@ class TanitomoFilter extends Component {
               defaultValue={0.65}
               min={0.65}
               max={1}
-              onChange={this.filter_tanitomo}
+              onChange={this.filter_tanimoto}
             />
           </div>
         )}
@@ -73,4 +73,4 @@ class TanitomoFilter extends Component {
   }
 }
 
-export { TanitomoFilter };
+export { TanimotoFilter };

@@ -101,7 +101,7 @@ function VerticalSlider(marks) {
 }
 
 
-class TanitomoFilter extends Component {
+class TanimotoFilter extends Component {
 
   constructor(props) {
     super(props);
@@ -227,7 +227,7 @@ class TanitomoFilter extends Component {
     let buttons = this.state.buttons
     return (
       <div className= {"slider_container_tanitoomo"}>
-      <div className={"slider_2_tanitomo"} style={{width:140,}}>
+      <div className={"slider_2_tanimoto"} style={{width:140,}}>
         <IOSSlider
         onChange = {this.onChange}
           orientation="horizontal"
@@ -247,4 +247,4 @@ class TanitomoFilter extends Component {
   }
 }
 
-export { TanitomoFilter };
+export { TanimotoFilter };

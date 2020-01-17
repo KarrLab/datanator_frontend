@@ -27,7 +27,7 @@ import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 
 import {TaxonomyFilter} from '~/scenes/Results/TaxonomyFilter.js'
-import {TanitomoFilter} from '~/scenes/Results/TanitomoFilter.js'
+import {TanimotoFilter} from '~/scenes/Results/TanimotoFilter.js'
 import PartialMatchFilter from "./PartialMatchFilter.js";
 
 
@@ -162,7 +162,7 @@ class ReactionPage extends Component {
       data_arrived: false,
       newSearch: false,
       new_url: '',
-      tanitomo: false,
+      tanimoto: false,
       columnDefs:[],
       first_columns: [
         {
@@ -213,10 +213,10 @@ class ReactionPage extends Component {
           filter: 'taxonomyFilter',
         },
         {
-          headerName: 'Tanitomo Similarity',
-          field: 'tanitomo_similarity',
+          headerName: 'Tanimoto Similarity',
+          field: 'tanimoto_similarity',
           hide: true,
-          filter: 'tanitomoFilter',
+          filter: 'tanimotoFilter',
         },
         {
           headerName: 'Growth Phase',
@@ -248,7 +248,7 @@ class ReactionPage extends Component {
         cellRendererParams: { checkbox: true },
       },
        frameworkComponents: { CustomToolPanelReaction: (() => <CustomToolPanelReaction relevant_column={"kcat"} />), taxonomyFilter: TaxonomyFilter, partialMatchFilter: PartialMatchFilter, 
-        tanitomoFilter: TanitomoFilter }
+        tanimotoFilter: TanimotoFilter }
     };
 
     this.formatReactionData = this.formatReactionData.bind(this);
