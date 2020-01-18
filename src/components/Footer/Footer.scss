@@ -7,8 +7,8 @@
 
   .footer-item:not(:last-child)::after {
     content: "|";
-    margin-left: 0.25rem;
-    margin-right: 0.25rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
   }
 
   color: #1890ff99;

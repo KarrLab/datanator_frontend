@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 
 import { Header } from "~/components/Header/Header";
 import { Footer } from "~/components/Footer/Footer";
@@ -7,18 +8,21 @@ import { Footer } from "~/components/Footer/Footer";
 import "~/scenes/Home/Home.scss";
 import logo from "./images/logo.svg";
 
-import metConcIcon from "./images/atom.svg";
-import protConcIcon from "./images/protein.svg";
-import rxnConstIcon from "./images/left-right-arrows.svg";
+import metaboliteIcon from "./images/atom.svg";
+import rnaIcon from "./images/protein.svg";
+import proteinIcon from "./images/protein.svg";
+import reactionIcon from "./images/left-right-arrows.svg";
 
 import searchIcon from "./images/search.svg";
 import filterIcon from "./images/filter.svg";
+import reviewIcon from "./images/binoculars.svg";
 import analyzeIcon from "./images/analyze.svg";
 import exportIcon from "./images/export.svg";
 
 import identifyUseCaseIcon from "./images/line-chart.svg";
 import constrainUseCaseIcon from "./images/flux-cone.svg";
 import recalibrateUseCaseIcon from "./images/dna.svg";
+import dataDrivenUseCaseIcon from "./images/dna.svg";
 
 import karrLabIcon from "./images/karr-lab.svg";
 import crbmIcon from "./images/crbm.svg";
@@ -30,35 +34,14 @@ import nigmsIcon from "../About/images/nigms.svg";
 import nsfIcon from "../About/images/nsf.svg";
 
 class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      dataSource: [],
-      newSearch: false,
-      currentSearch: "metab",
-      new_url: ""
-    };
-    this.getNewSearch = this.getNewSearch.bind(this);
-  }
-
-  getNewSearch(response) {
-    let url = "/general/?q=" + response[0] + "&organism=" + response[1];
-    this.setState({ new_url: url });
-    this.setState({ newSearch: true });
-  }
-
-  componentDidMount() {
-    //this.props.history.push('/');
-  }
-
   render() {
-    if (this.state.newSearch === true) {
-      return <Redirect to={this.state.new_url} push />;
-    }
+    let scrollTo = el => {
+      window.scrollTo({ behavior: "smooth", top: el.offsetTop });
+    };
 
     return (
       <div>
-        <Header handleClick={this.getNewSearch} />
+        <Header />
 
         <div className="content-container full-width-content-container content-container-home-scene">
           <div className="section intro">
@@ -88,112 +71,34 @@ class Home extends Component {
               </p>
             </div>
           </div>
-          <div className="section data-types">
-            <div className="section-inner-container">
-              <h2>
-                <i>Datanator</i>&apos;s integrated database contains key data
-                for cell modeling
-              </h2>
-              <div className="section-columns section-3-columns">
-                <div className="section-column">
-                  <img
-                    src={metConcIcon}
-                    className="section-column-icon"
-                    alt="Metabolite concentration icon"
-                  />
-                  <div className="section-column-title">
-                    Metabolite concentrations
-                  </div>
-                  <div className="section-column-text">Brief description</div>
-                </div>
 
-                <div className="section-column">
-                  <img
-                    src={protConcIcon}
-                    className="section-column-icon"
-                    alt="Protein abundance logo"
-                  />
-                  <div className="section-column-title">Protein abundances</div>
-                  <div className="section-column-text">Brief description</div>
-                </div>
-
-                <div className="section-column">
-                  <img
-                    src={rxnConstIcon}
-                    className="section-column-icon"
-                    alt="Reaction rate constant logo"
-                  />
-                  <div className="section-column-title">Reaction constants</div>
-                  <div className="section-column-text">Brief description</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="section workflow">
-            <div className="section-inner-container">
-              <h2>
-                <i>Datanator</i>&apos;s software enables systematic discovery of
-                data for modeling
-              </h2>
-              <div className="section-columns section-4-columns">
-                <div className="section-column">
-                  <img
-                    src={searchIcon}
-                    className="section-column-icon"
-                    alt="Search icon"
-                  />
-                  <div className="section-column-title">1. Search</div>
-                  <div className="section-column-text">Brief description</div>
-                </div>
-
-                <div className="section-column">
-                  <img
-                    src={filterIcon}
-                    className="section-column-icon"
-                    alt="Filter icon"
-                  />
-                  <div className="section-column-title">2. Filter</div>
-                  <div className="section-column-text">Brief description</div>
-                </div>
-
-                <div className="section-column">
-                  <img
-                    src={analyzeIcon}
-                    className="section-column-icon"
-                    alt="Analyze icon"
-                  />
-                  <div className="section-column-title">3. Analyze</div>
-                  <div className="section-column-text">Brief description</div>
-                </div>
-
-                <div className="section-column">
-                  <img
-                    src={exportIcon}
-                    className="section-column-icon"
-                    alt="Export icon"
-                  />
-                  <div className="section-column-title">4. Download</div>
-                  <div className="section-column-text">Brief description</div>
-                </div>
-              </div>
-            </div>
-          </div>
           <div className="section use-cases">
             <div className="section-inner-container">
-              <h2>
-                <i>Datanator</i> can facilitate a wide range of modeling tasks
+              <h2 className="section-title">
+                Aim:{" "}
+                <span className="highlight-primary">
+                  construct and validate comprehensive models
+                </span>
               </h2>
-              <div className="section-columns section-3-columns">
+              <div className="section-title-separator"></div>
+              <div className="section-columns section-4-columns">
                 <div className="section-column">
                   <img
                     src={identifyUseCaseIcon}
                     className="section-column-icon"
                     alt="Identify parameters icon"
                   />
+                  <div className="section-column-subtitle">Kinetic models</div>
                   <div className="section-column-title">
-                    Identify missing quantitative parameters of kinetic models
+                    Identify initial conditions and rate parameters
                   </div>
-                  <div className="section-column-text">Brief description</div>
+                  <div className="section-column-description">
+                    <i>Datanator</i> can help investigators find genomic and
+                    biochemical data to identify the initial conditions and rate
+                    parameters of continuous and stochastic dynamical models. In
+                    turn, this can help investigators construct more
+                    comprehensive and more accurate models.
+                  </div>
                 </div>
 
                 <div className="section-column">
@@ -202,10 +107,19 @@ class Home extends Component {
                     className="section-column-icon"
                     alt="Constrain models icon"
                   />
-                  <div className="section-column-title">
-                    Add data-drive constraints to constraint-based models
+                  <div className="section-column-subtitle">
+                    Constraint-based models
                   </div>
-                  <div className="section-column-text">Brief description</div>
+                  <div className="section-column-title">
+                    Add enzyme abundance and reaction rate constraints
+                  </div>
+                  <div className="section-column-description">
+                    <i>Datanator</i> can help investigators improve
+                    constraint-based models of metabolism by helping
+                    investigators find enzyme abundances and reaction velocities
+                    to constrain the predicted fluxes of chemical transformation
+                    and transport reactions.
+                  </div>
                 </div>
 
                 <div className="section-column">
@@ -214,19 +128,275 @@ class Home extends Component {
                     className="section-column-icon"
                     alt="Recalibrate models icon"
                   />
+                  <div className="section-column-subtitle">Kinetic models</div>
                   <div className="section-column-title">
-                    Recalibrate models to capture other organisms and cell types
+                    Re-calibrate models to capture other cells
                   </div>
-                  <div className="section-column-text">Brief description</div>
+                  <div className="section-column-description">
+                    <i>Datanator</i> can help investigators modify models to
+                    capture other organisms, tissues, and cell types by helping
+                    investigators find data to re-calibrate model parameters. In
+                    turn, this can help investigators compare organisms,
+                    tissues, and cell types.
+                  </div>
+                </div>
+
+                <div className="section-column">
+                  <img
+                    src={dataDrivenUseCaseIcon}
+                    className="section-column-icon"
+                    alt="Recalibrate models icon"
+                  />
+                  <div className="section-column-subtitle">
+                    Data-driven models
+                  </div>
+                  <div className="section-column-title">
+                    Meta-analyze multiple organisms and data types
+                  </div>
+                  <div className="section-column-description">
+                    <i>Datanator</i> can also help investigators conduct
+                    data-driven meta-analyses of molecular biology. For example,
+                    the <i>Datanator</i> database can be used to conduct
+                    multi-dimensional analyses of an individual organism or
+                    conduct comparative analyses of multiple organisms.
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+
+          <div className="section data-types">
+            <div className="section-inner-container">
+              <h2 className="section-title">
+                <span className="highlight-primary">Integrated database</span>{" "}
+                of key data for cell modeling
+              </h2>
+              <div className="section-title-separator"></div>
+              <div className="section-columns section-4-columns">
+                <div className="section-column">
+                  <img
+                    src={metaboliteIcon}
+                    className="section-column-icon"
+                    alt="Metabolite concentration icon"
+                  />
+                  <div className="section-column-subtitle">Available</div>
+                  <div className="section-column-title">
+                    Metabolite concentrations
+                  </div>
+                  <div className="section-column-description">
+                    XXX measurements of the concentrations of XXX metabolites in
+                    2 organisms aggregated from{" "}
+                    <a
+                      href="http://ecmdb.ca/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      ECMDB
+                    </a>{" "}
+                    and{" "}
+                    <a
+                      href="http://www.ymdb.ca/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      YMDB
+                    </a>
+                    .
+                  </div>
+                </div>
+
+                <div className="section-column">
+                  <img
+                    src={rnaIcon}
+                    className="section-column-icon"
+                    alt="RNA icon"
+                  />
+                  <div className="section-column-subtitle">Coming soon</div>
+                  <div className="section-column-title">mRNA half-lives</div>
+                  <div className="section-column-description">
+                    Measurements of the half-lives of mRNA aggregated from more
+                    than twenty publications.
+                  </div>
+                </div>
+
+                <div className="section-column">
+                  <img
+                    src={proteinIcon}
+                    className="section-column-icon"
+                    alt="Protein abundance icon"
+                  />
+                  <div className="section-column-subtitle">Available</div>
+                  <div className="section-column-title">Protein abundances</div>
+                  <div className="section-column-description">
+                    XXX measurements of the abundance of XXX ortholog groups and
+                    XXX proteins in XXX organisms aggregated from{" "}
+                    <a
+                      href="https://pax-db.org/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      PAXdb
+                    </a>
+                    .
+                  </div>
+                </div>
+
+                <div className="section-column">
+                  <img
+                    src={reactionIcon}
+                    className="section-column-icon"
+                    alt="Reaction rate constant icon"
+                  />
+                  <div className="section-column-subtitle">Available</div>
+                  <div className="section-column-title">Reaction constants</div>
+                  <div className="section-column-description">
+                    XXX measurements of rate constants for XXX Enzyme
+                    Classification groups and XXX reactions aggregated from{" "}
+                    <a
+                      href="http://sabio.h-its.org/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      SABIO-RK
+                    </a>
+                    .
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="section workflow">
+            <div className="section-inner-container">
+              <h2 className="section-title">
+                Workflow to{" "}
+                <span className="highlight-primary">
+                  systematically discovery data
+                </span>{" "}
+                for modeling
+              </h2>
+              <div className="section-title-separator"></div>
+              <div className="vertical-workflow">
+                <div className="vertical-workflow-el vertical-workflow-el-search">
+                  <div className="vertical-workflow-el-line"></div>
+                  <img
+                    src={searchIcon}
+                    className="vertical-workflow-el-icon"
+                    alt="Search icon"
+                  />
+                  <div className="vertical-workflow-el-text">
+                    <div className="vertical-workflow-el-text-inner">
+                      <div className="vertical-workflow-el-title">
+                        Step 1:{" "}
+                        <span className="highlight-primary">Search</span> for a
+                        biochemical entity (metabolite, RNA, protein, or
+                        reaction)
+                      </div>
+                      <div className="vertical-workflow-el-description">
+                        Use the search form at the{" "}
+                        <HashLink to="#top" scroll={scrollTo}>
+                          top
+                        </HashLink>{" "}
+                        to search for measurements of a metabolite, RNA,
+                        protein, or reaction relevant to a specific organism.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="vertical-workflow-el">
+                  <div className="vertical-workflow-el-line"></div>
+                  <img
+                    src={filterIcon}
+                    className="vertical-workflow-el-icon"
+                    alt="Filter icon"
+                  />
+                  <div className="vertical-workflow-el-text">
+                    <div className="vertical-workflow-el-title">
+                      Step 2: <span className="highlight-primary">Filter</span>{" "}
+                      for potentially relevant measurements of similar entities
+                      in similar cells and similar environments
+                    </div>
+                    <div className="vertical-workflow-el-description">
+                      Select a metabolite, RNA, protein, or reaction class (e.g,
+                      KEGG ortholog group) to obtain potentially relevant
+                      measurements to the entity of interest. Then filter for
+                      data about similar entities (e.g., by sequence similarity)
+                      measured in similar organisms (by phylogenetic distance)
+                      and environments (e.g., temperature, pH).
+                    </div>
+                  </div>
+                </div>
+
+                <div className="vertical-workflow-el">
+                  <div className="vertical-workflow-el-line"></div>
+                  <img
+                    src={reviewIcon}
+                    className="vertical-workflow-el-icon"
+                    alt="Review icon"
+                  />
+                  <div className="vertical-workflow-el-text">
+                    <div className="vertical-workflow-el-title">
+                      Step 3: <span className="highlight-primary">Review</span>{" "}
+                      the potentially relevant measurements to determine the
+                      relevant measurements
+                    </div>
+                    <div className="vertical-workflow-el-description">
+                      Inspect each potentially relevant measurement and select
+                      the most relevant measurements to the entity and organism
+                      of interest.
+                    </div>
+                  </div>
+                </div>
+
+                <div className="vertical-workflow-el vertical-workflow-el-analyze">
+                  <div className="vertical-workflow-el-line"></div>
+                  <img
+                    src={analyzeIcon}
+                    className="vertical-workflow-el-icon"
+                    alt="Analyze icon"
+                  />
+                  <div className="vertical-workflow-el-text">
+                    <div className="vertical-workflow-el-title">
+                      Step 4: <span className="highlight-primary">Analyze</span>{" "}
+                      the distribution of relevant measurements
+                    </div>
+                    <div className="vertical-workflow-el-description">
+                      Review box plots and statistical properties of the
+                      selected and potentially relevant measurements.
+                    </div>
+                  </div>
+                </div>
+
+                <div className="vertical-workflow-el">
+                  <div className="vertical-workflow-el-line"></div>
+                  <img
+                    src={exportIcon}
+                    className="vertical-workflow-el-icon"
+                    alt="Export icon"
+                  />
+                  <div className="vertical-workflow-el-text">
+                    <div className="vertical-workflow-el-title">
+                      Step 5: <span className="highlight-primary">Export</span>{" "}
+                      molecular data for model construction and validation
+                    </div>
+                    <div className="vertical-workflow-el-description">
+                      Export the selected measurements, or all of the
+                      measurements, in JSON format for further analysis such as
+                      model construction or validation.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div className="section about">
             <div className="section-inner-container">
-              <h2>
-                About <i>Datanator</i>
+              <h2 className="section-title">
+                <span className="highlight-primary">About</span>{" "}
+                <i>Datanator</i>
               </h2>
+              <div className="section-title-separator"></div>
               <p>
                 <i>Datanator</i> was developed by the{" "}
                 <a
@@ -236,7 +406,8 @@ class Home extends Component {
                 >
                   Karr Lab
                 </a>{" "}
-                at the Icahn School of Medicine at Mount Sinai in New York.
+                at the Icahn School of Medicine at Mount Sinai in New York. See
+                the <Link to="about">About</Link> page for more information.
               </p>
               <p>
                 <i>Datanator</i> was developed with support from the National
@@ -251,6 +422,7 @@ class Home extends Component {
                   <img
                     src={karrLabIcon}
                     className="hover-zoom"
+                    title="Karr Lab"
                     alt="Karr Lab logo"
                   />
                 </a>
@@ -262,6 +434,7 @@ class Home extends Component {
                   <img
                     src={crbmIcon}
                     className="hover-zoom"
+                    title="Center for Reproducible Biomedical Modeling"
                     alt="Center for Reproducible Biomedical Modeling logo"
                   />
                 </a>
@@ -274,6 +447,7 @@ class Home extends Component {
                   <img
                     src={sinaiIcon}
                     className="hover-zoom"
+                    title="Icahn School of Medicine at Mount Sinai"
                     alt="Icahn School of Medicine at Mount Sinai logo"
                   />
                 </a>
@@ -285,6 +459,7 @@ class Home extends Component {
                   <img
                     src={nihIcon}
                     className="hover-zoom"
+                    title="National Institutes of Health"
                     alt="National Institutes of Health logo"
                   />
                 </a>
@@ -296,6 +471,7 @@ class Home extends Component {
                   <img
                     src={nibibIcon}
                     className="hover-zoom"
+                    title="National Institute of Bioimaging and Bioengineering"
                     alt="National Institute of Bioimaging and Bioengineering logo"
                   />
                 </a>
@@ -307,6 +483,7 @@ class Home extends Component {
                   <img
                     src={nigmsIcon}
                     className="hover-zoom"
+                    title="National Institute of General Medical Sciences"
                     alt="National Institute of General Medical Sciences logo"
                   />
                 </a>
@@ -318,6 +495,7 @@ class Home extends Component {
                   <img
                     src={nsfIcon}
                     className="hover-zoom"
+                    title="National Science Foundation"
                     alt="National Science Foundation logo"
                   />
                 </a>

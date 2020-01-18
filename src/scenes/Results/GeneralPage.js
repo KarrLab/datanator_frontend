@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from '@material-ui/core';
-import { Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
 import './General.scss';
@@ -35,11 +34,8 @@ class GeneralPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dataSource: [],
       data_arrived: false,
-      newSearch: false,
       newResults: false,
-      new_url: '',
       reactionMetadata: [],
       km_values:[],
       reaction_results : null,
@@ -56,15 +52,8 @@ class GeneralPage extends Component {
       reactions_load:true,
     };
 
-    this.getNewSearch = this.getNewSearch.bind(this);
     this.fetch_data = this.fetch_data.bind(this);
     this.formatData = this.formatData.bind(this);
-  }
-
-  getNewSearch(response) {
-    let url = '/general/?q=' + response[0] + '&organism=' + response[1];
-    this.setState({ new_url: url });
-    this.setState({ newSearch: true });
   }
   
   componentDidMount() {
@@ -85,7 +74,6 @@ class GeneralPage extends Component {
       this.fetch_data("rna_halflife", 10)
       this.fetch_data("sabio_reaction_entries", 10)
       this.fetch_data("protein", 10)
-      this.setState({ newSearch: false })
       this.setState({newResults:false})
     }
   }
@@ -169,36 +157,14 @@ class GeneralPage extends Component {
     let values = queryString.parse(this.props.location.search);
     console.log("QUERY VALUE: " + values.q)
 
-    if (this.state.newSearch === true) {
-      console.log('Redirecting');
-      this.setState({newResults:true,
-        reaction_results: null,
-        protein_results: null,
-        metabolite_results: null,
-        page_index_counter:{
-          metabolites_meta : 0,
-          sabio_reaction_entries : 0,
-          protein : 0,
-        },
-        metabolite_load: true,
-        protein_load: true,
-        reactions_load: true,
-      });
-      return <Redirect to={this.state.new_url} push />;
-    }
-
     if (this.state.reaction_results == null &&
           this.state.protein_results == null &&
           this.state.metabolite_results == null) {
       return (
         <div>
-          <Header
-            handleClick={this.getNewSearch}
-            defaultQuery={values.q}
-            defaultOrganism={values.organism}
-          />
-          <div class="loader_container">
-            <div class="loader"></div>
+          <Header />
+          <div className="loader_container">
+            <div className="loader"></div>
           </div>
           <Footer />
         </div>
@@ -207,11 +173,7 @@ class GeneralPage extends Component {
 
     return (
       <div>
-        <Header
-          handleClick={this.getNewSearch}
-          defaultQuery={values.q}
-          defaultOrganism={values.organism}
-        />
+        <Header />
 
         <div className="general">
           <Grid md={3}>

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
 import { getSearchData } from '~/services/MongoApi';
@@ -89,18 +88,12 @@ class ProteinPage extends Component {
       orthologyMetadata: [],
       f_abundances: null,
       organism: '',
-      dataSource: [],
       orig_json: null,
-      newSearch: false,
-      new_url: '',
       isFlushed: false,
       data_arrived: false,
       modules: AllCommunityModules,
-      lineage:[],
-      dataSource: [],
+      lineage: [],
       data_arrived: false,
-      newSearch: false,
-      new_url: '',
       tanimoto: false,
       columnDefs: [
         {
@@ -212,7 +205,6 @@ class ProteinPage extends Component {
         tanimotoFilter: TanimotoFilter }
     };
 
-    this.getNewSearch = this.getNewSearch.bind(this);
     this.formatProteinMetadata = this.formatProteinMetadata.bind(this);
     this.processProteinData = this.processProteinData.bind(this);
     this.formatData = this.formatData.bind(this);
@@ -237,10 +229,7 @@ class ProteinPage extends Component {
         orthologyMetadata: [],
         f_abundances: null,
         organism: '',
-        dataSource: [],
         orig_json: null,
-        newSearch: false,
-        new_url: '',
         isFlushed: false,
         data_arrived: false,
       });
@@ -258,15 +247,7 @@ class ProteinPage extends Component {
     if (this.props.match.params.organism) {
       url = url + '/' + this.props.match.params.organism;
     }
-    this.setState({ newSearch: false });
-    this.setState({ new_url: url });
     this.getSearchData();
-  }
-
-  getNewSearch(response) {
-    let url = '/general/?q=' + response[0] + '&organism=' + response[1];
-    this.setState({ new_url: url });
-    this.setState({ newSearch: true });
   }
 
   getSearchData() {
@@ -569,29 +550,21 @@ class ProteinPage extends Component {
 
 
   render() {
-    if (this.state.newSearch === true) {
-      console.log('Redirecting');
-      return <Redirect to={this.state.new_url} push />;
-    }
     console.log('Rendering ProteinPage');
     const values = queryString.parse(this.props.location.search);
 
 
     if (this.state.orthologyMetadata.length === 0 ||
               this.props.totalData == null ){
-        return ( <div>
-
-          <Header 
-        handleClick={this.getNewSearch}
-        defaultQuery={values.q}
-        defaultOrganism={values.organism}
-      />
-      <div class="loader_container">
-      <div class="loader"></div> 
-      </div>
-      </div>)
-      }
-
+      return (
+        <div>
+          <Header />
+          <div class="loader_container">
+            <div class="loader"></div> 
+          </div>
+        </div>
+      )
+    }
 
     let styles = {
       marginTop: 50,
@@ -599,11 +572,7 @@ class ProteinPage extends Component {
     return (
       <div className="total_container">
         
-      <Header 
-        handleClick={this.getNewSearch}
-        defaultQuery={values.q}
-        defaultOrganism={values.organism}
-      />
+      <Header />
 
       <ProteinDefinition 
           proteinMetadata={this.state.orthologyMetadata} 

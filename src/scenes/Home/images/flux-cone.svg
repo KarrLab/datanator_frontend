@@ -3,44 +3,27 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 526 526" style="enable-background:new 0 0 526 526;" xml:space="preserve">
 <style type="text/css">
-	.st0{opacity:0.5;fill:#FEC412;}
-	.st1{fill:none;stroke:#FEC412;stroke-width:14;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st2{fill:none;stroke:#FEC412;stroke-width:14;stroke-linecap:round;stroke-linejoin:round;}
+	.st0{fill:#ffe182;}
+	.st1{fill:none;stroke:#FEC412;stroke-width:14;stroke-linecap:round;stroke-linejoin:round;}
 	.st3{fill:none;stroke:#FEC412;stroke-width:14;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:32.836758,32.836758;}
 </style>
 <polygon class="st0" points="263,519 7,128.922485 154.52713,7 371.47287,7 519,128.922485 "/>
 <g>
 	<line class="st1" x1="175.680222" y1="106.844162" x2="154.52713" y2="7"/>
 	<g>
-		<g>
-			<line class="st2" x1="252.618332" y1="469.997742" x2="249.509415" y2="455.323456"/>
-			<line class="st3" x1="242.703644" y1="423.199707" x2="191.6604" y2="182.271744"/>
-			<line class="st2" x1="188.257507" y1="166.209869" x2="185.14859" y2="151.535583"/>
-		</g>
+		<line class="st1" x1="252.618332" y1="469.997742" x2="249.509415" y2="455.323456"/>
+		<line class="st3" x1="242.703644" y1="423.199707" x2="191.6604" y2="182.271744"/>
+		<line class="st1" x1="188.257507" y1="166.209869" x2="185.14859" y2="151.535583"/>
 	</g>
 </g>
 <g>
 	<line class="st1" x1="350.319763" y1="106.844162" x2="371.47287" y2="7"/>
 	<g>
-		<g>
-			<line class="st2" x1="273.381683" y1="469.997742" x2="276.49057" y2="455.323456"/>
-			<line class="st3" x1="283.296356" y1="423.199707" x2="334.3396" y2="182.271744"/>
-			<line class="st2" x1="337.742493" y1="166.209869" x2="340.85141" y2="151.535583"/>
-		</g>
+		<line class="st1" x1="273.381683" y1="469.997742" x2="276.49057" y2="455.323456"/>
+		<line class="st3" x1="283.296356" y1="423.199707" x2="334.3396" y2="182.271744"/>
+		<line class="st1" x1="337.742493" y1="166.209869" x2="340.85141" y2="151.535583"/>
 	</g>
 </g>
 <polygon class="st1" points="263,519 7,128.922485 154.52713,7 371.47287,7 519,128.922485 "/>
 <line class="st1" x1="7" y1="128.922485" x2="519" y2="128.922485"/>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
 </svg>

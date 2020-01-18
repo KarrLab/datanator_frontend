@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
-import { withRouter } from "react-router";
 import { HashLink } from "react-router-hash-link";
 
 import "~/scenes/Results/General.scss";
@@ -21,30 +19,14 @@ import nsfIcon from "./images/nsf.svg";
 import { SocialIcon } from "react-social-icons";
 
 class About extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-    this.getNewSearch = this.getNewSearch.bind(this);
-  }
-
-  getNewSearch(response) {
-    let url = "/general/?q=" + response[0] + "&organism=" + response[1];
-    this.setState({ new_url: url });
-    this.setState({ newSearch: true });
-  }
-
   render() {
-    if (this.state.newSearch === true) {
-      return <Redirect to={this.state.new_url} push />;
-    }
-
     let scrollTo = el => {
       window.scrollTo({ behavior: "smooth", top: el.offsetTop - 52 });
     };
 
     return (
       <div>
-        <Header handleClick={this.getNewSearch} />
+        <Header />
 
         <div className="content-container content-container-columns content-container-about-scene">
           <div className="content-block table-of-contents">
@@ -57,7 +39,7 @@ class About extends Component {
               </li>
               <li>
                 <HashLink to="#data" scroll={scrollTo}>
-                  Data Types
+                  Data types
                 </HashLink>
               </li>
               <li>
@@ -77,7 +59,7 @@ class About extends Component {
               </li>
               <li>
                 <HashLink to="#source" scroll={scrollTo}>
-                  Source Code
+                  Source code
                 </HashLink>
               </li>
             </ol>
@@ -86,7 +68,7 @@ class About extends Component {
           <div className="content-column" id="features">
             <div className="content-block section">
               <h2 className="content-block-heading">
-                1. Motivation and Features
+                1. Motivation and features
               </h2>
               <div className="content-block-content">
                 <p>
@@ -132,7 +114,7 @@ class About extends Component {
 
             <div className="content-block section" id="data">
               <h2 className="content-block-heading">
-                2. Data Types and Sources
+                2. Data types and sources
               </h2>
               <div className="content-block-content">
                 <p>
@@ -181,7 +163,7 @@ class About extends Component {
               id="searching"
             >
               <h2 className="content-block-heading">
-                3. Searching and Filtering for Data About Specific Cells
+                3. Searching and filtering for data about specific cells
               </h2>
               <div className="content-block-content">
                 <p className="no-bottom-margin">
@@ -254,7 +236,7 @@ class About extends Component {
             </div>
 
             <div className="content-block section developers" id="team">
-              <h2 className="content-block-heading">4. Development Team</h2>
+              <h2 className="content-block-heading">4. Development team</h2>
               <div className="content-block-content">
                 <p>
                   <i>Datanator</i> was developed by the{" "}
@@ -368,6 +350,7 @@ class About extends Component {
                     <img
                       src={nihIcon}
                       className="hover-zoom"
+                      title="National Institutes of Health"
                       alt="National Institutes of Health logo"
                     />
                   </a>
@@ -379,6 +362,7 @@ class About extends Component {
                     <img
                       src={nibibIcon}
                       className="hover-zoom"
+                      title="National Institute of Bioimaging and Bioengineering"
                       alt="National Institute of Bioimaging and Bioengineering logo"
                     />
                   </a>
@@ -390,6 +374,7 @@ class About extends Component {
                     <img
                       src={nigmsIcon}
                       className="hover-zoom"
+                      title="National Institute of General Medical Sciences"
                       alt="National Institute of General Medical Sciences logo"
                     />
                   </a>
@@ -401,6 +386,7 @@ class About extends Component {
                     <img
                       src={nsfIcon}
                       className="hover-zoom"
+                      title="National Science Foundation"
                       alt="National Science Foundation logo"
                     />
                   </a>
@@ -409,7 +395,9 @@ class About extends Component {
             </div>
 
             <div className="content-block section" id="source">
-              <h2 className="content-block-heading">6. Source Code</h2>
+              <h2 className="content-block-heading">
+                6. Source code and license
+              </h2>
 
               <div className="content-block-content">
                 <p className="no-bottom-margin">
@@ -475,4 +463,4 @@ class About extends Component {
   }
 }
 
-export default withRouter(About);
+export default About;

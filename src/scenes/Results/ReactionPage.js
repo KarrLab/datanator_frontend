@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
 
@@ -154,10 +153,7 @@ class ReactionPage extends Component {
       km_values:[],
       modules: AllCommunityModules,
       lineage:[],
-      dataSource: [],
       data_arrived: false,
-      newSearch: false,
-      new_url: '',
       tanimoto: false,
       columnDefs:[],
       first_columns: [
@@ -249,7 +245,6 @@ class ReactionPage extends Component {
 
     this.formatReactionData = this.formatReactionData.bind(this);
     this.getSearchDataReaction = this.getSearchDataReaction.bind(this);
-    this.getNewSearch = this.getNewSearch.bind(this);
     this.setKmColumns = this.setKmColumns.bind(this);
 
   }
@@ -272,9 +267,6 @@ class ReactionPage extends Component {
   }
   componentDidMount() {
     console.log("ReactionPage: Calling componentDidMount")
-    this.setState({
-      newSearch: false,
-    });
     if (this.props.match.params.dataType === 'meta') {
       this.getMetaData();
     }
@@ -304,20 +296,15 @@ class ReactionPage extends Component {
       console.log(old_values.substrates)
       console.log("Redirect value: "+ this.state.redirect)
       this.setState({
-      dataSource: [],
       data_arrived: false,
-      newSearch: false,
-      new_url: '',
       reactionMetadata: [],
       km_values:[],
     })
     //console.log("RE-UP")
       if (this.props.match.params.dataType === 'meta') {
-        this.setState({ newSearch: false });
         this.getMetaData();
       }
       if (this.props.match.params.dataType === 'data') {
-        this.setState({ newSearch: false });
         this.getResultsData();
       }
     }
@@ -406,17 +393,7 @@ class ReactionPage extends Component {
     console.log('ReactionPage: Calling getSearchDataReaction');
     console.log('ReactionPageLoc: ' + ( '/reaction' + window.location.toString().split('/reaction')[1]))
     console.log('ReactionPageLoc: ' + url)
-    if (url !== ( '/reaction' + window.location.toString().split('/reaction')[1])){
-      this.setState({ new_url: url});
-    //console.log(url);
-    this.setState({ newSearch: true });
-    }
-  }
-  getNewSearch(response) {
-    let url = '/general/?q=' + response[0] + '&organism=' + response[1];
-    this.setState({ new_url: url });
-    this.setState({ newSearch: true });
-  }
+  }  
 
   formatReactionMetadata(data) {
     console.log('ReactionPage: Calling formatReactionMetadata');
@@ -512,26 +489,16 @@ class ReactionPage extends Component {
     const values = queryString.parse(this.props.location.search);
     //console.log(values.substrates.split(',')[0]);
 
-    if (this.state.newSearch === true) {
-      console.log('Redirecting');
-      return <Redirect to={this.state.new_url} push />;
-    }
-
     if (this.props.totalData == null ){
-        return ( <div>
-
-          <Header 
-        handleClick={this.getNewSearch}
-        defaultQuery={values.q}
-        defaultOrganism={values.organism}
-      />
-      <div class="loader_container">
-      <div class="loader"></div> 
-      </div>
-      </div>)
-      }
-
-
+      return (
+        <div>
+          <Header />
+          <div class="loader_container">
+            <div class="loader"></div> 
+          </div>
+        </div>
+      )
+    }
 
     let styles = {
       marginTop: 50,
@@ -540,21 +507,9 @@ class ReactionPage extends Component {
     return (
       <div className="total_container">
         
-      <Header 
-        handleClick={this.getNewSearch}
-        defaultQuery={values.q}
-        defaultOrganism={values.organism}
-      />
+        <Header />
 
-      <div
-        className="metabolite_definition_data"
-      ></div>
-
-
-
-
-
-
+        <div className="metabolite_definition_data"></div>
 
         <div
           className="ag_chart"

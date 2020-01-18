@@ -20,13 +20,21 @@
   h2 {
     font-size: 30px;
     line-height: 22px;
-    color: #1890ff;
-    margin-bottom: 1rem;
   }
 
   /* sections */
   .section {
     text-align: center;
+  }
+
+  .section-title-separator {
+    height: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 4rem;
+    border-bottom: 2px solid #1890ff;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
   }
 
   .section-inner-container {
@@ -50,26 +58,24 @@
 
   .section-3-columns {
     .section-column {
-      width: calc(100% / 3 - 2rem);
+      width: calc((100% - (3 - 1) * 2rem) / 3);
     }
   }
 
   .section-4-columns {
     .section-column {
-      width: calc(100% / 4 - 2rem);
+      width: calc((100% - (4 - 1) * 2rem) / 4);
     }
   }
 
   .section-5-columns {
     .section-column {
-      width: calc(100% / 5 - 2rem);
+      width: calc((100% - (5 - 1) * 2rem) / 5);
     }
   }
 
   .section-column {
     text-align: center;
-    margin-left: 1rem;
-    margin-right: 1rem;
   }
 
   .section-column-icon {
@@ -77,10 +83,16 @@
   }
 
   .section-column-title {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
+  }
+
+  .section-column-subtitle {
+    font-size: 17px;
+    color: #1890ff;
+    margin-top: 0.5rem;
   }
 
   /* introduction */
@@ -112,8 +124,68 @@
   }
 
   /* workflow */
-  .workflow-icons {
+  .workflow {
     max-width: 100%;
+  }
+
+  .vertical-workflow-el {
+    height: 4rem;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .vertical-workflow-el-text {
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .vertical-workflow-el-text-inner {
+    width: 100%;
+  }
+
+  .vertical-workflow-el-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  .vertical-workflow-el-icon {
+    height: 64px;
+    width: 64px;
+    margin-right: 1rem;
+    z-index: 1;
+  }
+
+  .vertical-workflow-el:not(:last-child) {
+    margin-bottom: 2rem;
+
+    .vertical-workflow-el-line {
+      border-left: 1px solid #ccc;
+      height: calc(100% + 2rem);
+      width: 0;
+      position: relative;
+      left: 32px;
+      top: 32px;
+      z-index: 0;
+    }
+  }
+
+  .vertical-workflow-el:not(:last-child).vertical-workflow-el-search {
+    .vertical-workflow-el-line {
+      top: calc(32px + 10px);
+      height: calc(100% + 2rem - 10px);
+    }
+  }
+
+  .vertical-workflow-el:not(:last-child).vertical-workflow-el-analyze {
+    .vertical-workflow-el-line {
+      top: calc(32px + 15px);
+      height: calc(100% + 2rem - 15px);
+    }
   }
 
   /* about */

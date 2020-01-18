@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 //import 'antd/dist/antd.css';
 //import ConcentrationsTable from '~/components/Results/ConcentrationsTable.js';
 //import { PropTypes } from 'react';
-import { Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router';
 //import { Consensus } from '~/components/Results/Consensus.js';
 
@@ -81,10 +80,7 @@ class MetabConcs extends Component {
       metaboliteMetadata:[],
       modules: AllCommunityModules,
       lineage:[],
-      dataSource: [],
       data_arrived: false,
-      newSearch: false,
-      new_url: '',
       tanimoto: false,
       columnDefs: [
         {
@@ -181,15 +177,11 @@ class MetabConcs extends Component {
         tanimotoFilter: TanimotoFilter }
     };
 
-    this.getNewSearch = this.getNewSearch.bind(this);
     this.formatData = this.formatData.bind(this);
     //this.onFirstDataRendered = this.onFirstDataRendered.bind(this);
     //this.onRowSelected = this.onRowSelected.bind(this);
   }
   componentDidMount() {
-    this.setState({
-      newSearch: false,
-    });
     this.getSearchData();
   }
 
@@ -204,8 +196,6 @@ class MetabConcs extends Component {
           this.props.match.params.organism +
           '/' +
           'true';
-        this.setState({ new_url: url });
-        this.setState({ newSearch: true });
       }
     }
 
@@ -214,8 +204,7 @@ class MetabConcs extends Component {
       this.props.match.params.organism !== prevProps.match.params.organism ||
       this.props.match.params.abstract !== prevProps.match.params.abstract
     ) {
-      this.setState({ newSearch: false,
-      metaboliteMetadata: [] });
+      this.setState({ metaboliteMetadata: [] });
       this.getSearchData();
     }
 
@@ -430,12 +419,6 @@ class MetabConcs extends Component {
     }
   }
 
-  getNewSearch(response) {
-    let url = '/general/?q=' + response[0] + '&organism=' + response[1];
-    this.setState({ new_url: url });
-    this.setState({ newSearch: true });
-  }
-
   onFirstDataRendered(params) {
     //params.columnApi.autoSizeColumns(['concentration'])
 
@@ -486,49 +469,32 @@ class MetabConcs extends Component {
 
   render() {
     console.log('Rendering MetabConcs');
-    if (this.state.newSearch === true) {
-      console.log('Redirecting');
-      return <Redirect to={this.state.new_url} push />;
-    }
-
     const values = queryString.parse(this.props.location.search);
 
 
     if (this.state.metaboliteMetadata.length === 0 ||
               this.props.totalData == null ){
-        return ( <div>
-
-          <Header 
-        handleClick={this.getNewSearch}
-        defaultQuery={values.q}
-        defaultOrganism={values.organism}
-      />
-      <div class="loader_container">
-      <div class="loader"></div> 
-      </div>
-      </div>)
-      }
-
-
-
+      return (
+        <div>
+          <Header />
+          <div class="loader_container">
+            <div class="loader"></div> 
+          </div>
+        </div>
+      )
+    }
 
     return (
       <div className="total_container">
         
-      <Header 
-        handleClick={this.getNewSearch}
-        defaultQuery={values.q}
-        defaultOrganism={values.organism}
-      />
+        <Header />
 
- 
-          <MetaboliteDefinition 
+        <MetaboliteDefinition 
           metaboliteMetadata={this.state.metaboliteMetadata} 
           abstract={this.state.tanimoto}
           molecule={this.props.match.params.molecule}
           organism={this.props.match.params.organism}
           />
-
 
         <div
           className="ag_chart"
