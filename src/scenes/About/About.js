@@ -31,38 +31,40 @@ class About extends Component {
         <div className="content-container content-container-columns content-container-about-scene">
           <div className="content-block table-of-contents">
             <h2 className="content-block-heading">Contents</h2>
-            <ol className="content-block-content">
-              <li>
-                <HashLink to="#features" scroll={scrollTo}>
-                  Features
-                </HashLink>
-              </li>
-              <li>
-                <HashLink to="#data" scroll={scrollTo}>
-                  Data types
-                </HashLink>
-              </li>
-              <li>
-                <HashLink to="#searching" scroll={scrollTo}>
-                  Searching
-                </HashLink>
-              </li>
-              <li>
-                <HashLink to="#team" scroll={scrollTo}>
-                  Team
-                </HashLink>
-              </li>
-              <li>
-                <HashLink to="#acknowledgements" scroll={scrollTo}>
-                  Acknowledgements
-                </HashLink>
-              </li>
-              <li>
-                <HashLink to="#source" scroll={scrollTo}>
-                  Source code
-                </HashLink>
-              </li>
-            </ol>
+            <div className="content-block-content">
+              <ol>
+                <li>
+                  <HashLink to="#features" scroll={scrollTo}>
+                    Features
+                  </HashLink>
+                </li>
+                <li>
+                  <HashLink to="#data" scroll={scrollTo}>
+                    Data types
+                  </HashLink>
+                </li>
+                <li>
+                  <HashLink to="#searching" scroll={scrollTo}>
+                    Searching
+                  </HashLink>
+                </li>
+                <li>
+                  <HashLink to="#team" scroll={scrollTo}>
+                    Team
+                  </HashLink>
+                </li>
+                <li>
+                  <HashLink to="#acknowledgements" scroll={scrollTo}>
+                    Acknowledgements
+                  </HashLink>
+                </li>
+                <li>
+                  <HashLink to="#source" scroll={scrollTo}>
+                    Source code
+                  </HashLink>
+                </li>
+              </ol>
+            </div>
           </div>
 
           <div className="content-column" id="features">

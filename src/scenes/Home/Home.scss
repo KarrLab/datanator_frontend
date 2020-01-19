@@ -28,7 +28,7 @@
     margin-right: auto;
     padding-top: 3rem;
     padding-bottom: 3rem;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #e0e0e0;
   }
 
   .section-columns {
@@ -105,15 +105,12 @@
 
     h2 {
       font-size: 30px;
-
       margin-top: calc(2rem - 8px);
       margin-bottom: calc(2rem - 8px);
       margin-left: 0;
       margin-right: 0;
-
       font-style: italic;
       color: #1890ff99;
-
       text-align: center;
     }
 
@@ -168,7 +165,7 @@
     margin-bottom: 2rem;
 
     .vertical-workflow-el-line {
-      border-left: 1px solid #ccc;
+      border-left: 2px dotted #e0e0e0;
       height: calc(100% + 2rem);
       width: 0;
       position: relative;
