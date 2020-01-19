@@ -2,12 +2,9 @@ import React, {Component} from "react";
 import ReactDOM from "react-dom";
 import store from '~/data/Store';
 
-
-
 function getLineage(){
   return(this.getCurrentStateFromStore().results.taxon_lineage)
 }
-
 
 class PartialMatchFilter extends Component {
     constructor(props) {
@@ -91,4 +88,5 @@ class PartialMatchFilter extends Component {
         );
     }
 };
-export default PartialMatchFilter
+
+export default PartialMatchFilter;

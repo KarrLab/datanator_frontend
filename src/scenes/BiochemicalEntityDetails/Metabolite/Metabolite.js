@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-//import { Input } from 'antd';
-//import 'antd/dist/antd.css';
-//import ConcentrationsTable from '~/components/Results/ConcentrationsTable.js';
-//import { PropTypes } from 'react';
 import { withRouter } from 'react-router';
-//import { Consensus } from '~/components/Results/Consensus.js';
 
+import {MetaboliteDefinition} from '~/components/Definitions/MetaboliteDefinition';
 import { getSearchData } from '~/services/MongoApi';
 import { abstractMolecule } from '~/data/actions/pageAction';
 import {
@@ -20,22 +15,16 @@ import { Header } from '~/components/Header/Header';
 import { Footer } from '~/components/Footer/Footer';
 
 import { AgGridReact } from 'ag-grid-react';
-import CustomToolPanel from '~/scenes/Results/CustomToolPanel.js';
 import { AllCommunityModules } from "@ag-grid-community/all-modules";
-
+import StatsToolPanel from './StatsToolPanel.js';
+import {TaxonomyFilter} from '../TaxonomyFilter.js'
+import {TanimotoFilter} from '../TanimotoFilter.js'
+import PartialMatchFilter from "../PartialMatchFilter.js";
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 
-import './ag_styles.scss'
+import '../BiochemicalEntityDetails.scss'
 import './Metabolite.scss'
-import {TaxonomyFilter} from '~/scenes/Results/TaxonomyFilter.js'
-import {TanimotoFilter} from '~/scenes/Results/TanimotoFilter.js'
-
-
-import PartialMatchFilter from "./PartialMatchFilter.js";
-
-import {MetaboliteDefinition} from '~/components/Definitions/MetaboliteDefinition';
-
 
 const queryString = require('query-string');
 const sideBar = {
@@ -56,10 +45,10 @@ const sideBar = {
     },
     {
       id: 'customStats',
-      labelDefault: 'Consensus',
+      labelDefault: 'Stats',
       labelKey: 'customStats',
       iconKey: 'customstats',
-      toolPanel: 'CustomToolPanel',
+      toolPanel: 'statsToolPanel',
     },
   ],
   position: 'left',
@@ -173,8 +162,12 @@ class Metabolite extends Component {
         cellRenderer: 'agGroupCellRenderer',
         cellRendererParams: { checkbox: true },
       },
-       frameworkComponents: { CustomToolPanel: CustomToolPanel, taxonomyFilter: TaxonomyFilter, partialMatchFilter: PartialMatchFilter, 
-        tanimotoFilter: TanimotoFilter }
+      frameworkComponents: {
+        statsToolPanel: StatsToolPanel,
+        taxonomyFilter: TaxonomyFilter,
+        partialMatchFilter: PartialMatchFilter, 
+        tanimotoFilter: TanimotoFilter,
+      },
     };
 
     this.formatData = this.formatData.bind(this);

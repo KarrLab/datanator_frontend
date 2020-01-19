@@ -1,36 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import { withRouter } from 'react-router';
 
+import {ProteinDefinition} from '~/components/Definitions/ProteinDefinition';
 import { getSearchData } from '~/services/MongoApi';
-
 import {
   set_lineage,
   setTotalData,
   setSelectedData,
 } from '~/data/actions/resultsAction';
-
 import { setNewUrl, abstractMolecule } from '~/data/actions/pageAction';
-import '~/scenes/Results/Protein.scss';
+
 import { Header } from '~/components/Header/Header';
 import { Footer } from '~/components/Footer/Footer';
 
 import { AgGridReact } from 'ag-grid-react';
-import { AllModules } from 'ag-grid-enterprise';
-import CustomToolPanelProtein from '~/scenes/Results/CustomToolPanelProtein.js';
 import { AllCommunityModules } from "@ag-grid-community/all-modules";
-
+import StatsToolPanel from './StatsToolPanel.js';
+import {TaxonomyFilter} from '~/scenes/BiochemicalEntityDetails/TaxonomyFilter.js'
+import PartialMatchFilter from "../PartialMatchFilter";
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 
-import {TaxonomyFilter} from '~/scenes/Results/TaxonomyFilter.js'
-import {TanimotoFilter} from '~/scenes/Results/TanimotoFilter.js'
-import PartialMatchFilter from "./PartialMatchFilter.js";
-import './ag_styles.scss'
-import './Metabolite.scss'
-import {ProteinDefinition} from '~/components/Definitions/ProteinDefinition';
-
+import '../BiochemicalEntityDetails.scss'
+import '../Metabolite/Metabolite.scss'
+import './Protein.scss';
 
 const queryString = require('query-string');
 const sideBar = {
@@ -51,10 +45,10 @@ const sideBar = {
     },
     {
       id: 'customStats',
-      labelDefault: 'Consensus',
+      labelDefault: 'Stats',
       labelKey: 'customStats',
       iconKey: 'customstats',
-      toolPanel: 'CustomToolPanelProtein',
+      toolPanel: 'statsToolPanel',
     },
   ],
   position: 'left',
@@ -201,8 +195,11 @@ class Protein extends Component {
         cellRenderer: 'agGroupCellRenderer',
         cellRendererParams: { checkbox: true },
       },
-       frameworkComponents: { CustomToolPanelProtein: CustomToolPanelProtein, taxonomyFilter: TaxonomyFilter, partialMatchFilter: PartialMatchFilter, 
-        tanimotoFilter: TanimotoFilter }
+      frameworkComponents: { 
+        statsToolPanel: StatsToolPanel,
+        taxonomyFilter: TaxonomyFilter, 
+        partialMatchFilter: PartialMatchFilter, 
+      }
     };
 
     this.formatProteinMetadata = this.formatProteinMetadata.bind(this);

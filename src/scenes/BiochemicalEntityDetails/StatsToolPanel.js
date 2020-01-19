@@ -1,23 +1,17 @@
 import React, { Component } from 'react';
-//import Chart3 from './Chart3.js';
-import ChartJs from './ChartJs.js';
-
 import PropTypes from 'prop-types';
-//import DownloadLink from 'react-download-link';
-import './Consensus.scss';
 import { connect } from 'react-redux';
+import BoxPlot from '~/components/BoxPlot/BoxPlot';
 import {
   mean,
   median,
   range,
   standardDeviation,
   round,
-  JSONToCSVConvertor,
-} from './utils.js';
+  jsonToCsv,
+} from '~/utils/utils';
 
-
-
-
+import './StatsToolPanel.scss';
 
 /**
  * Class to render the Consensus of results, and the save the total data to CSV file
@@ -31,7 +25,7 @@ import {
     totalData: store.results.totalData,
   };
 })
-class Consensus extends Component {
+class StatsToolPanel extends Component {
   static propTypes = {
     /**
      * REDUX: this is a list of rows of all the selected data. This is used to generate consensus
@@ -51,6 +45,7 @@ class Consensus extends Component {
      */
     relevantColumns: PropTypes.string.isRequired,
   };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -89,9 +84,6 @@ class Consensus extends Component {
    * Sets the summary statistics for consensus
    */
   setSummaryStats(data, selected_column) {
-    console.log('Consensus: Calling setSummaryStats');
-    console.log("Consensus: " + this.props.relevantColumns[1])
-    console.log("Consensus: " + selected_column)
     var total_conc = 0;
     let total_data = [];
     for (var i = data.length - 1; i >= 0; i--) {
@@ -118,32 +110,26 @@ class Consensus extends Component {
 
   standardRound(number){
     let rounder = null
-    if (number > 1){
-      rounder = 3
+    if (number > 1) {
+      rounder = 3;
+    } else {
+      rounder = 7;
     }
-    else{
-      rounder=7
-    }
-    return(round(number, rounder))
+    return(round(number, rounder));
   }
 
   /**
    * Gets a CSV version of the table rows to then be returned as a CSV file
    */
   recordData() {
-    console.log('Consensus: Calling recordData');
-    return JSONToCSVConvertor(JSON.stringify(this.props.totalData));
+    return jsonToCsv(JSON.stringify(this.props.totalData));
   }
-
-
-
 
   /**
    * When mounted, this component should set summary stats
    * if the total data exists
    */
   componentDidMount() {
-    console.log('Consensus: Calling componentDidMount');
     if (this.props.totalData != null) {
       this.setSummaryStats(this.props.totalData, this.props.relevantColumns[0]);
       this.setState({selected_column:this.props.relevantColumns[0]})
@@ -154,9 +140,6 @@ class Consensus extends Component {
    * If total data gets updated, then the summary stats should update too
    */
   componentDidUpdate(prevProps) {
-    console.log('Consensus: Calling componentDidUpdate');
-    console.log(this.props.totalData)
-    console.log(this.props.selectedData)
     if (prevProps.totalData !== this.props.totalData) {
       this.setSummaryStats(this.props.totalData, this.props.relevantColumns[0])
       this.setState({selected_column:this.props.relevantColumns[0]});
@@ -165,42 +148,42 @@ class Consensus extends Component {
         this.setSummaryStats(this.props.totalData, this.props.relevantColumns[0])
       }
       else{
-        console.log('Consensus: Calling blueblueblueblue')
-        console.log("Consensus: Calling greengreengreen" + this.state.selected_column)
         this.setSummaryStats(this.props.selectedData, this.state.selected_column);
       }
     }
   }
 
   render() {
-    console.log('Rendering Consensus');
-    if (this.props.totalData == null){
+    if (this.props.totalData == null) {
       return(<div></div>)
-    }
-    else{
-    return (
-      <div className="consensus_data">
-
+    } else{
+      return (
+        <div className="consensus_data">
           <div>
+            <p><b>Concentrations</b></p>
 
-          <p><b>Concentrations</b></p>
-        <ChartJs
-            original_data={this.props.totalData}
-            data={this.props.selectedData}
-            relevantColumn={this.state.selected_column}
-          />
+            <BoxPlot
+              original_data={this.props.totalData}
+              data={this.props.selectedData}
+              relevantColumn={this.state.selected_column}
+            />
 
-          <div className="summary" style={ {marginTop: 10}}>
-          <p><b>Mean: </b>{this.state.mean}<br/>
-          <b>Median: </b>{this.state.median}<br/>
-          <b>Standard Deviation: </b>{this.state.std_dev}<br/>
-          <b>Range: </b>{this.state.range}</p>
+            <div className="summary" style={ {marginTop: 10}}>
+              <p>
+                <b>Mean: </b>{this.state.mean}
+                <br/>
+                <b>Median: </b>{this.state.median}
+                <br/>
+                <b>Standard Deviation: </b>{this.state.std_dev}
+                <br/>
+                <b>Range: </b>{this.state.range}
+              </p>
+            </div>
           </div>
-          </div>
-
-      </div>
-    );}
+        </div>
+      );
+    }
   }
 }
 
-export { Consensus };
+export { StatsToolPanel };

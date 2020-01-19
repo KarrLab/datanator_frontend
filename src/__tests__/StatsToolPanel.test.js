@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux'
-import { Consensus } from '~/components/Results/Consensus.js';
-import { ResultsTable } from '~/components/Results/ResultsTable.js';
+import { StatsToolPanel } from '~/scenes/BiochemicalEntityDetails/StatsToolPanel';
+import { ResultsTable } from '~/components/Results/ResultsTable';
 
 
 import createStore from '~/data/Store.js'
@@ -52,12 +52,12 @@ test('hello world', async () => {
               advanced_columns={[]}
               potential_columns={{}}
       />
-      <Consensus relevantColumns={['concentration']} />
+      <StatsToolPanel relevantColumns={['concentration']} />
   </Provider>
   )
   
   //test on of the basic columns to see if its present
-  fireEvent.click(getByText('Get Consensus'))
+  fireEvent.click(getByText('Get StatsToolPanel'))
   expect(getByText('.667'))
 
   //expect(getByText('escherichia')).toBeTruthy();

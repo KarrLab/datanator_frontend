@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import {Route, Switch } from 'react-router-dom'
 import { createMemoryHistory } from 'history'
 
-import Reaction from '~/scenes/Results/Reaction';
+import Reaction from '~/scenes/BiochemicalEntityDetails/Reaction';
 import { MemoryRouter } from "react-router-dom";
 import createStore from '~/data/Store.js'
 

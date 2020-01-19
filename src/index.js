@@ -29,10 +29,10 @@ import { faAtom, faDna } from "@fortawesome/free-solid-svg-icons";
 // Website pages (scenes)
 import Home from "~/scenes/Home/Home";
 import SearchResults from "~/scenes/SearchResults/SearchResults";
-import Metabolite from "~/scenes/Results/Metabolite";
-// import Rna from "~/scenes/Results/Rna";
-import Protein from "~/scenes/Results/Protein";
-import Reaction from "~/scenes/Results/Reaction";
+import Metabolite from "~/scenes/BiochemicalEntityDetails/Metabolite/Metabolite";
+// import Rna from "~/scenes/BiochemicalEntityDetails/Rna/Rna";
+import Protein from "~/scenes/BiochemicalEntityDetails/Protein/Protein";
+import Reaction from "~/scenes/BiochemicalEntityDetails/Reaction/Reaction";
 import About from "~/scenes/About/About";
 
 // Setup Font Awesome icon library

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { HashLink } from "react-router-hash-link";
 
-import "~/scenes/Results/General.scss";
 import "./About.scss";
 
 import { Header } from "~/components/Header/Header";

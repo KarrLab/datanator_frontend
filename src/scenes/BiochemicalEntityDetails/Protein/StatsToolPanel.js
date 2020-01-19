@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import { Consensus } from '~/components/Results/Consensus.js';
+import { StatsToolPanel as BaseStatsToolPanel } from '../StatsToolPanel';
 
-export default class CustomToolPanelProtein extends Component {
+export default class StatsToolPanel extends Component {
 
     constructor(props) {
         super(props);
@@ -15,7 +15,7 @@ export default class CustomToolPanelProtein extends Component {
     render() {
         return (
             <div style={{textAlign: "center"}}>
-                <Consensus 
+                <BaseStatsToolPanel 
                     relevantColumns={['abundance']} 
                     optional_columns = {[]}
                 />

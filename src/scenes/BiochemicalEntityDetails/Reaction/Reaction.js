@@ -1,34 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import { withRouter } from 'react-router';
 
-
+import { ReactionDefinition } from '~/components/Definitions/ReactionDefinition';
 import { getSearchData } from '~/services/MongoApi';
 import {
   set_lineage,
   setTotalData,
   setSelectedData,
-} from '~/data/actions/resultsAction';import { ReactionDefinition } from '~/components/Definitions/ReactionDefinition';
+} from '~/data/actions/resultsAction';
 
 import { Header } from '~/components/Header/Header';
 import { Footer } from '~/components/Footer/Footer';
 
 import { AgGridReact } from 'ag-grid-react';
-import CustomToolPanelReaction from '~/scenes/Results/CustomToolPanelReaction.js';
 import { AllCommunityModules } from "@ag-grid-community/all-modules";
-
+import StatsToolPanel from './StatsToolPanel.js';
+import {TaxonomyFilter} from '~/scenes/BiochemicalEntityDetails/TaxonomyFilter.js'
+import {TanimotoFilter} from '~/scenes/BiochemicalEntityDetails/TanimotoFilter.js'
+import PartialMatchFilter from "../PartialMatchFilter";
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 
-import {TaxonomyFilter} from '~/scenes/Results/TaxonomyFilter.js'
-import {TanimotoFilter} from '~/scenes/Results/TanimotoFilter.js'
-import PartialMatchFilter from "./PartialMatchFilter.js";
-
-
-import './ag_styles.scss'
-import './Metabolite.scss'
-
+import '../BiochemicalEntityDetails.scss'
+import '../Metabolite/Metabolite.scss'
 
 const queryString = require('query-string');
 const sideBar = {
@@ -49,10 +44,10 @@ const sideBar = {
     },
     {
       id: 'customStats',
-      labelDefault: 'Consensus',
+      labelDefault: 'Stats',
       labelKey: 'customStats',
       iconKey: 'customstats',
-      toolPanel: 'CustomToolPanelReaction',
+      toolPanel: 'statsToolPanel',
     },
   ],
   position: 'left',
@@ -239,8 +234,12 @@ class Reaction extends Component {
         cellRenderer: 'agGroupCellRenderer',
         cellRendererParams: { checkbox: true },
       },
-       frameworkComponents: { CustomToolPanelReaction: (() => <CustomToolPanelReaction relevant_column={"kcat"} />), taxonomyFilter: TaxonomyFilter, partialMatchFilter: PartialMatchFilter, 
-        tanimotoFilter: TanimotoFilter }
+      frameworkComponents: {
+        statsToolPanel: (() => <StatsToolPanel relevant_column={"kcat"} />), 
+        taxonomyFilter: TaxonomyFilter, 
+        partialMatchFilter: PartialMatchFilter, 
+        tanimotoFilter: TanimotoFilter,
+      },
     };
 
     this.formatReactionData = this.formatReactionData.bind(this);

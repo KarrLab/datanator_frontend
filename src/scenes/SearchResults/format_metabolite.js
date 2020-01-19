@@ -1,5 +1,5 @@
 import React from "react";
-import '~/scenes/Results/Metabolite.scss';
+import '~/scenes/BiochemicalEntityDetails/Metabolite/Metabolite.scss';
 
 function formatMetabolite(data, organism) {
   let start = 0;

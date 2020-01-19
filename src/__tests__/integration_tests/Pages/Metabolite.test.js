@@ -3,7 +3,7 @@ import { render, } from '@testing-library/react';
 import { Provider } from 'react-redux'
 import {Route, Switch } from 'react-router-dom'
 
-import Metabolite from '~/scenes/Results/Metabolite';
+import Metabolite from '~/scenes/BiochemicalEntityDetails/Metabolite/Metabolite';
 import { MemoryRouter } from "react-router-dom";
 import createStore from '~/data/Store.js'
 import {fireEvent, waitForElement } from '@testing-library/react'
