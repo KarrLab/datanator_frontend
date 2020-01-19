@@ -22,8 +22,8 @@ const store = createStore
 
 const renderComponent = (molecule, organism, abstract) =>
   render (
-    <MemoryRouter initialEntries={['/metabconcs/' + molecule + '/' + organism + '/' + abstract]}>
-      <Route path="/metabconcs/:molecule/:organism/:abstract?/">
+    <MemoryRouter initialEntries={['/metabolite/' + molecule + '/' + organism + '/' + abstract]}>
+      <Route path="/metabolite/:molecule/:organism/:abstract?/">
        <Provider store={store}>
         <MetabConcs />
         </Provider>
@@ -33,7 +33,7 @@ const renderComponent = (molecule, organism, abstract) =>
 
 describe('Page Rendering and Consensus', () => {
 
-it('render metabconcs page', async () => {
+it('render metabolite page', async () => {
   // Render new instance in every test to prevent leaking state
   const { getByTestId, getByText, getAllByText, getByPlaceholderText  } =  renderComponent('ATP', 'Bacillus subtilis', false);
 

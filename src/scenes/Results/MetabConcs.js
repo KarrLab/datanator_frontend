@@ -190,7 +190,7 @@ class MetabConcs extends Component {
       if (this.props.moleculeAbstract === true) {
         this.props.dispatch(abstractMolecule(false));
         let url =
-          '/metabconcs/' +
+          '/metabolite/' +
           this.props.match.params.molecule +
           '/' +
           this.props.match.params.organism +

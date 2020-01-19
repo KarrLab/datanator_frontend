@@ -73,7 +73,7 @@ function formatMetaboliteMetadata(data, organism) {
       new_dict['secondary_text'] = description.substring(0, description.indexOf(" ", max_len)) + " ..."
     }
     */
-    new_dict["url"] = "/metabconcs/" + name + "/" + organism
+    new_dict["url"] = "/metabolite/" + name + "/" + organism
     newMetaboliteMetadataDict[inchi_key] = new_dict;}
   }
 

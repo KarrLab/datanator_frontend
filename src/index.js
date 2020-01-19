@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 
 //Router (enables persistant URLS and History)
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 
 //Redux (used for state management)
 import { Provider } from "react-redux";
@@ -22,6 +22,8 @@ import "./index.scss";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faAtom, faDna } from "@fortawesome/free-solid-svg-icons";
 
+// Common page components
+
 // Website pages (scenes)
 import Home from "~/scenes/Home/Home";
 import SearchResults from "~/scenes/SearchResults/SearchResults";
@@ -35,11 +37,11 @@ library.add(faAtom, faDna);
 
 const SiteRouter = () => {
   return (
-    <Router>
+    <BrowserRouter>
       <Route path="/" exact component={Home} />
       <Route path="/search/" component={SearchResults} />
       <Route
-        path="/metabconcs/:molecule/:organism/:abstract?/"
+        path="/metabolite/:molecule/:organism/:abstract?/"
         component={MetabConcs}
       />
       <Route
@@ -48,7 +50,7 @@ const SiteRouter = () => {
       />
       <Route path="/reaction/:dataType/" component={ReactionPage} />
       <Route path="/about/" component={About} />
-    </Router>
+    </BrowserRouter>
   );
 };
 const SiteProvider = () => {
