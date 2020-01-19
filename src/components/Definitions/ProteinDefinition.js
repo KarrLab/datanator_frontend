@@ -50,14 +50,10 @@ class ProteinDefinition extends Component {
   }
 
   componentDidMount() {
-    console.log("hello");
-
     this.setState({ total_data: this.props.reactionMetadata });
   }
 
   componentDidUpdate(prevProps) {
-    console.log("hello");
-
     if (this.props.reactionMetadata !== prevProps.reactionMetadata) {
       this.setState({ total_data: this.props.reactionMetadata });
     }
@@ -65,7 +61,6 @@ class ProteinDefinition extends Component {
 
   colFormatter = (cell, row) => {
     if (cell) {
-      console.log(cell[1]);
       let substrates = cell[0]
         .toString()
         .split("==>")[0]
@@ -106,15 +101,10 @@ class ProteinDefinition extends Component {
   render() {
     let proteinMetadata = this.props.proteinMetadata;
 
-    console.log(proteinMetadata);
-    console.log("baloonanimal");
-    console.log(proteinMetadata.length);
-    //console.log(proteinMetadata[0].length)
     if (proteinMetadata[0] === undefined || proteinMetadata[0].length === 0) {
       return <div></div>;
     }
     proteinMetadata = proteinMetadata[0];
-    console.log("towerpower2");
 
     //proteinMetadata = proteinMetadata[0]
 

@@ -65,13 +65,10 @@ class PartialMatchFilter extends Component {
   componentMethod(message) {
     alert(`Alert from PartialMatchFilterComponent ${message}`);
   }
-  componentMethod2(lineage) {
-    console.log(lineage);
-  }
+
+  componentMethod2(lineage) {}
+
   onChange(event) {
-    console.log(store.getState().results.taxon_lineage);
-    console.log(this);
-    console.log(this.props.agGridReact.props.lineage);
     let newValue = event.target.value;
     if (this.state.text !== newValue) {
       this.setState(

@@ -114,7 +114,6 @@ class Protein extends Component {
           field: "source_link",
 
           cellRenderer: function(params) {
-            //console.log(params);
             if (true) {
               return (
                 '<a href="https://pax-db.org/search?q=' +
@@ -140,7 +139,6 @@ class Protein extends Component {
           field: "uniprot_source",
 
           cellRenderer: function(params) {
-            //console.log(params);
             if (true) {
               return (
                 '<a href="https://www.uniprot.org/uniprot/' +
@@ -231,7 +229,6 @@ class Protein extends Component {
   }
 
   checkURL() {
-    console.log("Calling checkURL");
     let url =
       "/protein/" +
       this.props.match.params.searchType +
@@ -245,7 +242,6 @@ class Protein extends Component {
 
   getSearchData() {
     let values = queryString.parse(this.props.location.search);
-    console.log("Calling getSearchData");
     if (this.props.match.params.searchType === "uniprot") {
       getSearchData([
         "proteins",
@@ -289,10 +285,8 @@ class Protein extends Component {
   }
 
   formatProteinMetadata(data) {
-    console.log("Calling formatProteinMetadata");
     let newProteinMetadata = [];
     let start = 0;
-    //console.log(data[0])
     if (data[0].length === 1) {
       start = 1;
     }
@@ -321,7 +315,6 @@ class Protein extends Component {
   }
 
   formatOrthologyMetadata(data) {
-    console.log("Calling formatOrthologyMetadata");
     let newOrthologyMetadata = [];
     let start = 0;
     //let end_query = ""
@@ -329,9 +322,6 @@ class Protein extends Component {
     for (var i = start; i < data.length; i++) {
       let end_query = "";
       let meta = {};
-      console.log(
-        "KO HERE: " + data[i].ko_number + " " + (data[i].ko_number === "")
-      );
       if (!(data[i].ko_number === "no number")) {
         meta["ko_number"] = data[i].ko_number;
         meta["ko_name"] = data[i].ko_name;
@@ -359,7 +349,6 @@ class Protein extends Component {
   }
 
   formatOrthologyMetadataUniprot(data) {
-    console.log("Calling formatOrthologyMetadataUniprot");
     let newOrthologyMetadata = [];
     let start = 0;
     let uni_ids = [];
@@ -377,7 +366,6 @@ class Protein extends Component {
   }
 
   processProteinData(data) {
-    console.log("Calling processProteinData");
     if (typeof data != "string") {
       this.setState({ orig_json: data });
       if (this.props.match.params.searchType === "uniprot") {
@@ -419,7 +407,6 @@ class Protein extends Component {
   }
 
   processProteinDataUniprot(data) {
-    console.log("Calling processProteinDataUniprot");
     if (typeof data != "string") {
       this.setState({ orig_json: data });
       var f_abundances = [];
@@ -456,7 +443,6 @@ class Protein extends Component {
   }
 
   formatData(data, uniprot_to_dist) {
-    console.log("Calling formatData");
     var f_abundances = [];
     if (data != null && typeof data != "string") {
       if (!(data[0].uniprot_id === "Please try another input combination")) {
@@ -512,9 +498,6 @@ class Protein extends Component {
   }
 
   onRowSelected(event) {
-    //window.alert("row " + event.node.data.athlete + " selected = " + event.node.selected);
-    console.log("eyooo");
-    console.log(event.api.getSelectedNodes());
     let selectedRows = [];
     for (var i = event.api.getSelectedNodes().length - 1; i >= 0; i--) {
       selectedRows.push(event.api.getSelectedNodes()[i].data);
@@ -523,8 +506,6 @@ class Protein extends Component {
   }
 
   onFiltered(event) {
-    //window.alert("row " + event.node.data.athlete + " selected = " + event.node.selected);
-    console.log("eyooo");
     event.api.deselectAll();
     this.props.dispatch(setSelectedData([]));
   }
@@ -536,7 +517,6 @@ class Protein extends Component {
   };
 
   onClicked() {
-    console.log(this);
     this.gridApi
       .getFilterInstance("taxonomic_proximity")
       .getFrameworkComponentInstance()
@@ -544,7 +524,6 @@ class Protein extends Component {
   }
 
   render() {
-    console.log("Rendering Protein");
     const values = queryString.parse(this.props.location.search);
 
     if (

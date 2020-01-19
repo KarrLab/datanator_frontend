@@ -184,7 +184,6 @@ class Reaction extends Component {
           field: "source_link",
 
           cellRenderer: function(params) {
-            console.log(params);
             if (true) {
               return (
                 '<a href="http://sabio.h-its.org/reacdetails.jsp?reactid=' +
@@ -269,7 +268,6 @@ class Reaction extends Component {
     this.setState({ columnDefs: final_columns });
   }
   componentDidMount() {
-    console.log("Reaction: Calling componentDidMount");
     if (this.props.match.params.dataType === "meta") {
       this.getMetaData();
     }
@@ -280,34 +278,18 @@ class Reaction extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log("Reaction: Calling componentDidUpdate");
     let values = queryString.parse(this.props.location.search);
     let old_values = queryString.parse(prevProps.location.search);
-    //console.log('Here yo: ');
-    //console.log(values);
-    //console.log(values.substrates)
-    //console.log(old_values.substrates)
     if (
       values.substrates !== old_values.substrates ||
       values.products !== old_values.products ||
       this.props.match.params.dataType !== prevProps.match.params.dataType
     ) {
-      console.log("blue");
-      console.log(
-        "Substrate values: " + values.substrates !== old_values.substrates
-      );
-      console.log(
-        "Substrate values: " + (values.substrates !== old_values.substrates)
-      );
-      console.log(values.substrates);
-      console.log(old_values.substrates);
-      console.log("Redirect value: " + this.state.redirect);
       this.setState({
         data_arrived: false,
         reactionMetadata: [],
         km_values: []
       });
-      //console.log("RE-UP")
       if (this.props.match.params.dataType === "meta") {
         this.getMetaData();
       }
@@ -318,7 +300,6 @@ class Reaction extends Component {
   }
 
   getMetaData() {
-    console.log("Reaction: Calling getMetaData");
     let values = queryString.parse(this.props.location.search);
     getSearchData([
       "reactions/kinlaw_by_name/?products=" +
@@ -337,7 +318,6 @@ class Reaction extends Component {
   }
 
   getResultsData() {
-    console.log("Reaction: Calling getResultsData");
     let values = queryString.parse(this.props.location.search);
 
     getSearchData([
@@ -357,7 +337,6 @@ class Reaction extends Component {
   }
 
   formatReactionData(data) {
-    console.log("Reaction: Calling formatReactionData");
     if (data != null) {
       var total_rows = [];
       let substrates = getSubstrates(data[0].reaction_participant[0].substrate);
@@ -390,7 +369,6 @@ class Reaction extends Component {
           row,
           getKm(data[i].parameter, substrates)
         );
-        //console.log(row_with_km)
         total_rows.push(row_with_km);
       }
 
@@ -402,17 +380,9 @@ class Reaction extends Component {
     }
   }
 
-  getSearchDataReaction(url) {
-    console.log("Reaction: Calling getSearchDataReaction");
-    console.log(
-      "ReactionPageLoc: " +
-        ("/reaction" + window.location.toString().split("/reaction")[1])
-    );
-    console.log("ReactionPageLoc: " + url);
-  }
+  getSearchDataReaction(url) {}
 
   formatReactionMetadata(data) {
-    console.log("Reaction: Calling formatReactionMetadata");
     let newReactionMetadataDict = {};
     let start = 0;
     for (var i = start; i < data.length; i++) {
@@ -439,7 +409,6 @@ class Reaction extends Component {
         { sub_inchis: sub_inchis, prod_inchis: prod_inchis }
       ];
       newReactionMetadataDict[reactionID] = new_dict;
-      console.log(new_dict);
       //newReactionMetadataDict.push(meta);
     }
 
@@ -462,9 +431,6 @@ class Reaction extends Component {
   }
 
   onRowSelected(event) {
-    //window.alert("row " + event.node.data.athlete + " selected = " + event.node.selected);
-    console.log("eyooo");
-    console.log(event.api.getSelectedNodes());
     let selectedRows = [];
     for (var i = event.api.getSelectedNodes().length - 1; i >= 0; i--) {
       selectedRows.push(event.api.getSelectedNodes()[i].data);
@@ -473,8 +439,6 @@ class Reaction extends Component {
   }
 
   onFiltered(event) {
-    //window.alert("row " + event.node.data.athlete + " selected = " + event.node.selected);
-    console.log("eyooo");
     event.api.deselectAll();
     this.props.dispatch(setSelectedData([]));
   }
@@ -486,7 +450,6 @@ class Reaction extends Component {
   };
 
   onClicked() {
-    console.log(this);
     this.gridApi
       .getFilterInstance("taxonomic_proximity")
       .getFrameworkComponentInstance()
@@ -494,10 +457,7 @@ class Reaction extends Component {
   }
 
   render() {
-    console.log("Reaction: Rendering Reaction");
-    console.log(this.state.reactionMetadata);
     const values = queryString.parse(this.props.location.search);
-    //console.log(values.substrates.split(',')[0]);
 
     if (this.props.totalData == null) {
       return (

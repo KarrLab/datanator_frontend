@@ -140,7 +140,6 @@ class TanimotoFilter extends Component {
   setMarks() {
     let lineage = this.props.agGridReact.props.lineage;
     let buttons = [];
-    console.log(lineage);
     var new_marks = [];
     var new_numToNode = {};
     var n = lineage.length - 1;
@@ -175,7 +174,6 @@ class TanimotoFilter extends Component {
   }
 
   doesFilterPass(params) {
-    console.log("does it pass");
     const filter = this.state.filter;
     const value = this.valueGetter(params.node);
 
@@ -205,14 +203,12 @@ class TanimotoFilter extends Component {
 
   onChange(event, newValue) {
     let filter = newValue;
-    console.log("Value: " + filter);
     if (this.state.filter !== filter) {
       this.setState(
         {
           filter: filter
         },
         () => {
-          console.log(store.getState().results.taxon_lineage);
           this.props.filterChangedCallback();
         }
       );
@@ -234,7 +230,6 @@ class TanimotoFilter extends Component {
 
   sliderChange(value) {
     this.setState({ filter: 7 });
-    console.log("hi man");
   }
 
   render() {

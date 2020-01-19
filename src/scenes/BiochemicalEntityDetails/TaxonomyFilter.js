@@ -74,7 +74,6 @@ class TaxonomyFilter extends Component {
   setMarks() {
     let lineage = this.props.agGridReact.props.lineage;
     let buttons = [];
-    console.log(lineage);
     var new_marks = [];
     var new_numToNode = {};
     var n = lineage.length - 1;
@@ -109,7 +108,6 @@ class TaxonomyFilter extends Component {
   }
 
   doesFilterPass(params) {
-    console.log("does it pass");
     const filter = this.state.filter;
     const value = this.valueGetter(params.node);
 
@@ -139,14 +137,12 @@ class TaxonomyFilter extends Component {
 
   onChange(event, newValue) {
     let filter = this.state.numToNode[newValue];
-    console.log("Value: " + filter);
     if (this.state.filter !== filter) {
       this.setState(
         {
           filter: filter
         },
         () => {
-          console.log(store.getState().results.taxon_lineage);
           this.props.filterChangedCallback();
         }
       );
@@ -168,7 +164,6 @@ class TaxonomyFilter extends Component {
 
   sliderChange(value) {
     this.setState({ filter: 7 });
-    console.log("hi man");
   }
 
   render() {

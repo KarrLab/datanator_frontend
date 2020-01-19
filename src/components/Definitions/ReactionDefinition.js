@@ -43,14 +43,10 @@ class ReactionDefinition extends Component {
   }
 
   componentDidMount() {
-    console.log("hello");
-
     this.setState({ total_data: this.props.reactionMetadata });
   }
 
   componentDidUpdate(prevProps) {
-    console.log("hello");
-
     if (this.props.reactionMetadata !== prevProps.reactionMetadata) {
       this.setState({ total_data: this.props.reactionMetadata });
     }
@@ -58,7 +54,6 @@ class ReactionDefinition extends Component {
 
   colFormatter = (cell, row) => {
     if (cell) {
-      console.log(cell[1]);
       let substrates = cell[0]
         .toString()
         .split("==>")[0]
@@ -97,9 +92,6 @@ class ReactionDefinition extends Component {
   };
 
   render() {
-    console.log(this.state.total_data);
-    console.log("man on the moon");
-
     if (!this.state.total_data) {
       return <div></div>;
     } else {

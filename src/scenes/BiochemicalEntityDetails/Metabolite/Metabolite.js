@@ -98,7 +98,6 @@ class Metabolite extends Component {
           field: "source_link",
 
           cellRenderer: function(params) {
-            console.log(params);
             if (params.value["source"] === "ecmdb") {
               return (
                 '<a href="http://ecmdb.ca/compounds/' +
@@ -250,7 +249,6 @@ class Metabolite extends Component {
           this.setState({ tanimoto: false });
           //this.props.dispatch(abstractMolecule(false))
         }
-        console.log(tani);
 
         var concs = data[0][n - 1].concentrations;
         if (concs != null) {
@@ -415,9 +413,6 @@ class Metabolite extends Component {
   }
 
   onRowSelected(event) {
-    //window.alert("row " + event.node.data.athlete + " selected = " + event.node.selected);
-    console.log("eyooo");
-    console.log(event.api.getSelectedNodes());
     let selectedRows = [];
     for (var i = event.api.getSelectedNodes().length - 1; i >= 0; i--) {
       selectedRows.push(event.api.getSelectedNodes()[i].data);
@@ -426,8 +421,6 @@ class Metabolite extends Component {
   }
 
   onFiltered(event) {
-    //window.alert("row " + event.node.data.athlete + " selected = " + event.node.selected);
-    console.log("eyooo");
     event.api.deselectAll();
     this.props.dispatch(setSelectedData([]));
   }
@@ -439,7 +432,6 @@ class Metabolite extends Component {
   };
 
   onClicked() {
-    console.log(this);
     this.gridApi
       .getFilterInstance("taxonomic_proximity")
       .getFrameworkComponentInstance()
@@ -447,7 +439,6 @@ class Metabolite extends Component {
   }
 
   render() {
-    console.log("Rendering Metabolite");
     const values = queryString.parse(this.props.location.search);
 
     if (

@@ -50,14 +50,10 @@ class MetaboliteDefinition extends Component {
   }
 
   componentDidMount() {
-    console.log("hello");
-
     this.setState({ total_data: this.props.reactionMetadata });
   }
 
   componentDidUpdate(prevProps) {
-    console.log("hello");
-
     if (this.props.reactionMetadata !== prevProps.reactionMetadata) {
       this.setState({ total_data: this.props.reactionMetadata });
     }
@@ -65,7 +61,6 @@ class MetaboliteDefinition extends Component {
 
   colFormatter = (cell, row) => {
     if (cell) {
-      console.log(cell[1]);
       let substrates = cell[0]
         .toString()
         .split("==>")[0]
@@ -151,8 +146,6 @@ class MetaboliteDefinition extends Component {
       );
     }
 
-    console.log(metaboliteMetadata);
-    console.log(metaboliteMetadata[0]);
     metaboliteMetadata = metaboliteMetadata[0];
 
     return (

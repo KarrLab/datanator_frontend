@@ -47,13 +47,8 @@ export default class ChartJs extends Component {
           y: parseFloat(this.props.data[i][this.props.relevantColumn])
         });
       }
-      console.log(total_f_conc);
       to_chart.push(total_f_conc);
     }
-
-    console.log(to_chart[1]);
-    console.log(total_scatter_2);
-    console.log(this.props.data);
 
     let boxplotData = {
       // define label tree
