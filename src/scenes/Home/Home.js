@@ -184,7 +184,7 @@ class Home extends Component {
                     Metabolite concentrations
                   </div>
                   <div className="section-column-description">
-                    XXX measurements of the concentrations of XXX metabolites in
+                    1586 measurements of the concentrations of 5225 metabolites in
                     2 organisms aggregated from{" "}
                     <a
                       href="http://ecmdb.ca/"
@@ -228,8 +228,8 @@ class Home extends Component {
                   <div className="section-column-subtitle">Available</div>
                   <div className="section-column-title">Protein abundances</div>
                   <div className="section-column-description">
-                    XXX measurements of the abundance of XXX ortholog groups and
-                    XXX proteins in XXX organisms aggregated from{" "}
+                    103,572 measurements of the abundance of 20,689 ortholog groups and
+                    846,970 proteins in 20,980 organisms aggregated from{" "}
                     <a
                       href="https://pax-db.org/"
                       target="_blank"
@@ -250,8 +250,8 @@ class Home extends Component {
                   <div className="section-column-subtitle">Available</div>
                   <div className="section-column-title">Reaction constants</div>
                   <div className="section-column-description">
-                    XXX measurements of rate constants for XXX Enzyme
-                    Classification groups and XXX reactions aggregated from{" "}
+                    23,330 measurements of rate constants for 2,104 distinct enzymes
+                    and 60,193 reactions aggregated from{" "}
                     <a
                       href="http://sabio.h-its.org/"
                       target="_blank"
