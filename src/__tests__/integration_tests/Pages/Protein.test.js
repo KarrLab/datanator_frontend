@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import {Route, Switch } from 'react-router-dom'
 import { createMemoryHistory } from 'history'
 
-import ProteinPage from '~/scenes/Results/ProteinPage';
+import Protein from '~/scenes/Results/Protein';
 import { MemoryRouter } from "react-router-dom";
 import createStore from '~/data/Store.js'
 
@@ -24,7 +24,7 @@ const renderComponent = (searchType, molecule) =>
     <MemoryRouter initialEntries={['/protein/' + searchType + '/' + molecule ]}>
       <Route path="/protein/:searchType/:molecule">
        <Provider store={store}>
-        <ProteinPage />
+        <Protein />
         </Provider>
       </Route>
     </MemoryRouter>

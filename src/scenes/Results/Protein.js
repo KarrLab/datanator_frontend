@@ -12,7 +12,7 @@ import {
 } from '~/data/actions/resultsAction';
 
 import { setNewUrl, abstractMolecule } from '~/data/actions/pageAction';
-import '~/scenes/Results/ProteinPage.scss';
+import '~/scenes/Results/Protein.scss';
 import { Header } from '~/components/Header/Header';
 import { Footer } from '~/components/Footer/Footer';
 
@@ -28,7 +28,7 @@ import {TaxonomyFilter} from '~/scenes/Results/TaxonomyFilter.js'
 import {TanimotoFilter} from '~/scenes/Results/TanimotoFilter.js'
 import PartialMatchFilter from "./PartialMatchFilter.js";
 import './ag_styles.scss'
-import './MetabConcs.scss'
+import './Metabolite.scss'
 import {ProteinDefinition} from '~/components/Definitions/ProteinDefinition';
 
 
@@ -79,7 +79,7 @@ Object.size = function(obj) {
     totalData: store.results.totalData,
   };
 }) //the names given here will be the names of props
-class ProteinPage extends Component {
+class Protein extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -550,7 +550,7 @@ class ProteinPage extends Component {
 
 
   render() {
-    console.log('Rendering ProteinPage');
+    console.log('Rendering Protein');
     const values = queryString.parse(this.props.location.search);
 
 
@@ -623,4 +623,4 @@ class ProteinPage extends Component {
   }
 }
 
-export default withRouter(ProteinPage);
+export default withRouter(Protein);

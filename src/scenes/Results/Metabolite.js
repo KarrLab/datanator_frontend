@@ -27,7 +27,7 @@ import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 
 import './ag_styles.scss'
-import './MetabConcs.scss'
+import './Metabolite.scss'
 import {TaxonomyFilter} from '~/scenes/Results/TaxonomyFilter.js'
 import {TanimotoFilter} from '~/scenes/Results/TanimotoFilter.js'
 
@@ -72,7 +72,7 @@ const sideBar = {
     totalData: store.results.totalData,
   };
 }) //the names given here will be the names of props
-class MetabConcs extends Component {
+class Metabolite extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -468,7 +468,7 @@ class MetabConcs extends Component {
   }
 
   render() {
-    console.log('Rendering MetabConcs');
+    console.log('Rendering Metabolite');
     const values = queryString.parse(this.props.location.search);
 
 
@@ -535,4 +535,4 @@ class MetabConcs extends Component {
   }
 }
 
-export default withRouter(MetabConcs);
+export default withRouter(Metabolite);

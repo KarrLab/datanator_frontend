@@ -5,13 +5,13 @@ import { HashLink } from "react-router-hash-link";
 import { withRouter } from "react-router";
 
 import { getSearchData } from "~/services/MongoApi";
-import { formatMetaboliteMetadata } from "~/scenes/Results/get_metabolite_rows";
-import { formatProteinMetadata } from "~/scenes/Results/get_protein_rows";
-import { formatReactionMetadata } from "~/scenes/Results/get_reaction_rows";
+import { formatMetaboliteMetadata } from "~/scenes/SearchResults/get_metabolite_rows";
+import { formatProteinMetadata } from "~/scenes/SearchResults/get_protein_rows";
+import { formatReactionMetadata } from "~/scenes/SearchResults/get_reaction_rows";
 
 import { Header } from "~/components/Header/Header";
 import { Footer } from "~/components/Footer/Footer";
-import SearchResultsList from "../Results/SearchResultsList.js";
+import SearchResultsList from "./SearchResultsList.js";
 
 const queryString = require("query-string");
 

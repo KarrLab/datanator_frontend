@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import {Route, Switch } from 'react-router-dom'
 import { createMemoryHistory } from 'history'
 
-import ReactionPage from '~/scenes/Results/ReactionPage';
+import Reaction from '~/scenes/Results/Reaction';
 import { MemoryRouter } from "react-router-dom";
 import createStore from '~/data/Store.js'
 
@@ -25,7 +25,7 @@ const renderComponent = (searchType, substrates, products, sub_inchis, prod_inch
       substrates + "&products=" + products + "&substrates_inchi="+ substrates + "&products_inchi=" + products]}>
       <Route path="/reaction/:dataType/">
        <Provider store={store}>
-        <ReactionPage />
+        <Reaction />
         </Provider>
       </Route>
     </MemoryRouter>

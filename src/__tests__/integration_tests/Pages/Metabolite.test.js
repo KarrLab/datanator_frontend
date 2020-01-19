@@ -3,7 +3,7 @@ import { render, } from '@testing-library/react';
 import { Provider } from 'react-redux'
 import {Route, Switch } from 'react-router-dom'
 
-import MetabConcs from '~/scenes/Results/MetabConcs';
+import Metabolite from '~/scenes/Results/Metabolite';
 import { MemoryRouter } from "react-router-dom";
 import createStore from '~/data/Store.js'
 import {fireEvent, waitForElement } from '@testing-library/react'
@@ -25,7 +25,7 @@ const renderComponent = (molecule, organism, abstract) =>
     <MemoryRouter initialEntries={['/metabolite/' + molecule + '/' + organism + '/' + abstract]}>
       <Route path="/metabolite/:molecule/:organism/:abstract?/">
        <Provider store={store}>
-        <MetabConcs />
+        <Metabolite />
         </Provider>
       </Route>
     </MemoryRouter>

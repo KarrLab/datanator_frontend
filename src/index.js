@@ -23,13 +23,16 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faAtom, faDna } from "@fortawesome/free-solid-svg-icons";
 
 // Common page components
+// import Header from "~/components/Header/Header";
+// import Footer from "~/components/Footer/Footer";
 
 // Website pages (scenes)
 import Home from "~/scenes/Home/Home";
 import SearchResults from "~/scenes/SearchResults/SearchResults";
-import MetabConcs from "~/scenes/Results/MetabConcs";
-import ProteinPage from "~/scenes/Results/ProteinPage";
-import ReactionPage from "~/scenes/Results/ReactionPage";
+import Metabolite from "~/scenes/Results/Metabolite";
+// import Rna from "~/scenes/Results/Rna";
+import Protein from "~/scenes/Results/Protein";
+import Reaction from "~/scenes/Results/Reaction";
 import About from "~/scenes/About/About";
 
 // Setup Font Awesome icon library
@@ -42,13 +45,13 @@ const SiteRouter = () => {
       <Route path="/search/" component={SearchResults} />
       <Route
         path="/metabolite/:molecule/:organism/:abstract?/"
-        component={MetabConcs}
+        component={Metabolite}
       />
       <Route
         path="/protein/:searchType/:molecule/:organism?/"
-        component={ProteinPage}
+        component={Protein}
       />
-      <Route path="/reaction/:dataType/" component={ReactionPage} />
+      <Route path="/reaction/:dataType/" component={Reaction} />
       <Route path="/about/" component={About} />
     </BrowserRouter>
   );

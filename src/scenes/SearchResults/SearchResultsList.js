@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import List from '@material-ui/core/List';
 import ListItemText from '@material-ui/core/ListItemText';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { Link } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 function format_results(primary_text, secondary_text, url) {
   return (

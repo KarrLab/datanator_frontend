@@ -27,7 +27,7 @@ import PartialMatchFilter from "./PartialMatchFilter.js";
 
 
 import './ag_styles.scss'
-import './MetabConcs.scss'
+import './Metabolite.scss'
 
 
 const queryString = require('query-string');
@@ -145,7 +145,7 @@ temperature
 @connect(store => {
   return {totalData: store.results.totalData,};
 }) //the names given here will be the names of props
-class ReactionPage extends Component {
+class Reaction extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -266,7 +266,7 @@ class ReactionPage extends Component {
 
   }
   componentDidMount() {
-    console.log("ReactionPage: Calling componentDidMount")
+    console.log("Reaction: Calling componentDidMount")
     if (this.props.match.params.dataType === 'meta') {
       this.getMetaData();
     }
@@ -277,7 +277,7 @@ class ReactionPage extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log('ReactionPage: Calling componentDidUpdate')
+    console.log('Reaction: Calling componentDidUpdate')
     let values = queryString.parse(this.props.location.search);
     let old_values = queryString.parse(prevProps.location.search);
     //console.log('Here yo: ');
@@ -311,7 +311,7 @@ class ReactionPage extends Component {
   }
 
   getMetaData() {
-    console.log('ReactionPage: Calling getMetaData');
+    console.log('Reaction: Calling getMetaData');
     let values = queryString.parse(this.props.location.search)
     getSearchData([
       'reactions/kinlaw_by_name/?products=' + values.products + '&substrates='+ values.substrates + '&_from=0&size=1000&bound=tight',
@@ -326,7 +326,7 @@ class ReactionPage extends Component {
   }
 
   getResultsData() {
-    console.log('ReactionPage: Calling getResultsData');
+    console.log('Reaction: Calling getResultsData');
     let values = queryString.parse(this.props.location.search);
 
     getSearchData([
@@ -347,7 +347,7 @@ class ReactionPage extends Component {
   }
 
   formatReactionData(data) {
-    console.log('ReactionPage: Calling formatReactionData');
+    console.log('Reaction: Calling formatReactionData');
     if (data != null) {
       var total_rows = [];
       let substrates = getSubstrates(data[0].reaction_participant[0].substrate);
@@ -390,13 +390,13 @@ class ReactionPage extends Component {
   }
 
   getSearchDataReaction(url) {
-    console.log('ReactionPage: Calling getSearchDataReaction');
+    console.log('Reaction: Calling getSearchDataReaction');
     console.log('ReactionPageLoc: ' + ( '/reaction' + window.location.toString().split('/reaction')[1]))
     console.log('ReactionPageLoc: ' + url)
   }  
 
   formatReactionMetadata(data) {
-    console.log('ReactionPage: Calling formatReactionMetadata');
+    console.log('Reaction: Calling formatReactionMetadata');
     let newReactionMetadataDict = {};
     let start = 0;
     for (var i = start; i < data.length; i++) {
@@ -484,7 +484,7 @@ class ReactionPage extends Component {
   }
 
   render() {
-    console.log('ReactionPage: Rendering ReactionPage');
+    console.log('Reaction: Rendering Reaction');
     console.log(this.state.reactionMetadata)
     const values = queryString.parse(this.props.location.search);
     //console.log(values.substrates.split(',')[0]);
@@ -550,4 +550,4 @@ class ReactionPage extends Component {
   }
 }
 
-export default withRouter(ReactionPage);
+export default withRouter(Reaction);
