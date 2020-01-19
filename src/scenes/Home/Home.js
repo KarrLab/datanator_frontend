@@ -8,8 +8,8 @@ import { Footer } from "~/components/Footer/Footer";
 import "~/scenes/Home/Home.scss";
 import logo from "./images/logo.svg";
 
-import metaboliteIcon from "./images/atom.svg";
-import rnaIcon from "./images/protein.svg";
+import metaboliteIcon from "./images/molecule.svg";
+import rnaIcon from "./images/trna.svg";
 import proteinIcon from "./images/protein.svg";
 import reactionIcon from "./images/left-right-arrows.svg";
 
@@ -22,7 +22,7 @@ import exportIcon from "./images/export.svg";
 import identifyUseCaseIcon from "./images/line-chart.svg";
 import constrainUseCaseIcon from "./images/flux-cone.svg";
 import recalibrateUseCaseIcon from "./images/dna.svg";
-import dataDrivenUseCaseIcon from "./images/dna.svg";
+import dataDrivenUseCaseIcon from "./images/neural-network.svg";
 
 import karrLabIcon from "./images/karr-lab.svg";
 import crbmIcon from "./images/crbm.svg";
@@ -46,11 +46,11 @@ class Home extends Component {
         <div className="content-container full-width-content-container content-container-home-scene">
           <div className="section intro">
             <div className="section-inner-container">
-              <h1>
+              <div className="logo-title">
                 <img src={logo} className="logo" alt="Datanator logo" />
-                Datanator
-              </h1>
-              <h2>Discovering data for modeling cellular biochemistry</h2>
+                <h1>Datanator</h1>
+              </div>
+              <h2>Tools to discover data to model cellular biochemistry</h2>
               <p>
                 <i>Datanator</i> is a toolkit for discovering the data needed to
                 build, calibrate, and validate mechanistic models of cells.{" "}
@@ -212,7 +212,7 @@ class Home extends Component {
                     alt="RNA icon"
                   />
                   <div className="section-column-subtitle">Coming soon</div>
-                  <div className="section-column-title">mRNA half-lives</div>
+                  <div className="section-column-title">RNA half-lives</div>
                   <div className="section-column-description">
                     Measurements of the half-lives of mRNA aggregated from more
                     than twenty publications.

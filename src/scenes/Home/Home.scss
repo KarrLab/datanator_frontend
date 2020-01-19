@@ -2,24 +2,9 @@
   margin-top: 50px;
   margin-bottom: 1.5rem;
 
-  h1,
-  h2 {
-    text-align: center;
-    margin: 0;
-  }
-
-  h1 {
-    font-size: 64px;
-    line-height: 64px;
-    color: #1890ff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
   h2 {
     font-size: 30px;
-    line-height: 22px;
+    margin: 0;
   }
 
   /* sections */
@@ -100,16 +85,36 @@
     background: #1890ff22;
     background: linear-gradient(0deg, #1890ff22 0%, #1890ff55 100%);
 
+    .logo-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     .logo {
       margin-right: 0.5rem;
       height: 5rem;
     }
 
+    h1 {
+      font-size: 64px;
+      color: #1890ff;
+      margin: 0;
+      padding-bottom: 3px;
+    }
+
     h2 {
-      margin-top: 2rem;
-      margin-bottom: 2rem;
+      font-size: 30px;
+
+      margin-top: calc(2rem - 8px);
+      margin-bottom: calc(2rem - 8px);
+      margin-left: 0;
+      margin-right: 0;
+
       font-style: italic;
       color: #1890ff99;
+
+      text-align: center;
     }
 
     p {
@@ -155,7 +160,6 @@
 
   .vertical-workflow-el-icon {
     height: 64px;
-    width: 64px;
     margin-right: 1rem;
     z-index: 1;
   }
