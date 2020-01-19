@@ -5,9 +5,9 @@ import { HashLink } from "react-router-hash-link";
 import { withRouter } from "react-router";
 
 import { getSearchData } from "~/services/MongoApi";
-import { formatMetaboliteMetadata } from "~/scenes/SearchResults/get_metabolite_rows";
-import { formatProteinMetadata } from "~/scenes/SearchResults/get_protein_rows";
-import { formatReactionMetadata } from "~/scenes/SearchResults/get_reaction_rows";
+import { formatMetabolite } from "~/scenes/SearchResults/format_metabolite";
+import { formatProtein } from "~/scenes/SearchResults/format_protein";
+import { formatReaction } from "~/scenes/SearchResults/format_reaction";
 
 import { Header } from "~/components/Header/Header";
 import { Footer } from "~/components/Footer/Footer";
@@ -108,7 +108,7 @@ class SearchResults extends Component {
 
     if ("metabolites_meta" in data) {
       let metabolite_data = data["metabolites_meta"];
-      let metabolite_metadata = formatMetaboliteMetadata(
+      let metabolite_metadata = formatMetabolite(
         metabolite_data,
         values.organism
       );
@@ -120,14 +120,12 @@ class SearchResults extends Component {
           metabolite_metadata
         );
       }
-      //let metabolite_metadata = this.state.metabolite_results.concat(formatMetaboliteMetadata(metabolite_data, values.organism))
       this.setState({ metabolite_results: metabolite_metadata });
     }
 
     if ("top_kos" in data) {
       let protein_data = data["top_kos"]["buckets"];
-      //let protein_metadata = this.state.protein_results.concat(formatProteinMetadata(protein_data, values.organism))
-      let protein_metadata = formatProteinMetadata(
+      let protein_metadata = formatProtein(
         protein_data,
         values.organism
       );
@@ -143,7 +141,7 @@ class SearchResults extends Component {
     if ("sabio_reaction_entries" in data) {
       let reaction_data = data["sabio_reaction_entries"];
 
-      let reaction_metadata = formatReactionMetadata(reaction_data);
+      let reaction_metadata = formatReaction(reaction_data);
       if (reaction_metadata.length < size) {
         this.setState({ reactions_load: false });
       }
@@ -153,7 +151,6 @@ class SearchResults extends Component {
         );
       }
 
-      //let reaction_metadata = this.state.reaction_results.concat(formatReactionMetadata(reaction_data))
       this.setState({ reaction_results: reaction_metadata });
     }
   }

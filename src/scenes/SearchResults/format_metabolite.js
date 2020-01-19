@@ -1,15 +1,12 @@
 import React from "react";
 import '~/scenes/Results/Metabolite.scss';
 
-function formatMetaboliteMetadata(data, organism) {
-  console.log('Calling formatMetaboliteMetadata');
-  console.log(data);
+function formatMetabolite(data, organism) {
   let start = 0;
   let newMetaboliteMetadataDict = {};
   for (var i = start; i < data.length; i++) {
     if (data[i].InChI_Key) {
       let inchi_key = data[i].InChI_Key;
-      console.log("INCHI: " + inchi_key);
       let new_dict = newMetaboliteMetadataDict[inchi_key];
       if (!new_dict) {
         new_dict = {};
@@ -70,9 +67,7 @@ function formatMetaboliteMetadata(data, organism) {
   let metaboliteMetadata = Object.keys(newMetaboliteMetadataDict).map(function(key) {
     return newMetaboliteMetadataDict[key];
   });
-  console.log("HERE!!!!");
-  console.log(metaboliteMetadata);
   return metaboliteMetadata;
 }
 
-export { formatMetaboliteMetadata };
+export { formatMetabolite };

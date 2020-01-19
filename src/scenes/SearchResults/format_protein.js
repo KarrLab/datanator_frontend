@@ -1,8 +1,7 @@
 import React from "react";
 import '~/scenes/Results/Metabolite.scss';
 
-function formatProteinMetadata(data, organism) {
-  console.log('Calling formatOrthologyMetadataUniprot');
+function formatProtein(data, organism) {
   let start = 0;
   let newProteinMetadataDict = {};
   for (var i = start; i < data.length; i++) {
@@ -20,7 +19,6 @@ function formatProteinMetadata(data, organism) {
       } else{
         hasAbundances = "False";
       }
-      console.log(name);
       new_dict['primary_text'] = name[0].toUpperCase() + name.substring(1, name.length);
       let href = "https://www.genome.jp/dbget-bin/www_bget?ko:" + ko_number;
       new_dict['secondary_text'] = (
@@ -39,8 +37,7 @@ function formatProteinMetadata(data, organism) {
   let proteinMetadata = Object.keys(newProteinMetadataDict).map(function(key) {
     return newProteinMetadataDict[key];
   });
-  console.log("HERE!!!!");
   return proteinMetadata; 
 }
 
-export { formatProteinMetadata };
+export { formatProtein };
