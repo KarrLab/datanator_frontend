@@ -125,10 +125,7 @@ class SearchResults extends Component {
 
     if ("top_kos" in data) {
       let protein_data = data["top_kos"]["buckets"];
-      let protein_metadata = formatProtein(
-        protein_data,
-        values.organism
-      );
+      let protein_metadata = formatProtein(protein_data, values.organism);
       if (protein_metadata.length < size) {
         this.setState({ protein_load: false });
       }

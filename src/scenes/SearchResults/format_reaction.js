@@ -1,14 +1,14 @@
 import React from "react";
-import '~/scenes/BiochemicalEntityDetails/Metabolite/Metabolite.scss';
+import "~/scenes/BiochemicalEntityDetails/Metabolite/Metabolite.scss";
 
 function formatPart(parts) {
-  let participants_string = '';
+  let participants_string = "";
   for (var i = parts.length - 1; i >= 0; i--) {
-    participants_string = participants_string + parts[i] + ' + ';
+    participants_string = participants_string + parts[i] + " + ";
   }
   participants_string = participants_string.substring(
     0,
-    participants_string.length - 3,
+    participants_string.length - 3
   );
   return participants_string;
 }
@@ -26,41 +26,50 @@ function formatReaction(data) {
   let reaction_results = [];
   let start = 0;
   for (var i = start; i < data.length; i++) {
-    let reactionID = data[i]['rxn_id'];
+    let reactionID = data[i]["rxn_id"];
     let new_dict = newReactionMetadataDict[reactionID];
     if (!new_dict) {
       new_dict = {};
     }
-    let substrates = getParticipant(data[i]['substrate_names']);
-    let products =  getParticipant(data[i]['product_names']);
-    new_dict['reactionID'] = reactionID;
-    new_dict['substrates'] = substrates;
-    new_dict['products'] = products;
+    let substrates = getParticipant(data[i]["substrate_names"]);
+    let products = getParticipant(data[i]["product_names"]);
+    new_dict["reactionID"] = reactionID;
+    new_dict["substrates"] = substrates;
+    new_dict["products"] = products;
 
-    let reaction_name = data[i]['enzyme_names'][0];
-    let reaction_equation = formatPart(substrates) + ' → ' + formatPart(products);
-    if (reaction_name){
-      new_dict['primary_text'] = reaction_name[0].toUpperCase() + reaction_name.substring(1, reaction_name.length);
-    } else{
-      new_dict['primary_text'] = reaction_equation;
+    let reaction_name = data[i]["enzyme_names"][0];
+    let reaction_equation =
+      formatPart(substrates) + " → " + formatPart(products);
+    if (reaction_name) {
+      new_dict["primary_text"] =
+        reaction_name[0].toUpperCase() +
+        reaction_name.substring(1, reaction_name.length);
+    } else {
+      new_dict["primary_text"] = reaction_equation;
     }
-    new_dict['secondary_text'] = reaction_equation;
+    new_dict["secondary_text"] = reaction_equation;
 
     //formatPart(substrates) + ' ==> ' + formatPart(products)
 
     let sub_inchis = data[i]["substrates"];
     let prod_inchis = data[i]["products"];
 
-    new_dict['url'] = "/reaction/data/?substrates_inchi="+ substrates + "&products_inchi=" + products;
+    new_dict["url"] =
+      "/reaction/data/?substrates_inchi=" +
+      substrates +
+      "&products_inchi=" +
+      products;
 
     newReactionMetadataDict[reactionID] = new_dict;
     //newReactionMetadataDict.push(meta);
   }
 
-  let reactionMetadata = Object.keys(newReactionMetadataDict).map(function(key) {
-      return newReactionMetadataDict[key];
-    })
-  return(reactionMetadata);
+  let reactionMetadata = Object.keys(newReactionMetadataDict).map(function(
+    key
+  ) {
+    return newReactionMetadataDict[key];
+  });
+  return reactionMetadata;
 }
 
 export { formatReaction };

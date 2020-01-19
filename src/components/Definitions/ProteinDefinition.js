@@ -1,29 +1,28 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
 //import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import Typography from '@material-ui/core/Typography';
-import { abstractMolecule } from '~/data/actions/pageAction';
+import Typography from "@material-ui/core/Typography";
+import { abstractMolecule } from "~/data/actions/pageAction";
 
-const products = [{ id: '3', name: 'bob' }];
+const products = [{ id: "3", name: "bob" }];
 const columns = [
   {
-    dataField: 'id',
-    text: 'Product ID',
+    dataField: "id",
+    text: "Product ID"
   },
   {
-    dataField: 'name',
-    text: 'Product Name',
+    dataField: "name",
+    text: "Product Name"
   },
   {
-    dataField: 'price',
-    text: 'Product Price',
-  },
+    dataField: "price",
+    text: "Product Price"
+  }
 ];
-
 
 @connect(store => {
   return {};
@@ -34,30 +33,30 @@ class ProteinDefinition extends Component {
     this.state = {
       total_columns: [
         {
-          dataField: 'reactionID',
-          text: 'Reaction ID',
+          dataField: "reactionID",
+          text: "Reaction ID"
         },
 
         {
-          dataField: 'equation',
-          text: 'Reaction Equation',
-          formatter: this.colFormatter,
-        },
+          dataField: "equation",
+          text: "Reaction Equation",
+          formatter: this.colFormatter
+        }
       ],
 
-      total_data: [],
+      total_data: []
     };
     this.colFormatter = this.colFormatter.bind(this);
   }
 
   componentDidMount() {
-    console.log('hello');
+    console.log("hello");
 
     this.setState({ total_data: this.props.reactionMetadata });
   }
 
   componentDidUpdate(prevProps) {
-    console.log('hello');
+    console.log("hello");
 
     if (this.props.reactionMetadata !== prevProps.reactionMetadata) {
       this.setState({ total_data: this.props.reactionMetadata });
@@ -69,21 +68,21 @@ class ProteinDefinition extends Component {
       console.log(cell[1]);
       let substrates = cell[0]
         .toString()
-        .split('==>')[0]
-        .split(' + ');
+        .split("==>")[0]
+        .split(" + ");
       let products = cell[0]
         .toString()
-        .split('==>')[1]
-        .split(' + ');
+        .split("==>")[1]
+        .split(" + ");
       let url =
-        '/reaction/data/?substrates=' +
+        "/reaction/data/?substrates=" +
         substrates +
-        '&products=' +
+        "&products=" +
         products +
-        '&substrates_inchi=' +
-        cell[1]['sub_inchis'] +
-        '&products_inchi=' +
-        cell[1]['prod_inchis'];
+        "&substrates_inchi=" +
+        cell[1]["sub_inchis"] +
+        "&products_inchi=" +
+        cell[1]["prod_inchis"];
 
       return <Link to={url}>{cell[0].toString()}</Link>;
     } else {
@@ -92,10 +91,10 @@ class ProteinDefinition extends Component {
   };
 
   partFormatter = (cell, row) => {
-    let participants = '';
+    let participants = "";
     if (cell) {
       for (var i = cell.length - 1; i >= 0; i--) {
-        participants = participants + cell[i] + ' + ';
+        participants = participants + cell[i] + " + ";
       }
       participants = participants.substring(0, participants.length - 3);
       return <div>{participants}</div>;
@@ -105,49 +104,51 @@ class ProteinDefinition extends Component {
   };
 
   render() {
-    let proteinMetadata = this.props.proteinMetadata
-    
-    console.log(proteinMetadata)
-    console.log("baloonanimal")
-    console.log(proteinMetadata.length)
-    //console.log(proteinMetadata[0].length)
-  if (proteinMetadata[0] === undefined || proteinMetadata[0].length === 0) {
-      return(<div></div>)
-    }
-    proteinMetadata = proteinMetadata[0]
-    console.log("towerpower2")
+    let proteinMetadata = this.props.proteinMetadata;
 
+    console.log(proteinMetadata);
+    console.log("baloonanimal");
+    console.log(proteinMetadata.length);
+    //console.log(proteinMetadata[0].length)
+    if (proteinMetadata[0] === undefined || proteinMetadata[0].length === 0) {
+      return <div></div>;
+    }
+    proteinMetadata = proteinMetadata[0];
+    console.log("towerpower2");
 
     //proteinMetadata = proteinMetadata[0]
 
-    let uniprot_ids = proteinMetadata.uniprot_ids
-    let uniprot_links = []
+    let uniprot_ids = proteinMetadata.uniprot_ids;
+    let uniprot_links = [];
     for (var i = uniprot_ids.length - 1; i >= 0; i--) {
-     let a =  uniprot_ids[i]
-     let link = ""
-     if (i === 0){
-      link = <a href={"https://www.uniprot.org/uniprot/" + uniprot_ids[i]} > {uniprot_ids[i]} </a>
-     }
-     else{
-      link = <a href={"https://www.uniprot.org/uniprot/" + uniprot_ids[i]} > {uniprot_ids[i]}, </a>
-     }
-     uniprot_links.push(link)
+      let a = uniprot_ids[i];
+      let link = "";
+      if (i === 0) {
+        link = (
+          <a href={"https://www.uniprot.org/uniprot/" + uniprot_ids[i]}>
+            {" "}
+            {uniprot_ids[i]}{" "}
+          </a>
+        );
+      } else {
+        link = (
+          <a href={"https://www.uniprot.org/uniprot/" + uniprot_ids[i]}>
+            {" "}
+            {uniprot_ids[i]},{" "}
+          </a>
+        );
+      }
+      uniprot_links.push(link);
     }
 
     return (
-      <div
-        className="metabolite_definition_data"
-      >
+      <div className="metabolite_definition_data">
+        <Typography variant="h6" className={"green"}>
+          {proteinMetadata.ko_name[0]}
+        </Typography>
 
-      <Typography variant="h6" className={'green'}>
-        {proteinMetadata.ko_name[0]}
-      </Typography>
-
-      <div
-        className="photo_and_description"
-      >
-
-        <div  className="vertical_center_protein" >
+        <div className="photo_and_description">
+          <div className="vertical_center_protein">
             <img
               border="0"
               alt="W3Schools"
@@ -155,16 +156,29 @@ class ProteinDefinition extends Component {
               width="80%"
               height="80%"
             ></img>
+          </div>
+
+          <div className="metadata_description">
+            <p>
+              <b>Name:</b> {proteinMetadata.ko_name[0]}
+            </p>
+            <p>
+              <b>KO Number:</b>{" "}
+              <a
+                href={
+                  "https://www.genome.jp/dbget-bin/www_bget?ko:" +
+                  proteinMetadata.ko_number
+                }
+              >
+                {" "}
+                {proteinMetadata.ko_number}
+              </a>
+            </p>
+            <p>
+              <b>Uniprot IDs:</b> {uniprot_links}
+            </p>
+          </div>
         </div>
-
-        <div  className="metadata_description" >
-            <p><b>Name:</b> {proteinMetadata.ko_name[0]}</p>
-            <p><b>KO Number:</b> <a href={"https://www.genome.jp/dbget-bin/www_bget?ko:" + proteinMetadata.ko_number}> {proteinMetadata.ko_number}</a></p>
-            <p><b>Uniprot IDs:</b> {uniprot_links}</p>
-
-      </div>
-      </div>
-
       </div>
     );
   }

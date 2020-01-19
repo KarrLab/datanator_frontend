@@ -1,29 +1,28 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
 //import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import Typography from '@material-ui/core/Typography';
-import { abstractMolecule } from '~/data/actions/pageAction';
+import Typography from "@material-ui/core/Typography";
+import { abstractMolecule } from "~/data/actions/pageAction";
 
-const products = [{ id: '3', name: 'bob' }];
+const products = [{ id: "3", name: "bob" }];
 const columns = [
   {
-    dataField: 'id',
-    text: 'Product ID',
+    dataField: "id",
+    text: "Product ID"
   },
   {
-    dataField: 'name',
-    text: 'Product Name',
+    dataField: "name",
+    text: "Product Name"
   },
   {
-    dataField: 'price',
-    text: 'Product Price',
-  },
+    dataField: "price",
+    text: "Product Price"
+  }
 ];
-
 
 @connect(store => {
   return {};
@@ -34,30 +33,30 @@ class MetaboliteDefinition extends Component {
     this.state = {
       total_columns: [
         {
-          dataField: 'reactionID',
-          text: 'Reaction ID',
+          dataField: "reactionID",
+          text: "Reaction ID"
         },
 
         {
-          dataField: 'equation',
-          text: 'Reaction Equation',
-          formatter: this.colFormatter,
-        },
+          dataField: "equation",
+          text: "Reaction Equation",
+          formatter: this.colFormatter
+        }
       ],
 
-      total_data: [],
+      total_data: []
     };
     this.colFormatter = this.colFormatter.bind(this);
   }
 
   componentDidMount() {
-    console.log('hello');
+    console.log("hello");
 
     this.setState({ total_data: this.props.reactionMetadata });
   }
 
   componentDidUpdate(prevProps) {
-    console.log('hello');
+    console.log("hello");
 
     if (this.props.reactionMetadata !== prevProps.reactionMetadata) {
       this.setState({ total_data: this.props.reactionMetadata });
@@ -69,21 +68,21 @@ class MetaboliteDefinition extends Component {
       console.log(cell[1]);
       let substrates = cell[0]
         .toString()
-        .split('==>')[0]
-        .split(' + ');
+        .split("==>")[0]
+        .split(" + ");
       let products = cell[0]
         .toString()
-        .split('==>')[1]
-        .split(' + ');
+        .split("==>")[1]
+        .split(" + ");
       let url =
-        '/reaction/data/?substrates=' +
+        "/reaction/data/?substrates=" +
         substrates +
-        '&products=' +
+        "&products=" +
         products +
-        '&substrates_inchi=' +
-        cell[1]['sub_inchis'] +
-        '&products_inchi=' +
-        cell[1]['prod_inchis'];
+        "&substrates_inchi=" +
+        cell[1]["sub_inchis"] +
+        "&products_inchi=" +
+        cell[1]["prod_inchis"];
 
       return <Link to={url}>{cell[0].toString()}</Link>;
     } else {
@@ -92,10 +91,10 @@ class MetaboliteDefinition extends Component {
   };
 
   partFormatter = (cell, row) => {
-    let participants = '';
+    let participants = "";
     if (cell) {
       for (var i = cell.length - 1; i >= 0; i--) {
-        participants = participants + cell[i] + ' + ';
+        participants = participants + cell[i] + " + ";
       }
       participants = participants.substring(0, participants.length - 3);
       return <div>{participants}</div>;
@@ -105,91 +104,102 @@ class MetaboliteDefinition extends Component {
   };
 
   render() {
-    let metaboliteMetadata = this.props.metaboliteMetadata
+    let metaboliteMetadata = this.props.metaboliteMetadata;
 
-    if (metaboliteMetadata.length === 0){
-      return(<div></div>)
+    if (metaboliteMetadata.length === 0) {
+      return <div></div>;
     }
 
-
-    if (this.props.abstract === true){
-
-      let names = ""
+    if (this.props.abstract === true) {
+      let names = "";
       for (var i = metaboliteMetadata.length - 1; i >= 0; i--) {
-        names = names + metaboliteMetadata[i].name + ", "
+        names = names + metaboliteMetadata[i].name + ", ";
       }
 
-      let descriptions = []
+      let descriptions = [];
       for (var i = metaboliteMetadata.length - 1; i >= 0; i--) {
         descriptions.push(
-        <div  className="metadata_description_abstract" >
-            <p><b>Name:</b> <a href={"/metabolite/" + metaboliteMetadata[i].name + "/" + this.props.organism}>{metaboliteMetadata[i].name}</a></p>
-            <p><b>Chemical Formula:</b> {metaboliteMetadata[i].chemical_formula}</p>
-      </div>)
+          <div className="metadata_description_abstract">
+            <p>
+              <b>Name:</b>{" "}
+              <a
+                href={
+                  "/metabolite/" +
+                  metaboliteMetadata[i].name +
+                  "/" +
+                  this.props.organism
+                }
+              >
+                {metaboliteMetadata[i].name}
+              </a>
+            </p>
+            <p>
+              <b>Chemical Formula:</b> {metaboliteMetadata[i].chemical_formula}
+            </p>
+          </div>
+        );
       }
 
+      return (
+        <div className="metabolite_definition_data">
+          <Typography variant="h6" className={"green"}>
+            {"Molecules Similar to " + this.props.molecule}
+          </Typography>
 
-      return(
-      <div
-        className="metabolite_definition_data"
-      >
-
-      <Typography variant="h6" className={'green'}>
-        {"Molecules Similar to " + this.props.molecule}
-      </Typography>
-
-      <div
-        className="photo_and_description"
-      >
-      {descriptions}
-
-      </div>
-
-      </div>
-      )
+          <div className="photo_and_description">{descriptions}</div>
+        </div>
+      );
     }
 
-
-
-
-
-    console.log(metaboliteMetadata)
-    console.log(metaboliteMetadata[0])
-    metaboliteMetadata = metaboliteMetadata[0]
+    console.log(metaboliteMetadata);
+    console.log(metaboliteMetadata[0]);
+    metaboliteMetadata = metaboliteMetadata[0];
 
     return (
-      <div
-        className="metabolite_definition_data"
-      >
+      <div className="metabolite_definition_data">
+        <Typography variant="h6" className={"green"}>
+          {metaboliteMetadata.name}
+        </Typography>
 
-      <Typography variant="h6" className={'green'}>
-        {metaboliteMetadata.name}
-      </Typography>
-
-      <div
-        className="photo_and_description"
-      >
-
-        <div  className="vertical_center" >
+        <div className="photo_and_description">
+          <div className="vertical_center">
             <img
               border="0"
               alt="W3Schools"
-              src={"https://www.ebi.ac.uk/chebi/displayImage.do;jsessionid=25AAC07D77FBB12EBEFA4D5FEE270CD4?defaultImage=true&imageIndex=0&chebiId=" + metaboliteMetadata.chebi_id}
+              src={
+                "https://www.ebi.ac.uk/chebi/displayImage.do;jsessionid=25AAC07D77FBB12EBEFA4D5FEE270CD4?defaultImage=true&imageIndex=0&chebiId=" +
+                metaboliteMetadata.chebi_id
+              }
               width="200"
               height="200"
             ></img>
+          </div>
+
+          <div className="metadata_description">
+            <p>
+              <b>Name:</b> {metaboliteMetadata.name}
+            </p>
+            <p>
+              <b>Chemical Formula:</b> {metaboliteMetadata.chemical_formula}
+            </p>
+            <div style={{ "overflow-wrap": "break-word" }}>
+              <p>
+                <b>InChI:</b> <font size="2">{metaboliteMetadata.inchi}</font>
+              </p>
+            </div>
+            <p>
+              <b>InChIKey:</b> {metaboliteMetadata.inchiKey}
+            </p>
+            <button
+              type="button"
+              onClick={() => {
+                this.props.dispatch(abstractMolecule(true));
+              }}
+            >
+              Include Structurally Similar Molecules
+            </button>
+          </div>
         </div>
-
-        <div  className="metadata_description" >
-            <p><b>Name:</b> {metaboliteMetadata.name}</p>
-            <p><b>Chemical Formula:</b> {metaboliteMetadata.chemical_formula}</p>
-            <div style={{"overflow-wrap": "break-word"}}><p><b>InChI:</b> <font size="2">{metaboliteMetadata.inchi}</font></p></div>
-            <p><b>InChIKey:</b> {metaboliteMetadata.inchiKey}</p>
-             <button type="button" onClick={() => {this.props.dispatch(abstractMolecule(true))}} >Include Structurally Similar Molecules</button>
-
-      </div>
-      </div>
-
       </div>
     );
   }

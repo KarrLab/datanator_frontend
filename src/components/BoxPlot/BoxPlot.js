@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import Chart from 'chart.js';
+import React, { Component } from "react";
+import Chart from "chart.js";
 //import classes from "./LineGraph.module.css";
-import 'chartjs-chart-box-and-violin-plot/build/Chart.BoxPlot.js';
+import "chartjs-chart-box-and-violin-plot/build/Chart.BoxPlot.js";
 
 function randomValues(count, min, max) {
   const delta = max - min;
@@ -16,12 +16,12 @@ export default class ChartJs extends Component {
   }
 
   componentDidUpdate() {
-    let myChartRef = this.chartRef.current.getContext('2d');
+    let myChartRef = this.chartRef.current.getContext("2d");
     let x;
     x = [];
     let total_conc;
     total_conc = [];
-    let total_f_conc = []
+    let total_f_conc = [];
     let data;
     data = this.props.original_data;
     let total_scatter_1 = [];
@@ -31,74 +31,75 @@ export default class ChartJs extends Component {
       total_conc.push(parseFloat(data[i][this.props.relevantColumn]));
       total_scatter_1.push({
         x: "Total",
-        y: parseFloat(data[i][this.props.relevantColumn]),
-      })
+        y: parseFloat(data[i][this.props.relevantColumn])
+      });
       x.push(1);
     }
     let to_chart = [];
     to_chart.push(total_conc);
     if (this.props.data != null) {
-
-        for (var i = this.props.data.length - 1; i >= 0; i--) {
-            total_f_conc.push(parseFloat(this.props.data[i][this.props.relevantColumn]));
-            total_scatter_2.push({
-              x: "Selected",
-              y: parseFloat(this.props.data[i][this.props.relevantColumn]),
-            })
-        }
-        console.log(total_f_conc)
-        to_chart.push(total_f_conc);
+      for (var i = this.props.data.length - 1; i >= 0; i--) {
+        total_f_conc.push(
+          parseFloat(this.props.data[i][this.props.relevantColumn])
+        );
+        total_scatter_2.push({
+          x: "Selected",
+          y: parseFloat(this.props.data[i][this.props.relevantColumn])
+        });
       }
+      console.log(total_f_conc);
+      to_chart.push(total_f_conc);
+    }
 
-    console.log(to_chart[1])
-    console.log(total_scatter_2)
-    console.log(this.props.data)
+    console.log(to_chart[1]);
+    console.log(total_scatter_2);
+    console.log(this.props.data);
 
     let boxplotData = {
       // define label tree
-      labels: ['Total', 'Selected'],
+      labels: ["Total", "Selected"],
       datasets: [
         {
-          backgroundColor: ['#99ceff', "#efb8b3"],
-          borderColor: ['#1890ff',"#8C271E"],
+          backgroundColor: ["#99ceff", "#efb8b3"],
+          borderColor: ["#1890ff", "#8C271E"],
           borderWidth: 1,
-          outlierColor: '#999999',
+          outlierColor: "#999999",
           padding: 10,
           itemRadius: 0,
           data: [to_chart[0], to_chart[1]],
-          order:2
+          order: 2
         },
         {
-          backgroundColor: 'black',
-          borderColor: 'black',
+          backgroundColor: "black",
+          borderColor: "black",
           data: total_scatter_1,
-          type: 'scatter',
-          order:1
+          type: "scatter",
+          order: 1
         },
         {
-          backgroundColor: 'black',
-          borderColor: 'black',
+          backgroundColor: "black",
+          borderColor: "black",
           data: total_scatter_2,
-          type: 'scatter',
-          order:1
-        },
-      ],
+          type: "scatter",
+          order: 1
+        }
+      ]
     };
 
     new Chart(myChartRef, {
-      type: 'boxplot',
+      type: "boxplot",
       data: boxplotData,
       options: {
-        events:[],
+        events: [],
         responsive: true,
         legend: {
-          display: false,
+          display: false
         },
-        animation:null,
+        animation: null,
         title: {
-          display: false,
-        },
-      },
+          display: false
+        }
+      }
     });
   }
   render() {

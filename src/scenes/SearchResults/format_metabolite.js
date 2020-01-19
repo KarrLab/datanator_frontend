@@ -1,5 +1,5 @@
 import React from "react";
-import '~/scenes/BiochemicalEntityDetails/Metabolite/Metabolite.scss';
+import "~/scenes/BiochemicalEntityDetails/Metabolite/Metabolite.scss";
 
 function formatMetabolite(data, organism) {
   let start = 0;
@@ -11,9 +11,9 @@ function formatMetabolite(data, organism) {
       if (!new_dict) {
         new_dict = {};
       }
-      let name = data[i]["name"]
+      let name = data[i]["name"];
       if (name === "No metabolite found.") {
-        name = data[i]['synonyms'][0];
+        name = data[i]["synonyms"][0];
       }
       let href_ymdb = null;
       let href_ecmdb = null;
@@ -21,33 +21,40 @@ function formatMetabolite(data, organism) {
       let ecmdb_preface = "";
       let comma = "";
 
-      new_dict['primary_text'] = name[0].toUpperCase() + name.substring(1, name.length);
+      new_dict["primary_text"] =
+        name[0].toUpperCase() + name.substring(1, name.length);
       let description = [];
       if (data[i]["ymdb_id"] != null) {
         //description = description + "YMDB: " + data[i]["ymdb_id"]
-        href_ymdb = "http://www.ymdb.ca/compounds/" + data[i]["ymdb_id"]
-        ymdb_preface = "YMDB: " 
-         //ymdb_secondary = 'YMDB: <a href={href} rel="noopener"> {data[i]["ymdb_id"] } </a>'
+        href_ymdb = "http://www.ymdb.ca/compounds/" + data[i]["ymdb_id"];
+        ymdb_preface = "YMDB: ";
+        //ymdb_secondary = 'YMDB: <a href={href} rel="noopener"> {data[i]["ymdb_id"] } </a>'
 
         //description.push(<p> YMDB: <a href={href} rel="noopener"> {data[i]["ymdb_id"] } </a></p>)
         //"YMDB ID: " + data[i]["ymdb_id"] + "ECMDB ID: " + data[i]["m2m_id"]
       }
-      
+
       if (data[i]["m2m_id"] != null) {
         if (ymdb_preface !== "") {
-          comma = ", "
+          comma = ", ";
         }
-        
+
         //description = description + "ECMDB: " + data[i]["m2m_id"];
         href_ecmdb = "http://ecmdb.ca/compounds/" + data[i]["m2m_id"];
         ecmdb_preface = "ECMDB: ";
         //ecmdb_secondary = 'ECMDB: <a href={href} rel="noopener"> {data[i]["m2m_id"]} </a>';
-      } 
+      }
       let max_len = 150;
-      new_dict['secondary_text'] = (
+      new_dict["secondary_text"] = (
         <div className="external_links">
           <p>
-            {ymdb_preface} <a href={href_ymdb}>{data[i]["ymdb_id"]}</a>{comma}{ecmdb_preface} <a href={href_ecmdb} rel="noopener"> {data[i]["m2m_id"]} </a>
+            {ymdb_preface} <a href={href_ymdb}>{data[i]["ymdb_id"]}</a>
+            {comma}
+            {ecmdb_preface}{" "}
+            <a href={href_ecmdb} rel="noopener">
+              {" "}
+              {data[i]["m2m_id"]}{" "}
+            </a>
           </p>
         </div>
       );
@@ -64,7 +71,9 @@ function formatMetabolite(data, organism) {
     }
   }
 
-  let metaboliteMetadata = Object.keys(newMetaboliteMetadataDict).map(function(key) {
+  let metaboliteMetadata = Object.keys(newMetaboliteMetadataDict).map(function(
+    key
+  ) {
     return newMetaboliteMetadataDict[key];
   });
   return metaboliteMetadata;

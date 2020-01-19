@@ -1,8 +1,7 @@
 export const defaultState = {
-	url: "",
-	moleculeAbstract: false,
+  url: "",
+  moleculeAbstract: false
 };
-
 
 //let taxonFilter = null;
 function pageReducer(state = defaultState, action) {
@@ -11,22 +10,19 @@ function pageReducer(state = defaultState, action) {
   }
 
   switch (action.type) {
-    case 'NEW_REDIRECT': {
-
+    case "NEW_REDIRECT": {
       return {
         ...state,
-        url: action.payload,
+        url: action.payload
       };
     }
 
-    case 'ABSTRACT_MOLECULE': {
-
+    case "ABSTRACT_MOLECULE": {
       return {
         ...state,
-        moleculeAbstract: action.payload,
+        moleculeAbstract: action.payload
       };
     }
-
 
     default: {
       return state;

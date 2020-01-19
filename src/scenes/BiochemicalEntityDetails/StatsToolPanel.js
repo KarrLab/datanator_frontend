@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import BoxPlot from '~/components/BoxPlot/BoxPlot';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import BoxPlot from "~/components/BoxPlot/BoxPlot";
 import {
   mean,
   median,
   range,
   standardDeviation,
   round,
-  jsonToCsv,
-} from '~/utils/utils';
+  jsonToCsv
+} from "~/utils/utils";
 
-import './StatsToolPanel.scss';
+import "./StatsToolPanel.scss";
 
 /**
  * Class to render the Consensus of results, and the save the total data to CSV file
@@ -22,7 +22,7 @@ import './StatsToolPanel.scss';
 @connect(store => {
   return {
     selectedData: store.results.selectedData,
-    totalData: store.results.totalData,
+    totalData: store.results.totalData
   };
 })
 class StatsToolPanel extends Component {
@@ -43,7 +43,7 @@ class StatsToolPanel extends Component {
      * For example, in metabolite concentrations, we want the summarize the value of "concentration",
      * so we need to tell the compomenet to look for the column labeled "concentration"
      */
-    relevantColumns: PropTypes.string.isRequired,
+    relevantColumns: PropTypes.string.isRequired
   };
 
   constructor(props) {
@@ -70,10 +70,9 @@ class StatsToolPanel extends Component {
       selected_column: "",
 
       /** What the prompt on the consensus button should be. Initially it is 'Get Consensus'*/
-      consensus_prompt: 'Get Consensus',
+      consensus_prompt: "Get Consensus",
 
-      buttonValue: 1,
-
+      buttonValue: 1
     };
     this.setSummaryStats = this.setSummaryStats.bind(this);
     this.recordData = this.recordData.bind(this);
@@ -90,7 +89,9 @@ class StatsToolPanel extends Component {
       total_data.push(parseFloat(data[i][selected_column]));
       total_conc = total_conc + parseFloat(data[i][selected_column]);
     }
-    total_data = total_data.filter(function (el) { return !(isNaN(el)); })
+    total_data = total_data.filter(function(el) {
+      return !isNaN(el);
+    });
     var new_mean = this.standardRound(mean(total_data));
     var new_median = this.standardRound(median(total_data));
     var new_std_dev = this.standardRound(standardDeviation(total_data));
@@ -102,20 +103,18 @@ class StatsToolPanel extends Component {
       std_dev: new_std_dev,
       //selected_column: selected_column,
       range:
-        round(new_range[0], 3) +
-        '-' +
-        round(new_range[new_range.length - 1], 3),
+        round(new_range[0], 3) + "-" + round(new_range[new_range.length - 1], 3)
     });
   }
 
-  standardRound(number){
-    let rounder = null
+  standardRound(number) {
+    let rounder = null;
     if (number > 1) {
       rounder = 3;
     } else {
       rounder = 7;
     }
-    return(round(number, rounder));
+    return round(number, rounder);
   }
 
   /**
@@ -132,7 +131,7 @@ class StatsToolPanel extends Component {
   componentDidMount() {
     if (this.props.totalData != null) {
       this.setSummaryStats(this.props.totalData, this.props.relevantColumns[0]);
-      this.setState({selected_column:this.props.relevantColumns[0]})
+      this.setState({ selected_column: this.props.relevantColumns[0] });
     }
   }
 
@@ -141,26 +140,33 @@ class StatsToolPanel extends Component {
    */
   componentDidUpdate(prevProps) {
     if (prevProps.totalData !== this.props.totalData) {
-      this.setSummaryStats(this.props.totalData, this.props.relevantColumns[0])
-      this.setState({selected_column:this.props.relevantColumns[0]});
+      this.setSummaryStats(this.props.totalData, this.props.relevantColumns[0]);
+      this.setState({ selected_column: this.props.relevantColumns[0] });
     } else if (prevProps.selectedData !== this.props.selectedData) {
-      if (this.props.selectedData.length === 0){
-        this.setSummaryStats(this.props.totalData, this.props.relevantColumns[0])
-      }
-      else{
-        this.setSummaryStats(this.props.selectedData, this.state.selected_column);
+      if (this.props.selectedData.length === 0) {
+        this.setSummaryStats(
+          this.props.totalData,
+          this.props.relevantColumns[0]
+        );
+      } else {
+        this.setSummaryStats(
+          this.props.selectedData,
+          this.state.selected_column
+        );
       }
     }
   }
 
   render() {
     if (this.props.totalData == null) {
-      return(<div></div>)
-    } else{
+      return <div></div>;
+    } else {
       return (
         <div className="consensus_data">
           <div>
-            <p><b>Concentrations</b></p>
+            <p>
+              <b>Concentrations</b>
+            </p>
 
             <BoxPlot
               original_data={this.props.totalData}
@@ -168,15 +174,19 @@ class StatsToolPanel extends Component {
               relevantColumn={this.state.selected_column}
             />
 
-            <div className="summary" style={ {marginTop: 10}}>
+            <div className="summary" style={{ marginTop: 10 }}>
               <p>
-                <b>Mean: </b>{this.state.mean}
-                <br/>
-                <b>Median: </b>{this.state.median}
-                <br/>
-                <b>Standard Deviation: </b>{this.state.std_dev}
-                <br/>
-                <b>Range: </b>{this.state.range}
+                <b>Mean: </b>
+                {this.state.mean}
+                <br />
+                <b>Median: </b>
+                {this.state.median}
+                <br />
+                <b>Standard Deviation: </b>
+                {this.state.std_dev}
+                <br />
+                <b>Range: </b>
+                {this.state.range}
               </p>
             </div>
           </div>
