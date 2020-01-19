@@ -281,7 +281,7 @@ class Home extends Component {
             <h2 className="section-title">
               Workflow to{" "}
               <span className="highlight-primary">
-                systematically discovery data
+                systematic data discovery
               </span>{" "}
               for modeling
             </h2>
