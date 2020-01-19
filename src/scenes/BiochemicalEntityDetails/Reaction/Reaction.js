@@ -10,9 +10,6 @@ import {
   setSelectedData
 } from "~/data/actions/resultsAction";
 
-import { Header } from "~/components/Header/Header";
-import { Footer } from "~/components/Footer/Footer";
-
 import { AgGridReact } from "ag-grid-react";
 import { AllCommunityModules } from "@ag-grid-community/all-modules";
 import StatsToolPanel from "./StatsToolPanel.js";
@@ -461,11 +458,8 @@ class Reaction extends Component {
 
     if (this.props.totalData == null) {
       return (
-        <div>
-          <Header />
-          <div className="loader_container">
-            <div className="loader"></div>
-          </div>
+        <div className="loader_container">
+          <div className="loader"></div>
         </div>
       );
     }
@@ -476,8 +470,6 @@ class Reaction extends Component {
 
     return (
       <div className="total_container">
-        <Header />
-
         <div className="metabolite_definition_data"></div>
 
         <div className="ag_chart" style={{ width: "100%", height: "1000px" }}>
@@ -507,7 +499,6 @@ class Reaction extends Component {
             ></AgGridReact>
           </div>
         </div>
-        <Footer />
       </div>
     );
   }

@@ -11,9 +11,6 @@ import {
 } from "~/data/actions/resultsAction";
 import { setNewUrl, abstractMolecule } from "~/data/actions/pageAction";
 
-import { Header } from "~/components/Header/Header";
-import { Footer } from "~/components/Footer/Footer";
-
 import { AgGridReact } from "ag-grid-react";
 import { AllCommunityModules } from "@ag-grid-community/all-modules";
 import StatsToolPanel from "./StatsToolPanel.js";
@@ -531,11 +528,8 @@ class Protein extends Component {
       this.props.totalData == null
     ) {
       return (
-        <div>
-          <Header />
-          <div className="loader_container">
-            <div className="loader"></div>
-          </div>
+        <div className="loader_container">
+          <div className="loader"></div>
         </div>
       );
     }
@@ -545,8 +539,6 @@ class Protein extends Component {
     };
     return (
       <div className="total_container">
-        <Header />
-
         <ProteinDefinition
           proteinMetadata={this.state.orthologyMetadata}
           //molecule={this.props.match.params.molecule}
@@ -580,7 +572,6 @@ class Protein extends Component {
             ></AgGridReact>
           </div>
         </div>
-        <Footer />
       </div>
     );
   }

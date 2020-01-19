@@ -9,8 +9,6 @@ import { formatMetabolite } from "~/scenes/SearchResults/format_metabolite";
 import { formatProtein } from "~/scenes/SearchResults/format_protein";
 import { formatReaction } from "~/scenes/SearchResults/format_reaction";
 
-import { Header } from "~/components/Header/Header";
-import { Footer } from "~/components/Footer/Footer";
 import SearchResultsList from "./SearchResultsList.js";
 
 const queryString = require("query-string");
@@ -163,56 +161,46 @@ class SearchResults extends Component {
       this.state.reaction_results == null
     ) {
       return (
-        <div>
-          <Header />
-          <div className="loader_container">
-            <div className="loader"></div>
-          </div>
-          <Footer />
+        <div className="loader_container">
+          <div className="loader"></div>
         </div>
       );
     }
 
     return (
-      <div>
-        <Header />
-
-        <div className="content-container content-container-columns">
-          <div className="content-block table-of-contents">
-            <h2 className="content-block-heading">Contents</h2>
-            <div className="content-block-content">
-              <ul>
-                <li>
-                  <HashLink to="#metabolites" scroll={scrollTo}>
-                    {"Metabolites"}
-                  </HashLink>
-                </li>
-                <li>
-                  <HashLink to="#proteins" scroll={scrollTo}>
-                    {"Proteins"}
-                  </HashLink>
-                </li>
-                <li>
-                  <HashLink to="#reactions" scroll={scrollTo}>
-                    {"Reactions"}
-                  </HashLink>
-                </li>
-              </ul>
-            </div>
+      <div className="content-container content-container-columns">
+        <div className="content-block table-of-contents">
+          <h2 className="content-block-heading">Contents</h2>
+          <div className="content-block-content">
+            <ul>
+              <li>
+                <HashLink to="#metabolites" scroll={scrollTo}>
+                  {"Metabolites"}
+                </HashLink>
+              </li>
+              <li>
+                <HashLink to="#proteins" scroll={scrollTo}>
+                  {"Proteins"}
+                </HashLink>
+              </li>
+              <li>
+                <HashLink to="#reactions" scroll={scrollTo}>
+                  {"Reactions"}
+                </HashLink>
+              </li>
+            </ul>
           </div>
-
-          <SearchResultsList
-            metabolite_results={this.state.metabolite_results}
-            protein_results={this.state.protein_results}
-            reaction_results={this.state.reaction_results}
-            handle_fetch_data={this.fetch_data}
-            metabolite_load={this.state.metabolite_load}
-            protein_load={this.state.protein_load}
-            reactions_load={this.state.reactions_load}
-          />
         </div>
 
-        <Footer />
+        <SearchResultsList
+          metabolite_results={this.state.metabolite_results}
+          protein_results={this.state.protein_results}
+          reaction_results={this.state.reaction_results}
+          handle_fetch_data={this.fetch_data}
+          metabolite_load={this.state.metabolite_load}
+          protein_load={this.state.protein_load}
+          reactions_load={this.state.reactions_load}
+        />
       </div>
     );
   }

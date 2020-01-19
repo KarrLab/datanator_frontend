@@ -23,8 +23,8 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faAtom, faDna } from "@fortawesome/free-solid-svg-icons";
 
 // Common page components
-// import Header from "~/components/Header/Header";
-// import Footer from "~/components/Footer/Footer";
+import { Header } from "~/components/Header/Header";
+import { Footer } from "~/components/Footer/Footer";
 
 // Website pages (scenes)
 import Home from "~/scenes/Home/Home";
@@ -41,18 +41,22 @@ library.add(faAtom, faDna);
 const SiteRouter = () => {
   return (
     <BrowserRouter>
-      <Route path="/" exact component={Home} />
-      <Route path="/search/" component={SearchResults} />
-      <Route
-        path="/metabolite/:molecule/:organism/:abstract?/"
-        component={Metabolite}
-      />
-      <Route
-        path="/protein/:searchType/:molecule/:organism?/"
-        component={Protein}
-      />
-      <Route path="/reaction/:dataType/" component={Reaction} />
-      <Route path="/about/" component={About} />
+      <Header />
+      <div>
+        <Route path="/" exact component={Home} />
+        <Route path="/search/" component={SearchResults} />
+        <Route
+          path="/metabolite/:molecule/:organism/:abstract?/"
+          component={Metabolite}
+        />
+        <Route
+          path="/protein/:searchType/:molecule/:organism?/"
+          component={Protein}
+        />
+        <Route path="/reaction/:dataType/" component={Reaction} />
+        <Route path="/about/" component={About} />
+      </div>
+      <Footer />
     </BrowserRouter>
   );
 };
