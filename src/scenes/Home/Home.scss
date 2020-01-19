@@ -26,7 +26,7 @@
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 3rem;
+    padding-top: calc(3rem - 2px);
     padding-bottom: 3rem;
     border-bottom: 1px solid #e0e0e0;
   }
