@@ -52,6 +52,7 @@ a:hover {
   margin-left: auto;
   margin-right: auto;
   padding: 0;
+  min-height: calc(100vh - 42px - (50px + 3rem) - 3rem);
 }
 
 .full-width-content-container {
@@ -63,6 +64,10 @@ a:hover {
 .content-container-columns {
   display: flex;
   justify-content: space-between;
+
+  .content-column {
+    width: 100%;
+  }
 }
 
 /* page loader */
