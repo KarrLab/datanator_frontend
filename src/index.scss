@@ -132,14 +132,22 @@ a:hover {
   background: #ffc306;
 }
 
-.table-of-contents ol {
+.table-of-contents ul {
   list-style-type: circle;
   margin: 0;
   margin-left: 1rem;
 }
 
-.table-of-contents a {
+.table-of-contents ol {
+  margin: 0;
+  margin-left: 1rem;
+}
+
+.table-of-contents ul a {
   margin-left: -0.125rem;
+}
+
+.table-of-contents a {
   color: #333;
 }
 

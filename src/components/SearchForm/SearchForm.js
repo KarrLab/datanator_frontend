@@ -9,6 +9,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./SearchForm.scss";
 
+const queryString = require('query-string');
+
 const ORGANISMS = [
   "Aliivibrio fischeri",
   "Ambystoma mexicanum",
@@ -134,15 +136,20 @@ class SearchForm extends Component {
   constructor(props) {
     super(props);
 
-    const query =
-      props.location.state && "query" in props.location.state
-        ? props.location.state.query
-        : null;
-    const organism =
-      props.location.state && "organism" in props.location.state
-        ? props.location.state.organism
-        : null;
+    let query = null;
+    let organism = null;
+    if (props.location.search) {
+      let queryArgs = queryString.parse(props.location.search);
+      if ('q' in queryArgs) {
+        query = queryArgs.q;
+      }
+      if ('organism' in queryArgs) {
+        organism = queryArgs.organism;
+      }
+    }
+
     const searchFormValid = query != null;
+    
     this.state = {
       query: query,
       organism: organism,
@@ -162,14 +169,17 @@ class SearchForm extends Component {
     if (this.state.organism) {
       queryArgs += "&organism=" + this.state.organism;
     }
+    this.props.history.push('/search/' + queryArgs)
+    /*
     this.props.history.push({
-      pathname: "/general/",
+      pathname: "/search/",
       search: queryArgs,
       state: {
         query: this.state.query,
         organism: this.state.organism
       }
     });
+    */
   }
 
   render() {

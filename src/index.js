@@ -22,9 +22,9 @@ import "./index.scss";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faAtom, faDna } from "@fortawesome/free-solid-svg-icons";
 
-//Website pages (scenes)
+// Website pages (scenes)
 import Home from "~/scenes/Home/Home";
-import GeneralPage from "~/scenes/Results/GeneralPage";
+import SearchResults from "~/scenes/SearchResults/SearchResults";
 import MetabConcs from "~/scenes/Results/MetabConcs";
 import ProteinPage from "~/scenes/Results/ProteinPage";
 import ReactionPage from "~/scenes/Results/ReactionPage";
@@ -37,7 +37,7 @@ const SiteRouter = () => {
   return (
     <Router>
       <Route path="/" exact component={Home} />
-      <Route path="/general/" component={GeneralPage} />
+      <Route path="/search/" component={SearchResults} />
       <Route
         path="/metabconcs/:molecule/:organism/:abstract?/"
         component={MetabConcs}

@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import {Route, Switch } from 'react-router-dom'
 import { createMemoryHistory } from 'history'
 
-import GeneralPage from '~/scenes/Results/GeneralPage';
+import SearchResults from '~/scenes/SearchResults/SearchResults';
 import { MemoryRouter } from "react-router-dom";
 import createStore from '~/data/Store.js'
 
@@ -21,10 +21,10 @@ const store = createStore
 
 const renderComponent = (query, organism) =>
   render (
-    <MemoryRouter initialEntries={['/general/?q=' + query + "&organism="+ organism]}>
-      <Route path="/general/">
+    <MemoryRouter initialEntries={['/search/?q=' + query + "&organism="+ organism]}>
+      <Route path="/search/">
        <Provider store={store}>
-        <GeneralPage />
+        <SearchResults />
         </Provider>
       </Route>
     </MemoryRouter>
