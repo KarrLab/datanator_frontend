@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import List from "@material-ui/core/List";
-import ListItemText from "@material-ui/core/ListItemText";
 import { Link } from "react-router-dom";
 
-function format_results(primary_text, secondary_text, url) {
+function formatResult(result) {
   return (
-    <ListItemText secondary={secondary_text} dense={true}>
-      <Link to={url}>{primary_text}</Link>
-    </ListItemText>
+    <li>
+      <div className="search-result-title">
+        <Link to={result.route}>{result.title}</Link>
+      </div>
+      <div className="search-result-description">{result.description}</div>
+    </li>
   );
 }
 
@@ -37,24 +38,20 @@ export default class SearchResultsList extends Component {
       reaction_couner: 2
     };
 
-    this.create_search_results = this.create_search_results.bind(this);
     this.handleFetch = this.handleFetch.bind(this);
-    this.add_metabolites = this.add_metabolites.bind(this);
-    this.add_proteins = this.add_proteins.bind(this);
-    this.add_reactions = this.add_reactions.bind(this);
   }
 
   componentDidMount() {
     if (this.props.metaboliteResults != null) {
-      this.add_metabolites();
+      this.addMetabolites();
     }
 
     if (this.props.proteinResults != null) {
-      this.add_proteins();
+      this.addProteins();
     }
 
     if (this.props.reactionResults != null) {
-      this.add_reactions();
+      this.addReactions();
     }
   }
 
@@ -63,67 +60,48 @@ export default class SearchResultsList extends Component {
       this.props.metaboliteResults !== prevProps.metaboliteResults &&
       this.props.metaboliteResults != null
     ) {
-      this.add_metabolites();
+      this.addMetabolites();
     }
 
     if (
       this.props.proteinResults !== prevProps.proteinResults &&
       this.props.proteinResults != null
     ) {
-      this.add_proteins();
+      this.addProteins();
     }
 
     if (
       this.props.reactionResults !== prevProps.reactionResults &&
       this.props.reactionResults != null
     ) {
-      this.add_reactions();
+      this.addReactions();
     }
   }
 
-  add_metabolites() {
-    let metaboliteResults = this.props.metaboliteResults;
-    let new_metabolite_results = [];
-    for (let i = 0; i < metaboliteResults.length; i++) {
-      new_metabolite_results.push(
-        format_results(
-          metaboliteResults[i]["primary_text"],
-          metaboliteResults[i]["secondary_text"],
-          metaboliteResults[i]["url"]
-        )
-      );
+  formatResults(results) {
+    let resultsHtml = [];
+    for (const result of results) {
+      resultsHtml.push(formatResult(result));
     }
-    this.setState({ metaboliteResults: new_metabolite_results });
+    return resultsHtml;
   }
 
-  add_proteins() {
-    let proteinResults = this.props.proteinResults;
-    let new_protein_results = [];
-    for (let i = proteinResults.length - 1; i >= 0; i--) {
-      new_protein_results.push(
-        format_results(
-          proteinResults[i]["primary_text"],
-          proteinResults[i]["secondary_text"],
-          proteinResults[i]["url"]
-        )
-      );
-    }
-    this.setState({ proteinResults: new_protein_results });
+  addMetabolites() {
+    this.setState({
+      metaboliteResults: this.formatResults(this.props.metaboliteResults)
+    });
   }
 
-  add_reactions() {
-    let reactionResults = this.props.reactionResults;
-    let new_reaction_results = [];
-    for (let i = 0; i < reactionResults.length; i++) {
-      new_reaction_results.push(
-        format_results(
-          reactionResults[i]["primary_text"],
-          reactionResults[i]["secondary_text"],
-          reactionResults[i]["url"]
-        )
-      );
-    }
-    this.setState({ reactionResults: new_reaction_results });
+  addProteins() {
+    this.setState({
+      proteinResults: this.formatResults(this.props.proteinResults)
+    });
+  }
+
+  addReactions() {
+    this.setState({
+      reactionResults: this.formatResults(this.props.reactionResults)
+    });
   }
 
   handleFetch(index) {
@@ -131,71 +109,27 @@ export default class SearchResultsList extends Component {
     this.setState({ metab_counter: this.state.metab_counter + 1 });
   }
 
-  create_search_results() {
-    let metaboliteResults = this.props.metaboliteResults;
-    let proteinResults = this.props.proteinResults;
-    let reactionResults = this.props.reactionResults;
-
-    let new_metabolite_results = [];
-    let new_protein_results = [];
-    let new_reaction_results = [];
-
-    for (let i = metaboliteResults.length - 1; i >= 0; i--) {
-      new_metabolite_results.push(
-        format_results(
-          metaboliteResults[i]["primary_text"],
-          metaboliteResults[i]["secondary_text"],
-          metaboliteResults[i]["url"]
-        )
-      );
-    }
-
-    for (let i = proteinResults.length - 1; i >= 0; i--) {
-      new_protein_results.push(
-        format_results(
-          proteinResults[i]["primary_text"],
-          proteinResults[i]["secondary_text"],
-          proteinResults[i]["url"]
-        )
-      );
-    }
-
-    for (let i = reactionResults.length - 1; i >= 0; i--) {
-      new_reaction_results.push(
-        format_results(
-          reactionResults[i]["primary_text"],
-          reactionResults[i]["secondary_text"],
-          reactionResults[i]["url"]
-        )
-      );
-    }
-    this.setState({
-      metaboliteResults: new_metabolite_results,
-      proteinResults: new_protein_results,
-      reactionResults: new_reaction_results
-    });
-  }
-
   render() {
     return (
-      <div className="content-column" id="features">
+      <div className="content-column">
         {this.state.metaboliteResults != null && (
           <div className="content-block section" id="metabolites">
-            <h2 className="content-block-heading">Metabolites</h2>
+            <h2 className="content-block-heading">Metabolites (XXX)</h2>
             <div className="content-block-content">
               {this.state.metaboliteResults.length > 0 && (
-                <List disablePadding={true} dense={true}>
+                <ul className="search-results-list">
                   {this.state.metaboliteResults}
-                </List>
+                </ul>
               )}
 
               {this.state.metaboliteResults.length === 0 && (
-                <p>No results found</p>
+                <p className="no-search-results">No results found</p>
               )}
 
               {this.state.metaboliteResults.length > 0 &&
                 this.props.loadMetabolites && (
                   <button
+                    className="more-search-results-button"
                     type="button"
                     onClick={() => {
                       this.handleFetch("metabolites_meta");
@@ -210,20 +144,21 @@ export default class SearchResultsList extends Component {
 
         {this.state.proteinResults != null && (
           <div className="content-block section" id="proteins">
-            <h2 className="content-block-heading">Proteins</h2>
+            <h2 className="content-block-heading">Proteins (XXX)</h2>
             <div className="content-block-content">
               {this.state.proteinResults.length > 0 && (
-                <List disablePadding={true} dense={true}>
+                <ul className="search-results-list">
                   {this.state.proteinResults}
-                </List>
+                </ul>
               )}
 
               {this.state.proteinResults.length === 0 && (
-                <p>No results found</p>
+                <p className="no-search-results">No results found</p>
               )}
 
               {this.state.proteinResults.length > 0 && this.props.loadProteins && (
                 <button
+                  className="more-search-results-button"
                   type="button"
                   onClick={() => {
                     this.handleFetch("protein");
@@ -238,21 +173,22 @@ export default class SearchResultsList extends Component {
 
         {this.state.reactionResults != null && (
           <div className="content-block section" id="reactions">
-            <h2 className="content-block-heading">Reactions</h2>
+            <h2 className="content-block-heading">Reactions (XXX)</h2>
             <div className="content-block-content">
               {this.state.reactionResults.length > 0 && (
-                <List disablePadding={true} dense={true}>
+                <ul className="search-results-list">
                   {this.state.reactionResults}
-                </List>
+                </ul>
               )}
 
               {this.state.reactionResults.length === 0 && (
-                <p>No results found</p>
+                <p className="no-search-results">No results found</p>
               )}
 
               {this.state.reactionResults.length > 0 &&
                 this.props.loadReactions && (
                   <button
+                    className="more-search-results-button"
                     type="button"
                     onClick={() => {
                       this.handleFetch("sabio_reaction_entries");

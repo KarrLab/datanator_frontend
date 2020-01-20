@@ -13,10 +13,10 @@ function formatProtein(data, organism) {
         new_dict = {};
       }
       let name = data[i].top_ko.hits.hits[0]._source.ko_name[0];
-      new_dict["primary_text"] =
+      new_dict["title"] =
         name[0].toUpperCase() + name.substring(1, name.length);
       let href = "https://www.genome.jp/dbget-bin/www_bget?ko:" + ko_number;
-      new_dict["secondary_text"] = (
+      new_dict["description"] = (
         <div className="external-links">
           <p>
             KEGG:{" "}
@@ -27,7 +27,7 @@ function formatProtein(data, organism) {
           </p>
         </div>
       );
-      new_dict["url"] =
+      new_dict["route"] =
         "/protein/ko/mol/?ko=" + ko_number + "&organism=" + organism;
 
       newProteinMetadataDict[ko_number] = new_dict;

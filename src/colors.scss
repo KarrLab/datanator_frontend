@@ -13,6 +13,8 @@ $color-text-light: #666; // 25% lighter
 $color-text-lighter: #999; // 50% lighter
 $color-text-lightest: #ccc; // 75% lighter
 $color-heading: #5c5c5c;
+$color-button: #f9f9f9;
+$color-button-hover: #f0f0f0;
 $color-border: #e0e0e0;
 $color-shadow: #0006;
 
@@ -33,6 +35,8 @@ $color-shadow: #0006;
   text-lighter: $color-text-lighter;
   text-lightest: $color-text-lightest;
   heading: $color-heading;
+  button: $color-button;
+  button-hover: $color-button-hover;
   border: $color-border;
   shadow: $color-shadow;
   /* stylelint-enable property-no-unknown */

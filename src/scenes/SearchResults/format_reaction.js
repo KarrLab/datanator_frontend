@@ -37,17 +37,17 @@ function formatReaction(data) {
     let reaction_equation =
       formatPart(substrates) + " → " + formatPart(products);
     if (reaction_name) {
-      new_dict["primary_text"] =
+      new_dict["title"] =
         reaction_name[0].toUpperCase() +
         reaction_name.substring(1, reaction_name.length);
     } else {
-      new_dict["primary_text"] = reaction_equation;
+      new_dict["title"] = reaction_equation;
     }
-    new_dict["secondary_text"] = reaction_equation;
+    new_dict["description"] = reaction_equation;
 
     //formatPart(substrates) + ' ==> ' + formatPart(products)
 
-    new_dict["url"] =
+    new_dict["route"] =
       "/reaction/data/?substrates_inchi=" +
       substrates +
       "&products_inchi=" +

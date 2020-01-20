@@ -20,7 +20,7 @@ function formatMetabolite(data, organism) {
       let ecmdb_preface = "";
       let comma = "";
 
-      new_dict["primary_text"] =
+      new_dict["title"] =
         name[0].toUpperCase() + name.substring(1, name.length);
       if (data[i]["ymdb_id"] != null) {
         href_ymdb = "http://www.ymdb.ca/compounds/" + data[i]["ymdb_id"];
@@ -39,7 +39,7 @@ function formatMetabolite(data, organism) {
         ecmdb_preface = "ECMDB: ";
         //ecmdb_secondary = 'ECMDB: <a href={href} target="_blank" rel="noopener noreferrer"> {data[i]["m2m_id"]} </a>';
       }
-      new_dict["secondary_text"] = (
+      new_dict["description"] = (
         <div className="external-links">
           <p>
             {ymdb_preface}{" "}
@@ -49,13 +49,12 @@ function formatMetabolite(data, organism) {
             {comma}
             {ecmdb_preface}{" "}
             <a href={href_ecmdb} target="_blank" rel="noopener noreferrer">
-              {" "}
-              {data[i]["m2m_id"]}{" "}
+              {data[i]["m2m_id"]}
             </a>
           </p>
         </div>
       );
-      new_dict["url"] = "/metabolite/" + name + "/" + organism;
+      new_dict["route"] = "/metabolite/" + name + "/" + organism;
       newMetaboliteMetadataDict[inchi_key] = new_dict;
     }
   }

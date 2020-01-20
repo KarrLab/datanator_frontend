@@ -5,11 +5,12 @@ import { HashLink } from "react-router-hash-link";
 import { withRouter } from "react-router";
 
 import { getSearchData } from "~/services/MongoApi";
+import SearchResultsList from "./SearchResultsList.js";
 import { formatMetabolite } from "~/scenes/SearchResults/format_metabolite";
 import { formatProtein } from "~/scenes/SearchResults/format_protein";
 import { formatReaction } from "~/scenes/SearchResults/format_reaction";
 
-import SearchResultsList from "./SearchResultsList.js";
+import "./SearchResults.scss";
 
 const queryString = require("query-string");
 
@@ -168,24 +169,24 @@ class SearchResults extends Component {
     }
 
     return (
-      <div className="content-container content-container-columns">
+      <div className="content-container content-container-columns content-container-search-results-scene">
         <div className="content-block table-of-contents">
           <h2 className="content-block-heading">Contents</h2>
           <div className="content-block-content">
             <ul>
               <li>
                 <HashLink to="#metabolites" scroll={scrollTo}>
-                  {"Metabolites"}
+                  {"Metabolites (XXX)"}
                 </HashLink>
               </li>
               <li>
                 <HashLink to="#proteins" scroll={scrollTo}>
-                  {"Proteins"}
+                  {"Proteins (XXX)"}
                 </HashLink>
               </li>
               <li>
                 <HashLink to="#reactions" scroll={scrollTo}>
-                  {"Reactions"}
+                  {"Reactions (XXX)"}
                 </HashLink>
               </li>
             </ul>
