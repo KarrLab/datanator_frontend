@@ -120,7 +120,7 @@ class MetadataSection extends Component {
       }
 
       return (
-        <div className="metabolite_definition_data">
+        <div className="definition-data">
           <Typography variant="h6" className={"green"}>
             {"Molecules Similar to " + this.props.molecule}
           </Typography>
@@ -133,7 +133,7 @@ class MetadataSection extends Component {
     metaboliteMetadata = metaboliteMetadata[0];
 
     return (
-      <div className="metabolite_definition_data">
+      <div className="definition-data">
         <Typography variant="h6" className={"green"}>
           {metaboliteMetadata.name}
         </Typography>

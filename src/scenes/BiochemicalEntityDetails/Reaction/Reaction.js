@@ -470,7 +470,7 @@ class Reaction extends Component {
 
     return (
       <div className="biochemical-entity-scene biochemical-entity-reaction-scene">
-        <div className="metabolite_definition_data"></div>
+        <div className="definition-data"></div>
 
         <div className="ag_chart" style={{ width: "100%", height: "1000px" }}>
           <div

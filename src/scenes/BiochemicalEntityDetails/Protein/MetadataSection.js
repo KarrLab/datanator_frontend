@@ -132,13 +132,13 @@ class MetadataSection extends Component {
     }
 
     return (
-      <div className="metabolite_definition_data">
+      <div className="definition-data">
         <Typography variant="h6" className={"green"}>
           {proteinMetadata.ko_name[0]}
         </Typography>
 
         <div className="photo_and_description">
-          <div className="vertical_center_protein">
+          <div className="vertical_center">
             <img
               border="0"
               alt="W3Schools"

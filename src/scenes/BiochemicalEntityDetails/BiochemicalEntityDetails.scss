@@ -1,3 +1,5 @@
+@import 'colors';
+
 .biochemical-entity-scene {
   /* AG grid */
   .ag-theme-balham .ag-icon-pin {
@@ -9,5 +11,54 @@
 
   .ag-theme-balham .ag-icon-customstats::before {
     content: '\f08d';
+  }
+
+  .ag_chart {
+    margin-top: 10px;
+  }
+
+  .definition-data {
+    margin-top: 60px;
+    width: 100%;
+    border: 1px solid $color-primary;
+    border-radius: 4px;
+    background: #f3f9ff;
+    box-shadow: 3px 3px 5px #0006;
+  }
+
+  .definition-data .MuiTypography-h6 {
+    color: $color-white;
+    background: $color-primary;
+    font-weight: 700;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .metadata_description {
+    margin-left: 180px;
+  }
+
+  .metadata_description p {
+    margin-bottom: 9px;
+  }
+
+  .photo_and_description {
+    position: relative;
+    margin-top: 10px;
+  }
+
+  .slider_2 {
+    margin-top: 10px;
+    margin-bottom: -20px;
+  }
+
+  .slider_container {
+    height: 150px;
+    width: 220px;
+  }
+
+  .slider_2_tanimoto {
+    margin-left: 20px;
+    margin-top: 10px;
   }
 }

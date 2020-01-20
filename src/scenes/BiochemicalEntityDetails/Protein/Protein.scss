@@ -1,29 +1,16 @@
 .biochemical-entity-protein-scene {
-  .container .uniprot_definition_data {
-    background-color: #c4c4c4;
-    text-align: left;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    border-style: solid;
-    border-color: #bfbfbf;
-    margin-bottom: 5px;
-    margin-top: 5px;
+  .vertical_center {
+    width: 200px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
   }
 
-  .container .orthology_definition_data {
-    background-color: #c4c4c4;
-    text-align: left;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    border-style: solid;
-    border-color: #bfbfbf;
-    margin-bottom: 5px;
-    margin-top: 5px;
-  }
-
-  .search {
-    margin-top: 70px;
+  .vertical_center img {
+    margin-left: 20px;
+    width: 45%;
+    height: 50%;
   }
 }

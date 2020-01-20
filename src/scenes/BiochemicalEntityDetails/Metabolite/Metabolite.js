@@ -450,7 +450,7 @@ class Metabolite extends Component {
     }
 
     return (
-      <div className="biochemical-entity-scene biochemical-entity-protein-scene">
+      <div className="biochemical-entity-scene biochemical-entity-metabolite-scene">
         <MetadataSection
           metaboliteMetadata={this.state.metaboliteMetadata}
           abstract={this.state.tanimoto}
