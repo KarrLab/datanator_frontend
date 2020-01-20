@@ -1,8 +1,10 @@
+@import 'colors';
+
 .header-component {
   display: flex;
   justify-content: space-between;
-  background-color: #1890ff;
-  box-shadow: 0 2px 2px #0006;
+  background-color: $color-primary;
+  box-shadow: 0 2px 2px $color-shadow;
 
   /* logo and title */
   .logo-title-container {
@@ -14,7 +16,7 @@
   }
 
   .titles {
-    color: #fff;
+    color: $color-white;
     margin-left: 5px;
 
     .title {
@@ -48,7 +50,7 @@
 
     .bp3-button,
     .bp3-button .bp3-icon {
-      color: #fff;
+      color: $color-white;
     }
 
     .bp3-button:hover,
@@ -60,7 +62,7 @@
     .bp3-button:active,
     .bp3-button:hover .bp3-icon,
     .bp3-button:active .bp3-icon {
-      color: #ffc306;
+      color: $color-accent;
     }
   }
 }

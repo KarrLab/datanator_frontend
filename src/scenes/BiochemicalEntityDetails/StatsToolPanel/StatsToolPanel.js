@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import BoxPlot from "~/components/BoxPlot/BoxPlot";
+import MeasurementsBoxScatterPlot from "../MeasurementsBoxScatterPlot/MeasurementsBoxScatterPlot";
 import {
   mean,
   median,
@@ -168,10 +168,10 @@ class StatsToolPanel extends Component {
               <b>Concentrations</b>
             </p>
 
-            <BoxPlot
-              original_data={this.props.totalData}
-              data={this.props.selectedData}
-              relevantColumn={this.state.selected_column}
+            <MeasurementsBoxScatterPlot
+              allMeasurements={this.props.totalData}
+              selectedMeasurements={this.props.selectedData}
+              dataProperty={this.state.selected_column}
             />
 
             <div className="summary" style={{ marginTop: 10 }}>

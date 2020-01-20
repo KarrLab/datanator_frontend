@@ -50,6 +50,22 @@ class Header extends Component {
               this.setState({ showSearchForm: !this.state.showSearchForm })
             }
           />
+          <Link to="/stats">
+            <Button
+              minimal="true"
+              className="navbutton"
+              icon="horizontal-bar-chart"
+              text="Stats"
+            />
+          </Link>
+          <Link to="/help">
+            <Button
+              minimal="true"
+              className="navbutton"
+              icon="help"
+              text="Help"
+            />
+          </Link>
           <Link to="/about">
             <Button
               minimal="true"

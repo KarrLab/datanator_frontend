@@ -238,7 +238,7 @@ class Home extends Component {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Kegg orthology
+                    KEGG orthology
                   </a>
                   , and{" "}
                   <a
@@ -246,7 +246,7 @@ class Home extends Component {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Uniprot
+                    UniProt
                   </a>                  
                   .
                 </div>

@@ -25,7 +25,7 @@ class About extends Component {
         <div className="content-block table-of-contents">
           <h2 className="content-block-heading">Contents</h2>
           <div className="content-block-content">
-            <ol>
+            <ul>
               <li>
                 <HashLink to="#features" scroll={scrollTo}>
                   Features
@@ -56,14 +56,14 @@ class About extends Component {
                   Source code
                 </HashLink>
               </li>
-            </ol>
+            </ul>
           </div>
         </div>
 
-        <div className="content-column" id="features">
-          <div className="content-block section">
+        <div className="content-column">
+          <div className="content-block section" id="features">
             <h2 className="content-block-heading">
-              1. Motivation and features
+              Motivation and features
             </h2>
             <div className="content-block-content">
               <p>
@@ -109,7 +109,7 @@ class About extends Component {
 
           <div className="content-block section" id="data">
             <h2 className="content-block-heading">
-              2. Data types and sources
+              Data types and sources
             </h2>
             <div className="content-block-content">
               <p>
@@ -158,7 +158,7 @@ class About extends Component {
             id="searching"
           >
             <h2 className="content-block-heading">
-              3. Searching and filtering for data about specific cells
+              Searching and filtering for data about specific cells
             </h2>
             <div className="content-block-content">
               <p className="no-bottom-margin">
@@ -231,7 +231,7 @@ class About extends Component {
           </div>
 
           <div className="content-block section developers" id="team">
-            <h2 className="content-block-heading">4. Development team</h2>
+            <h2 className="content-block-heading">Development team</h2>
             <div className="content-block-content">
               <p>
                 <i>Datanator</i> was developed by the{" "}
@@ -319,7 +319,7 @@ class About extends Component {
             className="content-block section funding"
             id="acknowledgements"
           >
-            <h2 className="content-block-heading">5. Acknowledgements</h2>
+            <h2 className="content-block-heading">Acknowledgements</h2>
 
             <div className="content-block-content">
               <p>
@@ -391,7 +391,7 @@ class About extends Component {
 
           <div className="content-block section" id="source">
             <h2 className="content-block-heading">
-              6. Source code and license
+              Source code and license
             </h2>
 
             <div className="content-block-content">

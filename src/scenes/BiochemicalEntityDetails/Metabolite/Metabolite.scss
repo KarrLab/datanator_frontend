@@ -1,3 +1,5 @@
+@import 'colors';
+
 .total_container {
   background: #f3f9ff;
 }
@@ -5,7 +7,7 @@
 .metabolite_definition_data {
   margin-top: 60px;
   width: 100%;
-  border: 1px solid #1890ff;
+  border: 1px solid $color-primary;
   border-radius: 4px;
   background: #f3f9ff;
   box-shadow: 3px 3px 5px #0006;
@@ -54,8 +56,8 @@
 }
 
 .metabolite_definition_data .MuiTypography-h6 {
-  color: #fff;
-  background: #1890ff;
+  color: $color-white;
+  background: $color-primary;
   font-weight: 700;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -116,8 +118,8 @@
 }
 
 .metadata_description button {
-  background-color: #0084ff !important;
-  border: #0a89ff !important;
+  background-color: $color-primary;
+  border: none;
   font-size: 16px;
   color: white;
   margin-bottom: 2px;

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 
-import { ReactionDefinition } from "~/components/Definitions/ReactionDefinition";
+import { MetadataSection } from "./MetadataSection";
 import { getSearchData } from "~/services/MongoApi";
 import {
   set_lineage,

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 
-import { MetaboliteDefinition } from "~/components/Definitions/MetaboliteDefinition";
+import { MetadataSection } from "./MetadataSection";
 import { getSearchData } from "~/services/MongoApi";
 import { abstractMolecule } from "~/data/actions/pageAction";
 import {
@@ -451,7 +451,7 @@ class Metabolite extends Component {
 
     return (
       <div className="total_container">
-        <MetaboliteDefinition
+        <MetadataSection
           metaboliteMetadata={this.state.metaboliteMetadata}
           abstract={this.state.tanimoto}
           molecule={this.props.match.params.molecule}

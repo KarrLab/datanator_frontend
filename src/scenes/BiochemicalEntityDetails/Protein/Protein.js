@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 
-import { ProteinDefinition } from "~/components/Definitions/ProteinDefinition";
+import { MetadataSection } from "./MetadataSection";
 import { getSearchData } from "~/services/MongoApi";
 import {
   set_lineage,
@@ -539,7 +539,7 @@ class Protein extends Component {
     };
     return (
       <div className="total_container">
-        <ProteinDefinition
+        <MetadataSection
           proteinMetadata={this.state.orthologyMetadata}
           //molecule={this.props.match.params.molecule}
           organism={values.organism}

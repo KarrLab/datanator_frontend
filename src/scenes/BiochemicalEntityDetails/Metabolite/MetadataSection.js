@@ -27,7 +27,7 @@ const columns = [
 @connect(store => {
   return {};
 })
-class MetaboliteDefinition extends Component {
+class MetadataSection extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -198,7 +198,7 @@ class MetaboliteDefinition extends Component {
   }
 }
 
-export { MetaboliteDefinition };
+export { MetadataSection };
 
 /*
 inchi:"InChI=1S/C9H15N2O15P3/c12-5-1-2-11(9(15)10-5)8-7(14)6(13)4(24-8)3-23-28(19,20)26-29(21,22)25-27(16,17)18/h1-2,4,6-8,13-14H,3H2,(H,19,20)(H,21,22)(H,10,12,15)(H2,16,17,18)/t4-,6-,7-,8-/m1/s1",

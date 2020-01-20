@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StatsToolPanel as BaseStatsToolPanel } from "../StatsToolPanel";
+import { StatsToolPanel as BaseStatsToolPanel } from "../StatsToolPanel/StatsToolPanel";
 
 export default class StatsToolPanel extends Component {
   constructor(props) {

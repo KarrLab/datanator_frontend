@@ -23,7 +23,7 @@
       "type": "image/png"
     }
   ],
-  "start_url": "https://datanator.info",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#ffffff",
   "background_color": "#ffffff"
