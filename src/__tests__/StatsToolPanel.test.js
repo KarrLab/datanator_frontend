@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux'
-import { StatsToolPanel } from '~/scenes/BiochemicalEntityDetails/StatsToolPanel';
+import { StatsToolPanel } from '~/scenes/BiochemicalEntityDetails/StatsToolPanel/StatsToolPanel';
 import { ResultsTable } from '~/components/Results/ResultsTable';
 
 
