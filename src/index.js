@@ -72,8 +72,4 @@ const SiteProvider = () => {
   );
 };
 
-SiteProvider.propTypes = {
-  store: PropTypes.object.isRequired
-};
-
 ReactDOM.render(<SiteProvider />, document.getElementById("root"));
