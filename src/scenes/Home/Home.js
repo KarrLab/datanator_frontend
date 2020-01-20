@@ -232,6 +232,22 @@ class Home extends Component {
                   >
                     PAXdb
                   </a>
+                  , {" "}
+                  <a
+                    href="https://www.genome.jp/kegg/ko.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Kegg orthology
+                  </a>
+                  , and{" "}
+                  <a
+                    href="https://www.uniprot.org/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Uniprot
+                  </a>                  
                   .
                 </div>
               </div>
