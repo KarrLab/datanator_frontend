@@ -20,7 +20,7 @@ const columns = [
   }
 ];
 
-class ReactionDefinition extends Component {
+class MetadataSection extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -100,4 +100,4 @@ class ReactionDefinition extends Component {
   }
 }
 
-export { ReactionDefinition };
+export { MetadataSection };
