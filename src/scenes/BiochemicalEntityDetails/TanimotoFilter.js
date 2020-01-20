@@ -1,14 +1,7 @@
 import React, { Component } from "react";
 import Slider from "@material-ui/core/Slider";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
-import store from "~/data/Store";
 import ReactDOM from "react-dom";
-
-const useStyles = makeStyles({
-  slider: {
-    height: 150
-  }
-});
 
 const iOSBoxShadow =
   "0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.13),0 0 0 1px rgba(0,0,0,0.02)";
@@ -79,24 +72,6 @@ const IOSSlider = withStyles({
     backgroundColor: "currentColor"
   }
 })(Slider);
-
-function VerticalSlider(marks) {
-  const classes = useStyles();
-
-  return (
-    <React.Fragment>
-      <div className={classes.root}>
-        <Slider
-          orientation="vertical"
-          //defaultValue={[20, 37]}
-          aria-labelledby="vertical-slider"
-          getAriaValueText={valuetext}
-          marks={marks}
-        />
-      </div>
-    </React.Fragment>
-  );
-}
 
 class TanimotoFilter extends Component {
   constructor(props) {
@@ -235,21 +210,19 @@ class TanimotoFilter extends Component {
   render() {
     let buttons = this.state.buttons;
     return (
-      <div className={"slider_container_tanitoomo"}>
-        <div className={"slider_2_tanimoto"} style={{ width: 140 }}>
-          <IOSSlider
-            onChange={this.onChange}
-            orientation="horizontal"
-            aria-labelledby="horizontal-slider"
-            getAriaValueText={valuetext}
-            marks={marks}
-            valueLabelDisplay={"on"}
-            defaultValue={0.65}
-            max={1}
-            min={0.65}
-            step={0.01}
-          />
-        </div>
+      <div className={"biochemical-entity-scene-slider-filter biochemical-entity-scene-tanimoto-slider-filter"}>
+        <IOSSlider
+          onChange={this.onChange}
+          orientation="horizontal"
+          aria-labelledby="horizontal-slider"
+          getAriaValueText={valuetext}
+          marks={marks}
+          valueLabelDisplay={"on"}
+          defaultValue={0.65}
+          max={1}
+          min={0.65}
+          step={0.01}
+        />
       </div>
     );
   }

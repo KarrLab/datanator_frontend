@@ -137,8 +137,8 @@ class MetadataSection extends Component {
           {proteinMetadata.ko_name[0]}
         </Typography>
 
-        <div className="photo_and_description">
-          <div className="vertical_center">
+        <div className="img-description">
+          <div className="vertical-center">
             <img
               border="0"
               alt="W3Schools"
@@ -148,7 +148,7 @@ class MetadataSection extends Component {
             ></img>
           </div>
 
-          <div className="metadata_description">
+          <div className="metadata-description">
             <p>
               <b>Name:</b> {proteinMetadata.ko_name[0]}
             </p>

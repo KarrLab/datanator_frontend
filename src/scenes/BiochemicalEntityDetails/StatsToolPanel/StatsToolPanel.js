@@ -161,32 +161,29 @@ class StatsToolPanel extends Component {
     } else {
       return (
         <div className="biochemical-entity-scene-stats-tool-panel">
-          <div>
+          <MeasurementsBoxScatterPlot
+            allMeasurements={this.props.totalData}
+            selectedMeasurements={this.props.selectedData}
+            dataProperty={this.state.selected_column}
+          />
+
+          <div className="summary">
             <p>
-              <b>Concentrations</b>
+              <b>Mean: </b>
+              {this.state.mean}
             </p>
-
-            <MeasurementsBoxScatterPlot
-              allMeasurements={this.props.totalData}
-              selectedMeasurements={this.props.selectedData}
-              dataProperty={this.state.selected_column}
-            />
-
-            <div className="summary" style={{ marginTop: 10 }}>
-              <p>
-                <b>Mean: </b>
-                {this.state.mean}
-                <br />
-                <b>Median: </b>
-                {this.state.median}
-                <br />
-                <b>Standard Deviation: </b>
-                {this.state.std_dev}
-                <br />
-                <b>Range: </b>
-                {this.state.range}
-              </p>
-            </div>
+            <p>
+              <b>Median: </b>
+              {this.state.median}
+            </p>
+            <p>
+              <b>Standard Deviation: </b>
+              {this.state.std_dev}
+            </p>
+            <p>
+              <b>Range: </b>
+              {this.state.range}
+            </p>
           </div>
         </div>
       );

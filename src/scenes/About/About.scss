@@ -1,3 +1,5 @@
+@import 'colors';
+
 .content-container-about-scene {
   /* searching and filtering */
   .search-filtering {
@@ -44,6 +46,12 @@
       margin-left: 0.25rem;
       position: relative;
       top: -1px;
+      height: 15px !important; // !important is needed because the style is set inline
+      width: 15px !important; // !important is needed because the style is set inline
+
+      .social-svg-mask {
+        fill: $color-primary !important; // !important is needed because the style is set inline
+      }
     }
   }
 

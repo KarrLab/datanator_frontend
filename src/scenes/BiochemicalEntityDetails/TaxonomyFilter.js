@@ -1,35 +1,9 @@
 import React, { Component } from "react";
 import Slider from "@material-ui/core/Slider";
-import { makeStyles } from "@material-ui/core/styles";
-import store from "~/data/Store";
 import ReactDOM from "react-dom";
-
-const useStyles = makeStyles({
-  slider: {
-    height: 150
-  }
-});
 
 function valuetext(value) {
   return `${value}`;
-}
-
-function VerticalSlider(marks) {
-  const classes = useStyles();
-
-  return (
-    <React.Fragment>
-      <div className={classes.root}>
-        <Slider
-          orientation="vertical"
-          //defaultValue={[20, 37]}
-          aria-labelledby="vertical-slider"
-          getAriaValueText={valuetext}
-          marks={marks}
-        />
-      </div>
-    </React.Fragment>
-  );
 }
 
 class TaxonomyFilter extends Component {
@@ -170,17 +144,15 @@ class TaxonomyFilter extends Component {
     let buttons = this.state.buttons;
     let marks = this.state.marks;
     return (
-      <div className={"slider_container"}>
-        <div className={"slider_2"} style={{ height: 140 }}>
-          <Slider
-            onChange={this.onChange}
-            orientation="vertical"
-            aria-labelledby="vertical-slider"
-            getAriaValueText={valuetext}
-            marks={marks}
-            max={marks.length - 1}
-          />
-        </div>
+      <div className={"biochemical-entity-scene-taxonomy-slider-filter"}>
+        <Slider
+          onChange={this.onChange}
+          orientation="vertical"
+          aria-labelledby="vertical-slider"
+          getAriaValueText={valuetext}
+          marks={marks}
+          max={marks.length - 1}
+        />
       </div>
     );
   }

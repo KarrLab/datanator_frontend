@@ -1,36 +1,42 @@
 @import 'colors';
 
 .biochemical-entity-metabolite-scene {
-  .metadata_description_abstract {
+  .metadata-description-abstract {
     margin-left: 20px;
     margin-top: 10px;
     margin-bottom: 3px;
+
+    p {
+      margin-bottom: 1px;
+    }
   }
 
-  .metadata_description_abstract p {
-    margin-bottom: 1px;
-  }
-
-  .vertical_center {
+  .vertical-center {
     width: 200px;
     margin: 0;
     position: absolute;
     top: 50%;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
+
+    img {
+      margin-left: 20px;
+      width: 60%;
+      height: 60%;
+    }
   }
 
-  .vertical_center img {
-    margin-left: 20px;
-    width: 60%;
-    height: 60%;
-  }
+  .metadata-description {
+    .inchi {
+      overflow-wrap: break-word;
+    }
 
-  .metadata_description button {
-    background-color: $color-primary;
-    border: none;
-    font-size: 16px;
-    color: white;
-    margin-bottom: 2px;
+    button {
+      background-color: $color-primary;
+      border: none;
+      font-size: 16px;
+      color: white;
+      margin-bottom: 2px;
+    }
   }
 }

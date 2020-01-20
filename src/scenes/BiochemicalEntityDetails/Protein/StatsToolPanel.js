@@ -16,12 +16,10 @@ export default class StatsToolPanel extends Component {
 
   render() {
     return (
-      <div style={{ textAlign: "center" }}>
-        <BaseStatsToolPanel
-          relevantColumns={["abundance"]}
-          optional_columns={[]}
-        />
-      </div>
+      <BaseStatsToolPanel
+        relevantColumns={["abundance"]}
+        optional_columns={[]}
+      />
     );
   }
 

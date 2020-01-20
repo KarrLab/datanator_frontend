@@ -83,19 +83,10 @@ class PartialMatchFilter extends Component {
   }
 
   render() {
-    let style = {
-      border: "2px solid #22ff22",
-      borderRadius: "5px",
-      backgroundColor: "#bbffbb",
-      width: "200px",
-      height: "50px"
-    };
-
     return (
-      <div style={style}>
+      <div className="biochemical-entity-scene-partial-match-filter">
         Filter:{" "}
         <input
-          style={{ height: "20px" }}
           ref="input"
           value={this.state.text}
           onChange={this.onChange}

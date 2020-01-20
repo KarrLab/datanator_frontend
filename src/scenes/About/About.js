@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { HashLink } from "react-router-hash-link";
+import { SocialIcon } from "react-social-icons";
 
 import "./About.scss";
 
@@ -11,8 +12,6 @@ import nihIcon from "./images/nih.svg";
 import nibibIcon from "./images/nibib.svg";
 import nigmsIcon from "./images/nigms.svg";
 import nsfIcon from "./images/nsf.svg";
-
-import { SocialIcon } from "react-social-icons";
 
 class About extends Component {
   render() {
@@ -259,7 +258,6 @@ class About extends Component {
                       Yosef Roth
                       <SocialIcon
                         url="https://www.linkedin.com/in/yosef-roth-a80a378a"
-                        style={{ height: 15, width: 15 }}
                       />
                     </div>
                   </div>
@@ -273,7 +271,6 @@ class About extends Component {
                       Zhouyang Lian
                       <SocialIcon
                         url="https://www.linkedin.com/in/zlian/"
-                        style={{ height: 15, width: 15 }}
                       />
                     </div>
                   </div>
@@ -287,7 +284,6 @@ class About extends Component {
                       Jonathan Karr
                       <SocialIcon
                         url="https://www.linkedin.com/in/jonrkarr/"
-                        style={{ height: 15, width: 15 }}
                       />
                     </div>
                   </div>
@@ -300,14 +296,12 @@ class About extends Component {
                     Bilal Shaikh
                     <SocialIcon
                       url="https://www.linkedin.com/in/bilalshaikh42/"
-                      style={{ height: 15, width: 15 }}
                     />
                   </div>
                   <div className="developer-name">
                     Saahith Pochiraju
                     <SocialIcon
                       url="https://www.linkedin.com/in/saahithpochiraju/"
-                      style={{ height: 15, width: 15 }}
                     />
                   </div>
                 </div>

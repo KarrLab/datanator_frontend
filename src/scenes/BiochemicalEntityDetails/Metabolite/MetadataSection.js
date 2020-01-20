@@ -98,7 +98,7 @@ class MetadataSection extends Component {
       let descriptions = [];
       for (var i = metaboliteMetadata.length - 1; i >= 0; i--) {
         descriptions.push(
-          <div className="metadata_description_abstract">
+          <div className="metadata-description-abstract">
             <p>
               <b>Name:</b>{" "}
               <a
@@ -125,7 +125,7 @@ class MetadataSection extends Component {
             {"Molecules Similar to " + this.props.molecule}
           </Typography>
 
-          <div className="photo_and_description">{descriptions}</div>
+          <div className="img-description">{descriptions}</div>
         </div>
       );
     }
@@ -138,8 +138,8 @@ class MetadataSection extends Component {
           {metaboliteMetadata.name}
         </Typography>
 
-        <div className="photo_and_description">
-          <div className="vertical_center">
+        <div className="img-description">
+          <div className="vertical-center">
             <img
               border="0"
               alt="W3Schools"
@@ -152,14 +152,14 @@ class MetadataSection extends Component {
             ></img>
           </div>
 
-          <div className="metadata_description">
+          <div className="metadata-description">
             <p>
               <b>Name:</b> {metaboliteMetadata.name}
             </p>
             <p>
               <b>Chemical Formula:</b> {metaboliteMetadata.chemical_formula}
             </p>
-            <div style={{ "overflow-wrap": "break-word" }}>
+            <div className="inchi">
               <p>
                 <b>InChI:</b> <font size="2">{metaboliteMetadata.inchi}</font>
               </p>

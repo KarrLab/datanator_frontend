@@ -1,6 +1,7 @@
 .biochemical-entity-scene-stats-tool-panel {
   border-style: solid;
   border-color: #fcd1d5;
+  text-align: center;
 
   .summary {
     text-align: left;
@@ -9,5 +10,6 @@
     flex-wrap: wrap;
     border-style: solid;
     border-color: #fcd1d1;
+    margin-top: 10px;
   }
 }

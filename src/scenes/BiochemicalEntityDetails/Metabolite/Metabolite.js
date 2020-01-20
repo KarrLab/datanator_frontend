@@ -458,32 +458,27 @@ class Metabolite extends Component {
           organism={this.props.match.params.organism}
         />
 
-        <div className="ag_chart" style={{ width: "100%", height: "1000px" }}>
-          <div
-            className="ag-theme-balham"
-            style={{ width: "100%", height: "100%" }}
-          >
-            <AgGridReact
-              modules={this.state.modules}
-              frameworkComponents={this.state.frameworkComponents}
-              columnDefs={this.state.columnDefs}
-              sideBar={sideBar}
-              rowData={this.props.totalData}
-              gridOptions={{ floatingFilter: true }}
-              onFirstDataRendered={this.onFirstDataRendered.bind(this)}
-              rowSelection={this.state.rowSelection}
-              groupSelectsChildren={true}
-              suppressRowClickSelection={true}
-              //autoGroupColumnDef={this.state.autoGroupColumnDef}
-              //onGridReady={this.onGridReady}
-              lineage={this.state.lineage}
-              onSelectionChanged={this.onRowSelected.bind(this)}
-              onFilterChanged={this.onFiltered.bind(this)}
-              domLayout={"autoHeight"}
-              domLayout={"autoWidth"}
-              onGridReady={this.onGridReady}
-            ></AgGridReact>
-          </div>
+        <div className="ag-chart ag-theme-balham">
+          <AgGridReact
+            modules={this.state.modules}
+            frameworkComponents={this.state.frameworkComponents}
+            columnDefs={this.state.columnDefs}
+            sideBar={sideBar}
+            rowData={this.props.totalData}
+            gridOptions={{ floatingFilter: true }}
+            onFirstDataRendered={this.onFirstDataRendered.bind(this)}
+            rowSelection={this.state.rowSelection}
+            groupSelectsChildren={true}
+            suppressRowClickSelection={true}
+            //autoGroupColumnDef={this.state.autoGroupColumnDef}
+            //onGridReady={this.onGridReady}
+            lineage={this.state.lineage}
+            onSelectionChanged={this.onRowSelected.bind(this)}
+            onFilterChanged={this.onFiltered.bind(this)}
+            domLayout={"autoHeight"}
+            domLayout={"autoWidth"}
+            onGridReady={this.onGridReady}
+          ></AgGridReact>
         </div>
       </div>
     );
