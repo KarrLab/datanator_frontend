@@ -1,89 +1,38 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import Chart from "chart.js";
-//import classes from "./LineGraph.module.css";
-import "chartjs-chart-box-and-violin-plot/build/Chart.BoxPlot.js";
+import "chartjs-chart-box-and-violin-plot/build/Chart.BoxPlot";
 
-function randomValues(count, min, max) {
-  const delta = max - min;
-  return Array.from({ length: count }).map(() => Math.random() * delta + min);
-}
+import * as colorPalette from "~/colors.scss";
+import "./MeasurementsBoxScatterPlot.scss";
 
-export default class ChartJs extends Component {
-  chartRef = React.createRef();
+export default class MeasurementsBoxScatterPlot extends Component {
+  static propTypes = {
+    allMeasurements: PropTypes.array,
+    selectedMeasurements: PropTypes.array,
+    dataProperty: PropTypes.string
+  };
 
-  componentDidMount() {
-    //const myChartRef = this.chartRef.current.getContext('2d');
-  }
+  canvas = React.createRef();
 
   componentDidUpdate() {
-    let myChartRef = this.chartRef.current.getContext("2d");
-    let x;
-    x = [];
-    let total_conc;
-    total_conc = [];
-    let total_f_conc = [];
-    let data;
-    data = this.props.original_data;
-    let total_scatter_1 = [];
-    let total_scatter_2 = [];
-
-    for (var i = data.length - 1; i >= 0; i--) {
-      total_conc.push(parseFloat(data[i][this.props.relevantColumn]));
-      total_scatter_1.push({
-        x: "Total",
-        y: parseFloat(data[i][this.props.relevantColumn])
-      });
-      x.push(1);
-    }
-    let to_chart = [];
-    to_chart.push(total_conc);
-    if (this.props.data != null) {
-      for (var i = this.props.data.length - 1; i >= 0; i--) {
-        total_f_conc.push(
-          parseFloat(this.props.data[i][this.props.relevantColumn])
-        );
-        total_scatter_2.push({
-          x: "Selected",
-          y: parseFloat(this.props.data[i][this.props.relevantColumn])
-        });
-      }
-      to_chart.push(total_f_conc);
-    }
-
-    let boxplotData = {
-      // define label tree
-      labels: ["Total", "Selected"],
-      datasets: [
-        {
-          backgroundColor: ["#99ceff", "#efb8b3"],
-          borderColor: ["#1890ff", "#8C271E"],
-          borderWidth: 1,
-          outlierColor: "#999999",
-          padding: 10,
-          itemRadius: 0,
-          data: [to_chart[0], to_chart[1]],
-          order: 2
-        },
-        {
-          backgroundColor: "black",
-          borderColor: "black",
-          data: total_scatter_1,
-          type: "scatter",
-          order: 1
-        },
-        {
-          backgroundColor: "black",
-          borderColor: "black",
-          data: total_scatter_2,
-          type: "scatter",
-          order: 1
-        }
-      ]
-    };
-
-    new Chart(myChartRef, {
+    let chartConfig = {
       type: "boxplot",
-      data: boxplotData,
+      data: {
+        labels: ["All", "Selected"],
+        datasets: [
+          {
+            backgroundColor: [],
+            borderColor: [],
+            borderWidth: 1,
+            outlierColor: colorPalette["text-lighter"],
+            padding: 10,
+            itemRadius: 0,
+            data: [],
+            order: 2
+          }
+        ]
+      },
       options: {
         events: [],
         responsive: true,
@@ -95,14 +44,77 @@ export default class ChartJs extends Component {
           display: false
         }
       }
-    });
-  }
-  render() {
-    let original_data = this.props.original_data;
-    return (
-      <div>
-        <canvas id="myChart" ref={this.chartRef} width="190" height="400" />
-      </div>
+    };
+
+    // all measurements
+    let measurements = this.props.allMeasurements;
+    let dataForBoxPlot = [];
+    let dataForScatterPlot = [];
+    for (
+      let iMeasurement = measurements.length - 1;
+      iMeasurement >= 0;
+      iMeasurement--
+    ) {
+      dataForBoxPlot.push(
+        parseFloat(measurements[iMeasurement][this.props.dataProperty])
+      );
+      dataForScatterPlot.push({
+        x: "All",
+        y: parseFloat(measurements[iMeasurement][this.props.dataProperty])
+      });
+    }
+    chartConfig.data.datasets[0].data.push(dataForBoxPlot);
+    chartConfig.data.datasets[0].backgroundColor.push(
+      colorPalette["primary-light"]
     );
+    chartConfig.data.datasets[0].borderColor.push(colorPalette["primary"]);
+    chartConfig.data.datasets.push({
+      backgroundColor: colorPalette["text"],
+      borderColor: colorPalette["text"],
+      data: dataForScatterPlot,
+      type: "scatter",
+      order: 1
+    });
+
+    // selected measurements
+    if (this.props.selectedMeasurements != null) {
+      let measurements = this.props.selectedMeasurements;
+      let dataForBoxPlot = [];
+      let dataForScatterPlot = [];
+      for (
+        let iMeasurement = measurements.length - 1;
+        iMeasurement >= 0;
+        iMeasurement--
+      ) {
+        dataForBoxPlot.push(
+          parseFloat(measurements[iMeasurement][this.props.dataProperty])
+        );
+        dataForScatterPlot.push({
+          x: "Selected",
+          y: parseFloat(measurements[iMeasurement][this.props.dataProperty])
+        });
+      }
+
+      chartConfig.data.datasets[0].data.push(dataForBoxPlot);
+      chartConfig.data.datasets[0].backgroundColor.push(
+        colorPalette["accent-light"]
+      );
+      chartConfig.data.datasets[0].borderColor.push(colorPalette["accent"]);
+      chartConfig.data.datasets.push({
+        backgroundColor: colorPalette["text"],
+        borderColor: colorPalette["text"],
+        data: dataForScatterPlot,
+        type: "scatter",
+        order: 1
+      });
+    }
+
+    // build chart
+    let canvasContext = this.canvas.current.getContext("2d");
+    new Chart(canvasContext, chartConfig);
+  }
+
+  render() {
+    return <canvas ref={this.canvas} className="box-plot-component" />;
   }
 }
