@@ -14,12 +14,6 @@ function formatProtein(data, organism) {
         new_dict = {};
       }
       let name = data[i].top_ko.hits.hits[0]._source.ko_name[0];
-      let hasAbundances = "";
-      if (data[i].top_ko.hits.hits[0]._source.abundances) {
-        hasAbundances = "True";
-      } else {
-        hasAbundances = "False";
-      }
       new_dict["primary_text"] =
         name[0].toUpperCase() + name.substring(1, name.length);
       let href = "https://www.genome.jp/dbget-bin/www_bget?ko:" + ko_number;

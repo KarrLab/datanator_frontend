@@ -30,42 +30,42 @@ class SearchResults extends Component {
       newResults: false,
       reactionMetadata: [],
       km_values: [],
-      metabolite_results: null,
-      protein_results: null,
-      reaction_results: null,
+      metaboliteResults: null,
+      proteinResults: null,
+      reactionResults: null,
       meh: false,
       page_index_counter: {
         metabolites_meta: 0,
         sabio_reaction_entries: 0,
         protein: 0
       },
-      metabolite_load: true,
-      protein_load: true,
-      reactions_load: true
+      loadMetabolites: true,
+      loadProteins: true,
+      loadReactions: true
     };
 
-    this.fetch_data = this.fetch_data.bind(this);
+    this.fetchData = this.fetchData.bind(this);
     this.formatData = this.formatData.bind(this);
   }
 
   componentDidMount() {
-    this.fetch_data("metabolites_meta", 10);
-    // this.fetch_data("rna_halflife", 10);
-    this.fetch_data("protein", 10);
-    this.fetch_data("sabio_reaction_entries", 10);
+    this.fetchData("metabolites_meta", 10);
+    // this.fetchData("rna_halflife", 10);
+    this.fetchData("protein", 10);
+    this.fetchData("sabio_reaction_entries", 10);
   }
 
   componentDidUpdate() {
     if (this.state.newResults) {
-      this.fetch_data("metabolites_meta", 10);
-      // this.fetch_data("rna_halflife", 10);
-      this.fetch_data("protein", 10);
-      this.fetch_data("sabio_reaction_entries", 10);
+      this.fetchData("metabolites_meta", 10);
+      // this.fetchData("rna_halflife", 10);
+      this.fetchData("protein", 10);
+      this.fetchData("sabio_reaction_entries", 10);
       this.setState({ newResults: false });
     }
   }
 
-  fetch_data(indices, size) {
+  fetchData(indices, size) {
     const values = queryString.parse(this.props.location.search);
 
     const from_ = this.state.page_index_counter[indices] * 10;
@@ -111,26 +111,26 @@ class SearchResults extends Component {
         values.organism
       );
       if (metabolite_metadata.length < size) {
-        this.setState({ metabolite_load: false });
+        this.setState({ loadMetabolites: false });
       }
-      if (this.state.metabolite_results != null) {
-        metabolite_metadata = this.state.metabolite_results.concat(
+      if (this.state.metaboliteResults != null) {
+        metabolite_metadata = this.state.metaboliteResults.concat(
           metabolite_metadata
         );
       }
-      this.setState({ metabolite_results: metabolite_metadata });
+      this.setState({ metaboliteResults: metabolite_metadata });
     }
 
     if ("top_kos" in data) {
       let protein_data = data["top_kos"]["buckets"];
       let protein_metadata = formatProtein(protein_data, values.organism);
       if (protein_metadata.length < size) {
-        this.setState({ protein_load: false });
+        this.setState({ loadProteins: false });
       }
-      if (this.state.protein_results != null) {
-        protein_metadata = this.state.protein_results.concat(protein_metadata);
+      if (this.state.proteinResults != null) {
+        protein_metadata = this.state.proteinResults.concat(protein_metadata);
       }
-      this.setState({ protein_results: protein_metadata });
+      this.setState({ proteinResults: protein_metadata });
     }
 
     if ("sabio_reaction_entries" in data) {
@@ -138,15 +138,15 @@ class SearchResults extends Component {
 
       let reaction_metadata = formatReaction(reaction_data);
       if (reaction_metadata.length < size) {
-        this.setState({ reactions_load: false });
+        this.setState({ loadReactions: false });
       }
-      if (this.state.reaction_results != null) {
-        reaction_metadata = this.state.reaction_results.concat(
+      if (this.state.reactionResults != null) {
+        reaction_metadata = this.state.reactionResults.concat(
           reaction_metadata
         );
       }
 
-      this.setState({ reaction_results: reaction_metadata });
+      this.setState({ reactionResults: reaction_metadata });
     }
   }
 
@@ -156,9 +156,9 @@ class SearchResults extends Component {
     };
 
     if (
-      this.state.metabolite_results == null &&
-      this.state.protein_results == null &&
-      this.state.reaction_results == null
+      this.state.metaboliteResults == null &&
+      this.state.proteinResults == null &&
+      this.state.reactionResults == null
     ) {
       return (
         <div className="loader_container">
@@ -193,13 +193,13 @@ class SearchResults extends Component {
         </div>
 
         <SearchResultsList
-          metabolite_results={this.state.metabolite_results}
-          protein_results={this.state.protein_results}
-          reaction_results={this.state.reaction_results}
-          handle_fetch_data={this.fetch_data}
-          metabolite_load={this.state.metabolite_load}
-          protein_load={this.state.protein_load}
-          reactions_load={this.state.reactions_load}
+          loadMetabolites={this.state.loadMetabolites}
+          loadProteins={this.state.loadProteins}
+          loadReactions={this.state.loadReactions}
+          fetchDataHandler={this.fetchData}
+          metaboliteResults={this.state.metaboliteResults}
+          proteinResults={this.state.proteinResults}
+          reactionResults={this.state.reactionResults}
         />
       </div>
     );

@@ -8,22 +8,6 @@ import { Link } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import { abstractMolecule } from "~/data/actions/pageAction";
 
-const products = [{ id: "3", name: "bob" }];
-const columns = [
-  {
-    dataField: "id",
-    text: "Product ID"
-  },
-  {
-    dataField: "name",
-    text: "Product Name"
-  },
-  {
-    dataField: "price",
-    text: "Product Price"
-  }
-];
-
 @connect(store => {
   return {};
 })

@@ -23,14 +23,11 @@ function formatMetabolite(data, organism) {
 
       new_dict["primary_text"] =
         name[0].toUpperCase() + name.substring(1, name.length);
-      let description = [];
       if (data[i]["ymdb_id"] != null) {
-        //description = description + "YMDB: " + data[i]["ymdb_id"]
         href_ymdb = "http://www.ymdb.ca/compounds/" + data[i]["ymdb_id"];
         ymdb_preface = "YMDB: ";
         //ymdb_secondary = 'YMDB: <a href={href} rel="noopener"> {data[i]["ymdb_id"] } </a>'
 
-        //description.push(<p> YMDB: <a href={href} rel="noopener"> {data[i]["ymdb_id"] } </a></p>)
         //"YMDB ID: " + data[i]["ymdb_id"] + "ECMDB ID: " + data[i]["m2m_id"]
       }
 
@@ -39,12 +36,10 @@ function formatMetabolite(data, organism) {
           comma = ", ";
         }
 
-        //description = description + "ECMDB: " + data[i]["m2m_id"];
         href_ecmdb = "http://ecmdb.ca/compounds/" + data[i]["m2m_id"];
         ecmdb_preface = "ECMDB: ";
         //ecmdb_secondary = 'ECMDB: <a href={href} rel="noopener"> {data[i]["m2m_id"]} </a>';
       }
-      let max_len = 150;
       new_dict["secondary_text"] = (
         <div className="external_links">
           <p>
@@ -58,14 +53,6 @@ function formatMetabolite(data, organism) {
           </p>
         </div>
       );
-      /*
-      if (description.length <= max_len || description == null){
-        new_dict['secondary_text'] = description;
-      }
-      else{
-        new_dict['secondary_text'] = description.substring(0, description.indexOf(" ", max_len)) + " ...";
-      }
-      */
       new_dict["url"] = "/metabolite/" + name + "/" + organism;
       newMetaboliteMetadataDict[inchi_key] = new_dict;
     }

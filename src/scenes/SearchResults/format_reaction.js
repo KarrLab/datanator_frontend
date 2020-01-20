@@ -1,4 +1,3 @@
-import React from "react";
 import "~/scenes/BiochemicalEntityDetails/Metabolite/Metabolite.scss";
 
 function formatPart(parts) {
@@ -23,7 +22,6 @@ function getParticipant(participants) {
 
 function formatReaction(data) {
   let newReactionMetadataDict = {};
-  let reaction_results = [];
   let start = 0;
   for (var i = start; i < data.length; i++) {
     let reactionID = data[i]["rxn_id"];
@@ -50,9 +48,6 @@ function formatReaction(data) {
     new_dict["secondary_text"] = reaction_equation;
 
     //formatPart(substrates) + ' ==> ' + formatPart(products)
-
-    let sub_inchis = data[i]["substrates"];
-    let prod_inchis = data[i]["products"];
 
     new_dict["url"] =
       "/reaction/data/?substrates_inchi=" +

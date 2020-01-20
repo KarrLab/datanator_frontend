@@ -2,12 +2,10 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import MeasurementsBoxScatterPlot from "../MeasurementsBoxScatterPlot/MeasurementsBoxScatterPlot";
+import { mean, median, std } from 'mathjs';
 import {
-  mean,
-  median,
   range,
-  standardDeviation,
-  round,
+  roundToDecimal,
   jsonToCsv
 } from "~/utils/utils";
 
@@ -94,7 +92,7 @@ class StatsToolPanel extends Component {
     });
     var new_mean = this.standardRound(mean(total_data));
     var new_median = this.standardRound(median(total_data));
-    var new_std_dev = this.standardRound(standardDeviation(total_data));
+    var new_std_dev = this.standardRound(std(total_data));
     var new_range = range(total_data);
 
     this.setState({
@@ -103,7 +101,7 @@ class StatsToolPanel extends Component {
       std_dev: new_std_dev,
       //selected_column: selected_column,
       range:
-        round(new_range[0], 3) + "-" + round(new_range[new_range.length - 1], 3)
+        roundToDecimal(new_range[0], 3) + "-" + roundToDecimal(new_range[new_range.length - 1], 3)
     });
   }
 
@@ -114,7 +112,7 @@ class StatsToolPanel extends Component {
     } else {
       rounder = 7;
     }
-    return round(number, rounder);
+    return roundToDecimal(number, rounder);
   }
 
   /**
