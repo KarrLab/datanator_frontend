@@ -4,10 +4,7 @@ import { withRouter } from "react-router";
 
 import { MetadataSection } from "./MetadataSection";
 import { getSearchData } from "~/services/MongoApi";
-import {
-  setTotalData,
-  setSelectedData
-} from "~/data/actions/resultsAction";
+import { setTotalData, setSelectedData } from "~/data/actions/resultsAction";
 
 import { AgGridReact } from "ag-grid-react";
 import { AllCommunityModules } from "@ag-grid-community/all-modules";
