@@ -1,3 +1,5 @@
+@import 'colors';
+
 .content-container-home-scene {
   margin-top: 50px;
   margin-bottom: 1.5rem;
@@ -17,7 +19,7 @@
     margin-left: auto;
     margin-right: auto;
     width: 4rem;
-    border-bottom: 2px solid #1890ff;
+    border-bottom: 2px solid $color-primary;
     margin-top: 2rem;
     margin-bottom: 2rem;
   }
@@ -28,7 +30,7 @@
     margin-right: auto;
     padding-top: calc(3rem - 2px);
     padding-bottom: 3rem;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid $color-border;
   }
 
   .section-columns {
@@ -76,14 +78,13 @@
 
   .section-column-subtitle {
     font-size: 17px;
-    color: #1890ff;
+    color: $color-primary;
     margin-top: 0.5rem;
   }
 
   /* introduction */
   .intro {
-    background: #1890ff22;
-    background: linear-gradient(0deg, #1890ff22 0%, #1890ff55 100%);
+    background: linear-gradient(0deg, rgba($color-primary, 0.1) 0%, rgba($color-primary, 0.4) 100%);
 
     .logo-title {
       display: flex;
@@ -98,7 +99,7 @@
 
     h1 {
       font-size: 64px;
-      color: #1890ff;
+      color: $color-primary;
       margin: 0;
       padding-bottom: 3px;
     }
@@ -110,7 +111,7 @@
       margin-left: 0;
       margin-right: 0;
       font-style: italic;
-      color: #1890ff99;
+      color: $color-primary-light;
       text-align: center;
     }
 
@@ -165,7 +166,7 @@
     margin-bottom: 2rem;
 
     .vertical-workflow-el-line {
-      border-left: 2px dotted #e0e0e0;
+      border-left: 2px dotted $color-border;
       height: calc(100% + 2rem);
       width: 0;
       position: relative;

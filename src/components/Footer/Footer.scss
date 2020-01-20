@@ -1,3 +1,5 @@
+@import 'colors';
+
 .footer-component {
   padding-bottom: 1.5rem;
   margin-left: auto;
@@ -11,13 +13,13 @@
     margin-right: 1rem;
   }
 
-  color: #1890ff99;
+  color: $color-primary-lighter;
 
   a {
-    color: #1890ff99;
+    color: $color-primary-lighter;
   }
 
   a:hover {
-    color: #1890ff;
+    color: $color-primary;
   }
 }

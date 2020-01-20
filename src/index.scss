@@ -1,6 +1,8 @@
+@import 'colors';
+
 body {
   margin: 0;
-  color: #333;
+  color: $color-text;
 }
 
 /* paragraphs */
@@ -37,7 +39,7 @@ ol.no-top-margin {
 /* links */
 a,
 a:hover {
-  color: #1890ff;
+  color: $color-primary;
 }
 
 a:hover {
@@ -76,8 +78,8 @@ a:hover {
 }
 
 .loader {
-  border: 16px solid #f3f3f3; /* Light grey */
-  border-top: 16px solid #3498db; /* Blue */
+  border: 16px solid $color-border; /* Light grey */
+  border-top: 16px solid $color-primary; /* Blue */
   border-radius: 50%;
   height: 100px;
   left: 50%;
@@ -110,7 +112,7 @@ a:hover {
 
 .content-block-content {
   padding: 0.5rem;
-  border: 1px solid #e0e0e0;
+  border: 1px solid $color-border;
   border-radius: 3px;
 }
 
@@ -124,7 +126,7 @@ a:hover {
   min-width: 160px;
 
   .content-block-heading {
-    color: #999;
+    color: $color-heading;
   }
 
   ul {
@@ -143,18 +145,18 @@ a:hover {
   }
 
   a {
-    color: #333;
+    color: $color-text;
   }
 
   a:hover {
-    color: #1890ff;
+    color: $color-primary;
   }
 }
 
 /* block section (section with a heading bar, background color, and border) */
 .section {
   .content-block-heading {
-    color: #1890ff;
+    color: $color-primary;
   }
 }
 
@@ -167,38 +169,38 @@ a:hover {
       0 8px 24px rgba(0, 0, 0, 0.2);
 
     .bp3-popover-arrow-fill {
-      fill: #1890ff;
+      fill: $color-primary;
     }
   }
 
   .bp3-menu {
     max-height: 200px;
     overflow-x: hidden;
-    background: #1890ff;
-    color: #fff;
+    background: $color-primary;
+    color: $color-white;
 
     .bp3-menu-item.bp3-intent-primary.bp3-active {
-      background: #56aafe;
+      background: $color-primary-light;
     }
 
     .bp3-menu-item:hover,
     .bp3-menu-item:active {
-      background-color: #56aafe;
+      background-color: $color-primary-light;
     }
 
     .bp3-menu-item.bp3-disabled {
-      color: #fff9 !important;
+      color: $color-primary-lighter !important;
     }
   }
 }
 
 /* highlight */
 .highlight-primary {
-  color: #1890ff;
+  color: $color-primary;
 }
 
 .highlight-accent {
-  color: #ffc306;
+  color: $color-accent;
 }
 
 /* focus */
