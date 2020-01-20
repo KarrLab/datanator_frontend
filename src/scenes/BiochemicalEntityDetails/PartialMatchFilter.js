@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import store from "~/data/Store";
 
 function getLineage() {
-  return this.getCurrentStateFromStore().results.taxon_lineage;
+  return this.getCurrentStateFromStore().results.taxonLineage;
 }
 
 class PartialMatchFilter extends Component {

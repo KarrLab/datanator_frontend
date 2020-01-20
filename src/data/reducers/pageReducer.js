@@ -1,9 +1,8 @@
-export const defaultState = {
+const defaultState = {
   url: "",
   moleculeAbstract: false
 };
 
-//let taxonFilter = null;
 function pageReducer(state = defaultState, action) {
   if (action === undefined) {
     return state;
@@ -29,4 +28,5 @@ function pageReducer(state = defaultState, action) {
     }
   }
 }
+
 export default pageReducer;

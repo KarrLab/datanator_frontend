@@ -6,7 +6,7 @@ import { MetadataSection } from "./MetadataSection";
 import { getSearchData } from "~/services/MongoApi";
 import { abstractMolecule } from "~/data/actions/pageAction";
 import {
-  set_lineage,
+  setLineage,
   setTotalData,
   setSelectedData
 } from "~/data/actions/resultsAction";
@@ -221,7 +221,7 @@ class Metabolite extends Component {
       "taxon",
       "canon_rank_distance_by_name/?name=" + this.props.match.params.organism
     ]).then(response => {
-      //this.props.dispatch(set_lineage(response.data));
+      //this.props.dispatch(setLineage(response.data));
       this.setState({ lineage: response.data });
     });
 
@@ -234,7 +234,7 @@ class Metabolite extends Component {
 
       let newMetaboliteMetadataDict = {};
 
-      //this.props.dispatch(set_lineage(data[2][0]));
+      //this.props.dispatch(setLineage(data[2][0]));
 
       let tani = false;
       let a = "asdfa";

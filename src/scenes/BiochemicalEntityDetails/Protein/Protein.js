@@ -5,7 +5,7 @@ import { withRouter } from "react-router";
 import { MetadataSection } from "./MetadataSection";
 import { getSearchData } from "~/services/MongoApi";
 import {
-  set_lineage,
+  setLineage,
   setTotalData,
   setSelectedData
 } from "~/data/actions/resultsAction";
@@ -302,7 +302,7 @@ class Protein extends Component {
           "taxon",
           "canon_rank_distance/?ncbi_id=" + data[i].ncbi_taxonomy_id
         ]).then(response => {
-          this.props.dispatch(set_lineage(response.data));
+          this.props.dispatch(setLineage(response.data));
         });
       }
     }

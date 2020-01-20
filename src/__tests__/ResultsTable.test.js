@@ -5,12 +5,7 @@ import { Provider } from 'react-redux'
 
 import { ResultsTable, getSelectedData } from '~/components/Results/ResultsTable.js';
 import createStore from '~/data/Store.js'
-import {
-  getTotalColumns,
-  filter_taxon,
-  set_lineage,
-  setTotalData,
-} from '~/data/actions/resultsAction';
+import { setTotalData } from '~/data/actions/resultsAction';
 
 import axiosMock from 'axios'
 import { fireEvent, waitForElement } from '@testing-library/react'

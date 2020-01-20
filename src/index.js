@@ -1,8 +1,6 @@
 // React Libraries
 import React from "react";
 import ReactDOM from "react-dom";
-import PropTypes from "prop-types";
-
 //Router (enables persistant URLS and History)
 import { BrowserRouter, Route } from "react-router-dom";
 

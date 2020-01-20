@@ -1,8 +1,8 @@
-function set_lineage(lineage_list) {
+function setLineage(lineageList) {
   return function(dispatch) {
     dispatch({
       type: "SET_LINEAGE",
-      payload: lineage_list
+      payload: lineageList
     });
   };
 }
@@ -23,4 +23,4 @@ function setSelectedData(selectedData) {
     });
   };
 }
-export { set_lineage, setTotalData, setSelectedData };
+export { setLineage, setTotalData, setSelectedData };

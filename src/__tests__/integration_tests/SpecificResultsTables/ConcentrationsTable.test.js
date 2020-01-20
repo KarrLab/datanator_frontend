@@ -5,12 +5,6 @@ import { Provider } from 'react-redux'
 import { Link, Route, Router, Switch } from 'react-router-dom'
 import { createMemoryHistory } from 'history'
 import createStore from '~/data/Store.js'
-import {
-  getTotalColumns,
-  filter_taxon,
-  set_lineage,
-  setTotalData,
-} from '~/data/actions/resultsAction';
 
 import axiosMock from 'axios'
 import { fireEvent, waitForElement } from '@testing-library/react'
