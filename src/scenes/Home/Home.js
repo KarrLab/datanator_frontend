@@ -48,12 +48,11 @@ class Home extends Component {
             <p>
               <i>Datanator</i> is a toolkit for discovering the data needed to
               build, calibrate, and validate mechanistic models of cells.{" "}
-              <i>Datanator</i> is composed of an integrated database of
-              genomic and biochemical data, this web application for
-              identifying relevant data for modeling a specific organism in a
-              specific environmental condition, and a REST API and Python
-              library for programmatically discovering data for large models
-              such as{" "}
+              <i>Datanator</i> is composed of an integrated database of genomic
+              and biochemical data, this web application for identifying
+              relevant data for modeling a specific organism in a specific
+              environmental condition, and a REST API and Python library for
+              programmatically discovering data for large models such as{" "}
               <a
                 href="https://www.wholecell.org"
                 target="_blank"
@@ -90,8 +89,8 @@ class Home extends Component {
                   <i>Datanator</i> can help investigators find genomic and
                   biochemical data to identify the initial conditions and rate
                   parameters of continuous and stochastic dynamical models. In
-                  turn, this can help investigators construct more
-                  comprehensive and more accurate models.
+                  turn, this can help investigators construct more comprehensive
+                  and more accurate models.
                 </div>
               </div>
 
@@ -109,10 +108,10 @@ class Home extends Component {
                 </div>
                 <div className="section-column-description">
                   <i>Datanator</i> can help investigators improve
-                  constraint-based models of metabolism by helping
-                  investigators find enzyme abundances and reaction velocities
-                  to constrain the predicted fluxes of chemical transformation
-                  and transport reactions.
+                  constraint-based models of metabolism by helping investigators
+                  find enzyme abundances and reaction velocities to constrain
+                  the predicted fluxes of chemical transformation and transport
+                  reactions.
                 </div>
               </div>
 
@@ -130,8 +129,8 @@ class Home extends Component {
                   <i>Datanator</i> can help investigators modify models to
                   capture other organisms, tissues, and cell types by helping
                   investigators find data to re-calibrate model parameters. In
-                  turn, this can help investigators compare organisms,
-                  tissues, and cell types.
+                  turn, this can help investigators compare organisms, tissues,
+                  and cell types.
                 </div>
               </div>
 
@@ -162,8 +161,8 @@ class Home extends Component {
         <div className="section data-types">
           <div className="section-inner-container">
             <h2 className="section-title">
-              <span className="highlight-primary">Integrated database</span>{" "}
-              of key data for cell modeling
+              <span className="highlight-primary">Integrated database</span> of
+              key data for cell modeling
             </h2>
             <div className="section-title-separator"></div>
             <div className="section-columns section-4-columns">
@@ -178,8 +177,8 @@ class Home extends Component {
                   Metabolite concentrations
                 </div>
                 <div className="section-column-description">
-                  1586 measurements of the concentrations of 5225 metabolites
-                  in 2 organisms aggregated from{" "}
+                  1586 measurements of the concentrations of 5225 metabolites in
+                  2 organisms aggregated from{" "}
                   <a
                     href="http://ecmdb.ca/"
                     target="_blank"
@@ -232,7 +231,7 @@ class Home extends Component {
                   >
                     PAXdb
                   </a>
-                  , {" "}
+                  ,{" "}
                   <a
                     href="https://www.genome.jp/kegg/ko.html"
                     target="_blank"
@@ -247,7 +246,7 @@ class Home extends Component {
                     rel="noopener noreferrer"
                   >
                     UniProt
-                  </a>                  
+                  </a>
                   .
                 </div>
               </div>
@@ -297,9 +296,8 @@ class Home extends Component {
                 <div className="vertical-workflow-el-text">
                   <div className="vertical-workflow-el-text-inner">
                     <div className="vertical-workflow-el-title">
-                      Step 1:{" "}
-                      <span className="highlight-primary">Search</span> for a
-                      biochemical entity (metabolite, RNA, protein, or
+                      Step 1: <span className="highlight-primary">Search</span>{" "}
+                      for a biochemical entity (metabolite, RNA, protein, or
                       reaction)
                     </div>
                     <div className="vertical-workflow-el-description">
@@ -307,8 +305,8 @@ class Home extends Component {
                       <HashLink to="#top" scroll={scrollTo}>
                         top
                       </HashLink>{" "}
-                      to search for measurements of a metabolite, RNA,
-                      protein, or reaction relevant to a specific organism.
+                      to search for measurements of a metabolite, RNA, protein,
+                      or reaction relevant to a specific organism.
                     </div>
                   </div>
                 </div>
@@ -324,16 +322,16 @@ class Home extends Component {
                 <div className="vertical-workflow-el-text">
                   <div className="vertical-workflow-el-title">
                     Step 2: <span className="highlight-primary">Filter</span>{" "}
-                    for potentially relevant measurements of similar entities
-                    in similar cells and similar environments
+                    for potentially relevant measurements of similar entities in
+                    similar cells and similar environments
                   </div>
                   <div className="vertical-workflow-el-description">
                     Select a metabolite, RNA, protein, or reaction class (e.g,
                     KEGG ortholog group) to obtain potentially relevant
-                    measurements to the entity of interest. Then filter for
-                    data about similar entities (e.g., by sequence similarity)
-                    measured in similar organisms (by phylogenetic distance)
-                    and environments (e.g., temperature, pH).
+                    measurements to the entity of interest. Then filter for data
+                    about similar entities (e.g., by sequence similarity)
+                    measured in similar organisms (by phylogenetic distance) and
+                    environments (e.g., temperature, pH).
                   </div>
                 </div>
               </div>
@@ -352,9 +350,9 @@ class Home extends Component {
                     relevant measurements
                   </div>
                   <div className="vertical-workflow-el-description">
-                    Inspect each potentially relevant measurement and select
-                    the most relevant measurements to the entity and organism
-                    of interest.
+                    Inspect each potentially relevant measurement and select the
+                    most relevant measurements to the entity and organism of
+                    interest.
                   </div>
                 </div>
               </div>
@@ -372,8 +370,8 @@ class Home extends Component {
                     the distribution of relevant measurements
                   </div>
                   <div className="vertical-workflow-el-description">
-                    Review box plots and statistical properties of the
-                    selected and potentially relevant measurements.
+                    Review box plots and statistical properties of the selected
+                    and potentially relevant measurements.
                   </div>
                 </div>
               </div>
@@ -404,8 +402,7 @@ class Home extends Component {
         <div className="section about">
           <div className="section-inner-container">
             <h2 className="section-title">
-              <span className="highlight-primary">About</span>{" "}
-              <i>Datanator</i>
+              <span className="highlight-primary">About</span> <i>Datanator</i>
             </h2>
             <div className="section-title-separator"></div>
             <p>

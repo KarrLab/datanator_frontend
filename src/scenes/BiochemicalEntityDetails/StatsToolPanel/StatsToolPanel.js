@@ -2,12 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import MeasurementsBoxScatterPlot from "../MeasurementsBoxScatterPlot/MeasurementsBoxScatterPlot";
-import { mean, median, std } from 'mathjs';
-import {
-  range,
-  roundToDecimal,
-  jsonToCsv
-} from "~/utils/utils";
+import { mean, median, std } from "mathjs";
+import { range, roundToDecimal, jsonToCsv } from "~/utils/utils";
 
 import "./StatsToolPanel.scss";
 
@@ -101,7 +97,9 @@ class StatsToolPanel extends Component {
       std_dev: new_std_dev,
       //selected_column: selected_column,
       range:
-        roundToDecimal(new_range[0], 3) + "-" + roundToDecimal(new_range[new_range.length - 1], 3)
+        roundToDecimal(new_range[0], 3) +
+        "-" +
+        roundToDecimal(new_range[new_range.length - 1], 3)
     });
   }
 

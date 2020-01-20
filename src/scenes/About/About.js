@@ -61,9 +61,7 @@ class About extends Component {
 
         <div className="content-column">
           <div className="content-block section" id="features">
-            <h2 className="content-block-heading">
-              Motivation and features
-            </h2>
+            <h2 className="content-block-heading">Motivation and features</h2>
             <div className="content-block-content">
               <p>
                 Systems biology aims to understand how genotype influences
@@ -76,45 +74,43 @@ class About extends Component {
                   whole-cell models
                 </a>
                 , are a promising tool for understanding the molecular
-                determinants of behavior. However, it is difficult to obtain
-                the large and varied data needed for mechanistic modeling.
-                Although substantial data is already publicly available, the
-                data is difficult to obtain because it is scattered across
-                numerous databases and publications and described with
-                different identifiers, units, and formats. In addition, there
-                are few tools for finding data that is relevant to modeling a
-                specific cell in a specific environment. These barriers impede
+                determinants of behavior. However, it is difficult to obtain the
+                large and varied data needed for mechanistic modeling. Although
+                substantial data is already publicly available, the data is
+                difficult to obtain because it is scattered across numerous
+                databases and publications and described with different
+                identifiers, units, and formats. In addition, there are few
+                tools for finding data that is relevant to modeling a specific
+                cell in a specific environment. These barriers impede
                 mechanistic modeling.
               </p>
               <p>
                 To accelerate cell modeling, we developed <i>Datanator</i>, a
                 toolkit for systematically discovering data for modeling a
                 specific cell in a specific environment. <i>Datanator</i>{" "}
-                includes an integrated database of genomic and biochemical
-                data about several aspects of cells, this web application for
-                searching the database for data relevant to specific cells,
-                and a REST API and Python library for programmatically
-                aggregating data for large models. The web application enables
-                investigators to search for experimental measurements of
-                biochemical parameters (e.g. metabolite concentration,
-                reaction rate, etc.) relevant to a specific cell (taxon, cell
-                type) in a specific environment (e.g., temperature, pH, growth
-                media, etc.). For each search, this web application displays a
-                filterable and sortable list of relevant experimental
-                measurements aggregated from a range of sources.
+                includes an integrated database of genomic and biochemical data
+                about several aspects of cells, this web application for
+                searching the database for data relevant to specific cells, and
+                a REST API and Python library for programmatically aggregating
+                data for large models. The web application enables investigators
+                to search for experimental measurements of biochemical
+                parameters (e.g. metabolite concentration, reaction rate, etc.)
+                relevant to a specific cell (taxon, cell type) in a specific
+                environment (e.g., temperature, pH, growth media, etc.). For
+                each search, this web application displays a filterable and
+                sortable list of relevant experimental measurements aggregated
+                from a range of sources.
               </p>
             </div>
           </div>
 
           <div className="content-block section" id="data">
-            <h2 className="content-block-heading">
-              Data types and sources
-            </h2>
+            <h2 className="content-block-heading">Data types and sources</h2>
             <div className="content-block-content">
               <p>
                 Currently, <i>Datanator</i> includes measured metabolite
-                concentrations, protein abundances, and reaction rate
-                parameters integrated from{" "}
+                concentrations, protein abundances, and reaction rate parameters
+                integrated from{" "}
                 <a
                   href={"http://ecmdb.ca/"}
                   target="_blank"
@@ -161,9 +157,9 @@ class About extends Component {
             </h2>
             <div className="content-block-content">
               <p className="no-bottom-margin">
-                To help investigators find data about specific cells in
-                specific environments, <i>Datanator</i> provides multiple
-                tools for searching and filtering the integrated database.
+                To help investigators find data about specific cells in specific
+                environments, <i>Datanator</i> provides multiple tools for
+                searching and filtering the integrated database.
               </p>
               <ul className="no-top-margin">
                 <li>
@@ -207,9 +203,8 @@ class About extends Component {
                 </li>
                 <li>
                   Phylogenetic similarity: Users can identify measurements
-                  observed in closely related taxa to their taxon of interest
-                  by filtering measurements according to their distance along
-                  the{" "}
+                  observed in closely related taxa to their taxon of interest by
+                  filtering measurements according to their distance along the{" "}
                   <a
                     href={
                       "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi"
@@ -242,8 +237,7 @@ class About extends Component {
                   {" "}
                   Karr Lab
                 </a>{" "}
-                at the Icahn School of Medicine at Mount Sinai in New York,
-                US.
+                at the Icahn School of Medicine at Mount Sinai in New York, US.
               </p>
               <div className="developers-group main-developers">
                 <h3>Main developers</h3>
@@ -256,9 +250,7 @@ class About extends Component {
                     />
                     <div className="developer-name">
                       Yosef Roth
-                      <SocialIcon
-                        url="https://www.linkedin.com/in/yosef-roth-a80a378a"
-                      />
+                      <SocialIcon url="https://www.linkedin.com/in/yosef-roth-a80a378a" />
                     </div>
                   </div>
                   <div className="main-developer">
@@ -269,9 +261,7 @@ class About extends Component {
                     />
                     <div className="developer-name">
                       Zhouyang Lian
-                      <SocialIcon
-                        url="https://www.linkedin.com/in/zlian/"
-                      />
+                      <SocialIcon url="https://www.linkedin.com/in/zlian/" />
                     </div>
                   </div>
                   <div className="main-developer">
@@ -282,9 +272,7 @@ class About extends Component {
                     />
                     <div className="developer-name">
                       Jonathan Karr
-                      <SocialIcon
-                        url="https://www.linkedin.com/in/jonrkarr/"
-                      />
+                      <SocialIcon url="https://www.linkedin.com/in/jonrkarr/" />
                     </div>
                   </div>
                 </div>
@@ -294,25 +282,18 @@ class About extends Component {
                 <div className="additional-developers-group-list">
                   <div className="developer-name">
                     Bilal Shaikh
-                    <SocialIcon
-                      url="https://www.linkedin.com/in/bilalshaikh42/"
-                    />
+                    <SocialIcon url="https://www.linkedin.com/in/bilalshaikh42/" />
                   </div>
                   <div className="developer-name">
                     Saahith Pochiraju
-                    <SocialIcon
-                      url="https://www.linkedin.com/in/saahithpochiraju/"
-                    />
+                    <SocialIcon url="https://www.linkedin.com/in/saahithpochiraju/" />
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div
-            className="content-block section funding"
-            id="acknowledgements"
-          >
+          <div className="content-block section funding" id="acknowledgements">
             <h2 className="content-block-heading">Acknowledgements</h2>
 
             <div className="content-block-content">
@@ -325,8 +306,8 @@ class About extends Component {
                 >
                   Center for Reproducible Biomedical Modeling
                 </a>{" "}
-                from the National Institute of Bioimaging and Bioengineering
-                and the National Institute of General Medical Sciences of the
+                from the National Institute of Bioimaging and Bioengineering and
+                the National Institute of General Medical Sciences of the
                 National Institutes of Health and the National Science
                 Foundation (award P41EB023912).{" "}
               </p>
@@ -384,9 +365,7 @@ class About extends Component {
           </div>
 
           <div className="content-block section" id="source">
-            <h2 className="content-block-heading">
-              Source code and license
-            </h2>
+            <h2 className="content-block-heading">Source code and license</h2>
 
             <div className="content-block-content">
               <p className="no-bottom-margin">

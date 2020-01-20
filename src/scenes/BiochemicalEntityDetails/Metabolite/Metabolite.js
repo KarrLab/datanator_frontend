@@ -99,7 +99,7 @@ class Metabolite extends Component {
               return (
                 '<a href="http://ecmdb.ca/compounds/' +
                 params.value.id +
-                '"rel="noopener">' +
+                '" target="_blank" rel="noopener noreferrer">' +
                 "ECMDB" +
                 "</a>"
               );
@@ -107,7 +107,7 @@ class Metabolite extends Component {
               return (
                 '<a href="http://www.ymdb.ca/compounds/' +
                 params.value.id +
-                '"rel="noopener">' +
+                '" target="_blank" rel="noopener noreferrer">' +
                 "YMDB" +
                 "</a>"
               );

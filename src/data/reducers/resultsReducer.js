@@ -25,7 +25,11 @@ let filters = {};
 const linkFormatter = (cell, row) => {
   if (cell) {
     let url = "http://sabiork.h-its.org/reacdetails.jsp?reactid=" + cell;
-    return <a href={url}>{"SabioRK ID: " + cell.toString()} </a>;
+    return (
+      <a href={url} target="_blank" rel="noopener noreferrer">
+        {"SabioRK ID: " + cell.toString()}{" "}
+      </a>
+    );
   } else {
     return <div></div>;
   }

@@ -25,7 +25,7 @@ function formatMetabolite(data, organism) {
       if (data[i]["ymdb_id"] != null) {
         href_ymdb = "http://www.ymdb.ca/compounds/" + data[i]["ymdb_id"];
         ymdb_preface = "YMDB: ";
-        //ymdb_secondary = 'YMDB: <a href={href} rel="noopener"> {data[i]["ymdb_id"] } </a>'
+        //ymdb_secondary = 'YMDB: <a href={href} target="_blank" rel="noopener noreferrer"> {data[i]["ymdb_id"] } </a>'
 
         //"YMDB ID: " + data[i]["ymdb_id"] + "ECMDB ID: " + data[i]["m2m_id"]
       }
@@ -37,15 +37,18 @@ function formatMetabolite(data, organism) {
 
         href_ecmdb = "http://ecmdb.ca/compounds/" + data[i]["m2m_id"];
         ecmdb_preface = "ECMDB: ";
-        //ecmdb_secondary = 'ECMDB: <a href={href} rel="noopener"> {data[i]["m2m_id"]} </a>';
+        //ecmdb_secondary = 'ECMDB: <a href={href} target="_blank" rel="noopener noreferrer"> {data[i]["m2m_id"]} </a>';
       }
       new_dict["secondary_text"] = (
         <div className="external-links">
           <p>
-            {ymdb_preface} <a href={href_ymdb}>{data[i]["ymdb_id"]}</a>
+            {ymdb_preface}{" "}
+            <a href={href_ymdb} target="_blank" rel="noopener noreferrer">
+              {data[i]["ymdb_id"]}
+            </a>
             {comma}
             {ecmdb_preface}{" "}
-            <a href={href_ecmdb} rel="noopener">
+            <a href={href_ecmdb} target="_blank" rel="noopener noreferrer">
               {" "}
               {data[i]["m2m_id"]}{" "}
             </a>

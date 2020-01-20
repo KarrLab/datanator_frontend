@@ -210,7 +210,11 @@ class TanimotoFilter extends Component {
   render() {
     let buttons = this.state.buttons;
     return (
-      <div className={"biochemical-entity-scene-slider-filter biochemical-entity-scene-tanimoto-slider-filter"}>
+      <div
+        className={
+          "biochemical-entity-scene-slider-filter biochemical-entity-scene-tanimoto-slider-filter"
+        }
+      >
         <IOSSlider
           onChange={this.onChange}
           orientation="horizontal"

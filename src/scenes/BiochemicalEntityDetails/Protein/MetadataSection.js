@@ -115,14 +115,22 @@ class MetadataSection extends Component {
       let link = "";
       if (i === 0) {
         link = (
-          <a href={"https://www.uniprot.org/uniprot/" + uniprot_ids[i]}>
+          <a
+            href={"https://www.uniprot.org/uniprot/" + uniprot_ids[i]}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             {" "}
             {uniprot_ids[i]}{" "}
           </a>
         );
       } else {
         link = (
-          <a href={"https://www.uniprot.org/uniprot/" + uniprot_ids[i]}>
+          <a
+            href={"https://www.uniprot.org/uniprot/" + uniprot_ids[i]}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             {" "}
             {uniprot_ids[i]},{" "}
           </a>
@@ -159,6 +167,8 @@ class MetadataSection extends Component {
                   "https://www.genome.jp/dbget-bin/www_bget?ko:" +
                   proteinMetadata.ko_number
                 }
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 {" "}
                 {proteinMetadata.ko_number}

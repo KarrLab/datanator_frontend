@@ -20,7 +20,7 @@ function formatProtein(data, organism) {
         <div className="external-links">
           <p>
             KEGG:{" "}
-            <a href={href} rel="noopener">
+            <a href={href} target="_blank" rel="noopener noreferrer">
               {" "}
               {ko_number}{" "}
             </a>

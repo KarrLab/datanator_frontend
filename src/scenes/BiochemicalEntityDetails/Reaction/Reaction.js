@@ -185,7 +185,7 @@ class Reaction extends Component {
               return (
                 '<a href="http://sabio.h-its.org/reacdetails.jsp?reactid=' +
                 params.value.reactionID +
-                '"rel="noopener">' +
+                '" target="_blank" rel="noopener noreferrer">' +
                 "SABIO-RK" +
                 "</a>"
               );

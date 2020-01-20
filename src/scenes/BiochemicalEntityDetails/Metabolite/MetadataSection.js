@@ -101,8 +101,8 @@ class MetadataSection extends Component {
           <div className="metadata-description-abstract">
             <p>
               <b>Name:</b>{" "}
-              <a
-                href={
+              <Link
+                to={
                   "/metabolite/" +
                   metaboliteMetadata[i].name +
                   "/" +
@@ -110,7 +110,7 @@ class MetadataSection extends Component {
                 }
               >
                 {metaboliteMetadata[i].name}
-              </a>
+              </Link>
             </p>
             <p>
               <b>Chemical Formula:</b> {metaboliteMetadata[i].chemical_formula}

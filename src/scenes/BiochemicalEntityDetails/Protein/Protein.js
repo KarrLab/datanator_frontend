@@ -114,7 +114,7 @@ class Protein extends Component {
               return (
                 '<a href="https://pax-db.org/search?q=' +
                 params.value.uniprot_id +
-                '"rel="noopener">' +
+                '" target="_blank" rel="noopener noreferrer">' +
                 "PAXdb" +
                 "</a>"
               );
@@ -122,7 +122,7 @@ class Protein extends Component {
               return (
                 '<a href="https://www.ymdb.ca/compounds/' +
                 params.value.id +
-                '"rel="noopener">' +
+                '" target="_blank" rel="noopener noreferrer">' +
                 "YMDB" +
                 "</a>"
               );
@@ -139,7 +139,7 @@ class Protein extends Component {
               return (
                 '<a href="https://www.uniprot.org/uniprot/' +
                 params.value.uniprot_id +
-                '"rel="noopener">' +
+                '" target="_blank" rel="noopener noreferrer">' +
                 params.value.uniprot_id +
                 "</a>"
               );
@@ -147,7 +147,7 @@ class Protein extends Component {
               return (
                 '<a href="https://www.ymdb.ca/compounds/' +
                 params.value.id +
-                '"rel="noopener">' +
+                '" target="_blank" rel="noopener noreferrer">' +
                 "YMDB" +
                 "</a>"
               );
