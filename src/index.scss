@@ -32,7 +32,9 @@ ol:last-child {
 }
 
 ul.no-top-margin,
-ol.no-top-margin {
+ol.no-top-margin,
+ul:first-child,
+ol:first-child {
   margin-top: 0;
 }
 

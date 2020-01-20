@@ -1,0 +1,25 @@
+.content-container-help-scene {
+  /* Tutorial */
+  .tutorial {
+    font-weight: bold;
+  }
+
+  .tutorial-step:not(:first-child) {
+    margin-top: 0.5rem;
+  }
+
+  .tutorial-step-text {
+    font-weight: normal;
+  }
+
+  /* FAQ */
+  .faq {
+    .faq-q {
+      font-weight: bold;
+    }
+  }
+
+  .faq:not(:first-child) {
+    margin-top: 0.5rem;
+  }
+}
