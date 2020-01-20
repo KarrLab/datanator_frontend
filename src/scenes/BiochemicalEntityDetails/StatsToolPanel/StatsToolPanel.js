@@ -160,7 +160,7 @@ class StatsToolPanel extends Component {
       return <div></div>;
     } else {
       return (
-        <div className="consensus_data">
+        <div className="biochemical-entity-scene-stats-tool-panel">
           <div>
             <p>
               <b>Concentrations</b>

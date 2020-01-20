@@ -115,6 +115,6 @@ export default class MeasurementsBoxScatterPlot extends Component {
   }
 
   render() {
-    return <canvas ref={this.canvas} className="box-plot-component" />;
+    return <canvas ref={this.canvas} className="biochemical-entity-scene-measurement-plot" />;
   }
 }

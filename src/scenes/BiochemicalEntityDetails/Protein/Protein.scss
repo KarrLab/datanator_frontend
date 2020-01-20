@@ -1,27 +1,29 @@
-.container .uniprot_definition_data {
-  background-color: #c4c4c4;
-  text-align: left;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  border-style: solid;
-  border-color: #bfbfbf;
-  margin-bottom: 5px;
-  margin-top: 5px;
-}
+.biochemical-entity-protein-scene {
+  .container .uniprot_definition_data {
+    background-color: #c4c4c4;
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-style: solid;
+    border-color: #bfbfbf;
+    margin-bottom: 5px;
+    margin-top: 5px;
+  }
 
-.container .orthology_definition_data {
-  background-color: #c4c4c4;
-  text-align: left;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  border-style: solid;
-  border-color: #bfbfbf;
-  margin-bottom: 5px;
-  margin-top: 5px;
-}
+  .container .orthology_definition_data {
+    background-color: #c4c4c4;
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-style: solid;
+    border-color: #bfbfbf;
+    margin-bottom: 5px;
+    margin-top: 5px;
+  }
 
-.search {
-  margin-top: 70px;
+  .search {
+    margin-top: 70px;
+  }
 }

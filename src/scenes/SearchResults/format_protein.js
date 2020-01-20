@@ -1,5 +1,4 @@
 import React from "react";
-import "~/scenes/BiochemicalEntityDetails/Metabolite/Metabolite.scss";
 
 function formatProtein(data, organism) {
   let start = 0;
@@ -18,7 +17,7 @@ function formatProtein(data, organism) {
         name[0].toUpperCase() + name.substring(1, name.length);
       let href = "https://www.genome.jp/dbget-bin/www_bget?ko:" + ko_number;
       new_dict["secondary_text"] = (
-        <div className="external_links">
+        <div className="external-links">
           <p>
             KEGG:{" "}
             <a href={href} rel="noopener">

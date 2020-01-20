@@ -1,5 +1,4 @@
 import React from "react";
-import "~/scenes/BiochemicalEntityDetails/Metabolite/Metabolite.scss";
 
 function formatMetabolite(data, organism) {
   let start = 0;
@@ -41,7 +40,7 @@ function formatMetabolite(data, organism) {
         //ecmdb_secondary = 'ECMDB: <a href={href} rel="noopener"> {data[i]["m2m_id"]} </a>';
       }
       new_dict["secondary_text"] = (
-        <div className="external_links">
+        <div className="external-links">
           <p>
             {ymdb_preface} <a href={href_ymdb}>{data[i]["ymdb_id"]}</a>
             {comma}

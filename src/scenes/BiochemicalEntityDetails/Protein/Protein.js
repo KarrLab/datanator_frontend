@@ -20,7 +20,6 @@ import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-balham.css";
 
 import "../BiochemicalEntityDetails.scss";
-import "../Metabolite/Metabolite.scss";
 import "./Protein.scss";
 
 const queryString = require("query-string");
@@ -538,7 +537,7 @@ class Protein extends Component {
       marginTop: 50
     };
     return (
-      <div className="total_container">
+      <div className="biochemical-entity-scene biochemical-entity-protein-scene">
         <MetadataSection
           proteinMetadata={this.state.orthologyMetadata}
           //molecule={this.props.match.params.molecule}

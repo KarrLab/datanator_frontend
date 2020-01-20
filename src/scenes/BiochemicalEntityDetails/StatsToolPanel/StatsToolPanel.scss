@@ -1,14 +1,13 @@
-
-.consensus {
+.biochemical-entity-scene-stats-tool-panel {
   border-style: solid;
   border-color: #fcd1d5;
-}
 
-.consensus .summary {
-  text-align: left;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  border-style: solid;
-  border-color: #fcd1d1;
+  .summary {
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-style: solid;
+    border-color: #fcd1d1;
+  }
 }

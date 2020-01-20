@@ -1,5 +1,3 @@
-import "~/scenes/BiochemicalEntityDetails/Metabolite/Metabolite.scss";
-
 function formatPart(parts) {
   let participants_string = "";
   for (var i = parts.length - 1; i >= 0; i--) {

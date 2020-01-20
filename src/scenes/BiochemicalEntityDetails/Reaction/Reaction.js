@@ -20,7 +20,7 @@ import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-balham.css";
 
 import "../BiochemicalEntityDetails.scss";
-import "../Metabolite/Metabolite.scss";
+import "./Reaction.scss";
 
 const queryString = require("query-string");
 const sideBar = {
@@ -469,7 +469,7 @@ class Reaction extends Component {
     };
 
     return (
-      <div className="total_container">
+      <div className="biochemical-entity-scene biochemical-entity-reaction-scene">
         <div className="metabolite_definition_data"></div>
 
         <div className="ag_chart" style={{ width: "100%", height: "1000px" }}>
