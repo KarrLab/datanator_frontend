@@ -191,7 +191,7 @@ a:hover {
     }
 
     .bp3-menu-item.bp3-disabled {
-      color: $color-primary-lighter !important;
+      color: $color-primary-lighter !important; // !important is neeed because blueprint uses !important
     }
   }
 }
