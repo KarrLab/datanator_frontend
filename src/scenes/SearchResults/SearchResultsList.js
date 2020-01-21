@@ -73,9 +73,10 @@ class SearchResultsList extends Component {
   formatResults(newResults) {
     const values = queryString.parse(this.props.location.search);
     const organism = values.organism;
-    const newFormattedResults = this.props["format-results"](newResults, organism).map(
-      this.formatResult
-    );
+    const newFormattedResults = this.props["format-results"](
+      newResults,
+      organism
+    ).map(this.formatResult);
 
     if (newFormattedResults.length < this.props["page-size"]) {
       this.setState({ showLoadMore: false });
