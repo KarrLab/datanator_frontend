@@ -33,9 +33,6 @@ export default class SearchResultsList extends Component {
       metaboliteResults: null,
       proteinResults: null,
       reactionResults: null,
-
-      metab_counter: 2,
-      reaction_couner: 2
     };
 
     this.handleFetch = this.handleFetch.bind(this);
@@ -106,7 +103,6 @@ export default class SearchResultsList extends Component {
 
   handleFetch(index) {
     this.props.fetchDataHandler(index, 10);
-    this.setState({ metab_counter: this.state.metab_counter + 1 });
   }
 
   renderSection(id, title, results, showLoadMore, fetchKey) {
@@ -144,7 +140,7 @@ export default class SearchResultsList extends Component {
 
   render() {
     return (
-      <div className="content-column">
+      <div>
         {this.renderSection(
           "metabolites",
           "Metabolites",
