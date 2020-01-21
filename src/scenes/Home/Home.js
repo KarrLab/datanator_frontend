@@ -41,7 +41,7 @@ class Home extends Component {
         <div className="section intro">
           <div className="section-inner-container">
             <div className="logo-title">
-              <img src={logo} className="logo" alt="Datanator logo" />
+              <object data={logo} className="logo" alt="Datanator logo" />
               <h1>Datanator</h1>
             </div>
             <h2>Tools to discover data to model cellular biochemistry</h2>
