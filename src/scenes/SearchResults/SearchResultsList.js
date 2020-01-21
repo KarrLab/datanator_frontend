@@ -1,80 +1,119 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 
-function formatResult(result) {
-  return (
-    <li>
-      <div className="search-result-title">
-        <Link to={result.route}>{result.title}</Link>
-      </div>
-      <div className="search-result-description">{result.description}</div>
-    </li>
-  );
-}
+import { getSearchData } from "~/services/MongoApi";
+const queryString = require("query-string");
 
-export default class SearchResultsList extends Component {
+class SearchResultsList extends Component {
   static propTypes = {
-    htmlAnchorId: PropTypes.string,
+    location: PropTypes.shape({
+      search: PropTypes.string
+    }),
+    "get-results-url": PropTypes.func,
+    "get-results": PropTypes.func,
+    "format-results": PropTypes.func,
+    "html-anchor-id": PropTypes.string,
     title: PropTypes.string,
-    showLoadMore: PropTypes.bool,
-    fetchDataHandler: PropTypes.func,
-    fetchDataKey: PropTypes.string,
-    results: PropTypes.array,
+    "page-size": PropTypes.number
+  };
+
+  static defaultProps = {
+    "page-size": 10
   };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      resultsHtml: null,
-      pageCount: 0,
+      formattedResults: null,
+      showLoadMore: true,
+      pageCount: 0
     };
 
-    this.handleFetch = this.handleFetch.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
+    this.componentDidUpdate = this.componentDidUpdate.bind(this);
+    this.fetchResults = this.fetchResults.bind(this);
+    this.formatResults = this.formatResults.bind(this);
+    this.formatResult = this.formatResult.bind(this);
   }
 
   componentDidMount() {
-    if (this.props.results != null) {
-      this.formatResults();
-    }
+    this.setState({
+      formatResults: null,
+      showLoadMore: true,
+      pageCount: 0
+    });
+    this.fetchResults();
   }
 
   componentDidUpdate(prevProps) {
-    if (
-      this.props.results !== prevProps.results &&
-      this.props.results != null
-    ) {
-      this.formatResults();
+    if (this.props.location.search !== prevProps.location.search) {
+      this.setState({
+        formatResults: null,
+        showLoadMore: true,
+        pageCount: 0
+      });
     }
   }
 
-  handleFetch(index) {
-    this.props.fetchDataHandler(index, 10);
-  }
+  fetchResults() {
+    const values = queryString.parse(this.props.location.search);
+    const query = values.q;
+    const url = this.props["get-results-url"](
+      query,
+      this.state.pageCount,
+      this.props["page-size"]
+    );
 
-  formatResults() {
-    const resultsHtml = [];
-    for (const result of this.props.results) {
-      resultsHtml.push(formatResult(result));
-    }
-
-    this.setState({
-      resultsHtml: resultsHtml
+    getSearchData([url]).then(response => {
+      const results = this.props["get-results"](response.data);
+      this.formatResults(results);
     });
+    this.setState({ pageCount: this.state.pageCount + 1 });
+  }
+
+  formatResults(newResults) {
+    const newFormattedResults = this.props["format-results"](newResults).map(
+      this.formatResult
+    );
+
+    if (newFormattedResults.length < this.props["page-size"]) {
+      this.setState({ showLoadMore: false });
+    }
+
+    let formattedResults;
+    if (this.state.formattedResults == null) {
+      formattedResults = newFormattedResults;
+    } else {
+      formattedResults = this.state.formattedResults.concat(
+        newFormattedResults
+      );
+    }
+    this.setState({ formattedResults: formattedResults });
+  }
+
+  formatResult(result, iResult) {
+    return (
+      <li key={this.state.pageCount * this.props["page-size"] + iResult}>
+        <div className="search-result-title">
+          <Link to={result.route}>{result.title}</Link>
+        </div>
+        <div className="search-result-description">{result.description}</div>
+      </li>
+    );
   }
 
   render() {
-    const results = this.state.resultsHtml;
-    const showLoadMore = this.props.showLoadMore;
-          
+    const results = this.state.formattedResults;
+    const showLoadMore = this.state.showLoadMore;
+
     return (
-      <div className="content-block section" id={this.props.htmlAnchorId}>
+      <div className="content-block section" id={this.props["html-anchor-id"]}>
         <h2 className="content-block-heading">{this.props.title} (XXX)</h2>
         <div className="content-block-content">
-          {results == null && (
-            <div className="loader"></div>
-          )}
+          {results == null && <div className="loader"></div>}
 
           {results != null && (
             <div>
@@ -91,7 +130,7 @@ export default class SearchResultsList extends Component {
                   className="more-search-results-button"
                   type="button"
                   onClick={() => {
-                    this.handleFetch(this.props.fetchDataKey);
+                    this.fetchResults();
                   }}
                 >
                   Load 10 more
@@ -104,3 +143,5 @@ export default class SearchResultsList extends Component {
     );
   }
 }
+
+export default withRouter(SearchResultsList);
