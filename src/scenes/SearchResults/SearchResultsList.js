@@ -15,101 +15,67 @@ function formatResult(result) {
 
 export default class SearchResultsList extends Component {
   static propTypes = {
-    showLoadMoreMetabolites: PropTypes.bool,
-    showLoadMoreProteins: PropTypes.bool,
-    showLoadMoreReactions: PropTypes.bool,
-
+    htmlAnchorId: PropTypes.string,
+    title: PropTypes.string,
+    showLoadMore: PropTypes.bool,
     fetchDataHandler: PropTypes.func,
-
-    metaboliteResults: PropTypes.array,
-    proteinResults: PropTypes.array,
-    reactionResults: PropTypes.array
+    fetchDataKey: PropTypes.string,
+    results: PropTypes.array,
   };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      metaboliteResults: null,
-      proteinResults: null,
-      reactionResults: null,
+      resultsHtml: null,
+      pageCount: 0,
     };
 
     this.handleFetch = this.handleFetch.bind(this);
   }
 
   componentDidMount() {
-    if (this.props.metaboliteResults != null) {
-      this.addMetabolites();
-    }
-
-    if (this.props.proteinResults != null) {
-      this.addProteins();
-    }
-
-    if (this.props.reactionResults != null) {
-      this.addReactions();
+    if (this.props.results != null) {
+      this.formatResults();
     }
   }
 
   componentDidUpdate(prevProps) {
     if (
-      this.props.metaboliteResults !== prevProps.metaboliteResults &&
-      this.props.metaboliteResults != null
+      this.props.results !== prevProps.results &&
+      this.props.results != null
     ) {
-      this.addMetabolites();
+      this.formatResults();
     }
-
-    if (
-      this.props.proteinResults !== prevProps.proteinResults &&
-      this.props.proteinResults != null
-    ) {
-      this.addProteins();
-    }
-
-    if (
-      this.props.reactionResults !== prevProps.reactionResults &&
-      this.props.reactionResults != null
-    ) {
-      this.addReactions();
-    }
-  }
-
-  formatResults(results) {
-    let resultsHtml = [];
-    for (const result of results) {
-      resultsHtml.push(formatResult(result));
-    }
-    return resultsHtml;
-  }
-
-  addMetabolites() {
-    this.setState({
-      metaboliteResults: this.formatResults(this.props.metaboliteResults)
-    });
-  }
-
-  addProteins() {
-    this.setState({
-      proteinResults: this.formatResults(this.props.proteinResults)
-    });
-  }
-
-  addReactions() {
-    this.setState({
-      reactionResults: this.formatResults(this.props.reactionResults)
-    });
   }
 
   handleFetch(index) {
     this.props.fetchDataHandler(index, 10);
   }
 
-  renderSection(id, title, results, showLoadMore, fetchKey) {
+  formatResults() {
+    const resultsHtml = [];
+    for (const result of this.props.results) {
+      resultsHtml.push(formatResult(result));
+    }
+
+    this.setState({
+      resultsHtml: resultsHtml
+    });
+  }
+
+  render() {
+    const results = this.state.resultsHtml;
+    const showLoadMore = this.props.showLoadMore;
+          
     return (
-      <div className="content-block section" id={id}>
-        <h2 className="content-block-heading">{title} (XXX)</h2>
+      <div className="content-block section" id={this.props.htmlAnchorId}>
+        <h2 className="content-block-heading">{this.props.title} (XXX)</h2>
         <div className="content-block-content">
+          {results == null && (
+            <div className="loader"></div>
+          )}
+
           {results != null && (
             <div>
               {results.length > 0 && (
@@ -125,7 +91,7 @@ export default class SearchResultsList extends Component {
                   className="more-search-results-button"
                   type="button"
                   onClick={() => {
-                    this.handleFetch(fetchKey);
+                    this.handleFetch(this.props.fetchDataKey);
                   }}
                 >
                   Load 10 more
@@ -134,34 +100,6 @@ export default class SearchResultsList extends Component {
             </div>
           )}
         </div>
-      </div>
-    );
-  }
-
-  render() {
-    return (
-      <div>
-        {this.renderSection(
-          "metabolites",
-          "Metabolites",
-          this.state.metaboliteResults,
-          this.props.showLoadMoreMetabolites,
-          "metabolites"
-        )}
-        {this.renderSection(
-          "proteins",
-          "Proteins",
-          this.state.proteinResults,
-          this.props.showLoadMoreProteins,
-          "proteins"
-        )}
-        {this.renderSection(
-          "reactions",
-          "Reactions",
-          this.state.reactionResults,
-          this.props.showLoadMoreReactions,
-          "reactions"
-        )}
       </div>
     );
   }

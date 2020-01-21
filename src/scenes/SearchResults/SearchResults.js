@@ -136,18 +136,6 @@ class SearchResults extends Component {
       window.scrollTo({ behavior: "smooth", top: el.offsetTop - 52 });
     };
 
-    if (
-      this.state.metabolites.results == null ||
-      this.state.proteins.results == null ||
-      this.state.reactions.results == null
-    ) {
-      return (
-        <div className="loader-container">
-          <div className="loader"></div>
-        </div>
-      );
-    }
-
     return (
       <div className="content-container content-container-columns content-container-search-results-scene">
         <div className="content-block table-of-contents">
@@ -175,13 +163,28 @@ class SearchResults extends Component {
 
         <div className="content-column">
           <SearchResultsList
-            showLoadMoreMetabolites={this.state.metabolites.showLoadMore}
-            showLoadMoreProteins={this.state.proteins.showLoadMore}
-            showLoadMoreReactions={this.state.reactions.showLoadMore}
+            htmlAnchorId='metabolites'
+            title='Metabolites'
+            showLoadMore={this.state.metabolites.showLoadMore}
             fetchDataHandler={this.fetchData}
-            metaboliteResults={this.state.metabolites.results}
-            proteinResults={this.state.proteins.results}
-            reactionResults={this.state.reactions.results}
+            fetchDataKey='metabolites'
+            results={this.state.metabolites.results}
+          />
+          <SearchResultsList
+            htmlAnchorId='proteins'
+            title='Proteins'
+            showLoadMore={this.state.proteins.showLoadMore}
+            fetchDataHandler={this.fetchData}
+            fetchDataKey='proteins'
+            results={this.state.proteins.results}
+          />
+          <SearchResultsList
+            htmlAnchorId='reactions'
+            title='Reactions'
+            showLoadMore={this.state.reactions.showLoadMore}
+            fetchDataHandler={this.fetchData}
+            fetchDataKey='reactions'
+            results={this.state.reactions.results}
           />
         </div>
       </div>
