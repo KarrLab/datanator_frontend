@@ -71,9 +71,7 @@ class SearchResultsList extends Component {
   }
 
   formatResults(newResults) {
-    const values = queryString.parse(this.props.location.search);
-    const organism = values.organism;
-    const newFormattedResults = this.props["format-results"](newResults, organism).map(
+    const newFormattedResults = this.props["format-results"](newResults).map(
       this.formatResult
     );
 
