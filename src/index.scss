@@ -221,3 +221,8 @@ a:hover {
 .hover-zoom:hover {
   transform: scale(1.08);
 }
+
+/* no pointer events */
+.no-pointer-events {
+  pointer-events: none;
+}

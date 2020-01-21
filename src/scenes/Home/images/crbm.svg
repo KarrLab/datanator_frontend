@@ -13,6 +13,12 @@
   .st10 { stroke-width: 0.1; }
   .st13 { stroke-width: 0.1; }
   .st14 { stroke-width: 0.1; }
+  
+  .fill-none { fill: none; }
+  .fill-primary { fill: #1890ff; }
+  .fill-accent { fill: #ffc306; }
+  .stroke-primary { stroke: #1890ff; }
+  .stroke-accent { stroke: #ffc306; }
 </style>
 <defs>
 	<filter id="Adobe_OpacityMaskFilter" filterUnits="userSpaceOnUse" x="0.996101" y="0.468488" width="56.298393" height="59.280128">

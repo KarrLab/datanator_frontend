@@ -43,7 +43,11 @@ class Home extends Component {
         <div className="section intro">
           <div className="section-inner-container">
             <div className="logo-title">
-              <object data={logo} className="logo" alt="Datanator logo" />
+              <object
+                data={logo}
+                className="logo hover-zoom"
+                alt="Datanator logo"
+              />
               <h1>Datanator</h1>
             </div>
             <h2>Tools to discover data to model cellular biochemistry</h2>
@@ -81,7 +85,7 @@ class Home extends Component {
               <div className="section-column">
                 <object
                   data={identifyUseCaseIcon}
-                  className="section-column-icon"
+                  className="section-column-icon hover-zoom"
                   alt="Identify parameters icon"
                 />
                 <div className="section-column-subtitle">Kinetic models</div>
@@ -100,7 +104,7 @@ class Home extends Component {
               <div className="section-column">
                 <object
                   data={constrainUseCaseIcon}
-                  className="section-column-icon"
+                  className="section-column-icon hover-zoom"
                   alt="Constrain models icon"
                 />
                 <div className="section-column-subtitle">
@@ -121,7 +125,7 @@ class Home extends Component {
               <div className="section-column">
                 <object
                   data={recalibrateUseCaseIcon}
-                  className="section-column-icon"
+                  className="section-column-icon hover-zoom"
                   alt="Recalibrate models icon"
                 />
                 <div className="section-column-subtitle">Kinetic models</div>
@@ -140,7 +144,7 @@ class Home extends Component {
               <div className="section-column">
                 <object
                   data={dataDrivenUseCaseIcon}
-                  className="section-column-icon"
+                  className="section-column-icon hover-zoom"
                   alt="Recalibrate models icon"
                 />
                 <div className="section-column-subtitle">
@@ -172,7 +176,7 @@ class Home extends Component {
               <div className="section-column">
                 <object
                   data={metaboliteIcon}
-                  className="section-column-icon"
+                  className="section-column-icon hover-zoom"
                   alt="Metabolite concentration icon"
                 />
                 <div className="section-column-subtitle">Available</div>
@@ -204,7 +208,7 @@ class Home extends Component {
               <div className="section-column">
                 <object
                   data={rnaIcon}
-                  className="section-column-icon"
+                  className="section-column-icon hover-zoom"
                   alt="RNA icon"
                 />
                 <div className="section-column-subtitle">Coming soon</div>
@@ -218,7 +222,7 @@ class Home extends Component {
               <div className="section-column">
                 <object
                   data={proteinIcon}
-                  className="section-column-icon"
+                  className="section-column-icon hover-zoom"
                   alt="Protein abundance icon"
                 />
                 <div className="section-column-subtitle">Available</div>
@@ -257,7 +261,7 @@ class Home extends Component {
               <div className="section-column">
                 <object
                   data={reactionIcon}
-                  className="section-column-icon"
+                  className="section-column-icon hover-zoom"
                   alt="Reaction rate constant icon"
                 />
                 <div className="section-column-subtitle">Available</div>
@@ -293,7 +297,7 @@ class Home extends Component {
                 <div className="vertical-workflow-el-line"></div>
                 <object
                   data={searchIcon}
-                  className="vertical-workflow-el-icon"
+                  className="vertical-workflow-el-icon hover-zoom"
                   alt="Search icon"
                 />
                 <div className="vertical-workflow-el-text">
@@ -319,7 +323,7 @@ class Home extends Component {
                 <div className="vertical-workflow-el-line"></div>
                 <object
                   data={filterIcon}
-                  className="vertical-workflow-el-icon"
+                  className="vertical-workflow-el-icon hover-zoom"
                   alt="Filter icon"
                 />
                 <div className="vertical-workflow-el-text">
@@ -343,7 +347,7 @@ class Home extends Component {
                 <div className="vertical-workflow-el-line"></div>
                 <object
                   data={reviewIcon}
-                  className="vertical-workflow-el-icon"
+                  className="vertical-workflow-el-icon hover-zoom"
                   alt="Review icon"
                 />
                 <div className="vertical-workflow-el-text">
@@ -364,7 +368,7 @@ class Home extends Component {
                 <div className="vertical-workflow-el-line"></div>
                 <object
                   data={analyzeIcon}
-                  className="vertical-workflow-el-icon"
+                  className="vertical-workflow-el-icon hover-zoom"
                   alt="Analyze icon"
                 />
                 <div className="vertical-workflow-el-text">
@@ -383,7 +387,7 @@ class Home extends Component {
                 <div className="vertical-workflow-el-line"></div>
                 <object
                   data={exportIcon}
-                  className="vertical-workflow-el-icon"
+                  className="vertical-workflow-el-icon hover-zoom"
                   alt="Export icon"
                 />
                 <div className="vertical-workflow-el-text">
@@ -430,8 +434,8 @@ class Home extends Component {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <object
-                  data={karrLabIcon}
+                <img
+                  src={karrLabIcon}
                   className="about-icon hover-zoom"
                   title="Karr Lab"
                   alt="Karr Lab logo"
@@ -441,9 +445,10 @@ class Home extends Component {
                 href="https://reproduciblebiomodels.org"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="hover-zoom"
               >
-                <object
-                  data={crbmIcon}
+                <img
+                  src={crbmIcon}
                   className="about-icon hover-zoom"
                   title="Center for Reproducible Biomedical Modeling"
                   alt="Center for Reproducible Biomedical Modeling logo"
