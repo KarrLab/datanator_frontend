@@ -26,10 +26,10 @@ class SearchResults extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loadMetabolites: true,
-      loadProteins: true,
-      loadReactions: true,
-      pageIndexCounter: {
+      showLoadMoreMetabolites: true,
+      showLoadMoreProteins: true,
+      showLoadMoreReactions: true,
+      resultsPageCounters: {
         metabolites: 0,
         proteins: 0,
         reactions: 0
@@ -52,8 +52,8 @@ class SearchResults extends Component {
   fetchData(index, size) {
     const values = queryString.parse(this.props.location.search);
 
-    const from_ = this.state.pageIndexCounter[index] * 10;
-    let newCounter = this.state.pageIndexCounter;
+    const from_ = this.state.resultsPageCounters[index] * 10;
+    let newCounter = this.state.resultsPageCounters;
     newCounter[index] = newCounter[index] + 1;
     let url = "";
     if (index === "proteins") {
@@ -87,22 +87,22 @@ class SearchResults extends Component {
         "&fields=protein_name&fields=synonyms&fields=enzymes&fields=ko_name&fields=gene_name&fields=name&fields=enzyme_name&fields=product_names&fields=substrate_names&fields=enzymes.subunit.canonical_sequence&fields=species";
     }
     getSearchData([url]).then(response => {
-      this.formatData(response.data, size);
+      this.formatData(index, response.data, size);
     });
-    this.setState({ pageIndexCounter: newCounter });
+    this.setState({ resultsPageCounters: newCounter });
   }
 
-  formatData(data, size) {
+  formatData(index, data, size) {
     const values = queryString.parse(this.props.location.search);
 
-    if ("metabolites_meta" in data) {
+    if (index === "metabolites") {
       let metabolite_data = data["metabolites_meta"];
       let metabolite_metadata = formatMetabolite(
         metabolite_data,
         values.organism
       );
       if (metabolite_metadata.length < size) {
-        this.setState({ loadMetabolites: false });
+        this.setState({ showLoadMoreMetabolites: false });
       }
       if (this.state.metaboliteResults != null) {
         metabolite_metadata = this.state.metaboliteResults.concat(
@@ -110,26 +110,23 @@ class SearchResults extends Component {
         );
       }
       this.setState({ metaboliteResults: metabolite_metadata });
-    }
-
-    if ("top_kos" in data) {
+    
+    } else if (index === 'proteins') {
       let protein_data = data["top_kos"]["buckets"];
       let protein_metadata = formatProtein(protein_data, values.organism);
       if (protein_metadata.length < size) {
-        this.setState({ loadProteins: false });
+        this.setState({ showLoadMoreProteins: false });
       }
       if (this.state.proteinResults != null) {
         protein_metadata = this.state.proteinResults.concat(protein_metadata);
       }
       this.setState({ proteinResults: protein_metadata });
-    }
-
-    if ("sabio_reaction_entries" in data) {
+    
+    } else if (index === 'reactions') {
       let reaction_data = data["sabio_reaction_entries"];
-
       let reaction_metadata = formatReaction(reaction_data);
       if (reaction_metadata.length < size) {
-        this.setState({ loadReactions: false });
+        this.setState({ showLoadMoreReactions: false });
       }
       if (this.state.reactionResults != null) {
         reaction_metadata = this.state.reactionResults.concat(
@@ -147,12 +144,12 @@ class SearchResults extends Component {
     };
 
     if (
-      this.state.metaboliteResults == null &&
-      this.state.proteinResults == null &&
+      this.state.metaboliteResults == null ||
+      this.state.proteinResults == null ||
       this.state.reactionResults == null
     ) {
       return (
-        <div className="loader_container">
+        <div className="loader-container">
           <div className="loader"></div>
         </div>
       );
@@ -184,9 +181,9 @@ class SearchResults extends Component {
         </div>
 
         <SearchResultsList
-          loadMetabolites={this.state.loadMetabolites}
-          loadProteins={this.state.loadProteins}
-          loadReactions={this.state.loadReactions}
+          showLoadMoreMetabolites={this.state.showLoadMoreMetabolites}
+          showLoadMoreProteins={this.state.showLoadMoreProteins}
+          showLoadMoreReactions={this.state.showLoadMoreReactions}
           fetchDataHandler={this.fetchData}
           metaboliteResults={this.state.metaboliteResults}
           proteinResults={this.state.proteinResults}

@@ -75,8 +75,9 @@ a:hover {
 }
 
 /* page loader */
-.loader_container {
+.loader-container {
   margin-top: 50px;
+  min-height: calc(100vh - 42px - 50px);
 }
 
 .loader {

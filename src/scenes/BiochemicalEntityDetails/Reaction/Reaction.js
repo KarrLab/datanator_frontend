@@ -454,7 +454,7 @@ class Reaction extends Component {
 
     if (this.props.totalData == null) {
       return (
-        <div className="loader_container">
+        <div className="loader-container">
           <div className="loader"></div>
         </div>
       );

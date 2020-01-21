@@ -443,7 +443,7 @@ class Metabolite extends Component {
       this.props.totalData == null
     ) {
       return (
-        <div className="loader_container">
+        <div className="loader-container">
           <div className="loader"></div>
         </div>
       );

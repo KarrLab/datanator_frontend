@@ -15,9 +15,9 @@ function formatResult(result) {
 
 export default class SearchResultsList extends Component {
   static propTypes = {
-    loadMetabolites: PropTypes.bool,
-    loadProteins: PropTypes.bool,
-    loadReactions: PropTypes.bool,
+    showLoadMoreMetabolites: PropTypes.bool,
+    showLoadMoreProteins: PropTypes.bool,
+    showLoadMoreReactions: PropTypes.bool,
 
     fetchDataHandler: PropTypes.func,
 
@@ -109,96 +109,62 @@ export default class SearchResultsList extends Component {
     this.setState({ metab_counter: this.state.metab_counter + 1 });
   }
 
-  render() {
+  renderSection(id, title, results, showLoadMore, fetchKey) {
     return (
-      <div className="content-column">
-        {this.state.metaboliteResults != null && (
-          <div className="content-block section" id="metabolites">
-            <h2 className="content-block-heading">Metabolites (XXX)</h2>
-            <div className="content-block-content">
-              {this.state.metaboliteResults.length > 0 && (
-                <ul className="search-results-list">
-                  {this.state.metaboliteResults}
-                </ul>
+      <div className="content-block section" id={id}>
+        <h2 className="content-block-heading">{title} (XXX)</h2>
+        <div className="content-block-content">
+          {results != null && (
+            <div>
+              {results.length > 0 && (
+                <ul className="search-results-list">{results}</ul>
               )}
 
-              {this.state.metaboliteResults.length === 0 && (
+              {results.length === 0 && (
                 <p className="no-search-results">No results found</p>
               )}
 
-              {this.state.metaboliteResults.length > 0 &&
-                this.props.loadMetabolites && (
-                  <button
-                    className="more-search-results-button"
-                    type="button"
-                    onClick={() => {
-                      this.handleFetch("metabolites");
-                    }}
-                  >
-                    Load 10 more
-                  </button>
-                )}
-            </div>
-          </div>
-        )}
-
-        {this.state.proteinResults != null && (
-          <div className="content-block section" id="proteins">
-            <h2 className="content-block-heading">Proteins (XXX)</h2>
-            <div className="content-block-content">
-              {this.state.proteinResults.length > 0 && (
-                <ul className="search-results-list">
-                  {this.state.proteinResults}
-                </ul>
-              )}
-
-              {this.state.proteinResults.length === 0 && (
-                <p className="no-search-results">No results found</p>
-              )}
-
-              {this.state.proteinResults.length > 0 && this.props.loadProteins && (
+              {results.length > 0 && showLoadMore && (
                 <button
                   className="more-search-results-button"
                   type="button"
                   onClick={() => {
-                    this.handleFetch("proteins");
+                    this.handleFetch(fetchKey);
                   }}
                 >
                   Load 10 more
                 </button>
               )}
             </div>
-          </div>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  render() {
+    return (
+      <div className="content-column">
+        {this.renderSection(
+          "metabolites",
+          "Metabolites",
+          this.state.metaboliteResults,
+          this.props.showLoadMoreMetabolites,
+          "metabolites"
         )}
-
-        {this.state.reactionResults != null && (
-          <div className="content-block section" id="reactions">
-            <h2 className="content-block-heading">Reactions (XXX)</h2>
-            <div className="content-block-content">
-              {this.state.reactionResults.length > 0 && (
-                <ul className="search-results-list">
-                  {this.state.reactionResults}
-                </ul>
-              )}
-
-              {this.state.reactionResults.length === 0 && (
-                <p className="no-search-results">No results found</p>
-              )}
-
-              {this.state.reactionResults.length > 0 &&
-                this.props.loadReactions && (
-                  <button
-                    className="more-search-results-button"
-                    type="button"
-                    onClick={() => {
-                      this.handleFetch("reactions");
-                    }}
-                  >
-                    Load 10 more
-                  </button>
-                )}
-            </div>
-          </div>
+        {this.renderSection(
+          "proteins",
+          "Proteins",
+          this.state.proteinResults,
+          this.props.showLoadMoreProteins,
+          "proteins"
+        )}
+        {this.renderSection(
+          "reactions",
+          "Reactions",
+          this.state.reactionResults,
+          this.props.showLoadMoreReactions,
+          "reactions"
         )}
       </div>
     );
