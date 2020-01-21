@@ -1,6 +1,11 @@
 @import 'colors';
 
 .content-container-search-results-scene {
+  .loader {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
   .search-results-list {
     list-style-type: none;
     margin: 0;
