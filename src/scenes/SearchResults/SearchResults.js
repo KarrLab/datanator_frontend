@@ -2,21 +2,9 @@ import React, { Component } from "react";
 import { HashLink } from "react-router-hash-link";
 
 import SearchResultsList from "./SearchResultsList.js";
-import {
-  getResultsUrl as getMetaboliteResultsUrl,
-  getResults as getMetaboliteResults,
-  formatResults as formatMetaboliteResults
-} from "~/scenes/SearchResults/metabolite_functions";
-import {
-  getResultsUrl as getProteinResultsUrl,
-  getResults as getProteinResults,
-  formatResults as formatProteinResults
-} from "~/scenes/SearchResults/protein_functions";
-import {
-  getResultsUrl as getReactionResultsUrl,
-  getResults as getReactionResults,
-  formatResults as formatReactionResults
-} from "~/scenes/SearchResults/reaction_functions";
+import * as metabolite_functions from "~/scenes/SearchResults/metabolite_functions";
+import * as protein_functions from "~/scenes/SearchResults/protein_functions";
+import * as reaction_functions from "~/scenes/SearchResults/reaction_functions";
 
 import "./SearchResults.scss";
 
@@ -53,23 +41,23 @@ class SearchResults extends Component {
 
         <div className="content-column">
           <SearchResultsList
-            get-results-url={getMetaboliteResultsUrl}
-            get-results={getMetaboliteResults}
-            format-results={formatMetaboliteResults}
+            get-results-url={metabolite_functions.getResultsUrl}
+            get-results={metabolite_functions.getResults}
+            format-results={metabolite_functions.formatResults}
             html-anchor-id="metabolites"
             title="Metabolites"
           />
           <SearchResultsList
-            get-results-url={getProteinResultsUrl}
-            get-results={getProteinResults}
-            format-results={formatProteinResults}
+            get-results-url={protein_functions.getResultsUrl}
+            get-results={protein_functions.getResults}
+            format-results={protein_functions.formatResults}
             html-anchor-id="proteins"
             title="Proteins"
           />
           <SearchResultsList
-            get-results-url={getReactionResultsUrl}
-            get-results={getReactionResults}
-            format-results={formatReactionResults}
+            get-results-url={reaction_functions.getResultsUrl}
+            get-results={reaction_functions.getResults}
+            format-results={reaction_functions.formatResults}
             html-anchor-id="reactions"
             title="Reactions"
           />
