@@ -41,7 +41,7 @@ class Home extends Component {
         <div className="section intro">
           <div className="section-inner-container">
             <div className="logo-title">
-              <img src={logo} className="logo" alt="Datanator logo" />
+              <object data={logo} className="logo" alt="Datanator logo" />
               <h1>Datanator</h1>
             </div>
             <h2>Tools to discover data to model cellular biochemistry</h2>
@@ -76,8 +76,8 @@ class Home extends Component {
             <div className="section-title-separator"></div>
             <div className="section-columns section-4-columns">
               <div className="section-column">
-                <img
-                  src={identifyUseCaseIcon}
+                <object
+                  data={identifyUseCaseIcon}
                   className="section-column-icon"
                   alt="Identify parameters icon"
                 />
@@ -95,8 +95,8 @@ class Home extends Component {
               </div>
 
               <div className="section-column">
-                <img
-                  src={constrainUseCaseIcon}
+                <object
+                  data={constrainUseCaseIcon}
                   className="section-column-icon"
                   alt="Constrain models icon"
                 />
@@ -116,8 +116,8 @@ class Home extends Component {
               </div>
 
               <div className="section-column">
-                <img
-                  src={recalibrateUseCaseIcon}
+                <object
+                  data={recalibrateUseCaseIcon}
                   className="section-column-icon"
                   alt="Recalibrate models icon"
                 />
@@ -135,8 +135,8 @@ class Home extends Component {
               </div>
 
               <div className="section-column">
-                <img
-                  src={dataDrivenUseCaseIcon}
+                <object
+                  data={dataDrivenUseCaseIcon}
                   className="section-column-icon"
                   alt="Recalibrate models icon"
                 />
@@ -167,8 +167,8 @@ class Home extends Component {
             <div className="section-title-separator"></div>
             <div className="section-columns section-4-columns">
               <div className="section-column">
-                <img
-                  src={metaboliteIcon}
+                <object
+                  data={metaboliteIcon}
                   className="section-column-icon"
                   alt="Metabolite concentration icon"
                 />
@@ -199,8 +199,8 @@ class Home extends Component {
               </div>
 
               <div className="section-column">
-                <img
-                  src={rnaIcon}
+                <object
+                  data={rnaIcon}
                   className="section-column-icon"
                   alt="RNA icon"
                 />
@@ -213,8 +213,8 @@ class Home extends Component {
               </div>
 
               <div className="section-column">
-                <img
-                  src={proteinIcon}
+                <object
+                  data={proteinIcon}
                   className="section-column-icon"
                   alt="Protein abundance icon"
                 />
@@ -252,8 +252,8 @@ class Home extends Component {
               </div>
 
               <div className="section-column">
-                <img
-                  src={reactionIcon}
+                <object
+                  data={reactionIcon}
                   className="section-column-icon"
                   alt="Reaction rate constant icon"
                 />
@@ -288,8 +288,8 @@ class Home extends Component {
             <div className="vertical-workflow">
               <div className="vertical-workflow-el vertical-workflow-el-search">
                 <div className="vertical-workflow-el-line"></div>
-                <img
-                  src={searchIcon}
+                <object
+                  data={searchIcon}
                   className="vertical-workflow-el-icon"
                   alt="Search icon"
                 />
@@ -314,8 +314,8 @@ class Home extends Component {
 
               <div className="vertical-workflow-el">
                 <div className="vertical-workflow-el-line"></div>
-                <img
-                  src={filterIcon}
+                <object
+                  data={filterIcon}
                   className="vertical-workflow-el-icon"
                   alt="Filter icon"
                 />
@@ -338,8 +338,8 @@ class Home extends Component {
 
               <div className="vertical-workflow-el">
                 <div className="vertical-workflow-el-line"></div>
-                <img
-                  src={reviewIcon}
+                <object
+                  data={reviewIcon}
                   className="vertical-workflow-el-icon"
                   alt="Review icon"
                 />
@@ -359,8 +359,8 @@ class Home extends Component {
 
               <div className="vertical-workflow-el vertical-workflow-el-analyze">
                 <div className="vertical-workflow-el-line"></div>
-                <img
-                  src={analyzeIcon}
+                <object
+                  data={analyzeIcon}
                   className="vertical-workflow-el-icon"
                   alt="Analyze icon"
                 />
@@ -378,8 +378,8 @@ class Home extends Component {
 
               <div className="vertical-workflow-el">
                 <div className="vertical-workflow-el-line"></div>
-                <img
-                  src={exportIcon}
+                <object
+                  data={exportIcon}
                   className="vertical-workflow-el-icon"
                   alt="Export icon"
                 />
@@ -427,9 +427,9 @@ class Home extends Component {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img
-                  src={karrLabIcon}
-                  className="hover-zoom"
+                <object
+                  data={karrLabIcon}
+                  className="about-icon hover-zoom"
                   title="Karr Lab"
                   alt="Karr Lab logo"
                 />
@@ -439,9 +439,9 @@ class Home extends Component {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img
-                  src={crbmIcon}
-                  className="hover-zoom"
+                <object
+                  data={crbmIcon}
+                  className="about-icon hover-zoom"
                   title="Center for Reproducible Biomedical Modeling"
                   alt="Center for Reproducible Biomedical Modeling logo"
                 />
@@ -454,7 +454,7 @@ class Home extends Component {
               >
                 <img
                   src={sinaiIcon}
-                  className="hover-zoom"
+                  className="about-icon hover-zoom"
                   title="Icahn School of Medicine at Mount Sinai"
                   alt="Icahn School of Medicine at Mount Sinai logo"
                 />
@@ -466,7 +466,7 @@ class Home extends Component {
               >
                 <img
                   src={nihIcon}
-                  className="hover-zoom"
+                  className="about-icon hover-zoom"
                   title="National Institutes of Health"
                   alt="National Institutes of Health logo"
                 />
@@ -478,7 +478,7 @@ class Home extends Component {
               >
                 <img
                   src={nibibIcon}
-                  className="hover-zoom"
+                  className="about-icon hover-zoom"
                   title="National Institute of Bioimaging and Bioengineering"
                   alt="National Institute of Bioimaging and Bioengineering logo"
                 />
@@ -490,7 +490,7 @@ class Home extends Component {
               >
                 <img
                   src={nigmsIcon}
-                  className="hover-zoom"
+                  className="about-icon hover-zoom"
                   title="National Institute of General Medical Sciences"
                   alt="National Institute of General Medical Sciences logo"
                 />
@@ -502,7 +502,7 @@ class Home extends Component {
               >
                 <img
                   src={nsfIcon}
-                  className="hover-zoom"
+                  className="about-icon hover-zoom"
                   title="National Science Foundation"
                   alt="National Science Foundation logo"
                 />
