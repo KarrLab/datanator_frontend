@@ -59,6 +59,13 @@ const sideBar = {
       iconKey: 'customstats',
       toolPanel: 'CustomToolPanelReaction',
     },
+    {
+      id: 'blue',
+      labelDefault: 'blue',
+      labelKey: 'blue',
+      iconKey: 'customstats',
+      toolPanel: 'CustomToolPanelReaction',
+    },
   ],
   position: 'left',
   defaultToolPanel: 'filters',
@@ -247,8 +254,7 @@ class ReactionPage extends Component {
         cellRenderer: 'agGroupCellRenderer',
         cellRendererParams: { checkbox: true },
       },
-       frameworkComponents: { CustomToolPanelReaction: (() => <CustomToolPanelReaction relevant_column={"kcat"} />), taxonomyFilter: TaxonomyFilter, partialMatchFilter: PartialMatchFilter, 
-        tanitomoFilter: TanitomoFilter }
+       frameworkComponents: { CustomToolPanelReaction: (() => <CustomToolPanelReaction relevant_column={"kcat"} />), taxonomyFilter: TaxonomyFilter, partialMatchFilter: PartialMatchFilter, }
     };
 
     this.formatReactionData = this.formatReactionData.bind(this);
@@ -260,6 +266,7 @@ class ReactionPage extends Component {
 
   setKmColumns(km_values){
     let new_columns = []
+    let frameworkComponents =  { CustomToolPanelReaction: (() => <CustomToolPanelReaction relevant_column={"kcat"} />), taxonomyFilter: TaxonomyFilter, partialMatchFilter: PartialMatchFilter,} 
     for (var i = km_values.length - 1; i >= 0; i--) {
       new_columns.push({
           headerName: 'Km ' + km_values[i].split("_")[1] + ' (M)',
@@ -267,11 +274,29 @@ class ReactionPage extends Component {
           sortable: true,
           filter: 'agNumberColumnFilter',
         })
+      
+      let comp_name = 'CustomToolPanelReaction_'+ km_values[i]
+      frameworkComponents[comp_name] = (() => <CustomToolPanelReaction relevant_column={km_values[i]} />)
+      sideBar["toolPanels"].push(
+        {
+      id: km_values[i],
+      labelDefault: 'Km ' + km_values[i].split("_")[1] + ' (M)',
+      labelKey: 'customStats',
+      iconKey: 'customstats',
+      toolPanel: comp_name,
+    },)
+    
+
+
+
+
     }
 
     let final_columns = this.state.first_columns.concat(new_columns).concat(this.state.second_columns)
     //final_columns = final_columns.concat(default_second_columns)
-    this.setState({columnDefs:final_columns})
+    this.setState({columnDefs:final_columns, 
+      frameworkComponents:frameworkComponents
+    })
 
   }
   componentDidMount() {
