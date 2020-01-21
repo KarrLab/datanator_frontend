@@ -186,11 +186,13 @@ class SearchForm extends Component {
   render() {
     return (
       <form className="search-form" onSubmit={this.submitSearch}>
+        <div className="search-label search-label-find">Find data about</div>
+
         <InputGroup
           type="text"
           className="search-form-el search-form-el-entity search-input"
           leftIcon=<FontAwesomeIcon icon="atom" />
-          placeholder="Metabolite, protein, or reaction (e.g., glucose)"
+          placeholder="metabolite, protein, or reaction (e.g., glucose)"
           defaultValue={this.state.query}
           onChange={event => {
             this.setState({
@@ -201,7 +203,7 @@ class SearchForm extends Component {
           }}
         />
 
-        <div className="search-in">in</div>
+        <div className="search-label search-label-in">in</div>
 
         <Suggest
           ref={el => {
@@ -211,7 +213,7 @@ class SearchForm extends Component {
           inputProps={{
             className: "search-input",
             leftIcon: <FontAwesomeIcon icon="dna" />,
-            placeholder: "Organism (e.g., Escherichia coli)",
+            placeholder: "organism (e.g., Escherichia coli)",
             onChange: event => {
               this.setState({ query: event.target.value });
             }
@@ -241,6 +243,7 @@ class SearchForm extends Component {
           className="search-submit"
           icon="search"
           disabled={!this.state.searchFormValid}
+          title="Search"
         />
       </form>
     );

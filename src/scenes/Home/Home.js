@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 
+import SearchForm from "~/components/SearchForm/SearchForm";
+
 import "~/scenes/Home/Home.scss";
 import logo from "./images/logo.svg";
 
@@ -45,6 +47,7 @@ class Home extends Component {
               <h1>Datanator</h1>
             </div>
             <h2>Tools to discover data to model cellular biochemistry</h2>
+            <SearchForm />
             <p>
               <i>Datanator</i> is a toolkit for discovering the data needed to
               build, calibrate, and validate mechanistic models of cells.{" "}
