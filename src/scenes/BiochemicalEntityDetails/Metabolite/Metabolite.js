@@ -10,6 +10,7 @@ import {
   setTotalData,
   setSelectedData
 } from "~/data/actions/resultsAction";
+import { AllModules } from 'ag-grid-enterprise';
 
 import { AgGridReact } from "ag-grid-react";
 import { AllCommunityModules } from "@ag-grid-community/all-modules";

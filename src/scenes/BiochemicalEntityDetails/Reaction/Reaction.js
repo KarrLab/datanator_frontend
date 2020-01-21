@@ -14,6 +14,7 @@ import { TanimotoFilter } from "~/scenes/BiochemicalEntityDetails/TanimotoFilter
 import PartialMatchFilter from "../PartialMatchFilter";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-balham.css";
+import { AllModules } from "ag-grid-enterprise";
 
 import "../BiochemicalEntityDetails.scss";
 import "./Reaction.scss";
@@ -132,7 +133,6 @@ wildtype_mutant
 organism
 ph
 temperature
-
 */
 @connect(store => {
   return { totalData: store.results.totalData };
@@ -315,9 +315,9 @@ class Reaction extends Component {
 
     getSearchData([
       "reactions/kinlaw_by_name/?products=" +
-        values.products_inchi +
+        values.products +
         "&substrates=" +
-        values.substrates_inchi +
+        values.substrates +
         "&_from=0&size=1000&bound=tight"
     ]).then(response => {
       this.formatReactionMetadata(response.data);
@@ -450,12 +450,17 @@ class Reaction extends Component {
   }
 
   render() {
+    console.log("ReactionPage: Rendering ReactionPage");
+    console.log(this.state.reactionMetadata);
     const values = queryString.parse(this.props.location.search);
+    //console.log(values.substrates.split(',')[0]);
 
     if (this.props.totalData == null) {
       return (
-        <div className="loader-full-content-container">
-          <div className="loader"></div>
+        <div>
+          <div className="loader_container">
+            <div className="loader"></div>
+          </div>
         </div>
       );
     }
@@ -468,27 +473,29 @@ class Reaction extends Component {
       <div className="biochemical-entity-scene biochemical-entity-reaction-scene">
         <div className="definition-data"></div>
 
-        <div className="ag-chart ag-theme-balham">
-          <AgGridReact
-            modules={this.state.modules}
-            frameworkComponents={this.state.frameworkComponents}
-            columnDefs={this.state.columnDefs}
-            sideBar={sideBar}
-            rowData={this.props.totalData}
-            gridOptions={{ floatingFilter: true }}
-            onFirstDataRendered={this.onFirstDataRendered.bind(this)}
-            rowSelection={this.state.rowSelection}
-            groupSelectsChildren={true}
-            suppressRowClickSelection={true}
-            //autoGroupColumnDef={this.state.autoGroupColumnDef}
-            //onGridReady={this.onGridReady}
-            lineage={this.state.lineage}
-            onSelectionChanged={this.onRowSelected.bind(this)}
-            onFilterChanged={this.onFiltered.bind(this)}
-            domLayout={"autoHeight"}
-            domLayout={"autoWidth"}
-            onGridReady={this.onGridReady}
-          ></AgGridReact>
+        <div className="ag_chart" style={{ width: "100%", height: "1000px" }}>
+          <div className="ag-theme-balham">
+            <AgGridReact
+              modules={this.state.modules}
+              frameworkComponents={this.state.frameworkComponents}
+              columnDefs={this.state.columnDefs}
+              sideBar={sideBar}
+              rowData={this.props.totalData}
+              gridOptions={{ floatingFilter: true }}
+              onFirstDataRendered={this.onFirstDataRendered.bind(this)}
+              rowSelection={this.state.rowSelection}
+              groupSelectsChildren={true}
+              suppressRowClickSelection={true}
+              //autoGroupColumnDef={this.state.autoGroupColumnDef}
+              //onGridReady={this.onGridReady}
+              lineage={this.state.lineage}
+              onSelectionChanged={this.onRowSelected.bind(this)}
+              onFilterChanged={this.onFiltered.bind(this)}
+              domLayout={"autoHeight"}
+              domLayout={"autoWidth"}
+              onGridReady={this.onGridReady}
+            ></AgGridReact>
+          </div>
         </div>
       </div>
     );

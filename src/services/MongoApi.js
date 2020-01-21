@@ -5,6 +5,7 @@ const rootSearchURL = "https://api.datanator.info/";
 
 function getSearchData(urlParams) {
   let searchUrl = rootSearchURL + urlParams.join("/");
+  console.log(searchUrl)
   return axios.get(searchUrl);
 }
 
