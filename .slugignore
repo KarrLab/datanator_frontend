@@ -1,0 +1,8 @@
+# Source image files
+*.ai
+
+# source files for favicon
+public/favicon.png
+public/favicon.svg
+public/favicon-chrome.png
+public/favicon-chrome.svg
