@@ -52,14 +52,14 @@ class SearchResults extends Component {
             get-results={protein_functions.getResults}
             format-results={protein_functions.formatResults}
             html-anchor-id="proteins"
-            title="Proteins"
+            title="Protein ortholog groups"
           />
           <SearchResultsList
             get-results-url={reaction_functions.getResultsUrl}
             get-results={reaction_functions.getResults}
             format-results={reaction_functions.formatResults}
             html-anchor-id="reactions"
-            title="Reactions"
+            title="Reaction classes"
           />
         </div>
       </div>
