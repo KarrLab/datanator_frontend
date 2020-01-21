@@ -32,10 +32,6 @@ class SearchResultsList extends Component {
       pageCount: 0
     };
 
-    this.componentDidMount = this.componentDidMount.bind(this);
-    this.componentDidUpdate = this.componentDidUpdate.bind(this);
-    this.fetchResults = this.fetchResults.bind(this);
-    this.formatResults = this.formatResults.bind(this);
     this.formatResult = this.formatResult.bind(this);
   }
 
