@@ -132,7 +132,7 @@ export default class SearchResultsList extends Component {
                     className="more-search-results-button"
                     type="button"
                     onClick={() => {
-                      this.handleFetch("metabolites_meta");
+                      this.handleFetch("metabolites");
                     }}
                   >
                     Load 10 more
@@ -161,7 +161,7 @@ export default class SearchResultsList extends Component {
                   className="more-search-results-button"
                   type="button"
                   onClick={() => {
-                    this.handleFetch("protein");
+                    this.handleFetch("proteins");
                   }}
                 >
                   Load 10 more
@@ -191,7 +191,7 @@ export default class SearchResultsList extends Component {
                     className="more-search-results-button"
                     type="button"
                     onClick={() => {
-                      this.handleFetch("sabio_reaction_entries");
+                      this.handleFetch("reactions");
                     }}
                   >
                     Load 10 more

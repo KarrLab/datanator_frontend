@@ -27,22 +27,17 @@ class SearchResults extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data_arrived: false,
-      newResults: false,
-      reactionMetadata: [],
-      km_values: [],
-      metaboliteResults: null,
-      proteinResults: null,
-      reactionResults: null,
-      meh: false,
-      page_index_counter: {
-        metabolites_meta: 0,
-        sabio_reaction_entries: 0,
-        protein: 0
-      },
       loadMetabolites: true,
       loadProteins: true,
-      loadReactions: true
+      loadReactions: true,
+      pageIndexCounter: {
+        metabolites: 0,
+        proteins: 0,
+        reactions: 0
+      },
+      metaboliteResults: null,
+      proteinResults: null,
+      reactionResults: null
     };
 
     this.fetchData = this.fetchData.bind(this);
@@ -50,30 +45,19 @@ class SearchResults extends Component {
   }
 
   componentDidMount() {
-    this.fetchData("metabolites_meta", 10);
-    // this.fetchData("rna_halflife", 10);
-    this.fetchData("protein", 10);
-    this.fetchData("sabio_reaction_entries", 10);
+    this.fetchData("metabolites", 10);
+    this.fetchData("proteins", 10);
+    this.fetchData("reactions", 10);
   }
 
-  componentDidUpdate() {
-    if (this.state.newResults) {
-      this.fetchData("metabolites_meta", 10);
-      // this.fetchData("rna_halflife", 10);
-      this.fetchData("protein", 10);
-      this.fetchData("sabio_reaction_entries", 10);
-      this.setState({ newResults: false });
-    }
-  }
-
-  fetchData(indices, size) {
+  fetchData(index, size) {
     const values = queryString.parse(this.props.location.search);
 
-    const from_ = this.state.page_index_counter[indices] * 10;
-    let new_counters = this.state.page_index_counter;
-    new_counters[indices] = new_counters[indices] + 1;
+    const from_ = this.state.pageIndexCounter[index] * 10;
+    let newCounter = this.state.pageIndexCounter;
+    newCounter[index] = newCounter[index] + 1;
     let url = "";
-    if (indices === "protein") {
+    if (index === "proteins") {
       url =
         "ftx/text_search/protein_ranked_by_ko/" +
         "?query_message=" +
@@ -84,12 +68,19 @@ class SearchResults extends Component {
         size +
         "&fields=protein_name&fields=synonyms&fields=enzymes&fields=ko_name&fields=gene_name&fields=name&fields=enzymes.enzyme.enzyme_name&fields=enzymes.subunit.canonical_sequence&fields=species";
     } else {
+      let indexQueryArg = "";
+      if (index === "reactions") {
+        indexQueryArg = "sabio_reaction_entries";
+      } else {
+        indexQueryArg = "metabolites_meta";
+      }
+
       url =
         "ftx/text_search/num_of_index/" +
         "?query_message=" +
         values.q +
         "&index=" +
-        indices +
+        indexQueryArg +
         "&from_=" +
         from_ +
         "&size=" +
@@ -99,7 +90,7 @@ class SearchResults extends Component {
     getSearchData([url]).then(response => {
       this.formatData(response.data, size);
     });
-    this.setState({ page_index_counter: new_counters });
+    this.setState({ pageIndexCounter: newCounter });
   }
 
   formatData(data, size) {
