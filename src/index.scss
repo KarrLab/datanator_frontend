@@ -1,5 +1,8 @@
+@import 'colors';
+
 body {
-  color: #333;
+  margin: 0;
+  color: $color-text;
 }
 
 /* paragraphs */
@@ -29,14 +32,16 @@ ol:last-child {
 }
 
 ul.no-top-margin,
-ol.no-top-margin {
+ol.no-top-margin,
+ul:first-child,
+ol:first-child {
   margin-top: 0;
 }
 
 /* links */
 a,
 a:hover {
-  color: #1890ff;
+  color: $color-primary;
 }
 
 a:hover {
@@ -45,37 +50,51 @@ a:hover {
 
 /* content container */
 .content-container {
-  margin-top: calc(50px + 2rem);
-  margin-bottom: 2rem;
+  margin-top: calc(50px + 3rem);
+  margin-bottom: 3rem;
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
   padding: 0;
+  min-height: calc(100vh - 42px - (50px + 3rem) - 3rem);
+}
+
+.full-width-content-container {
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .content-container-columns {
   display: flex;
   justify-content: space-between;
+
+  .content-column {
+    width: 100%;
+  }
 }
 
 /* page loader */
-.loader_container {
-  margin-top: 50px;
-}
-
 .loader {
-  border: 16px solid #f3f3f3; /* Light grey */
-  border-top: 16px solid #3498db; /* Blue */
+  border: 16px solid $color-border;
+  border-top: 16px solid $color-primary;
   border-radius: 50%;
   height: 100px;
-  left: 50%;
-  margin-left: -50px;
-  margin-top: -50px;
-  position: fixed;
-  top: 50%;
+  margin: auto;
   width: 100px;
   animation: spin 2s linear infinite;
   transform: translate(-50%, -50%);
+}
+
+.loader-full-content-container {
+  margin-top: 50px;
+  min-height: calc(100vh - 42px - 50px);
+
+  .loader {
+    margin-left: -50px;
+    margin-top: -50px;
+    position: fixed;
+  }
 }
 
 @keyframes spin {
@@ -84,70 +103,66 @@ a:hover {
 }
 
 /* section blocks */
-.content-block {
-  border-width: 1px;
-  border-style: solid;
-  border-radius: 4px;
-  box-shadow: 3px 3px 5px #0006;
-}
-
 .content-block:not(:first-child) {
-  margin-top: 2rem;
+  margin-top: 3rem;
 }
 
 .content-block-heading {
   font-size: 1.25rem;
   font-weight: bold;
   text-align: left;
-  padding-left: 0.5rem;
   margin: 0;
-  color: #fff;
+  margin-bottom: 0.5rem;
 }
 
 .content-block-content {
   padding: 0.5rem;
+  border: 1px solid $color-border;
+  border-radius: 3px;
 }
 
 /* table of contents */
 .table-of-contents {
-  color: #333;
   height: min-content;
-  margin-right: 2rem;
-  border-color: #ffc306;
-  background: #fffcf2; /* 95% lighten of accent color */
+  margin-right: 3rem;
   position: sticky;
-  top: calc(50px + 2rem);
+  top: calc(50px + 3rem);
   width: 160px;
   min-width: 160px;
-}
 
-.table-of-contents .content-block-heading {
-  background: #ffc306;
-}
+  .content-block-heading {
+    color: $color-heading;
+  }
 
-.table-of-contents ol {
-  list-style-type: circle;
-  margin: 0;
-  margin-left: 1rem;
-}
+  ul {
+    list-style-type: circle;
+    margin: 0;
+    margin-left: 1rem;
 
-.table-of-contents a {
-  margin-left: -0.125rem;
-  color: #333;
-}
+    a {
+      margin-left: -0.125rem;
+    }
+  }
 
-.table-of-contents a:hover {
-  color: #1890ff;
+  ol {
+    margin: 0;
+    margin-left: 1rem;
+  }
+
+  a {
+    color: $color-text;
+  }
+
+  a:hover {
+    color: $color-primary;
+  }
 }
 
 /* block section (section with a heading bar, background color, and border) */
-.content-block.section {
-  border-color: #1890ff;
-  background: #f3f9ff;
-}
-
-.section .content-block-heading {
-  background: #1890ff;
+.section {
+  .content-block-heading {
+    color: $color-primary;
+  }
 }
 
 /* autocomplete menu */
@@ -159,29 +174,38 @@ a:hover {
       0 8px 24px rgba(0, 0, 0, 0.2);
 
     .bp3-popover-arrow-fill {
-      fill: #1890ff;
+      fill: $color-primary;
     }
   }
 
   .bp3-menu {
     max-height: 200px;
     overflow-x: hidden;
-    background: #1890ff;
-    color: #fff;
+    background: $color-primary;
+    color: $color-white;
 
     .bp3-menu-item.bp3-intent-primary.bp3-active {
-      background: #56aafe;
+      background: $color-primary-light;
     }
 
     .bp3-menu-item:hover,
     .bp3-menu-item:active {
-      background-color: #56aafe;
+      background-color: $color-primary-light;
     }
 
     .bp3-menu-item.bp3-disabled {
-      color: #fff9 !important;
+      color: $color-primary-lighter !important; // !important is neeed because blueprint uses !important
     }
   }
+}
+
+/* highlight */
+.highlight-primary {
+  color: $color-primary;
+}
+
+.highlight-accent {
+  color: $color-accent;
 }
 
 /* focus */

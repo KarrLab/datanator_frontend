@@ -1,32 +1,207 @@
-.content-container-home-scene {
-  h1,
-  h2 {
-    text-align: center;
-  }
+@import 'colors';
 
-  h1 {
-    font-size: 36px;
-    line-height: 28px;
-    color: #1890ff;
-  }
+.content-container-home-scene {
+  margin-top: 50px;
+  margin-bottom: 1.5rem;
 
   h2 {
     font-size: 30px;
-    line-height: 22px;
-    color: #333;
+    margin: 0;
   }
 
+  /* sections */
   .section {
     text-align: center;
   }
 
-  .section:not(:last-child) {
+  .section-title-separator {
+    height: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 4rem;
+    border-bottom: 2px solid $color-primary;
+    margin-top: 2rem;
     margin-bottom: 2rem;
   }
 
-  .intro h2 {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    font-style: italic;
+  .section-inner-container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: calc(3rem - 2px);
+    padding-bottom: 3rem;
+    border-bottom: 1px solid $color-border;
+  }
+
+  .section-columns {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: flex-start;
+    margin-top: 2rem;
+  }
+
+  .section-3-columns {
+    .section-column {
+      width: calc((100% - (3 - 1) * 2rem) / 3);
+    }
+  }
+
+  .section-4-columns {
+    .section-column {
+      width: calc((100% - (4 - 1) * 2rem) / 4);
+    }
+  }
+
+  .section-5-columns {
+    .section-column {
+      width: calc((100% - (5 - 1) * 2rem) / 5);
+    }
+  }
+
+  .section-column {
+    text-align: center;
+  }
+
+  .section-column-icon {
+    height: 64px;
+  }
+
+  .section-column-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-column-subtitle {
+    font-size: 17px;
+    color: $color-primary;
+    margin-top: 0.5rem;
+  }
+
+  /* introduction */
+  .intro {
+    background: linear-gradient(0deg, rgba($color-primary, 0.1) 0%, rgba($color-primary, 0.4) 100%);
+
+    .logo-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo {
+      margin-right: 0.5rem;
+      height: 5rem;
+    }
+
+    h1 {
+      font-size: 64px;
+      color: $color-primary;
+      margin: 0;
+      padding-bottom: 3px;
+    }
+
+    h2 {
+      font-size: 30px;
+      margin-top: calc(2rem - 8px);
+      margin-bottom: calc(2rem - 8px);
+      margin-left: 0;
+      margin-right: 0;
+      font-style: italic;
+      color: $color-primary-light;
+      text-align: center;
+    }
+
+    p {
+      font-size: 16px;
+    }
+  }
+
+  .intro.section {
+    .section-inner-container {
+      border-bottom: none;
+    }
+  }
+
+  /* workflow */
+  .workflow {
+    max-width: 100%;
+  }
+
+  .vertical-workflow-el {
+    height: 4rem;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .vertical-workflow-el-text {
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .vertical-workflow-el-text-inner {
+    width: 100%;
+  }
+
+  .vertical-workflow-el-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  .vertical-workflow-el-icon {
+    height: 64px;
+    margin-right: 1rem;
+    z-index: 1;
+  }
+
+  .vertical-workflow-el:not(:last-child) {
+    margin-bottom: 2rem;
+
+    .vertical-workflow-el-line {
+      border-left: 2px dotted $color-border;
+      height: calc(100% + 2rem);
+      width: 0;
+      position: relative;
+      left: 32px;
+      top: 32px;
+      z-index: 0;
+    }
+  }
+
+  .vertical-workflow-el:not(:last-child).vertical-workflow-el-search {
+    .vertical-workflow-el-line {
+      top: calc(32px + 10px);
+      height: calc(100% + 2rem - 10px);
+    }
+  }
+
+  .vertical-workflow-el:not(:last-child).vertical-workflow-el-analyze {
+    .vertical-workflow-el-line {
+      top: calc(32px + 15px);
+      height: calc(100% + 2rem - 15px);
+    }
+  }
+
+  /* about */
+  .about-icons {
+    a:not(:first-child) {
+      margin-left: 1rem;
+    }
+
+    a.about-icon-mssm {
+      margin-left: 0;
+    }
+
+    img {
+      height: 64px;
+    }
   }
 }

@@ -1,4 +1,5 @@
 import { getSearchData, getSearchObject } from '~/services/MongoApi';
+
 test.skip('runs', () => {
   let result = getSearchData(['ATP', 'Escherichia coli']);
   console.log(result);
@@ -21,6 +22,7 @@ test.skip('Fails on missing page', () => {
     expect(response.status).toBe(404);
   });
 });
+
 test.skip('fake test', () => {
   getSearchObject(['ATP', 'Escherichia coli']);
   expect(true).toBeTruthy;

@@ -1,7 +1,8 @@
-import organismReducer from './organismReducer';
-import {resultsReducer} from './resultsReducer';
-import pageReducer from './pageReducer';
-function combined(state = {}, action) {
+import organismReducer from "./organismReducer";
+import resultsReducer from "./resultsReducer";
+import pageReducer from "./pageReducer";
+
+function reducer(state = {}, action) {
   return {
     organisms: organismReducer(state.organisms, action),
     results: resultsReducer(state.results, action),
@@ -9,4 +10,4 @@ function combined(state = {}, action) {
   };
 }
 
-export default combined;
+export default reducer;

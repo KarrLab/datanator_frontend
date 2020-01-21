@@ -1,0 +1,58 @@
+@import 'colors';
+
+.content-container-search-results-scene {
+  .loader {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .search-results-list {
+    list-style-type: none;
+    margin: 0;
+
+    li {
+      margin-bottom: 0.5rem;
+
+      .search-result-title {
+        a {
+          color: $color-text;
+          font-weight: bold;
+        }
+
+        a:hover {
+          color: $color-primary;
+        }
+      }
+
+      .search-result-description {
+        color: $color-text-light;
+
+        a {
+          color: $color-text-light;
+        }
+
+        a:hover {
+          color: $color-primary;
+        }
+      }
+    }
+  }
+
+  .no-search-results {
+    font-style: italic;
+  }
+
+  .more-search-results-button {
+    width: 100%;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    background: $color-button;
+    border: 1px solid $color-border;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
+  .more-search-results-button:hover {
+    background: $color-button-hover;
+  }
+}

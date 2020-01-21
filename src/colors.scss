@@ -1,0 +1,43 @@
+$color-primary: #1890ff;
+$color-primary-light: #51abff; // 25% lighter
+$color-primary-lighter: #8bc7fe; // 50% lighter
+$color-primary-lightest: #c5e3ff; // 75% lighter
+$color-accent: #ffc306;
+$color-accent-light: #ffd144; // 25% lighter
+$color-accent-lighter: #ffe182; // 50% lighter
+$color-accent-lightest: #fff0c0; // 75% lighter
+$color-white: #fff;
+$color-white-transparent: #ffffff80;
+$color-text: #333;
+$color-text-light: #666; // 25% lighter
+$color-text-lighter: #999; // 50% lighter
+$color-text-lightest: #ccc; // 75% lighter
+$color-heading: #5c5c5c;
+$color-button: #f9f9f9;
+$color-button-hover: #f0f0f0;
+$color-border: #e0e0e0;
+$color-shadow: #0006;
+
+:export { /* stylelint-disable-line selector-pseudo-class-no-unknown */
+  /* stylelint-disable property-no-unknown */
+  primary: $color-primary;
+  primary-light: $color-primary-light;
+  primary-lighter: $color-primary-lighter;
+  primary-lightest: $color-primary-lightest;
+  accent: $color-accent;
+  accent-light: $color-accent-light;
+  accent-lighter: $color-accent-lighter;
+  accent-lightest: $color-accent-lightest;
+  white: $color-white;
+  white-transparent: $color-white-transparent;
+  text: $color-text;
+  text-light: $color-text-light;
+  text-lighter: $color-text-lighter;
+  text-lightest: $color-text-lightest;
+  heading: $color-heading;
+  button: $color-button;
+  button-hover: $color-button-hover;
+  border: $color-border;
+  shadow: $color-shadow;
+  /* stylelint-enable property-no-unknown */
+}

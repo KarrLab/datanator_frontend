@@ -1,0 +1,68 @@
+@import 'colors';
+
+.header-component {
+  display: flex;
+  justify-content: space-between;
+  background-color: $color-primary;
+  box-shadow: 0 2px 2px $color-shadow;
+
+  /* logo and title */
+  .logo-title-container {
+    height: 40px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    order: 1;
+  }
+
+  .titles {
+    color: $color-white;
+    margin-left: 5px;
+
+    .title {
+      font-weight: bold;
+      font-size: 20px;
+      line-height: 20px;
+      margin-bottom: 2px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      line-height: 14px;
+      font-style: italic;
+    }
+  }
+
+  /* search form */
+  .search-container {
+    order: 2;
+    flex: 1;
+    margin-left: 10px;
+  }
+
+  /* links to page */
+  .page-links {
+    order: 3;
+
+    .bp3-button {
+      font-weight: bold;
+    }
+
+    .bp3-button,
+    .bp3-button .bp3-icon {
+      color: $color-white;
+    }
+
+    .bp3-button:hover,
+    .bp3-button:active {
+      background: unset;
+    }
+
+    .bp3-button:hover,
+    .bp3-button:active,
+    .bp3-button:hover .bp3-icon,
+    .bp3-button:active .bp3-icon {
+      color: $color-accent;
+    }
+  }
+}

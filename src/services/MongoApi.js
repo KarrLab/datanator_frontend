@@ -1,13 +1,11 @@
-import axios from 'axios';
-// eslint-disable-next-line no-undef
+import axios from "axios";
+
 //const rootSearchURL = process.env.REACT_APP_DATANATOR_REST_SERVER;
-const rootSearchURL = "https://api.datanator.info/"
+const rootSearchURL = "https://api.datanator.info/";
+
 function getSearchData(urlParams) {
-	console.log(rootSearchURL)
-  let searchUrl = rootSearchURL + urlParams.join('/');
-  console.log("here")
-  console.log(searchUrl);
-  console.log(axios.get(searchUrl))
+  let searchUrl = rootSearchURL + urlParams.join("/");
   return axios.get(searchUrl);
 }
+
 export { getSearchData };

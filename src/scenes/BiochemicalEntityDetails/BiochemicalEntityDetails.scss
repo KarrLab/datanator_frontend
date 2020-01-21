@@ -1,0 +1,78 @@
+@import 'colors';
+
+.biochemical-entity-scene {
+  /* AG grid */
+  .ag-theme-balham .ag-icon-pin {
+    font-family: "Font Awesome 5 Free";
+
+    /* FontAwesome uses font-weight bold */
+    font-weight: bold;
+  }
+
+  .ag-theme-balham .ag-icon-customstats::before {
+    content: '\f08d';
+  }
+
+  .ag-chart {
+    width: 100%;
+    height: 1000px;
+    margin-top: 10px;
+  }
+
+  .definition-data {
+    margin-top: 60px;
+    width: 100%;
+    border: 1px solid $color-primary;
+    border-radius: 4px;
+    background: #f3f9ff;
+    box-shadow: 3px 3px 5px #0006;
+  }
+
+  .definition-data .MuiTypography-h6 {
+    color: $color-white;
+    background: $color-primary;
+    font-weight: 700;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .metadata-description {
+    margin-left: 180px;
+
+    p {
+      margin-bottom: 9px;
+    }
+  }
+
+  .img-description {
+    position: relative;
+    margin-top: 10px;
+  }
+
+  .biochemical-entity-scene-taxonomy-slider-filter {
+    height: 150px;
+    width: 220px;
+  }
+
+  .biochemical-entity-scene-taxonomy-slider-filter {
+    margin-top: 10px;
+    margin-bottom: -20px;
+  }
+
+  .biochemical-entity-scene-tanimoto-slider-filter {
+    margin-left: 20px;
+    margin-top: 10px;
+  }
+
+  .biochemical-entity-scene-partial-match-filter {
+    border: 2px solid #2f2;
+    border-radius: 5px;
+    background-color: #bfb;
+    width: 200px;
+    height: 50px;
+
+    .form-control {
+      height: 20px;
+    }
+  }
+}

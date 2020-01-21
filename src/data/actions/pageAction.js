@@ -1,21 +1,19 @@
-
 function setNewUrl(newUrl) {
-    return function(dispatch) {
+  return function(dispatch) {
     dispatch({
-      type: 'NEW_REDIRECT',
-      payload: newUrl,
+      type: "NEW_REDIRECT",
+      payload: newUrl
     });
   };
 }
 
 function abstractMolecule(abstractBool) {
-    return function(dispatch) {
+  return function(dispatch) {
     dispatch({
-      type: 'ABSTRACT_MOLECULE',
-      payload: abstractBool,
+      type: "ABSTRACT_MOLECULE",
+      payload: abstractBool
     });
   };
 }
-
 
 export { setNewUrl, abstractMolecule };
