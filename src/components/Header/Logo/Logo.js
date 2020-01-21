@@ -5,7 +5,7 @@ import logo from "./logo.svg";
 const Logo = () => {
   return (
     <Link to="/" className="logo">
-      <img src={logo} className="logo-image" alt="Datanator Logo" />
+      <object data={logo} className="logo-image" alt="Datanator Logo" />
     </Link>
   );
 };
