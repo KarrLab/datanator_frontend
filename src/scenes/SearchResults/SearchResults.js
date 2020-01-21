@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { HashLink } from "react-router-hash-link";
-import { withRouter } from "react-router";
 
 import { getSearchData } from "~/services/MongoApi";
 import SearchResultsList from "./SearchResultsList.js";
@@ -198,4 +197,4 @@ class SearchResults extends Component {
   }
 }
 
-export default withRouter(SearchResults);
+export default SearchResults;
