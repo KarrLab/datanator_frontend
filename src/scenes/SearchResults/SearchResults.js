@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { HashLink } from "react-router-hash-link";
 
-import SearchResultsList from "./SearchResultsList.js";
-import * as metabolite_functions from "~/scenes/SearchResults/metabolite_functions";
-import * as protein_functions from "~/scenes/SearchResults/protein_functions";
-import * as reaction_functions from "~/scenes/SearchResults/reaction_functions";
+import MetaboliteSearchResultsList from "./MetaboliteSearchResultsList";
+import ProteinSearchResultsList from "./ProteinSearchResultsList";
+import ReactionSearchResultsList from "./ReactionSearchResultsList";
 
 import "./SearchResults.scss";
 
@@ -40,27 +39,9 @@ class SearchResults extends Component {
         </div>
 
         <div className="content-column">
-          <SearchResultsList
-            get-results-url={metabolite_functions.getResultsUrl}
-            get-results={metabolite_functions.getResults}
-            format-results={metabolite_functions.formatResults}
-            html-anchor-id="metabolites"
-            title="Metabolites"
-          />
-          <SearchResultsList
-            get-results-url={protein_functions.getResultsUrl}
-            get-results={protein_functions.getResults}
-            format-results={protein_functions.formatResults}
-            html-anchor-id="proteins"
-            title="Protein ortholog groups"
-          />
-          <SearchResultsList
-            get-results-url={reaction_functions.getResultsUrl}
-            get-results={reaction_functions.getResults}
-            format-results={reaction_functions.formatResults}
-            html-anchor-id="reactions"
-            title="Reaction classes"
-          />
+          <MetaboliteSearchResultsList />
+          <ProteinSearchResultsList />
+          <ReactionSearchResultsList />
         </div>
       </div>
     );
