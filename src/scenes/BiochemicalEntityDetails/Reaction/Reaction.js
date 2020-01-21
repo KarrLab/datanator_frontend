@@ -6,15 +6,14 @@ import { MetadataSection } from "./MetadataSection";
 import { getSearchData } from "~/services/MongoApi";
 import { setTotalData, setSelectedData } from "~/data/actions/resultsAction";
 
-import { AgGridReact } from "ag-grid-react";
-import { AllCommunityModules } from "@ag-grid-community/all-modules";
+import { AgGridReact } from "@ag-grid-community/react";
+import { AllModules } from '@ag-grid-enterprise/all-modules';
 import StatsToolPanel from "./StatsToolPanel.js";
 import { TaxonomyFilter } from "~/scenes/BiochemicalEntityDetails/TaxonomyFilter.js";
 import { TanimotoFilter } from "~/scenes/BiochemicalEntityDetails/TanimotoFilter.js";
 import PartialMatchFilter from "../PartialMatchFilter";
-import "ag-grid-community/dist/styles/ag-grid.css";
-import "ag-grid-community/dist/styles/ag-theme-balham.css";
-import { AllModules } from "ag-grid-enterprise";
+import "@ag-grid-enterprise/all-modules/dist/styles/ag-grid.scss";
+import "@ag-grid-enterprise/all-modules/dist/styles/ag-theme-balham/sass/ag-theme-balham.scss";
 
 import "../BiochemicalEntityDetails.scss";
 import "./Reaction.scss";
@@ -143,7 +142,7 @@ class Reaction extends Component {
     this.state = {
       reactionMetadata: [],
       km_values: [],
-      modules: AllCommunityModules,
+      modules: AllModules,
       lineage: [],
       data_arrived: false,
       tanimoto: false,

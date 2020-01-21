@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@ag-grid-community/all-modules": "^22.1.1",
+    "@ag-grid-community/react": "^22.1.2",
+    "@ag-grid-enterprise/all-modules": "^22.1.2",
     "@blueprintjs/core": "^3.22.3",
     "@blueprintjs/select": "^3.11.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
@@ -12,8 +14,6 @@
     "@material-ui/core": "^4.8.0",
     "@material-ui/icons": "^4.5.1",
     "@material-ui/lab": "^4.0.0-alpha.36",
-    "ag-grid-community": "^22.1.1",
-    "ag-grid-react": "^22.1.1",
     "antd": "^3.26.4",
     "axios": "^0.19.0",
     "babel-eslint": "^10.0.3",

@@ -10,16 +10,15 @@ import {
   setTotalData,
   setSelectedData
 } from "~/data/actions/resultsAction";
-import { AllModules } from 'ag-grid-enterprise';
 
-import { AgGridReact } from "ag-grid-react";
-import { AllCommunityModules } from "@ag-grid-community/all-modules";
+import { AgGridReact } from "@ag-grid-community/react";
+import { AllModules } from '@ag-grid-enterprise/all-modules';
 import StatsToolPanel from "./StatsToolPanel.js";
 import { TaxonomyFilter } from "../TaxonomyFilter.js";
 import { TanimotoFilter } from "../TanimotoFilter.js";
 import PartialMatchFilter from "../PartialMatchFilter.js";
-import "ag-grid-community/dist/styles/ag-grid.css";
-import "ag-grid-community/dist/styles/ag-theme-balham.css";
+import "@ag-grid-enterprise/all-modules/dist/styles/ag-grid.scss";
+import "@ag-grid-enterprise/all-modules/dist/styles/ag-theme-balham/sass/ag-theme-balham.scss";
 
 import "../BiochemicalEntityDetails.scss";
 import "./Metabolite.scss";
@@ -64,7 +63,7 @@ class Metabolite extends Component {
     super(props);
     this.state = {
       metaboliteMetadata: [],
-      modules: AllCommunityModules,
+      modules: AllModules,
       lineage: [],
       data_arrived: false,
       tanimoto: false,

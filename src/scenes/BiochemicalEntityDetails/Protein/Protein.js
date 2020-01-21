@@ -10,14 +10,13 @@ import {
   setSelectedData
 } from "~/data/actions/resultsAction";
 import { setNewUrl, abstractMolecule } from "~/data/actions/pageAction";
-import { AllModules } from 'ag-grid-enterprise';
-import { AgGridReact } from "ag-grid-react";
-import { AllCommunityModules } from "@ag-grid-community/all-modules";
+import { AgGridReact } from "@ag-grid-community/react";
+import { AllModules } from '@ag-grid-enterprise/all-modules';
 import StatsToolPanel from "./StatsToolPanel.js";
 import { TaxonomyFilter } from "~/scenes/BiochemicalEntityDetails/TaxonomyFilter.js";
 import PartialMatchFilter from "../PartialMatchFilter";
-import "ag-grid-community/dist/styles/ag-grid.css";
-import "ag-grid-community/dist/styles/ag-theme-balham.css";
+import "@ag-grid-enterprise/all-modules/dist/styles/ag-grid.scss";
+import "@ag-grid-enterprise/all-modules/dist/styles/ag-theme-balham/sass/ag-theme-balham.scss";
 
 import "../BiochemicalEntityDetails.scss";
 import "./Protein.scss";
@@ -79,7 +78,7 @@ class Protein extends Component {
       orig_json: null,
       isFlushed: false,
       data_arrived: false,
-      modules: AllCommunityModules,
+      modules: AllModules,
       lineage: [],
       data_arrived: false,
       tanimoto: false,
