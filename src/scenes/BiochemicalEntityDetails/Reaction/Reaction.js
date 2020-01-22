@@ -242,22 +242,40 @@ class Reaction extends Component {
     this.setKmColumns = this.setKmColumns.bind(this);
   }
 
-  setKmColumns(km_values) {
-    let new_columns = [];
+  setKmColumns(km_values){
+    let new_columns = []
+    let frameworkComponents =  { CustomToolPanelReaction: (() => <StatsToolPanel relevant_column={"kcat"} />), taxonomyFilter: TaxonomyFilter, partialMatchFilter: PartialMatchFilter,} 
     for (var i = km_values.length - 1; i >= 0; i--) {
       new_columns.push({
-        headerName: "Km " + km_values[i].split("_")[1] + " (M)",
-        field: km_values[i],
-        sortable: true,
-        filter: "agNumberColumnFilter"
-      });
+          headerName: 'Km ' + km_values[i].split("_")[1] + ' (M)',
+          field: km_values[i],
+          sortable: true,
+          filter: 'agNumberColumnFilter',
+        })
+      
+      let comp_name = 'CustomToolPanelReaction_'+ km_values[i]
+      frameworkComponents[comp_name] = (() => <StatsToolPanel relevant_column={km_values[i]} />)
+      sideBar["toolPanels"].push(
+        {
+      id: km_values[i],
+      labelDefault: 'Km ' + km_values[i].split("_")[1] + ' (M)',
+      labelKey: 'customStats',
+      iconKey: 'customstats',
+      toolPanel: comp_name,
+    },)
+    
+
+
+
+
     }
 
-    let final_columns = this.state.first_columns
-      .concat(new_columns)
-      .concat(this.state.second_columns);
+    let final_columns = this.state.first_columns.concat(new_columns).concat(this.state.second_columns)
     //final_columns = final_columns.concat(default_second_columns)
-    this.setState({ columnDefs: final_columns });
+    this.setState({columnDefs:final_columns, 
+      frameworkComponents:frameworkComponents
+    })
+
   }
   componentDidMount() {
     if (this.props.match.params.dataType === "meta") {
