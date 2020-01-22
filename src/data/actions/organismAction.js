@@ -1,4 +1,4 @@
-import { getDataFromApi } from "~/services/MongoApi";
+import { getDataFromApi } from "~/services/RestApi";
 
 /* This dispatch requires the Promises middleware, imported in Store.js*/
 function getData() {

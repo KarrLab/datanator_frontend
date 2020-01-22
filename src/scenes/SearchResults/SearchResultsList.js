@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 
-import { getDataFromApi } from "~/services/MongoApi";
+import { getDataFromApi } from "~/services/RestApi";
 const queryString = require("query-string");
 
 class SearchResultsList extends Component {

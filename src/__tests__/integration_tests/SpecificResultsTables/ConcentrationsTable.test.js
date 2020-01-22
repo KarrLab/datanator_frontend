@@ -8,7 +8,7 @@ import createStore from '~/data/Store.js'
 
 import axiosMock from 'axios'
 import { fireEvent, waitForElement } from '@testing-library/react'
-import { getDataFromApi } from '~/services/MongoApi';
+import { getDataFromApi } from '~/services/RestApi';
 import ConcentrationsTable from '~/components/Results/ConcentrationsTable.js';
 
 

@@ -1,4 +1,4 @@
-import { getDataFromApi, getSearchObject } from '~/services/MongoApi';
+import { getDataFromApi, getSearchObject } from '~/services/RestApi';
 
 test.skip('runs', () => {
   let result = getDataFromApi(['ATP', 'Escherichia coli']);

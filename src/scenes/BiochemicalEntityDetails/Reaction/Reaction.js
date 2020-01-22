@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 
 import { MetadataSection } from "./MetadataSection";
-import { getDataFromApi } from "~/services/MongoApi";
+import { getDataFromApi } from "~/services/RestApi";
 import { setTotalData, setSelectedData } from "~/data/actions/resultsAction";
 
 import { AgGridReact } from "@ag-grid-community/react";

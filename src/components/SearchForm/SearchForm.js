@@ -7,7 +7,7 @@ import { MenuItem } from "@blueprintjs/core";
 import { Button } from "@blueprintjs/core";
 import { Suggest } from "@blueprintjs/select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { getDataFromApi } from "~/services/MongoApi";
+import { getDataFromApi } from "~/services/RestApi";
 import axios from "axios";
 
 import "./SearchForm.scss";
