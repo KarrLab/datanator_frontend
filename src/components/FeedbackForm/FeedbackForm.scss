@@ -1,0 +1,21 @@
+@import 'colors';
+
+.feedback-form-component {
+  position: fixed;
+  right: 0;
+  top: calc(50px + (100vh - 50px) / 2 - 111.5px * 3 / 4);
+  transform-origin: bottom right;
+  transform: rotate(-90deg);
+  border: solid $color-border;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-top-width: 1px;
+  border-bottom-width: 0;
+  background: $color-button;
+  padding: 0.5rem;
+  width: 95.5px;
+}
+
+.feedback-form-component:hover {
+  background: $color-button-hover;
+}
