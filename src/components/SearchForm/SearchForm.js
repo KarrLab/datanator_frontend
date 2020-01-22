@@ -67,7 +67,7 @@ class SearchForm extends Component {
 
         this.setState({
           organism: organism,
-          organismValid: organism != null,
+          organismValid: true,
         });
       }
     }
@@ -79,7 +79,7 @@ class SearchForm extends Component {
       return;
     }
 
-    this.setState({ organismValid: false });
+    this.setState({ organismValid: query != "" });
 
     // cancel earlier query
     if (this.cancelTokenSource) {

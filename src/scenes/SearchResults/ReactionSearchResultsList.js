@@ -55,7 +55,7 @@ export default class ReactionSearchResultsList extends Component {
 
       // route
       formattedResult["route"] =
-        "/reaction/data/?substrates=" + substrates + "&products=" + products;
+        "/reaction/?substrates=" + substrates + "&products=" + products;
       if (organism) {
         formattedResult["route"] += "&organism=" + organism;
       }

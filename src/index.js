@@ -2,7 +2,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 // Router (enables persistant URLs and History)
-import { Router, Route } from "react-router-dom";
+import { Router, Switch, Route } from "react-router-dom";
 
 // Redux (used for state management)
 import { Provider } from "react-redux";
@@ -48,7 +48,7 @@ const SiteRouter = () => {
   return (
     <Router history={history}>
       <Header />
-      <div>
+      <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/search/:query/:organism?/" component={SearchResults} />
         <Route
@@ -59,15 +59,17 @@ const SiteRouter = () => {
           path="/protein/:searchType/:molecule/:organism?/"
           component={Protein}
         />
+<<<<<<< HEAD
         <Route path="/reaction/:dataType/" component={Reaction} />
         <Route path="/rna/" component={RNA} />
+=======
+        <Route path="/reaction/" component={Reaction} />
+>>>>>>> 92bcf1cf789b39ec5cd6daa9578060882bf9908e
         <Route path="/stats/" component={Stats} />
         <Route path="/help/" component={Help} />
         <Route path="/about/" component={About} />
-        <Route path="*">
-          <Error404 />
-        </Route>
-      </div>
+        <Route path="*" component={Error404} />
+      </Switch>
       <Footer />
       <FeedbackForm />
     </Router>
