@@ -113,16 +113,18 @@ function getKcat(parameters) {
 }
 
 function getKm(parameters, substrates) {
+  console.log(parameters)
   let kms = {};
   for (var i = 0; i < parameters.length; i++) {
     if (
-      parameters[i].type === "27" &&
+      parameters[i].type == "27" &&
       substrates.includes(parameters[i]["name"]) &&
       parameters[i]["observed_name"].toLowerCase() === "km"
     ) {
       kms["km_" + parameters[i]["name"]] = parameters[i].value;
     }
   }
+  console.log(kms)
   return kms;
 }
 /*
@@ -347,44 +349,43 @@ class Reaction extends Component {
   }
 
   formatReactionData(data) {
+    console.log('ReactionPage: Calling formatReactionData');
     if (data != null) {
       var total_rows = [];
       let substrates = getSubstrates(data[0].reaction_participant[0].substrate);
-      let km_values = [];
+      let km_values = []
       for (var k = substrates.length - 1; k >= 0; k--) {
-        km_values.push("km_" + substrates[k]);
+        km_values.push("km_" + substrates[k])
       }
-      this.setKmColumns(km_values);
-      this.setState({ km_values: km_values });
+      this.setKmColumns(km_values)
+      this.setState({km_values:km_values})
 
       let start = 0;
       for (var i = start; i < data.length; i++) {
-        let wildtype_mutant = null;
-        if (data[i]["taxon_wildtype"] === "1") {
-          wildtype_mutant = "wildtype";
-        } else if (data[i]["taxon_wildtype"] === "0") {
-          wildtype_mutant = "mutant";
+        let wildtype_mutant = null
+        if (data[i]['taxon_wildtype'] == '1'){
+          wildtype_mutant = "wildtype"
+        }
+        else if (data[i]['taxon_wildtype'] == '0'){
+          wildtype_mutant = "mutant"
         }
         let row = {
-          kinlaw_id: data[i]["kinlaw_id"],
+          kinlaw_id: data[i]['kinlaw_id'],
           kcat: getKcat(data[i].parameter)["kcat"],
-          wildtype_mutant: wildtype_mutant,
+          wildtype_mutant:wildtype_mutant,
           organism: data[i].taxon_name,
           ph: data[i].ph,
           temperature: data[i].temperature,
-          source_link: { reactionID: getReactionID(data[i].resource) }
-        };
-        let row_with_km = Object.assign(
-          {},
-          row,
-          getKm(data[i].parameter, substrates)
-        );
-        total_rows.push(row_with_km);
+          source_link:{ reactionID: getReactionID(data[i].resource)},
+        }
+        let row_with_km = Object.assign({}, row, getKm(data[i].parameter, substrates))
+        //console.log(row_with_km)
+        total_rows.push(row_with_km)
       }
 
       this.props.dispatch(setTotalData(total_rows));
       this.setState({
-        data_arrived: true
+        data_arrived: true,
       });
     } else {
     }
