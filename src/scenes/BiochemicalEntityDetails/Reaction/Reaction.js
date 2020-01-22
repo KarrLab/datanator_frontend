@@ -54,6 +54,13 @@ function getReactionID(resource) {
     }
 }
 
+function getECNumber(resource) {
+  for (var i = 0; i < resource.length; i++)
+    if (resource[i].namespace === "ec-code") {
+      return resource[i].id;
+    }
+}
+
 function getSubstrates(substrate) {
   let subNames = [];
   for (var i = 0; i < substrate.length; i++) {
@@ -406,6 +413,7 @@ class Reaction extends Component {
     let start = 0;
     for (var i = start; i < data.length; i++) {
       let reactionID = getReactionID(data[i].resource);
+      let ecNumber = getECNumber(data[i].resource)
       let new_dict = newReactionMetadataDict[reactionID];
       if (!new_dict) {
         new_dict = {};
@@ -416,6 +424,7 @@ class Reaction extends Component {
       new_dict["reactionID"] = reactionID;
       new_dict["substrates"] = substrates;
       new_dict["products"] = products;
+      new_dict["ecNumber"] = ecNumber
       new_dict['reaction_name'] = reaction_name[0].toUpperCase() + reaction_name.substring(1,reaction_name.length)
 
       let sub_inchis = getSubstrateInchiKey(
