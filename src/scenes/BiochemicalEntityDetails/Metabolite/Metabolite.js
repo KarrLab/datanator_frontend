@@ -181,7 +181,7 @@ class Metabolite extends Component {
         this.props.dispatch(abstractMolecule(false));
         let url =
           "/metabolite/" +
-          this.props.match.params.molecule +
+          this.props.match.params.metabolite +
           "/" +
           this.props.match.params.organism +
           "/" +
@@ -190,7 +190,7 @@ class Metabolite extends Component {
     }
 
     if (
-      this.props.match.params.molecule !== prevProps.match.params.molecule ||
+      this.props.match.params.metabolite !== prevProps.match.params.metabolite ||
       this.props.match.params.organism !== prevProps.match.params.organism ||
       queryArgs.abstract !== prevQueryArgs.abstract
     ) {
@@ -212,7 +212,7 @@ class Metabolite extends Component {
         "&species=" +
         this.props.match.params.organism +
         "&metabolite=" +
-        this.props.match.params.molecule
+        this.props.match.params.metabolite
     ])
       .then(response => {
         this.formatData(response.data);
@@ -456,7 +456,7 @@ class Metabolite extends Component {
         <MetadataSection
           metaboliteMetadata={this.state.metaboliteMetadata}
           abstract={this.state.tanimoto}
-          molecule={this.props.match.params.molecule}
+          metabolite={this.props.match.params.metabolite}
           organism={this.props.match.params.organism}
         />
 

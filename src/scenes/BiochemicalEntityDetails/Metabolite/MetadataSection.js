@@ -122,7 +122,7 @@ class MetadataSection extends Component {
       return (
         <div className="definition-data">
           <Typography variant="h6" className={"green"}>
-            {"Molecules Similar to " + this.props.molecule}
+            {"Molecules Similar to " + this.props.metabolite}
           </Typography>
 
           <div className="img-description">{descriptions}</div>

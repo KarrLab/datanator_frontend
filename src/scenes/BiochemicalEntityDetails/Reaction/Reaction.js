@@ -18,7 +18,6 @@ import "@ag-grid-enterprise/all-modules/dist/styles/ag-theme-balham/sass/ag-them
 import "../BiochemicalEntityDetails.scss";
 import "./Reaction.scss";
 
-const queryString = require("query-string");
 const sideBar = {
   toolPanels: [
     {
@@ -298,11 +297,11 @@ class Reaction extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    let queryArgs = queryString.parse(this.props.location.search);
-    let oldQueryArgs = queryString.parse(prevProps.location.search);
+    const pathArgs = this.props.match.params;
+    const oldPathArgs = prevProps.match.params;
     if (
-      queryArgs.substrates !== oldQueryArgs.substrates ||
-      queryArgs.products !== oldQueryArgs.products
+      pathArgs.substrates !== oldPathArgs.substrates ||
+      pathArgs.products !== oldPathArgs.products
     ) {
       this.setState({
         data_arrived: false,
@@ -314,12 +313,12 @@ class Reaction extends Component {
   }
 
   getMetaData() {
-    let queryArgs = queryString.parse(this.props.location.search);
+    const pathArgs = this.props.match.params;
     getDataFromApi([
       "reactions/kinlaw_by_name/?products=" +
-        queryArgs.products +
+        pathArgs.products +
         "&substrates=" +
-        queryArgs.substrates +
+        pathArgs.substrates +
         "&_from=0&size=1000&bound=tight"
     ])
       .then(response => {
@@ -332,14 +331,14 @@ class Reaction extends Component {
   }
 
   getResultsData() {
-    let queryArgs = queryString.parse(this.props.location.search);
-    console.log(queryArgs.organism)
+    const pathArgs = this.props.match.params;
+    console.log(pathArgs.organism)
 
     getDataFromApi([
       "reactions/kinlaw_by_name/?products=" +
-        queryArgs.products +
+        pathArgs.products +
         "&substrates=" +
-        queryArgs.substrates +
+        pathArgs.substrates +
         "&_from=0&size=1000&bound=tight"
     ]).then(response => {
       this.formatReactionMetadata(response.data);
@@ -347,7 +346,7 @@ class Reaction extends Component {
     });
     getDataFromApi([
       "taxon",
-      "canon_rank_distance_by_name/?name=" + queryArgs.organism
+      "canon_rank_distance_by_name/?name=" + pathArgs.organism
     ]).then(response => {
       //this.props.dispatch(setLineage(response.data));
       this.setState({ lineage: response.data });

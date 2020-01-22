@@ -51,14 +51,14 @@ const SiteRouter = () => {
         <Route path="/" exact component={Home} />
         <Route path="/search/:query/:organism?/" component={SearchResults} />
         <Route
-          path="/metabolite/:molecule/:organism?/"
+          path="/metabolite/:metabolite/:organism?/"
           component={Metabolite}
         />
         <Route
-          path="/protein/:searchType/:molecule/:organism?/"
+          path="/protein/:searchType/:protein/:organism?/"
           component={Protein}
         />
-        <Route path="/reaction/" component={Reaction} />
+        <Route path="/reaction/:substrates-->:products/:organism?/" component={Reaction} />
         <Route path="/stats/" component={Stats} />
         <Route path="/help/" component={Help} />
         <Route path="/about/" component={About} />

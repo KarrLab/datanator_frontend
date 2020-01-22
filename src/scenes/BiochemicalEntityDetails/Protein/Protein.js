@@ -205,7 +205,7 @@ class Protein extends Component {
     // respond to parameter change in scenario 3
 
     if (
-      this.props.match.params.molecule !== prevProps.match.params.molecule ||
+      this.props.match.params.protein !== prevProps.match.params.protein ||
       this.props.match.params.organism !== prevProps.match.params.organism ||
       this.props.match.params.searchType !== prevProps.match.params.searchType
     ) {
@@ -228,7 +228,7 @@ class Protein extends Component {
       "/protein/" +
       this.props.match.params.searchType +
       "/" +
-      this.props.match.params.molecule;
+      this.props.match.params.protein;
     if (this.props.match.params.organism) {
       url = url + "/" + this.props.match.params.organism;
     }
@@ -242,7 +242,7 @@ class Protein extends Component {
         "proteins",
         "proximity_abundance",
         "?uniprot_id=" +
-          this.props.match.params.molecule +
+          this.props.match.params.protein +
           "&distance=40&depth=40"
       ]).then(response => {
         this.processProteinDataUniprot(response.data);
@@ -250,7 +250,7 @@ class Protein extends Component {
     } else if (this.props.match.params.searchType === "name") {
       getDataFromApi([
         "proteins",
-        "meta/meta_single/?name=" + this.props.match.params.molecule
+        "meta/meta_single/?name=" + this.props.match.params.protein
       ]).then(response => {
         this.formatOrthologyMetadata(response.data);
         this.setState({ proteinMetadata: null });
@@ -287,7 +287,7 @@ class Protein extends Component {
     }
     for (var i = start; i < data.length; i++) {
       if (
-        data[i].uniprot_id === this.props.match.params.molecule &&
+        data[i].uniprot_id === this.props.match.params.protein &&
         this.props.match.params.searchType !== "ko"
       ) {
         let meta = {};
@@ -384,7 +384,7 @@ class Protein extends Component {
     } else {
       getDataFromApi([
         "proteins",
-        "meta?uniprot_id=" + this.props.match.params.molecule
+        "meta?uniprot_id=" + this.props.match.params.protein
       ]).then(response => {
         this.formatData(response.data);
         this.formatProteinMetadata(response.data);
@@ -539,7 +539,6 @@ class Protein extends Component {
       <div className="biochemical-entity-scene biochemical-entity-protein-scene">
         <MetadataSection
           proteinMetadata={this.state.orthologyMetadata}
-          //molecule={this.props.match.params.molecule}
           organism={values.organism}
         />
 
