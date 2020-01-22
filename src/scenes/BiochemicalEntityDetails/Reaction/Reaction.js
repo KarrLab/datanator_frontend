@@ -7,7 +7,7 @@ import { getDataFromApi } from "~/services/MongoApi";
 import { setTotalData, setSelectedData } from "~/data/actions/resultsAction";
 
 import { AgGridReact } from "@ag-grid-community/react";
-import { AllModules } from '@ag-grid-enterprise/all-modules';
+import { AllModules } from "@ag-grid-enterprise/all-modules";
 import StatsToolPanel from "./StatsToolPanel.js";
 import { TaxonomyFilter } from "~/scenes/BiochemicalEntityDetails/TaxonomyFilter.js";
 import { TanimotoFilter } from "~/scenes/BiochemicalEntityDetails/TanimotoFilter.js";
@@ -37,11 +37,11 @@ const sideBar = {
     },
     {
       id: "customStats",
-      labelDefault: "Stats",
+      labelDefault: "Kcat",
       labelKey: "customStats",
       iconKey: "customstats",
       toolPanel: "statsToolPanel"
-    }
+    },
   ],
   position: "left",
   defaultToolPanel: "filters"
@@ -116,7 +116,7 @@ function getKm(parameters, substrates) {
   let kms = {};
   for (var i = 0; i < parameters.length; i++) {
     if (
-      parameters[i].type === "27" &&
+      parameters[i].type == "27" &&
       substrates.includes(parameters[i]["name"]) &&
       parameters[i]["observed_name"].toLowerCase() === "km"
     ) {
@@ -230,10 +230,6 @@ class Reaction extends Component {
         cellRendererParams: { checkbox: true }
       },
       frameworkComponents: {
-        statsToolPanel: () => <StatsToolPanel relevant_column={"kcat"} />,
-        taxonomyFilter: TaxonomyFilter,
-        partialMatchFilter: PartialMatchFilter,
-        tanimotoFilter: TanimotoFilter
       }
     };
 
@@ -244,6 +240,13 @@ class Reaction extends Component {
 
   setKmColumns(km_values) {
     let new_columns = [];
+    let frameworkComponents = {
+      taxonomyFilter: TaxonomyFilter,
+      partialMatchFilter: PartialMatchFilter
+    };
+    frameworkComponents["statsToolPanel"] = (() => (
+        <StatsToolPanel relevant_column={"kcat"} />
+      ))
     for (var i = km_values.length - 1; i >= 0; i--) {
       new_columns.push({
         headerName: "Km " + km_values[i].split("_")[1] + " (M)",
@@ -251,13 +254,30 @@ class Reaction extends Component {
         sortable: true,
         filter: "agNumberColumnFilter"
       });
+      let comp_name = "CustomToolPanelReaction_" + km_values[i];
+      sideBar["toolPanels"].push({
+        id: km_values[i],
+        labelDefault: "Km " + km_values[i].split("_")[1] + " (M)",
+        labelKey: "customStats",
+        iconKey: "customstats",
+        toolPanel: comp_name
+      })
+
+      let km = km_values[i].toString()
+      frameworkComponents[comp_name] = (() => (
+        <StatsToolPanel relevant_column={km} />
+      ));
+
     }
 
     let final_columns = this.state.first_columns
       .concat(new_columns)
       .concat(this.state.second_columns);
     //final_columns = final_columns.concat(default_second_columns)
-    this.setState({ columnDefs: final_columns });
+    this.setState({
+      columnDefs: final_columns,
+      frameworkComponents: frameworkComponents
+    });
   }
   componentDidMount() {
     if (this.props.match.params.dataType === "meta") {
@@ -311,7 +331,6 @@ class Reaction extends Component {
 
   getResultsData() {
     let values = queryString.parse(this.props.location.search);
-
     getDataFromApi([
       "reactions/kinlaw_by_name/?products=" +
         values.products +
@@ -322,6 +341,13 @@ class Reaction extends Component {
       this.formatReactionMetadata(response.data);
       this.formatReactionData(response.data);
     });
+    getDataFromApi([
+      "taxon",
+      "canon_rank_distance_by_name/?name=" + values.organism
+    ]).then(response => {
+      //this.props.dispatch(setLineage(response.data));
+      this.setState({ lineage: response.data });
+    });
     //.catch(err => {
     //alert('Nothing Found');
     //this.setState({ orig_json: null });
@@ -329,6 +355,7 @@ class Reaction extends Component {
   }
 
   formatReactionData(data) {
+    console.log("ReactionPage: Calling formatReactionData");
     if (data != null) {
       var total_rows = [];
       let substrates = getSubstrates(data[0].reaction_participant[0].substrate);
@@ -342,9 +369,9 @@ class Reaction extends Component {
       let start = 0;
       for (var i = start; i < data.length; i++) {
         let wildtype_mutant = null;
-        if (data[i]["taxon_wildtype"] === "1") {
+        if (data[i]["taxon_wildtype"] == "1") {
           wildtype_mutant = "wildtype";
-        } else if (data[i]["taxon_wildtype"] === "0") {
+        } else if (data[i]["taxon_wildtype"] == "0") {
           wildtype_mutant = "mutant";
         }
         let row = {
@@ -383,11 +410,13 @@ class Reaction extends Component {
       if (!new_dict) {
         new_dict = {};
       }
+      let reaction_name = data[i]['enzymes'][0]['enzyme'][0]['enzyme_name']
       let substrates = getSubstrates(data[i].reaction_participant[0].substrate);
       let products = getProducts(data[i].reaction_participant[1].product);
       new_dict["reactionID"] = reactionID;
       new_dict["substrates"] = substrates;
       new_dict["products"] = products;
+      new_dict['reaction_name'] = reaction_name[0].toUpperCase() + reaction_name.substring(1,reaction_name.length)
 
       let sub_inchis = getSubstrateInchiKey(
         data[i].reaction_participant[0].substrate
@@ -396,10 +425,7 @@ class Reaction extends Component {
         data[i].reaction_participant[1].product
       );
 
-      new_dict["equation"] = [
-        formatPart(substrates) + " ==> " + formatPart(products),
-        { sub_inchis: sub_inchis, prod_inchis: prod_inchis }
-      ];
+      new_dict["equation"] = formatPart(substrates) + " → " + formatPart(products)
       newReactionMetadataDict[reactionID] = new_dict;
       //newReactionMetadataDict.push(meta);
     }
@@ -449,7 +475,7 @@ class Reaction extends Component {
   }
 
   render() {
-    if (this.props.totalData == null) {
+    if (this.props.totalData == null || this.state.reactionMetadata.length===0) {
       return (
         <div className="loader-full-content-container">
           <div className="loader"></div>
@@ -463,7 +489,9 @@ class Reaction extends Component {
 
     return (
       <div className="biochemical-entity-scene biochemical-entity-reaction-scene">
-        <div className="definition-data"></div>
+        <MetadataSection
+          reactionMetadata={this.state.reactionMetadata}
+        />
 
         <div className="ag_chart" style={{ width: "100%", height: "1000px" }}>
           <div className="ag-theme-balham">

@@ -11,6 +11,7 @@ export default class StatsToolPanel extends Component {
     //this.props.api.addEventListener('modelUpdated', this.updateTotals.bind(this));
   }
 
+
   render() {
     return (
       <BaseStatsToolPanel
