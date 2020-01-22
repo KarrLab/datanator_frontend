@@ -20,7 +20,7 @@ import "./index.scss";
 
 // Font Awesome icons
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faAtom, faDna } from "@fortawesome/free-solid-svg-icons";
+import { faAtom, faDna, faBug } from "@fortawesome/free-solid-svg-icons";
 
 // Common page components
 import Header from "~/components/Header/Header";
@@ -37,9 +37,10 @@ import Reaction from "~/scenes/BiochemicalEntityDetails/Reaction/Reaction";
 import Stats from "~/scenes/Stats/Stats";
 import Help from "~/scenes/Help/Help";
 import About from "~/scenes/About/About";
+import Error404 from "~/scenes/Error404/Error404";
 
 // Setup Font Awesome icon library
-library.add(faAtom, faDna);
+library.add(faAtom, faDna, faBug);
 
 // Render site
 const SiteRouter = () => {
@@ -61,6 +62,9 @@ const SiteRouter = () => {
         <Route path="/stats/" component={Stats} />
         <Route path="/help/" component={Help} />
         <Route path="/about/" component={About} />
+        <Route path="*">
+          <Error404 />
+        </Route>
       </div>
       <Footer />
       <FeedbackForm />
