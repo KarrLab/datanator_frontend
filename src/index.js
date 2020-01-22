@@ -2,11 +2,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 //Router (enables persistant URLS and History)
-import { BrowserRouter, Route } from "react-router-dom";
+import { Router, Route } from "react-router-dom";
 
 //Redux (used for state management)
 import { Provider } from "react-redux";
 import store from "~/data/Store";
+import history from "~/utils/history";
 
 //Styles for @Blueprint JS (Template Components)
 import "@blueprintjs/core/lib/css/blueprint.css";
@@ -40,7 +41,7 @@ library.add(faAtom, faDna);
 
 const SiteRouter = () => {
   return (
-    <BrowserRouter>
+    <Router history={history}>
       <Header />
       <div>
         <Route path="/" exact component={Home} />
@@ -59,7 +60,7 @@ const SiteRouter = () => {
         <Route path="/about/" component={About} />
       </div>
       <Footer />
-    </BrowserRouter>
+    </Router>
   );
 };
 const SiteProvider = () => {

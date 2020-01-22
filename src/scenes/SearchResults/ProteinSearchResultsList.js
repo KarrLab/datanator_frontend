@@ -31,8 +31,12 @@ export default class ProteinSearchResultsList extends Component {
           newDict = {};
         }
         let name = data[i].top_ko.hits.hits[0]._source.ko_name[0];
-        newDict["title"] =
-          name[0].toUpperCase() + name.substring(1, name.length);
+        if (name) {
+          newDict["title"] =
+            name[0].toUpperCase() + name.substring(1, name.length);
+        } else {
+          newDict["title"] = koNumber;
+        }
         let href = "https://www.genome.jp/dbget-bin/www_bget?ko:" + koNumber;
         newDict["description"] = (
           <div className="external-links">

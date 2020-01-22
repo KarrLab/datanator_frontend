@@ -8,9 +8,7 @@ const queryString = require("query-string");
 
 class SearchResultsList extends Component {
   static propTypes = {
-    location: PropTypes.shape({
-      search: PropTypes.string
-    }),
+    history: PropTypes.object,
     "get-results-url": PropTypes.func,
     "get-results": PropTypes.func,
     "format-results": PropTypes.func,
@@ -32,33 +30,37 @@ class SearchResultsList extends Component {
       pageCount: 0
     };
 
+    this.updateStateFromLocation = this.updateStateFromLocation.bind(this);
+    this.formatResults = this.formatResults.bind(this);
     this.formatResult = this.formatResult.bind(this);
   }
 
   componentDidMount() {
+    this.updateStateFromLocation();
+    this.unlistenToHistory = this.props.history.listen(() => {
+      this.updateStateFromLocation();
+    });
+  }
+
+  componentWillUnmount() {
+    this.unlistenToHistory();
+  }
+
+  updateStateFromLocation() {
+    const values = queryString.parse(this.props.history.location.search);
+    this.query = values.q;
+    this.organism = values.organism;
     this.setState({
-      formatResults: null,
+      formattedResults: null,
       showLoadMore: true,
       pageCount: 0
     });
     this.fetchResults();
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.location.search !== prevProps.location.search) {
-      this.setState({
-        formatResults: null,
-        showLoadMore: true,
-        pageCount: 0
-      });
-    }
-  }
-
   fetchResults() {
-    const values = queryString.parse(this.props.location.search);
-    const query = values.q;
     const url = this.props["get-results-url"](
-      query,
+      this.query,
       this.state.pageCount,
       this.props["page-size"]
     );
@@ -71,11 +73,9 @@ class SearchResultsList extends Component {
   }
 
   formatResults(newResults) {
-    const values = queryString.parse(this.props.location.search);
-    const organism = values.organism;
     const newFormattedResults = this.props["format-results"](
       newResults,
-      organism
+      this.organism
     ).map(this.formatResult);
 
     if (newFormattedResults.length < this.props["page-size"]) {

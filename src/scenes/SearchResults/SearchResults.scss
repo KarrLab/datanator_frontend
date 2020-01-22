@@ -11,8 +11,6 @@
     margin: 0;
 
     li {
-      margin-bottom: 0.5rem;
-
       .search-result-title {
         a {
           color: $color-text;
@@ -36,6 +34,10 @@
         }
       }
     }
+
+    li:not(:last-child) {
+      margin-bottom: 0.5rem;
+    }
   }
 
   .no-search-results {
@@ -44,6 +46,7 @@
 
   .more-search-results-button {
     width: 100%;
+    margin-top: 0.5rem;
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
     background: $color-button;

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
+
 import { InputGroup } from "@blueprintjs/core";
 import { MenuItem } from "@blueprintjs/core";
 import { Button } from "@blueprintjs/core";
@@ -15,34 +16,17 @@ const queryString = require("query-string");
 
 class SearchForm extends Component {
   static propTypes = {
-    location: PropTypes.shape({
-      search: PropTypes.string
-    }),
     history: PropTypes.object
   };
 
   constructor(props) {
     super(props);
 
-    let query = null;
-    let organism = null;
-    if (props.location.search) {
-      let queryArgs = queryString.parse(props.location.search);
-      if ("q" in queryArgs) {
-        query = queryArgs.q;
-      }
-      if ("organism" in queryArgs) {
-        organism = queryArgs.organism;
-      }
-    }
-
-    const searchFormValid = query != null;
-
     this.state = {
-      query: query,
-      organism: organism,
+      query: null,
+      organism: null,
       matchingOrganisms: [],
-      searchFormValid: searchFormValid
+      searchFormValid: false
     };
 
     this.getMatchingOrganisms = this.getMatchingOrganisms.bind(this);
@@ -50,6 +34,30 @@ class SearchForm extends Component {
 
     this.gettingMatchingOrganisms = false;
     this.cancelTokenSource = null;
+  }
+
+  componentDidMount() {
+    this.updateStateFromLocation();
+    this.unlistenToHistory = this.props.history.listen(() => {
+      this.updateStateFromLocation();
+    });
+  }
+
+  componentWillUnmount() {
+    this.unlistenToHistory();
+  }
+
+  updateStateFromLocation() {
+    let queryArgs = queryString.parse(this.props.history.location.search);
+    if ("q" in queryArgs) {
+      this.setState({
+        query: queryArgs.q.trim(),
+        searchFormValid: queryArgs.q.trim() !== ""
+      });
+    }
+    if ("organism" in queryArgs) {
+      this.setState({ organism: queryArgs.organism });
+    }
   }
 
   getMatchingOrganisms(query, event) {
@@ -77,7 +85,6 @@ class SearchForm extends Component {
             hit => hit["_source"]["tax_name"]
           )
         });
-        console.log("done");
       })
       .catch(function(thrown) {
         if (!axios.isCancel(thrown)) {
@@ -104,18 +111,14 @@ class SearchForm extends Component {
     return organism;
   }
 
-  submitSearch() {
+  submitSearch(event) {
+    event.preventDefault();
+
     let queryArgs = "?q=" + this.state.query;
     if (this.state.organism) {
       queryArgs += "&organism=" + this.state.organism;
     }
     this.props.history.push("/search/" + queryArgs);
-    /*
-    this.props.history.push({
-      pathname: "/search/",
-      search: queryArgs,
-    });
-    */
   }
 
   render() {
@@ -128,7 +131,7 @@ class SearchForm extends Component {
           className="search-form-el search-form-el-entity search-input"
           leftIcon=<FontAwesomeIcon icon="atom" />
           placeholder="metabolite, protein, or reaction (e.g., glucose)"
-          defaultValue={this.state.query}
+          value={this.state.query}
           onChange={event => {
             this.setState({
               query: event.target.value,
@@ -148,7 +151,8 @@ class SearchForm extends Component {
           inputProps={{
             className: "search-input",
             leftIcon: <FontAwesomeIcon icon="dna" />,
-            placeholder: "organism (e.g., Escherichia coli)"
+            placeholder: "organism (e.g., Escherichia coli)",
+            defaultValue: null
           }}
           items={this.state.matchingOrganisms}
           openOnKeyDown={true}
