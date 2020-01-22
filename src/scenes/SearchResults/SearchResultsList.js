@@ -32,7 +32,6 @@ class SearchResultsList extends Component {
     this.state = {
       formattedResults: null,
       numResults: null,
-      showLoadMore: true,
       pageCount: 0
     };
 
@@ -64,7 +63,6 @@ class SearchResultsList extends Component {
       this.setState({
         formattedResults: null,
         numResults: null,
-        showLoadMore: true,
         pageCount: 0
       });
       this.fetchResults();
@@ -111,10 +109,6 @@ class SearchResultsList extends Component {
       this.organism
     ).map(this.formatResult);
 
-    if (newFormattedResults.length < this.props["page-size"]) {
-      this.setState({ showLoadMore: false });
-    }
-
     let formattedResults;
     if (this.state.formattedResults == null) {
       formattedResults = newFormattedResults;
@@ -140,7 +134,6 @@ class SearchResultsList extends Component {
   render() {
     const results = this.state.formattedResults;
     const numResults = this.state.numResults;
-    const showLoadMore = this.state.showLoadMore;
     const pageSize = this.props["page-size"];
     const numMore = Math.min(
       pageSize,
@@ -165,7 +158,7 @@ class SearchResultsList extends Component {
                 <p className="no-search-results">No results found</p>
               )}
 
-              {results.length > 0 && showLoadMore && numMore > 0 && (
+              {results.length > 0 && numMore > 0 && (
                 <button
                   className="more-search-results-button"
                   type="button"
