@@ -26,7 +26,8 @@ class SearchForm extends Component {
       query: null,
       organism: null,
       matchingOrganisms: [],
-      searchFormValid: false
+      queryValid: false,
+      organismValid: true
     };
 
     this.getMatchingOrganisms = this.getMatchingOrganisms.bind(this);
@@ -52,11 +53,14 @@ class SearchForm extends Component {
     if ("q" in queryArgs) {
       this.setState({
         query: queryArgs.q.trim(),
-        searchFormValid: queryArgs.q.trim() !== ""
+        queryValid: queryArgs.q.trim() !== ""
       });
     }
     if ("organism" in queryArgs) {
-      this.setState({ organism: queryArgs.organism });
+      this.setState({
+        organism: queryArgs.organism,
+        organismValid: true
+      });
     }
   }
 
@@ -65,6 +69,8 @@ class SearchForm extends Component {
     if (!event) {
       return;
     }
+
+    this.setState({ organismValid: false });
 
     // cancel earlier query
     if (this.cancelTokenSource) {
@@ -135,8 +141,7 @@ class SearchForm extends Component {
           onChange={event => {
             this.setState({
               query: event.target.value,
-              searchFormValid:
-                event.target.value && event.target.value.trim() !== ""
+              queryValid: event.target.value && event.target.value.trim() !== ""
             });
           }}
         />
@@ -163,7 +168,10 @@ class SearchForm extends Component {
           inputValueRenderer={this.renderOrganism}
           noResults={<MenuItem disabled={true} text="No matching organisms" />}
           onItemSelect={value => {
-            this.setState({ organism: value });
+            this.setState({
+              organism: value,
+              organismValid: true
+            });
             this.organismSuggest.input.focus();
           }}
         >
@@ -174,7 +182,7 @@ class SearchForm extends Component {
           type="submit"
           className="search-submit"
           icon="search"
-          disabled={!this.state.searchFormValid}
+          disabled={!this.state.queryValid || !this.state.organismValid}
           title="Search"
         />
       </form>
