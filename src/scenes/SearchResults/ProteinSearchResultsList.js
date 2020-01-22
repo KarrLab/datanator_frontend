@@ -20,7 +20,7 @@ export default class ProteinSearchResultsList extends Component {
   }
 
   getNumResults(data) {
-    return data["top_kos"]["sum_other_doc_count"];
+    return data["total_buckets"]["value"];
   }
 
   formatResults(data, organism) {

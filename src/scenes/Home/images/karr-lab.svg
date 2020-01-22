@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/css" href="/images.css" ?>
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
-	 viewBox="0 0 183.914429 178.559601" xml:space="preserve">
+	 viewBox="0 0 183.914429 178.559601" xml:space="preserve">	
 	<style type="text/css">
 		.fill-primary { fill: #1890ff; }
 		.fill-accent { fill: #ffc306; }
 	</style>
+	<link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" href="/images.css" type="text/css"/>
 	<path class="fill-primary" d="M89.912109,10.7798l1.663574,9.830599l0.638184-0.105499l0.344727,2.029301l-0.394531,0.0679
 		c-0.394043,0.067801-0.493164,0.597099-0.395996,1.523899L90.731934,24.3008L88.480957,11.0229L89.912109,10.7798z"/>
 	<path class="fill-primary" d="M99.979492,11.7339l-0.477539,9.175301l0.47168,0.023899L99.875488,22.8325l-0.291985-0.017101

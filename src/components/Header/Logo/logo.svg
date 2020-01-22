@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?xml-stylesheet type="text/css" href="/images.css" ?>
 <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 
 <svg
@@ -8,6 +7,12 @@
    viewBox="0 0 40.355469 46.598633"
    xml:space="preserve"
    >
+   <style type="text/css">
+   .fill-accent { fill: #ffc306; }
+   .fill-accent-light { fill: #ffd144; }
+   .fill-white { fill: #fff; }
+   </style>
+   <link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" href="/images.css" type="text/css"/>
 <g
    id="Background-Hexagon">
 	<polygon
