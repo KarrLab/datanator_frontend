@@ -55,10 +55,10 @@ function getReactionID(resource) {
 }
 
 function getECNumber(resource) {
-  for (var i = 0; i < resource.length; i++)
-    if (resource[i].namespace === "ec-code") {
-      return resource[i].id;
-    }
+  for (var i = 0; i < resource.length; i++)
+    if (resource[i].namespace === "ec-code") {
+      return resource[i].id;
+    }
 }
 
 function getSubstrates(substrate) {
@@ -163,19 +163,7 @@ class Reaction extends Component {
           headerCheckboxSelectionFilteredOnly: true,
           //filter: 'taxonomyFilter',
           filter: "agNumberColumnFilter",
-          menuTabs: ["filterMenuTab"],
-
-          cellRenderer: function(params) {
-            if (true) {
-              return (
-                '<a href="http://sabiork.h-its.org/newSearch/index?q=EntryID:' +
-                params.value +
-                '" target="_blank" rel="noopener noreferrer">' +
-                params.value +
-                "</a>"
-              );
-            }
-          }
+          menuTabs: ["filterMenuTab"]
         },
         {
           headerName: "Kcat",
@@ -350,6 +338,8 @@ class Reaction extends Component {
 
   getResultsData() {
     let values = queryString.parse(this.props.location.search);
+    console.log(values.organism)
+
     getDataFromApi([
       "reactions/kinlaw_by_name/?products=" +
         values.products +
@@ -407,19 +397,8 @@ class Reaction extends Component {
           row,
           getKm(data[i].parameter, substrates)
         );
-        let has_data = false
-        for (var l = km_values.length - 1; l >= 0; l--) {
-          if ((row_with_km[km_values[l]]) != null){
-            has_data = true
-          }
-        }
-        if (row_with_km.kcat != null){
-          has_data = true
-        }
-        if (has_data){
-          total_rows.push(row_with_km);
-        }
-        
+        //console.log(row_with_km)
+        total_rows.push(row_with_km);
       }
 
       this.props.dispatch(setTotalData(total_rows));
@@ -433,49 +412,49 @@ class Reaction extends Component {
   getSearchDataReaction(url) {}
 
   formatReactionMetadata(data) {
-    let newReactionMetadataDict = {};
-    let start = 0;
-    if (data != null) {
-      let reactionID = getReactionID(data[0].resource);
-      let ecNumber = getECNumber(data[0].resource)
-      let new_dict = newReactionMetadataDict[reactionID];
-      if (!new_dict) {
-        new_dict = {};
-      }
-      let reaction_name = data[0]['enzymes'][0]['enzyme'][0]['enzyme_name']
-      let substrates = getSubstrates(data[0].reaction_participant[0].substrate);
-      let products = getProducts(data[0].reaction_participant[1].product);
-      new_dict["reactionID"] = reactionID;
-      new_dict["substrates"] = substrates;
-      new_dict["products"] = products;
-      if (ecNumber != "-.-.-.-"){
-        new_dict["ecNumber"] = ecNumber
-      }
+    let newReactionMetadataDict = {};
+    let start = 0;
+    if (data != null) {
+      let reactionID = getReactionID(data[0].resource);
+      let ecNumber = getECNumber(data[0].resource)
+      let new_dict = newReactionMetadataDict[reactionID];
+      if (!new_dict) {
+        new_dict = {};
+      }
+      let reaction_name = data[0]['enzymes'][0]['enzyme'][0]['enzyme_name']
+      let substrates = getSubstrates(data[0].reaction_participant[0].substrate);
+      let products = getProducts(data[0].reaction_participant[1].product);
+      new_dict["reactionID"] = reactionID;
+      new_dict["substrates"] = substrates;
+      new_dict["products"] = products;
+      if (ecNumber != "-.-.-.-"){
+        new_dict["ecNumber"] = ecNumber
+      }
 
-      if (reaction_name){
-        let start = reaction_name[0].toUpperCase()
-        let end = reaction_name.substring(1,reaction_name.length)
-        new_dict['reaction_name'] = start + end
-      }
+      if (reaction_name){
+        let start = reaction_name[0].toUpperCase()
+        let end = reaction_name.substring(1,reaction_name.length)
+        new_dict['reaction_name'] = start + end
+      }
 
-      let sub_inchis = getSubstrateInchiKey(
-        data[0].reaction_participant[0].substrate
-      );
-      let prod_inchis = getProductInchiKey(
-        data[0].reaction_participant[1].product
-      );
+      let sub_inchis = getSubstrateInchiKey(
+        data[0].reaction_participant[0].substrate
+      );
+      let prod_inchis = getProductInchiKey(
+        data[0].reaction_participant[1].product
+      );
 
-      new_dict["equation"] = formatPart(substrates) + " → " + formatPart(products)
-      newReactionMetadataDict[reactionID] = new_dict;
-      //newReactionMetadataDict.push(meta);
-    }
+      new_dict["equation"] = formatPart(substrates) + " → " + formatPart(products)
+      newReactionMetadataDict[reactionID] = new_dict;
+      //newReactionMetadataDict.push(meta);
+    }
 
-    this.setState({
-      reactionMetadata: Object.keys(newReactionMetadataDict).map(function(key) {
-        return newReactionMetadataDict[key];
-      })
-    });
-  }
+    this.setState({
+      reactionMetadata: Object.keys(newReactionMetadataDict).map(function(key) {
+        return newReactionMetadataDict[key];
+      })
+    });
+  }
 
   onFirstDataRendered(params) {
     //params.columnApi.autoSizeColumns(['concentration'])
@@ -515,23 +494,20 @@ class Reaction extends Component {
   }
 
   render() {
-    if (this.props.totalData == null || this.state.reactionMetadata.length===0) {
-      return (
-        <div className="loader-full-content-container">
-          <div className="loader"></div>
-        </div>
-      );
-    }
+    if (this.props.totalData == null || this.state.reactionMetadata.length===0) {
+      return (
+        <div className="loader-full-content-container">
+          <div className="loader"></div>
+        </div>
+      );
+    }
 
-    let styles = {
-      marginTop: 50
-    };
 
-    return (
-      <div className="biochemical-entity-scene biochemical-entity-reaction-scene">
-        <MetadataSection
-          reactionMetadata={this.state.reactionMetadata}
-        />
+    return (
+      <div className="biochemical-entity-scene biochemical-entity-reaction-scene">
+        <MetadataSection
+          reactionMetadata={this.state.reactionMetadata}
+        />
 
         <div className="ag_chart" style={{ width: "100%", height: "1000px" }}>
           <div className="ag-theme-balham">
