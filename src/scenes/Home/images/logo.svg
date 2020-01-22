@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?xml-stylesheet type="text/css" href="/images.css" ?>
 <svg
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
@@ -7,6 +6,7 @@
    viewBox="0 0 40.35553 46.598572"
    xml:space="preserve"
    >
+   <link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" href="/images.css" type="text/css"/>
 <g
    transform="translate(0,-8.700195)">
 	<path

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/css" href="/images.css" ?>
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
 	 viewBox="0 0 526 526" xml:space="preserve">
+<link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" href="/images.css" type="text/css"/>
 <path class="home-scene-feature-icon fill-accent-lighter stroke-accent" d="M447.536041,275.777161l57.57251-99.718857c3.953796-6.846329,3.953796-15.281509,0-22.127838
 	l-25.446106-44.076408c-9.419006,11.585388-22.083008,20.421852-36.595551,25.125267l17.328674,29.709518l-50.79541,87.676163
 	h-41.118713c2.221344,7.375931,3.421143,14.914841,3.421143,22.83876c0,7.94223-1.204895,15.515747-3.435364,22.891693h41.132935
