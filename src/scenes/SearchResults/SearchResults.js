@@ -21,17 +21,17 @@ class SearchResults extends Component {
             <ul>
               <li>
                 <HashLink to="#metabolites" scroll={scrollTo}>
-                  {"Metabolites (XXX)"}
+                  {"Metabolites"}
                 </HashLink>
               </li>
               <li>
                 <HashLink to="#proteins" scroll={scrollTo}>
-                  {"Proteins (XXX)"}
+                  {"Proteins"}
                 </HashLink>
               </li>
               <li>
                 <HashLink to="#reactions" scroll={scrollTo}>
-                  {"Reactions (XXX)"}
+                  {"Reactions"}
                 </HashLink>
               </li>
             </ul>

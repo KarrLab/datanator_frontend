@@ -23,6 +23,10 @@ export default class MetaboliteSearchResultsList extends Component {
     return data["metabolites_meta"];
   }
 
+  getNumResults(data) {
+    return data["metabolites_meta_total"]["value"];
+  }
+
   formatResults(data, organism) {
     let newMetaboliteMetadataDict = {};
     for (var i = 0; i < data.length; i++) {
@@ -90,6 +94,7 @@ export default class MetaboliteSearchResultsList extends Component {
       <SearchResultsList
         get-results-url={this.getResultsUrl}
         get-results={this.getResults}
+        get-num-results={this.getNumResults}
         format-results={this.formatResults}
         html-anchor-id="metabolites"
         title="Metabolites"

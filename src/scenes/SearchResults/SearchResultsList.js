@@ -11,6 +11,7 @@ class SearchResultsList extends Component {
     history: PropTypes.object,
     "get-results-url": PropTypes.func,
     "get-results": PropTypes.func,
+    "get-num-results": PropTypes.func,
     "format-results": PropTypes.func,
     "html-anchor-id": PropTypes.string,
     title: PropTypes.string,
@@ -26,6 +27,7 @@ class SearchResultsList extends Component {
 
     this.state = {
       formattedResults: null,
+      numResults: null,
       showLoadMore: true,
       pageCount: 0
     };
@@ -52,6 +54,7 @@ class SearchResultsList extends Component {
     this.organism = values.organism;
     this.setState({
       formattedResults: null,
+      numResults: null,
       showLoadMore: true,
       pageCount: 0
     });
@@ -68,6 +71,10 @@ class SearchResultsList extends Component {
     getDataFromApi([url]).then(response => {
       const results = this.props["get-results"](response.data);
       this.formatResults(results);
+
+      this.setState({
+        numResults: this.props["get-num-results"](response.data)
+      });
     });
     this.setState({ pageCount: this.state.pageCount + 1 });
   }
@@ -106,11 +113,19 @@ class SearchResultsList extends Component {
 
   render() {
     const results = this.state.formattedResults;
+    const numResults = this.state.numResults;
     const showLoadMore = this.state.showLoadMore;
+    const pageSize = this.props["page-size"];
+    const numMore = Math.min(
+      pageSize,
+      numResults - pageSize * this.state.pageCount
+    );
 
     return (
       <div className="content-block section" id={this.props["html-anchor-id"]}>
-        <h2 className="content-block-heading">{this.props.title} (XXX)</h2>
+        <h2 className="content-block-heading">
+          {this.props.title} ({numResults})
+        </h2>
         <div className="content-block-content">
           {results == null && <div className="loader"></div>}
 
@@ -132,7 +147,7 @@ class SearchResultsList extends Component {
                     this.fetchResults();
                   }}
                 >
-                  Load 10 more
+                  Load {numMore} more
                 </button>
               )}
             </div>

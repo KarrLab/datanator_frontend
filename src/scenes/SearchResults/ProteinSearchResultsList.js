@@ -19,6 +19,10 @@ export default class ProteinSearchResultsList extends Component {
     return data["top_kos"]["buckets"];
   }
 
+  getNumResults(data) {
+    return data["top_kos"]["sum_other_doc_count"];
+  }
+
   formatResults(data, organism) {
     let newProteinMetadataDict = {};
     for (var i = 0; i < data.length; i++) {
@@ -69,6 +73,7 @@ export default class ProteinSearchResultsList extends Component {
       <SearchResultsList
         get-results-url={this.getResultsUrl}
         get-results={this.getResults}
+        get-num-results={this.getNumResults}
         format-results={this.formatResults}
         html-anchor-id="proteins"
         title="Protein ortholog groups"

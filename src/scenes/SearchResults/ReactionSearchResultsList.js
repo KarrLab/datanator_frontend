@@ -23,8 +23,14 @@ export default class ReactionSearchResultsList extends Component {
     );
   }
 
+  getNumResultsUrl() {}
+
   getResults(data) {
     return data["sabio_reaction_entries"];
+  }
+
+  getNumResults(data) {
+    return data["sabio_reaction_entries_total"]["value"];
   }
 
   formatResults(data) {
@@ -77,6 +83,7 @@ export default class ReactionSearchResultsList extends Component {
       <SearchResultsList
         get-results-url={this.getResultsUrl}
         get-results={this.getResults}
+        get-num-results={this.getNumResults}
         format-results={this.formatResults}
         html-anchor-id="reactions"
         title="Reaction classes"
