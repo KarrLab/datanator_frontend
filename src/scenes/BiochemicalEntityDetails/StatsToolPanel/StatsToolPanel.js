@@ -86,21 +86,23 @@ class StatsToolPanel extends Component {
     total_data = total_data.filter(function(el) {
       return !isNaN(el);
     });
-    var new_mean = this.standardRound(mean(total_data));
-    var new_median = this.standardRound(median(total_data));
-    var new_std_dev = this.standardRound(std(total_data));
-    var new_range = range(total_data);
+    if (total_data.length > 0){
+      var new_mean = this.standardRound(mean(total_data));
+      var new_median = this.standardRound(median(total_data));
+      var new_std_dev = this.standardRound(std(total_data));
+      var new_range = range(total_data);
 
-    this.setState({
-      mean: new_mean,
-      median: new_median,
-      std_dev: new_std_dev,
-      //selected_column: selected_column,
-      range:
-        roundToDecimal(new_range[0], 3) +
-        "-" +
-        roundToDecimal(new_range[new_range.length - 1], 3)
-    });
+      this.setState({
+        mean: new_mean,
+        median: new_median,
+        std_dev: new_std_dev,
+        //selected_column: selected_column,
+        range:
+          roundToDecimal(new_range[0], 3) +
+          "-" +
+          roundToDecimal(new_range[new_range.length - 1], 3)
+      });
+    }
   }
 
   standardRound(number) {
