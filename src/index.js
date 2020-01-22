@@ -33,6 +33,7 @@ import SearchResults from "~/scenes/SearchResults/SearchResults";
 import Metabolite from "~/scenes/BiochemicalEntityDetails/Metabolite/Metabolite";
 // import Rna from "~/scenes/BiochemicalEntityDetails/Rna/Rna";
 import Protein from "~/scenes/BiochemicalEntityDetails/Protein/Protein";
+import RNA from "~/scenes/BiochemicalEntityDetails/RNA/RNA";
 import Reaction from "~/scenes/BiochemicalEntityDetails/Reaction/Reaction";
 import Stats from "~/scenes/Stats/Stats";
 import Help from "~/scenes/Help/Help";
@@ -59,6 +60,7 @@ const SiteRouter = () => {
           component={Protein}
         />
         <Route path="/reaction/:substrates-->:products/:organism?/" component={Reaction} />
+        <Route path="/rna/" component={RNA} />
         <Route path="/stats/" component={Stats} />
         <Route path="/help/" component={Help} />
         <Route path="/about/" component={About} />
