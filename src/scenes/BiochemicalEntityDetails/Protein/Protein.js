@@ -21,7 +21,6 @@ import "@ag-grid-enterprise/all-modules/dist/styles/ag-theme-balham/sass/ag-them
 import "../BiochemicalEntityDetails.scss";
 import "./Protein.scss";
 
-const queryString = require("query-string");
 const sideBar = {
   toolPanels: [
     {
@@ -71,7 +70,6 @@ class Protein extends Component {
     super(props);
     this.state = {
       search: "",
-      proteinMetadata: [],
       orthologyMetadata: [],
       f_abundances: null,
       organism: "",
@@ -191,14 +189,11 @@ class Protein extends Component {
       }
     };
 
-    this.formatProteinMetadata = this.formatProteinMetadata.bind(this);
     this.processProteinData = this.processProteinData.bind(this);
     this.formatData = this.formatData.bind(this);
-
-    this.checkURL = this.checkURL.bind(this);
   }
   componentDidMount() {
-    this.checkURL();
+    this.getDataFromApi();
   }
 
   componentDidUpdate(prevProps) {
@@ -206,12 +201,10 @@ class Protein extends Component {
 
     if (
       this.props.match.params.protein !== prevProps.match.params.protein ||
-      this.props.match.params.organism !== prevProps.match.params.organism ||
-      this.props.match.params.searchType !== prevProps.match.params.searchType
+      this.props.match.params.organism !== prevProps.match.params.organism
     ) {
       this.setState({
         search: "",
-        proteinMetadata: [],
         orthologyMetadata: [],
         f_abundances: null,
         organism: "",
@@ -219,131 +212,36 @@ class Protein extends Component {
         isFlushed: false,
         data_arrived: false
       });
-      this.checkURL();
+      this.getDataFromApi();
     }
-  }
-
-  checkURL() {
-    let url =
-      "/protein/" +
-      this.props.match.params.searchType +
-      "/" +
-      this.props.match.params.protein;
-    if (this.props.match.params.organism) {
-      url = url + "/" + this.props.match.params.organism;
-    }
-    this.getDataFromApi();
   }
 
   getDataFromApi() {
-    let values = queryString.parse(this.props.location.search);
-    if (this.props.match.params.searchType === "uniprot") {
+    const ko = this.props.match.params.protein;
+    const organism = this.props.match.params.organism;
+
+    getDataFromApi([
+      "proteins",
+      "proximity_abundance/proximity_abundance_kegg/?kegg_id=" +
+        ko +
+        "&anchor=" +
+        organism +
+        "&distance=40&depth=40"
+    ]).then(response => {
+      this.processProteinDataUniprot(response.data);
+    });
+
+    if (organism != null) {
       getDataFromApi([
-        "proteins",
-        "proximity_abundance",
-        "?uniprot_id=" +
-          this.props.match.params.protein +
-          "&distance=40&depth=40"
+        "taxon",
+        "canon_rank_distance_by_name/?name=" + organism
       ]).then(response => {
-        this.processProteinDataUniprot(response.data);
+        this.setState({ lineage: response.data });
       });
-    } else if (this.props.match.params.searchType === "name") {
-      getDataFromApi([
-        "proteins",
-        "meta/meta_single/?name=" + this.props.match.params.protein
-      ]).then(response => {
-        this.formatOrthologyMetadata(response.data);
-        this.setState({ proteinMetadata: null });
-      });
-      this.setState({ f_abundances: null });
-    } else if (this.props.match.params.searchType === "ko") {
-      getDataFromApi([
-        "proteins",
-        "proximity_abundance/proximity_abundance_kegg/?kegg_id=" +
-          values.ko +
-          "&anchor=" +
-          values.organism +
-          "&distance=40&depth=40"
-      ]).then(response => {
-        this.processProteinDataUniprot(response.data);
-      });
-
-      if (values.organism != null && values.organism !== "undefined") {
-        getDataFromApi([
-          "taxon",
-          "canon_rank_distance_by_name/?name=" + values.organism
-        ]).then(response => {
-          this.setState({ lineage: response.data });
-        });
-      }
     }
-  }
-
-  formatProteinMetadata(data) {
-    let newProteinMetadata = [];
-    let start = 0;
-    if (data[0].length === 1) {
-      start = 1;
-    }
-    for (var i = start; i < data.length; i++) {
-      if (
-        data[i].uniprot_id === this.props.match.params.protein &&
-        this.props.match.params.searchType !== "ko"
-      ) {
-        let meta = {};
-        meta["uniprot"] = data[i].uniprot_id;
-        meta["protein_name"] = data[i].protein_name;
-        meta["gene_name"] = data[i].gene_name;
-        meta["organism"] = data[i].species_name;
-        newProteinMetadata.push(meta);
-
-        getDataFromApi([
-          "taxon",
-          "canon_rank_distance/?ncbi_id=" + data[i].ncbi_taxonomy_id
-        ]).then(response => {
-          this.props.dispatch(setLineage(response.data));
-        });
-      }
-    }
-
-    this.setState({ proteinMetadata: newProteinMetadata });
   }
 
   formatOrthologyMetadata(data) {
-    let newOrthologyMetadata = [];
-    let start = 0;
-    //let end_query = ""
-
-    for (var i = start; i < data.length; i++) {
-      let end_query = "";
-      let meta = {};
-      if (!(data[i].ko_number === "no number")) {
-        meta["ko_number"] = data[i].ko_number;
-        meta["ko_name"] = data[i].ko_name;
-        let uni_ids = data[i].uniprot_ids;
-        //meta["uniprot_ids"] = uni_ids
-        //meta["uniprot_ids"]
-        let filtered_ids = Object.keys(uni_ids)
-          .filter(function(k) {
-            return uni_ids[k];
-          })
-          .map(String);
-        if (filtered_ids.length > 0) {
-          for (var f = filtered_ids.length - 1; f >= 0; f--) {
-            end_query = end_query + "uniprot_id=" + filtered_ids[f] + "&";
-          }
-          getDataFromApi(["proteins", "meta/meta_combo/?" + end_query]).then(
-            response => {
-              this.formatOrthologyMetadataUniprot(response.data);
-              newOrthologyMetadata.push(meta);
-            }
-          );
-        }
-      }
-    }
-  }
-
-  formatOrthologyMetadataUniprot(data) {
     let newOrthologyMetadata = [];
     let start = 0;
     let uni_ids = [];
@@ -357,19 +255,13 @@ class Protein extends Component {
     meta["uniprot_ids"] = uni_ids;
     newOrthologyMetadata.push(meta);
     this.setState({ orthologyMetadata: newOrthologyMetadata });
-    //this.formatProteinMetadata(data)
   }
 
   processProteinData(data) {
     if (typeof data != "string") {
       this.setState({ orig_json: data });
-      if (this.props.match.params.searchType === "uniprot") {
-        this.formatUniprotData(data);
-      } else {
-        this.formatData(data);
-      }
-      //this.formatData(data)
-      this.formatProteinMetadata(data);
+      this.formatData(data);
+
       let newOrthologyMetadata = [];
       let meta = {};
       let uniprot_id = "";
@@ -387,7 +279,6 @@ class Protein extends Component {
         "meta?uniprot_id=" + this.props.match.params.protein
       ]).then(response => {
         this.formatData(response.data);
-        this.formatProteinMetadata(response.data);
 
         let newOrthologyMetadata = [];
         let meta = {};
@@ -429,8 +320,7 @@ class Protein extends Component {
       }
       getDataFromApi(["proteins", "meta/meta_combo/?" + end_query]).then(
         response => {
-          this.formatOrthologyMetadataUniprot(response.data);
-          this.formatProteinMetadata(response.data);
+          this.formatOrthologyMetadata(response.data);
           this.formatData(response.data, uniprot_to_dist);
         }
       );
@@ -519,7 +409,7 @@ class Protein extends Component {
   }
 
   render() {
-    const values = queryString.parse(this.props.location.search);
+    const organism = this.props.match.params.organism;
 
     if (
       this.state.orthologyMetadata.length === 0 ||
@@ -539,7 +429,7 @@ class Protein extends Component {
       <div className="biochemical-entity-scene biochemical-entity-protein-scene">
         <MetadataSection
           proteinMetadata={this.state.orthologyMetadata}
-          organism={values.organism}
+          organism={organism}
         />
 
         <div className="ag_chart" style={{ width: "100%", height: "1000px" }}>

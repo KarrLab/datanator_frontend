@@ -55,7 +55,7 @@ const SiteRouter = () => {
           component={Metabolite}
         />
         <Route
-          path="/protein/:searchType/:protein/:organism?/"
+          path="/protein/:protein/:organism?/"
           component={Protein}
         />
         <Route path="/reaction/:substrates-->:products/:organism?/" component={Reaction} />

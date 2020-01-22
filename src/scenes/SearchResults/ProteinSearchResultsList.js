@@ -60,10 +60,9 @@ export default class ProteinSearchResultsList extends Component {
         );
 
         //route
-        formattedResult["route"] =
-          "/protein/ko/mol/?ko=" + koNumber;
+        formattedResult["route"] = "/protein/" + koNumber;
         if (organism) {
-          formattedResult["route"] += "&organism=" + organism;
+          formattedResult["route"] += "/" + organism;
         }
       }
     }
