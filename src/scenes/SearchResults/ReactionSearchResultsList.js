@@ -1,13 +1,7 @@
 import React, { Component } from "react";
 import SearchResultsList from "./SearchResultsList.js";
-const queryString = require("query-string");
 
-export default class ReactionSearchResultsList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {}
-    this.formatResults = this.formatResults.bind(this);
-  }
+export default class ReactionSearchResultsList extends Component {  
   getResultsUrl(query, pageCount, pageSize) {
     const indexQueryArg = "sabio_reaction_entries";
     return (
@@ -23,8 +17,6 @@ export default class ReactionSearchResultsList extends Component {
       "&fields=protein_name&fields=synonyms&fields=enzymes&fields=ko_name&fields=gene_name&fields=name&fields=enzyme_name&fields=product_names&fields=substrate_names&fields=enzymes.subunit.canonical_sequence&fields=species"
     );
   }
-
-  getNumResultsUrl() {}
 
   getResults(data) {
     return data["sabio_reaction_entries"];
