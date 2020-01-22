@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 
 import { MetadataSection } from "./MetadataSection";
-import { getSearchData } from "~/services/MongoApi";
+import { getDataFromApi } from "~/services/MongoApi";
 import { setTotalData, setSelectedData } from "~/data/actions/resultsAction";
 
 import { AgGridReact } from "@ag-grid-community/react";
@@ -293,7 +293,7 @@ class Reaction extends Component {
 
   getMetaData() {
     let values = queryString.parse(this.props.location.search);
-    getSearchData([
+    getDataFromApi([
       "reactions/kinlaw_by_name/?products=" +
         values.products +
         "&substrates=" +
@@ -312,7 +312,7 @@ class Reaction extends Component {
   getResultsData() {
     let values = queryString.parse(this.props.location.search);
 
-    getSearchData([
+    getDataFromApi([
       "reactions/kinlaw_by_name/?products=" +
         values.products +
         "&substrates=" +

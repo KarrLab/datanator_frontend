@@ -1,4 +1,4 @@
-import { getSearchData } from "~/services/MongoApi";
+import { getDataFromApi } from "~/services/MongoApi";
 
 /* This dispatch requires the Promises middleware, imported in Store.js*/
 function getData() {
@@ -6,7 +6,7 @@ function getData() {
   return function(dispatch) {
     dispatch({
       type: "FETCH_ORGANISMS",
-      payload: getSearchData(urlParams)
+      payload: getDataFromApi(urlParams)
     });
   };
 }

@@ -8,7 +8,7 @@ import createStore from '~/data/Store.js'
 
 import axiosMock from 'axios'
 import { fireEvent, waitForElement } from '@testing-library/react'
-import { getSearchData } from '~/services/MongoApi';
+import { getDataFromApi } from '~/services/MongoApi';
 import ConcentrationsTable from '~/components/Results/ConcentrationsTable.js';
 
 
@@ -37,7 +37,7 @@ jest.runAllTimers();
 
 test.skip('hello world', async () => {
 
-  await getSearchData([
+  await getDataFromApi([
   'metabolites/concentration/?abstract=' + false + '&species='
   + 'escherichia coli' + '&metabolite=' + 'ATP'
 ]).then(response => { orig_json = response.data }).then(orig_json => {console.log(orig_json)});

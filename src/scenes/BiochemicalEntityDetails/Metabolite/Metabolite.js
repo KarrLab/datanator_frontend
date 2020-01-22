@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 
 import { MetadataSection } from "./MetadataSection";
-import { getSearchData } from "~/services/MongoApi";
+import { getDataFromApi } from "~/services/MongoApi";
 import { abstractMolecule } from "~/data/actions/pageAction";
 import {
   setLineage,
@@ -169,7 +169,7 @@ class Metabolite extends Component {
     //this.onRowSelected = this.onRowSelected.bind(this);
   }
   componentDidMount() {
-    this.getSearchData();
+    this.getDataFromApi();
   }
 
   componentDidUpdate(prevProps) {
@@ -192,17 +192,17 @@ class Metabolite extends Component {
       this.props.match.params.abstract !== prevProps.match.params.abstract
     ) {
       this.setState({ metaboliteMetadata: [] });
-      this.getSearchData();
+      this.getDataFromApi();
     }
   }
 
-  getSearchData() {
+  getDataFromApi() {
     let abs_default = false;
     if (this.props.match.params.abstract === "true") {
       abs_default = true;
     }
 
-    getSearchData([
+    getDataFromApi([
       "metabolites/concentration/?abstract=" +
         abs_default +
         "&species=" +
@@ -217,7 +217,7 @@ class Metabolite extends Component {
         //alert('Nothing Found');
         this.setState({ orig_json: null });
       });
-    getSearchData([
+    getDataFromApi([
       "taxon",
       "canon_rank_distance_by_name/?name=" + this.props.match.params.organism
     ]).then(response => {

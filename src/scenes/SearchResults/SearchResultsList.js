@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 
-import { getSearchData } from "~/services/MongoApi";
+import { getDataFromApi } from "~/services/MongoApi";
 const queryString = require("query-string");
 
 class SearchResultsList extends Component {
@@ -63,7 +63,7 @@ class SearchResultsList extends Component {
       this.props["page-size"]
     );
 
-    getSearchData([url]).then(response => {
+    getDataFromApi([url]).then(response => {
       const results = this.props["get-results"](response.data);
       this.formatResults(results);
     });

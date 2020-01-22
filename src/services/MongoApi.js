@@ -3,10 +3,9 @@ import axios from "axios";
 //const rootSearchURL = process.env.REACT_APP_DATANATOR_REST_SERVER;
 const rootSearchURL = "https://api.datanator.info/";
 
-function getSearchData(urlParams) {
+function getDataFromApi(urlParams, options={}) {
   let searchUrl = rootSearchURL + urlParams.join("/");
-  console.log(searchUrl)
-  return axios.get(searchUrl);
+  return axios.get(searchUrl, options);
 }
 
-export { getSearchData };
+export { getDataFromApi };

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 
 import { MetadataSection } from "./MetadataSection";
-import { getSearchData } from "~/services/MongoApi";
+import { getDataFromApi } from "~/services/MongoApi";
 import {
   setLineage,
   setTotalData,
@@ -232,13 +232,13 @@ class Protein extends Component {
     if (this.props.match.params.organism) {
       url = url + "/" + this.props.match.params.organism;
     }
-    this.getSearchData();
+    this.getDataFromApi();
   }
 
-  getSearchData() {
+  getDataFromApi() {
     let values = queryString.parse(this.props.location.search);
     if (this.props.match.params.searchType === "uniprot") {
-      getSearchData([
+      getDataFromApi([
         "proteins",
         "proximity_abundance",
         "?uniprot_id=" +
@@ -248,7 +248,7 @@ class Protein extends Component {
         this.processProteinDataUniprot(response.data);
       });
     } else if (this.props.match.params.searchType === "name") {
-      getSearchData([
+      getDataFromApi([
         "proteins",
         "meta/meta_single/?name=" + this.props.match.params.molecule
       ]).then(response => {
@@ -257,7 +257,7 @@ class Protein extends Component {
       });
       this.setState({ f_abundances: null });
     } else if (this.props.match.params.searchType === "ko") {
-      getSearchData([
+      getDataFromApi([
         "proteins",
         "proximity_abundance/proximity_abundance_kegg/?kegg_id=" +
           values.ko +
@@ -269,7 +269,7 @@ class Protein extends Component {
       });
 
       if (values.organism != null && values.organism !== "undefined") {
-        getSearchData([
+        getDataFromApi([
           "taxon",
           "canon_rank_distance_by_name/?name=" + values.organism
         ]).then(response => {
@@ -297,7 +297,7 @@ class Protein extends Component {
         meta["organism"] = data[i].species_name;
         newProteinMetadata.push(meta);
 
-        getSearchData([
+        getDataFromApi([
           "taxon",
           "canon_rank_distance/?ncbi_id=" + data[i].ncbi_taxonomy_id
         ]).then(response => {
@@ -332,7 +332,7 @@ class Protein extends Component {
           for (var f = filtered_ids.length - 1; f >= 0; f--) {
             end_query = end_query + "uniprot_id=" + filtered_ids[f] + "&";
           }
-          getSearchData(["proteins", "meta/meta_combo/?" + end_query]).then(
+          getDataFromApi(["proteins", "meta/meta_combo/?" + end_query]).then(
             response => {
               this.formatOrthologyMetadataUniprot(response.data);
               newOrthologyMetadata.push(meta);
@@ -382,7 +382,7 @@ class Protein extends Component {
       newOrthologyMetadata.push(meta);
       this.setState({ orthologyMetadata: newOrthologyMetadata });
     } else {
-      getSearchData([
+      getDataFromApi([
         "proteins",
         "meta?uniprot_id=" + this.props.match.params.molecule
       ]).then(response => {
@@ -427,7 +427,7 @@ class Protein extends Component {
       for (var f = total_ids.length - 1; f >= 0; f--) {
         end_query = end_query + "uniprot_id=" + total_ids[f] + "&";
       }
-      getSearchData(["proteins", "meta/meta_combo/?" + end_query]).then(
+      getDataFromApi(["proteins", "meta/meta_combo/?" + end_query]).then(
         response => {
           this.formatOrthologyMetadataUniprot(response.data);
           this.formatProteinMetadata(response.data);
