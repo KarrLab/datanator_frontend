@@ -9,6 +9,7 @@ const Logo = () => {
         data={logo}
         className="logo-image no-pointer-events"
         alt="Datanator Logo"
+        aria-label="Datanator Logo"
       />
     </Link>
   );

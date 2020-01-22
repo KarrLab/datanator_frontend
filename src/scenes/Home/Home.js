@@ -47,6 +47,7 @@ class Home extends Component {
                 data={logo}
                 className="logo hover-zoom"
                 alt="Datanator logo"
+                aria-label="Datanator logo"
               />
               <h1>Datanator</h1>
             </div>
@@ -87,6 +88,7 @@ class Home extends Component {
                   data={identifyUseCaseIcon}
                   className="section-column-icon hover-zoom"
                   alt="Identify parameters icon"
+                  aria-label="Identify parameters icon"
                 />
                 <div className="section-column-subtitle">Kinetic models</div>
                 <div className="section-column-title">
@@ -106,6 +108,7 @@ class Home extends Component {
                   data={constrainUseCaseIcon}
                   className="section-column-icon hover-zoom"
                   alt="Constrain models icon"
+                  aria-label="Constrain models icon"
                 />
                 <div className="section-column-subtitle">
                   Constraint-based models
@@ -127,6 +130,7 @@ class Home extends Component {
                   data={recalibrateUseCaseIcon}
                   className="section-column-icon hover-zoom"
                   alt="Recalibrate models icon"
+                  aria-label="Recalibrate models icon"
                 />
                 <div className="section-column-subtitle">Kinetic models</div>
                 <div className="section-column-title">
@@ -146,6 +150,7 @@ class Home extends Component {
                   data={dataDrivenUseCaseIcon}
                   className="section-column-icon hover-zoom"
                   alt="Recalibrate models icon"
+                  aria-label="Recalibrate models icon"
                 />
                 <div className="section-column-subtitle">
                   Data-driven models
@@ -178,6 +183,7 @@ class Home extends Component {
                   data={metaboliteIcon}
                   className="section-column-icon hover-zoom"
                   alt="Metabolite concentration icon"
+                  aria-label="Metabolite concentration icon"
                 />
                 <div className="section-column-subtitle">Available</div>
                 <div className="section-column-title">
@@ -210,6 +216,7 @@ class Home extends Component {
                   data={rnaIcon}
                   className="section-column-icon hover-zoom"
                   alt="RNA icon"
+                  aria-label="RNA icon"
                 />
                 <div className="section-column-subtitle">Coming soon</div>
                 <div className="section-column-title">RNA half-lives</div>
@@ -224,6 +231,7 @@ class Home extends Component {
                   data={proteinIcon}
                   className="section-column-icon hover-zoom"
                   alt="Protein abundance icon"
+                  aria-label="Protein abundance icon"
                 />
                 <div className="section-column-subtitle">Available</div>
                 <div className="section-column-title">Protein abundances</div>
@@ -263,6 +271,7 @@ class Home extends Component {
                   data={reactionIcon}
                   className="section-column-icon hover-zoom"
                   alt="Reaction rate constant icon"
+                  aria-label="Reaction rate constant icon"
                 />
                 <div className="section-column-subtitle">Available</div>
                 <div className="section-column-title">Reaction constants</div>
@@ -299,6 +308,7 @@ class Home extends Component {
                   data={searchIcon}
                   className="vertical-workflow-el-icon hover-zoom"
                   alt="Search icon"
+                  aria-label="Search icon"
                 />
                 <div className="vertical-workflow-el-text">
                   <div className="vertical-workflow-el-text-inner">
@@ -325,6 +335,7 @@ class Home extends Component {
                   data={filterIcon}
                   className="vertical-workflow-el-icon hover-zoom"
                   alt="Filter icon"
+                  aria-label="Filter icon"
                 />
                 <div className="vertical-workflow-el-text">
                   <div className="vertical-workflow-el-title">
@@ -349,6 +360,7 @@ class Home extends Component {
                   data={reviewIcon}
                   className="vertical-workflow-el-icon hover-zoom"
                   alt="Review icon"
+                  aria-label="Review icon"
                 />
                 <div className="vertical-workflow-el-text">
                   <div className="vertical-workflow-el-title">
@@ -370,6 +382,7 @@ class Home extends Component {
                   data={analyzeIcon}
                   className="vertical-workflow-el-icon hover-zoom"
                   alt="Analyze icon"
+                  aria-label="Analyze icon"
                 />
                 <div className="vertical-workflow-el-text">
                   <div className="vertical-workflow-el-title">
@@ -389,6 +402,7 @@ class Home extends Component {
                   data={exportIcon}
                   className="vertical-workflow-el-icon hover-zoom"
                   alt="Export icon"
+                  aria-label="Export icon"
                 />
                 <div className="vertical-workflow-el-text">
                   <div className="vertical-workflow-el-title">
