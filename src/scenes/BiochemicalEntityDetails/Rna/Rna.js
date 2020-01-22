@@ -19,9 +19,8 @@ import "@ag-grid-enterprise/all-modules/dist/styles/ag-grid.scss";
 import "@ag-grid-enterprise/all-modules/dist/styles/ag-theme-balham/sass/ag-theme-balham.scss";
 
 import "../BiochemicalEntityDetails.scss";
-import "./Protein.scss";
+import "./Rna.scss";
 
-const queryString = require("query-string");
 const sideBar = {
   toolPanels: [
     {
@@ -66,7 +65,7 @@ Object.size = function(obj) {
     totalData: store.results.totalData
   };
 }) //the names given here will be the names of props
-class RNA extends Component {
+class Rna extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -193,20 +192,17 @@ class RNA extends Component {
 
     this.formatProteinMetadata = this.formatProteinMetadata.bind(this);
     this.formatData = this.formatData.bind(this);
-
-    this.checkURL = this.checkURL.bind(this);
   }
   componentDidMount() {
-    this.checkURL();
+    this.getDataFromApi();
   }
 
   componentDidUpdate(prevProps) {
     // respond to parameter change in scenario 3
 
     if (
-      this.props.match.params.molecule !== prevProps.match.params.molecule ||
-      this.props.match.params.organism !== prevProps.match.params.organism ||
-      this.props.match.params.searchType !== prevProps.match.params.searchType
+      this.props.match.params.rna !== prevProps.match.params.rna ||
+      this.props.match.params.organism !== prevProps.match.params.organism
     ) {
       this.setState({
         search: "",
@@ -218,38 +214,22 @@ class RNA extends Component {
         isFlushed: false,
         data_arrived: false
       });
-      this.checkURL();
+      this.getDataFromApi();
     }
-  }
-
-  checkURL() {
-    let url =
-      "/protein/" +
-      this.props.match.params.searchType +
-      "/" +
-      this.props.match.params.molecule;
-    if (this.props.match.params.organism) {
-      url = url + "/" + this.props.match.params.organism;
-    }
-    this.getDataFromApi();
   }
 
   getDataFromApi() {
-    let values = queryString.parse(this.props.location.search);
+    const rna = this.props.match.params.rna;
     getDataFromApi([
         "/rna/halflife/get_info_by_protein_name/?protein_name=" + 
-        values.protein_name + "&_from=0&size=10"
+        rna + "&_from=0&size=10"
       ]).then(response => {
         this.formatData(response.data);
       });
-    
   }
 
   formatProteinMetadata(data) {
   }
-
-
-
 
   formatData(data) {
     console.log(data)
@@ -333,7 +313,7 @@ class RNA extends Component {
   }
 
   render() {
-    const values = queryString.parse(this.props.location.search);
+    const organism = this.props.match.params.organism;
 
     if (
       this.state.orthologyMetadata.length === 0 ||
@@ -350,11 +330,11 @@ class RNA extends Component {
       marginTop: 50
     };
     return (
-      <div className="biochemical-entity-scene biochemical-entity-protein-scene">
+      <div className="biochemical-entity-scene biochemical-entity-rna-scene">
         <MetadataSection
           proteinMetadata={this.state.orthologyMetadata}
-          //molecule={this.props.match.params.molecule}
-          organism={values.organism}
+          //molecule={this.props.match.params.rna}
+          organism={organism}
         />
 
         <div className="ag_chart" style={{ width: "100%", height: "1000px" }}>
@@ -386,4 +366,4 @@ class RNA extends Component {
   }
 }
 
-export default withRouter(RNA);
+export default withRouter(Rna);
