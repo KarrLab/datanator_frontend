@@ -12,8 +12,6 @@ import axios from "axios";
 
 import "./SearchForm.scss";
 
-const queryString = require("query-string");
-
 class SearchForm extends Component {
   static propTypes = {
     history: PropTypes.object
@@ -56,17 +54,20 @@ class SearchForm extends Component {
 
   updateStateFromLocation() {
     if (this.unlistenToHistory) {
-      let queryArgs = queryString.parse(this.props.history.location.search);
-      if ("q" in queryArgs) {
+      const pathRegex = /^\/search\/(.*?)(\/(.*?))?\/?$/;
+      const match = this.props.history.location.pathname.match(pathRegex);
+      if (match) {
+        const query = match[1].trim();
+        const organism = match[3].trim() || null;        
+
         this.setState({
-          query: queryArgs.q.trim(),
-          queryValid: queryArgs.q.trim() !== ""
+          query: query,
+          queryValid: query !== "",
         });
-      }
-      if ("organism" in queryArgs) {
+
         this.setState({
-          organism: queryArgs.organism,
-          organismValid: true
+          organism: organism,
+          organismValid: organism != null,
         });
       }
     }
@@ -130,11 +131,12 @@ class SearchForm extends Component {
   submitSearch(event) {
     event.preventDefault();
 
-    let queryArgs = "?q=" + this.state.query;
+    let url = "/search/";
+    url += this.state.query + "/";
     if (this.state.organism) {
-      queryArgs += "&organism=" + this.state.organism;
+      url += this.state.organism + "/";
     }
-    this.props.history.push("/search/" + queryArgs);
+    this.props.history.push(url);
   }
 
   render() {

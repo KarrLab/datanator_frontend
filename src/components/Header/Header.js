@@ -35,7 +35,7 @@ class Header extends Component {
   }
 
   updateStateFromLocation() {
-    const pathRegex = /^\/?search\/?$/;
+    const pathRegex = /^\/search(\/|$)/;
     if (
       this.unlistenToHistory &&
       this.props.history.location.pathname.match(pathRegex)

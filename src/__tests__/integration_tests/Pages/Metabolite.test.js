@@ -22,7 +22,7 @@ const store = createStore
 
 const renderComponent = (molecule, organism, abstract) =>
   render (
-    <MemoryRouter initialEntries={['/metabolite/' + molecule + '/' + organism + '/' + abstract]}>
+    <MemoryRouter initialEntries={['/metabolite/' + molecule + '/' + organism + '/?abstract=' + abstract]}>
       <Route path="/metabolite/:molecule/:organism/:abstract?/">
        <Provider store={store}>
         <Metabolite />

@@ -49,9 +49,9 @@ const SiteRouter = () => {
       <Header />
       <div>
         <Route path="/" exact component={Home} />
-        <Route path="/search/" component={SearchResults} />
+        <Route path="/search/:query/:organism?/" component={SearchResults} />
         <Route
-          path="/metabolite/:molecule/:organism/:abstract?/"
+          path="/metabolite/:molecule/:organism?/"
           component={Metabolite}
         />
         <Route

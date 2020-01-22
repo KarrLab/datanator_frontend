@@ -173,7 +173,10 @@ class Metabolite extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (!(this.props.match.params.abstract === "true")) {
+    const queryArgs = queryString.parse(this.props.location.search);
+    const prevQueryArgs = queryString.parse(prevProps.location.search);
+
+    if (!(queryArgs.abstract === "true")) {
       if (this.props.moleculeAbstract === true) {
         this.props.dispatch(abstractMolecule(false));
         let url =
@@ -189,7 +192,7 @@ class Metabolite extends Component {
     if (
       this.props.match.params.molecule !== prevProps.match.params.molecule ||
       this.props.match.params.organism !== prevProps.match.params.organism ||
-      this.props.match.params.abstract !== prevProps.match.params.abstract
+      queryArgs.abstract !== prevQueryArgs.abstract
     ) {
       this.setState({ metaboliteMetadata: [] });
       this.getDataFromApi();
@@ -198,7 +201,8 @@ class Metabolite extends Component {
 
   getDataFromApi() {
     let abs_default = false;
-    if (this.props.match.params.abstract === "true") {
+    const queryArgs = queryString.parse(this.props.location.search);
+    if (queryArgs.abstract === "true") {
       abs_default = true;
     }
 
@@ -436,8 +440,6 @@ class Metabolite extends Component {
   }
 
   render() {
-    const values = queryString.parse(this.props.location.search);
-
     if (
       this.state.metaboliteMetadata.length === 0 ||
       this.props.totalData == null

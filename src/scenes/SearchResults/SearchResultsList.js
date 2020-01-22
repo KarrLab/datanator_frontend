@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 import { getDataFromApi } from "~/services/RestApi";
 import axios from "axios";
-const queryString = require("query-string");
 
 class SearchResultsList extends Component {
   static propTypes = {
@@ -56,9 +55,8 @@ class SearchResultsList extends Component {
 
   updateStateFromLocation() {
     if (this.unlistenToHistory) {
-      const values = queryString.parse(this.props.history.location.search);
-      this.query = values.q;
-      this.organism = values.organism;
+      this.query = this.props.match.params.query;
+      this.organism = this.props.match.params.organism;
       this.pageCount = 0;
       this.formattedResults = null;
       this.setState({

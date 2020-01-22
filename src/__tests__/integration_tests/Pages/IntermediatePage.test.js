@@ -21,7 +21,7 @@ const store = createStore
 
 const renderComponent = (query, organism) =>
   render (
-    <MemoryRouter initialEntries={['/search/?q=' + query + "&organism="+ organism]}>
+    <MemoryRouter initialEntries={['/search/' + query + "/" + organism]}>
       <Route path="/search/">
        <Provider store={store}>
         <SearchResults />
