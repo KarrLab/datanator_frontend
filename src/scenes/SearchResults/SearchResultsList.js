@@ -57,15 +57,17 @@ class SearchResultsList extends Component {
     if (this.unlistenToHistory) {
       const pathRegex = /^\/search\/(.*?)(\/(.*?))?\/?$/;
       const match = this.props.history.location.pathname.match(pathRegex);
-      this.query = match[1].trim();
-      this.organism = match[3].trim() || null;
-      this.pageCount = 0;
-      this.formattedResults = null;
-      this.setState({
-        formattedResults: null,
-        numResults: null
-      });
-      this.fetchResults();
+      if (match) {
+        this.query = match[1].trim();
+        this.organism = match[3].trim() || null;
+        this.pageCount = 0;
+        this.formattedResults = null;
+        this.setState({
+          formattedResults: null,
+          numResults: null
+        });
+        this.fetchResults();
+      }
     }
   }
 
