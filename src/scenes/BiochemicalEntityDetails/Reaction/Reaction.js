@@ -407,7 +407,19 @@ class Reaction extends Component {
           row,
           getKm(data[i].parameter, substrates)
         );
-        total_rows.push(row_with_km);
+        let has_data = false
+        for (var l = km_values.length - 1; l >= 0; l--) {
+          if ((row_with_km[km_values[l]]) != null){
+            has_data = true
+          }
+        }
+        if (row_with_km.kcat != null){
+          has_data = true
+        }
+        if (has_data){
+          total_rows.push(row_with_km);
+        }
+        
       }
 
       this.props.dispatch(setTotalData(total_rows));
