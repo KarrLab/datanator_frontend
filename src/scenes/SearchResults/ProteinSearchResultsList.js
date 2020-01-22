@@ -33,7 +33,10 @@ export default class ProteinSearchResultsList extends Component {
         let formattedResult = formattedResults[koNumber];
         if (!formattedResult) {
           formattedResult = {};
+          formattedResults[koNumber] = formattedResult;
         }
+
+        // title
         const name = result.top_ko.hits.hits[0]._source.ko_name[0];
         if (name) {
           formattedResult["title"] =
@@ -41,6 +44,8 @@ export default class ProteinSearchResultsList extends Component {
         } else {
           formattedResult["title"] = koNumber;
         }
+
+        // description
         const href = "https://www.genome.jp/dbget-bin/www_bget?ko:" + koNumber;
         formattedResult["description"] = (
           <div className="external-links">
@@ -53,10 +58,13 @@ export default class ProteinSearchResultsList extends Component {
             </p>
           </div>
         );
-        formattedResult["route"] =
-          "/protein/ko/mol/?ko=" + koNumber + "&organism=" + organism;
 
-        formattedResults[koNumber] = formattedResult;
+        //route
+        formattedResult["route"] =
+          "/protein/ko/mol/?ko=" + koNumber;
+        if (organism) {
+          formattedResult["route"] += "&organism=" + organism;
+        }
       }
     }
 

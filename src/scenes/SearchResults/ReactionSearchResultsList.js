@@ -33,7 +33,10 @@ export default class ReactionSearchResultsList extends Component {
       let formattedResult = formattedResults[id];
       if (!formattedResult) {
         formattedResult = {};
+        formattedResults[id] = formattedResult;
       }
+
+      // title and description
       const substrates = getParticipant(result["substrate_names"]);
       const products = getParticipant(result["product_names"]);
       formattedResult["substrates"] = substrates;
@@ -41,6 +44,7 @@ export default class ReactionSearchResultsList extends Component {
 
       const name = result["enzyme_names"][0];
       const equation = formatSide(substrates) + " → " + formatSide(products);
+      
       if (name) {
         formattedResult["title"] =
           name[0].toUpperCase() + name.substring(1, name.length);
@@ -49,14 +53,12 @@ export default class ReactionSearchResultsList extends Component {
       }
       formattedResult["description"] = equation;
 
+      // route
       formattedResult["route"] =
         "/reaction/data/?substrates=" + substrates + "&products=" + products;
-
-      if (organism != null) {
+      if (organism) {
         formattedResult["route"] += "&organism=" + organism;
       }
-
-      formattedResults[id] = formattedResult;
     }
 
     return Object.values(formattedResults);

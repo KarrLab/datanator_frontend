@@ -32,22 +32,29 @@ export default class MetaboliteSearchResultsList extends Component {
     for (const result of results) {
       if (result.InChI_Key) {
         const inchiKey = result.InChI_Key;
+        
         let formattedResult = formattedResults[inchiKey];
         if (!formattedResult) {
           formattedResult = {};
+          formattedResults[inchiKey] = formattedResult;
         }
+
+        // title
         let name = result["name"];
         if (name === "No metabolite found.") {
           name = result["synonyms"][0];
         }
+        
+        formattedResult["title"] =
+          name[0].toUpperCase() + name.substring(1, name.length);
+
+        // description
         let hrefYmdb = null;
         let hrefEcmdb = null;
         let ymdbPreface = "";
         let ecmdbPreface = "";
         let comma = "";
 
-        formattedResult["title"] =
-          name[0].toUpperCase() + name.substring(1, name.length);
         if (result["ymdb_id"] != null) {
           hrefYmdb = "http://www.ymdb.ca/compounds/" + result["ymdb_id"];
           ymdbPreface = "YMDB: ";
@@ -76,8 +83,12 @@ export default class MetaboliteSearchResultsList extends Component {
             </p>
           </div>
         );
-        formattedResult["route"] = "/metabolite/" + name + "/" + organism;
-        formattedResults[inchiKey] = formattedResult;
+        
+        //route
+        formattedResult["route"] = "/metabolite/" + name;
+        if (organism) {
+          formattedResult["route"] += "/" + organism;
+        }
       }
     }
 
