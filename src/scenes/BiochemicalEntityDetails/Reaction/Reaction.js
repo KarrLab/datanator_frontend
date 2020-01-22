@@ -267,7 +267,6 @@ class Reaction extends Component {
       frameworkComponents[comp_name] = (() => (
         <StatsToolPanel relevant_column={km} />
       ));
-      console.log(km_values[i])
 
     }
 
@@ -275,8 +274,6 @@ class Reaction extends Component {
       .concat(new_columns)
       .concat(this.state.second_columns);
     //final_columns = final_columns.concat(default_second_columns)
-    console.log(frameworkComponents)
-    console.log(sideBar)
     this.setState({
       columnDefs: final_columns,
       frameworkComponents: frameworkComponents
@@ -334,6 +331,7 @@ class Reaction extends Component {
 
   getResultsData() {
     let values = queryString.parse(this.props.location.search);
+    console.log(values.organism)
 
     getDataFromApi([
       "reactions/kinlaw_by_name/?products=" +
@@ -344,6 +342,13 @@ class Reaction extends Component {
     ]).then(response => {
       this.formatReactionMetadata(response.data);
       this.formatReactionData(response.data);
+    });
+    getDataFromApi([
+      "taxon",
+      "canon_rank_distance_by_name/?name=" + values.organism
+    ]).then(response => {
+      //this.props.dispatch(setLineage(response.data));
+      this.setState({ lineage: response.data });
     });
     //.catch(err => {
     //alert('Nothing Found');
