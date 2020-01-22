@@ -163,7 +163,19 @@ class Reaction extends Component {
           headerCheckboxSelectionFilteredOnly: true,
           //filter: 'taxonomyFilter',
           filter: "agNumberColumnFilter",
-          menuTabs: ["filterMenuTab"]
+          menuTabs: ["filterMenuTab"],
+
+          cellRenderer: function(params) {
+            if (true) {
+              return (
+                '<a href="http://sabiork.h-its.org/newSearch/index?q=EntryID:' +
+                params.value +
+                '" target="_blank" rel="noopener noreferrer">' +
+                params.value +
+                "</a>"
+              );
+            }
+          }
         },
         {
           headerName: "Kcat",
