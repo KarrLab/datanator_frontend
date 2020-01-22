@@ -19,11 +19,11 @@ let the_json = ""
 
 const store = createStore
 
-const renderComponent = (searchType, substrates, products, sub_inchis, prod_inchis) =>
+const renderComponent = (substrates, products, sub_inchis, prod_inchis) =>
   render (
-    <MemoryRouter initialEntries={['/reaction/' + searchType +"/?substrates=" +
+    <MemoryRouter initialEntries={["/reaction/?substrates=" +
       substrates + "&products=" + products + "&substrates_inchi="+ substrates + "&products_inchi=" + products]}>
-      <Route path="/reaction/:dataType/">
+      <Route path="/reaction/">
        <Provider store={store}>
         <Reaction />
         </Provider>
@@ -31,29 +31,13 @@ const renderComponent = (searchType, substrates, products, sub_inchis, prod_inch
     </MemoryRouter>
   );
 
-
-it.skip('render reaction meta page', async () => {
-  // Render new instance in every test to prevent leaking state
-  let searchType = 'meta'
-  let substrates = ["ATP", "AMP"]
-  let products = ['ADP']
-  let sub_inchis = []
-  let prod_inchis = []
-  const { getByTestId, getByText, getAllByText, getByPlaceholderText  } =  renderComponent(searchType, substrates, products, sub_inchis, prod_inchis);
-
-  await waitForElement(() => getByText('AMP + ATP ==> ADP', { exact: false }));
-  expect(getByText('82', { exact: false }))
-
-});
-
 it('render reaction data page', async () => {
   // Render new instance in every test to prevent leaking state
-  let searchType = 'data'
   let substrates = ["ATP", "AMP"]
   let products = ['ADP']
   let sub_inchis = ["AMP","UDMBCSSLTHHNCD-KQYNXXCUSA-N"]
   let prod_inchis = ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
-  const { getByTestId, getByText, getAllByText, getByPlaceholderText  } =  renderComponent(searchType, substrates, products, sub_inchis, prod_inchis);
+  const { getByTestId, getByText, getAllByText, getByPlaceholderText  } =  renderComponent(substrates, products, sub_inchis, prod_inchis);
 
   await waitForElement(() => getByText('AMP + ATP ==> ADP', { exact: false }));
   expect(getByText('SabioRK ID: 6051', { exact: false }))

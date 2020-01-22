@@ -55,8 +55,10 @@ class SearchResultsList extends Component {
 
   updateStateFromLocation() {
     if (this.unlistenToHistory) {
-      this.query = this.props.match.params.query;
-      this.organism = this.props.match.params.organism;
+      const pathRegex = /^\/search\/(.*?)(\/(.*?))?\/?$/;
+      const match = this.props.history.location.pathname.match(pathRegex);
+      this.query = match[1].trim();
+      this.organism = match[3].trim() || null;
       this.pageCount = 0;
       this.formattedResults = null;
       this.setState({

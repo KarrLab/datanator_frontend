@@ -294,44 +294,32 @@ class Reaction extends Component {
     });
   }
   componentDidMount() {
-    if (this.props.match.params.dataType === "meta") {
-      this.getMetaData();
-    }
-
-    if (this.props.match.params.dataType === "data") {
-      this.getResultsData();
-    }
+    this.getResultsData();
   }
 
   componentDidUpdate(prevProps) {
-    let values = queryString.parse(this.props.location.search);
-    let old_values = queryString.parse(prevProps.location.search);
+    let queryArgs = queryString.parse(this.props.location.search);
+    let oldQueryArgs = queryString.parse(prevProps.location.search);
     if (
-      values.substrates !== old_values.substrates ||
-      values.products !== old_values.products ||
-      this.props.match.params.dataType !== prevProps.match.params.dataType
+      queryArgs.substrates !== oldQueryArgs.substrates ||
+      queryArgs.products !== oldQueryArgs.products
     ) {
       this.setState({
         data_arrived: false,
         reactionMetadata: [],
         km_values: []
       });
-      if (this.props.match.params.dataType === "meta") {
-        this.getMetaData();
-      }
-      if (this.props.match.params.dataType === "data") {
-        this.getResultsData();
-      }
+      this.getResultsData();
     }
   }
 
   getMetaData() {
-    let values = queryString.parse(this.props.location.search);
+    let queryArgs = queryString.parse(this.props.location.search);
     getDataFromApi([
       "reactions/kinlaw_by_name/?products=" +
-        values.products +
+        queryArgs.products +
         "&substrates=" +
-        values.substrates +
+        queryArgs.substrates +
         "&_from=0&size=1000&bound=tight"
     ])
       .then(response => {
@@ -344,14 +332,14 @@ class Reaction extends Component {
   }
 
   getResultsData() {
-    let values = queryString.parse(this.props.location.search);
-    console.log(values.organism)
+    let queryArgs = queryString.parse(this.props.location.search);
+    console.log(queryArgs.organism)
 
     getDataFromApi([
       "reactions/kinlaw_by_name/?products=" +
-        values.products +
+        queryArgs.products +
         "&substrates=" +
-        values.substrates +
+        queryArgs.substrates +
         "&_from=0&size=1000&bound=tight"
     ]).then(response => {
       this.formatReactionMetadata(response.data);
@@ -359,7 +347,7 @@ class Reaction extends Component {
     });
     getDataFromApi([
       "taxon",
-      "canon_rank_distance_by_name/?name=" + values.organism
+      "canon_rank_distance_by_name/?name=" + queryArgs.organism
     ]).then(response => {
       //this.props.dispatch(setLineage(response.data));
       this.setState({ lineage: response.data });
