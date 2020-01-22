@@ -22,6 +22,8 @@ class SearchForm extends Component {
   constructor(props) {
     super(props);
 
+    this.unlistenToHistory = null;
+
     this.state = {
       query: "",
       organism: null,
@@ -38,29 +40,35 @@ class SearchForm extends Component {
   }
 
   componentDidMount() {
-    this.updateStateFromLocation();
     this.unlistenToHistory = this.props.history.listen(() => {
       this.updateStateFromLocation();
     });
+    this.updateStateFromLocation();
   }
 
   componentWillUnmount() {
     this.unlistenToHistory();
+    this.unlistenToHistory = null;
+    if (this.cancelTokenSource) {
+      this.cancelTokenSource.cancel();
+    }
   }
 
   updateStateFromLocation() {
-    let queryArgs = queryString.parse(this.props.history.location.search);
-    if ("q" in queryArgs) {
-      this.setState({
-        query: queryArgs.q.trim(),
-        queryValid: queryArgs.q.trim() !== ""
-      });
-    }
-    if ("organism" in queryArgs) {
-      this.setState({
-        organism: queryArgs.organism,
-        organismValid: true
-      });
+    if (this.unlistenToHistory) {
+      let queryArgs = queryString.parse(this.props.history.location.search);
+      if ("q" in queryArgs) {
+        this.setState({
+          query: queryArgs.q.trim(),
+          queryValid: queryArgs.q.trim() !== ""
+        });
+      }
+      if ("organism" in queryArgs) {
+        this.setState({
+          organism: queryArgs.organism,
+          organismValid: true
+        });
+      }
     }
   }
 
@@ -85,18 +93,20 @@ class SearchForm extends Component {
       "&index=taxon_tree&from_=0&size=100&fields=tax_name&_source_includes=tax_name";
     getDataFromApi([url], { cancelToken: this.cancelTokenSource.token })
       .then(response => {
-        this.cancelTokenSource = null;
         this.setState({
           matchingOrganisms: response.data["hits"]["hits"].map(
             hit => hit["_source"]["tax_name"]
           )
         });
       })
-      .catch(function(thrown) {
-        if (!axios.isCancel(thrown)) {
+      .catch(error => {
+        if (!axios.isCancel(error)) {
           // TODO: handle error
-          console.log(thrown);
+          console.log(error);
         }
+      })
+      .finally(() => {
+        this.cancelTokenSource = null;
       });
   }
 
@@ -156,7 +166,7 @@ class SearchForm extends Component {
           inputProps={{
             className: "search-input",
             leftIcon: <FontAwesomeIcon icon="dna" />,
-            placeholder: "organism (e.g., Escherichia coli)",
+            placeholder: "organism (e.g., Escherichia coli)"
           }}
           items={this.state.matchingOrganisms}
           openOnKeyDown={true}

@@ -4,6 +4,7 @@ import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 
 import { getDataFromApi } from "~/services/RestApi";
+import axios from "axios";
 const queryString = require("query-string");
 
 class SearchResultsList extends Component {
@@ -25,6 +26,9 @@ class SearchResultsList extends Component {
   constructor(props) {
     super(props);
 
+    this.unlistenToHistory = null;
+    this.cancelTokenSource = null;
+
     this.state = {
       formattedResults: null,
       numResults: null,
@@ -38,27 +42,33 @@ class SearchResultsList extends Component {
   }
 
   componentDidMount() {
-    this.updateStateFromLocation();
     this.unlistenToHistory = this.props.history.listen(() => {
       this.updateStateFromLocation();
     });
+    this.updateStateFromLocation();
   }
 
   componentWillUnmount() {
     this.unlistenToHistory();
+    this.unlistenToHistory = null;
+    if (this.cancelTokenSource) {
+      this.cancelTokenSource.cancel();
+    }
   }
 
   updateStateFromLocation() {
-    const values = queryString.parse(this.props.history.location.search);
-    this.query = values.q;
-    this.organism = values.organism;
-    this.setState({
-      formattedResults: null,
-      numResults: null,
-      showLoadMore: true,
-      pageCount: 0
-    });
-    this.fetchResults();
+    if (this.unlistenToHistory) {
+      const values = queryString.parse(this.props.history.location.search);
+      this.query = values.q;
+      this.organism = values.organism;
+      this.setState({
+        formattedResults: null,
+        numResults: null,
+        showLoadMore: true,
+        pageCount: 0
+      });
+      this.fetchResults();
+    }
   }
 
   fetchResults() {
@@ -68,14 +78,30 @@ class SearchResultsList extends Component {
       this.props["page-size"]
     );
 
-    getDataFromApi([url]).then(response => {
-      const results = this.props["get-results"](response.data);
-      this.formatResults(results);
+    // cancel earlier query
+    if (this.cancelTokenSource) {
+      this.cancelTokenSource.cancel();
+    }
 
-      this.setState({
-        numResults: this.props["get-num-results"](response.data)
+    this.cancelTokenSource = axios.CancelToken.source();
+    getDataFromApi([url], { cancelToken: this.cancelTokenSource.token })
+      .then(response => {
+        const results = this.props["get-results"](response.data);
+        this.formatResults(results);
+
+        this.setState({
+          numResults: this.props["get-num-results"](response.data)
+        });
+      })
+      .catch(error => {
+        if (!axios.isCancel(error)) {
+          // TODO: handle error
+          console.log(error);
+        }
+      })
+      .finally(() => {
+        this.cancelTokenSource = null;
       });
-    });
     this.setState({ pageCount: this.state.pageCount + 1 });
   }
 
