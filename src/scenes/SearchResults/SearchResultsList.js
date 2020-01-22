@@ -28,15 +28,14 @@ class SearchResultsList extends Component {
 
     this.unlistenToHistory = null;
     this.cancelTokenSource = null;
+    this.pageCount = 0;
+    this.formattedResults = null;
 
     this.state = {
       formattedResults: null,
-      numResults: null,
-      pageCount: 0
+      numResults: null
     };
 
-    this.updateStateFromLocation = this.updateStateFromLocation.bind(this);
-    this.formatResults = this.formatResults.bind(this);
     this.formatResult = this.formatResult.bind(this);
   }
 
@@ -60,10 +59,11 @@ class SearchResultsList extends Component {
       const values = queryString.parse(this.props.history.location.search);
       this.query = values.q;
       this.organism = values.organism;
+      this.pageCount = 0;
+      this.formattedResults = null;
       this.setState({
         formattedResults: null,
-        numResults: null,
-        pageCount: 0
+        numResults: null
       });
       this.fetchResults();
     }
@@ -72,7 +72,7 @@ class SearchResultsList extends Component {
   fetchResults() {
     const url = this.props["get-results-url"](
       this.query,
-      this.state.pageCount,
+      this.pageCount,
       this.props["page-size"]
     );
 
@@ -84,6 +84,8 @@ class SearchResultsList extends Component {
     this.cancelTokenSource = axios.CancelToken.source();
     getDataFromApi([url], { cancelToken: this.cancelTokenSource.token })
       .then(response => {
+        this.pageCount++;
+
         const results = this.props["get-results"](response.data);
         this.formatResults(results);
 
@@ -100,7 +102,6 @@ class SearchResultsList extends Component {
       .finally(() => {
         this.cancelTokenSource = null;
       });
-    this.setState({ pageCount: this.state.pageCount + 1 });
   }
 
   formatResults(newResults) {
@@ -110,19 +111,18 @@ class SearchResultsList extends Component {
     ).map(this.formatResult);
 
     let formattedResults;
-    if (this.state.formattedResults == null) {
+    if (this.formattedResults == null) {
       formattedResults = newFormattedResults;
     } else {
-      formattedResults = this.state.formattedResults.concat(
-        newFormattedResults
-      );
+      formattedResults = this.formattedResults.concat(newFormattedResults);
     }
+    this.formattedResults = formattedResults;
     this.setState({ formattedResults: formattedResults });
   }
 
   formatResult(result, iResult) {
     return (
-      <li key={this.state.pageCount * this.props["page-size"] + iResult}>
+      <li key={this.pageCount * this.props["page-size"] + iResult}>
         <div className="search-result-title">
           <Link to={result.route}>{result.title}</Link>
         </div>
@@ -135,10 +135,7 @@ class SearchResultsList extends Component {
     const results = this.state.formattedResults;
     const numResults = this.state.numResults;
     const pageSize = this.props["page-size"];
-    const numMore = Math.min(
-      pageSize,
-      numResults - pageSize * this.state.pageCount
-    );
+    const numMore = Math.min(pageSize, numResults - pageSize * this.pageCount);
 
     return (
       <div className="content-block section" id={this.props["html-anchor-id"]}>
@@ -166,7 +163,7 @@ class SearchResultsList extends Component {
                     this.fetchResults();
                   }}
                 >
-                  Load {numMore} more
+                  Load {numMore} more of {numResults}
                 </button>
               )}
             </div>
