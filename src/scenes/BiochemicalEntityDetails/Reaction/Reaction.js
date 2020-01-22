@@ -449,17 +449,10 @@ class Reaction extends Component {
   }
 
   render() {
-    console.log("ReactionPage: Rendering ReactionPage");
-    console.log(this.state.reactionMetadata);
-    const values = queryString.parse(this.props.location.search);
-    //console.log(values.substrates.split(',')[0]);
-
     if (this.props.totalData == null) {
       return (
-        <div>
-          <div className="loader_container">
-            <div className="loader"></div>
-          </div>
+        <div className="loader-full-content-container">
+          <div className="loader"></div>
         </div>
       );
     }
