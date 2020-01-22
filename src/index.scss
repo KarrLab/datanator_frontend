@@ -50,13 +50,10 @@ a:hover {
 
 /* content container */
 .content-container {
-  margin-top: calc(50px + 3rem);
-  margin-bottom: 3rem;
   max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: calc(50px + 3rem) auto 3rem;
   padding: 0;
-  min-height: calc(100vh - 42px - (50px + 3rem) - 3rem);
+  min-height: calc(100vh - 42px - 50px - 3rem - 3rem);
 }
 
 .full-width-content-container {
