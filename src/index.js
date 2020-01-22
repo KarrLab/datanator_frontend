@@ -21,8 +21,8 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faAtom, faDna } from "@fortawesome/free-solid-svg-icons";
 
 // Common page components
-import { Header } from "~/components/Header/Header";
-import { Footer } from "~/components/Footer/Footer";
+import Header from "~/components/Header/Header";
+import Footer from "~/components/Footer/Footer";
 
 // Website pages (scenes)
 import Home from "~/scenes/Home/Home";

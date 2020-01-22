@@ -7,7 +7,7 @@ import "./Header.scss";
 import { Logo } from "./Logo/Logo";
 import SearchForm from "~/components/SearchForm/SearchForm";
 
-class Header extends Component {
+export default class Header extends Component {
   constructor() {
     super();
     this.state = {
@@ -79,4 +79,4 @@ class Header extends Component {
     );
   }
 }
-export { Header };
+
