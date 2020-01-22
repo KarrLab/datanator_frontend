@@ -1,7 +1,13 @@
 import React, { Component } from "react";
 import SearchResultsList from "./SearchResultsList.js";
+const queryString = require("query-string");
 
 export default class ReactionSearchResultsList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {}
+    this.formatResults = this.formatResults.bind(this);
+  }
   getResultsUrl(query, pageCount, pageSize) {
     const indexQueryArg = "sabio_reaction_entries";
     return (
@@ -28,7 +34,7 @@ export default class ReactionSearchResultsList extends Component {
     return data["sabio_reaction_entries_total"]["value"];
   }
 
-  formatResults(data) {
+  formatResults(data, organism) {
     let newReactionMetadataDict = {};
     for (var i = 0; i < data.length; i++) {
       let reactionID = data[i]["rxn_id"];
@@ -56,10 +62,14 @@ export default class ReactionSearchResultsList extends Component {
       //formatPart(substrates) + ' ==> ' + formatPart(products)
 
       newDict["route"] =
-        "/reaction/data/?substrates_inchi=" +
+        "/reaction/data/?substrates=" +
         substrates +
-        "&products_inchi=" +
+        "&products=" +
         products;
+
+      if (organism != null){
+        newDict["route"] = newDict["route"] + "&organism=" + organism
+      }
 
       newReactionMetadataDict[reactionID] = newDict;
       //newReactionMetadataDict.push(meta);

@@ -435,27 +435,34 @@ class Reaction extends Component {
   formatReactionMetadata(data) {
     let newReactionMetadataDict = {};
     let start = 0;
-    for (var i = start; i < data.length; i++) {
-      let reactionID = getReactionID(data[i].resource);
-      let ecNumber = getECNumber(data[i].resource)
+    if (data != null) {
+      let reactionID = getReactionID(data[0].resource);
+      let ecNumber = getECNumber(data[0].resource)
       let new_dict = newReactionMetadataDict[reactionID];
       if (!new_dict) {
         new_dict = {};
       }
-      let reaction_name = data[i]['enzymes'][0]['enzyme'][0]['enzyme_name']
-      let substrates = getSubstrates(data[i].reaction_participant[0].substrate);
-      let products = getProducts(data[i].reaction_participant[1].product);
+      let reaction_name = data[0]['enzymes'][0]['enzyme'][0]['enzyme_name']
+      let substrates = getSubstrates(data[0].reaction_participant[0].substrate);
+      let products = getProducts(data[0].reaction_participant[1].product);
       new_dict["reactionID"] = reactionID;
       new_dict["substrates"] = substrates;
       new_dict["products"] = products;
-      new_dict["ecNumber"] = ecNumber
-      new_dict['reaction_name'] = reaction_name[0].toUpperCase() + reaction_name.substring(1,reaction_name.length)
+      if (ecNumber != "-.-.-.-"){
+        new_dict["ecNumber"] = ecNumber
+      }
+
+      if (reaction_name){
+        let start = reaction_name[0].toUpperCase()
+        let end = reaction_name.substring(1,reaction_name.length)
+        new_dict['reaction_name'] = start + end
+      }
 
       let sub_inchis = getSubstrateInchiKey(
-        data[i].reaction_participant[0].substrate
+        data[0].reaction_participant[0].substrate
       );
       let prod_inchis = getProductInchiKey(
-        data[i].reaction_participant[1].product
+        data[0].reaction_participant[1].product
       );
 
       new_dict["equation"] = formatPart(substrates) + " → " + formatPart(products)
