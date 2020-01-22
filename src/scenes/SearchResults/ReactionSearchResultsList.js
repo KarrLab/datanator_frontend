@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import SearchResultsList from "./SearchResultsList.js";
 
-export default class ReactionSearchResultsList extends Component {  
+export default class ReactionSearchResultsList extends Component {
   getResultsUrl(query, pageCount, pageSize) {
     const indexQueryArg = "sabio_reaction_entries";
     return (
@@ -11,7 +11,7 @@ export default class ReactionSearchResultsList extends Component {
       "&index=" +
       indexQueryArg +
       "&from_=" +
-      pageCount * 10 +
+      pageCount * pageSize +
       "&size=" +
       pageSize +
       "&fields=protein_name&fields=synonyms&fields=enzymes&fields=ko_name&fields=gene_name&fields=name&fields=enzyme_name&fields=product_names&fields=substrate_names&fields=enzymes.subunit.canonical_sequence&fields=species"
@@ -26,53 +26,40 @@ export default class ReactionSearchResultsList extends Component {
     return data["sabio_reaction_entries_total"]["value"];
   }
 
-  formatResults(data, organism) {
-    let newReactionMetadataDict = {};
-    for (var i = 0; i < data.length; i++) {
-      let reactionID = data[i]["rxn_id"];
-      let newDict = newReactionMetadataDict[reactionID];
-      if (!newDict) {
-        newDict = {};
+  formatResults(results, organism) {
+    const formattedResults = {};
+    for (const result of results) {
+      const id = result["rxn_id"];
+      let formattedResult = formattedResults[id];
+      if (!formattedResult) {
+        formattedResult = {};
       }
-      let substrates = getParticipant(data[i]["substrate_names"]);
-      let products = getParticipant(data[i]["product_names"]);
-      newDict["reactionID"] = reactionID;
-      newDict["substrates"] = substrates;
-      newDict["products"] = products;
+      const substrates = getParticipant(result["substrate_names"]);
+      const products = getParticipant(result["product_names"]);
+      formattedResult["substrates"] = substrates;
+      formattedResult["products"] = products;
 
-      let reactionName = data[i]["enzyme_names"][0];
-      let reactionEq = formatPart(substrates) + " → " + formatPart(products);
-      if (reactionName) {
-        newDict["title"] =
-          reactionName[0].toUpperCase() +
-          reactionName.substring(1, reactionName.length);
+      const name = result["enzyme_names"][0];
+      const equation = formatSide(substrates) + " → " + formatSide(products);
+      if (name) {
+        formattedResult["title"] =
+          name[0].toUpperCase() + name.substring(1, name.length);
       } else {
-        newDict["title"] = reactionEq;
+        formattedResult["title"] = equation;
       }
-      newDict["description"] = reactionEq;
+      formattedResult["description"] = equation;
 
-      //formatPart(substrates) + ' ==> ' + formatPart(products)
+      formattedResult["route"] =
+        "/reaction/data/?substrates=" + substrates + "&products=" + products;
 
-      newDict["route"] =
-        "/reaction/data/?substrates=" +
-        substrates +
-        "&products=" +
-        products;
-
-      if (organism != null){
-        newDict["route"] = newDict["route"] + "&organism=" + organism
+      if (organism != null) {
+        formattedResult["route"] += "&organism=" + organism;
       }
 
-      newReactionMetadataDict[reactionID] = newDict;
-      //newReactionMetadataDict.push(meta);
+      formattedResults[id] = formattedResult;
     }
 
-    let reactionMetadata = Object.keys(newReactionMetadataDict).map(function(
-      key
-    ) {
-      return newReactionMetadataDict[key];
-    });
-    return reactionMetadata;
+    return Object.values(formattedResults);
   }
 
   render() {
@@ -89,22 +76,14 @@ export default class ReactionSearchResultsList extends Component {
   }
 }
 
-function formatPart(parts) {
-  let participantsString = "";
-  for (var i = parts.length - 1; i >= 0; i--) {
-    participantsString = participantsString + parts[i] + " + ";
-  }
-  participantsString = participantsString.substring(
-    0,
-    participantsString.length - 3
-  );
-  return participantsString;
+function formatSide(parts) {
+  return parts.join(" + ");
 }
 
 function getParticipant(participants) {
-  let partNames = [];
-  for (var i = 0; i < participants.length; i++) {
-    partNames.push(participants[i][participants[i].length - 1]);
+  const partNames = [];
+  for (const participant of participants) {
+    partNames.push(participant[participant.length - 1]);
   }
   return partNames;
 }

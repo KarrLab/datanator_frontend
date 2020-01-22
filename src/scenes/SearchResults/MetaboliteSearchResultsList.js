@@ -12,7 +12,7 @@ export default class MetaboliteSearchResultsList extends Component {
       "&index=" +
       indexQueryArg +
       "&from_=" +
-      pageCount * 10 +
+      pageCount * pageSize +
       "&size=" +
       pageSize +
       "&fields=protein_name&fields=synonyms&fields=enzymes&fields=ko_name&fields=gene_name&fields=name&fields=enzyme_name&fields=product_names&fields=substrate_names&fields=enzymes.subunit.canonical_sequence&fields=species"
@@ -27,18 +27,18 @@ export default class MetaboliteSearchResultsList extends Component {
     return data["metabolites_meta_total"]["value"];
   }
 
-  formatResults(data, organism) {
-    let newMetaboliteMetadataDict = {};
-    for (var i = 0; i < data.length; i++) {
-      if (data[i].InChI_Key) {
-        let inchiKey = data[i].InChI_Key;
-        let newDict = newMetaboliteMetadataDict[inchiKey];
-        if (!newDict) {
-          newDict = {};
+  formatResults(results, organism) {
+    const formattedResults = {};
+    for (const result of results) {
+      if (result.InChI_Key) {
+        const inchiKey = result.InChI_Key;
+        let formattedResult = formattedResults[inchiKey];
+        if (!formattedResult) {
+          formattedResult = {};
         }
-        let name = data[i]["name"];
+        let name = result["name"];
         if (name === "No metabolite found.") {
-          name = data[i]["synonyms"][0];
+          name = result["synonyms"][0];
         }
         let hrefYmdb = null;
         let hrefEcmdb = null;
@@ -46,47 +46,42 @@ export default class MetaboliteSearchResultsList extends Component {
         let ecmdbPreface = "";
         let comma = "";
 
-        newDict["title"] =
+        formattedResult["title"] =
           name[0].toUpperCase() + name.substring(1, name.length);
-        if (data[i]["ymdb_id"] != null) {
-          hrefYmdb = "http://www.ymdb.ca/compounds/" + data[i]["ymdb_id"];
+        if (result["ymdb_id"] != null) {
+          hrefYmdb = "http://www.ymdb.ca/compounds/" + result["ymdb_id"];
           ymdbPreface = "YMDB: ";
         }
 
-        if (data[i]["m2m_id"] != null) {
+        if (result["m2m_id"] != null) {
           if (ymdbPreface !== "") {
             comma = ", ";
           }
 
-          hrefEcmdb = "http://ecmdb.ca/compounds/" + data[i]["m2m_id"];
+          hrefEcmdb = "http://ecmdb.ca/compounds/" + result["m2m_id"];
           ecmdbPreface = "ECMDB: ";
         }
-        newDict["description"] = (
+        formattedResult["description"] = (
           <div className="external-links">
             <p>
               {ymdbPreface}{" "}
               <a href={hrefYmdb} target="_blank" rel="noopener noreferrer">
-                {data[i]["ymdb_id"]}
+                {result["ymdb_id"]}
               </a>
               {comma}
               {ecmdbPreface}{" "}
               <a href={hrefEcmdb} target="_blank" rel="noopener noreferrer">
-                {data[i]["m2m_id"]}
+                {result["m2m_id"]}
               </a>
             </p>
           </div>
         );
-        newDict["route"] = "/metabolite/" + name + "/" + organism;
-        newMetaboliteMetadataDict[inchiKey] = newDict;
+        formattedResult["route"] = "/metabolite/" + name + "/" + organism;
+        formattedResults[inchiKey] = formattedResult;
       }
     }
 
-    let metaboliteMetadata = Object.keys(newMetaboliteMetadataDict).map(
-      function(key) {
-        return newMetaboliteMetadataDict[key];
-      }
-    );
-    return metaboliteMetadata;
+    return Object.values(formattedResults);
   }
 
   render() {

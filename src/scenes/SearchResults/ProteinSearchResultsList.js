@@ -8,7 +8,7 @@ export default class ProteinSearchResultsList extends Component {
       "?query_message=" +
       query +
       "&from_=" +
-      pageCount * 10 +
+      pageCount * pageSize +
       "&size=" +
       pageSize +
       "&fields=protein_name&fields=synonyms&fields=enzymes&fields=ko_name&fields=gene_name&fields=name&fields=enzymes.enzyme.enzyme_name&fields=enzymes.subunit.canonical_sequence&fields=species"
@@ -23,26 +23,26 @@ export default class ProteinSearchResultsList extends Component {
     return data["total_buckets"]["value"];
   }
 
-  formatResults(data, organism) {
-    let newProteinMetadataDict = {};
-    for (var i = 0; i < data.length; i++) {
-      let koNumber = data[i]["key"];
+  formatResults(results, organism) {
+    const formattedResults = {};
+    for (const result of results) {
+      let koNumber = result["key"];
       if (koNumber !== "nan") {
         koNumber =
           koNumber[0].toUpperCase() + koNumber.substring(1, koNumber.length);
-        let newDict = newProteinMetadataDict[koNumber];
-        if (!newDict) {
-          newDict = {};
+        let formattedResult = formattedResults[koNumber];
+        if (!formattedResult) {
+          formattedResult = {};
         }
-        let name = data[i].top_ko.hits.hits[0]._source.ko_name[0];
+        const name = result.top_ko.hits.hits[0]._source.ko_name[0];
         if (name) {
-          newDict["title"] =
+          formattedResult["title"] =
             name[0].toUpperCase() + name.substring(1, name.length);
         } else {
-          newDict["title"] = koNumber;
+          formattedResult["title"] = koNumber;
         }
-        let href = "https://www.genome.jp/dbget-bin/www_bget?ko:" + koNumber;
-        newDict["description"] = (
+        const href = "https://www.genome.jp/dbget-bin/www_bget?ko:" + koNumber;
+        formattedResult["description"] = (
           <div className="external-links">
             <p>
               KEGG:{" "}
@@ -53,19 +53,14 @@ export default class ProteinSearchResultsList extends Component {
             </p>
           </div>
         );
-        newDict["route"] =
+        formattedResult["route"] =
           "/protein/ko/mol/?ko=" + koNumber + "&organism=" + organism;
 
-        newProteinMetadataDict[koNumber] = newDict;
+        formattedResults[koNumber] = formattedResult;
       }
     }
 
-    let proteinMetadata = Object.keys(newProteinMetadataDict).map(function(
-      key
-    ) {
-      return newProteinMetadataDict[key];
-    });
-    return proteinMetadata;
+    return Object.values(formattedResults);
   }
 
   render() {
