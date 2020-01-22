@@ -213,12 +213,7 @@ class Reaction extends Component {
           hide: true,
           filter: "taxonomyFilter"
         },
-        {
-          headerName: "Tanimoto Similarity",
-          field: "tanimoto_similarity",
-          hide: true,
-          filter: "tanimotoFilter"
-        },
+
         {
           headerName: "Growth Phase",
           field: "growth_phase",
