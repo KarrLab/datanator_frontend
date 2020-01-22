@@ -97,7 +97,10 @@ class MetadataSection extends Component {
 
   render() {
     let reactionMetadata = this.props.reactionMetadata[0];
-    console.log(reactionMetadata.reaction_name)
+    let title = reactionMetadata.reaction_name
+    if (!title){
+      title = reactionMetadata.equation
+    }
 
 
     if (!this.props.reactionMetadata || this.props.reactionMetadata[0] == undefined) {
@@ -106,7 +109,7 @@ class MetadataSection extends Component {
       return (
       <div className="definition-data">
         <Typography variant="h6" className={"green"}>
-          {reactionMetadata.reaction_name}
+          {title}
         </Typography>
 
         <div className="img-description">
