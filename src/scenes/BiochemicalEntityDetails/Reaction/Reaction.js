@@ -331,8 +331,6 @@ class Reaction extends Component {
 
   getResultsData() {
     let values = queryString.parse(this.props.location.search);
-    console.log(values.organism)
-
     getDataFromApi([
       "reactions/kinlaw_by_name/?products=" +
         values.products +
@@ -390,7 +388,6 @@ class Reaction extends Component {
           row,
           getKm(data[i].parameter, substrates)
         );
-        //console.log(row_with_km)
         total_rows.push(row_with_km);
       }
 
@@ -413,11 +410,13 @@ class Reaction extends Component {
       if (!new_dict) {
         new_dict = {};
       }
+      let reaction_name = data[i]['enzymes'][0]['enzyme'][0]['enzyme_name']
       let substrates = getSubstrates(data[i].reaction_participant[0].substrate);
       let products = getProducts(data[i].reaction_participant[1].product);
       new_dict["reactionID"] = reactionID;
       new_dict["substrates"] = substrates;
       new_dict["products"] = products;
+      new_dict['reaction_name'] = reaction_name[0].toUpperCase() + reaction_name.substring(1,reaction_name.length)
 
       let sub_inchis = getSubstrateInchiKey(
         data[i].reaction_participant[0].substrate
@@ -426,10 +425,7 @@ class Reaction extends Component {
         data[i].reaction_participant[1].product
       );
 
-      new_dict["equation"] = [
-        formatPart(substrates) + " ==> " + formatPart(products),
-        { sub_inchis: sub_inchis, prod_inchis: prod_inchis }
-      ];
+      new_dict["equation"] = formatPart(substrates) + " → " + formatPart(products)
       newReactionMetadataDict[reactionID] = new_dict;
       //newReactionMetadataDict.push(meta);
     }
@@ -479,7 +475,7 @@ class Reaction extends Component {
   }
 
   render() {
-    if (this.props.totalData == null) {
+    if (this.props.totalData == null || this.state.reactionMetadata.length===0) {
       return (
         <div className="loader-full-content-container">
           <div className="loader"></div>
@@ -493,7 +489,9 @@ class Reaction extends Component {
 
     return (
       <div className="biochemical-entity-scene biochemical-entity-reaction-scene">
-        <div className="definition-data"></div>
+        <MetadataSection
+          reactionMetadata={this.state.reactionMetadata}
+        />
 
         <div className="ag_chart" style={{ width: "100%", height: "1000px" }}>
           <div className="ag-theme-balham">

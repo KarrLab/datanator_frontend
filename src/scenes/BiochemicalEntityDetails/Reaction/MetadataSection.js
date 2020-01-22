@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 //import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
+import Typography from "@material-ui/core/Typography";
 
 import { Link } from "react-router-dom";
 
@@ -91,11 +92,46 @@ class MetadataSection extends Component {
     }
   };
 
+
+
+
   render() {
-    if (!this.state.total_data) {
+    let reactionMetadata = this.props.reactionMetadata[0];
+    console.log(reactionMetadata.reaction_name)
+
+
+    if (!this.props.reactionMetadata || this.props.reactionMetadata[0] == undefined) {
       return <div></div>;
     } else {
-      return <div className="bootstrap"></div>;
+      return (
+      <div className="definition-data">
+        <Typography variant="h6" className={"green"}>
+          {reactionMetadata.reaction_name}
+        </Typography>
+
+        <div className="img-description">
+          <div className="vertical-center">
+            <img
+              border="0"
+              alt="W3Schools"
+              src={"https://image.flaticon.com/icons/png/512/1951/1951420.png"}
+              width="5%"
+              height="5%"
+            ></img>
+          </div>
+
+          <div className="metadata-description">
+            <p>
+              <b>Name:</b> {reactionMetadata.reaction_name}
+            </p>
+            <p>
+              <b>Equation:</b> 
+                {reactionMetadata.equation}
+            </p>
+
+          </div>
+        </div>
+      </div>)
     }
   }
 }

@@ -10,9 +10,7 @@ export default class StatsToolPanel extends Component {
     // calculate stats when new rows loaded, i.e. onModelUpdated
     //this.props.api.addEventListener('modelUpdated', this.updateTotals.bind(this));
   }
-  componentDidMount() {
-    console.log(this.props.relevant_column)
-  }
+
 
   render() {
     return (
