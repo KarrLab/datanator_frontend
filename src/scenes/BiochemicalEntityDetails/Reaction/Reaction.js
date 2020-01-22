@@ -54,6 +54,13 @@ function getReactionID(resource) {
     }
 }
 
+function getECNumber(resource) {
+  for (var i = 0; i < resource.length; i++)
+    if (resource[i].namespace === "ec-code") {
+      return resource[i].id;
+    }
+}
+
 function getSubstrates(substrate) {
   let subNames = [];
   for (var i = 0; i < substrate.length; i++) {
@@ -156,7 +163,19 @@ class Reaction extends Component {
           headerCheckboxSelectionFilteredOnly: true,
           //filter: 'taxonomyFilter',
           filter: "agNumberColumnFilter",
-          menuTabs: ["filterMenuTab"]
+          menuTabs: ["filterMenuTab"],
+
+          cellRenderer: function(params) {
+            if (true) {
+              return (
+                '<a href="http://sabiork.h-its.org/newSearch/index?q=EntryID:' +
+                params.value +
+                '" target="_blank" rel="noopener noreferrer">' +
+                params.value +
+                "</a>"
+              );
+            }
+          }
         },
         {
           headerName: "Kcat",
@@ -388,7 +407,19 @@ class Reaction extends Component {
           row,
           getKm(data[i].parameter, substrates)
         );
-        total_rows.push(row_with_km);
+        let has_data = false
+        for (var l = km_values.length - 1; l >= 0; l--) {
+          if ((row_with_km[km_values[l]]) != null){
+            has_data = true
+          }
+        }
+        if (row_with_km.kcat != null){
+          has_data = true
+        }
+        if (has_data){
+          total_rows.push(row_with_km);
+        }
+        
       }
 
       this.props.dispatch(setTotalData(total_rows));
@@ -406,6 +437,7 @@ class Reaction extends Component {
     let start = 0;
     for (var i = start; i < data.length; i++) {
       let reactionID = getReactionID(data[i].resource);
+      let ecNumber = getECNumber(data[i].resource)
       let new_dict = newReactionMetadataDict[reactionID];
       if (!new_dict) {
         new_dict = {};
@@ -416,6 +448,7 @@ class Reaction extends Component {
       new_dict["reactionID"] = reactionID;
       new_dict["substrates"] = substrates;
       new_dict["products"] = products;
+      new_dict["ecNumber"] = ecNumber
       new_dict['reaction_name'] = reaction_name[0].toUpperCase() + reaction_name.substring(1,reaction_name.length)
 
       let sub_inchis = getSubstrateInchiKey(

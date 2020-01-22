@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-//import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
+import reactionIcon from "~/scenes/Home/images/left-right-arrows.svg";
 import Typography from "@material-ui/core/Typography";
 
 import { Link } from "react-router-dom";
@@ -111,13 +111,12 @@ class MetadataSection extends Component {
 
         <div className="img-description">
           <div className="vertical-center">
-            <img
-              border="0"
-              alt="W3Schools"
-              src={"https://image.flaticon.com/icons/png/512/1951/1951420.png"}
-              width="5%"
-              height="5%"
-            ></img>
+            <object
+                  data={reactionIcon}
+                  className="section-column-icon hover-zoom"
+                  alt="Reaction rate constant icon"
+                  aria-label="Reaction rate constant icon"
+                />
           </div>
 
           <div className="metadata-description">
@@ -125,8 +124,12 @@ class MetadataSection extends Component {
               <b>Name:</b> {reactionMetadata.reaction_name}
             </p>
             <p>
-              <b>Equation:</b> 
+              <b>Equation:</b> {" "}
                 {reactionMetadata.equation}
+            </p>
+            <p>
+              <b>EC Number:</b> {" "}
+                {reactionMetadata.ecNumber}
             </p>
 
           </div>
