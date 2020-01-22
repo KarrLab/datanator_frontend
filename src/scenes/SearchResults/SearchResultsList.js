@@ -165,7 +165,7 @@ class SearchResultsList extends Component {
                 <p className="no-search-results">No results found</p>
               )}
 
-              {results.length > 0 && showLoadMore && (
+              {results.length > 0 && showLoadMore && numMore > 0 && (
                 <button
                   className="more-search-results-button"
                   type="button"
