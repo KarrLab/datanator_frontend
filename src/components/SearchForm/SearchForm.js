@@ -23,7 +23,7 @@ class SearchForm extends Component {
     super(props);
 
     this.state = {
-      query: null,
+      query: "",
       organism: null,
       matchingOrganisms: [],
       queryValid: false,
@@ -157,7 +157,6 @@ class SearchForm extends Component {
             className: "search-input",
             leftIcon: <FontAwesomeIcon icon="dna" />,
             placeholder: "organism (e.g., Escherichia coli)",
-            defaultValue: null
           }}
           items={this.state.matchingOrganisms}
           openOnKeyDown={true}
