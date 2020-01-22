@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
 	 viewBox="0 0 526 526" xml:space="preserve">
+<style type="text/css">
+.fill-accent-lighter { fill: #ffe182; }
+.fill-accent-lightest { fill: #fff0c0; }
+.stroke-accent { stroke: #ffc306; }
+.home-scene-feature-icon { stroke-width: 14px; }
+</style>
 <link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" href="/images.css" type="text/css"/>
 <path class="fill-accent-lighter" d="M131.5,368.200012c0,9.906342-2.279343,19.198975-6.487328,27.439667
 	c-9.994003,20.16333-30.858673,33.927002-54.879341,33.927002c-33.926998,0-61.366665-27.439697-61.366665-61.366669

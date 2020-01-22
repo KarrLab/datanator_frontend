@@ -7,6 +7,11 @@
    viewBox="0 0 40.355469 46.598633"
    xml:space="preserve"
    >
+   <style type="text/css">
+   .fill-accent { fill: #ffc306; }
+   .fill-accent-light { fill: #ffd144; }
+   .fill-white { fill: #fff; }
+   </style>
    <link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" href="/images.css" type="text/css"/>
 <g
    id="Background-Hexagon">
