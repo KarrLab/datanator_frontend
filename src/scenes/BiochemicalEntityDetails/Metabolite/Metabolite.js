@@ -23,7 +23,6 @@ import "@ag-grid-enterprise/all-modules/dist/styles/ag-theme-balham/sass/ag-them
 import "../BiochemicalEntityDetails.scss";
 import "./Metabolite.scss";
 
-const queryString = require("query-string");
 const sideBar = {
   toolPanels: [
     {
@@ -173,26 +172,13 @@ class Metabolite extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const queryArgs = queryString.parse(this.props.location.search);
-    const prevQueryArgs = queryString.parse(prevProps.location.search);
-
-    if (!(queryArgs.abstract === "true")) {
-      if (this.props.moleculeAbstract === true) {
-        this.props.dispatch(abstractMolecule(false));
-        let url =
-          "/metabolite/" +
-          this.props.match.params.metabolite +
-          "/" +
-          this.props.match.params.organism +
-          "/" +
-          "true";
-      }
+    if (this.props.moleculeAbstract === true) {
+      this.props.dispatch(abstractMolecule(false));        
     }
 
     if (
       this.props.match.params.metabolite !== prevProps.match.params.metabolite ||
-      this.props.match.params.organism !== prevProps.match.params.organism ||
-      queryArgs.abstract !== prevQueryArgs.abstract
+      this.props.match.params.organism !== prevProps.match.params.organism
     ) {
       this.setState({ metaboliteMetadata: [] });
       this.getDataFromApi();
@@ -200,19 +186,15 @@ class Metabolite extends Component {
   }
 
   getDataFromApi() {
-    let abs_default = false;
-    const queryArgs = queryString.parse(this.props.location.search);
-    if (queryArgs.abstract === "true") {
-      abs_default = true;
-    }
-
+    const abs_default = false;
     getDataFromApi([
       "metabolites/concentration/?abstract=" +
-        abs_default +
-        "&species=" +
-        this.props.match.params.organism +
+        abs_default +        
         "&metabolite=" +
-        this.props.match.params.metabolite
+        this.props.match.params.metabolite +
+        (this.props.match.params.organism 
+          ? "&species=" + this.props.match.params.organism
+          : "")
     ])
       .then(response => {
         this.formatData(response.data);
