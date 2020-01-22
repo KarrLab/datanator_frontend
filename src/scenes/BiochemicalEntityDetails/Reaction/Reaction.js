@@ -7,7 +7,7 @@ import { getDataFromApi } from "~/services/MongoApi";
 import { setTotalData, setSelectedData } from "~/data/actions/resultsAction";
 
 import { AgGridReact } from "@ag-grid-community/react";
-import { AllModules } from '@ag-grid-enterprise/all-modules';
+import { AllModules } from "@ag-grid-enterprise/all-modules";
 import StatsToolPanel from "./StatsToolPanel.js";
 import { TaxonomyFilter } from "~/scenes/BiochemicalEntityDetails/TaxonomyFilter.js";
 import { TanimotoFilter } from "~/scenes/BiochemicalEntityDetails/TanimotoFilter.js";
@@ -37,11 +37,11 @@ const sideBar = {
     },
     {
       id: "customStats",
-      labelDefault: "Stats",
+      labelDefault: "Kcat",
       labelKey: "customStats",
       iconKey: "customstats",
       toolPanel: "statsToolPanel"
-    }
+    },
   ],
   position: "left",
   defaultToolPanel: "filters"
@@ -113,7 +113,6 @@ function getKcat(parameters) {
 }
 
 function getKm(parameters, substrates) {
-  console.log(parameters)
   let kms = {};
   for (var i = 0; i < parameters.length; i++) {
     if (
@@ -124,7 +123,6 @@ function getKm(parameters, substrates) {
       kms["km_" + parameters[i]["name"]] = parameters[i].value;
     }
   }
-  console.log(kms)
   return kms;
 }
 /*
@@ -232,10 +230,6 @@ class Reaction extends Component {
         cellRendererParams: { checkbox: true }
       },
       frameworkComponents: {
-        statsToolPanel: () => <StatsToolPanel relevant_column={"kcat"} />,
-        taxonomyFilter: TaxonomyFilter,
-        partialMatchFilter: PartialMatchFilter,
-        tanimotoFilter: TanimotoFilter
       }
     };
 
@@ -244,40 +238,49 @@ class Reaction extends Component {
     this.setKmColumns = this.setKmColumns.bind(this);
   }
 
-  setKmColumns(km_values){
-    let new_columns = []
-    let frameworkComponents =  { CustomToolPanelReaction: (() => <StatsToolPanel relevant_column={"kcat"} />), taxonomyFilter: TaxonomyFilter, partialMatchFilter: PartialMatchFilter,} 
+  setKmColumns(km_values) {
+    let new_columns = [];
+    let frameworkComponents = {
+      taxonomyFilter: TaxonomyFilter,
+      partialMatchFilter: PartialMatchFilter
+    };
+    frameworkComponents["statsToolPanel"] = (() => (
+        <StatsToolPanel relevant_column={"kcat"} />
+      ))
     for (var i = km_values.length - 1; i >= 0; i--) {
       new_columns.push({
-          headerName: 'Km ' + km_values[i].split("_")[1] + ' (M)',
-          field: km_values[i],
-          sortable: true,
-          filter: 'agNumberColumnFilter',
-        })
-      
-      let comp_name = 'CustomToolPanelReaction_'+ km_values[i]
-      frameworkComponents[comp_name] = (() => <StatsToolPanel relevant_column={km_values[i]} />)
-      sideBar["toolPanels"].push(
-        {
-      id: km_values[i],
-      labelDefault: 'Km ' + km_values[i].split("_")[1] + ' (M)',
-      labelKey: 'customStats',
-      iconKey: 'customstats',
-      toolPanel: comp_name,
-    },)
-    
+        headerName: "Km " + km_values[i].split("_")[1] + " (M)",
+        field: km_values[i],
+        sortable: true,
+        filter: "agNumberColumnFilter"
+      });
+      let comp_name = "CustomToolPanelReaction_" + km_values[i];
+      sideBar["toolPanels"].push({
+        id: km_values[i],
+        labelDefault: "Km " + km_values[i].split("_")[1] + " (M)",
+        labelKey: "customStats",
+        iconKey: "customstats",
+        toolPanel: comp_name
+      })
 
-
-
+      let km = km_values[i].toString()
+      frameworkComponents[comp_name] = (() => (
+        <StatsToolPanel relevant_column={km} />
+      ));
+      console.log(km_values[i])
 
     }
 
-    let final_columns = this.state.first_columns.concat(new_columns).concat(this.state.second_columns)
+    let final_columns = this.state.first_columns
+      .concat(new_columns)
+      .concat(this.state.second_columns);
     //final_columns = final_columns.concat(default_second_columns)
-    this.setState({columnDefs:final_columns, 
-      frameworkComponents:frameworkComponents
-    })
-
+    console.log(frameworkComponents)
+    console.log(sideBar)
+    this.setState({
+      columnDefs: final_columns,
+      frameworkComponents: frameworkComponents
+    });
   }
   componentDidMount() {
     if (this.props.match.params.dataType === "meta") {
@@ -349,43 +352,46 @@ class Reaction extends Component {
   }
 
   formatReactionData(data) {
-    console.log('ReactionPage: Calling formatReactionData');
+    console.log("ReactionPage: Calling formatReactionData");
     if (data != null) {
       var total_rows = [];
       let substrates = getSubstrates(data[0].reaction_participant[0].substrate);
-      let km_values = []
+      let km_values = [];
       for (var k = substrates.length - 1; k >= 0; k--) {
-        km_values.push("km_" + substrates[k])
+        km_values.push("km_" + substrates[k]);
       }
-      this.setKmColumns(km_values)
-      this.setState({km_values:km_values})
+      this.setKmColumns(km_values);
+      this.setState({ km_values: km_values });
 
       let start = 0;
       for (var i = start; i < data.length; i++) {
-        let wildtype_mutant = null
-        if (data[i]['taxon_wildtype'] == '1'){
-          wildtype_mutant = "wildtype"
-        }
-        else if (data[i]['taxon_wildtype'] == '0'){
-          wildtype_mutant = "mutant"
+        let wildtype_mutant = null;
+        if (data[i]["taxon_wildtype"] == "1") {
+          wildtype_mutant = "wildtype";
+        } else if (data[i]["taxon_wildtype"] == "0") {
+          wildtype_mutant = "mutant";
         }
         let row = {
-          kinlaw_id: data[i]['kinlaw_id'],
+          kinlaw_id: data[i]["kinlaw_id"],
           kcat: getKcat(data[i].parameter)["kcat"],
-          wildtype_mutant:wildtype_mutant,
+          wildtype_mutant: wildtype_mutant,
           organism: data[i].taxon_name,
           ph: data[i].ph,
           temperature: data[i].temperature,
-          source_link:{ reactionID: getReactionID(data[i].resource)},
-        }
-        let row_with_km = Object.assign({}, row, getKm(data[i].parameter, substrates))
+          source_link: { reactionID: getReactionID(data[i].resource) }
+        };
+        let row_with_km = Object.assign(
+          {},
+          row,
+          getKm(data[i].parameter, substrates)
+        );
         //console.log(row_with_km)
-        total_rows.push(row_with_km)
+        total_rows.push(row_with_km);
       }
 
       this.props.dispatch(setTotalData(total_rows));
       this.setState({
-        data_arrived: true,
+        data_arrived: true
       });
     } else {
     }

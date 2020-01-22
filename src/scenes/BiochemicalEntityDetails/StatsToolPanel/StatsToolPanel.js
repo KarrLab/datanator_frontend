@@ -127,6 +127,7 @@ class StatsToolPanel extends Component {
    * if the total data exists
    */
   componentDidMount() {
+    console.log(this.props.relevantColumns[0])
     if (this.props.totalData != null) {
       this.setSummaryStats(this.props.totalData, this.props.relevantColumns[0]);
       this.setState({ selected_column: this.props.relevantColumns[0] });
