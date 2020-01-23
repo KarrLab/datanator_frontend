@@ -323,7 +323,7 @@ class Reaction extends Component {
         "&substrates=" +
         pathArgs.substrates +
         "&_from=0&size=1000&bound=tight"
-    ])
+    ], {}, "Unable to get data about reaction.")
       .then(response => {
         this.formatReactionMetadata(response.data);
       })
@@ -343,14 +343,14 @@ class Reaction extends Component {
         "&substrates=" +
         pathArgs.substrates +
         "&_from=0&size=1000&bound=tight"
-    ]).then(response => {
+    ], {}, "Unable to get data about reaction.").then(response => {
       this.formatReactionMetadata(response.data);
       this.formatReactionData(response.data);
     });
     getDataFromApi([
       "taxon",
       "canon_rank_distance_by_name/?name=" + pathArgs.organism
-    ]).then(response => {
+    ], {}, "Unable to get taxonomic information about '" + pathArgs.organism + "'.").then(response => {
       //this.props.dispatch(setLineage(response.data));
       this.setState({ lineage: response.data });
     });

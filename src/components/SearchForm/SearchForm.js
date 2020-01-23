@@ -92,7 +92,11 @@ class SearchForm extends Component {
       "ftx/text_search/?query_message=" +
       query +
       "&index=taxon_tree&from_=0&size=100&fields=tax_name&_source_includes=tax_name";
-    getDataFromApi([url], { cancelToken: this.cancelTokenSource.token })
+    getDataFromApi(
+      [url],
+      { cancelToken: this.cancelTokenSource.token },
+      "Unable to search for organisms that match '" + query + "'."
+    )
       .then(response => {
         this.setState({
           matchingOrganisms: response.data["hits"]["hits"].map(

@@ -213,15 +213,17 @@ class Metabolite extends Component {
 
   getDataFromApi() {
     const abs_default = false;
+    const metabolite = this.props.match.params.metabolite;
+    const organism = this.props.match.params.organism;
     getDataFromApi([
       "metabolites/concentration/?abstract=" +
         abs_default +
         "&metabolite=" +
-        this.props.match.params.metabolite +
-        (this.props.match.params.organism
-          ? "&species=" + this.props.match.params.organism
+        metabolite +
+        (organism
+          ? "&species=" + organism
           : "")
-    ])
+    ], {}, "Unable to retrieve data about metabolite '" + metabolite + "'.")
       .then(response => {
         this.formatData(response.data);
       })
@@ -231,8 +233,8 @@ class Metabolite extends Component {
       });
     getDataFromApi([
       "taxon",
-      "canon_rank_distance_by_name/?name=" + this.props.match.params.organism
-    ]).then(response => {
+      "canon_rank_distance_by_name/?name=" + organism
+    ], {}, "Unable to obtain taxonomic information about '" + organism + "'.").then(response => {
       this.setState({ lineage: response.data });
     });
   }

@@ -181,7 +181,7 @@ class Rna extends Component {
       "/rna/halflife/get_info_by_protein_name/?protein_name=" +
         rna +
         "&_from=0&size=1000"
-    ]).then(response => {
+    ], {}, "Unable to get data about RNA '" + rna + "'.").then(response => {
       this.formatData(response.data);
     });
   }

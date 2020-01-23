@@ -193,6 +193,65 @@ a:hover {
   }
 }
 
+/* dialogs */
+body {
+  .MuiButton-textPrimary {
+    color: $color-primary;
+  }
+
+  .MuiPaper-root {
+    .MuiDialogTitle-root {
+      color: $color-text;
+    }
+  }
+
+  .MuiTypography-colorTextSecondary {
+    color: $color-text-lighter;
+    margin: 0;
+  }
+
+  .MuiDialogTitle-root {
+    padding: 1rem 1rem 0.75rem 1rem;
+  }
+
+  .MuiDialogContent-root {
+    padding: 0 1rem;
+
+    .dialog-message-container {
+      span {
+        display: block;
+      }
+
+      span:not(:first-child) {
+        margin-top: 0.5rem;
+      }
+    }
+  }
+
+  .MuiDialogActions-root {
+    padding: 0.75rem;
+    padding-top: 0.375rem;
+  }
+
+  .MuiButton-text {
+    padding-right: 0.75rem;
+  }
+
+  .MuiButton-textPrimary:hover {
+    background-color: $color-primary-light;
+    color: $color-white;
+  }
+
+  .MuiButton-textPrimary:active {
+    background-color: $color-primary-lightish;
+    color: $color-white;
+  }
+
+  .MuiTouchRipple-root {
+    display: none;
+  }
+}
+
 /* highlight */
 .highlight-primary {
   color: $color-primary;
