@@ -6,16 +6,22 @@ export default class RnaSearchResultsList extends Component {
   getResultsUrl(query, pageCount, pageSize) {
     const args = {
       query_message: query,
-      index:'rna_halflife',
+      index: "rna_halflife",
       from_: pageCount * pageSize,
       size: pageSize,
-      fields: ["protein_name", "synonyms", "gene_name", "name", "enzymes.enzyme.enzyme_name"]
+      fields: [
+        "protein_name",
+        "synonyms",
+        "gene_name",
+        "name",
+        "enzymes.enzyme.enzyme_name"
+      ]
     };
 
     // generate URL from args
     let strArgs = [];
     for (const arg in args) {
-      let val = args[arg];
+      const val = args[arg];
       if (Array.isArray(val)) {
         strArgs = strArgs.concat(
           val.map(v => {
@@ -36,7 +42,7 @@ export default class RnaSearchResultsList extends Component {
 
   /* Extract number of RNAs that match query from result of REST call */
   getNumResults(data) {
-    return data["rna_halflife_total"]['value'];
+    return data["rna_halflife_total"]["value"];
   }
 
   /* Return a list of dictionaries with content to populate the search results
@@ -47,26 +53,23 @@ export default class RnaSearchResultsList extends Component {
   - route: URL for page with details about search result
   */
   formatResults(results, organism) {
-    console.log(results)
-    const formattedResults = []
-    for (var i = results.length - 1; i >= 0; i--) {
-      let result = results[i]
-      console.log(result)
-      let description = ""
-      description = "Gene Name: " + result["gene_name"]
-      formattedResults.push(
-        {
-          title: result["protein_name"],
-          description: description,
-          route:
-            "/rna/" +
-            result["protein_name"] //+
-            //"/" +
-            //(organism ? organism + "/" : "")
-        }
-      );
+    const formattedResults = [];
+    for (const result of results) {
+      let description = "";
+      if (result["gene_name"]) {
+        description = "Gene: " + result["gene_name"];
+      }
+      formattedResults.push({
+        title: result["protein_name"],
+        description: description,
+        route:
+          "/rna/" +
+          result["protein_name"] +
+          "/" +
+          (organism ? organism + "/" : "")
+      });
     }
-    return(formattedResults)
+    return formattedResults;
   }
 
   render() {

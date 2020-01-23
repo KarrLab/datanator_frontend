@@ -49,7 +49,6 @@ class SearchResults extends Component {
           <RnaSearchResultsList />
           <ProteinSearchResultsList />
           <ReactionSearchResultsList />
-        }
         </div>
       </div>
     );
