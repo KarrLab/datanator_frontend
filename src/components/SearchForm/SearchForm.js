@@ -79,7 +79,7 @@ class SearchForm extends Component {
       return;
     }
 
-    this.setState({ organismValid: query != "" });
+    this.setState({ organismValid: query !== "" });
 
     // cancel earlier query
     if (this.cancelTokenSource) {
