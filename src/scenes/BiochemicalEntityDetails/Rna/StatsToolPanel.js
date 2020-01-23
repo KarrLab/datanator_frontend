@@ -3,6 +3,6 @@ import { StatsToolPanel as BaseStatsToolPanel } from "../StatsToolPanel/StatsToo
 
 export default class StatsToolPanel extends Component {
   render() {
-    return <BaseStatsToolPanel relevant-column="abundance" />;
+    return <BaseStatsToolPanel relevant-column="half_life" />;
   }
 }

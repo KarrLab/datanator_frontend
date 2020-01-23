@@ -93,14 +93,8 @@ const columnDefs = [
     filter: "agNumberColumnFilter",
   },
   {
-    headerName: "Growth Medium",
-    field: "growth_medium",
-    filter: "agTextColumnFilter",
-    hide: false
-  },
-  {
     headerName: "Reference",
-    field: "uniprot_source",
+    field: "reference",
 
     cellRenderer: function(params) {
       return (
@@ -119,10 +113,10 @@ const columnDefs = [
     filter: "agTextColumnFilter"
   },
   {
-    headerName: "Taxonomic distance",
-    field: "taxonomic_proximity",
-    hide: true,
-    filter: "taxonomyFilter"
+    headerName: "Growth Medium",
+    field: "growth_medium",
+    filter: "agTextColumnFilter",
+    hide: false
   },
 ];
 
