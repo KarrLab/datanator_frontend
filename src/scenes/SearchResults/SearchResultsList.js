@@ -115,7 +115,6 @@ class SearchResultsList extends Component {
       newResults,
       this.organism
     ).map(this.formatResult);
-
     let formattedResults;
     if (this.formattedResults == null) {
       formattedResults = newFormattedResults;

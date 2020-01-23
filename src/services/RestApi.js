@@ -13,8 +13,10 @@ const DEFAULT_ERROR_MESSAGE = (
   </span>
 );
 
+
 function getDataFromApi(params, options = {}, errorMessage = null) {
   const url = ROOT_URL + params.join("/");
+  //console.log(url)
   return axios.get(url, options).catch(error => {
     if (!axios.isCancel(error)) {
       errorDialogRef.current.open(

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { HashLink } from "react-router-hash-link";
 
 import MetaboliteSearchResultsList from "./MetaboliteSearchResultsList";
-// import RnaSearchResultsList from "./RnaSearchResultsList";
+import RnaSearchResultsList from "./RnaSearchResultsList";
 import ProteinSearchResultsList from "./ProteinSearchResultsList";
 import ReactionSearchResultsList from "./ReactionSearchResultsList";
 
@@ -25,13 +25,11 @@ class SearchResults extends Component {
                   {"Metabolites"}
                 </HashLink>
               </li>
-              {/*
               <li>
                 <HashLink to="#rnas" scroll={scrollTo}>
                   {"RNAs"}
                 </HashLink>
               </li>
-              */}
               <li>
                 <HashLink to="#proteins" scroll={scrollTo}>
                   {"Proteins"}
@@ -48,9 +46,10 @@ class SearchResults extends Component {
 
         <div className="content-column">
           <MetaboliteSearchResultsList />
-          {/* <RnaSearchResultsList /> */}
+          <RnaSearchResultsList />
           <ProteinSearchResultsList />
           <ReactionSearchResultsList />
+        }
         </div>
       </div>
     );
