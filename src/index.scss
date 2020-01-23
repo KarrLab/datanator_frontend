@@ -216,6 +216,16 @@ body {
 
   .MuiDialogContent-root {
     padding: 0 1rem;
+
+    .dialog-message-container {
+      span {
+        display: block;
+      }
+
+      span:not(:first-child) {
+        margin-top: 0.5rem;
+      }
+    }
   }
 
   .MuiDialogActions-root {
