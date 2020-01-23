@@ -6,3 +6,8 @@ public/favicon.png
 public/favicon.svg
 public/favicon-chrome.png
 public/favicon-chrome.svg
+
+# test files
+src/setupTests.js
+__tests__/
+*.test.js

@@ -37,27 +37,41 @@ export default class ReactionSearchResultsList extends Component {
       }
 
       // title and description
+      const name = result["enzyme_names"][0];
       const substrates = getParticipant(result["substrate_names"]);
       const products = getParticipant(result["product_names"]);
-      formattedResult["substrates"] = substrates;
-      formattedResult["products"] = products;
-
-      const name = result["enzyme_names"][0];
       const equation = formatSide(substrates) + " → " + formatSide(products);
-      
+      const ecCode = result["ec-code"];
+
       if (name) {
         formattedResult["title"] =
           name[0].toUpperCase() + name.substring(1, name.length);
       } else {
         formattedResult["title"] = equation;
       }
-      formattedResult["description"] = equation;
+      formattedResult["description"] = <div>{equation}</div>;
+      if (!ecCode.startsWith("-")) {
+        formattedResult["description"] = (
+          <div>
+            <div>{equation}</div>
+            <div>
+              EC:{" "}
+              <a
+                href={"https://enzyme.expasy.org/EC/" + ecCode}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {ecCode}
+              </a>
+            </div>
+          </div>
+        );
+      }
 
       // route
-      formattedResult["route"] =
-        "/reaction/?substrates=" + substrates + "&products=" + products;
+      formattedResult["route"] = "/reaction/" + substrates + "-->" + products;
       if (organism) {
-        formattedResult["route"] += "&organism=" + organism;
+        formattedResult["route"] += "/" + organism;
       }
     }
 

@@ -10,7 +10,7 @@ import store from "~/data/Store";
 import history from "~/utils/history";
 
 // Feedback form
-import { applyPolyfills, defineCustomElements } from '@bruit/component/loader';
+import { applyPolyfills, defineCustomElements } from "@bruit/component/loader";
 
 // Styles for @Blueprint JS (Template Components)
 import "@blueprintjs/core/lib/css/blueprint.css";
@@ -31,9 +31,8 @@ import FeedbackForm from "~/components/FeedbackForm/FeedbackForm";
 import Home from "~/scenes/Home/Home";
 import SearchResults from "~/scenes/SearchResults/SearchResults";
 import Metabolite from "~/scenes/BiochemicalEntityDetails/Metabolite/Metabolite";
-// import Rna from "~/scenes/BiochemicalEntityDetails/Rna/Rna";
+import Rna from "~/scenes/BiochemicalEntityDetails/Rna/Rna";
 import Protein from "~/scenes/BiochemicalEntityDetails/Protein/Protein";
-import RNA from "~/scenes/BiochemicalEntityDetails/RNA/RNA";
 import Reaction from "~/scenes/BiochemicalEntityDetails/Reaction/Reaction";
 import Stats from "~/scenes/Stats/Stats";
 import Help from "~/scenes/Help/Help";
@@ -52,15 +51,16 @@ const SiteRouter = () => {
         <Route path="/" exact component={Home} />
         <Route path="/search/:query/:organism?/" component={SearchResults} />
         <Route
-          path="/metabolite/:molecule/:organism?/"
+          path="/metabolite/:metabolite/:organism?/"
           component={Metabolite}
         />
+        <Route path="/rna/:rna/:organism?/" component={Rna} />
+        <Route path="/protein/:protein/:organism?/" component={Protein} />
         <Route
-          path="/protein/:searchType/:molecule/:organism?/"
-          component={Protein}
+          path="/reaction/:substrates-->:products/:organism?/"
+          component={Reaction}
         />
-        <Route path="/reaction/:dataType/" component={Reaction} />
-        <Route path="/rna/" component={RNA} />
+        <Route path="/rna/:protein_name" component={Rna} />
 
         <Route path="/stats/" component={Stats} />
         <Route path="/help/" component={Help} />

@@ -33,6 +33,7 @@ function jsonToCsv(jsonData) {
   }
 
   if (csv === "") {
+    // Todo: use better way to communicate error to user
     alert("Invalid data");
     return;
   }

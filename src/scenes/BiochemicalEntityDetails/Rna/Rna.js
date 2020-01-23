@@ -19,7 +19,7 @@ import "@ag-grid-enterprise/all-modules/dist/styles/ag-grid.scss";
 import "@ag-grid-enterprise/all-modules/dist/styles/ag-theme-balham/sass/ag-theme-balham.scss";
 
 import "../BiochemicalEntityDetails.scss";
-import "./Protein.scss";
+import "./Rna.scss";
 
 const frameworkComponents = {
   statsToolPanel: StatsToolPanel,
@@ -78,40 +78,41 @@ const defaultColDef = {
 
 const columnDefs = [
   {
-    headerName: "Abundance",
-    field: "abundance",
+    headerName: "Gene",
+    field: "gene_symbol",
     sortable: true,
-    filter: "agNumberColumnFilter",
+    filter: "agTextColumnFilter",
     checkboxSelection: true,
     headerCheckboxSelection: true,
     headerCheckboxSelectionFilteredOnly: true
   },
   {
-    headerName: "Protein",
-    field: "protein_name",
+    headerName: "Half Life",
+    field: "half_life",
+    sortable: true,
     filter: "agNumberColumnFilter",
-    menuTabs: ["filterMenuTab"]
   },
   {
-    headerName: "UniProt id",
+    headerName: "Growth Medium",
+    field: "growth_medium",
+    filter: "agTextColumnFilter",
+    hide: false
+  },
+  {
+    headerName: "Reference",
     field: "uniprot_source",
 
     cellRenderer: function(params) {
       return (
-        '<a href="https://www.uniprot.org/uniprot/' +
-        params.value.uniprot_id +
+        '<a href="https://scholar.google.com/scholar?q=' +
+        params.value +
         '" target="_blank" rel="noopener noreferrer">' +
-        params.value.uniprot_id +
+        "Reference" +
         "</a>"
       );
     }
   },
-  {
-    headerName: "Gene",
-    field: "gene_symbol",
-    filter: "agTextColumnFilter",
-    hide: true
-  },
+
   {
     headerName: "Organism",
     field: "organism",
@@ -123,26 +124,6 @@ const columnDefs = [
     hide: true,
     filter: "taxonomyFilter"
   },
-  {
-    headerName: "Organ",
-    field: "organ",
-    filter: "agTextColumnFilter",
-    hide: false
-  },
-  {
-    headerName: "Source",
-    field: "source_link",
-
-    cellRenderer: function(params) {
-      return (
-        '<a href="https://pax-db.org/search?q=' +
-        params.value.uniprot_id +
-        '" target="_blank" rel="noopener noreferrer">' +
-        "PAXdb" +
-        "</a>"
-      );
-    }
-  }
 ];
 
 Object.size = function(obj) {
@@ -161,24 +142,24 @@ Object.size = function(obj) {
     totalData: store.results.totalData
   };
 }) //the names given here will be the names of props
-class Protein extends Component {
+class Rna extends Component {
   static propTypes = {};
 
   constructor(props) {
     super(props);
     this.state = {
       search: "",
+      proteinMetadata: [],
       orthologyMetadata: [],
       f_abundances: null,
       organism: "",
       orig_json: null,
       isFlushed: false,
       lineage: [],
-      dataArrived: false,
+      data_arrived: false,
       tanimoto: false
     };
 
-    this.processProteinData = this.processProteinData.bind(this);
     this.formatData = this.formatData.bind(this);
   }
   componentDidMount() {
@@ -189,175 +170,56 @@ class Protein extends Component {
     // respond to parameter change in scenario 3
 
     if (
-      this.props.match.params.protein !== prevProps.match.params.protein ||
+      this.props.match.params.rna !== prevProps.match.params.rna ||
       this.props.match.params.organism !== prevProps.match.params.organism
     ) {
       this.setState({
         search: "",
+        proteinMetadata: [],
         orthologyMetadata: [],
         f_abundances: null,
         organism: "",
         orig_json: null,
         isFlushed: false,
-        dataArrived: false
+        data_arrived: false
       });
       this.getDataFromApi();
     }
   }
 
   getDataFromApi() {
-    const ko = this.props.match.params.protein;
-    const organism = this.props.match.params.organism;
-
+    const rna = this.props.match.params.rna;
     getDataFromApi([
-      "proteins",
-      "proximity_abundance/proximity_abundance_kegg/?kegg_id=" +
-        ko +
-        "&anchor=" +
-        organism +
-        "&distance=40&depth=40"
+      "/rna/halflife/get_info_by_protein_name/?protein_name=" +
+        rna +
+        "&_from=0&size=10"
     ]).then(response => {
-      this.processProteinDataUniprot(response.data);
+      this.formatData(response.data);
     });
-
-    if (organism != null) {
-      getDataFromApi([
-        "taxon",
-        "canon_rank_distance_by_name/?name=" + organism
-      ]).then(response => {
-        this.setState({ lineage: response.data });
-      });
-    }
   }
 
-  formatOrthologyMetadata(data) {
-    let newOrthologyMetadata = [];
-    let start = 0;
-    let uni_ids = [];
-    let meta = {};
-    meta["ko_number"] = data[0].ko_number;
-    meta["ko_name"] = data[0].ko_name;
-
-    for (var i = start; i < data.length; i++) {
-      uni_ids.push(data[i].uniprot_id);
-    }
-    meta["uniprot_ids"] = uni_ids;
-    newOrthologyMetadata.push(meta);
-    this.setState({ orthologyMetadata: newOrthologyMetadata });
-  }
-
-  processProteinData(data) {
-    if (typeof data != "string") {
-      this.setState({ orig_json: data });
-      this.formatData(data);
-
-      let newOrthologyMetadata = [];
-      let meta = {};
-      let uniprot_id = "";
-      if (Object.size(data[0]) === 1) {
-        uniprot_id = data[1].uniprot_id;
-      } else {
-        uniprot_id = data[0].uniprot_id;
-      }
-      meta["ko_number"] = [data[0].ko_number, uniprot_id];
-      newOrthologyMetadata.push(meta);
-      this.setState({ orthologyMetadata: newOrthologyMetadata });
-    } else {
-      getDataFromApi([
-        "proteins",
-        "meta?uniprot_id=" + this.props.match.params.protein
-      ]).then(response => {
-        this.formatData(response.data);
-
-        let newOrthologyMetadata = [];
-        let meta = {};
-        meta["ko_number"] = [
-          response.data[0].ko_number,
-          response.data[1].uniprot_id
-        ];
-        newOrthologyMetadata.push(meta);
-        this.setState({ orthologyMetadata: newOrthologyMetadata });
-      });
-    }
-  }
-
-  processProteinDataUniprot(data) {
-    if (typeof data != "string") {
-      this.setState({ orig_json: data });
-      var f_abundances = [];
-      let newProteinMetadata = [];
-      let uniprot_to_dist = {};
-      if (data != null && typeof data != "string") {
-        let start = 0;
-        for (var i = 0; i < data.length; i++) {
-          let docs = data[i].documents;
-          for (var q = docs.length - 1; q >= 0; q--) {
-            var uniprot = docs[q].abundances;
-            if (uniprot !== undefined) {
-              for (var n = 0; n < uniprot.length; n++) {
-                let row = {};
-                uniprot_to_dist[docs[q].uniprot_id] = data[i].distance;
-              }
-            }
-          }
-        }
-      }
-      let total_ids = Object.keys(uniprot_to_dist);
-      let end_query = "";
-      for (var f = total_ids.length - 1; f >= 0; f--) {
-        end_query = end_query + "uniprot_id=" + total_ids[f] + "&";
-      }
-      getDataFromApi(["proteins", "meta/meta_combo/?" + end_query]).then(
-        response => {
-          this.formatOrthologyMetadata(response.data);
-          this.formatData(response.data, uniprot_to_dist);
-        }
-      );
-    }
-  }
-
-  formatData(data, uniprot_to_dist) {
-    var f_abundances = [];
+  formatData(data) {
+    console.log(data);
     if (data != null && typeof data != "string") {
-      if (!(data[0].uniprot_id === "Please try another input combination")) {
-        let start = 0;
-        if (Object.size(data[0]) === 1) {
-          start = 1;
-        }
-        for (var i = start; i < data.length; i++) {
-          let uniprot = data[i];
-          if (uniprot.abundances !== undefined) {
-            for (var n = 0; n < uniprot.abundances.length; n++) {
-              let row = {};
-              row["abundance"] = uniprot.abundances[n].abundance;
-              row["organ"] = uniprot.abundances[n].organ;
-              row["gene_symbol"] = uniprot.gene_name;
-              row["organism"] = uniprot.species_name;
-              row["uniprot_id"] = uniprot.uniprot_id;
-              row["uniprot_source"] = { uniprot_id: uniprot.uniprot_id };
-              let protein_name = uniprot.protein_name;
-              if (protein_name.includes("(")) {
-                protein_name = protein_name.substring(
-                  0,
-                  protein_name.indexOf("(")
-                );
-              }
-              row["protein_name"] = protein_name;
-              row["taxonomic_proximity"] =
-                uniprot_to_dist[uniprot.uniprot_id] + 1;
-              row["source_link"] = { uniprot_id: uniprot.uniprot_id };
-              f_abundances.push(row);
-            }
-          }
-        }
-        this.props.dispatch(setTotalData(f_abundances));
-        this.setState({ dataArrived: true });
-      } else {
-        //alert('Nothing Found');
+      //let data_n = data[0]
+      let half_lives = data[0].halflives;
+      let final_data = []
+      for (var i = 0; i < half_lives.length; i++) {
+        let entry = half_lives[i];
+        let row = {};
+        row["half_life"] = entry.halflife;
+        row["reference"] = entry.reference[0]["doi"];
+        row["organism"] = entry.species;
+        row["growth_medium"] = entry.growth_medium;
+        final_data.push(row);
       }
-    } else {
-      //alert('Nothing Found');
+      this.props.dispatch(setTotalData(final_data));
+      this.setState({ data_arrived: true }); 
     }
+    else {
+        //alert('Nothing Found');
+
+    } 
   }
 
   onFirstDataRendered(params) {
@@ -394,7 +256,7 @@ class Protein extends Component {
     const organism = this.props.match.params.organism;
 
     if (
-      this.state.orthologyMetadata.length === 0 ||
+      //this.state.orthologyMetadata.length === 0 ||
       this.props.totalData == null
     ) {
       return (
@@ -405,14 +267,15 @@ class Protein extends Component {
     }
 
     return (
-      <div className="content-container biochemical-entity-scene biochemical-entity-protein-scene">
+      <div className="content-container biochemical-entity-scene biochemical-entity-rna-scene">
         <MetadataSection
           proteinMetadata={this.state.orthologyMetadata}
+          //molecule={this.props.match.params.rna}
           organism={organism}
         />
 
         <div className="content-block measurements-grid ag-theme-balham">
-          <h2 className="content-block-heading">Abundance</h2>
+          <h2 className="content-block-heading">Half-life</h2>
           <AgGridReact
             modules={AllModules}
             frameworkComponents={frameworkComponents}
@@ -441,4 +304,4 @@ class Protein extends Component {
   }
 }
 
-export default withRouter(Protein);
+export default withRouter(Rna);

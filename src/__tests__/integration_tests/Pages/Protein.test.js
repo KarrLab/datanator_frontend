@@ -19,10 +19,10 @@ let the_json = ""
 
 const store = createStore
 
-const renderComponent = (searchType, molecule) =>
+const renderComponent = (searchType, protein) =>
   render (
-    <MemoryRouter initialEntries={['/protein/' + searchType + '/' + molecule ]}>
-      <Route path="/protein/:searchType/:molecule">
+    <MemoryRouter initialEntries={['/protein/' + searchType + '/' + protein ]}>
+      <Route path="/protein/:searchType/:protein">
        <Provider store={store}>
         <Protein />
         </Provider>

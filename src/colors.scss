@@ -17,6 +17,9 @@ $color-heading: #5c5c5c;
 $color-button: #f9f9f9;
 $color-button-hover: #f0f0f0;
 $color-border: #e0e0e0;
+$color-border-dark: #c3c3c3; // 12.5% darker
+$color-border-darker: #a8a8a8; // 25% darker
+$color-border-darkest: #707070; // 50% darker
 $color-shadow: #0006;
 
 :export { /* stylelint-disable-line selector-pseudo-class-no-unknown */

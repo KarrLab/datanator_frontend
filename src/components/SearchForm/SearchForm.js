@@ -14,7 +14,7 @@ import "./SearchForm.scss";
 
 class SearchForm extends Component {
   static propTypes = {
-    history: PropTypes.object
+    history: PropTypes.object.isRequired
   };
 
   constructor(props) {
@@ -58,16 +58,16 @@ class SearchForm extends Component {
       const match = this.props.history.location.pathname.match(pathRegex);
       if (match) {
         const query = match[1].trim();
-        const organism = match[3].trim() || null;        
+        const organism = match[3].trim() || null;
 
         this.setState({
           query: query,
-          queryValid: query !== "",
+          queryValid: query !== ""
         });
 
         this.setState({
           organism: organism,
-          organismValid: true,
+          organismValid: true
         });
       }
     }
@@ -79,7 +79,7 @@ class SearchForm extends Component {
       return;
     }
 
-    this.setState({ organismValid: query != "" });
+    this.setState({ organismValid: query !== "" });
 
     // cancel earlier query
     if (this.cancelTokenSource) {
