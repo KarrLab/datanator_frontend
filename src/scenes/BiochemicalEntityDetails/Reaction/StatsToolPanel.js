@@ -4,7 +4,7 @@ import { StatsToolPanel as BaseStatsToolPanel } from "../StatsToolPanel/StatsToo
 
 export default class StatsToolPanel extends Component {
   static propTypes = {
-    "relevant-column": PropTypes.string
+    "relevant-column": PropTypes.string.isRequired
   };
 
   constructor(props) {

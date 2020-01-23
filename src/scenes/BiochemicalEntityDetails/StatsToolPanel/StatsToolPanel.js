@@ -141,9 +141,9 @@ class StatsToolPanel extends Component {
       return (
         <div className="biochemical-entity-scene-stats-tool-panel">
           <MeasurementsBoxScatterPlot
-            allMeasurements={this.props.totalData}
-            selectedMeasurements={this.props.selectedData}
-            dataProperty={this.state.selectedColumn}
+            all-measurements={this.props.totalData}
+            selected-seasurements={this.props.selectedData}
+            data-property={this.state.selectedColumn}
           />
 
           <div className="summary">

@@ -11,7 +11,7 @@ import SearchForm from "~/components/SearchForm/SearchForm";
 
 class Header extends Component {
   static propTypes = {
-    history: PropTypes.object
+    history: PropTypes.object.isRequired
   };
 
   constructor() {

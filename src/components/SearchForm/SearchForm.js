@@ -14,7 +14,7 @@ import "./SearchForm.scss";
 
 class SearchForm extends Component {
   static propTypes = {
-    history: PropTypes.object
+    history: PropTypes.object.isRequired
   };
 
   constructor(props) {

@@ -8,13 +8,13 @@ import axios from "axios";
 
 class SearchResultsList extends Component {
   static propTypes = {
-    history: PropTypes.object,
-    "get-results-url": PropTypes.func,
-    "get-results": PropTypes.func,
-    "get-num-results": PropTypes.func,
-    "format-results": PropTypes.func,
-    "html-anchor-id": PropTypes.string,
-    title: PropTypes.string,
+    history: PropTypes.object.isRequired,
+    "get-results-url": PropTypes.func.isRequired,
+    "get-results": PropTypes.func.isRequired,
+    "get-num-results": PropTypes.func.isRequired,
+    "format-results": PropTypes.func.isRequired,
+    "html-anchor-id": PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
     "page-size": PropTypes.number
   };
 
