@@ -35,13 +35,14 @@
 
     .ag-column-tool-panel-column {
       .ag-column-drag {
-          display: none;
+        display: none;
       }
     }
 
     a {
       color: $color-text;
     }
+
     a:hover {
       color: $color-primary;
     }
@@ -66,7 +67,7 @@
       height: 2px;
       padding: 15px 0;
     }
-    
+
     .MuiSlider-thumb {
       height: 15px;
       width: 15px;
@@ -75,8 +76,9 @@
       margin-top: -7px;
       margin-left: -10px;
     }
-    
-    .MuiSlider-thumb:hover, .MuiSlider-thumb.MuiSlider-active {
+
+    .MuiSlider-thumb:hover,
+    .MuiSlider-thumb.MuiSlider-active {
       .MuiSlider-valueLabel {
         display: flex;
       }
@@ -103,7 +105,7 @@
       height: 2;
       background-color: $color-primary;
     }
-    
+
     .MuiSlider-mark {
       background-color: $color-border-dark;
       height: 8px;
