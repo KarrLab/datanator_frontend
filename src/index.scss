@@ -220,3 +220,8 @@ a:hover {
 .no-pointer-events {
   pointer-events: none;
 }
+
+/* text selection */
+::selection {
+  background: rgba($color-accent, 0.3);
+}
