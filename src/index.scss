@@ -202,6 +202,11 @@ a:hover {
   color: $color-accent;
 }
 
+/* hide */
+.hide {
+  display: none;
+}
+
 /* focus */
 :focus {
   outline: none;
