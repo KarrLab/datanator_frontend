@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { abstractMolecule } from "~/data/actions/pageAction";
 
+import proteinIcon from "./images/protein.svg";
+
 class MetadataSection extends Component {
   static propTypes = {};
 
@@ -119,13 +121,12 @@ class MetadataSection extends Component {
         <h2 className="content-block-heading">{proteinMetadata.ko_name[0]}</h2>
         <div className="content-block-content img-description">
           <div className="vertical-center">
-            <img
-              border="0"
-              alt="W3Schools"
-              src={"https://image.flaticon.com/icons/png/512/1951/1951420.png"}
-              width="80%"
-              height="80%"
-            ></img>
+            <object
+              data={proteinIcon}
+              className="hover-zoom"
+              alt="Protein icon"
+              aria-label="Protein icon"
+            />
           </div>
 
           <div className="metadata-description">

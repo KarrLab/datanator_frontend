@@ -28,7 +28,7 @@ class MetadataSection extends Component {
           <div className="vertical-center">
             <object
               data={rnaIcon}
-              className="section-column-icon hover-zoom"
+              className="hover-zoom"
               alt="RNA icon"
               aria-label="RNA icon"
             />

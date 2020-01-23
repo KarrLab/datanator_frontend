@@ -182,8 +182,8 @@ class Home extends Component {
                 <object
                   data={metaboliteIcon}
                   className="section-column-icon hover-zoom"
-                  alt="Metabolite concentration icon"
-                  aria-label="Metabolite concentration icon"
+                  alt="Metabolite icon"
+                  aria-label="Metabolite icon"
                 />
                 <div className="section-column-subtitle">Available</div>
                 <div className="section-column-title">
@@ -230,8 +230,8 @@ class Home extends Component {
                 <object
                   data={proteinIcon}
                   className="section-column-icon hover-zoom"
-                  alt="Protein abundance icon"
-                  aria-label="Protein abundance icon"
+                  alt="Protein icon"
+                  aria-label="Protein icon"
                 />
                 <div className="section-column-subtitle">Available</div>
                 <div className="section-column-title">Protein abundances</div>
@@ -270,8 +270,8 @@ class Home extends Component {
                 <object
                   data={reactionIcon}
                   className="section-column-icon hover-zoom"
-                  alt="Reaction rate constant icon"
-                  aria-label="Reaction rate constant icon"
+                  alt="Reaction icon"
+                  aria-label="Reaction icon"
                 />
                 <div className="section-column-subtitle">Available</div>
                 <div className="section-column-title">Reaction constants</div>

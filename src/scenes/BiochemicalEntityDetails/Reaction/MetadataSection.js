@@ -97,9 +97,9 @@ class MetadataSection extends Component {
             <div className="vertical-center">
               <object
                 data={reactionIcon}
-                className="section-column-icon hover-zoom"
-                alt="Reaction rate constant icon"
-                aria-label="Reaction rate constant icon"
+                className="hover-zoom"
+                alt="Reaction icon"
+                aria-label="Reaction icon"
               />
             </div>
 
