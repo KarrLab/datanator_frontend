@@ -1,14 +1,10 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import Slider from "@material-ui/core/Slider";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
-import ReactDOM from "react-dom";
+import { withStyles } from "@material-ui/core/styles";
 
 const iOSBoxShadow =
   "0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.13),0 0 0 1px rgba(0,0,0,0.02)";
-
-function valuetext(value) {
-  return `${value}`;
-}
 
 const marks = [
   {
@@ -73,27 +69,35 @@ const IOSSlider = withStyles({
   }
 })(Slider);
 
+function valueText(value) {
+  return `${value}`;
+}
+
 class TanimotoFilter extends Component {
+  static propTypes = {
+    agGridReact: PropTypes.object.isRequired,
+    valueGetter: PropTypes.func.isRequired,
+    filterChangedCallback: PropTypes.func.isRequired
+  };
+
   constructor(props) {
     super(props);
-
-    this.input = React.createRef();
 
     this.state = {
       filter: "",
       numToNode: null,
-      marks: [],
-      buttons: []
+      marks: []
     };
 
     this.valueGetter = this.props.valueGetter;
 
     this.onChange = this.onChange.bind(this);
     this.isFilterActive = this.isFilterActive.bind(this);
-    this.formatButtons = this.formatButtons.bind(this);
-    this.setMarks = this.setMarks.bind(this);
-    this.sliderChange = this.sliderChange.bind(this);
+    // this.setMarks = this.setMarks.bind(this);
+
+    this.slider = React.createRef();
   }
+
   isFilterActive() {
     return true;
   }
@@ -103,6 +107,7 @@ class TanimotoFilter extends Component {
       this.setMarks();
     }
   }
+
   componentDidUpdate(prevProps) {
     if (
       this.props.agGridReact.props.lineage !==
@@ -113,45 +118,26 @@ class TanimotoFilter extends Component {
   }
 
   setMarks() {
-    let lineage = this.props.agGridReact.props.lineage;
-    let buttons = [];
-    var new_marks = [];
-    var new_numToNode = {};
-    var n = lineage.length - 1;
-    for (var i = 0; i < lineage.length; i++) {
-      //new_numToNode[Object.values(lineage[i])[0]] = Object.keys(lineage[i])[0];
-      new_numToNode[i] = Object.values(lineage[i])[0];
-      new_marks.push({ value: i, label: Object.keys(lineage[i])[0] });
-      buttons.push(
-        <div>
-          {" "}
-          <input
-            type="radio"
-            name="gender"
-            value={Object.values(lineage[i])[0]}
-          ></input>
-          <label>{Object.keys(lineage[i])[0]}</label>
-        </div>
-      );
-
-      //buttons.push(<input type="radio" name="gender" value={Object.values(lineage[i])[0]}> {Object.keys(lineage[i])[0]} </input>)
+    const lineage = this.props.agGridReact.props.lineage;
+    const marks = [];
+    const numToNode = {};
+    for (let i = 0; i < lineage.length; i++) {
+      numToNode[i] = Object.values(lineage[i])[0];
+      marks.push({
+        value: i,
+        label: Object.keys(lineage[i])[0]
+      });
     }
 
     this.setState({
-      numToNode: new_numToNode,
-      buttons: buttons,
-      marks: new_marks
+      numToNode: numToNode,
+      marks: marks
     });
-  }
-
-  isFilterActive2() {
-    return this.state.filter !== "";
   }
 
   doesFilterPass(params) {
     const filter = this.state.filter;
     const value = this.valueGetter(params.node);
-
     return value >= filter;
   }
 
@@ -160,20 +146,11 @@ class TanimotoFilter extends Component {
   }
 
   setModel(model) {
-    this.state.text = model ? model.value : "";
+    this.setState({ text: model ? model.value : "" });
   }
 
-  afterGuiAttached(params) {
-    this.focus();
-  }
-
-  focus() {
-    window.setTimeout(() => {
-      let container = ReactDOM.findDOMNode(this.refs.input);
-      if (container) {
-        container.focus();
-      }
-    });
+  afterGuiAttached() {
+    this.slider.current.focus();
   }
 
   onChange(event, newValue) {
@@ -190,25 +167,7 @@ class TanimotoFilter extends Component {
     }
   }
 
-  formatButtons(lineage) {
-    let buttons = [];
-    for (var i = this.state.marks.length - 1; i >= 0; i--) {
-      buttons.push(
-        <input type="radio" name="gender" value="male">
-          {" "}
-          this.state.marks[i]{" "}
-        </input>
-      );
-    }
-    return buttons;
-  }
-
-  sliderChange(value) {
-    this.setState({ filter: 7 });
-  }
-
   render() {
-    let buttons = this.state.buttons;
     return (
       <div
         className={
@@ -216,10 +175,11 @@ class TanimotoFilter extends Component {
         }
       >
         <IOSSlider
+          ref={this.slider}
           onChange={this.onChange}
           orientation="horizontal"
           aria-labelledby="horizontal-slider"
-          getAriaValueText={valuetext}
+          getAriaValueText={valueText}
           marks={marks}
           valueLabelDisplay={"on"}
           defaultValue={0.65}

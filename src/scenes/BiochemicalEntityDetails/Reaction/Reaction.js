@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
+import PropTypes from "prop-types";
 
 import { MetadataSection } from "./MetadataSection";
 import { getDataFromApi } from "~/services/RestApi";
@@ -11,7 +12,6 @@ import { AllModules } from "@ag-grid-enterprise/all-modules";
 import StatsToolPanel from "./StatsToolPanel.js";
 import { TaxonomyFilter } from "~/scenes/BiochemicalEntityDetails/TaxonomyFilter.js";
 import { TanimotoFilter } from "~/scenes/BiochemicalEntityDetails/TanimotoFilter.js";
-import PartialMatchFilter from "../PartialMatchFilter";
 import "@ag-grid-enterprise/all-modules/dist/styles/ag-grid.scss";
 import "@ag-grid-enterprise/all-modules/dist/styles/ag-theme-balham/sass/ag-theme-balham.scss";
 
@@ -25,25 +25,47 @@ const sideBar = {
       labelDefault: "Columns",
       labelKey: "columns",
       iconKey: "columns",
-      toolPanel: "agColumnsToolPanel"
+      toolPanel: "agColumnsToolPanel",
+      toolPanelParams: {
+        suppressRowGroups: true,
+        suppressValues: true,
+        suppressPivots: true,
+        suppressPivotMode: true,
+        suppressSideButtons: false,
+        suppressColumnFilter: true,
+        suppressColumnSelectAll: true,
+        suppressColumnExpandAll: true,
+      }
     },
     {
       id: "filters",
       labelDefault: "Filters",
       labelKey: "filters",
       iconKey: "filter",
-      toolPanel: "agFiltersToolPanel"
+      toolPanel: "agFiltersToolPanel",
+      toolPanelParams: {
+        suppressFilterSearch: true,
+        suppressExpandAll: true,
+      }
     },
     {
-      id: "customStats",
+      id: "stats-kcat",
       labelDefault: "Kcat",
-      labelKey: "customStats",
-      iconKey: "customstats",
+      labelKey: "chart",
+      iconKey: "chart",
       toolPanel: "statsToolPanel"
     },
   ],
   position: "left",
-  defaultToolPanel: "filters"
+  defaultToolPanel: "filters",
+  hiddenByDefault: false,
+};
+
+const defaultColDef = {
+  filter: 'agTextColumnFilter',
+  sortable: true,
+  resizable: true,
+  suppressMenu: true,
 };
 
 function getReactionID(resource) {
@@ -143,24 +165,31 @@ temperature
   return { totalData: store.results.totalData };
 }) //the names given here will be the names of props
 class Reaction extends Component {
+  static propTypes = {
+  };
+  
   constructor(props) {
     super(props);
     this.state = {
       reactionMetadata: [],
       km_values: [],
-      modules: AllModules,
       lineage: [],
       data_arrived: false,
       tanimoto: false,
       columnDefs: [],
-      first_columns: [
+      first_columns: [        
         {
-          headerName: "Entry ID",
-          field: "kinlaw_id",
-          checkboxSelection: true,
+          headerName: "Kcat",
+          field: "kcat",
+          sortable: true,
+          filter: "agNumberColumnFilter",
+          checkboxSelection: true,
           headerCheckboxSelection: true,
           headerCheckboxSelectionFilteredOnly: true,
-          //filter: 'taxonomyFilter',
+        },
+        {
+          headerName: "SABIO-RK id",
+          field: "kinlaw_id",
           filter: "agNumberColumnFilter",
           menuTabs: ["filterMenuTab"],
 
@@ -176,12 +205,6 @@ class Reaction extends Component {
             }
           }
         },
-        {
-          headerName: "Kcat",
-          field: "kcat",
-          sortable: true,
-          filter: "agNumberColumnFilter"
-        }
       ],
       second_columns: [
         {
@@ -190,31 +213,13 @@ class Reaction extends Component {
           filter: "agTextColumnFilter"
         },
         {
-          headerName: "Source Link",
-          field: "source_link",
-
-          cellRenderer: function(params) {
-            if (true) {
-              return (
-                '<a href="http://sabio.h-its.org/reacdetails.jsp?reactid=' +
-                params.value.reactionID +
-                '" target="_blank" rel="noopener noreferrer">' +
-                "SABIO-RK" +
-                "</a>"
-              );
-            }
-          }
-        },
-
-        {
-          headerName: "Taxonomic Distance",
+          headerName: "Taxonomic distance",
           field: "taxonomic_proximity",
           hide: true,
           filter: "taxonomyFilter"
         },
-
         {
-          headerName: "Growth Phase",
+          headerName: "Growth phase",
           field: "growth_phase",
           filter: "agTextColumnFilter",
           hide: true
@@ -230,18 +235,25 @@ class Reaction extends Component {
           field: "growth_media",
           filter: "agTextColumnFilter",
           hide: true
-        }
+        },
+        {
+          headerName: "Source",
+          field: "source_link",
+
+          cellRenderer: function(params) {
+            if (true) {
+              return (
+                '<a href="http://sabio.h-its.org/reacdetails.jsp?reactid=' +
+                params.value.reactionID +
+                '" target="_blank" rel="noopener noreferrer">' +
+                "SABIO-RK" +
+                "</a>"
+              );
+            }
+          }
+        },
       ],
 
-      rowData: null,
-      rowSelection: "multiple",
-      autoGroupColumnDef: {
-        headerName: "Conc",
-        field: "concentration",
-        width: 200,
-        cellRenderer: "agGroupCellRenderer",
-        cellRendererParams: { checkbox: true }
-      },
       frameworkComponents: {
       }
     };
@@ -255,10 +267,9 @@ class Reaction extends Component {
     let new_columns = [];
     let frameworkComponents = {
       taxonomyFilter: TaxonomyFilter,
-      partialMatchFilter: PartialMatchFilter
     };
     frameworkComponents["statsToolPanel"] = (() => (
-        <StatsToolPanel relevant_column={"kcat"} />
+        <StatsToolPanel relevant-column={"kcat"} />
       ))
     for (var i = km_values.length - 1; i >= 0; i--) {
       new_columns.push({
@@ -270,15 +281,15 @@ class Reaction extends Component {
       let comp_name = "CustomToolPanelReaction_" + km_values[i];
       sideBar["toolPanels"].push({
         id: km_values[i],
-        labelDefault: "Km " + km_values[i].split("_")[1] + " (M)",
-        labelKey: "customStats",
-        iconKey: "customstats",
+        labelDefault: "Km " + km_values[i].split("_")[1],
+        labelKey: "chart",
+        iconKey: "chart",
         toolPanel: comp_name
       })
 
       let km = km_values[i].toString()
       frameworkComponents[comp_name] = (() => (
-        <StatsToolPanel relevant_column={km} />
+        <StatsToolPanel relevant-column={km} />
       ));
 
     }
@@ -486,17 +497,10 @@ class Reaction extends Component {
     this.props.dispatch(setSelectedData([]));
   }
 
-  onGridReady = params => {
+  onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     params.api.sizeColumnsToFit();
-  };
-
-  onClicked() {
-    this.gridApi
-      .getFilterInstance("taxonomic_proximity")
-      .getFrameworkComponentInstance()
-      .componentMethod2("Hello World!");
   }
 
   render() {
@@ -508,36 +512,35 @@ class Reaction extends Component {
       );
     }
 
-
     return (
-      <div className="biochemical-entity-scene biochemical-entity-reaction-scene">
+      <div className="content-container biochemical-entity-scene biochemical-entity-reaction-scene">
         <MetadataSection
           reactionMetadata={this.state.reactionMetadata}
         />
 
-        <div className="ag_chart" style={{ width: "100%", height: "1000px" }}>
-          <div className="ag-theme-balham">
-            <AgGridReact
-              modules={this.state.modules}
-              frameworkComponents={this.state.frameworkComponents}
-              columnDefs={this.state.columnDefs}
-              sideBar={sideBar}
-              rowData={this.props.totalData}
-              gridOptions={{ floatingFilter: true }}
-              onFirstDataRendered={this.onFirstDataRendered.bind(this)}
-              rowSelection={this.state.rowSelection}
-              groupSelectsChildren={true}
-              suppressRowClickSelection={true}
-              //autoGroupColumnDef={this.state.autoGroupColumnDef}
-              //onGridReady={this.onGridReady}
-              lineage={this.state.lineage}
-              onSelectionChanged={this.onRowSelected.bind(this)}
-              onFilterChanged={this.onFiltered.bind(this)}
-              domLayout={"autoHeight"}
-              domLayout={"autoWidth"}
-              onGridReady={this.onGridReady}
-            ></AgGridReact>
-          </div>
+        <div className="measurements-grid ag-theme-balham">
+          <AgGridReact
+            modules={AllModules}
+            frameworkComponents={this.state.frameworkComponents}
+            sideBar={sideBar}
+            defaultColDef={defaultColDef}
+            columnDefs={this.state.columnDefs}
+            rowData={this.props.totalData}
+            rowSelection="multiple"
+            groupSelectsChildren={true}
+            suppressMultiSort={true}
+            suppressAutoSize={true}
+            suppressMovableColumns={true}
+            suppressCellSelection={true}
+            suppressRowClickSelection={true}
+            suppressContextMenu={true}
+            domLayout="autoHeight"
+            onGridReady={this.onGridReady.bind(this)}
+            onFirstDataRendered={this.onFirstDataRendered.bind(this)}
+            onFilterChanged={this.onFiltered.bind(this)}
+            onSelectionChanged={this.onRowSelected.bind(this)}
+            lineage={this.state.lineage}
+          ></AgGridReact>
         </div>
       </div>
     );

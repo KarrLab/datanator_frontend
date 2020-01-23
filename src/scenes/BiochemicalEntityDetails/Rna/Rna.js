@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
+import PropTypes from "prop-types";
 
 import { MetadataSection } from "./MetadataSection";
 import { getDataFromApi } from "~/services/RestApi";
@@ -14,12 +15,16 @@ import { AgGridReact } from "@ag-grid-community/react";
 import { AllModules } from '@ag-grid-enterprise/all-modules';
 import StatsToolPanel from "./StatsToolPanel.js";
 import { TaxonomyFilter } from "~/scenes/BiochemicalEntityDetails/TaxonomyFilter.js";
-import PartialMatchFilter from "../PartialMatchFilter";
 import "@ag-grid-enterprise/all-modules/dist/styles/ag-grid.scss";
 import "@ag-grid-enterprise/all-modules/dist/styles/ag-theme-balham/sass/ag-theme-balham.scss";
 
 import "../BiochemicalEntityDetails.scss";
 import "./Rna.scss";
+
+const frameworkComponents = {
+  statsToolPanel: StatsToolPanel,
+  taxonomyFilter: TaxonomyFilter,
+};
 
 const sideBar = {
   toolPanels: [
@@ -28,26 +33,137 @@ const sideBar = {
       labelDefault: "Columns",
       labelKey: "columns",
       iconKey: "columns",
-      toolPanel: "agColumnsToolPanel"
+      toolPanel: "agColumnsToolPanel",
+      toolPanelParams: {
+        suppressRowGroups: true,
+        suppressValues: true,
+        suppressPivots: true,
+        suppressPivotMode: true,
+        suppressSideButtons: false,
+        suppressColumnFilter: true,
+        suppressColumnSelectAll: true,
+        suppressColumnExpandAll: true,
+      }
     },
     {
       id: "filters",
       labelDefault: "Filters",
       labelKey: "filters",
       iconKey: "filter",
-      toolPanel: "agFiltersToolPanel"
+      toolPanel: "agFiltersToolPanel",
+      toolPanelParams: {
+        suppressFilterSearch: true,
+        suppressExpandAll: true,
+      }
     },
     {
-      id: "customStats",
+      id: "stats",
       labelDefault: "Stats",
-      labelKey: "customStats",
-      iconKey: "customstats",
+      labelKey: "chart",
+      iconKey: "chart",
       toolPanel: "statsToolPanel"
     }
   ],
   position: "left",
-  defaultToolPanel: "filters"
+  defaultToolPanel: "filters",
+  hiddenByDefault: false,
 };
+
+const defaultColDef = {
+  filter: 'agTextColumnFilter',
+  sortable: true,
+  resizable: true,
+  suppressMenu: true,
+};
+
+const columnDefs = [
+  {
+    headerName: "Abundance",
+    field: "abundance",
+    sortable: true,
+    filter: "agNumberColumnFilter",
+    checkboxSelection: true,
+    headerCheckboxSelection: true,
+    headerCheckboxSelectionFilteredOnly: true,
+  },    
+  {
+    headerName: "Protein",
+    field: "protein_name",
+    filter: "agNumberColumnFilter",
+    menuTabs: ["filterMenuTab"]
+  },    
+  {
+    headerName: "Uniprot",
+    field: "uniprot_source",
+
+    cellRenderer: function(params) {
+      if (true) {
+        return (
+          '<a href="https://www.uniprot.org/uniprot/' +
+          params.value.uniprot_id +
+          '" target="_blank" rel="noopener noreferrer">' +
+          params.value.uniprot_id +
+          "</a>"
+        );
+      } else {
+        return (
+          '<a href="https://www.ymdb.ca/compounds/' +
+          params.value.id +
+          '" target="_blank" rel="noopener noreferrer">' +
+          "YMDB" +
+          "</a>"
+        );
+      }
+    }
+  },
+  {
+    headerName: "Gene",
+    field: "gene_symbol",
+    filter: "agTextColumnFilter",
+    hide: true
+  },
+  {
+    headerName: "Organism",
+    field: "organism",
+    filter: "agTextColumnFilter"
+  },
+  {
+    headerName: "Taxonomic distance",
+    field: "taxonomic_proximity",
+    hide: true,
+    filter: "taxonomyFilter"
+  },
+  {
+    headerName: "Organ",
+    field: "organ",
+    filter: "agTextColumnFilter",
+    hide: false
+  },    
+  {
+    headerName: "Source",
+    field: "source_link",
+
+    cellRenderer: function(params) {
+      if (true) {
+        return (
+          '<a href="https://pax-db.org/search?q=' +
+          params.value.uniprot_id +
+          '" target="_blank" rel="noopener noreferrer">' +
+          "PAXdb" +
+          "</a>"
+        );
+      } else {
+        return (
+          '<a href="https://www.ymdb.ca/compounds/' +
+          params.value.id +
+          '" target="_blank" rel="noopener noreferrer">' +
+          "YMDB" +
+          "</a>"
+        );
+      }
+    }
+  },
+];
 
 Object.size = function(obj) {
   var size = 0,
@@ -66,6 +182,9 @@ Object.size = function(obj) {
   };
 }) //the names given here will be the names of props
 class Rna extends Component {
+  static propTypes = {
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -77,117 +196,9 @@ class Rna extends Component {
       orig_json: null,
       isFlushed: false,
       data_arrived: false,
-      modules: AllModules,
       lineage: [],
       data_arrived: false,
       tanimoto: false,
-      columnDefs: [
-        {
-          headerName: "Protein",
-          field: "protein_name",
-          checkboxSelection: true,
-          headerCheckboxSelection: true,
-          headerCheckboxSelectionFilteredOnly: true,
-          //filter: 'taxonomyFilter',
-          filter: "agNumberColumnFilter",
-          menuTabs: ["filterMenuTab"]
-        },
-        {
-          headerName: "Abundance",
-          field: "abundance",
-          sortable: true,
-          filter: "agNumberColumnFilter"
-        },
-        {
-          headerName: "Organism",
-          field: "organism",
-          filter: "agTextColumnFilter"
-        },
-        {
-          headerName: "Source Link",
-          field: "source_link",
-
-          cellRenderer: function(params) {
-            if (true) {
-              return (
-                '<a href="https://pax-db.org/search?q=' +
-                params.value.uniprot_id +
-                '" target="_blank" rel="noopener noreferrer">' +
-                "PAXdb" +
-                "</a>"
-              );
-            } else {
-              return (
-                '<a href="https://www.ymdb.ca/compounds/' +
-                params.value.id +
-                '" target="_blank" rel="noopener noreferrer">' +
-                "YMDB" +
-                "</a>"
-              );
-            }
-          }
-        },
-
-        {
-          headerName: "Uniprot",
-          field: "uniprot_source",
-
-          cellRenderer: function(params) {
-            if (true) {
-              return (
-                '<a href="https://www.uniprot.org/uniprot/' +
-                params.value.uniprot_id +
-                '" target="_blank" rel="noopener noreferrer">' +
-                params.value.uniprot_id +
-                "</a>"
-              );
-            } else {
-              return (
-                '<a href="https://www.ymdb.ca/compounds/' +
-                params.value.id +
-                '" target="_blank" rel="noopener noreferrer">' +
-                "YMDB" +
-                "</a>"
-              );
-            }
-          }
-        },
-
-        {
-          headerName: "Taxonomic Distance",
-          field: "taxonomic_proximity",
-          hide: true,
-          filter: "taxonomyFilter"
-        },
-
-        {
-          headerName: "Organ",
-          field: "organ",
-          filter: "agTextColumnFilter",
-          hide: false
-        },
-        {
-          headerName: "Gene Symbol",
-          field: "gene_symbol",
-          filter: "agTextColumnFilter",
-          hide: true
-        }
-      ],
-
-      rowData: null,
-      rowSelection: "multiple",
-      autoGroupColumnDef: {
-        headerName: "Conc",
-        field: "concentration",
-        width: 200,
-        cellRenderer: "agGroupCellRenderer",
-        cellRendererParams: { checkbox: true }
-      },
-      frameworkComponents: {
-        statsToolPanel: StatsToolPanel,
-        taxonomyFilter: TaxonomyFilter,
-        partialMatchFilter: PartialMatchFilter
-      }
     };
 
     this.formatProteinMetadata = this.formatProteinMetadata.bind(this);
@@ -299,17 +310,10 @@ class Rna extends Component {
     this.props.dispatch(setSelectedData([]));
   }
 
-  onGridReady = params => {
+  onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     params.api.sizeColumnsToFit();
-  };
-
-  onClicked() {
-    this.gridApi
-      .getFilterInstance("taxonomic_proximity")
-      .getFrameworkComponentInstance()
-      .componentMethod2("Hello World!");
   }
 
   render() {
@@ -326,40 +330,37 @@ class Rna extends Component {
       );
     }
 
-    let styles = {
-      marginTop: 50
-    };
     return (
-      <div className="biochemical-entity-scene biochemical-entity-rna-scene">
+      <div className="content-container biochemical-entity-scene biochemical-entity-rna-scene">
         <MetadataSection
           proteinMetadata={this.state.orthologyMetadata}
           //molecule={this.props.match.params.rna}
           organism={organism}
         />
 
-        <div className="ag_chart" style={{ width: "100%", height: "1000px" }}>
-          <div className="ag-theme-balham">
-            <AgGridReact
-              modules={this.state.modules}
-              frameworkComponents={this.state.frameworkComponents}
-              columnDefs={this.state.columnDefs}
-              sideBar={sideBar}
-              rowData={this.props.totalData}
-              gridOptions={{ floatingFilter: true }}
-              onFirstDataRendered={this.onFirstDataRendered.bind(this)}
-              rowSelection={this.state.rowSelection}
-              groupSelectsChildren={true}
-              suppressRowClickSelection={true}
-              //autoGroupColumnDef={this.state.autoGroupColumnDef}
-              //onGridReady={this.onGridReady}
-              lineage={this.state.lineage}
-              onSelectionChanged={this.onRowSelected.bind(this)}
-              onFilterChanged={this.onFiltered.bind(this)}
-              domLayout={"autoHeight"}
-              domLayout={"autoWidth"}
-              onGridReady={this.onGridReady}
-            ></AgGridReact>
-          </div>
+        <div className="measurements-grid ag-theme-balham">
+          <AgGridReact
+            modules={AllModules}
+            frameworkComponents={frameworkComponents}
+            sideBar={sideBar}
+            defaultColDef={defaultColDef}
+            columnDefs={columnDefs}
+            rowData={this.props.totalData}
+            rowSelection="multiple"
+            groupSelectsChildren={true}
+            suppressMultiSort={true}
+            suppressAutoSize={true}
+            suppressMovableColumns={true}
+            suppressCellSelection={true}
+            suppressRowClickSelection={true}
+            suppressContextMenu={true}
+            domLayout="autoHeight"
+            onGridReady={this.onGridReady.bind(this)}
+            onFirstDataRendered={this.onFirstDataRendered.bind(this)}
+            onFilterChanged={this.onFiltered.bind(this)}
+            onSelectionChanged={this.onRowSelected.bind(this)}
+            lineage={this.state.lineage}
+          ></AgGridReact>
         </div>
       </div>
     );

@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-
-//import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
-
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 import Typography from "@material-ui/core/Typography";
@@ -24,10 +21,11 @@ const columns = [
   }
 ];
 
-@connect(store => {
-  return {};
-})
 class MetadataSection extends Component {
+  static propTypes = {
+
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -106,8 +104,6 @@ class MetadataSection extends Component {
     }
     proteinMetadata = proteinMetadata[0];
 
-    //proteinMetadata = proteinMetadata[0]
-
     let uniprot_ids = proteinMetadata.uniprot_ids;
     let uniprot_links = [];
     for (var i = uniprot_ids.length - 1; i >= 0; i--) {
@@ -185,10 +181,3 @@ class MetadataSection extends Component {
 }
 
 export { MetadataSection };
-
-/*
-inchi:"InChI=1S/C9H15N2O15P3/c12-5-1-2-11(9(15)10-5)8-7(14)6(13)4(24-8)3-23-28(19,20)26-29(21,22)25-27(16,17)18/h1-2,4,6-8,13-14H,3H2,(H,19,20)(H,21,22)(H,10,12,15)(H2,16,17,18)/t4-,6-,7-,8-/m1/s1",
-        inchiKey:"PGAVKCOVUIYSFO-XVFCMESISA-N",
-        SMILES:"O[C@H]1[C@@H](O)[C@@H](O[C@@H]1COP(O)(=O)OP(O)(=O)OP(O)(O)=O)N1C=CC(=O)NC1=O",
-        chemical_formula: "C9H15N2O15P3"
-*/

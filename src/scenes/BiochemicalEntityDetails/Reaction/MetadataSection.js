@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
-import reactionIcon from "~/scenes/Home/images/left-right-arrows.svg";
 import Typography from "@material-ui/core/Typography";
 
-import { Link } from "react-router-dom";
+import reactionIcon from "~/scenes/Home/images/left-right-arrows.svg";
 
 const products = [{ id: "3", name: "bob" }];
 const columns = [
@@ -22,6 +23,9 @@ const columns = [
 ];
 
 class MetadataSection extends Component {
+  static propTypes = {
+  };
+
   constructor(props) {
     super(props);
     this.state = {

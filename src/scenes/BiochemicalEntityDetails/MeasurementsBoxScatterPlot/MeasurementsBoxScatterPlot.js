@@ -9,8 +9,12 @@ import "./MeasurementsBoxScatterPlot.scss";
 export default class MeasurementsBoxScatterPlot extends Component {
   static propTypes = {
     "all-measurements": PropTypes.array.isRequired,
-    "selected-measurements": PropTypes.array.isRequired,
+    "selected-measurements": PropTypes.array,
     "data-property": PropTypes.string.isRequired
+  };
+
+  static defaultProps = {
+    "selected-measurements": null
   };
 
   canvas = React.createRef();

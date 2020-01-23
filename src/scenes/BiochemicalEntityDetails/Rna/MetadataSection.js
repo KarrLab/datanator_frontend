@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-
-//import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
-
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 import Typography from "@material-ui/core/Typography";
@@ -24,10 +21,10 @@ const columns = [
   }
 ];
 
-@connect(store => {
-  return {};
-})
 class MetadataSection extends Component {
+  static propTypes = {
+  };
+
   constructor(props) {
     super(props);
     this.state = {

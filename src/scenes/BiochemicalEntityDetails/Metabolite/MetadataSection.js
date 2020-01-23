@@ -1,17 +1,19 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-
-//import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
-
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 import Typography from "@material-ui/core/Typography";
 import { abstractMolecule } from "~/data/actions/pageAction";
 
-@connect(store => {
-  return {};
-})
 class MetadataSection extends Component {
+  static propTypes = {
+    metabolite: PropTypes.string.isRequired,
+    "metabolite-metadata": PropTypes.array.isRequired,
+    abstract: PropTypes.bool.isRequired,
+    organism: PropTypes.string,
+    dispatch: PropTypes.func.isRequired
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -26,34 +28,22 @@ class MetadataSection extends Component {
           text: "Reaction Equation",
           formatter: this.colFormatter
         }
-      ],
-
-      total_data: []
+      ]
     };
     this.colFormatter = this.colFormatter.bind(this);
   }
 
-  componentDidMount() {
-    this.setState({ total_data: this.props.reactionMetadata });
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.reactionMetadata !== prevProps.reactionMetadata) {
-      this.setState({ total_data: this.props.reactionMetadata });
-    }
-  }
-
-  colFormatter = (cell, row) => {
+  colFormatter = cell => {
     if (cell) {
-      let substrates = cell[0]
+      const substrates = cell[0]
         .toString()
         .split("==>")[0]
         .split(" + ");
-      let products = cell[0]
+      const products = cell[0]
         .toString()
         .split("==>")[1]
         .split(" + ");
-      let url =
+      const url =
         "/reaction/data/?substrates=" +
         substrates +
         "&products=" +
@@ -69,51 +59,28 @@ class MetadataSection extends Component {
     }
   };
 
-  partFormatter = (cell, row) => {
-    let participants = "";
-    if (cell) {
-      for (var i = cell.length - 1; i >= 0; i--) {
-        participants = participants + cell[i] + " + ";
-      }
-      participants = participants.substring(0, participants.length - 3);
-      return <div>{participants}</div>;
-    } else {
-      return <div></div>;
-    }
-  };
-
   render() {
-    let metaboliteMetadata = this.props.metaboliteMetadata;
+    let metaboliteMetadata = this.props["metabolite-metadata"];
 
     if (metaboliteMetadata.length === 0) {
       return <div></div>;
     }
 
     if (this.props.abstract === true) {
-      let names = "";
-      for (var i = metaboliteMetadata.length - 1; i >= 0; i--) {
-        names = names + metaboliteMetadata[i].name + ", ";
-      }
-
-      let descriptions = [];
-      for (var i = metaboliteMetadata.length - 1; i >= 0; i--) {
+      const descriptions = [];
+      for (const metaDatum of metaboliteMetadata) {
         descriptions.push(
           <div className="metadata-description-abstract">
             <p>
               <b>Name:</b>{" "}
               <Link
-                to={
-                  "/metabolite/" +
-                  metaboliteMetadata[i].name +
-                  "/" +
-                  this.props.organism
-                }
+                to={"/metabolite/" + metaDatum.name + "/" + this.props.organism}
               >
-                {metaboliteMetadata[i].name}
+                {metaDatum.name}
               </Link>
             </p>
             <p>
-              <b>Chemical Formula:</b> {metaboliteMetadata[i].chemical_formula}
+              <b>Chemical Formula:</b> {metaDatum.chemical_formula}
             </p>
           </div>
         );

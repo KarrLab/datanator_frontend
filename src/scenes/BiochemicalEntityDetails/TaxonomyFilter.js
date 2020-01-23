@@ -1,32 +1,35 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import Slider from "@material-ui/core/Slider";
-import ReactDOM from "react-dom";
 
-function valuetext(value) {
+function valueText(value) {
   return `${value}`;
 }
 
 class TaxonomyFilter extends Component {
+  static propTypes = {
+    agGridReact: PropTypes.object.isRequired,
+    valueGetter: PropTypes.func.isRequired,
+    filterChangedCallback: PropTypes.func.isRequired
+  };
+
   constructor(props) {
     super(props);
-
-    this.input = React.createRef();
 
     this.state = {
       filter: "",
       numToNode: null,
-      marks: [],
-      buttons: []
+      marks: []
     };
 
     this.valueGetter = this.props.valueGetter;
 
     this.onChange = this.onChange.bind(this);
     this.isFilterActive = this.isFilterActive.bind(this);
-    this.formatButtons = this.formatButtons.bind(this);
-    this.setMarks = this.setMarks.bind(this);
-    this.sliderChange = this.sliderChange.bind(this);
+
+    this.slider = React.createRef();
   }
+
   isFilterActive() {
     return true;
   }
@@ -36,6 +39,7 @@ class TaxonomyFilter extends Component {
       this.setMarks();
     }
   }
+
   componentDidUpdate(prevProps) {
     if (
       this.props.agGridReact.props.lineage !==
@@ -46,45 +50,26 @@ class TaxonomyFilter extends Component {
   }
 
   setMarks() {
-    let lineage = this.props.agGridReact.props.lineage;
-    let buttons = [];
-    var new_marks = [];
-    var new_numToNode = {};
-    var n = lineage.length - 1;
-    for (var i = 0; i < lineage.length; i++) {
-      //new_numToNode[Object.values(lineage[i])[0]] = Object.keys(lineage[i])[0];
-      new_numToNode[i] = Object.values(lineage[i])[0];
-      new_marks.push({ value: i, label: Object.keys(lineage[i])[0] });
-      buttons.push(
-        <div>
-          {" "}
-          <input
-            type="radio"
-            name="gender"
-            value={Object.values(lineage[i])[0]}
-          ></input>
-          <label>{Object.keys(lineage[i])[0]}</label>
-        </div>
-      );
-
-      //buttons.push(<input type="radio" name="gender" value={Object.values(lineage[i])[0]}> {Object.keys(lineage[i])[0]} </input>)
+    const lineage = this.props.agGridReact.props.lineage;
+    const marks = [];
+    const numToNode = {};
+    for (let i = 0; i < lineage.length; i++) {
+      numToNode[i] = Object.values(lineage[i])[0];
+      marks.push({
+        value: i,
+        label: Object.keys(lineage[i])[0]
+      });
     }
 
     this.setState({
-      numToNode: new_numToNode,
-      buttons: buttons,
-      marks: new_marks
+      numToNode: numToNode,
+      marks: marks
     });
-  }
-
-  isFilterActive2() {
-    return this.state.filter !== "";
   }
 
   doesFilterPass(params) {
     const filter = this.state.filter;
     const value = this.valueGetter(params.node);
-
     return value <= filter;
   }
 
@@ -93,20 +78,11 @@ class TaxonomyFilter extends Component {
   }
 
   setModel(model) {
-    this.state.text = model ? model.value : "";
+    this.setState({ text: model ? model.value : "" });
   }
 
-  afterGuiAttached(params) {
-    this.focus();
-  }
-
-  focus() {
-    window.setTimeout(() => {
-      let container = ReactDOM.findDOMNode(this.refs.input);
-      if (container) {
-        container.focus();
-      }
-    });
+  afterGuiAttached() {
+    this.slider.current.focus();
   }
 
   onChange(event, newValue) {
@@ -123,33 +99,16 @@ class TaxonomyFilter extends Component {
     }
   }
 
-  formatButtons(lineage) {
-    let buttons = [];
-    for (var i = this.state.marks.length - 1; i >= 0; i--) {
-      buttons.push(
-        <input type="radio" name="gender" value="male">
-          {" "}
-          this.state.marks[i]{" "}
-        </input>
-      );
-    }
-    return buttons;
-  }
-
-  sliderChange(value) {
-    this.setState({ filter: 7 });
-  }
-
   render() {
-    let buttons = this.state.buttons;
     let marks = this.state.marks;
     return (
-      <div className={"biochemical-entity-scene-taxonomy-slider-filter"}>
+      <div className="biochemical-entity-scene-taxonomy-slider-filter">
         <Slider
+          ref={this.slider}
           onChange={this.onChange}
           orientation="vertical"
           aria-labelledby="vertical-slider"
-          getAriaValueText={valuetext}
+          getAriaValueText={valueText}
           marks={marks}
           max={marks.length - 1}
         />
