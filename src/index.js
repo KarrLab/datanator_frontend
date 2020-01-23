@@ -61,6 +61,8 @@ const SiteRouter = () => {
           path="/reaction/:substrates-->:products/:organism?/"
           component={Reaction}
         />
+        <Route path="/rna/:protein_name" component={Rna} />
+
         <Route path="/stats/" component={Stats} />
         <Route path="/help/" component={Help} />
         <Route path="/about/" component={About} />
