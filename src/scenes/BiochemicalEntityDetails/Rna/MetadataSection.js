@@ -25,12 +25,15 @@ class MetadataSection extends Component {
       return <div></div>;
     }
     rnaMetadata = rnaMetadata[0];
-
+    let title = rnaMetadata.gene_name
+    if (!title){
+      title = "Gene Name Not Found"
+    }
 
 
     return (
       <div className="content-block">
-        <h2 className="content-block-heading">{rnaMetadata.gene_name}</h2>
+        <h2 className="content-block-heading">{title}</h2>
         <div className="content-block-content img-description">
           <div className="vertical-center">
             <object

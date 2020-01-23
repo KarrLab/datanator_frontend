@@ -186,9 +186,18 @@ class Rna extends Component {
     });
   }
 
-  formatData(data) {
+  formatData(data) { 
     let meta = {}
-    meta["protein_name"] = data[0]['function']
+    if(data[0]['function']){
+      meta["protein_name"] = data[0]['function']
+    }
+    else if (data[0]['protein_name']){
+       meta["protein_name"] = data[0]['protein_name']
+    }
+    else{
+      meta["protein_name"] = 'Protein Name not Found'
+    }
+    //meta["protein_name"] = data[0]['function']
     meta["gene_name"] = data[0].gene_name
     console.log(data);
     if (data != null && typeof data != "string") {

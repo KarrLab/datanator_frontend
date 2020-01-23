@@ -31,12 +31,12 @@ export default class RnaSearchResultsList extends Component {
 
   /* Extract array of dictionaries from result of REST call */
   getResults(data) {
-    return data["search_results_field"];
+    return data["rna_halflife"];
   }
 
   /* Extract number of RNAs that match query from result of REST call */
   getNumResults(data) {
-    return data["num_search_results_field"];
+    return data["rna_halflife_total"]['value'];
   }
 
   /* Return a list of dictionaries with content to populate the search results
@@ -47,19 +47,26 @@ export default class RnaSearchResultsList extends Component {
   - route: URL for page with details about search result
   */
   formatResults(results, organism) {
-    for (const result of results) {
-      return [
+    console.log(results)
+    const formattedResults = []
+    for (var i = results.length - 1; i >= 0; i--) {
+      let result = results[i]
+      console.log(result)
+      let description = ""
+      description = "Gene Name: " + result["gene_name"]
+      formattedResults.push(
         {
-          title: result["gene_name"],
-          description: result["protein_name"],
+          title: result["protein_name"],
+          description: description,
           route:
             "/rna/" +
-            result["id_field"] +
-            "/" +
-            (organism ? organism + "/" : "")
+            result["protein_name"] //+
+            //"/" +
+            //(organism ? organism + "/" : "")
         }
-      ];
+      );
     }
+    return(formattedResults)
   }
 
   render() {

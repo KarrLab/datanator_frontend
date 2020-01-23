@@ -25,13 +25,11 @@ class SearchResults extends Component {
                   {"Metabolites"}
                 </HashLink>
               </li>
-
               <li>
                 <HashLink to="#rnas" scroll={scrollTo}>
                   {"RNAs"}
                 </HashLink>
               </li>
-
               <li>
                 <HashLink to="#proteins" scroll={scrollTo}>
                   {"Proteins"}
@@ -51,6 +49,7 @@ class SearchResults extends Component {
           <RnaSearchResultsList />
           <ProteinSearchResultsList />
           <ReactionSearchResultsList />
+        }
         </div>
       </div>
     );
