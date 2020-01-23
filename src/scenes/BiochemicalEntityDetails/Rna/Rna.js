@@ -78,7 +78,7 @@ const defaultColDef = {
 
 const columnDefs = [
   {
-    headerName: "Half Life",
+    headerName: "Half Life (S^-1)",
     field: "half_life",
     sortable: true,
     filter: "agNumberColumnFilter",
@@ -96,7 +96,7 @@ const columnDefs = [
         '<a href="https://scholar.google.com/scholar?q=' +
         params.value +
         '" target="_blank" rel="noopener noreferrer">' +
-        "Reference" +
+        "DOI" +
         "</a>"
       );
     }

@@ -6,9 +6,10 @@ export default class RnaSearchResultsList extends Component {
   getResultsUrl(query, pageCount, pageSize) {
     const args = {
       query_message: query,
+      index:'rna_halflife',
       from_: pageCount * pageSize,
       size: pageSize,
-      fields: ["rna_name", "synonyms"]
+      fields: ["protein_name", "synonyms", "gene_name", "name", "enzymes.enzyme.enzyme_name"]
     };
 
     // generate URL from args
@@ -49,8 +50,8 @@ export default class RnaSearchResultsList extends Component {
     for (const result of results) {
       return [
         {
-          title: result["title_field"],
-          description: result["description_field"],
+          title: result["gene_name"],
+          description: result["protein_name"],
           route:
             "/rna/" +
             result["id_field"] +
