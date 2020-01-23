@@ -86,12 +86,9 @@ a:hover {
 .loader-full-content-container {
   margin-top: 50px;
   min-height: calc(100vh - 42px - 50px);
-
-  .loader {
-    margin-left: -50px;
-    margin-top: -50px;
-    position: fixed;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @keyframes spin {
