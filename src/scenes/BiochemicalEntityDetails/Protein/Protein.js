@@ -232,13 +232,12 @@ class Protein extends Component {
 
   formatOrthologyMetadata(data) {
     let newOrthologyMetadata = [];
-    let start = 0;
     let uni_ids = [];
     let meta = {};
     meta["ko_number"] = data[0].ko_number;
     meta["ko_name"] = data[0].ko_name;
 
-    for (var i = start; i < data.length; i++) {
+    for (var i = 0; i < data.length; i++) {
       uni_ids.push(data[i].uniprot_id);
     }
     meta["uniprot_ids"] = uni_ids;
@@ -284,18 +283,15 @@ class Protein extends Component {
   processProteinDataUniprot(data) {
     if (typeof data != "string") {
       this.setState({ orig_json: data });
-      var f_abundances = [];
       let newProteinMetadata = [];
       let uniprot_to_dist = {};
       if (data != null && typeof data != "string") {
-        let start = 0;
         for (var i = 0; i < data.length; i++) {
           let docs = data[i].documents;
           for (var q = docs.length - 1; q >= 0; q--) {
             var uniprot = docs[q].abundances;
             if (uniprot !== undefined) {
               for (var n = 0; n < uniprot.length; n++) {
-                let row = {};
                 uniprot_to_dist[docs[q].uniprot_id] = data[i].distance;
               }
             }
