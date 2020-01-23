@@ -26,6 +26,7 @@ import { faAtom, faDna, faBug } from "@fortawesome/free-solid-svg-icons";
 import Header from "~/components/Header/Header";
 import Footer from "~/components/Footer/Footer";
 import FeedbackForm from "~/components/FeedbackForm/FeedbackForm";
+import { errorDialog } from "~/components/ErrorDialog/ErrorDialog";
 
 // Website pages (scenes)
 import Home from "~/scenes/Home/Home";
@@ -66,6 +67,7 @@ const SiteRouter = () => {
         <Route path="*" component={Error404} />
       </Switch>
       <Footer />
+      {errorDialog}
       <FeedbackForm />
     </Router>
   );
