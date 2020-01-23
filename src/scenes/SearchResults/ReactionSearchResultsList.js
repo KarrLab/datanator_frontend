@@ -44,6 +44,7 @@ export default class ReactionSearchResultsList extends Component {
 
       const name = result["enzyme_names"][0];
       const equation = formatSide(substrates) + " → " + formatSide(products);
+      const ecCode = result["ec-code"];      
       
       if (name) {
         formattedResult["title"] =
@@ -51,7 +52,15 @@ export default class ReactionSearchResultsList extends Component {
       } else {
         formattedResult["title"] = equation;
       }
-      formattedResult["description"] = equation;
+      formattedResult["description"] = <div>{equation}</div>;
+      if (!ecCode.startsWith('-')) {
+        formattedResult["description"] = (
+          <div>
+            <div>{equation}</div>
+            <div>EC: <a href={"https://enzyme.expasy.org/EC/" + ecCode} target="_blank" rel="noopener noreferrer">{ecCode}</a></div>
+          </div>
+          );
+      }
 
       // route
       formattedResult["route"] =
