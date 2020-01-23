@@ -1,39 +1,82 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
+# CircleCI 2.0 configuration file
 version: 2
 jobs:
   build:
     docker:
-      # specify the version you desire here
       - image: circleci/node:12.6
 
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
-
-    working_directory: ~/repo
+    working_directory: ~/project
 
     steps:
-      #clone repo
+      # Clone repo
       - checkout
-      - run: npm install --save-dev @testing-library/react
-         
-      # Download and cache dependencies
+
+      # Restore dependencies from cache
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: npm install
+      # Install package
+      - run:
+         name: Install package
+         environment:
+          NODE_ENV: development
+         command: npm install
 
+      # Save dependencies to cache
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      # run tests!
-      - run: node_modules/.bin/jest 
+      - run:
+          name: Run tests, lint code, and build production package
+          command: |
+            set +e
+            error=0
+
+            # Add node programs to path
+            export PATH=$PATH:node_modules/.bin
+
+            # Run tests
+            jest .
+            if [[ $? -ne 0 ]]; then error=1; fi
+
+            # Lint JavaScript
+            eslint . \
+              --ignore-pattern node_modules/ \
+              --ignore-pattern "test.js" \
+              --ignore-pattern "*.test.js"
+            if [[ $? -ne 0 ]]; then error=1; fi
+
+            # Lint CSS
+            stylelint src \
+              --ip "*.ai" \
+              --ip "*.png" \
+              --ip "*.svg" \
+              --ip "*.xcf"
+            if [[ $? -ne 0 ]]; then error=1; fi
+
+            # Lint JSON
+            find . -name "*.json" -not -path "./node_modules/*" -print0 |
+            while IFS= read -r -d '' line; do
+              jsonlint -q "$line"
+              if [[ $? -ne 0 ]]; then error=1; fi
+            done
+
+            # Lint svg
+            find src -name "*.svg" | xargs -r svglint
+            if [[ $? -ne 0 ]]; then error=1; fi
+
+            # Build production package
+            NODE_ENV=production npm run build
+            if [[ $? -ne 0 ]]; then error=1; fi
+
+            # Return error status
+            if [[ $error -eq 0 ]]; then
+              exit 0;
+            else
+              exit 1;
+            fi
