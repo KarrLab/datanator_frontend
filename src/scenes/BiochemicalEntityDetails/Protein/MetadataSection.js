@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-
-import Typography from "@material-ui/core/Typography";
 import { abstractMolecule } from "~/data/actions/pageAction";
 
 const products = [{ id: "3", name: "bob" }];
@@ -136,12 +134,9 @@ class MetadataSection extends Component {
     }
 
     return (
-      <div className="definition-data">
-        <Typography variant="h6" className={"green"}>
-          {proteinMetadata.ko_name[0]}
-        </Typography>
-
-        <div className="img-description">
+      <div className="content-block">
+        <h2 className="content-block-heading">{proteinMetadata.ko_name[0]}</h2>
+        <div className="content-block-content img-description">
           <div className="vertical-center">
             <img
               border="0"

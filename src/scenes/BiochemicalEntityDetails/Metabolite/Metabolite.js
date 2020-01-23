@@ -447,7 +447,8 @@ class Metabolite extends Component {
           organism={this.props.match.params.organism}
         />
 
-        <div className="measurements-grid ag-theme-balham">
+        <div className="content-block measurements-grid ag-theme-balham">
+          <h2 className="content-block-heading">Concentration</h2>
           <AgGridReact
             modules={AllModules}
             frameworkComponents={frameworkComponents}

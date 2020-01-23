@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-
-import Typography from "@material-ui/core/Typography";
 import { abstractMolecule } from "~/data/actions/pageAction";
 
 class MetadataSection extends Component {
@@ -87,12 +85,11 @@ class MetadataSection extends Component {
       }
 
       return (
-        <div className="definition-data">
-          <Typography variant="h6" className={"green"}>
-            {"Molecules Similar to " + this.props.metabolite}
-          </Typography>
-
-          <div className="img-description">{descriptions}</div>
+        <div className="content-block">
+          <h2 className="content-block-heading">Similar metabolites</h2>
+          <div className="content-block-content">
+            {descriptions}
+          </div>
         </div>
       );
     }
@@ -100,12 +97,9 @@ class MetadataSection extends Component {
     metaboliteMetadata = metaboliteMetadata[0];
 
     return (
-      <div className="definition-data">
-        <Typography variant="h6" className={"green"}>
-          {metaboliteMetadata.name}
-        </Typography>
-
-        <div className="img-description">
+      <div className="content-block">
+        <h2 className="content-block-heading">Similar metabolites</h2>
+        <div className="content-block-content img-description">
           <div className="vertical-center">
             <img
               border="0"
@@ -116,7 +110,7 @@ class MetadataSection extends Component {
               }
               width="200"
               height="200"
-            ></img>
+            />
           </div>
 
           <div className="metadata-description">

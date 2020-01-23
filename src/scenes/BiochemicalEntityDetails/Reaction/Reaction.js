@@ -167,7 +167,7 @@ temperature
 class Reaction extends Component {
   static propTypes = {
   };
-  
+
   constructor(props) {
     super(props);
     this.state = {
@@ -518,7 +518,8 @@ class Reaction extends Component {
           reactionMetadata={this.state.reactionMetadata}
         />
 
-        <div className="measurements-grid ag-theme-balham">
+        <div className="content-block measurements-grid ag-theme-balham">
+          <h2 className="content-block-heading">Kinetic parameters</h2>
           <AgGridReact
             modules={AllModules}
             frameworkComponents={this.state.frameworkComponents}

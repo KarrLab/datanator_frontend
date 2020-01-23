@@ -432,7 +432,8 @@ class Protein extends Component {
           organism={organism}
         />
 
-        <div className="measurements-grid ag-theme-balham">
+        <div className="content-block measurements-grid ag-theme-balham">
+          <h2 className="content-block-heading">Abundance</h2>
           <AgGridReact
             modules={AllModules}
             frameworkComponents={frameworkComponents}

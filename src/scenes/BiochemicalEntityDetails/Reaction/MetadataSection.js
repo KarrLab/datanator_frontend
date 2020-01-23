@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-import Typography from "@material-ui/core/Typography";
-
 import reactionIcon from "~/scenes/Home/images/left-right-arrows.svg";
 
 const products = [{ id: "3", name: "bob" }];
@@ -111,37 +109,35 @@ class MetadataSection extends Component {
       return <div></div>;
     } else {
       return (
-      <div className="definition-data">
-        <Typography variant="h6" className={"green"}>
-          {title}
-        </Typography>
+        <div className="content-block">
+          <h2 className="content-block-heading">{title}</h2>
+          <div className="content-block-content img-description">
+            <div className="vertical-center">
+              <object
+                    data={reactionIcon}
+                    className="section-column-icon hover-zoom"
+                    alt="Reaction rate constant icon"
+                    aria-label="Reaction rate constant icon"
+                  />
+            </div>
 
-        <div className="img-description">
-          <div className="vertical-center">
-            <object
-                  data={reactionIcon}
-                  className="section-column-icon hover-zoom"
-                  alt="Reaction rate constant icon"
-                  aria-label="Reaction rate constant icon"
-                />
-          </div>
+            <div className="metadata-description">
+              <p>
+                <b>Name:</b> {reactionMetadata.reaction_name}
+              </p>
+              <p>
+                <b>Equation:</b> {" "}
+                  {reactionMetadata.equation}
+              </p>
+              <p>
+                <b>EC Number:</b> {" "}
+                  {reactionMetadata.ecNumber}
+              </p>
 
-          <div className="metadata-description">
-            <p>
-              <b>Name:</b> {reactionMetadata.reaction_name}
-            </p>
-            <p>
-              <b>Equation:</b> {" "}
-                {reactionMetadata.equation}
-            </p>
-            <p>
-              <b>EC Number:</b> {" "}
-                {reactionMetadata.ecNumber}
-            </p>
-
+            </div>
           </div>
         </div>
-      </div>)
+      );
     }
   }
 }
