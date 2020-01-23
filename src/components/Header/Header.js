@@ -63,11 +63,11 @@ class Header extends Component {
           </div>
         </Navbar.Group>
 
-        {showSearchForm && (
-          <Navbar.Group className="search-container">
-            <SearchForm />
-          </Navbar.Group>
-        )}
+        <Navbar.Group
+          className={"search-container" + (showSearchForm ? "" : " hide")}
+        >
+          <SearchForm />
+        </Navbar.Group>
 
         <Navbar.Group align className="page-links">
           <Button
