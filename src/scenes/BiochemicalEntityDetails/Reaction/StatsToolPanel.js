@@ -7,21 +7,9 @@ export default class StatsToolPanel extends Component {
     "relevant-column": PropTypes.string.isRequired
   };
 
-  constructor(props) {
-    super(props);
-
-    // calculate stats when new rows loaded, i.e. onModelUpdated
-    // this.props.api.addEventListener(
-    //   "modelUpdated",
-    //   this.calcStats.bind(this)
-    // );
-  }
-
   render() {
     return (
       <BaseStatsToolPanel relevant-column={this.props["relevant-column"]} />
     );
   }
-
-  // calcStats() {}
 }
