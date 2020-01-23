@@ -37,12 +37,9 @@ export default class ReactionSearchResultsList extends Component {
       }
 
       // title and description
+      const name = result["enzyme_names"][0];
       const substrates = getParticipant(result["substrate_names"]);
       const products = getParticipant(result["product_names"]);
-      formattedResult["substrates"] = substrates;
-      formattedResult["products"] = products;
-
-      const name = result["enzyme_names"][0];
       const equation = formatSide(substrates) + " → " + formatSide(products);
       const ecCode = result["ec-code"];
 
