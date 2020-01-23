@@ -11,7 +11,6 @@ import { AgGridReact } from "@ag-grid-community/react";
 import { AllModules } from "@ag-grid-enterprise/all-modules";
 import StatsToolPanel from "./StatsToolPanel.js";
 import { TaxonomyFilter } from "~/scenes/BiochemicalEntityDetails/TaxonomyFilter.js";
-import { TanimotoFilter } from "~/scenes/BiochemicalEntityDetails/TanimotoFilter.js";
 import "@ag-grid-enterprise/all-modules/dist/styles/ag-grid.scss";
 import "@ag-grid-enterprise/all-modules/dist/styles/ag-theme-balham/sass/ag-theme-balham.scss";
 
@@ -34,7 +33,7 @@ const sideBar = {
         suppressSideButtons: false,
         suppressColumnFilter: true,
         suppressColumnSelectAll: true,
-        suppressColumnExpandAll: true,
+        suppressColumnExpandAll: true
       }
     },
     {
@@ -45,7 +44,7 @@ const sideBar = {
       toolPanel: "agFiltersToolPanel",
       toolPanelParams: {
         suppressFilterSearch: true,
-        suppressExpandAll: true,
+        suppressExpandAll: true
       }
     },
     {
@@ -54,45 +53,45 @@ const sideBar = {
       labelKey: "chart",
       iconKey: "chart",
       toolPanel: "statsToolPanel"
-    },
+    }
   ],
   position: "left",
   defaultToolPanel: "filters",
-  hiddenByDefault: false,
+  hiddenByDefault: false
 };
 
 const defaultColDef = {
-  filter: 'agTextColumnFilter',
+  filter: "agTextColumnFilter",
   sortable: true,
   resizable: true,
-  suppressMenu: true,
+  suppressMenu: true
 };
 
 function getReactionID(resource) {
-  for (var i = 0; i < resource.length; i++)
+  for (let i = 0; i < resource.length; i++)
     if (resource[i].namespace === "sabiork.reaction") {
       return resource[i].id;
     }
 }
 
 function getECNumber(resource) {
-  for (var i = 0; i < resource.length; i++)
-    if (resource[i].namespace === "ec-code") {
-      return resource[i].id;
-    }
+  for (let i = 0; i < resource.length; i++)
+    if (resource[i].namespace === "ec-code") {
+      return resource[i].id;
+    }
 }
 
 function getSubstrates(substrate) {
-  let subNames = [];
-  for (var i = 0; i < substrate.length; i++) {
+  const subNames = [];
+  for (let i = 0; i < substrate.length; i++) {
     subNames.push(substrate[i].substrate_name);
   }
   return subNames;
 }
 
 function getProducts(product) {
-  let subNames = [];
-  for (var i = 0; i < product.length; i++) {
+  const subNames = [];
+  for (let i = 0; i < product.length; i++) {
     subNames.push(product[i].product_name);
   }
   return subNames;
@@ -100,7 +99,7 @@ function getProducts(product) {
 
 function formatPart(parts) {
   let participants_string = "";
-  for (var i = parts.length - 1; i >= 0; i--) {
+  for (let i = parts.length - 1; i >= 0; i--) {
     participants_string = participants_string + parts[i] + " + ";
   }
   participants_string = participants_string.substring(
@@ -111,8 +110,8 @@ function formatPart(parts) {
 }
 
 function getSubstrateInchiKey(substrate) {
-  let inchiKeys = [];
-  for (var i = 0; i < substrate.length; i++) {
+  const inchiKeys = [];
+  for (let i = 0; i < substrate.length; i++) {
     if (substrate[i].substrate_structure[0]) {
       inchiKeys.push(substrate[i].substrate_structure[0].InChI_Key);
     }
@@ -121,8 +120,8 @@ function getSubstrateInchiKey(substrate) {
 }
 
 function getProductInchiKey(product) {
-  let inchiKeys = [];
-  for (var i = 0; i < product.length; i++) {
+  const inchiKeys = [];
+  for (let i = 0; i < product.length; i++) {
     if (product[i].product_structure[0]) {
       inchiKeys.push(product[i].product_structure[0].InChI_Key);
     }
@@ -131,8 +130,8 @@ function getProductInchiKey(product) {
 }
 
 function getKcat(parameters) {
-  let kinetic_params = {};
-  for (var i = 0; i < parameters.length; i++) {
+  const kinetic_params = {};
+  for (let i = 0; i < parameters.length; i++) {
     if (parameters[i].name === "k_cat") {
       kinetic_params["kcat"] = parameters[i].value;
     }
@@ -141,8 +140,8 @@ function getKcat(parameters) {
 }
 
 function getKm(parameters, substrates) {
-  let kms = {};
-  for (var i = 0; i < parameters.length; i++) {
+  const kms = {};
+  for (let i = 0; i < parameters.length; i++) {
     if (
       parameters[i].type == "27" &&
       substrates.includes(parameters[i]["name"]) &&
@@ -165,8 +164,7 @@ temperature
   return { totalData: store.results.totalData };
 }) //the names given here will be the names of props
 class Reaction extends Component {
-  static propTypes = {
-  };
+  static propTypes = {};
 
   constructor(props) {
     super(props);
@@ -177,34 +175,32 @@ class Reaction extends Component {
       data_arrived: false,
       tanimoto: false,
       columnDefs: [],
-      first_columns: [        
+      first_columns: [
         {
           headerName: "Kcat",
           field: "kcat",
           sortable: true,
           filter: "agNumberColumnFilter",
           checkboxSelection: true,
-          headerCheckboxSelection: true,
-          headerCheckboxSelectionFilteredOnly: true,
+          headerCheckboxSelection: true,
+          headerCheckboxSelectionFilteredOnly: true
         },
         {
-          headerName: "SABIO-RK id",
-          field: "kinlaw_id",
-          filter: "agNumberColumnFilter",
-          menuTabs: ["filterMenuTab"],
+          headerName: "SABIO-RK id",
+          field: "kinlaw_id",
+          filter: "agNumberColumnFilter",
+          menuTabs: ["filterMenuTab"],
 
-          cellRenderer: function(params) {
-            if (true) {
-              return (
-                '<a href="http://sabiork.h-its.org/newSearch/index?q=EntryID:' +
-                params.value +
-                '" target="_blank" rel="noopener noreferrer">' +
-                params.value +
-                "</a>"
-              );
-            }
-          }
-        },
+          cellRenderer: function(params) {
+            return (
+              '<a href="http://sabiork.h-its.org/newSearch/index?q=EntryID:' +
+              params.value +
+              '" target="_blank" rel="noopener noreferrer">' +
+              params.value +
+              "</a>"
+            );
+          }
+        }
       ],
       second_columns: [
         {
@@ -241,37 +237,33 @@ class Reaction extends Component {
           field: "source_link",
 
           cellRenderer: function(params) {
-            if (true) {
-              return (
-                '<a href="http://sabio.h-its.org/reacdetails.jsp?reactid=' +
-                params.value.reactionID +
-                '" target="_blank" rel="noopener noreferrer">' +
-                "SABIO-RK" +
-                "</a>"
-              );
-            }
+            return (
+              '<a href="http://sabio.h-its.org/reacdetails.jsp?reactid=' +
+              params.value.reactionID +
+              '" target="_blank" rel="noopener noreferrer">' +
+              "SABIO-RK" +
+              "</a>"
+            );
           }
-        },
+        }
       ],
 
-      frameworkComponents: {
-      }
+      frameworkComponents: {}
     };
 
     this.formatReactionData = this.formatReactionData.bind(this);
-    this.getSearchDataReaction = this.getSearchDataReaction.bind(this);
     this.setKmColumns = this.setKmColumns.bind(this);
   }
 
   setKmColumns(km_values) {
-    let new_columns = [];
-    let frameworkComponents = {
-      taxonomyFilter: TaxonomyFilter,
+    const new_columns = [];
+    const frameworkComponents = {
+      taxonomyFilter: TaxonomyFilter
     };
-    frameworkComponents["statsToolPanel"] = (() => (
-        <StatsToolPanel relevant-column={"kcat"} />
-      ))
-    for (var i = km_values.length - 1; i >= 0; i--) {
+    frameworkComponents["statsToolPanel"] = () => (
+      <StatsToolPanel relevant-column={"kcat"} />
+    );
+    for (let i = km_values.length - 1; i >= 0; i--) {
       new_columns.push({
         headerName: "Km " + km_values[i].split("_")[1] + " (M)",
         field: km_values[i],
@@ -285,16 +277,15 @@ class Reaction extends Component {
         labelKey: "chart",
         iconKey: "chart",
         toolPanel: comp_name
-      })
+      });
 
-      let km = km_values[i].toString()
-      frameworkComponents[comp_name] = (() => (
+      let km = km_values[i].toString();
+      frameworkComponents[comp_name] = () => (
         <StatsToolPanel relevant-column={km} />
-      ));
-
+      );
     }
 
-    let final_columns = this.state.first_columns
+    const final_columns = this.state.first_columns
       .concat(new_columns)
       .concat(this.state.second_columns);
     //final_columns = final_columns.concat(default_second_columns)
@@ -303,6 +294,7 @@ class Reaction extends Component {
       frameworkComponents: frameworkComponents
     });
   }
+
   componentDidMount() {
     this.getResultsData();
   }
@@ -335,7 +327,7 @@ class Reaction extends Component {
       .then(response => {
         this.formatReactionMetadata(response.data);
       })
-      .catch(err => {
+      .catch(() => {
         //alert('Nothing Found');
         this.setState({ orig_json: null });
       });
@@ -343,7 +335,7 @@ class Reaction extends Component {
 
   getResultsData() {
     const pathArgs = this.props.match.params;
-    console.log(pathArgs.organism)
+    console.log(pathArgs.organism);
 
     getDataFromApi([
       "reactions/kinlaw_by_name/?products=" +
@@ -371,17 +363,18 @@ class Reaction extends Component {
   formatReactionData(data) {
     console.log("ReactionPage: Calling formatReactionData");
     if (data != null) {
-      var total_rows = [];
-      let substrates = getSubstrates(data[0].reaction_participant[0].substrate);
-      let km_values = [];
-      for (var k = substrates.length - 1; k >= 0; k--) {
+      const total_rows = [];
+      const substrates = getSubstrates(
+        data[0].reaction_participant[0].substrate
+      );
+      const km_values = [];
+      for (let k = substrates.length - 1; k >= 0; k--) {
         km_values.push("km_" + substrates[k]);
       }
       this.setKmColumns(km_values);
       this.setState({ km_values: km_values });
 
-      let start = 0;
-      for (var i = start; i < data.length; i++) {
+      for (let i = 0; i < data.length; i++) {
         let wildtype_mutant = null;
         if (data[i]["taxon_wildtype"] == "1") {
           wildtype_mutant = "wildtype";
@@ -403,18 +396,18 @@ class Reaction extends Component {
           getKm(data[i].parameter, substrates)
         );
 
-        let has_data = false
-        for (var l = km_values.length - 1; l >= 0; l--) {
-          if ((row_with_km[km_values[l]]) != null){
-            has_data = true
-          }
-        }
-        if (row_with_km.kcat != null){
-          has_data = true
-        }
-        if (has_data){
-          total_rows.push(row_with_km);
-        }
+        let has_data = false;
+        for (let l = km_values.length - 1; l >= 0; l--) {
+          if (row_with_km[km_values[l]] != null) {
+            has_data = true;
+          }
+        }
+        if (row_with_km.kcat != null) {
+          has_data = true;
+        }
+        if (has_data) {
+          total_rows.push(row_with_km);
+        }
         //console.log(row_with_km)
       }
 
@@ -422,61 +415,52 @@ class Reaction extends Component {
       this.setState({
         data_arrived: true
       });
-    } else {
     }
   }
 
-  getSearchDataReaction(url) {}
-
   formatReactionMetadata(data) {
-    let newReactionMetadataDict = {};
-    let start = 0;
-    if (data != null) {
-      let reactionID = getReactionID(data[0].resource);
-      let ecNumber = getECNumber(data[0].resource)
-      let new_dict = newReactionMetadataDict[reactionID];
-      if (!new_dict) {
-        new_dict = {};
-      }
-      let reaction_name = data[0]['enzymes'][0]['enzyme'][0]['enzyme_name']
-      let substrates = getSubstrates(data[0].reaction_participant[0].substrate);
-      let products = getProducts(data[0].reaction_participant[1].product);
-      new_dict["reactionID"] = reactionID;
-      new_dict["substrates"] = substrates;
-      new_dict["products"] = products;
-      if (ecNumber != "-.-.-.-"){
-        new_dict["ecNumber"] = ecNumber
-      }
+    const newReactionMetadataDict = {};
+    if (data != null) {
+      const reactionID = getReactionID(data[0].resource);
+      const ecNumber = getECNumber(data[0].resource);
+      let new_dict = newReactionMetadataDict[reactionID];
+      if (!new_dict) {
+        new_dict = {};
+      }
+      const reaction_name = data[0]["enzymes"][0]["enzyme"][0]["enzyme_name"];
+      const substrates = getSubstrates(
+        data[0].reaction_participant[0].substrate
+      );
+      const products = getProducts(data[0].reaction_participant[1].product);
+      new_dict["reactionID"] = reactionID;
+      new_dict["substrates"] = substrates;
+      new_dict["products"] = products;
+      if (ecNumber != "-.-.-.-") {
+        new_dict["ecNumber"] = ecNumber;
+      }
 
-      if (reaction_name){
-        let start = reaction_name[0].toUpperCase()
-        let end = reaction_name.substring(1,reaction_name.length)
-        new_dict['reaction_name'] = start + end
-      }
+      if (reaction_name) {
+        const start = reaction_name[0].toUpperCase();
+        const end = reaction_name.substring(1, reaction_name.length);
+        new_dict["reaction_name"] = start + end;
+      }
 
-      let sub_inchis = getSubstrateInchiKey(
-        data[0].reaction_participant[0].substrate
-      );
-      let prod_inchis = getProductInchiKey(
-        data[0].reaction_participant[1].product
-      );
+      new_dict["equation"] =
+        formatPart(substrates) + " → " + formatPart(products);
+      newReactionMetadataDict[reactionID] = new_dict; //newReactionMetadataDict.push(meta);
+    }
 
-      new_dict["equation"] = formatPart(substrates) + " → " + formatPart(products)
-      newReactionMetadataDict[reactionID] = new_dict;
-      //newReactionMetadataDict.push(meta);
-    }
-
-    this.setState({
-      reactionMetadata: Object.keys(newReactionMetadataDict).map(function(key) {
-        return newReactionMetadataDict[key];
-      })
-    });
-  }
+    this.setState({
+      reactionMetadata: Object.keys(newReactionMetadataDict).map(function(key) {
+        return newReactionMetadataDict[key];
+      })
+    });
+  }
 
   onFirstDataRendered(params) {
     //params.columnApi.autoSizeColumns(['concentration'])
 
-    var allColumnIds = [];
+    const allColumnIds = [];
     params.columnApi.getAllColumns().forEach(function(column) {
       allColumnIds.push(column.colId);
     });
@@ -485,8 +469,8 @@ class Reaction extends Component {
   }
 
   onRowSelected(event) {
-    let selectedRows = [];
-    for (var i = event.api.getSelectedNodes().length - 1; i >= 0; i--) {
+    const selectedRows = [];
+    for (let i = event.api.getSelectedNodes().length - 1; i >= 0; i--) {
       selectedRows.push(event.api.getSelectedNodes()[i].data);
     }
     this.props.dispatch(setSelectedData(selectedRows));
@@ -504,19 +488,20 @@ class Reaction extends Component {
   }
 
   render() {
-    if (this.props.totalData == null || this.state.reactionMetadata.length===0) {
-      return (
-        <div className="loader-full-content-container">
-          <div className="loader"></div>
-        </div>
-      );
-    }
+    if (
+      this.props.totalData == null ||
+      this.state.reactionMetadata.length === 0
+    ) {
+      return (
+        <div className="loader-full-content-container">
+          <div className="loader"></div>
+        </div>
+      );
+    }
 
-    return (
-      <div className="content-container biochemical-entity-scene biochemical-entity-reaction-scene">
-        <MetadataSection
-          reactionMetadata={this.state.reactionMetadata}
-        />
+    return (
+      <div className="content-container biochemical-entity-scene biochemical-entity-reaction-scene">
+        <MetadataSection reactionMetadata={this.state.reactionMetadata} />
 
         <div className="content-block measurements-grid ag-theme-balham">
           <h2 className="content-block-heading">Kinetic parameters</h2>

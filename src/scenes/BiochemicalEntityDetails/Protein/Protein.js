@@ -12,7 +12,7 @@ import {
 } from "~/data/actions/resultsAction";
 import { setNewUrl, abstractMolecule } from "~/data/actions/pageAction";
 import { AgGridReact } from "@ag-grid-community/react";
-import { AllModules } from '@ag-grid-enterprise/all-modules';
+import { AllModules } from "@ag-grid-enterprise/all-modules";
 import StatsToolPanel from "./StatsToolPanel.js";
 import { TaxonomyFilter } from "~/scenes/BiochemicalEntityDetails/TaxonomyFilter.js";
 import "@ag-grid-enterprise/all-modules/dist/styles/ag-grid.scss";
@@ -23,7 +23,7 @@ import "./Protein.scss";
 
 const frameworkComponents = {
   statsToolPanel: StatsToolPanel,
-  taxonomyFilter: TaxonomyFilter,
+  taxonomyFilter: TaxonomyFilter
 };
 
 const sideBar = {
@@ -42,7 +42,7 @@ const sideBar = {
         suppressSideButtons: false,
         suppressColumnFilter: true,
         suppressColumnSelectAll: true,
-        suppressColumnExpandAll: true,
+        suppressColumnExpandAll: true
       }
     },
     {
@@ -53,8 +53,8 @@ const sideBar = {
       toolPanel: "agFiltersToolPanel",
       toolPanelParams: {
         suppressFilterSearch: true,
-        suppressExpandAll: true,
-      },
+        suppressExpandAll: true
+      }
     },
     {
       id: "stats",
@@ -66,14 +66,14 @@ const sideBar = {
   ],
   position: "left",
   defaultToolPanel: "filters",
-  hiddenByDefault: false,
+  hiddenByDefault: false
 };
 
 const defaultColDef = {
-  filter: 'agTextColumnFilter',
+  filter: "agTextColumnFilter",
   sortable: true,
   resizable: true,
-  suppressMenu: true,
+  suppressMenu: true
 };
 
 const columnDefs = [
@@ -84,36 +84,26 @@ const columnDefs = [
     filter: "agNumberColumnFilter",
     checkboxSelection: true,
     headerCheckboxSelection: true,
-    headerCheckboxSelectionFilteredOnly: true,
+    headerCheckboxSelectionFilteredOnly: true
   },
   {
     headerName: "Protein",
     field: "protein_name",
     filter: "agNumberColumnFilter",
     menuTabs: ["filterMenuTab"]
-  },    
+  },
   {
     headerName: "UniProt id",
     field: "uniprot_source",
 
     cellRenderer: function(params) {
-      if (true) {
-        return (
-          '<a href="https://www.uniprot.org/uniprot/' +
-          params.value.uniprot_id +
-          '" target="_blank" rel="noopener noreferrer">' +
-          params.value.uniprot_id +
-          "</a>"
-        );
-      } else {
-        return (
-          '<a href="https://www.ymdb.ca/compounds/' +
-          params.value.id +
-          '" target="_blank" rel="noopener noreferrer">' +
-          "YMDB" +
-          "</a>"
-        );
-      }
+      return (
+        '<a href="https://www.uniprot.org/uniprot/' +
+        params.value.uniprot_id +
+        '" target="_blank" rel="noopener noreferrer">' +
+        params.value.uniprot_id +
+        "</a>"
+      );
     }
   },
   {
@@ -132,7 +122,7 @@ const columnDefs = [
     field: "taxonomic_proximity",
     hide: true,
     filter: "taxonomyFilter"
-  },    
+  },
   {
     headerName: "Organ",
     field: "organ",
@@ -144,23 +134,13 @@ const columnDefs = [
     field: "source_link",
 
     cellRenderer: function(params) {
-      if (true) {
-        return (
-          '<a href="https://pax-db.org/search?q=' +
-          params.value.uniprot_id +
-          '" target="_blank" rel="noopener noreferrer">' +
-          "PAXdb" +
-          "</a>"
-        );
-      } else {
-        return (
-          '<a href="https://www.ymdb.ca/compounds/' +
-          params.value.id +
-          '" target="_blank" rel="noopener noreferrer">' +
-          "YMDB" +
-          "</a>"
-        );
-      }
+      return (
+        '<a href="https://pax-db.org/search?q=' +
+        params.value.uniprot_id +
+        '" target="_blank" rel="noopener noreferrer">' +
+        "PAXdb" +
+        "</a>"
+      );
     }
   }
 ];
@@ -169,7 +149,7 @@ Object.size = function(obj) {
   var size = 0,
     key;
   for (key in obj) {
-    if (obj.hasOwnProperty(key)) size++;
+    if (Object.prototype.hasOwnProperty.call(obj, key)) size++;
   }
   return size;
 };
@@ -182,8 +162,7 @@ Object.size = function(obj) {
   };
 }) //the names given here will be the names of props
 class Protein extends Component {
-  static propTypes = {
-  };
+  static propTypes = {};
 
   constructor(props) {
     super(props);
@@ -196,7 +175,7 @@ class Protein extends Component {
       isFlushed: false,
       lineage: [],
       dataArrived: false,
-      tanimoto: false,
+      tanimoto: false
     };
 
     this.processProteinData = this.processProteinData.bind(this);

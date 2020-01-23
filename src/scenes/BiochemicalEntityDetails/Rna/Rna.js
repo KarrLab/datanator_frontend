@@ -12,7 +12,7 @@ import {
 } from "~/data/actions/resultsAction";
 import { setNewUrl, abstractMolecule } from "~/data/actions/pageAction";
 import { AgGridReact } from "@ag-grid-community/react";
-import { AllModules } from '@ag-grid-enterprise/all-modules';
+import { AllModules } from "@ag-grid-enterprise/all-modules";
 import StatsToolPanel from "./StatsToolPanel.js";
 import { TaxonomyFilter } from "~/scenes/BiochemicalEntityDetails/TaxonomyFilter.js";
 import "@ag-grid-enterprise/all-modules/dist/styles/ag-grid.scss";
@@ -23,7 +23,7 @@ import "./Rna.scss";
 
 const frameworkComponents = {
   statsToolPanel: StatsToolPanel,
-  taxonomyFilter: TaxonomyFilter,
+  taxonomyFilter: TaxonomyFilter
 };
 
 const sideBar = {
@@ -42,7 +42,7 @@ const sideBar = {
         suppressSideButtons: false,
         suppressColumnFilter: true,
         suppressColumnSelectAll: true,
-        suppressColumnExpandAll: true,
+        suppressColumnExpandAll: true
       }
     },
     {
@@ -53,7 +53,7 @@ const sideBar = {
       toolPanel: "agFiltersToolPanel",
       toolPanelParams: {
         suppressFilterSearch: true,
-        suppressExpandAll: true,
+        suppressExpandAll: true
       }
     },
     {
@@ -66,14 +66,14 @@ const sideBar = {
   ],
   position: "left",
   defaultToolPanel: "filters",
-  hiddenByDefault: false,
+  hiddenByDefault: false
 };
 
 const defaultColDef = {
-  filter: 'agTextColumnFilter',
+  filter: "agTextColumnFilter",
   sortable: true,
   resizable: true,
-  suppressMenu: true,
+  suppressMenu: true
 };
 
 const columnDefs = [
@@ -84,36 +84,26 @@ const columnDefs = [
     filter: "agNumberColumnFilter",
     checkboxSelection: true,
     headerCheckboxSelection: true,
-    headerCheckboxSelectionFilteredOnly: true,
-  },    
+    headerCheckboxSelectionFilteredOnly: true
+  },
   {
     headerName: "Protein",
     field: "protein_name",
     filter: "agNumberColumnFilter",
     menuTabs: ["filterMenuTab"]
-  },    
+  },
   {
     headerName: "Uniprot",
     field: "uniprot_source",
 
     cellRenderer: function(params) {
-      if (true) {
-        return (
-          '<a href="https://www.uniprot.org/uniprot/' +
-          params.value.uniprot_id +
-          '" target="_blank" rel="noopener noreferrer">' +
-          params.value.uniprot_id +
-          "</a>"
-        );
-      } else {
-        return (
-          '<a href="https://www.ymdb.ca/compounds/' +
-          params.value.id +
-          '" target="_blank" rel="noopener noreferrer">' +
-          "YMDB" +
-          "</a>"
-        );
-      }
+      return (
+        '<a href="https://www.uniprot.org/uniprot/' +
+        params.value.uniprot_id +
+        '" target="_blank" rel="noopener noreferrer">' +
+        params.value.uniprot_id +
+        "</a>"
+      );
     }
   },
   {
@@ -138,38 +128,28 @@ const columnDefs = [
     field: "organ",
     filter: "agTextColumnFilter",
     hide: false
-  },    
+  },
   {
     headerName: "Source",
     field: "source_link",
 
     cellRenderer: function(params) {
-      if (true) {
-        return (
-          '<a href="https://pax-db.org/search?q=' +
-          params.value.uniprot_id +
-          '" target="_blank" rel="noopener noreferrer">' +
-          "PAXdb" +
-          "</a>"
-        );
-      } else {
-        return (
-          '<a href="https://www.ymdb.ca/compounds/' +
-          params.value.id +
-          '" target="_blank" rel="noopener noreferrer">' +
-          "YMDB" +
-          "</a>"
-        );
-      }
+      return (
+        '<a href="https://pax-db.org/search?q=' +
+        params.value.uniprot_id +
+        '" target="_blank" rel="noopener noreferrer">' +
+        "PAXdb" +
+        "</a>"
+      );
     }
-  },
+  }
 ];
 
 Object.size = function(obj) {
   var size = 0,
     key;
   for (key in obj) {
-    if (obj.hasOwnProperty(key)) size++;
+    if (Object.prototype.hasOwnProperty.call(obj, key)) size++;
   }
   return size;
 };
@@ -182,8 +162,7 @@ Object.size = function(obj) {
   };
 }) //the names given here will be the names of props
 class Rna extends Component {
-  static propTypes = {
-  };
+  static propTypes = {};
 
   constructor(props) {
     super(props);
@@ -195,13 +174,11 @@ class Rna extends Component {
       organism: "",
       orig_json: null,
       isFlushed: false,
-      data_arrived: false,
       lineage: [],
       data_arrived: false,
-      tanimoto: false,
+      tanimoto: false
     };
 
-    this.formatProteinMetadata = this.formatProteinMetadata.bind(this);
     this.formatData = this.formatData.bind(this);
   }
   componentDidMount() {
@@ -232,18 +209,16 @@ class Rna extends Component {
   getDataFromApi() {
     const rna = this.props.match.params.rna;
     getDataFromApi([
-        "/rna/halflife/get_info_by_protein_name/?protein_name=" + 
-        rna + "&_from=0&size=10"
-      ]).then(response => {
-        this.formatData(response.data);
-      });
-  }
-
-  formatProteinMetadata(data) {
+      "/rna/halflife/get_info_by_protein_name/?protein_name=" +
+        rna +
+        "&_from=0&size=10"
+    ]).then(response => {
+      this.formatData(response.data);
+    });
   }
 
   formatData(data) {
-    console.log(data)
+    console.log(data);
     var f_abundances = [];
     if (data != null && typeof data != "string") {
       if (!(data[0].uniprot_id === "Please try another input combination")) {

@@ -21,8 +21,7 @@ const columns = [
 ];
 
 class MetadataSection extends Component {
-  static propTypes = {
-  };
+  static propTypes = {};
 
   constructor(props) {
     super(props);
@@ -94,18 +93,17 @@ class MetadataSection extends Component {
     }
   };
 
-
-
-
   render() {
     let reactionMetadata = this.props.reactionMetadata[0];
-    let title = reactionMetadata.reaction_name
-    if (!title){
-      title = reactionMetadata.equation
+    let title = reactionMetadata.reaction_name;
+    if (!title) {
+      title = reactionMetadata.equation;
     }
 
-
-    if (!this.props.reactionMetadata || this.props.reactionMetadata[0] == undefined) {
+    if (
+      !this.props.reactionMetadata ||
+      this.props.reactionMetadata[0] == undefined
+    ) {
       return <div></div>;
     } else {
       return (
@@ -114,11 +112,11 @@ class MetadataSection extends Component {
           <div className="content-block-content img-description">
             <div className="vertical-center">
               <object
-                    data={reactionIcon}
-                    className="section-column-icon hover-zoom"
-                    alt="Reaction rate constant icon"
-                    aria-label="Reaction rate constant icon"
-                  />
+                data={reactionIcon}
+                className="section-column-icon hover-zoom"
+                alt="Reaction rate constant icon"
+                aria-label="Reaction rate constant icon"
+              />
             </div>
 
             <div className="metadata-description">
@@ -126,14 +124,11 @@ class MetadataSection extends Component {
                 <b>Name:</b> {reactionMetadata.reaction_name}
               </p>
               <p>
-                <b>Equation:</b> {" "}
-                  {reactionMetadata.equation}
+                <b>Equation:</b> {reactionMetadata.equation}
               </p>
               <p>
-                <b>EC Number:</b> {" "}
-                  {reactionMetadata.ecNumber}
+                <b>EC Number:</b> {reactionMetadata.ecNumber}
               </p>
-
             </div>
           </div>
         </div>

@@ -10,7 +10,7 @@ import store from "~/data/Store";
 import history from "~/utils/history";
 
 // Feedback form
-import { applyPolyfills, defineCustomElements } from '@bruit/component/loader';
+import { applyPolyfills, defineCustomElements } from "@bruit/component/loader";
 
 // Styles for @Blueprint JS (Template Components)
 import "@blueprintjs/core/lib/css/blueprint.css";
@@ -55,11 +55,11 @@ const SiteRouter = () => {
           component={Metabolite}
         />
         <Route path="/rna/:rna/:organism?/" component={Rna} />
+        <Route path="/protein/:protein/:organism?/" component={Protein} />
         <Route
-          path="/protein/:protein/:organism?/"
-          component={Protein}
+          path="/reaction/:substrates-->:products/:organism?/"
+          component={Reaction}
         />
-        <Route path="/reaction/:substrates-->:products/:organism?/" component={Reaction} />        
         <Route path="/stats/" component={Stats} />
         <Route path="/help/" component={Help} />
         <Route path="/about/" component={About} />

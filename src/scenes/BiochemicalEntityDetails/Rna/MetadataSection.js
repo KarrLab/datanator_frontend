@@ -20,8 +20,7 @@ const columns = [
 ];
 
 class MetadataSection extends Component {
-  static propTypes = {
-  };
+  static propTypes = {};
 
   constructor(props) {
     super(props);

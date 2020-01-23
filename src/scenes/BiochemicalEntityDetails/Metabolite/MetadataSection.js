@@ -87,9 +87,7 @@ class MetadataSection extends Component {
       return (
         <div className="content-block">
           <h2 className="content-block-heading">Similar metabolites</h2>
-          <div className="content-block-content">
-            {descriptions}
-          </div>
+          <div className="content-block-content">{descriptions}</div>
         </div>
       );
     }
