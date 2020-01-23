@@ -44,8 +44,8 @@ export default class ReactionSearchResultsList extends Component {
 
       const name = result["enzyme_names"][0];
       const equation = formatSide(substrates) + " → " + formatSide(products);
-      const ecCode = result["ec-code"];      
-      
+      const ecCode = result["ec-code"];
+
       if (name) {
         formattedResult["title"] =
           name[0].toUpperCase() + name.substring(1, name.length);
@@ -53,18 +53,26 @@ export default class ReactionSearchResultsList extends Component {
         formattedResult["title"] = equation;
       }
       formattedResult["description"] = <div>{equation}</div>;
-      if (!ecCode.startsWith('-')) {
+      if (!ecCode.startsWith("-")) {
         formattedResult["description"] = (
           <div>
             <div>{equation}</div>
-            <div>EC: <a href={"https://enzyme.expasy.org/EC/" + ecCode} target="_blank" rel="noopener noreferrer">{ecCode}</a></div>
+            <div>
+              EC:{" "}
+              <a
+                href={"https://enzyme.expasy.org/EC/" + ecCode}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {ecCode}
+              </a>
+            </div>
           </div>
-          );
+        );
       }
 
       // route
-      formattedResult["route"] =
-        "/reaction/" + substrates + '-->' + products;
+      formattedResult["route"] = "/reaction/" + substrates + "-->" + products;
       if (organism) {
         formattedResult["route"] += "/" + organism;
       }

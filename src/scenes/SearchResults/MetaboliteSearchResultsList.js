@@ -32,7 +32,7 @@ export default class MetaboliteSearchResultsList extends Component {
     for (const result of results) {
       if (result.InChI_Key) {
         const inchiKey = result.InChI_Key;
-        
+
         let formattedResult = formattedResults[inchiKey];
         if (!formattedResult) {
           formattedResult = {};
@@ -44,7 +44,7 @@ export default class MetaboliteSearchResultsList extends Component {
         if (name === "No metabolite found.") {
           name = result["synonyms"][0];
         }
-        
+
         formattedResult["title"] =
           name[0].toUpperCase() + name.substring(1, name.length);
 
@@ -83,7 +83,7 @@ export default class MetaboliteSearchResultsList extends Component {
             </p>
           </div>
         );
-        
+
         //route
         formattedResult["route"] = "/metabolite/" + name;
         if (organism) {
