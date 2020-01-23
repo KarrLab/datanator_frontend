@@ -1,3 +1,4 @@
+import React from "react";
 import { min, max } from "mathjs";
 
 function jsonToCsv(jsonData) {
@@ -85,4 +86,25 @@ function roundToDecimal(value, decimals) {
   return Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals);
 }
 
-export { jsonToCsv, mode, range, roundToDecimal };
+function formatChemicalFormula(formula) {
+  if (!formula) {
+    return null;
+  }
+
+  const regex = /([A-Z][a-z]?)([0-9]*)/g;
+  let formattedFormula = [];
+  for (const match of formula.matchAll(regex)) {
+    formattedFormula.push(
+      <span>
+        {match[1]}
+        {match[2] && <sub>{match[2]}</sub>}
+      </span>
+    );
+  }
+  return formattedFormula.reduce(
+    (acc, x) => (acc === null ? [x] : [acc, x]),
+    null
+  );
+}
+
+export { jsonToCsv, mode, range, roundToDecimal, formatChemicalFormula };
