@@ -253,10 +253,8 @@ class Rna extends Component {
   }
 
   render() {
-    const organism = this.props.match.params.organism;
-
     if (
-      this.state.rnaMetadata.length == 0 ||
+      this.state.rnaMetadata.length === 0 ||
       this.props.totalData == null
     ) {
       return (

@@ -3,21 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { abstractMolecule } from "~/data/actions/pageAction";
 
-const products = [{ id: "3", name: "bob" }];
-const columns = [
-  {
-    dataField: "id",
-    text: "Product ID"
-  },
-  {
-    dataField: "name",
-    text: "Product Name"
-  },
-  {
-    dataField: "price",
-    text: "Product Price"
-  }
-];
+import proteinIcon from "~/scenes/Home/images/protein.svg";
 
 class MetadataSection extends Component {
   static propTypes = {};
@@ -55,15 +41,15 @@ class MetadataSection extends Component {
 
   colFormatter = (cell, row) => {
     if (cell) {
-      let substrates = cell[0]
+      const substrates = cell[0]
         .toString()
         .split("==>")[0]
         .split(" + ");
-      let products = cell[0]
+      const products = cell[0]
         .toString()
         .split("==>")[1]
         .split(" + ");
-      let url =
+      const url =
         "/reaction/data/?substrates=" +
         substrates +
         "&products=" +
@@ -82,7 +68,7 @@ class MetadataSection extends Component {
   partFormatter = (cell, row) => {
     let participants = "";
     if (cell) {
-      for (var i = cell.length - 1; i >= 0; i--) {
+      for (let i = cell.length - 1; i >= 0; i--) {
         participants = participants + cell[i] + " + ";
       }
       participants = participants.substring(0, participants.length - 3);
@@ -100,10 +86,9 @@ class MetadataSection extends Component {
     }
     proteinMetadata = proteinMetadata[0];
 
-    let uniprot_ids = proteinMetadata.uniprot_ids;
-    let uniprot_links = [];
-    for (var i = uniprot_ids.length - 1; i >= 0; i--) {
-      let a = uniprot_ids[i];
+    const uniprot_ids = proteinMetadata.uniprot_ids;
+    const uniprot_links = [];
+    for (let i = uniprot_ids.length - 1; i >= 0; i--) {
       let link = "";
       if (i === 0) {
         link = (
@@ -136,13 +121,12 @@ class MetadataSection extends Component {
         <h2 className="content-block-heading">{proteinMetadata.ko_name[0]}</h2>
         <div className="content-block-content img-description">
           <div className="vertical-center">
-            <img
-              border="0"
-              alt="W3Schools"
-              src={"https://image.flaticon.com/icons/png/512/1951/1951420.png"}
-              width="80%"
-              height="80%"
-            ></img>
+            <object
+              data={proteinIcon}
+              className="hover-zoom"
+              alt="Protein icon"
+              aria-label="Protein icon"
+            />
           </div>
 
           <div className="metadata-description">

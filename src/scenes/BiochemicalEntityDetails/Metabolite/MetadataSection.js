@@ -100,14 +100,13 @@ class MetadataSection extends Component {
         <div className="content-block-content img-description">
           <div className="vertical-center">
             <img
-              border="0"
-              alt="W3Schools"
               src={
                 "https://www.ebi.ac.uk/chebi/displayImage.do;jsessionid=25AAC07D77FBB12EBEFA4D5FEE270CD4?defaultImage=true&imageIndex=0&chebiId=" +
                 metaboliteMetadata.chebi_id
               }
-              width="200"
-              height="200"
+              className="hover-zoom"
+              alt="Chemical structure"
+              aria-label="Chemical structure"          
             />
           </div>
 

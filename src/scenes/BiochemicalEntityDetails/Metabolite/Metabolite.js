@@ -89,7 +89,7 @@ const columnDefs = [
     field: "error",
     valueGetter: params => {
       const val = params.data.error;
-      return val == 0 ? null : val;
+      return val === 0 ? null : val;
     },
     hide: true,
     sortable: true,

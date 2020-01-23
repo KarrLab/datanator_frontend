@@ -109,26 +109,6 @@ function formatPart(parts) {
   return participants_string;
 }
 
-function getSubstrateInchiKey(substrate) {
-  const inchiKeys = [];
-  for (let i = 0; i < substrate.length; i++) {
-    if (substrate[i].substrate_structure[0]) {
-      inchiKeys.push(substrate[i].substrate_structure[0].InChI_Key);
-    }
-  }
-  return inchiKeys;
-}
-
-function getProductInchiKey(product) {
-  const inchiKeys = [];
-  for (let i = 0; i < product.length; i++) {
-    if (product[i].product_structure[0]) {
-      inchiKeys.push(product[i].product_structure[0].InChI_Key);
-    }
-  }
-  return inchiKeys;
-}
-
 function getKcat(parameters) {
   const kinetic_params = {};
   for (let i = 0; i < parameters.length; i++) {
@@ -143,7 +123,7 @@ function getKm(parameters, substrates) {
   const kms = {};
   for (let i = 0; i < parameters.length; i++) {
     if (
-      parameters[i].type == "27" &&
+      parameters[i].type === "27" &&
       substrates.includes(parameters[i]["name"]) &&
       parameters[i]["observed_name"].toLowerCase() === "km"
     ) {
@@ -376,9 +356,9 @@ class Reaction extends Component {
 
       for (let i = 0; i < data.length; i++) {
         let wildtype_mutant = null;
-        if (data[i]["taxon_wildtype"] == "1") {
+        if (data[i]["taxon_wildtype"] === "1") {
           wildtype_mutant = "wildtype";
-        } else if (data[i]["taxon_wildtype"] == "0") {
+        } else if (data[i]["taxon_wildtype"] === "0") {
           wildtype_mutant = "mutant";
         }
         let row = {
@@ -435,7 +415,7 @@ class Reaction extends Component {
       new_dict["reactionID"] = reactionID;
       new_dict["substrates"] = substrates;
       new_dict["products"] = products;
-      if (ecNumber != "-.-.-.-") {
+      if (ecNumber !== "-.-.-.-") {
         new_dict["ecNumber"] = ecNumber;
       }
 

@@ -4,22 +4,6 @@ import { Link } from "react-router-dom";
 
 import reactionIcon from "~/scenes/Home/images/left-right-arrows.svg";
 
-const products = [{ id: "3", name: "bob" }];
-const columns = [
-  {
-    dataField: "id",
-    text: "Product ID"
-  },
-  {
-    dataField: "name",
-    text: "Product Name"
-  },
-  {
-    dataField: "price",
-    text: "Product Price"
-  }
-];
-
 class MetadataSection extends Component {
   static propTypes = {};
 
@@ -56,15 +40,15 @@ class MetadataSection extends Component {
 
   colFormatter = (cell, row) => {
     if (cell) {
-      let substrates = cell[0]
+      const substrates = cell[0]
         .toString()
         .split("==>")[0]
         .split(" + ");
-      let products = cell[0]
+      const products = cell[0]
         .toString()
         .split("==>")[1]
         .split(" + ");
-      let url =
+      const url =
         "/reaction/data/?substrates=" +
         substrates +
         "&products=" +
@@ -83,7 +67,7 @@ class MetadataSection extends Component {
   partFormatter = (cell, row) => {
     let participants = "";
     if (cell) {
-      for (var i = cell.length - 1; i >= 0; i--) {
+      for (let i = cell.length - 1; i >= 0; i--) {
         participants = participants + cell[i] + " + ";
       }
       participants = participants.substring(0, participants.length - 3);
@@ -94,7 +78,7 @@ class MetadataSection extends Component {
   };
 
   render() {
-    let reactionMetadata = this.props.reactionMetadata[0];
+    const reactionMetadata = this.props.reactionMetadata[0];
     let title = reactionMetadata.reaction_name;
     if (!title) {
       title = reactionMetadata.equation;
@@ -102,7 +86,7 @@ class MetadataSection extends Component {
 
     if (
       !this.props.reactionMetadata ||
-      this.props.reactionMetadata[0] == undefined
+      this.props.reactionMetadata[0] === undefined
     ) {
       return <div></div>;
     } else {
@@ -113,9 +97,9 @@ class MetadataSection extends Component {
             <div className="vertical-center">
               <object
                 data={reactionIcon}
-                className="section-column-icon hover-zoom"
-                alt="Reaction rate constant icon"
-                aria-label="Reaction rate constant icon"
+                className="hover-zoom"
+                alt="Reaction icon"
+                aria-label="Reaction icon"
               />
             </div>
 
