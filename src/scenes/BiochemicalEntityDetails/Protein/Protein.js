@@ -216,7 +216,7 @@ class Protein extends Component {
         "&anchor=" +
         organism +
         "&distance=40&depth=40"
-    ]).then(response => {
+    ], {}, "Unable to get data about ortholog group '" + ko + "'.").then(response => {
       this.processProteinDataUniprot(response.data);
     });
 
@@ -224,7 +224,7 @@ class Protein extends Component {
       getDataFromApi([
         "taxon",
         "canon_rank_distance_by_name/?name=" + organism
-      ]).then(response => {
+      ], {}, "Unable to get taxonomic information about '" + organism + "'.").then(response => {
         this.setState({ lineage: response.data });
       });
     }
@@ -266,7 +266,7 @@ class Protein extends Component {
       getDataFromApi([
         "proteins",
         "meta?uniprot_id=" + this.props.match.params.protein
-      ]).then(response => {
+      ], {}, "Unable to data about ortholog group '" + this.props.match.params.protein + "'.").then(response => {
         this.formatData(response.data);
 
         let newOrthologyMetadata = [];
@@ -307,12 +307,14 @@ class Protein extends Component {
       for (var f = total_ids.length - 1; f >= 0; f--) {
         end_query = end_query + "uniprot_id=" + total_ids[f] + "&";
       }
-      getDataFromApi(["proteins", "meta/meta_combo/?" + end_query]).then(
-        response => {
-          this.formatOrthologyMetadata(response.data);
-          this.formatData(response.data, uniprot_to_dist);
-        }
-      );
+      getDataFromApi(["proteins", "meta/meta_combo/?" + end_query], {}, 
+        "Unable to get data about proteins for ortholog group '" + this.props.match.params.protein + "'.")
+        .then(
+          response => {
+            this.formatOrthologyMetadata(response.data);
+            this.formatData(response.data, uniprot_to_dist);
+          }
+        );
     }
   }
 
