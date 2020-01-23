@@ -78,20 +78,15 @@ const defaultColDef = {
 
 const columnDefs = [
   {
-    headerName: "Gene",
-    field: "gene_symbol",
-    sortable: true,
-    filter: "agTextColumnFilter",
-    checkboxSelection: true,
-    headerCheckboxSelection: true,
-    headerCheckboxSelectionFilteredOnly: true
-  },
-  {
     headerName: "Half Life",
     field: "half_life",
     sortable: true,
     filter: "agNumberColumnFilter",
+    checkboxSelection: true,
+    headerCheckboxSelection: true,
+    headerCheckboxSelectionFilteredOnly: true
   },
+
   {
     headerName: "Reference",
     field: "reference",
@@ -132,7 +127,6 @@ Object.size = function(obj) {
 @connect(store => {
   return {
     //currentUrl: store.page.url,
-    moleculeAbstract: store.page.moleculeAbstract,
     totalData: store.results.totalData
   };
 }) //the names given here will be the names of props
@@ -143,7 +137,7 @@ class Rna extends Component {
     super(props);
     this.state = {
       search: "",
-      proteinMetadata: [],
+      rnaMetadata: [],
       orthologyMetadata: [],
       f_abundances: null,
       organism: "",
@@ -186,13 +180,16 @@ class Rna extends Component {
     getDataFromApi([
       "/rna/halflife/get_info_by_protein_name/?protein_name=" +
         rna +
-        "&_from=0&size=10"
+        "&_from=0&size=1000"
     ]).then(response => {
       this.formatData(response.data);
     });
   }
 
   formatData(data) {
+    let meta = {}
+    meta["protein_name"] = data[0]['function']
+    meta["gene_name"] = data[0].gene_name
     console.log(data);
     if (data != null && typeof data != "string") {
       //let data_n = data[0]
@@ -208,7 +205,7 @@ class Rna extends Component {
         final_data.push(row);
       }
       this.props.dispatch(setTotalData(final_data));
-      this.setState({ data_arrived: true }); 
+      this.setState({ data_arrived: true, rnaMetadata:[meta] }); 
     }
     else {
         //alert('Nothing Found');
@@ -250,7 +247,7 @@ class Rna extends Component {
     const organism = this.props.match.params.organism;
 
     if (
-      //this.state.orthologyMetadata.length === 0 ||
+      this.state.rnaMetadata.length == 0 ||
       this.props.totalData == null
     ) {
       return (
@@ -263,9 +260,7 @@ class Rna extends Component {
     return (
       <div className="content-container biochemical-entity-scene biochemical-entity-rna-scene">
         <MetadataSection
-          proteinMetadata={this.state.orthologyMetadata}
-          //molecule={this.props.match.params.rna}
-          organism={organism}
+          rnaMetadata={this.state.rnaMetadata}
         />
 
         <div className="content-block measurements-grid ag-theme-balham">
