@@ -19,10 +19,11 @@ class MetadataSection extends Component {
     if (rnaMetadata[0] === undefined || rnaMetadata[0].length === 0) {
       return <div></div>;
     }
+    
     rnaMetadata = rnaMetadata[0];
     let title = rnaMetadata.gene_name
     if (!title){
-      title = "Gene Name Not Found"
+      title = "Gene name not found"
     }
     return (
       <div className="content-block">
@@ -37,14 +38,20 @@ class MetadataSection extends Component {
             />
           </div>
 
+          {(rnaMetadata.gene_name || rnaMetadata.protein_name) && (
           <div className="metadata-description">
+            {rnaMetadata.gene_name && (
             <p>
               <b>Gene Name:</b> {rnaMetadata.gene_name}
             </p>
+            )}
+            {rnaMetadata.protein_name && (
             <p>
               <b>Protein Name:</b> {rnaMetadata.protein_name}
             </p>
+            )}
           </div>
+          )}
         </div>
       </div>
     );

@@ -78,7 +78,7 @@ const defaultColDef = {
 
 const columnDefs = [
   {
-    headerName: "Half Life (S^-1)",
+    headerName: "Half life (s^-1)",
     field: "half_life",
     sortable: true,
     filter: "agNumberColumnFilter",
@@ -86,9 +86,19 @@ const columnDefs = [
     headerCheckboxSelection: true,
     headerCheckboxSelectionFilteredOnly: true
   },
-
   {
-    headerName: "Reference",
+    headerName: "Organism",
+    field: "organism",
+    filter: "agTextColumnFilter"
+  },
+  {
+    headerName: "Media",
+    field: "growth_medium",
+    filter: "agTextColumnFilter",
+    hide: false
+  },
+   {
+    headerName: "Source",
     field: "reference",
 
     cellRenderer: function(params) {
@@ -100,18 +110,6 @@ const columnDefs = [
         "</a>"
       );
     }
-  },
-
-  {
-    headerName: "Organism",
-    field: "organism",
-    filter: "agTextColumnFilter"
-  },
-  {
-    headerName: "Growth Medium",
-    field: "growth_medium",
-    filter: "agTextColumnFilter",
-    hide: false
   },
 ];
 
