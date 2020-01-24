@@ -340,7 +340,7 @@ class Protein extends Component {
               }
               row["protein_name"] = protein_name;
               row["taxonomic_proximity"] =
-                uniprot_to_dist[uniprot.uniprot_id] + 1;
+                uniprot_to_dist[uniprot.uniprot_id];
               row["source_link"] = { uniprot_id: uniprot.uniprot_id };
               f_abundances.push(row);
             }
