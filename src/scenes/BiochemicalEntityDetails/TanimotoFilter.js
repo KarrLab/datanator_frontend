@@ -60,11 +60,7 @@ class TanimotoFilter extends Component {
 
   render() {
     return (
-      <div
-        className={
-          "biochemical-entity-scene-slider-filter biochemical-entity-scene-tanimoto-slider-filter"
-        }
-      >
+      <div className="tool-panel-slider tool-panel-inverted-slider tool-panel-horizontal-slider tanimoto-tool-panel-slider">
         <Slider
           min={marks[0].value}
           max={marks[1].value}

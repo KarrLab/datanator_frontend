@@ -233,12 +233,14 @@ class Metabolite extends Component {
         //alert('Nothing Found');
         this.setState({ orig_json: null });
       });
-    getDataFromApi([
-      "taxon",
-      "canon_rank_distance_by_name/?name=" + organism
-    ], {}, "Unable to obtain taxonomic information about '" + organism + "'.").then(response => {
-      this.setState({ lineage: response.data });
-    });
+    if (organism) {
+      getDataFromApi([
+        "taxon",
+        "canon_rank_distance_by_name/?name=" + organism
+      ], {}, "Unable to obtain taxonomic information about '" + organism + "'.").then(response => {
+        this.setState({ lineage: response.data });
+      });
+    }
   }
 
   formatData(data) {

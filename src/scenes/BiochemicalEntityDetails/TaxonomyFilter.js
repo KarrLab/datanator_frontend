@@ -22,12 +22,9 @@ class TaxonomyFilter extends Component {
       marks: []
     };
 
-    this.valueGetter = this.props.valueGetter;
+    this.filterModel = null;
 
     this.onChange = this.onChange.bind(this);
-    this.isFilterActive = this.isFilterActive.bind(this);
-
-    this.slider = React.createRef();
   }
 
   isFilterActive() {
@@ -69,21 +66,19 @@ class TaxonomyFilter extends Component {
 
   doesFilterPass(params) {
     const filter = this.state.filter;
-    const value = this.valueGetter(params.node);
+    const value = this.props.valueGetter(params.node);
     return value <= filter;
   }
 
   getModel() {
-    return { value: this.state.text };
+    return this.filterModel;
   }
 
   setModel(model) {
-    this.setState({ text: model ? model.value : "" });
+    this.filterModel = model;
   }
 
-  afterGuiAttached() {
-    this.slider.current.focus();
-  }
+  afterGuiAttached() {}
 
   onChange(event, newValue) {
     let filter = this.state.numToNode[newValue];
@@ -100,17 +95,19 @@ class TaxonomyFilter extends Component {
   }
 
   render() {
-    let marks = this.state.marks;
+    const marks = this.state.marks;
     return (
-      <div className="biochemical-entity-scene-taxonomy-slider-filter">
+      <div className="tool-panel-slider tool-panel-normal-slider tool-panel-vertical-slider taxonomy-tool-panel-slider">
         <Slider
-          ref={this.slider}
-          onChange={this.onChange}
-          orientation="vertical"
-          aria-labelledby="vertical-slider"
-          getAriaValueText={valueText}
-          marks={marks}
+          min={0}
           max={marks.length - 1}
+          step={1}
+          marks={marks}
+          orientation="vertical"
+          valueLabelDisplay={"on"}
+          onChange={this.onChange}
+          aria-label="Taxonomy slider"
+          getAriaValueText={valueText}
         />
       </div>
     );
