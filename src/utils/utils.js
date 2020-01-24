@@ -95,7 +95,7 @@ function formatChemicalFormula(formula) {
   let formattedFormula = [];
   for (const match of formula.matchAll(regex)) {
     formattedFormula.push(
-      <span>
+      <span key={match[1]}>
         {match[1]}
         {match[2] && <sub>{match[2]}</sub>}
       </span>

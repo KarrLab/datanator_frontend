@@ -38,7 +38,7 @@ class TanimotoFilter extends Component {
   }
 
   doesFilterPass(params) {
-    return this.props.valueGetter(params.node) > this.minSimilarity;
+    return this.props.valueGetter(params.node) >= this.minSimilarity;
   }
 
   getModel() {

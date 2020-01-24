@@ -24,7 +24,7 @@ class StatsToolPanel extends Component {
      * REDUX: this is a list of rows of all the selected data. This is used to generate consensus
      * only of the displayed data
      */
-    selectedData: PropTypes.array.isRequired,
+    selectedData: PropTypes.array,
 
     /**
      * REDUX: This is a list of all the data. This is recorded in the CSV file

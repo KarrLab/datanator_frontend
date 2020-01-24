@@ -61,67 +61,22 @@ const DATABASES = {
 class MetadataSection extends Component {
   static propTypes = {
     metabolite: PropTypes.string.isRequired,
-    "metabolite-metadata": PropTypes.array.isRequired,
+    metadata: PropTypes.array.isRequired,
     abstract: PropTypes.bool.isRequired,
     organism: PropTypes.string,
-    dispatch: PropTypes.func.isRequired
-  };
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      total_columns: [
-        {
-          dataField: "reactionID",
-          text: "Reaction ID"
-        },
-
-        {
-          dataField: "equation",
-          text: "Reaction Equation",
-          formatter: this.colFormatter
-        }
-      ]
-    };
-    this.colFormatter = this.colFormatter.bind(this);
-  }
-
-  colFormatter = cell => {
-    if (cell) {
-      const substrates = cell[0]
-        .toString()
-        .split("==>")[0]
-        .split(" + ");
-      const products = cell[0]
-        .toString()
-        .split("==>")[1]
-        .split(" + ");
-      const url =
-        "/reaction/data/?substrates=" +
-        substrates +
-        "&products=" +
-        products +
-        "&substrates_inchi=" +
-        cell[1]["sub_inchis"] +
-        "&products_inchi=" +
-        cell[1]["prod_inchis"];
-
-      return <Link to={url}>{cell[0].toString()}</Link>;
-    } else {
-      return <div></div>;
-    }
+    dispatch: PropTypes.func
   };
 
   render() {
-    let metaboliteMetadata = this.props["metabolite-metadata"];
+    let metadata = this.props.metadata;
 
-    if (metaboliteMetadata.length === 0) {
+    if (metadata.length === 0) {
       return <div></div>;
     }
 
     if (this.props.abstract === true) {
       const descriptions = [];
-      for (const metaDatum of metaboliteMetadata) {
+      for (const metaDatum of metadata) {
         descriptions.push(
           <div className="metadata-description-abstract">
             <p>
@@ -147,18 +102,18 @@ class MetadataSection extends Component {
       );
     }
 
-    metaboliteMetadata = metaboliteMetadata[0];
+    metadata = metadata[0];
 
     // physical properties
     const physicalProps = [
-      { name: "SMILES", value: metaboliteMetadata.smiles },
-      { name: "InChI", value: metaboliteMetadata.inchi },
-      { name: "Formula", value: metaboliteMetadata.formula },
-      { name: "Molecular weight", value: metaboliteMetadata.molWt },
-      { name: "Charge", value: metaboliteMetadata.charge },
+      { name: "SMILES", value: metadata.smiles },
+      { name: "InChI", value: metadata.inchi },
+      { name: "Formula", value: metadata.formula },
+      { name: "Molecular weight", value: metadata.molWt },
+      { name: "Charge", value: metadata.charge },
       {
         name: "Physiological charge",
-        value: metaboliteMetadata.physiologicalCharge
+        value: metadata.physiologicalCharge
       }
     ]
       .filter(prop => {
@@ -166,29 +121,29 @@ class MetadataSection extends Component {
       })
       .map(prop => {
         return (
-          <p>
+          <p key={prop.name}>
             <b>{prop.name}:</b> {prop.value}
           </p>
         );
       });
 
     let structure = null;
-    if (metaboliteMetadata.smiles) {
-      structure = { type: "", value: metaboliteMetadata.smiles };
-    } else if (metaboliteMetadata.smiles) {
-      structure = { type: "InChI=", value: metaboliteMetadata.inchi };
-    } else if (metaboliteMetadata.smiles) {
-      structure = { type: "InChIKey=", value: metaboliteMetadata.inchiKey };
+    if (metadata.smiles) {
+      structure = { type: "", value: metadata.smiles };
+    } else if (metadata.smiles) {
+      structure = { type: "InChI=", value: metadata.inchi };
+    } else if (metadata.smiles) {
+      structure = { type: "InChIKey=", value: metadata.inchiKey };
     }
 
     // database links
     const dbLinks = [];
-    for (const dbKey in metaboliteMetadata.dbLinks) {
-      const dbId = metaboliteMetadata.dbLinks[dbKey];
+    for (const dbKey in metadata.dbLinks) {
+      const dbId = metadata.dbLinks[dbKey];
       if (dbId && dbKey in DATABASES) {
         const db = DATABASES[dbKey];
         dbLinks.push(
-          <li>
+          <li key={dbKey}>
             <b>{db["name"]}:</b>{" "}
             <a
               href={sprintf(db["url"], dbId)}
@@ -205,16 +160,13 @@ class MetadataSection extends Component {
     // render
     return (
       <div>
-        <h1 className="page-title">{metaboliteMetadata.name}</h1>
-        {metaboliteMetadata.synonyms.length > 0 &&
-          metaboliteMetadata.synonyms.join(", ")}
+        <h1 className="page-title">{metadata.name}</h1>
+        {metadata.synonyms.length > 0 && metadata.synonyms.join(", ")}
 
-        {metaboliteMetadata.description && (
+        {metadata.description && (
           <div className="content-block">
             <h2 className="content-block-heading">Description</h2>
-            <div className="content-block-content">
-              {metaboliteMetadata.description}
-            </div>
+            <div className="content-block-content">{metadata.description}</div>
           </div>
         )}
 
@@ -254,44 +206,40 @@ class MetadataSection extends Component {
           </div>
         )}
 
-        {((metaboliteMetadata.pathways &&
-          metaboliteMetadata.pathways.length > 0) ||
-          (metaboliteMetadata.cellularLocations &&
-            metaboliteMetadata.cellularLocations.length > 0)) && (
+        {((metadata.pathways && metadata.pathways.length > 0) ||
+          (metadata.cellularLocations &&
+            metadata.cellularLocations.length > 0)) && (
           <div className="content-block">
             <h2 className="content-block-heading">Biological context</h2>
             <div className="content-block-content">
-              {metaboliteMetadata.pathways &&
-                metaboliteMetadata.pathways.length > 0 && (
-                  <p>
-                    <b>Pathways:</b>{" "}
-                    {metaboliteMetadata.pathways
-                      .map(el => {
-                        return (
-                          <a
-                            href={
-                              "https://www.genome.jp/dbget-bin/www_bget?map" +
-                              el.kegg_map_id
-                            }
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            {el.name}
-                          </a>
-                        );
-                      })
-                      .reduce(
-                        (acc, x) => (acc === null ? [x] : [acc, x]),
-                        null
-                      )}
-                  </p>
-                )}
+              {metadata.pathways && metadata.pathways.length > 0 && (
+                <p>
+                  <b>Pathways:</b>{" "}
+                  {metadata.pathways
+                    .map(el => {
+                      return (
+                        <a
+                          key={el.kegg_map_id}
+                          href={
+                            "https://www.genome.jp/dbget-bin/www_bget?map" +
+                            el.kegg_map_id
+                          }
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {el.name}
+                        </a>
+                      );
+                    })
+                    .reduce((acc, x) => (acc === null ? [x] : [acc, x]), null)}
+                </p>
+              )}
 
-              {metaboliteMetadata.cellularLocations &&
-                metaboliteMetadata.cellularLocations.length > 0 && (
+              {metadata.cellularLocations &&
+                metadata.cellularLocations.length > 0 && (
                   <p>
                     <b>Localizations:</b>{" "}
-                    {metaboliteMetadata.cellularLocations.join(", ")}
+                    {metadata.cellularLocations.join(", ")}
                   </p>
                 )}
             </div>

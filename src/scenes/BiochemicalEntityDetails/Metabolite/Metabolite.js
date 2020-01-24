@@ -174,20 +174,20 @@ const columnDefs = [
 @connect(store => {
   return {
     moleculeAbstract: store.page.moleculeAbstract,
-    totalData: store.results.totalData
+    measuredConcs: store.results.totalData
   };
 }) //the names given here will be the names of props
 class Metabolite extends Component {
   static propTypes = {
     moleculeAbstract: PropTypes.bool.isRequired,
-    totalData: PropTypes.array.isRequired,
-    dispatch: PropTypes.func.isRequired
+    measuredConcs: PropTypes.array,
+    dispatch: PropTypes.func
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      metaboliteMetadata: [],
+      metadata: [],
       lineage: [],
       tanimoto: false
     };
@@ -208,7 +208,7 @@ class Metabolite extends Component {
         prevProps.match.params.metabolite ||
       this.props.match.params.organism !== prevProps.match.params.organism
     ) {
-      this.setState({ metaboliteMetadata: [] });
+      this.setState({ metadata: [] });
       this.getDataFromApi();
     }
   }
@@ -449,11 +449,11 @@ class Metabolite extends Component {
         this.setState({ tanimoto: false });
       }
 
-      const metaboliteMetadata = Object.values(newMetaboliteMetadataDict);
+      const metadata = Object.values(newMetaboliteMetadataDict);
 
       this.props.dispatch(setTotalData(f_concentrations));
       this.setState({
-        metaboliteMetadata: metaboliteMetadata
+        metadata: metadata
         //displayed_data: f_concentrations
       });
     } else {
@@ -489,10 +489,7 @@ class Metabolite extends Component {
   }
 
   render() {
-    if (
-      this.state.metaboliteMetadata.length === 0 ||
-      this.props.totalData == null
-    ) {
+    if (this.state.metadata.length === 0 || this.props.measuredConcs == null) {
       return (
         <div className="loader-full-content-container">
           <div className="loader"></div>
@@ -503,7 +500,7 @@ class Metabolite extends Component {
     return (
       <div className="content-container biochemical-entity-scene biochemical-entity-metabolite-scene">
         <MetadataSection
-          metabolite-metadata={this.state.metaboliteMetadata}
+          metadata={this.state.metadata}
           abstract={this.state.tanimoto}
           metabolite={this.props.match.params.metabolite}
           organism={this.props.match.params.organism}
@@ -517,7 +514,7 @@ class Metabolite extends Component {
             sideBar={sideBar}
             defaultColDef={defaultColDef}
             columnDefs={columnDefs}
-            rowData={this.props.totalData}
+            rowData={this.props.measuredConcs}
             rowSelection="multiple"
             groupSelectsChildren={true}
             suppressMultiSort={true}
