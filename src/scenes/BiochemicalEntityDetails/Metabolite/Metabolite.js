@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 
 import { MetadataSection } from "./MetadataSection";
 import { getDataFromApi } from "~/services/RestApi";
-import { abstractMolecule } from "~/data/actions/pageAction";
 import { setTotalData, setSelectedData } from "~/data/actions/resultsAction";
 
 import { AgGridReact } from "@ag-grid-community/react";
@@ -173,13 +172,11 @@ const columnDefs = [
 
 @connect(store => {
   return {
-    moleculeAbstract: store.page.moleculeAbstract,
     measuredConcs: store.results.totalData
   };
 }) //the names given here will be the names of props
 class Metabolite extends Component {
   static propTypes = {
-    moleculeAbstract: PropTypes.bool.isRequired,
     measuredConcs: PropTypes.array,
     dispatch: PropTypes.func
   };
@@ -187,9 +184,8 @@ class Metabolite extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      metadata: [],
-      lineage: [],
-      tanimoto: false
+      metadata: null,
+      lineage: []
     };
 
     this.formatData = this.formatData.bind(this);
@@ -199,42 +195,33 @@ class Metabolite extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.moleculeAbstract === true) {
-      this.props.dispatch(abstractMolecule(false));
-    }
-
     if (
       this.props.match.params.metabolite !==
         prevProps.match.params.metabolite ||
       this.props.match.params.organism !== prevProps.match.params.organism
     ) {
-      this.setState({ metadata: [] });
+      this.setState({ metadata: null });
       this.getDataFromApi();
     }
   }
 
   getDataFromApi() {
-    const abs_default = false;
+    const abstract = false;
     const metabolite = this.props.match.params.metabolite;
     const organism = this.props.match.params.organism;
     getDataFromApi(
       [
         "metabolites/concentration/?abstract=" +
-          abs_default +
+          abstract +
           "&metabolite=" +
           metabolite +
           (organism ? "&species=" + organism : "")
       ],
       {},
       "Unable to retrieve data about metabolite '" + metabolite + "'."
-    )
-      .then(response => {
-        this.formatData(response.data);
-      })
-      .catch(() => {
-        //alert('Nothing Found');
-        this.setState({ orig_json: null });
-      });
+    ).then(response => {
+      this.formatData(response.data);
+    });
     if (organism) {
       getDataFromApi(
         ["taxon", "canon_rank_distance_by_name/?name=" + organism],
@@ -247,218 +234,96 @@ class Metabolite extends Component {
   }
 
   formatData(data) {
-    if (data != null) {
-      const f_concentrations = [];
-
-      const newMetaboliteMetadataDict = {};
-
-      let tani = false;
-      for (let n = data[0].length; n > 0; n--) {
-        const datum = data[0][n - 1];
-
-        if (datum.tanimoto_similarity < 1) {
-          this.setState({ tanimoto: true });
-          tani = true;
-        } else {
-          this.setState({ tanimoto: false });
-          //this.props.dispatch(abstractMolecule(false))
-        }
-
-        const concs = datum.concentrations;
-        if (concs != null) {
-          if (!Array.isArray(concs.concentration)) {
-            for (const key in concs) {
-              // check if the property/key is defined in the object itself, not in parent
-              if (Object.prototype.hasOwnProperty.call(concs, key)) {
-                concs[key] = [concs[key]];
-              }
-            }
-          }
-
-          let new_dict = newMetaboliteMetadataDict[datum.inchikey];
-          if (!new_dict) {
-            new_dict = {};
-          }
-          new_dict = {
-            name: datum.name,
-            synonyms: datum.synonyms.synonym,
-            description: datum.description,
-            pathways: datum.pathways.pathway,
-            cellularLocations: datum.cellular_locations.cellular_location,
-            inchi: datum.inchi,
-            inchiKey: datum.inchikey,
-            smiles: datum.smiles,
-            formula: formatChemicalFormula(datum.chemical_formula),
-            molWt: datum.average_molecular_weight,
-            charge: datum.property.find(el => el["kind"] === "formal_charge")
-              .value,
-            physiologicalCharge: datum.property.find(
-              el => el["kind"] === "physiological_charge"
-            ).value,
-            dbLinks: {
-              biocyc: datum.biocyc_id,
-              cas: datum.cas_registry_number,
-              chebi: datum.chebi_id,
-              chemspider_id: datum.chemspider_id,
-              ecmdb: datum.ecmdb_id,
-              foodb: datum.foodb_id,
-              hmdb: datum.hmdb_id,
-              kegg: datum.kegg_id,
-              pubchem: datum.pubchem_compound_id,
-              ymdb: datum.ymdb_id
-            }
-          };
-
-          newMetaboliteMetadataDict[datum.inchikey] = new_dict;
-
-          for (let i = concs.concentration.length - 1; i >= 0; i--) {
-            let growth_phase = "";
-            let organism = "Escherichia coli";
-
-            if (concs.growth_status[i] != null) {
-              if (
-                concs.growth_status[i].toLowerCase().indexOf("stationary") >= 0
-              ) {
-                growth_phase = "Stationary Phase";
-              } else if (
-                concs.growth_status[i].toLowerCase().indexOf("log") >= 0
-              ) {
-                growth_phase = "Log Phase";
-              }
-            }
-            if ("strain" in concs) {
-              if (concs.strain != null) {
-                if (concs.strain[i] != null) {
-                  organism = organism + " " + concs.strain[i];
-                }
-              }
-            }
-
-            f_concentrations.push({
-              name: datum.name,
-              concentration: parseFloat(concs.concentration[i]),
-              units: concs.concentration_units[i],
-              error: concs.error[i],
-              growth_phase: growth_phase,
-              organism: organism,
-              growth_conditions: concs.growth_system[i],
-              growth_media: concs.growth_media[i],
-              taxonomic_proximity: datum.taxon_distance,
-              tanimoto_similarity: datum.tanimoto_similarity,
-              source_link: { source: "ecmdb", id: datum.m2m_id }
-            });
-          }
-        }
-      }
-
-      for (let n = data[1].length; n > 0; n--) {
-        const datum = data[1][n - 1];
-
-        if (datum.tanimoto_similarity < 1) {
-          this.setState({ tanimoto: true });
-          tani = true;
-        }
-
-        const concs = datum.concentrations;
-        if (concs != null) {
-          if (!Array.isArray(concs.concentration)) {
-            for (const key in concs) {
-              // check if the property/key is defined in the object itself, not in parent
-              if (Object.prototype.hasOwnProperty.call(concs, key)) {
-                concs[key] = [concs[key]];
-              }
-            }
-          }
-
-          let new_dict = newMetaboliteMetadataDict[datum.inchikey];
-          if (!new_dict) {
-            new_dict = {};
-          }
-
-          const chargeEl = datum.property.find(
-            el => el["kind"] === "formal_charge"
-          );
-          const physiologicalChargeEl = datum.property.find(
-            el => el["kind"] === "physiological_charge"
-          );
-
-          new_dict = {
-            name: datum.name,
-            synonyms: datum.synonyms.synonym,
-            description: datum.description,
-            pathways: datum.pathways.pathway,
-            cellularLocations: datum.cellular_locations.cellular_location,
-            inchi: datum.inchi,
-            inchiKey: datum.inchikey,
-            smiles: datum.smiles,
-            formula: formatChemicalFormula(datum.chemical_formula),
-            molWt: datum.average_molecular_weight,
-            charge: chargeEl !== undefined ? chargeEl.value : null,
-            physiologicalCharge:
-              physiologicalChargeEl !== undefined
-                ? physiologicalChargeEl.value
-                : null,
-            dbLinks: {
-              biocyc: datum.biocyc_id,
-              cas: datum.cas_registry_number,
-              chebi: datum.chebi_id,
-              chemspider_id: datum.chemspider_id,
-              ecmdb: datum.ecmdb_id,
-              foodb: datum.foodb_id,
-              hmdb: datum.hmdb_id,
-              kegg: datum.kegg_id,
-              pubchem: datum.pubchem_compound_id,
-              ymdb: datum.ymdb_id
-            }
-          };
-
-          newMetaboliteMetadataDict[datum.inchikey] = new_dict;
-
-          for (let i = concs.concentration.length - 1; i >= 0; i--) {
-            let growth_phase = "";
-            let organism = datum.species;
-            if ("strain" in concs) {
-              if (concs.strain != null) {
-                if (concs.strain[i] != null) {
-                  organism = organism + " " + concs.strain[i];
-                }
-              }
-            }
-
-            f_concentrations.push({
-              name: datum.name,
-              concentration: parseFloat(concs.concentration[i]),
-              units: concs.concentration_units[i],
-              error: concs.error[i],
-              growth_phase: growth_phase,
-              organism: organism,
-              growth_media: concs.growth_media[i],
-              taxonomic_proximity: datum.taxon_distance,
-              tanimoto_similarity: datum.tanimoto_similarity,
-              source_link: { source: "ymdb", id: datum.ymdb_id }
-            });
-          }
-        }
-      }
-
-      if (tani) {
-        //this.props.dispatch(abstractMolecule(true))
-        this.setState({ tanimoto: true });
-      } else {
-        //this.props.dispatch(abstractMolecule(false))
-        this.setState({ tanimoto: false });
-      }
-
-      const metadata = Object.values(newMetaboliteMetadataDict);
-
-      this.props.dispatch(setTotalData(f_concentrations));
-      this.setState({
-        metadata: metadata
-        //displayed_data: f_concentrations
-      });
-    } else {
-      //alert('Nothing Found');
+    if (data == null) {
+      return;
     }
+
+    let metadata = null;
+    for (let iSource = 0; iSource < data.length - 1; iSource++) {
+      for (const met of data[iSource]) {
+        metadata = {};
+
+        metadata.name = met.name;
+        metadata.synonyms = met.synonyms.synonym;
+        metadata.description = met.description;
+
+        metadata.smiles = met.smiles;
+        metadata.inchi = met.inchi;
+        metadata.inchiKey = met.inchikey;
+        metadata.formula = formatChemicalFormula(met.chemical_formula);
+        metadata.molWt = met.average_molecular_weight;
+        metadata.charge = met.property.find(
+          el => el["kind"] === "formal_charge"
+        ).value;
+        metadata.physiologicalCharge = met.property.find(
+          el => el["kind"] === "physiological_charge"
+        ).value;
+
+        metadata.pathways = met.pathways.pathway;
+        metadata.cellularLocations = met.cellular_locations.cellular_location;
+        metadata.dbLinks = {
+          biocyc: met.biocyc_id,
+          cas: met.cas_registry_number,
+          chebi: met.chebi_id,
+          chemspider_id: met.chemspider_id,
+          ecmdb: met.m2m_id,
+          foodb: met.foodb_id,
+          hmdb: met.hmdb_id,
+          kegg: met.kegg_id,
+          pubchem: met.pubchem_compound_id,
+          ymdb: met.ymdb_id
+        };
+        break;
+      }
+      if (metadata != null) {
+        break;
+      }
+    }
+
+    const allConcs = [];
+    for (let iSource = 0; iSource < data.length - 1; iSource++) {
+      for (const met of data[iSource]) {
+        const species = "species" in met ? met.species : "Escherichia coli";
+        const metConcs = met.concentrations;
+        for (let iConc = 0; iConc < metConcs.concentration.length; iConc++) {
+          const conc = {
+            name: met.name,
+            tanimoto_similarity: met.tanimoto_similarity,
+            concentration: parseFloat(metConcs.concentration[iConc]),
+            units: metConcs.concentration_units[iConc],
+            error: metConcs.error[iConc],
+            organism:
+              "strain" in metConcs && metConcs.strain[iConc]
+                ? species + " " + metConcs.strain[iConc]
+                : species,
+            taxonomic_proximity: met.taxon_distance,
+            growth_phase:
+              "growth_status" in metConcs
+                ? metConcs.growth_status[iConc]
+                : null,
+            growth_media:
+              "growth_media" in metConcs ? metConcs.growth_media[iConc] : null,
+            growth_conditions:
+              "growth_system" in metConcs
+                ? metConcs.growth_system[iConc]
+                : null,
+            source_link:
+              "m2m_id" in met
+                ? { source: "ecmdb", id: met.m2m_id }
+                : { source: "ymdb", id: met.ymdb_id }
+          };
+          if (conc.growth_phase && conc.growth_phase.indexOf(" Phase") >= 0) {
+            conc.growth_phase = conc.growth_phase.split(" Phase")[0];
+          }
+          if (!isNaN(conc.concentration)) {
+            allConcs.push(conc);
+          }
+        }
+      }
+    }
+
+    this.props.dispatch(setTotalData(allConcs));
+    this.setState({ metadata: metadata });
   }
 
   onFirstDataRendered(params) {
@@ -471,8 +336,8 @@ class Metabolite extends Component {
 
   onRowSelected(event) {
     const selectedRows = [];
-    for (let i = event.api.getSelectedNodes().length - 1; i >= 0; i--) {
-      selectedRows.push(event.api.getSelectedNodes()[i].data);
+    for (const selectedNode of event.api.getSelectedNodes()) {
+      selectedRows.push(selectedNode.data);
     }
     this.props.dispatch(setSelectedData(selectedRows));
   }
@@ -489,7 +354,7 @@ class Metabolite extends Component {
   }
 
   render() {
-    if (this.state.metadata.length === 0 || this.props.measuredConcs == null) {
+    if (!this.state.metadata || this.props.measuredConcs == null) {
       return (
         <div className="loader-full-content-container">
           <div className="loader"></div>
@@ -501,7 +366,6 @@ class Metabolite extends Component {
       <div className="content-container biochemical-entity-scene biochemical-entity-metabolite-scene">
         <MetadataSection
           metadata={this.state.metadata}
-          abstract={this.state.tanimoto}
           metabolite={this.props.match.params.metabolite}
           organism={this.props.match.params.organism}
         />

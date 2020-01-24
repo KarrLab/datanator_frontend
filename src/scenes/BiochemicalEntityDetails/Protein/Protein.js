@@ -10,7 +10,6 @@ import {
   setTotalData,
   setSelectedData
 } from "~/data/actions/resultsAction";
-import { setNewUrl, abstractMolecule } from "~/data/actions/pageAction";
 import { AgGridReact } from "@ag-grid-community/react";
 import { AllModules } from "@ag-grid-enterprise/all-modules";
 import StatsToolPanel from "./StatsToolPanel.js";
@@ -157,7 +156,6 @@ Object.size = function(obj) {
 @connect(store => {
   return {
     //currentUrl: store.page.url,
-    moleculeAbstract: store.page.moleculeAbstract,
     totalData: store.results.totalData
   };
 }) //the names given here will be the names of props

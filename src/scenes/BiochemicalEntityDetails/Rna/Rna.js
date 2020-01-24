@@ -10,7 +10,6 @@ import {
   setTotalData,
   setSelectedData
 } from "~/data/actions/resultsAction";
-import { setNewUrl, abstractMolecule } from "~/data/actions/pageAction";
 import { AgGridReact } from "@ag-grid-community/react";
 import { AllModules } from "@ag-grid-enterprise/all-modules";
 import StatsToolPanel from "./StatsToolPanel.js";

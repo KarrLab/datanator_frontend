@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { abstractMolecule } from "~/data/actions/pageAction";
 
 import proteinIcon from "~/scenes/Home/images/protein.svg";
 

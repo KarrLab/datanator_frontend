@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import { abstractMolecule } from "~/data/actions/pageAction";
 
 const sprintf = require("sprintf-js").sprintf;
 
@@ -61,8 +59,7 @@ const DATABASES = {
 class MetadataSection extends Component {
   static propTypes = {
     metabolite: PropTypes.string.isRequired,
-    metadata: PropTypes.array.isRequired,
-    abstract: PropTypes.bool.isRequired,
+    metadata: PropTypes.object.isRequired,
     organism: PropTypes.string,
     dispatch: PropTypes.func
   };
@@ -70,39 +67,9 @@ class MetadataSection extends Component {
   render() {
     let metadata = this.props.metadata;
 
-    if (metadata.length === 0) {
+    if (!metadata) {
       return <div></div>;
     }
-
-    if (this.props.abstract === true) {
-      const descriptions = [];
-      for (const metaDatum of metadata) {
-        descriptions.push(
-          <div className="metadata-description-abstract">
-            <p>
-              <b>Name:</b>{" "}
-              <Link
-                to={"/metabolite/" + metaDatum.name + "/" + this.props.organism}
-              >
-                {metaDatum.name}
-              </Link>
-            </p>
-            <p>
-              <b>Formula:</b> {metaDatum.formula}
-            </p>
-          </div>
-        );
-      }
-
-      return (
-        <div className="content-block">
-          <h2 className="content-block-heading">Similar metabolites</h2>
-          <div className="content-block-content">{descriptions}</div>
-        </div>
-      );
-    }
-
-    metadata = metadata[0];
 
     // physical properties
     const physicalProps = [
@@ -140,7 +107,7 @@ class MetadataSection extends Component {
     const dbLinks = [];
     for (const dbKey in metadata.dbLinks) {
       const dbId = metadata.dbLinks[dbKey];
-      if (dbId && dbKey in DATABASES) {
+      if (dbId != null && dbId !== undefined && dbKey in DATABASES) {
         const db = DATABASES[dbKey];
         dbLinks.push(
           <li key={dbKey}>
@@ -193,14 +160,6 @@ class MetadataSection extends Component {
                   (acc, x) => (acc === null ? [x] : [acc, x]),
                   null
                 )}
-                <button
-                  type="button"
-                  onClick={() => {
-                    this.props.dispatch(abstractMolecule(true));
-                  }}
-                >
-                  Include Structurally Similar Molecules
-                </button>
               </div>
             </div>
           </div>
