@@ -17,11 +17,12 @@ class TaxonomyFilter extends Component {
     super(props);
 
     this.state = {
-      filter: "",
-      numToNode: null,
-      marks: []
+      marks: [],
+      selectedMarkValue: 0,
+      maxDistance: null
     };
 
+    this.markValueToDistance = null;
     this.filterModel = null;
 
     this.onChange = this.onChange.bind(this);
@@ -49,25 +50,27 @@ class TaxonomyFilter extends Component {
   setMarks() {
     const lineage = this.props.agGridReact.props.lineage;
     const marks = [];
-    const numToNode = {};
-    for (let i = 0; i < lineage.length; i++) {
-      numToNode[i] = Object.values(lineage[i])[0];
+    this.markValueToDistance = {};
+    for (let iLineage = 0; iLineage < lineage.length; iLineage++) {
+      const taxon = Object.keys(lineage[iLineage])[0];
+      const distance = Object.values(lineage[iLineage])[0];
       marks.push({
-        value: i,
-        label: Object.keys(lineage[i])[0]
+        value: iLineage,
+        label: taxon
       });
+      this.markValueToDistance[iLineage] = distance;
     }
 
     this.setState({
-      numToNode: numToNode,
-      marks: marks
+      marks: marks,
+      selectedMarkValue: Math.max(marks.length - 1)
     });
   }
 
   doesFilterPass(params) {
-    const filter = this.state.filter;
-    const value = this.props.valueGetter(params.node);
-    return value <= filter;
+    const maxDistance = this.state.maxDistance;
+    const distance = this.props.valueGetter(params.node);
+    return distance <= maxDistance;
   }
 
   getModel() {
@@ -80,12 +83,13 @@ class TaxonomyFilter extends Component {
 
   afterGuiAttached() {}
 
-  onChange(event, newValue) {
-    let filter = this.state.numToNode[newValue];
-    if (this.state.filter !== filter) {
+  onChange(event, selectedMarkValue) {
+    const maxDistance = this.markValueToDistance[selectedMarkValue];
+    if (this.state.maxDistance !== maxDistance) {
       this.setState(
         {
-          filter: filter
+          selectedMarkValue: selectedMarkValue,
+          maxDistance: maxDistance
         },
         () => {
           this.props.filterChangedCallback();
@@ -96,13 +100,16 @@ class TaxonomyFilter extends Component {
 
   render() {
     const marks = this.state.marks;
-    return (
+    const max = Math.max(0, marks.length - 1);
+    const selectedMarkValue = this.state.selectedMarkValue;
+    const sliderContainer = (
       <div className="tool-panel-slider tool-panel-normal-slider tool-panel-vertical-slider taxonomy-tool-panel-slider">
         <Slider
           min={0}
-          max={marks.length - 1}
+          max={max}
           step={1}
           marks={marks}
+          value={selectedMarkValue}
           orientation="vertical"
           valueLabelDisplay={"on"}
           onChange={this.onChange}
@@ -111,6 +118,7 @@ class TaxonomyFilter extends Component {
         />
       </div>
     );
+    return sliderContainer;
   }
 }
 

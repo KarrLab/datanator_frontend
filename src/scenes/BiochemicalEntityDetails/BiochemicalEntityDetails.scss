@@ -138,14 +138,18 @@
     .MuiSlider-markActive {
       height: 2px;
     }
+
+    .MuiSlider-markLabel {
+      transform: translateY(40%);
+    }
   }
 
   /* taxonomy filter */
   .taxonomy-tool-panel-slider {
     height: 150px;
     width: 100%;
-    margin-top: 0.5rem;
-    margin-bottom: 0.875rem;
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
 
     .MuiSlider-valueLabel {
       display: none;

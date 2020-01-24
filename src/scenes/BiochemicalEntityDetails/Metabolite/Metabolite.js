@@ -217,15 +217,17 @@ class Metabolite extends Component {
     const abs_default = false;
     const metabolite = this.props.match.params.metabolite;
     const organism = this.props.match.params.organism;
-    getDataFromApi([
-      "metabolites/concentration/?abstract=" +
-        abs_default +
-        "&metabolite=" +
-        metabolite +
-        (organism
-          ? "&species=" + organism
-          : "")
-    ], {}, "Unable to retrieve data about metabolite '" + metabolite + "'.")
+    getDataFromApi(
+      [
+        "metabolites/concentration/?abstract=" +
+          abs_default +
+          "&metabolite=" +
+          metabolite +
+          (organism ? "&species=" + organism : "")
+      ],
+      {},
+      "Unable to retrieve data about metabolite '" + metabolite + "'."
+    )
       .then(response => {
         this.formatData(response.data);
       })
@@ -234,10 +236,11 @@ class Metabolite extends Component {
         this.setState({ orig_json: null });
       });
     if (organism) {
-      getDataFromApi([
-        "taxon",
-        "canon_rank_distance_by_name/?name=" + organism
-      ], {}, "Unable to obtain taxonomic information about '" + organism + "'.").then(response => {
+      getDataFromApi(
+        ["taxon", "canon_rank_distance_by_name/?name=" + organism],
+        {},
+        "Unable to obtain taxonomic information about '" + organism + "'."
+      ).then(response => {
         this.setState({ lineage: response.data });
       });
     }
@@ -287,8 +290,11 @@ class Metabolite extends Component {
             smiles: datum.smiles,
             formula: formatChemicalFormula(datum.chemical_formula),
             molWt: datum.average_molecular_weight,
-            charge: datum.property.find(el => el["kind"] == "formal_charge").value,
-            physiologicalCharge: datum.property.find(el => el["kind"] == "physiological_charge").value,
+            charge: datum.property.find(el => el["kind"] === "formal_charge")
+              .value,
+            physiologicalCharge: datum.property.find(
+              el => el["kind"] === "physiological_charge"
+            ).value,
             dbLinks: {
               biocyc: datum.biocyc_id,
               cas: datum.cas_registry_number,
@@ -299,7 +305,7 @@ class Metabolite extends Component {
               hmdb: datum.hmdb_id,
               kegg: datum.kegg_id,
               pubchem: datum.pubchem_compound_id,
-              ymdb: datum.ymdb_id,
+              ymdb: datum.ymdb_id
             }
           };
 
@@ -368,9 +374,13 @@ class Metabolite extends Component {
           if (!new_dict) {
             new_dict = {};
           }
-          
-          const chargeEl = datum.property.find(el => el["kind"] == "formal_charge");
-          const physiologicalChargeEl = datum.property.find(el => el["kind"] == "physiological_charge");
+
+          const chargeEl = datum.property.find(
+            el => el["kind"] === "formal_charge"
+          );
+          const physiologicalChargeEl = datum.property.find(
+            el => el["kind"] === "physiological_charge"
+          );
 
           new_dict = {
             name: datum.name,
@@ -383,8 +393,11 @@ class Metabolite extends Component {
             smiles: datum.smiles,
             formula: formatChemicalFormula(datum.chemical_formula),
             molWt: datum.average_molecular_weight,
-            charge: (chargeEl !== undefined ? chargeEl.value : null),
-            physiologicalCharge: (physiologicalChargeEl !== undefined ? physiologicalChargeEl.value : null),
+            charge: chargeEl !== undefined ? chargeEl.value : null,
+            physiologicalCharge:
+              physiologicalChargeEl !== undefined
+                ? physiologicalChargeEl.value
+                : null,
             dbLinks: {
               biocyc: datum.biocyc_id,
               cas: datum.cas_registry_number,
@@ -395,7 +408,7 @@ class Metabolite extends Component {
               hmdb: datum.hmdb_id,
               kegg: datum.kegg_id,
               pubchem: datum.pubchem_compound_id,
-              ymdb: datum.ymdb_id,
+              ymdb: datum.ymdb_id
             }
           };
 
