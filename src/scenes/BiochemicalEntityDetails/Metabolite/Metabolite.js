@@ -76,100 +76,6 @@ const defaultColDef = {
   suppressMenu: true
 };
 
-const allColumnDefs = [
-  {
-    headerName: "Concentration (µM)",
-    field: "concentration",
-    filter: "agNumberColumnFilter",
-    checkboxSelection: true,
-    headerCheckboxSelection: true,
-    headerCheckboxSelectionFilteredOnly: true
-  },
-  {
-    headerName: "Uncertainty (µM)",
-    field: "error",
-    valueGetter: params => {
-      const val = params.data.error;
-      return val === 0 ? null : val;
-    },
-    hide: true,
-    sortable: true,
-    filter: "agNumberColumnFilter"
-  },
-  {
-    headerName: "Metabolite",
-    field: "name",
-    filter: "agSetColumnFilter",
-    menuTabs: ["filterMenuTab"]
-  },
-  {
-    headerName: "Chemical similarity",
-    field: "tanimoto_similarity",
-    hide: true,
-    filter: "tanimotoFilter"
-  },
-  {
-    headerName: "Organism",
-    field: "organism",
-    filter: "agSetColumnFilter"
-  },
-  {
-    headerName: "Taxonomic distance",
-    field: "taxonomic_proximity",
-    hide: true,
-    filter: "taxonomyFilter",
-    valueFormatter: params => {
-      const value = params.value;
-      return value;
-    }
-  },
-  {
-    headerName: "Growth phase",
-    field: "growth_phase",
-    filter: "agSetColumnFilter",
-    hide: true
-  },
-  {
-    headerName: "Conditions",
-    field: "growth_conditions",
-    filter: "agTextColumnFilter",
-    hide: true
-  },
-  {
-    headerName: "Media",
-    field: "growth_media",
-    filter: "agTextColumnFilter",
-    hide: true
-  },
-  {
-    headerName: "Source",
-    field: "source_link",
-    cellRenderer: function(params) {
-      if (params.value["source"] === "ecmdb") {
-        return (
-          '<a href="http://ecmdb.ca/compounds/' +
-          params.value.id +
-          '" target="_blank" rel="noopener noreferrer">' +
-          "ECMDB" +
-          "</a>"
-        );
-      } else {
-        return (
-          '<a href="http://www.ymdb.ca/compounds/' +
-          params.value.id +
-          '" target="_blank" rel="noopener noreferrer">' +
-          "YMDB" +
-          "</a>"
-        );
-      }
-    },
-    filter: "agSetColumnFilter",
-    filterValueGetter: params => {
-      return params.data.source_link.source.toUpperCase();
-    }
-  }
-];
-
 @connect(store => {
   return {
     measuredConcs: store.results.totalData
@@ -183,6 +89,109 @@ class Metabolite extends Component {
 
   constructor(props) {
     super(props);
+
+    this.allColumnDefs = [
+      {
+        headerName: "Concentration (µM)",
+        field: "concentration",
+        filter: "agNumberColumnFilter",
+        checkboxSelection: true,
+        headerCheckboxSelection: true,
+        headerCheckboxSelectionFilteredOnly: true
+      },
+      {
+        headerName: "Uncertainty (µM)",
+        field: "error",
+        valueGetter: params => {
+          const val = params.data.error;
+          return val === 0 ? null : val;
+        },
+        hide: true,
+        sortable: true,
+        filter: "agNumberColumnFilter"
+      },
+      {
+        headerName: "Metabolite",
+        field: "name",
+        filter: "agSetColumnFilter",
+        menuTabs: ["filterMenuTab"],
+        cellRenderer: params => {
+          const name = params.value;
+          let url = "/metabolite/" + name + "/";
+          if (this.props.match.params.organism) {
+            url += this.props.match.params.organism + "/";
+          }
+          return '<a href="' + url + '">' + name + "</a>";
+        }
+      },
+      {
+        headerName: "Chemical similarity",
+        field: "tanimoto_similarity",
+        hide: true,
+        filter: "tanimotoFilter"
+      },
+      {
+        headerName: "Organism",
+        field: "organism",
+        filter: "agSetColumnFilter"
+      },
+      {
+        headerName: "Taxonomic distance",
+        field: "taxonomic_proximity",
+        hide: true,
+        filter: "taxonomyFilter",
+        valueFormatter: params => {
+          const value = params.value;
+          return value;
+        }
+      },
+      {
+        headerName: "Growth phase",
+        field: "growth_phase",
+        filter: "agSetColumnFilter",
+        hide: true
+      },
+      {
+        headerName: "Conditions",
+        field: "growth_conditions",
+        filter: "agTextColumnFilter",
+        hide: true
+      },
+      {
+        headerName: "Media",
+        field: "growth_media",
+        filter: "agTextColumnFilter",
+        hide: true
+      },
+      {
+        headerName: "Source",
+        field: "source_link",
+        cellRenderer: function(params) {
+          if (params.value["source"] === "ecmdb") {
+            return (
+              '<a href="http://ecmdb.ca/compounds/' +
+              params.value.id +
+              '" target="_blank" rel="noopener noreferrer">' +
+              "ECMDB" +
+              "</a>"
+            );
+          } else {
+            return (
+              '<a href="http://www.ymdb.ca/compounds/' +
+              params.value.id +
+              '" target="_blank" rel="noopener noreferrer">' +
+              "YMDB" +
+              "</a>"
+            );
+          }
+        },
+        filter: "agSetColumnFilter",
+        filterValueGetter: params => {
+          return params.data.source_link.source.toUpperCase();
+        }
+      }
+    ];
+
     this.state = {
       metadata: null,
       lineage: [],
@@ -332,11 +341,11 @@ class Metabolite extends Component {
   setColumnDefs() {
     let columnDefs;
     if (this.props.match.params.organism) {
-      columnDefs = allColumnDefs;
+      columnDefs = this.allColumnDefs;
     } else {
-      columnDefs = allColumnDefs
+      columnDefs = this.allColumnDefs
         .slice(0, 4)
-        .concat(allColumnDefs.slice(6, allColumnDefs.length));
+        .concat(this.allColumnDefs.slice(6, this.allColumnDefs.length));
     }
     this.setState({
       columnDefs: columnDefs
