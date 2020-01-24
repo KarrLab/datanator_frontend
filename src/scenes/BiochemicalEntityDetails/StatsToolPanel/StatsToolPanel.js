@@ -149,22 +149,24 @@ class StatsToolPanel extends Component {
           </div>
 
           <table className="summary">
-            <tr>
-              <th>Mean</th>
-              <td>{this.state.mean}</td>
-            </tr>
-            <tr>
-              <th>Median</th>
-              <td>{this.state.median}</td>
-            </tr>
-            <tr>
-              <th>Std dev</th>
-              <td>{this.state.stdDev}</td>
-            </tr>
-            <tr>
-              <th>Range</th>
-              <td>{this.state.range}</td>
-            </tr>
+            <tbody>
+              <tr>
+                <th>Mean</th>
+                <td>{this.state.mean}</td>
+              </tr>
+              <tr>
+                <th>Median</th>
+                <td>{this.state.median}</td>
+              </tr>
+              <tr>
+                <th>Std dev</th>
+                <td>{this.state.stdDev}</td>
+              </tr>
+              <tr>
+                <th>Range</th>
+                <td>{this.state.range}</td>
+              </tr>
+            </tbody>
           </table>
         </div>
       );

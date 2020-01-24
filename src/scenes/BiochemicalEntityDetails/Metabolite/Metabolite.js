@@ -76,7 +76,7 @@ const defaultColDef = {
   suppressMenu: true
 };
 
-const columnDefs = [
+const allColumnDefs = [
   {
     headerName: "Concentration (µM)",
     field: "concentration",
@@ -185,12 +185,14 @@ class Metabolite extends Component {
     super(props);
     this.state = {
       metadata: null,
-      lineage: []
+      lineage: [],
+      columnDefs: null
     };
 
     this.formatData = this.formatData.bind(this);
   }
   componentDidMount() {
+    this.setColumnDefs();
     this.getDataFromApi();
   }
 
@@ -200,6 +202,7 @@ class Metabolite extends Component {
         prevProps.match.params.metabolite ||
       this.props.match.params.organism !== prevProps.match.params.organism
     ) {
+      this.setColumnDefs();
       this.setState({ metadata: null });
       this.getDataFromApi();
     }
@@ -326,6 +329,20 @@ class Metabolite extends Component {
     this.setState({ metadata: metadata });
   }
 
+  setColumnDefs() {
+    let columnDefs;
+    if (this.props.match.params.organism) {
+      columnDefs = allColumnDefs;
+    } else {
+      columnDefs = allColumnDefs
+        .slice(0, 4)
+        .concat(allColumnDefs.slice(6, allColumnDefs.length));
+    }
+    this.setState({
+      columnDefs: columnDefs
+    });
+  }
+
   onFirstDataRendered(params) {
     const allColumnIds = [];
     params.columnApi.getAllColumns().forEach(function(column) {
@@ -377,7 +394,7 @@ class Metabolite extends Component {
             frameworkComponents={frameworkComponents}
             sideBar={sideBar}
             defaultColDef={defaultColDef}
-            columnDefs={columnDefs}
+            columnDefs={this.state.columnDefs}
             rowData={this.props.measuredConcs}
             rowSelection="multiple"
             groupSelectsChildren={true}
