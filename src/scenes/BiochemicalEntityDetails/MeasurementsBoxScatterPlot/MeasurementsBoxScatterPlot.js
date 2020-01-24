@@ -4,7 +4,6 @@ import Chart from "chart.js";
 import "chartjs-chart-box-and-violin-plot/build/Chart.BoxPlot";
 
 import * as colorPalette from "~/colors.scss";
-import "./MeasurementsBoxScatterPlot.scss";
 
 export default class MeasurementsBoxScatterPlot extends Component {
   static propTypes = {
@@ -29,7 +28,7 @@ export default class MeasurementsBoxScatterPlot extends Component {
             backgroundColor: [],
             borderColor: [],
             borderWidth: 1,
-            outlierColor: colorPalette["text-lighter"],
+            outlierColor: colorPalette["text-lightest"],
             padding: 10,
             itemRadius: 0,
             data: [],
@@ -40,6 +39,7 @@ export default class MeasurementsBoxScatterPlot extends Component {
       options: {
         events: [],
         responsive: true,
+        maintainAspectRatio: false,
         legend: {
           display: false
         },
@@ -73,8 +73,7 @@ export default class MeasurementsBoxScatterPlot extends Component {
     );
     chartConfig.data.datasets[0].borderColor.push(colorPalette["primary"]);
     chartConfig.data.datasets.push({
-      backgroundColor: colorPalette["text"],
-      borderColor: colorPalette["text"],
+      borderColor: colorPalette["text-light"],
       data: dataForScatterPlot,
       type: "scatter",
       order: 1
