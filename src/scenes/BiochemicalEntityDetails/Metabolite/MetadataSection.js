@@ -6,8 +6,8 @@ const sprintf = require("sprintf-js").sprintf;
 const STRUCTURE_IMG_URL =
   "http://cactus.nci.nih.gov/chemical/structure/%s%s/image" +
   "?format=png" +
-  "&width=500" +
-  "&height=500" +
+  "&width=100" +
+  "&height=100" +
   "&linewidth=2" +
   "&symbolfontsize=16" +
   "&bgcolor=transparent" +
@@ -88,9 +88,9 @@ class MetadataSection extends Component {
       })
       .map(prop => {
         return (
-          <p key={prop.name}>
+          <li key={prop.name}>
             <b>{prop.name}:</b> {prop.value}
-          </p>
+          </li>
         );
       });
 
@@ -124,6 +124,13 @@ class MetadataSection extends Component {
       }
     }
 
+    let cellularLocations;
+    if (Array.isArray(metadata.cellularLocations)) {
+      cellularLocations = metadata.cellularLocations.join(', ');
+    } else if (metadata.cellularLocations) {
+      cellularLocations = metadata.cellularLocations;
+    }
+
     // render
     return (
       <div>
@@ -133,34 +140,36 @@ class MetadataSection extends Component {
         {metadata.description && (
           <div className="content-block">
             <h2 className="content-block-heading">Description</h2>
-            <div className="content-block-content">{metadata.description}</div>
+            <div className="content-block-content icon-description">
+              {structure && (
+              <img
+                src={sprintf(
+                  STRUCTURE_IMG_URL,
+                  structure.type,
+                  structure.value
+                )}
+                className="entity-scene-icon hover-zoom"
+                alt="Chemical structure"
+                aria-label="Chemical structure"
+              />
+              )}
+              <div>
+                {metadata.description}
+              </div>
+            </div>
           </div>
         )}
 
         {physicalProps.length > 0 && (
           <div className="content-block">
             <h2 className="content-block-heading">Physical properties</h2>
-            <div className="content-block-content img-description">
-              {structure && (
-                <div className="vertical-center">
-                  <img
-                    src={sprintf(
-                      STRUCTURE_IMG_URL,
-                      structure.type,
-                      structure.value
-                    )}
-                    className="hover-zoom"
-                    alt="Chemical structure"
-                    aria-label="Chemical structure"
-                  />
-                </div>
-              )}
-              <div className="metadata-description">
+            <div className="content-block-content">
+              <ul className="key-value-list">
                 {physicalProps.reduce(
                   (acc, x) => (acc === null ? [x] : [acc, x]),
                   null
                 )}
-              </div>
+              </ul>
             </div>
           </div>
         )}
@@ -171,8 +180,9 @@ class MetadataSection extends Component {
           <div className="content-block">
             <h2 className="content-block-heading">Biological context</h2>
             <div className="content-block-content">
+              <ul class="key-value-list key-value-list-spaced">
               {metadata.pathways && metadata.pathways.length > 0 && (
-                <p>
+                <li>
                   <b>Pathways:</b>{" "}
                   {metadata.pathways
                     .map(el => {
@@ -191,16 +201,15 @@ class MetadataSection extends Component {
                       );
                     })
                     .reduce((acc, x) => (acc === null ? [x] : [acc, x]), null)}
-                </p>
+                </li>
               )}
 
-              {metadata.cellularLocations &&
-                metadata.cellularLocations.length > 0 && (
-                  <p>
-                    <b>Localizations:</b>{" "}
-                    {metadata.cellularLocations.join(", ")}
-                  </p>
+              {cellularLocations && (
+                  <li>
+                    <b>Localizations:</b>{" "}{cellularLocations}
+                  </li>
                 )}
+              </ul>
             </div>
           </div>
         )}
@@ -209,7 +218,7 @@ class MetadataSection extends Component {
           <div className="content-block">
             <h2 className="content-block-heading">Database links</h2>
             <div className="content-block-content">
-              <ul>
+              <ul className="key-value-list">
                 {dbLinks.reduce(
                   (acc, x) => (acc === null ? [x] : [acc, x]),
                   null

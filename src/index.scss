@@ -71,6 +71,15 @@ a:hover {
   }
 }
 
+/* page title */
+.page-title {
+  font-size: 1.75rem;
+  color: $color-primary;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid $color-border;
+  margin-bottom: 3rem;
+}
+
 /* page loader */
 .loader {
   border: 16px solid $color-border;
@@ -155,7 +164,7 @@ a:hover {
 /* block section (section with a heading bar, background color, and border) */
 .section {
   .content-block-heading {
-    color: $color-primary;
+    color: $color-accent;
   }
 }
 

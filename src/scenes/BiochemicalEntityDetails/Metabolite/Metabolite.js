@@ -296,7 +296,7 @@ class Metabolite extends Component {
             units: metConcs.concentration_units[iConc],
             error: metConcs.error[iConc],
             organism:
-              "strain" in metConcs && metConcs.strain[iConc]
+              Object.prototype.hasOwnProperty(metConcs, "strain") && metConcs.strain[iConc]
                 ? species + " " + metConcs.strain[iConc]
                 : species,
             taxonomic_proximity: met.taxon_distance,
@@ -380,7 +380,7 @@ class Metabolite extends Component {
     }
 
     return (
-      <div className="content-container biochemical-entity-scene biochemical-entity-metabolite-scene">
+      <div className="content-container section biochemical-entity-scene biochemical-entity-metabolite-scene">
         <MetadataSection
           metadata={this.state.metadata}
           metabolite={this.props.match.params.metabolite}

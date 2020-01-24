@@ -25,32 +25,35 @@ class MetadataSection extends Component {
       title = "Gene name not found"
     }
     return (
-      <div className="content-block">
-        <h2 className="content-block-heading">{title}</h2>
-        <div className="content-block-content img-description">
-          <div className="vertical-center">
-            <object
-              data={rnaIcon}
-              className="hover-zoom"
-              alt="RNA icon"
-              aria-label="RNA icon"
-            />
-          </div>
+      <div>
+        <h1 className="page-title">{title}</h1>
+        <div className="content-block">
+          <h2 className="content-block-heading">Properties</h2>
+          <div className="content-block-content img-description">
+            <div className="vertical-center">
+              <object
+                data={rnaIcon}
+                className="entity-scene-icon hover-zoom"
+                alt="RNA icon"
+                aria-label="RNA icon"
+              />
+            </div>
 
-          {(rnaMetadata.gene_name || rnaMetadata.protein_name) && (
-          <div className="metadata-description">
-            {rnaMetadata.gene_name && (
-            <p>
-              <b>Gene Name:</b> {rnaMetadata.gene_name}
-            </p>
-            )}
-            {rnaMetadata.protein_name && (
-            <p>
-              <b>Protein Name:</b> {rnaMetadata.protein_name}
-            </p>
+            {(rnaMetadata.gene_name || rnaMetadata.protein_name) && (
+            <div className="metadata-description">
+              {rnaMetadata.gene_name && (
+              <p>
+                <b>Gene Name:</b> {rnaMetadata.gene_name}
+              </p>
+              )}
+              {rnaMetadata.protein_name && (
+              <p>
+                <b>Protein Name:</b> {rnaMetadata.protein_name}
+              </p>
+              )}
+            </div>
             )}
           </div>
-          )}
         </div>
       </div>
     );

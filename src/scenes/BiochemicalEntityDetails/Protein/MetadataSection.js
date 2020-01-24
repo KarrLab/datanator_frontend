@@ -46,39 +46,43 @@ class MetadataSection extends Component {
     }
 
     return (
-      <div className="content-block">
-        <h2 className="content-block-heading">{proteinMetadata.ko_name[0]}</h2>
-        <div className="content-block-content img-description">
-          <div className="vertical-center">
-            <object
-              data={proteinIcon}
-              className="hover-zoom"
-              alt="Protein icon"
-              aria-label="Protein icon"
-            />
-          </div>
+      <div>
+        <h1 className="page-title">{proteinMetadata.ko_name[0]}</h1>
 
-          <div className="metadata-description">
-            <p>
-              <b>Name:</b> {proteinMetadata.ko_name[0]}
-            </p>
-            <p>
-              <b>KO Number:</b>{" "}
-              <a
-                href={
-                  "https://www.genome.jp/dbget-bin/www_bget?ko:" +
-                  proteinMetadata.ko_number
-                }
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {" "}
-                {proteinMetadata.ko_number}
-              </a>
-            </p>
-            <p>
-              <b>Uniprot IDs:</b> {uniprot_links}
-            </p>
+        <div className="content-block">
+          <h2 className="content-block-heading">Properties</h2>
+          <div className="content-block-content img-description">
+            <div className="vertical-center">
+              <object
+                data={proteinIcon}
+                className="entity-scene-icon hover-zoom"
+                alt="Protein icon"
+                aria-label="Protein icon"
+              />
+            </div>
+
+            <div className="metadata-description">
+              <p>
+                <b>Name:</b> {proteinMetadata.ko_name[0]}
+              </p>
+              <p>
+                <b>KO Number:</b>{" "}
+                <a
+                  href={
+                    "https://www.genome.jp/dbget-bin/www_bget?ko:" +
+                    proteinMetadata.ko_number
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {" "}
+                  {proteinMetadata.ko_number}
+                </a>
+              </p>
+              <p>
+                <b>Uniprot IDs:</b> {uniprot_links}
+              </p>
+            </div>
           </div>
         </div>
       </div>

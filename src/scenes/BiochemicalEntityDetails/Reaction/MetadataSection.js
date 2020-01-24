@@ -21,28 +21,31 @@ class MetadataSection extends Component {
       return <div></div>;
     } else {
       return (
-        <div className="content-block">
-          <h2 className="content-block-heading">{title}</h2>
-          <div className="content-block-content img-description">
-            <div className="vertical-center">
-              <object
-                data={reactionIcon}
-                className="hover-zoom"
-                alt="Reaction icon"
-                aria-label="Reaction icon"
-              />
-            </div>
+        <div>
+          <h1 className="page-title">{title}</h1>
+          <div className="content-block">
+            <h2 className="content-block-heading">Properties</h2>
+            <div className="content-block-content img-description">
+              <div className="vertical-center">
+                <object
+                  data={reactionIcon}
+                  className="entity-scene-icon hover-zoom"
+                  alt="Reaction icon"
+                  aria-label="Reaction icon"
+                />
+              </div>
 
-            <div className="metadata-description">
-              <p>
-                <b>Name:</b> {reactionMetadata.reaction_name}
-              </p>
-              <p>
-                <b>Equation:</b> {reactionMetadata.equation}
-              </p>
-              <p>
-                <b>EC Number:</b> {reactionMetadata.ecNumber}
-              </p>
+              <div className="metadata-description">
+                <p>
+                  <b>Name:</b> {reactionMetadata.reaction_name}
+                </p>
+                <p>
+                  <b>Equation:</b> {reactionMetadata.equation}
+                </p>
+                <p>
+                  <b>EC Number:</b> {reactionMetadata.ecNumber}
+                </p>
+              </div>
             </div>
           </div>
         </div>

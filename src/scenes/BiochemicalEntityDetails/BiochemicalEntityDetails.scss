@@ -1,18 +1,48 @@
 @import 'colors';
 
 .biochemical-entity-scene {
-  /* entity metadata */
-  .metadata-description {
-    margin-left: 180px;
+  .page-title {
+    margin-bottom: 0.75rem;
+  }
 
-    p {
-      margin-bottom: 9px;
+  /* entity metadata */
+  .icon-description {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  .entity-scene-icon {
+    height: 100px;
+  }
+
+  .key-value-list {
+    list-style-type: none;
+    margin: 0;
+
+    li:not(:first-child) {
+      margin-top: 0.25rem;
+    }
+
+    b {
+      font-weight: 500;
+      text-align: left;
+    }
+
+    a {
+      color: $color-text;
+    }
+
+    a:hover {
+      color: $color-primary;
     }
   }
 
-  .img-description {
-    position: relative;
-    margin-top: 10px;
+  .key-value-list.key-value-list-spaced {
+    li:not(:first-child) {
+      margin-top: 0.5rem;
+    }
   }
 
   /* measurements-grid */
