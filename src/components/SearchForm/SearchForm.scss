@@ -45,12 +45,20 @@
     font-size: 14px;
   }
 
-  .search-in {
+  .search-label {
     color: $color-white;
-    margin-right: 5px;
-    margin-left: 5px;
     font-size: 14px;
     font-weight: bold;
+    white-space: nowrap;
+  }
+
+  .search-label-find {
+    margin-right: 5px;
+  }
+
+  .search-label-in {
+    margin-right: 5px;
+    margin-left: 5px;
   }
 
   .bp3-popover-target {

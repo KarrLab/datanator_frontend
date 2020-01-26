@@ -1,28 +1,22 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
+import PropTypes from "prop-types";
 
 import { MetadataSection } from "./MetadataSection";
-import { getSearchData } from "~/services/MongoApi";
-import {
-  set_lineage,
-  setTotalData,
-  setSelectedData
-} from "~/data/actions/resultsAction";
+import { getDataFromApi } from "~/services/RestApi";
+import { setTotalData, setSelectedData } from "~/data/actions/resultsAction";
 
-import { AgGridReact } from "ag-grid-react";
-import { AllCommunityModules } from "@ag-grid-community/all-modules";
+import { AgGridReact } from "@ag-grid-community/react";
+import { AllModules } from "@ag-grid-enterprise/all-modules";
 import StatsToolPanel from "./StatsToolPanel.js";
 import { TaxonomyFilter } from "~/scenes/BiochemicalEntityDetails/TaxonomyFilter.js";
-import { TanimotoFilter } from "~/scenes/BiochemicalEntityDetails/TanimotoFilter.js";
-import PartialMatchFilter from "../PartialMatchFilter";
-import "ag-grid-community/dist/styles/ag-grid.css";
-import "ag-grid-community/dist/styles/ag-theme-balham.css";
+import "@ag-grid-enterprise/all-modules/dist/styles/ag-grid.scss";
+import "@ag-grid-enterprise/all-modules/dist/styles/ag-theme-balham/sass/ag-theme-balham.scss";
 
 import "../BiochemicalEntityDetails.scss";
-import "../Metabolite/Metabolite.scss";
+import "./Reaction.scss";
 
-const queryString = require("query-string");
 const sideBar = {
   toolPanels: [
     {
@@ -30,45 +24,74 @@ const sideBar = {
       labelDefault: "Columns",
       labelKey: "columns",
       iconKey: "columns",
-      toolPanel: "agColumnsToolPanel"
+      toolPanel: "agColumnsToolPanel",
+      toolPanelParams: {
+        suppressRowGroups: true,
+        suppressValues: true,
+        suppressPivots: true,
+        suppressPivotMode: true,
+        suppressSideButtons: false,
+        suppressColumnFilter: true,
+        suppressColumnSelectAll: true,
+        suppressColumnExpandAll: true
+      }
     },
     {
       id: "filters",
       labelDefault: "Filters",
       labelKey: "filters",
       iconKey: "filter",
-      toolPanel: "agFiltersToolPanel"
+      toolPanel: "agFiltersToolPanel",
+      toolPanelParams: {
+        suppressFilterSearch: true,
+        suppressExpandAll: true
+      }
     },
     {
-      id: "customStats",
-      labelDefault: "Stats",
-      labelKey: "customStats",
-      iconKey: "customstats",
+      id: "stats-kcat",
+      labelDefault: "Kcat",
+      labelKey: "chart",
+      iconKey: "chart",
       toolPanel: "statsToolPanel"
     }
   ],
   position: "left",
-  defaultToolPanel: "filters"
+  defaultToolPanel: "filters",
+  hiddenByDefault: false
+};
+
+const defaultColDef = {
+  filter: "agTextColumnFilter",
+  sortable: true,
+  resizable: true,
+  suppressMenu: true
 };
 
 function getReactionID(resource) {
-  for (var i = 0; i < resource.length; i++)
+  for (let i = 0; i < resource.length; i++)
     if (resource[i].namespace === "sabiork.reaction") {
       return resource[i].id;
     }
 }
 
+function getECNumber(resource) {
+  for (let i = 0; i < resource.length; i++)
+    if (resource[i].namespace === "ec-code") {
+      return resource[i].id;
+    }
+}
+
 function getSubstrates(substrate) {
-  let subNames = [];
-  for (var i = 0; i < substrate.length; i++) {
+  const subNames = [];
+  for (let i = 0; i < substrate.length; i++) {
     subNames.push(substrate[i].substrate_name);
   }
   return subNames;
 }
 
 function getProducts(product) {
-  let subNames = [];
-  for (var i = 0; i < product.length; i++) {
+  const subNames = [];
+  for (let i = 0; i < product.length; i++) {
     subNames.push(product[i].product_name);
   }
   return subNames;
@@ -76,7 +99,7 @@ function getProducts(product) {
 
 function formatPart(parts) {
   let participants_string = "";
-  for (var i = parts.length - 1; i >= 0; i--) {
+  for (let i = parts.length - 1; i >= 0; i--) {
     participants_string = participants_string + parts[i] + " + ";
   }
   participants_string = participants_string.substring(
@@ -86,29 +109,9 @@ function formatPart(parts) {
   return participants_string;
 }
 
-function getSubstrateInchiKey(substrate) {
-  let inchiKeys = [];
-  for (var i = 0; i < substrate.length; i++) {
-    if (substrate[i].substrate_structure[0]) {
-      inchiKeys.push(substrate[i].substrate_structure[0].InChI_Key);
-    }
-  }
-  return inchiKeys;
-}
-
-function getProductInchiKey(product) {
-  let inchiKeys = [];
-  for (var i = 0; i < product.length; i++) {
-    if (product[i].product_structure[0]) {
-      inchiKeys.push(product[i].product_structure[0].InChI_Key);
-    }
-  }
-  return inchiKeys;
-}
-
 function getKcat(parameters) {
-  let kinetic_params = {};
-  for (var i = 0; i < parameters.length; i++) {
+  const kinetic_params = {};
+  for (let i = 0; i < parameters.length; i++) {
     if (parameters[i].name === "k_cat") {
       kinetic_params["kcat"] = parameters[i].value;
     }
@@ -117,8 +120,8 @@ function getKcat(parameters) {
 }
 
 function getKm(parameters, substrates) {
-  let kms = {};
-  for (var i = 0; i < parameters.length; i++) {
+  const kms = {};
+  for (let i = 0; i < parameters.length; i++) {
     if (
       parameters[i].type === "27" &&
       substrates.includes(parameters[i]["name"]) &&
@@ -136,38 +139,47 @@ wildtype_mutant
 organism
 ph
 temperature
-
 */
 @connect(store => {
   return { totalData: store.results.totalData };
 }) //the names given here will be the names of props
 class Reaction extends Component {
+  static propTypes = {};
+
   constructor(props) {
     super(props);
     this.state = {
       reactionMetadata: [],
       km_values: [],
-      modules: AllCommunityModules,
       lineage: [],
       data_arrived: false,
       tanimoto: false,
       columnDefs: [],
       first_columns: [
         {
-          headerName: "Entry ID",
-          field: "kinlaw_id",
-          checkboxSelection: true,
-          headerCheckboxSelection: true,
-          headerCheckboxSelectionFilteredOnly: true,
-          //filter: 'taxonomyFilter',
-          filter: "agNumberColumnFilter",
-          menuTabs: ["filterMenuTab"]
-        },
-        {
           headerName: "Kcat",
           field: "kcat",
           sortable: true,
-          filter: "agNumberColumnFilter"
+          filter: "agNumberColumnFilter",
+          checkboxSelection: true,
+          headerCheckboxSelection: true,
+          headerCheckboxSelectionFilteredOnly: true
+        },
+        {
+          headerName: "SABIO-RK id",
+          field: "kinlaw_id",
+          filter: "agNumberColumnFilter",
+          menuTabs: ["filterMenuTab"],
+
+          cellRenderer: function(params) {
+            return (
+              '<a href="http://sabiork.h-its.org/newSearch/index?q=EntryID:' +
+              params.value +
+              '" target="_blank" rel="noopener noreferrer">' +
+              params.value +
+              "</a>"
+            );
+          }
         }
       ],
       second_columns: [
@@ -177,36 +189,13 @@ class Reaction extends Component {
           filter: "agTextColumnFilter"
         },
         {
-          headerName: "Source Link",
-          field: "source_link",
-
-          cellRenderer: function(params) {
-            if (true) {
-              return (
-                '<a href="http://sabio.h-its.org/reacdetails.jsp?reactid=' +
-                params.value.reactionID +
-                '"rel="noopener">' +
-                "SABIO-RK" +
-                "</a>"
-              );
-            }
-          }
-        },
-
-        {
-          headerName: "Taxonomic Distance",
+          headerName: "Taxonomic distance",
           field: "taxonomic_proximity",
           hide: true,
           filter: "taxonomyFilter"
         },
         {
-          headerName: "Tanimoto Similarity",
-          field: "tanimoto_similarity",
-          hide: true,
-          filter: "tanimotoFilter"
-        },
-        {
-          headerName: "Growth Phase",
+          headerName: "Growth phase",
           field: "growth_phase",
           filter: "agTextColumnFilter",
           hide: true
@@ -222,110 +211,128 @@ class Reaction extends Component {
           field: "growth_media",
           filter: "agTextColumnFilter",
           hide: true
+        },
+        {
+          headerName: "Source",
+          field: "source_link",
+
+          cellRenderer: function(params) {
+            return (
+              '<a href="http://sabio.h-its.org/reacdetails.jsp?reactid=' +
+              params.value.reactionID +
+              '" target="_blank" rel="noopener noreferrer">' +
+              "SABIO-RK" +
+              "</a>"
+            );
+          }
         }
       ],
 
-      rowData: null,
-      rowSelection: "multiple",
-      autoGroupColumnDef: {
-        headerName: "Conc",
-        field: "concentration",
-        width: 200,
-        cellRenderer: "agGroupCellRenderer",
-        cellRendererParams: { checkbox: true }
-      },
-      frameworkComponents: {
-        statsToolPanel: () => <StatsToolPanel relevant_column={"kcat"} />,
-        taxonomyFilter: TaxonomyFilter,
-        partialMatchFilter: PartialMatchFilter,
-        tanimotoFilter: TanimotoFilter
-      }
+      frameworkComponents: {}
     };
 
     this.formatReactionData = this.formatReactionData.bind(this);
-    this.getSearchDataReaction = this.getSearchDataReaction.bind(this);
     this.setKmColumns = this.setKmColumns.bind(this);
   }
 
   setKmColumns(km_values) {
-    let new_columns = [];
-    for (var i = km_values.length - 1; i >= 0; i--) {
+    const new_columns = [];
+    const frameworkComponents = {
+      taxonomyFilter: TaxonomyFilter
+    };
+    frameworkComponents["statsToolPanel"] = () => (
+      <StatsToolPanel relevant-column={"kcat"} />
+    );
+    for (let i = km_values.length - 1; i >= 0; i--) {
       new_columns.push({
         headerName: "Km " + km_values[i].split("_")[1] + " (M)",
         field: km_values[i],
         sortable: true,
         filter: "agNumberColumnFilter"
       });
+      let comp_name = "CustomToolPanelReaction_" + km_values[i];
+      sideBar["toolPanels"].push({
+        id: km_values[i],
+        labelDefault: "Km " + km_values[i].split("_")[1],
+        labelKey: "chart",
+        iconKey: "chart",
+        toolPanel: comp_name
+      });
+
+      let km = km_values[i].toString();
+      frameworkComponents[comp_name] = () => (
+        <StatsToolPanel relevant-column={km} />
+      );
     }
 
-    let final_columns = this.state.first_columns
+    const final_columns = this.state.first_columns
       .concat(new_columns)
       .concat(this.state.second_columns);
     //final_columns = final_columns.concat(default_second_columns)
-    this.setState({ columnDefs: final_columns });
+    this.setState({
+      columnDefs: final_columns,
+      frameworkComponents: frameworkComponents
+    });
   }
-  componentDidMount() {
-    if (this.props.match.params.dataType === "meta") {
-      this.getMetaData();
-    }
 
-    if (this.props.match.params.dataType === "data") {
-      this.getResultsData();
-    }
+  componentDidMount() {
+    this.getResultsData();
   }
 
   componentDidUpdate(prevProps) {
-    let values = queryString.parse(this.props.location.search);
-    let old_values = queryString.parse(prevProps.location.search);
+    const pathArgs = this.props.match.params;
+    const oldPathArgs = prevProps.match.params;
     if (
-      values.substrates !== old_values.substrates ||
-      values.products !== old_values.products ||
-      this.props.match.params.dataType !== prevProps.match.params.dataType
+      pathArgs.substrates !== oldPathArgs.substrates ||
+      pathArgs.products !== oldPathArgs.products
     ) {
       this.setState({
         data_arrived: false,
         reactionMetadata: [],
         km_values: []
       });
-      if (this.props.match.params.dataType === "meta") {
-        this.getMetaData();
-      }
-      if (this.props.match.params.dataType === "data") {
-        this.getResultsData();
-      }
+      this.getResultsData();
     }
   }
 
   getMetaData() {
-    let values = queryString.parse(this.props.location.search);
-    getSearchData([
+    const pathArgs = this.props.match.params;
+    getDataFromApi([
       "reactions/kinlaw_by_name/?products=" +
-        values.products +
+        pathArgs.products +
         "&substrates=" +
-        values.substrates +
+        pathArgs.substrates +
         "&_from=0&size=1000&bound=tight"
-    ])
+    ], {}, "Unable to get data about reaction.")
       .then(response => {
         this.formatReactionMetadata(response.data);
       })
-      .catch(err => {
+      .catch(() => {
         //alert('Nothing Found');
         this.setState({ orig_json: null });
       });
   }
 
   getResultsData() {
-    let values = queryString.parse(this.props.location.search);
+    const pathArgs = this.props.match.params;
+    console.log(pathArgs.organism);
 
-    getSearchData([
+    getDataFromApi([
       "reactions/kinlaw_by_name/?products=" +
-        values.products_inchi +
+        pathArgs.products +
         "&substrates=" +
-        values.substrates_inchi +
+        pathArgs.substrates +
         "&_from=0&size=1000&bound=tight"
-    ]).then(response => {
+    ], {}, "Unable to get data about reaction.").then(response => {
       this.formatReactionMetadata(response.data);
       this.formatReactionData(response.data);
+    });
+    getDataFromApi([
+      "taxon",
+      "canon_rank_distance_by_name/?name=" + pathArgs.organism
+    ], {}, "Unable to get taxonomic information about '" + pathArgs.organism + "'.").then(response => {
+      //this.props.dispatch(setLineage(response.data));
+      this.setState({ lineage: response.data });
     });
     //.catch(err => {
     //alert('Nothing Found');
@@ -334,18 +341,20 @@ class Reaction extends Component {
   }
 
   formatReactionData(data) {
+    console.log("ReactionPage: Calling formatReactionData");
     if (data != null) {
-      var total_rows = [];
-      let substrates = getSubstrates(data[0].reaction_participant[0].substrate);
-      let km_values = [];
-      for (var k = substrates.length - 1; k >= 0; k--) {
+      const total_rows = [];
+      const substrates = getSubstrates(
+        data[0].reaction_participant[0].substrate
+      );
+      const km_values = [];
+      for (let k = substrates.length - 1; k >= 0; k--) {
         km_values.push("km_" + substrates[k]);
       }
       this.setKmColumns(km_values);
       this.setState({ km_values: km_values });
 
-      let start = 0;
-      for (var i = start; i < data.length; i++) {
+      for (let i = 0; i < data.length; i++) {
         let wildtype_mutant = null;
         if (data[i]["taxon_wildtype"] === "1") {
           wildtype_mutant = "wildtype";
@@ -366,47 +375,59 @@ class Reaction extends Component {
           row,
           getKm(data[i].parameter, substrates)
         );
-        total_rows.push(row_with_km);
+
+        let has_data = false;
+        for (let l = km_values.length - 1; l >= 0; l--) {
+          if (row_with_km[km_values[l]] != null) {
+            has_data = true;
+          }
+        }
+        if (row_with_km.kcat != null) {
+          has_data = true;
+        }
+        if (has_data) {
+          total_rows.push(row_with_km);
+        }
+        //console.log(row_with_km)
       }
 
       this.props.dispatch(setTotalData(total_rows));
       this.setState({
         data_arrived: true
       });
-    } else {
     }
   }
 
-  getSearchDataReaction(url) {}
-
   formatReactionMetadata(data) {
-    let newReactionMetadataDict = {};
-    let start = 0;
-    for (var i = start; i < data.length; i++) {
-      let reactionID = getReactionID(data[i].resource);
+    const newReactionMetadataDict = {};
+    if (data != null) {
+      const reactionID = getReactionID(data[0].resource);
+      const ecNumber = getECNumber(data[0].resource);
       let new_dict = newReactionMetadataDict[reactionID];
       if (!new_dict) {
         new_dict = {};
       }
-      let substrates = getSubstrates(data[i].reaction_participant[0].substrate);
-      let products = getProducts(data[i].reaction_participant[1].product);
+      const reaction_name = data[0]["enzymes"][0]["enzyme"][0]["enzyme_name"];
+      const substrates = getSubstrates(
+        data[0].reaction_participant[0].substrate
+      );
+      const products = getProducts(data[0].reaction_participant[1].product);
       new_dict["reactionID"] = reactionID;
       new_dict["substrates"] = substrates;
       new_dict["products"] = products;
+      if (ecNumber !== "-.-.-.-") {
+        new_dict["ecNumber"] = ecNumber;
+      }
 
-      let sub_inchis = getSubstrateInchiKey(
-        data[i].reaction_participant[0].substrate
-      );
-      let prod_inchis = getProductInchiKey(
-        data[i].reaction_participant[1].product
-      );
+      if (reaction_name) {
+        const start = reaction_name[0].toUpperCase();
+        const end = reaction_name.substring(1, reaction_name.length);
+        new_dict["reaction_name"] = start + end;
+      }
 
-      new_dict["equation"] = [
-        formatPart(substrates) + " ==> " + formatPart(products),
-        { sub_inchis: sub_inchis, prod_inchis: prod_inchis }
-      ];
-      newReactionMetadataDict[reactionID] = new_dict;
-      //newReactionMetadataDict.push(meta);
+      new_dict["equation"] =
+        formatPart(substrates) + " → " + formatPart(products);
+      newReactionMetadataDict[reactionID] = new_dict; //newReactionMetadataDict.push(meta);
     }
 
     this.setState({
@@ -419,7 +440,7 @@ class Reaction extends Component {
   onFirstDataRendered(params) {
     //params.columnApi.autoSizeColumns(['concentration'])
 
-    var allColumnIds = [];
+    const allColumnIds = [];
     params.columnApi.getAllColumns().forEach(function(column) {
       allColumnIds.push(column.colId);
     });
@@ -428,8 +449,8 @@ class Reaction extends Component {
   }
 
   onRowSelected(event) {
-    let selectedRows = [];
-    for (var i = event.api.getSelectedNodes().length - 1; i >= 0; i--) {
+    const selectedRows = [];
+    for (let i = event.api.getSelectedNodes().length - 1; i >= 0; i--) {
       selectedRows.push(event.api.getSelectedNodes()[i].data);
     }
     this.props.dispatch(setSelectedData(selectedRows));
@@ -440,64 +461,52 @@ class Reaction extends Component {
     this.props.dispatch(setSelectedData([]));
   }
 
-  onGridReady = params => {
+  onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     params.api.sizeColumnsToFit();
-  };
-
-  onClicked() {
-    this.gridApi
-      .getFilterInstance("taxonomic_proximity")
-      .getFrameworkComponentInstance()
-      .componentMethod2("Hello World!");
   }
 
   render() {
-    const values = queryString.parse(this.props.location.search);
-
-    if (this.props.totalData == null) {
+    if (
+      this.props.totalData == null ||
+      this.state.reactionMetadata.length === 0
+    ) {
       return (
-        <div className="loader_container">
+        <div className="loader-full-content-container">
           <div className="loader"></div>
         </div>
       );
     }
 
-    let styles = {
-      marginTop: 50
-    };
-
     return (
-      <div className="total_container">
-        <div className="metabolite_definition_data"></div>
+      <div className="content-container biochemical-entity-scene biochemical-entity-reaction-scene">
+        <MetadataSection reactionMetadata={this.state.reactionMetadata} />
 
-        <div className="ag_chart" style={{ width: "100%", height: "1000px" }}>
-          <div
-            className="ag-theme-balham"
-            style={{ width: "100%", height: "100%" }}
-          >
-            <AgGridReact
-              modules={this.state.modules}
-              frameworkComponents={this.state.frameworkComponents}
-              columnDefs={this.state.columnDefs}
-              sideBar={sideBar}
-              rowData={this.props.totalData}
-              gridOptions={{ floatingFilter: true }}
-              onFirstDataRendered={this.onFirstDataRendered.bind(this)}
-              rowSelection={this.state.rowSelection}
-              groupSelectsChildren={true}
-              suppressRowClickSelection={true}
-              //autoGroupColumnDef={this.state.autoGroupColumnDef}
-              //onGridReady={this.onGridReady}
-              lineage={this.state.lineage}
-              onSelectionChanged={this.onRowSelected.bind(this)}
-              onFilterChanged={this.onFiltered.bind(this)}
-              domLayout={"autoHeight"}
-              domLayout={"autoWidth"}
-              onGridReady={this.onGridReady}
-            ></AgGridReact>
-          </div>
+        <div className="content-block measurements-grid ag-theme-balham">
+          <h2 className="content-block-heading">Kinetic parameters</h2>
+          <AgGridReact
+            modules={AllModules}
+            frameworkComponents={this.state.frameworkComponents}
+            sideBar={sideBar}
+            defaultColDef={defaultColDef}
+            columnDefs={this.state.columnDefs}
+            rowData={this.props.totalData}
+            rowSelection="multiple"
+            groupSelectsChildren={true}
+            suppressMultiSort={true}
+            suppressAutoSize={true}
+            suppressMovableColumns={true}
+            suppressCellSelection={true}
+            suppressRowClickSelection={true}
+            suppressContextMenu={true}
+            domLayout="autoHeight"
+            onGridReady={this.onGridReady.bind(this)}
+            onFirstDataRendered={this.onFirstDataRendered.bind(this)}
+            onFilterChanged={this.onFiltered.bind(this)}
+            onSelectionChanged={this.onRowSelected.bind(this)}
+            lineage={this.state.lineage}
+          ></AgGridReact>
         </div>
       </div>
     );

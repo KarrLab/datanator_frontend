@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 
+import SearchForm from "~/components/SearchForm/SearchForm";
+
 import "~/scenes/Home/Home.scss";
 import logo from "./images/logo.svg";
 
@@ -41,19 +43,24 @@ class Home extends Component {
         <div className="section intro">
           <div className="section-inner-container">
             <div className="logo-title">
-              <img src={logo} className="logo" alt="Datanator logo" />
+              <object
+                data={logo}
+                className="logo hover-zoom"
+                alt="Datanator logo"
+                aria-label="Datanator logo"
+              />
               <h1>Datanator</h1>
             </div>
             <h2>Tools to discover data to model cellular biochemistry</h2>
+            <SearchForm />
             <p>
               <i>Datanator</i> is a toolkit for discovering the data needed to
               build, calibrate, and validate mechanistic models of cells.{" "}
-              <i>Datanator</i> is composed of an integrated database of
-              genomic and biochemical data, this web application for
-              identifying relevant data for modeling a specific organism in a
-              specific environmental condition, and a REST API and Python
-              library for programmatically discovering data for large models
-              such as{" "}
+              <i>Datanator</i> is composed of an integrated database of genomic
+              and biochemical data, this web application for identifying
+              relevant data for modeling a specific organism in a specific
+              environmental condition, and a REST API and Python library for
+              programmatically discovering data for large models such as{" "}
               <a
                 href="https://www.wholecell.org"
                 target="_blank"
@@ -77,10 +84,11 @@ class Home extends Component {
             <div className="section-title-separator"></div>
             <div className="section-columns section-4-columns">
               <div className="section-column">
-                <img
-                  src={identifyUseCaseIcon}
-                  className="section-column-icon"
+                <object
+                  data={identifyUseCaseIcon}
+                  className="section-column-icon hover-zoom"
                   alt="Identify parameters icon"
+                  aria-label="Identify parameters icon"
                 />
                 <div className="section-column-subtitle">Kinetic models</div>
                 <div className="section-column-title">
@@ -90,16 +98,17 @@ class Home extends Component {
                   <i>Datanator</i> can help investigators find genomic and
                   biochemical data to identify the initial conditions and rate
                   parameters of continuous and stochastic dynamical models. In
-                  turn, this can help investigators construct more
-                  comprehensive and more accurate models.
+                  turn, this can help investigators construct more comprehensive
+                  and more accurate models.
                 </div>
               </div>
 
               <div className="section-column">
-                <img
-                  src={constrainUseCaseIcon}
-                  className="section-column-icon"
+                <object
+                  data={constrainUseCaseIcon}
+                  className="section-column-icon hover-zoom"
                   alt="Constrain models icon"
+                  aria-label="Constrain models icon"
                 />
                 <div className="section-column-subtitle">
                   Constraint-based models
@@ -109,18 +118,19 @@ class Home extends Component {
                 </div>
                 <div className="section-column-description">
                   <i>Datanator</i> can help investigators improve
-                  constraint-based models of metabolism by helping
-                  investigators find enzyme abundances and reaction velocities
-                  to constrain the predicted fluxes of chemical transformation
-                  and transport reactions.
+                  constraint-based models of metabolism by helping investigators
+                  find enzyme abundances and reaction velocities to constrain
+                  the predicted fluxes of chemical transformation and transport
+                  reactions.
                 </div>
               </div>
 
               <div className="section-column">
-                <img
-                  src={recalibrateUseCaseIcon}
-                  className="section-column-icon"
+                <object
+                  data={recalibrateUseCaseIcon}
+                  className="section-column-icon hover-zoom"
                   alt="Recalibrate models icon"
+                  aria-label="Recalibrate models icon"
                 />
                 <div className="section-column-subtitle">Kinetic models</div>
                 <div className="section-column-title">
@@ -130,16 +140,17 @@ class Home extends Component {
                   <i>Datanator</i> can help investigators modify models to
                   capture other organisms, tissues, and cell types by helping
                   investigators find data to re-calibrate model parameters. In
-                  turn, this can help investigators compare organisms,
-                  tissues, and cell types.
+                  turn, this can help investigators compare organisms, tissues,
+                  and cell types.
                 </div>
               </div>
 
               <div className="section-column">
-                <img
-                  src={dataDrivenUseCaseIcon}
-                  className="section-column-icon"
+                <object
+                  data={dataDrivenUseCaseIcon}
+                  className="section-column-icon hover-zoom"
                   alt="Recalibrate models icon"
+                  aria-label="Recalibrate models icon"
                 />
                 <div className="section-column-subtitle">
                   Data-driven models
@@ -162,24 +173,25 @@ class Home extends Component {
         <div className="section data-types">
           <div className="section-inner-container">
             <h2 className="section-title">
-              <span className="highlight-primary">Integrated database</span>{" "}
-              of key data for cell modeling
+              <span className="highlight-primary">Integrated database</span> of
+              key data for cell modeling
             </h2>
             <div className="section-title-separator"></div>
             <div className="section-columns section-4-columns">
               <div className="section-column">
-                <img
-                  src={metaboliteIcon}
-                  className="section-column-icon"
-                  alt="Metabolite concentration icon"
+                <object
+                  data={metaboliteIcon}
+                  className="section-column-icon hover-zoom"
+                  alt="Metabolite icon"
+                  aria-label="Metabolite icon"
                 />
                 <div className="section-column-subtitle">Available</div>
                 <div className="section-column-title">
                   Metabolite concentrations
                 </div>
                 <div className="section-column-description">
-                  1586 measurements of the concentrations of 5225 metabolites
-                  in 2 organisms aggregated from{" "}
+                  1586 measurements of the concentrations of 5225 metabolites in
+                  2 organisms aggregated from{" "}
                   <a
                     href="http://ecmdb.ca/"
                     target="_blank"
@@ -200,10 +212,11 @@ class Home extends Component {
               </div>
 
               <div className="section-column">
-                <img
-                  src={rnaIcon}
-                  className="section-column-icon"
+                <object
+                  data={rnaIcon}
+                  className="section-column-icon hover-zoom"
                   alt="RNA icon"
+                  aria-label="RNA icon"
                 />
                 <div className="section-column-subtitle">Coming soon</div>
                 <div className="section-column-title">RNA half-lives</div>
@@ -214,10 +227,11 @@ class Home extends Component {
               </div>
 
               <div className="section-column">
-                <img
-                  src={proteinIcon}
-                  className="section-column-icon"
-                  alt="Protein abundance icon"
+                <object
+                  data={proteinIcon}
+                  className="section-column-icon hover-zoom"
+                  alt="Protein icon"
+                  aria-label="Protein icon"
                 />
                 <div className="section-column-subtitle">Available</div>
                 <div className="section-column-title">Protein abundances</div>
@@ -232,7 +246,7 @@ class Home extends Component {
                   >
                     PAXdb
                   </a>
-                  , {" "}
+                  ,{" "}
                   <a
                     href="https://www.genome.jp/kegg/ko.html"
                     target="_blank"
@@ -247,16 +261,17 @@ class Home extends Component {
                     rel="noopener noreferrer"
                   >
                     UniProt
-                  </a>                  
+                  </a>
                   .
                 </div>
               </div>
 
               <div className="section-column">
-                <img
-                  src={reactionIcon}
-                  className="section-column-icon"
-                  alt="Reaction rate constant icon"
+                <object
+                  data={reactionIcon}
+                  className="section-column-icon hover-zoom"
+                  alt="Reaction icon"
+                  aria-label="Reaction icon"
                 />
                 <div className="section-column-subtitle">Available</div>
                 <div className="section-column-title">Reaction constants</div>
@@ -289,17 +304,17 @@ class Home extends Component {
             <div className="vertical-workflow">
               <div className="vertical-workflow-el vertical-workflow-el-search">
                 <div className="vertical-workflow-el-line"></div>
-                <img
-                  src={searchIcon}
-                  className="vertical-workflow-el-icon"
+                <object
+                  data={searchIcon}
+                  className="vertical-workflow-el-icon hover-zoom"
                   alt="Search icon"
+                  aria-label="Search icon"
                 />
                 <div className="vertical-workflow-el-text">
                   <div className="vertical-workflow-el-text-inner">
                     <div className="vertical-workflow-el-title">
-                      Step 1:{" "}
-                      <span className="highlight-primary">Search</span> for a
-                      biochemical entity (metabolite, RNA, protein, or
+                      Step 1: <span className="highlight-primary">Search</span>{" "}
+                      for a biochemical entity (metabolite, RNA, protein, or
                       reaction)
                     </div>
                     <div className="vertical-workflow-el-description">
@@ -307,8 +322,8 @@ class Home extends Component {
                       <HashLink to="#top" scroll={scrollTo}>
                         top
                       </HashLink>{" "}
-                      to search for measurements of a metabolite, RNA,
-                      protein, or reaction relevant to a specific organism.
+                      to search for measurements of a metabolite, RNA, protein,
+                      or reaction relevant to a specific organism.
                     </div>
                   </div>
                 </div>
@@ -316,34 +331,36 @@ class Home extends Component {
 
               <div className="vertical-workflow-el">
                 <div className="vertical-workflow-el-line"></div>
-                <img
-                  src={filterIcon}
-                  className="vertical-workflow-el-icon"
+                <object
+                  data={filterIcon}
+                  className="vertical-workflow-el-icon hover-zoom"
                   alt="Filter icon"
+                  aria-label="Filter icon"
                 />
                 <div className="vertical-workflow-el-text">
                   <div className="vertical-workflow-el-title">
                     Step 2: <span className="highlight-primary">Filter</span>{" "}
-                    for potentially relevant measurements of similar entities
-                    in similar cells and similar environments
+                    for potentially relevant measurements of similar entities in
+                    similar cells and similar environments
                   </div>
                   <div className="vertical-workflow-el-description">
                     Select a metabolite, RNA, protein, or reaction class (e.g,
                     KEGG ortholog group) to obtain potentially relevant
-                    measurements to the entity of interest. Then filter for
-                    data about similar entities (e.g., by sequence similarity)
-                    measured in similar organisms (by phylogenetic distance)
-                    and environments (e.g., temperature, pH).
+                    measurements to the entity of interest. Then filter for data
+                    about similar entities (e.g., by sequence similarity)
+                    measured in similar organisms (by phylogenetic distance) and
+                    environments (e.g., temperature, pH).
                   </div>
                 </div>
               </div>
 
               <div className="vertical-workflow-el">
                 <div className="vertical-workflow-el-line"></div>
-                <img
-                  src={reviewIcon}
-                  className="vertical-workflow-el-icon"
+                <object
+                  data={reviewIcon}
+                  className="vertical-workflow-el-icon hover-zoom"
                   alt="Review icon"
+                  aria-label="Review icon"
                 />
                 <div className="vertical-workflow-el-text">
                   <div className="vertical-workflow-el-title">
@@ -352,19 +369,20 @@ class Home extends Component {
                     relevant measurements
                   </div>
                   <div className="vertical-workflow-el-description">
-                    Inspect each potentially relevant measurement and select
-                    the most relevant measurements to the entity and organism
-                    of interest.
+                    Inspect each potentially relevant measurement and select the
+                    most relevant measurements to the entity and organism of
+                    interest.
                   </div>
                 </div>
               </div>
 
               <div className="vertical-workflow-el vertical-workflow-el-analyze">
                 <div className="vertical-workflow-el-line"></div>
-                <img
-                  src={analyzeIcon}
-                  className="vertical-workflow-el-icon"
+                <object
+                  data={analyzeIcon}
+                  className="vertical-workflow-el-icon hover-zoom"
                   alt="Analyze icon"
+                  aria-label="Analyze icon"
                 />
                 <div className="vertical-workflow-el-text">
                   <div className="vertical-workflow-el-title">
@@ -372,18 +390,19 @@ class Home extends Component {
                     the distribution of relevant measurements
                   </div>
                   <div className="vertical-workflow-el-description">
-                    Review box plots and statistical properties of the
-                    selected and potentially relevant measurements.
+                    Review box plots and statistical properties of the selected
+                    and potentially relevant measurements.
                   </div>
                 </div>
               </div>
 
               <div className="vertical-workflow-el">
                 <div className="vertical-workflow-el-line"></div>
-                <img
-                  src={exportIcon}
-                  className="vertical-workflow-el-icon"
+                <object
+                  data={exportIcon}
+                  className="vertical-workflow-el-icon hover-zoom"
                   alt="Export icon"
+                  aria-label="Export icon"
                 />
                 <div className="vertical-workflow-el-text">
                   <div className="vertical-workflow-el-title">
@@ -404,8 +423,7 @@ class Home extends Component {
         <div className="section about">
           <div className="section-inner-container">
             <h2 className="section-title">
-              <span className="highlight-primary">About</span>{" "}
-              <i>Datanator</i>
+              <span className="highlight-primary">About</span> <i>Datanator</i>
             </h2>
             <div className="section-title-separator"></div>
             <p>
@@ -432,7 +450,7 @@ class Home extends Component {
               >
                 <img
                   src={karrLabIcon}
-                  className="hover-zoom"
+                  className="about-icon hover-zoom"
                   title="Karr Lab"
                   alt="Karr Lab logo"
                 />
@@ -441,10 +459,11 @@ class Home extends Component {
                 href="https://reproduciblebiomodels.org"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="hover-zoom"
               >
                 <img
                   src={crbmIcon}
-                  className="hover-zoom"
+                  className="about-icon hover-zoom"
                   title="Center for Reproducible Biomedical Modeling"
                   alt="Center for Reproducible Biomedical Modeling logo"
                 />
@@ -457,7 +476,7 @@ class Home extends Component {
               >
                 <img
                   src={sinaiIcon}
-                  className="hover-zoom"
+                  className="about-icon hover-zoom"
                   title="Icahn School of Medicine at Mount Sinai"
                   alt="Icahn School of Medicine at Mount Sinai logo"
                 />
@@ -469,7 +488,7 @@ class Home extends Component {
               >
                 <img
                   src={nihIcon}
-                  className="hover-zoom"
+                  className="about-icon hover-zoom"
                   title="National Institutes of Health"
                   alt="National Institutes of Health logo"
                 />
@@ -481,7 +500,7 @@ class Home extends Component {
               >
                 <img
                   src={nibibIcon}
-                  className="hover-zoom"
+                  className="about-icon hover-zoom"
                   title="National Institute of Bioimaging and Bioengineering"
                   alt="National Institute of Bioimaging and Bioengineering logo"
                 />
@@ -493,7 +512,7 @@ class Home extends Component {
               >
                 <img
                   src={nigmsIcon}
-                  className="hover-zoom"
+                  className="about-icon hover-zoom"
                   title="National Institute of General Medical Sciences"
                   alt="National Institute of General Medical Sciences logo"
                 />
@@ -505,7 +524,7 @@ class Home extends Component {
               >
                 <img
                   src={nsfIcon}
-                  className="hover-zoom"
+                  className="about-icon hover-zoom"
                   title="National Science Foundation"
                   alt="National Science Foundation logo"
                 />

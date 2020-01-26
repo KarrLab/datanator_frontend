@@ -20,10 +20,10 @@ const store = createStore
 
 //jest.runAllTimers();
 
-const renderComponent = (molecule, organism, abstract) =>
+const renderComponent = (metabolite, organism, abstract) =>
   render (
-    <MemoryRouter initialEntries={['/metabolite/' + molecule + '/' + organism + '/' + abstract]}>
-      <Route path="/metabolite/:molecule/:organism/:abstract?/">
+    <MemoryRouter initialEntries={['/metabolite/' + metabolite + '/' + organism + '/?abstract=' + abstract]}>
+      <Route path="/metabolite/:metabolite/:organism/:abstract?/">
        <Provider store={store}>
         <Metabolite />
         </Provider>

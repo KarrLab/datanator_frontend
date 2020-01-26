@@ -1,208 +1,235 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-//import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
+const sprintf = require("sprintf-js").sprintf;
 
-import { Link } from "react-router-dom";
+const STRUCTURE_IMG_URL =
+  "http://cactus.nci.nih.gov/chemical/structure/%s%s/image" +
+  "?format=png" +
+  "&width=100" +
+  "&height=100" +
+  "&linewidth=2" +
+  "&symbolfontsize=16" +
+  "&bgcolor=transparent" +
+  "&antialiasing=0";
 
-import Typography from "@material-ui/core/Typography";
-import { abstractMolecule } from "~/data/actions/pageAction";
-
-const products = [{ id: "3", name: "bob" }];
-const columns = [
-  {
-    dataField: "id",
-    text: "Product ID"
+const DATABASES = {
+  biocyc: {
+    name: "BioCyC",
+    url: "https://biocyc.org/compound?id=%s"
   },
-  {
-    dataField: "name",
-    text: "Product Name"
+  cas: {
+    name: "CAS",
+    url: "https://webbook.nist.gov/cgi/cbook.cgi?ID=%s"
   },
-  {
-    dataField: "price",
-    text: "Product Price"
+  chebi: {
+    name: "CHEBI",
+    url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:%s"
+  },
+  chemspider_id: {
+    name: "ChemSpider",
+    url: "http://www.chemspider.com/Chemical-Structure.%s.html"
+  },
+  ecmdb: {
+    name: "ECMDB",
+    url: "http://ecmdb.ca/compounds/%s"
+  },
+  foodb: {
+    name: "FooDB",
+    url: "http://foodb.ca/compounds/%s"
+  },
+  hmdb: {
+    name: "HMDB",
+    url: "http://www.hmdb.ca/metabolites/%s"
+  },
+  kegg: {
+    name: "KEGG",
+    url: "https://www.genome.jp/dbget-bin/www_bget?cpd:%s"
+  },
+  pubchem: {
+    name: "PubChem",
+    url: "https://pubchem.ncbi.nlm.nih.gov/compound/%s"
+  },
+  ymdb: {
+    name: "YMDB",
+    url: "http://www.ymdb.ca/compounds/%s"
   }
-];
+};
 
-@connect(store => {
-  return {};
-})
 class MetadataSection extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      total_columns: [
-        {
-          dataField: "reactionID",
-          text: "Reaction ID"
-        },
-
-        {
-          dataField: "equation",
-          text: "Reaction Equation",
-          formatter: this.colFormatter
-        }
-      ],
-
-      total_data: []
-    };
-    this.colFormatter = this.colFormatter.bind(this);
-  }
-
-  componentDidMount() {
-    this.setState({ total_data: this.props.reactionMetadata });
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.reactionMetadata !== prevProps.reactionMetadata) {
-      this.setState({ total_data: this.props.reactionMetadata });
-    }
-  }
-
-  colFormatter = (cell, row) => {
-    if (cell) {
-      let substrates = cell[0]
-        .toString()
-        .split("==>")[0]
-        .split(" + ");
-      let products = cell[0]
-        .toString()
-        .split("==>")[1]
-        .split(" + ");
-      let url =
-        "/reaction/data/?substrates=" +
-        substrates +
-        "&products=" +
-        products +
-        "&substrates_inchi=" +
-        cell[1]["sub_inchis"] +
-        "&products_inchi=" +
-        cell[1]["prod_inchis"];
-
-      return <Link to={url}>{cell[0].toString()}</Link>;
-    } else {
-      return <div></div>;
-    }
-  };
-
-  partFormatter = (cell, row) => {
-    let participants = "";
-    if (cell) {
-      for (var i = cell.length - 1; i >= 0; i--) {
-        participants = participants + cell[i] + " + ";
-      }
-      participants = participants.substring(0, participants.length - 3);
-      return <div>{participants}</div>;
-    } else {
-      return <div></div>;
-    }
+  static propTypes = {
+    metabolite: PropTypes.string.isRequired,
+    metadata: PropTypes.object.isRequired,
+    organism: PropTypes.string,
+    dispatch: PropTypes.func
   };
 
   render() {
-    let metaboliteMetadata = this.props.metaboliteMetadata;
+    let metadata = this.props.metadata;
 
-    if (metaboliteMetadata.length === 0) {
+    if (!metadata) {
       return <div></div>;
     }
 
-    if (this.props.abstract === true) {
-      let names = "";
-      for (var i = metaboliteMetadata.length - 1; i >= 0; i--) {
-        names = names + metaboliteMetadata[i].name + ", ";
+    // physical properties
+    const physicalProps = [
+      { name: "SMILES", value: metadata.smiles },
+      { name: "InChI", value: metadata.inchi },
+      { name: "Formula", value: metadata.formula },
+      { name: "Molecular weight", value: metadata.molWt },
+      { name: "Charge", value: metadata.charge },
+      {
+        name: "Physiological charge",
+        value: metadata.physiologicalCharge
       }
-
-      let descriptions = [];
-      for (var i = metaboliteMetadata.length - 1; i >= 0; i--) {
-        descriptions.push(
-          <div className="metadata_description_abstract">
-            <p>
-              <b>Name:</b>{" "}
-              <a
-                href={
-                  "/metabolite/" +
-                  metaboliteMetadata[i].name +
-                  "/" +
-                  this.props.organism
-                }
-              >
-                {metaboliteMetadata[i].name}
-              </a>
-            </p>
-            <p>
-              <b>Chemical Formula:</b> {metaboliteMetadata[i].chemical_formula}
-            </p>
-          </div>
+    ]
+      .filter(prop => {
+        return prop.value !== undefined;
+      })
+      .map(prop => {
+        return (
+          <li key={prop.name}>
+            <b>{prop.name}:</b> {prop.value}
+          </li>
         );
-      }
+      });
 
-      return (
-        <div className="metabolite_definition_data">
-          <Typography variant="h6" className={"green"}>
-            {"Molecules Similar to " + this.props.molecule}
-          </Typography>
-
-          <div className="photo_and_description">{descriptions}</div>
-        </div>
-      );
+    let structure = null;
+    if (metadata.smiles) {
+      structure = { type: "", value: metadata.smiles };
+    } else if (metadata.smiles) {
+      structure = { type: "InChI=", value: metadata.inchi };
+    } else if (metadata.smiles) {
+      structure = { type: "InChIKey=", value: metadata.inchiKey };
     }
 
-    metaboliteMetadata = metaboliteMetadata[0];
-
-    return (
-      <div className="metabolite_definition_data">
-        <Typography variant="h6" className={"green"}>
-          {metaboliteMetadata.name}
-        </Typography>
-
-        <div className="photo_and_description">
-          <div className="vertical_center">
-            <img
-              border="0"
-              alt="W3Schools"
-              src={
-                "https://www.ebi.ac.uk/chebi/displayImage.do;jsessionid=25AAC07D77FBB12EBEFA4D5FEE270CD4?defaultImage=true&imageIndex=0&chebiId=" +
-                metaboliteMetadata.chebi_id
-              }
-              width="200"
-              height="200"
-            ></img>
-          </div>
-
-          <div className="metadata_description">
-            <p>
-              <b>Name:</b> {metaboliteMetadata.name}
-            </p>
-            <p>
-              <b>Chemical Formula:</b> {metaboliteMetadata.chemical_formula}
-            </p>
-            <div style={{ "overflow-wrap": "break-word" }}>
-              <p>
-                <b>InChI:</b> <font size="2">{metaboliteMetadata.inchi}</font>
-              </p>
-            </div>
-            <p>
-              <b>InChIKey:</b> {metaboliteMetadata.inchiKey}
-            </p>
-            <button
-              type="button"
-              onClick={() => {
-                this.props.dispatch(abstractMolecule(true));
-              }}
+    // database links
+    const dbLinks = [];
+    for (const dbKey in metadata.dbLinks) {
+      const dbId = metadata.dbLinks[dbKey];
+      if (dbId != null && dbId !== undefined && dbKey in DATABASES) {
+        const db = DATABASES[dbKey];
+        dbLinks.push(
+          <li key={dbKey}>
+            <b>{db["name"]}:</b>{" "}
+            <a
+              href={sprintf(db["url"], dbId)}
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              Include Structurally Similar Molecules
-            </button>
+              {dbId}
+            </a>
+          </li>
+        );
+      }
+    }
+
+    let cellularLocations;
+    if (Array.isArray(metadata.cellularLocations)) {
+      cellularLocations = metadata.cellularLocations.join(', ');
+    } else if (metadata.cellularLocations) {
+      cellularLocations = metadata.cellularLocations;
+    }
+
+    // render
+    return (
+      <div>
+        <h1 className="page-title">{metadata.name}</h1>
+        {metadata.synonyms.length > 0 && metadata.synonyms.join(", ")}
+
+        {metadata.description && (
+          <div className="content-block">
+            <h2 className="content-block-heading">Description</h2>
+            <div className="content-block-content icon-description">
+              {structure && (
+              <img
+                src={sprintf(
+                  STRUCTURE_IMG_URL,
+                  structure.type,
+                  structure.value
+                )}
+                className="entity-scene-icon hover-zoom"
+                alt="Chemical structure"
+                aria-label="Chemical structure"
+              />
+              )}
+              <div>
+                {metadata.description}
+              </div>
+            </div>
           </div>
-        </div>
+        )}
+
+        {physicalProps.length > 0 && (
+          <div className="content-block">
+            <h2 className="content-block-heading">Physical properties</h2>
+            <div className="content-block-content">
+              <ul className="key-value-list">
+                {physicalProps.reduce(
+                  (acc, x) => (acc === null ? [x] : [acc, x]),
+                  null
+                )}
+              </ul>
+            </div>
+          </div>
+        )}
+
+        {((metadata.pathways && metadata.pathways.length > 0) ||
+          (metadata.cellularLocations &&
+            metadata.cellularLocations.length > 0)) && (
+          <div className="content-block">
+            <h2 className="content-block-heading">Biological context</h2>
+            <div className="content-block-content">
+              <ul class="key-value-list key-value-list-spaced">
+              {metadata.pathways && metadata.pathways.length > 0 && (
+                <li>
+                  <b>Pathways:</b>{" "}
+                  {metadata.pathways
+                    .map(el => {
+                      return (
+                        <a
+                          key={el.kegg_map_id}
+                          href={
+                            "https://www.genome.jp/dbget-bin/www_bget?map" +
+                            el.kegg_map_id
+                          }
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {el.name}
+                        </a>
+                      );
+                    })
+                    .reduce((acc, x) => (acc === null ? [x] : [acc, x]), null)}
+                </li>
+              )}
+
+              {cellularLocations && (
+                  <li>
+                    <b>Localizations:</b>{" "}{cellularLocations}
+                  </li>
+                )}
+              </ul>
+            </div>
+          </div>
+        )}
+
+        {dbLinks.length > 0 && (
+          <div className="content-block">
+            <h2 className="content-block-heading">Database links</h2>
+            <div className="content-block-content">
+              <ul className="key-value-list">
+                {dbLinks.reduce(
+                  (acc, x) => (acc === null ? [x] : [acc, x]),
+                  null
+                )}
+              </ul>
+            </div>
+          </div>
+        )}
       </div>
     );
   }
 }
 
 export { MetadataSection };
-
-/*
-inchi:"InChI=1S/C9H15N2O15P3/c12-5-1-2-11(9(15)10-5)8-7(14)6(13)4(24-8)3-23-28(19,20)26-29(21,22)25-27(16,17)18/h1-2,4,6-8,13-14H,3H2,(H,19,20)(H,21,22)(H,10,12,15)(H2,16,17,18)/t4-,6-,7-,8-/m1/s1",
-        inchiKey:"PGAVKCOVUIYSFO-XVFCMESISA-N",
-        SMILES:"O[C@H]1[C@@H](O)[C@@H](O[C@@H]1COP(O)(=O)OP(O)(=O)OP(O)(O)=O)N1C=CC(=O)NC1=O",
-        chemical_formula: "C9H15N2O15P3"
-*/

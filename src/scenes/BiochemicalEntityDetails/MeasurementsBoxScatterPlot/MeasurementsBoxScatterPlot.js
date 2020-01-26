@@ -4,13 +4,16 @@ import Chart from "chart.js";
 import "chartjs-chart-box-and-violin-plot/build/Chart.BoxPlot";
 
 import * as colorPalette from "~/colors.scss";
-import "./MeasurementsBoxScatterPlot.scss";
 
 export default class MeasurementsBoxScatterPlot extends Component {
   static propTypes = {
-    allMeasurements: PropTypes.array,
-    selectedMeasurements: PropTypes.array,
-    dataProperty: PropTypes.string
+    "all-measurements": PropTypes.array.isRequired,
+    "selected-measurements": PropTypes.array,
+    "data-property": PropTypes.string.isRequired
+  };
+
+  static defaultProps = {
+    "selected-measurements": null
   };
 
   canvas = React.createRef();
@@ -25,7 +28,7 @@ export default class MeasurementsBoxScatterPlot extends Component {
             backgroundColor: [],
             borderColor: [],
             borderWidth: 1,
-            outlierColor: colorPalette["text-lighter"],
+            outlierColor: colorPalette["text-lightest"],
             padding: 10,
             itemRadius: 0,
             data: [],
@@ -36,6 +39,7 @@ export default class MeasurementsBoxScatterPlot extends Component {
       options: {
         events: [],
         responsive: true,
+        maintainAspectRatio: false,
         legend: {
           display: false
         },
@@ -47,7 +51,7 @@ export default class MeasurementsBoxScatterPlot extends Component {
     };
 
     // all measurements
-    let measurements = this.props.allMeasurements;
+    let measurements = this.props["all-measurements"];
     let dataForBoxPlot = [];
     let dataForScatterPlot = [];
     for (
@@ -56,11 +60,11 @@ export default class MeasurementsBoxScatterPlot extends Component {
       iMeasurement--
     ) {
       dataForBoxPlot.push(
-        parseFloat(measurements[iMeasurement][this.props.dataProperty])
+        parseFloat(measurements[iMeasurement][this.props["data-property"]])
       );
       dataForScatterPlot.push({
         x: "All",
-        y: parseFloat(measurements[iMeasurement][this.props.dataProperty])
+        y: parseFloat(measurements[iMeasurement][this.props["data-property"]])
       });
     }
     chartConfig.data.datasets[0].data.push(dataForBoxPlot);
@@ -69,16 +73,15 @@ export default class MeasurementsBoxScatterPlot extends Component {
     );
     chartConfig.data.datasets[0].borderColor.push(colorPalette["primary"]);
     chartConfig.data.datasets.push({
-      backgroundColor: colorPalette["text"],
-      borderColor: colorPalette["text"],
+      borderColor: colorPalette["text-light"],
       data: dataForScatterPlot,
       type: "scatter",
       order: 1
     });
 
     // selected measurements
-    if (this.props.selectedMeasurements != null) {
-      let measurements = this.props.selectedMeasurements;
+    if (this.props["selected-measurements"] != null) {
+      let measurements = this.props["selected-measurements"];
       let dataForBoxPlot = [];
       let dataForScatterPlot = [];
       for (
@@ -87,11 +90,11 @@ export default class MeasurementsBoxScatterPlot extends Component {
         iMeasurement--
       ) {
         dataForBoxPlot.push(
-          parseFloat(measurements[iMeasurement][this.props.dataProperty])
+          parseFloat(measurements[iMeasurement][this.props["data-property"]])
         );
         dataForScatterPlot.push({
           x: "Selected",
-          y: parseFloat(measurements[iMeasurement][this.props.dataProperty])
+          y: parseFloat(measurements[iMeasurement][this.props["data-property"]])
         });
       }
 
@@ -115,6 +118,11 @@ export default class MeasurementsBoxScatterPlot extends Component {
   }
 
   render() {
-    return <canvas ref={this.canvas} className="box-plot-component" />;
+    return (
+      <canvas
+        ref={this.canvas}
+        className="biochemical-entity-scene-measurement-plot"
+      />
+    );
   }
 }

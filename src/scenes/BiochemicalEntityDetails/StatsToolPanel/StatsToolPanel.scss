@@ -1,14 +1,26 @@
-
-.consensus {
-  border-style: solid;
-  border-color: #fcd1d5;
-}
-
-.consensus .summary {
-  text-align: left;
+.biochemical-entity-scene-stats-tool-panel {
+  height: 100%;
+  width: 100%;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  border-style: solid;
-  border-color: #fcd1d1;
+  flex-direction: column;
+
+  .biochemical-entity-scene-stats-tool-panel-plot {
+    flex: 1;
+  }
+
+  .summary {
+    margin-left: auto;
+    margin-right: auto;
+
+    th {
+      text-align: right;
+      font-weight: 500;
+      margin-right: 0.125rem;
+    }
+
+    td {
+      text-align: left;
+      margin-left: 0.125rem;
+    }
+  }
 }

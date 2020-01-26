@@ -5,16 +5,10 @@ import { Provider } from 'react-redux'
 import { Link, Route, Router, Switch } from 'react-router-dom'
 import { createMemoryHistory } from 'history'
 import createStore from '~/data/Store.js'
-import {
-  getTotalColumns,
-  filter_taxon,
-  set_lineage,
-  setTotalData,
-} from '~/data/actions/resultsAction';
 
 import axiosMock from 'axios'
 import { fireEvent, waitForElement } from '@testing-library/react'
-import { getSearchData } from '~/services/MongoApi';
+import { getDataFromApi } from '~/services/RestApi';
 import ConcentrationsTable from '~/components/Results/ConcentrationsTable.js';
 
 
@@ -43,7 +37,7 @@ jest.runAllTimers();
 
 test.skip('hello world', async () => {
 
-  await getSearchData([
+  await getDataFromApi([
   'metabolites/concentration/?abstract=' + false + '&species='
   + 'escherichia coli' + '&metabolite=' + 'ATP'
 ]).then(response => { orig_json = response.data }).then(orig_json => {console.log(orig_json)});

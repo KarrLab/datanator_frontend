@@ -1,207 +1,168 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
+
 import { InputGroup } from "@blueprintjs/core";
 import { MenuItem } from "@blueprintjs/core";
 import { Button } from "@blueprintjs/core";
 import { Suggest } from "@blueprintjs/select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { getDataFromApi } from "~/services/RestApi";
+import axios from "axios";
 
 import "./SearchForm.scss";
 
-const queryString = require("query-string");
-
-const ORGANISMS = [
-  "Aliivibrio fischeri",
-  "Ambystoma mexicanum",
-  "Amphimedon queenslandica",
-  "Anolis carolinensis",
-  "AplysiaBranchiostoma floridae",
-  "Arabidopsis thaliana",
-  "Arbacia punctulata",
-  "Ashbya gossypii",
-  "Aspergillus nidulans",
-  "Azotobacter vinelandii",
-  "Bacillus subtilis",
-  "Bombina variegata",
-  "Brachypodium distachyon",
-  "Caenorhabditis elegans",
-  "Caledia captiva",
-  "Callosobruchus maculatus",
-  "Canis lupus familiaris",
-  "Caulobacter crescentus",
-  "Cavia porcellus",
-  "Chlamydomonas reinhardtii",
-  "Chorthippus parallelus",
-  "Ciona intestinalis",
-  "Columba livia domestica",
-  "Coprinus cinereus",
-  "Cryptococcus neoformans",
-  "Danio rerio",
-  "Daphnia spp.",
-  "Dictyostelium discoideum",
-  "Drosophila melanogaster",
-  "Emiliania huxleyi",
-  "Escherichia coli",
-  "etromyzon marinus",
-  "Euprymna scolopes",
-  "Felis sylvestris catus",
-  "Galleria mellonella",
-  "Gallus gallus domesticus",
-  "Gasterosteus aculeatus",
-  "Gryllus bimaculatus",
-  "Heterocephalus glaber",
-  "Homo sapiens",
-  "Lemna gibba",
-  "Loligo pealei",
-  "Lotus japonicus",
-  "Macaca mulatta",
-  "Macrostomum lignano",
-  "Marchantia polymorpha",
-  "Medicago truncatula",
-  "Mesocricetus auratus",
-  "Mimulus guttatus",
-  "Mnemiopsis leidyi",
-  "Mus musculus",
-  "Mycoplasma genitalium",
-  "Myotis lucifugus",
-  "Nematostella vectensis",
-  "Neurospora crassa",
-  "Nicotiana benthamiana",
-  "Nothobranchius furzeri",
-  "Oikopleura dioica",
-  "Oryza sativa",
-  "Oryzias latipes",
-  "Oscarella carmela",
-  "Parhyale hawaiensis",
-  "Physcomitrella patens",
-  "Platynereis dumerilii",
-  "Poecilia reticulata",
-  "Populus trichocarpa",
-  "Pristionchus pacificus",
-  "Pseudomonas fluorescens",
-  "Rattus norvegicus",
-  "Saccharomyces cerevisiae",
-  "Scathophaga stercoraria",
-  "Schizophyllum commune",
-  "Schizosaccharomyces pombe",
-  "Schmidtea mediterranea",
-  "Selaginella moellendorffii",
-  "Setaria viridis",
-  "Stomatogastric ganglion",
-  "Streptomyces coelicolor",
-  "Strongylocentrotus purpuratus",
-  "Symsagittifera roscoffensis",
-  "Synechocystis",
-  "Taeniopygia guttata",
-  "Takifugu rubripes",
-  "Tetrahymena thermophila",
-  "Thalassiosira pseudonana",
-  "Tribolium castaneum",
-  "Trichoplax adhaerens",
-  "Tubifex tubifex",
-  "Ustilago maydis",
-  "Xenopus laevis"
-];
-
-const renderOrganism = (film, { handleClick, modifiers }) => {
-  if (!modifiers.matchesPredicate) {
-    return null;
-  }
-  return (
-    <MenuItem
-      active={modifiers.active}
-      key={film}
-      onClick={event => {
-        handleClick(event);
-      }}
-      text={film}
-    />
-  );
-};
-
-const renderInputValue = organism => organism;
-
 class SearchForm extends Component {
   static propTypes = {
-    location: PropTypes.shape({
-      search: PropTypes.string,
-      state: PropTypes.shape({
-        query: PropTypes.string,
-        organism: PropTypes.string
-      })
-    }),
-    history: PropTypes.object
+    history: PropTypes.object.isRequired
   };
 
   constructor(props) {
     super(props);
 
-    let query = null;
-    let organism = null;
-    if (props.location.search) {
-      let queryArgs = queryString.parse(props.location.search);
-      if ("q" in queryArgs) {
-        query = queryArgs.q;
-      }
-      if ("organism" in queryArgs) {
-        organism = queryArgs.organism;
-      }
-    }
-
-    const searchFormValid = query != null;
+    this.unlistenToHistory = null;
 
     this.state = {
-      query: query,
-      organism: organism,
-      searchFormValid: searchFormValid
+      query: "",
+      organism: null,
+      matchingOrganisms: [],
+      queryValid: false,
+      organismValid: true
     };
 
-    this.filterOrganisms = this.filterOrganisms.bind(this);
+    this.getMatchingOrganisms = this.getMatchingOrganisms.bind(this);
     this.submitSearch = this.submitSearch.bind(this);
+
+    this.gettingMatchingOrganisms = false;
+    this.cancelTokenSource = null;
   }
 
-  filterOrganisms(query, film) {
-    return film.toLowerCase().indexOf(query.toLowerCase()) >= 0;
-  }
-
-  submitSearch() {
-    let queryArgs = "?q=" + this.state.query;
-    if (this.state.organism) {
-      queryArgs += "&organism=" + this.state.organism;
-    }
-    this.props.history.push("/search/" + queryArgs);
-    /*
-    this.props.history.push({
-      pathname: "/search/",
-      search: queryArgs,
-      state: {
-        query: this.state.query,
-        organism: this.state.organism
-      }
+  componentDidMount() {
+    this.unlistenToHistory = this.props.history.listen(() => {
+      this.updateStateFromLocation();
     });
-    */
+    this.updateStateFromLocation();
+  }
+
+  componentWillUnmount() {
+    this.unlistenToHistory();
+    this.unlistenToHistory = null;
+    if (this.cancelTokenSource) {
+      this.cancelTokenSource.cancel();
+    }
+  }
+
+  updateStateFromLocation() {
+    if (this.unlistenToHistory) {
+      const pathRegex = /^\/search\/(.*?)(\/(.*?))?\/?$/;
+      const match = this.props.history.location.pathname.match(pathRegex);
+      if (match) {
+        const query = match[1].trim();
+        const organism = match[3].trim() || null;
+
+        this.setState({
+          query: query,
+          queryValid: query !== ""
+        });
+
+        this.setState({
+          organism: organism,
+          organismValid: true
+        });
+      }
+    }
+  }
+
+  getMatchingOrganisms(query, event) {
+    // Blueprint appears to issue two calls per input change; ignore the one with no defined event
+    if (!event) {
+      return;
+    }
+
+    this.setState({ organismValid: query !== "" });
+
+    // cancel earlier query
+    if (this.cancelTokenSource) {
+      this.cancelTokenSource.cancel();
+    }
+
+    // make new query
+    this.cancelTokenSource = axios.CancelToken.source();
+    const url =
+      "ftx/text_search/?query_message=" +
+      query +
+      "&index=taxon_tree&from_=0&size=100&fields=tax_name&_source_includes=tax_name";
+    getDataFromApi(
+      [url],
+      { cancelToken: this.cancelTokenSource.token },
+      "Unable to search for organisms that match '" + query + "'."
+    )
+      .then(response => {
+        this.setState({
+          matchingOrganisms: response.data["hits"]["hits"].map(
+            hit => hit["_source"]["tax_name"]
+          )
+        });
+      })
+      .catch(error => {
+        if (!axios.isCancel(error)) {
+          // TODO: handle error
+          console.log(error);
+        }
+      })
+      .finally(() => {
+        this.cancelTokenSource = null;
+      });
+  }
+
+  genOrganismMenuItem(organism, { handleClick, modifiers }) {
+    return (
+      <MenuItem
+        active={modifiers.active}
+        key={organism}
+        onClick={event => {
+          handleClick(event);
+        }}
+        text={organism}
+      />
+    );
+  }
+
+  renderOrganism(organism) {
+    return organism;
+  }
+
+  submitSearch(event) {
+    event.preventDefault();
+
+    let url = "/search/";
+    url += this.state.query + "/";
+    if (this.state.organism) {
+      url += this.state.organism + "/";
+    }
+    this.props.history.push(url);
   }
 
   render() {
     return (
       <form className="search-form" onSubmit={this.submitSearch}>
+        <div className="search-label search-label-find">Find data about</div>
+
         <InputGroup
           type="text"
           className="search-form-el search-form-el-entity search-input"
           leftIcon=<FontAwesomeIcon icon="atom" />
-          placeholder="Metabolite, protein, or reaction (e.g., glucose)"
-          defaultValue={this.state.query}
+          placeholder="metabolite, protein, or reaction (e.g., glucose)"
+          value={this.state.query}
           onChange={event => {
             this.setState({
               query: event.target.value,
-              searchFormValid:
-                event.target.value && event.target.value.trim() !== ""
+              queryValid: event.target.value && event.target.value.trim() !== ""
             });
           }}
         />
 
-        <div className="search-in">in</div>
+        <div className="search-label search-label-in">in</div>
 
         <Suggest
           ref={el => {
@@ -211,25 +172,21 @@ class SearchForm extends Component {
           inputProps={{
             className: "search-input",
             leftIcon: <FontAwesomeIcon icon="dna" />,
-            placeholder: "Organism (e.g., Escherichia coli)",
-            onChange: event => {
-              this.setState({ query: event.target.value });
-            }
+            placeholder: "organism (e.g., Escherichia coli)"
           }}
-          items={ORGANISMS}
+          items={this.state.matchingOrganisms}
           openOnKeyDown={true}
-          //itemPredicate={Films.itemPredicate}
-          itemPredicate={this.filterOrganisms}
-          itemRenderer={renderOrganism}
+          onQueryChange={this.getMatchingOrganisms}
+          itemRenderer={this.genOrganismMenuItem}
           selectedItem={this.state.organism}
           activeItem={null}
-          inputValueRenderer={renderInputValue}
-          noResults={<MenuItem disabled={true} text="No matching organisms." />}
-          onQueryChange={query => {
-            this.setState({ organism: query });
-          }}
+          inputValueRenderer={this.renderOrganism}
+          noResults={<MenuItem disabled={true} text="No matching organisms" />}
           onItemSelect={value => {
-            this.setState({ organism: value });
+            this.setState({
+              organism: value,
+              organismValid: true
+            });
             this.organismSuggest.input.focus();
           }}
         >
@@ -240,10 +197,12 @@ class SearchForm extends Component {
           type="submit"
           className="search-submit"
           icon="search"
-          disabled={!this.state.searchFormValid}
+          disabled={!this.state.queryValid || !this.state.organismValid}
+          title="Search"
         />
       </form>
     );
   }
 }
+
 export default withRouter(SearchForm);

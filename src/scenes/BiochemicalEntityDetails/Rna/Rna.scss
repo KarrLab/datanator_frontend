@@ -1,0 +1,16 @@
+.biochemical-entity-rna-scene {
+  .vertical-center {
+    width: 200px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+
+    object {
+      margin-left: 20px;
+      width: 25%;
+      height: 50%;
+    }
+  }
+}

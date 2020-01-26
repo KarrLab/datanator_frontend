@@ -7,8 +7,8 @@ import { ResultsTable, getSelectedData } from '~/components/Results/ResultsTable
 import createStore from '~/data/Store.js'
 import {
   getTotalColumns,
-  filter_taxon,
-  set_lineage,
+  filterLaxon,
+  setLineage,
   setTotalData,
 } from '~/data/actions/resultsAction';
 
@@ -19,4 +19,4 @@ const store = createStore
 
 let f_concentrations = []
 
-store.dispatch(set_lineage(["kingdom", "genus", "species"]))
+store.dispatch(setLineage(["kingdom", "genus", "species"]))

@@ -1,4 +1,4 @@
-export const defaultState = {
+const defaultState = {
   organismList: [],
   fetching: false,
   fetched: false,

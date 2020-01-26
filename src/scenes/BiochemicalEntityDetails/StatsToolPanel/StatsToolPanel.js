@@ -2,14 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import MeasurementsBoxScatterPlot from "../MeasurementsBoxScatterPlot/MeasurementsBoxScatterPlot";
-import {
-  mean,
-  median,
-  range,
-  standardDeviation,
-  round,
-  jsonToCsv
-} from "~/utils/utils";
+import { mean, median, std } from "mathjs";
+import { range, roundToDecimal } from "~/utils/utils";
 
 import "./StatsToolPanel.scss";
 
@@ -18,7 +12,6 @@ import "./StatsToolPanel.scss";
  * This class takes the data from the store, and summarizes the data with mean, median, range, standard deviation, and a chart at bottom.
  * This class mostly handles the rendering, while the logic is handled elsewhere
  */
-
 @connect(store => {
   return {
     selectedData: store.results.selectedData,
@@ -31,7 +24,7 @@ class StatsToolPanel extends Component {
      * REDUX: this is a list of rows of all the selected data. This is used to generate consensus
      * only of the displayed data
      */
-    selectedData: PropTypes.array.isRequired,
+    selectedData: PropTypes.array,
 
     /**
      * REDUX: This is a list of all the data. This is recorded in the CSV file
@@ -43,7 +36,7 @@ class StatsToolPanel extends Component {
      * For example, in metabolite concentrations, we want the summarize the value of "concentration",
      * so we need to tell the compomenet to look for the column labeled "concentration"
      */
-    relevantColumns: PropTypes.string.isRequired
+    "relevant-column": PropTypes.string.isRequired
   };
 
   constructor(props) {
@@ -56,55 +49,52 @@ class StatsToolPanel extends Component {
       median: null,
 
       /**The standard deviation of the selected data*/
-      std_dev: null,
-
-      /**The IQR of the selected data*/
-      iqr: null,
+      stdDev: null,
 
       /**The range of the selected data*/
       range: null,
 
-      /**Whether the user asked for the consensus again*/
-      asked_consensus: false,
-
-      selected_column: "",
-
-      /** What the prompt on the consensus button should be. Initially it is 'Get Consensus'*/
-      consensus_prompt: "Get Consensus",
-
-      buttonValue: 1
+      selectedColumn: ""
     };
-    this.setSummaryStats = this.setSummaryStats.bind(this);
-    this.recordData = this.recordData.bind(this);
-    this.standardRound = this.standardRound.bind(this);
   }
 
   /**
    * Sets the summary statistics for consensus
    */
-  setSummaryStats(data, selected_column) {
-    var total_conc = 0;
-    let total_data = [];
-    for (var i = data.length - 1; i >= 0; i--) {
-      total_data.push(parseFloat(data[i][selected_column]));
-      total_conc = total_conc + parseFloat(data[i][selected_column]);
+  calcStats(data, selectedColumn) {
+    // get values
+    const allVals = [];
+    for (const datum of data) {
+      const datumVal = parseFloat(datum[selectedColumn]);
+      if (!isNaN(datumVal)) {
+        allVals.push(datumVal);
+      }
     }
-    total_data = total_data.filter(function(el) {
-      return !isNaN(el);
-    });
-    var new_mean = this.standardRound(mean(total_data));
-    var new_median = this.standardRound(median(total_data));
-    var new_std_dev = this.standardRound(standardDeviation(total_data));
-    var new_range = range(total_data);
 
-    this.setState({
-      mean: new_mean,
-      median: new_median,
-      std_dev: new_std_dev,
-      //selected_column: selected_column,
-      range:
-        round(new_range[0], 3) + "-" + round(new_range[new_range.length - 1], 3)
-    });
+    // calcalate statistics
+    if (allVals.length > 0) {
+      const newMean = this.standardRound(mean(allVals));
+      const newMedian = this.standardRound(median(allVals));
+      const newStdDev = this.standardRound(std(allVals));
+      const newRange = range(allVals);
+
+      this.setState({
+        mean: newMean,
+        median: newMedian,
+        stdDev: newStdDev,
+        range:
+          roundToDecimal(newRange[0], 3) +
+          "-" +
+          roundToDecimal(newRange[newRange.length - 1], 3)
+      });
+    } else {
+      this.setState({
+        mean: null,
+        median: null,
+        stdDev: null,
+        range: null
+      });
+    }
   }
 
   standardRound(number) {
@@ -114,14 +104,7 @@ class StatsToolPanel extends Component {
     } else {
       rounder = 7;
     }
-    return round(number, rounder);
-  }
-
-  /**
-   * Gets a CSV version of the table rows to then be returned as a CSV file
-   */
-  recordData() {
-    return jsonToCsv(JSON.stringify(this.props.totalData));
+    return roundToDecimal(number, rounder);
   }
 
   /**
@@ -130,8 +113,8 @@ class StatsToolPanel extends Component {
    */
   componentDidMount() {
     if (this.props.totalData != null) {
-      this.setSummaryStats(this.props.totalData, this.props.relevantColumns[0]);
-      this.setState({ selected_column: this.props.relevantColumns[0] });
+      this.calcStats(this.props.totalData, this.props["relevant-column"]);
+      this.setState({ selectedColumn: this.props["relevant-column"] });
     }
   }
 
@@ -140,19 +123,13 @@ class StatsToolPanel extends Component {
    */
   componentDidUpdate(prevProps) {
     if (prevProps.totalData !== this.props.totalData) {
-      this.setSummaryStats(this.props.totalData, this.props.relevantColumns[0]);
-      this.setState({ selected_column: this.props.relevantColumns[0] });
+      this.calcStats(this.props.totalData, this.props["relevant-column"]);
+      this.setState({ selectedColumn: this.props["relevant-column"] });
     } else if (prevProps.selectedData !== this.props.selectedData) {
       if (this.props.selectedData.length === 0) {
-        this.setSummaryStats(
-          this.props.totalData,
-          this.props.relevantColumns[0]
-        );
+        this.calcStats(this.props.totalData, this.props["relevant-column"]);
       } else {
-        this.setSummaryStats(
-          this.props.selectedData,
-          this.state.selected_column
-        );
+        this.calcStats(this.props.selectedData, this.state.selectedColumn);
       }
     }
   }
@@ -162,34 +139,35 @@ class StatsToolPanel extends Component {
       return <div></div>;
     } else {
       return (
-        <div className="consensus_data">
-          <div>
-            <p>
-              <b>Concentrations</b>
-            </p>
-
+        <div className="biochemical-entity-scene-stats-tool-panel">
+          <div className="biochemical-entity-scene-stats-tool-panel-plot">
             <MeasurementsBoxScatterPlot
-              allMeasurements={this.props.totalData}
-              selectedMeasurements={this.props.selectedData}
-              dataProperty={this.state.selected_column}
+              all-measurements={this.props.totalData}
+              selected-measurements={this.props.selectedData}
+              data-property={this.state.selectedColumn}
             />
-
-            <div className="summary" style={{ marginTop: 10 }}>
-              <p>
-                <b>Mean: </b>
-                {this.state.mean}
-                <br />
-                <b>Median: </b>
-                {this.state.median}
-                <br />
-                <b>Standard Deviation: </b>
-                {this.state.std_dev}
-                <br />
-                <b>Range: </b>
-                {this.state.range}
-              </p>
-            </div>
           </div>
+
+          <table className="summary">
+            <tbody>
+              <tr>
+                <th>Mean</th>
+                <td>{this.state.mean}</td>
+              </tr>
+              <tr>
+                <th>Median</th>
+                <td>{this.state.median}</td>
+              </tr>
+              <tr>
+                <th>Std dev</th>
+                <td>{this.state.stdDev}</td>
+              </tr>
+              <tr>
+                <th>Range</th>
+                <td>{this.state.range}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       );
     }

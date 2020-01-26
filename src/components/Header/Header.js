@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Navbar } from "@blueprintjs/core";
 import { Button } from "@blueprintjs/core";
@@ -8,11 +10,38 @@ import { Logo } from "./Logo/Logo";
 import SearchForm from "~/components/SearchForm/SearchForm";
 
 class Header extends Component {
+  static propTypes = {
+    history: PropTypes.object.isRequired
+  };
+
   constructor() {
     super();
+    this.unlistenToHistory = null;
     this.state = {
-      showSearchForm: true
+      showSearchForm: false
     };
+  }
+
+  componentDidMount() {
+    this.unlistenToHistory = this.props.history.listen(() => {
+      this.updateStateFromLocation();
+    });
+    this.updateStateFromLocation();
+  }
+
+  componentWillUnmount() {
+    this.unlistenToHistory();
+    this.unlistenToHistory = null;
+  }
+
+  updateStateFromLocation() {
+    const pathRegex = /^\/search(\/|$)/;
+    if (
+      this.unlistenToHistory &&
+      this.props.history.location.pathname.match(pathRegex)
+    ) {
+      this.setState({ showSearchForm: true });
+    }
   }
 
   render() {
@@ -34,11 +63,11 @@ class Header extends Component {
           </div>
         </Navbar.Group>
 
-        {showSearchForm && (
-          <Navbar.Group className="search-container">
-            <SearchForm />
-          </Navbar.Group>
-        )}
+        <Navbar.Group
+          className={"search-container" + (showSearchForm ? "" : " hide")}
+        >
+          <SearchForm />
+        </Navbar.Group>
 
         <Navbar.Group align className="page-links">
           <Button
@@ -79,4 +108,5 @@ class Header extends Component {
     );
   }
 }
-export { Header };
+
+export default withRouter(Header);

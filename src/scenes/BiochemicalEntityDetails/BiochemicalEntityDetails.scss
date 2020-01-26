@@ -1,11 +1,216 @@
-/* AG grid */
-.ag-theme-balham .ag-icon-pin {
-  font-family: "Font Awesome 5 Free";
+@import 'colors';
 
-  /* FontAwesome uses font-weight bold */
-  font-weight: bold;
-}
+.biochemical-entity-scene {
+  .page-title {
+    margin-bottom: 0.75rem;
+  }
 
-.ag-theme-balham .ag-icon-customstats::before {
-  content: '\f08d';
+  /* entity metadata */
+  .icon-description {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  .entity-scene-icon {
+    height: 100px;
+  }
+
+  .key-value-list {
+    list-style-type: none;
+    margin: 0;
+
+    li:not(:first-child) {
+      margin-top: 0.25rem;
+    }
+
+    b {
+      font-weight: 500;
+      text-align: left;
+    }
+
+    a {
+      color: $color-text;
+    }
+
+    a:hover {
+      color: $color-primary;
+    }
+  }
+
+  .key-value-list.key-value-list-spaced {
+    li:not(:first-child) {
+      margin-top: 0.5rem;
+    }
+  }
+
+  /* measurements-grid */
+  .measurements-grid.ag-theme-balham {
+    width: 100%;
+    max-height: 1000px;
+
+    .ag-side-bar {
+      border-right: none;
+      border-bottom: none;
+    }
+
+    .ag-tool-panel-wrapper {
+      .ag-filter-panel {
+        .ag-filter-list-panel > div.ag-last-group-visible > .ag-group-component.ag-collapsed {
+          border-bottom: none;
+        }
+      }
+    }
+
+    .ag-column-tool-panel-column {
+      .ag-column-drag {
+        display: none;
+      }
+    }
+
+    .ag-react-container {
+      width: 100%;
+    }
+
+    a {
+      color: $color-text;
+    }
+
+    a:hover {
+      color: $color-primary;
+    }
+  }
+
+  .tool-panel-slider {
+    .MuiSlider-thumb {
+      height: 15px;
+      width: 15px;
+      background-color: $color-primary;
+      box-shadow: none;
+    }
+
+    .MuiSlider-markLabel {
+      font-size: 12px;
+    }
+
+    .MuiSlider-mark {
+      background-color: $color-border-dark;
+    }
+
+    .MuiSlider-markActive {
+      background-color: $color-primary;
+    }
+  }
+
+  .tool-panel-normal-slider {
+    .MuiSlider-root {
+      color: $color-primary;
+    }
+
+    .MuiSlider-rail {
+      background-color: $color-border-dark;
+    }
+  }
+
+  .tool-panel-inverted-slider {
+    .MuiSlider-root {
+      color: $color-border-dark;
+    }
+
+    .MuiSlider-rail {
+      background-color: $color-primary;
+    }
+  }
+
+  .tool-panel-horizontal-slider {
+    .MuiSlider-root {
+      padding: 15px 0;
+    }
+
+    .MuiSlider-root,
+    .MuiSlider-track,
+    .MuiSlider-trackInverted,
+    .MuiSlider-rail {
+      height: 2px;
+    }
+
+    .MuiSlider-mark {
+      height: 8px;
+    }
+
+    .MuiSlider-mark,
+    .MuiSlider-markActive {
+      width: 2px;
+    }
+
+    .MuiSlider-thumb {
+      margin-top: -7px;
+      margin-left: -10px;
+    }
+
+    .MuiSlider-valueLabel {
+      left: calc(-50% + 11px);
+      top: -17px;
+      margin-left: -15px;
+    }
+  }
+
+  .tool-panel-vertical-slider {
+    .MuiSlider-root,
+    .MuiSlider-track,
+    .MuiSlider-trackInverted,
+    .MuiSlider-rail {
+      width: 2px;
+    }
+
+    .MuiSlider-mark {
+      width: 8px;
+    }
+
+    .MuiSlider-mark,
+    .MuiSlider-markActive {
+      height: 2px;
+    }
+
+    .MuiSlider-markLabel {
+      transform: translateY(40%);
+    }
+  }
+
+  /* taxonomy filter */
+  .taxonomy-tool-panel-slider {
+    height: 150px;
+    width: 100%;
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+
+    .MuiSlider-valueLabel {
+      display: none;
+    }
+  }
+
+  /* Tanimoto filter */
+  .tanimoto-tool-panel-slider {
+    margin-left: 1.25rem;
+    margin-right: 1.25rem;
+    margin-top: 10px;
+
+    .MuiSlider-thumb:hover,
+    .MuiSlider-thumb.MuiSlider-active {
+      .MuiSlider-valueLabel {
+        display: flex;
+      }
+    }
+
+    .MuiSlider-valueLabel {
+      display: none;
+      font-style: 12px;
+
+      & * {
+        background: transparent;
+        color: $color-text;
+      }
+    }
+  }
 }

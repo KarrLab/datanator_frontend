@@ -1,58 +1,33 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import Slider from "@material-ui/core/Slider";
-import { makeStyles } from "@material-ui/core/styles";
-import store from "~/data/Store";
-import ReactDOM from "react-dom";
 
-const useStyles = makeStyles({
-  slider: {
-    height: 150
-  }
-});
-
-function valuetext(value) {
+function valueText(value) {
   return `${value}`;
 }
 
-function VerticalSlider(marks) {
-  const classes = useStyles();
-
-  return (
-    <React.Fragment>
-      <div className={classes.root}>
-        <Slider
-          orientation="vertical"
-          //defaultValue={[20, 37]}
-          aria-labelledby="vertical-slider"
-          getAriaValueText={valuetext}
-          marks={marks}
-        />
-      </div>
-    </React.Fragment>
-  );
-}
-
 class TaxonomyFilter extends Component {
+  static propTypes = {
+    agGridReact: PropTypes.object.isRequired,
+    valueGetter: PropTypes.func.isRequired,
+    filterChangedCallback: PropTypes.func.isRequired
+  };
+
   constructor(props) {
     super(props);
 
-    this.input = React.createRef();
-
     this.state = {
-      filter: "",
-      numToNode: null,
       marks: [],
-      buttons: []
+      selectedMarkValue: 0,
+      maxDistance: null
     };
 
-    this.valueGetter = this.props.valueGetter;
+    this.markValueToDistance = null;
+    this.filterModel = null;
 
     this.onChange = this.onChange.bind(this);
-    this.isFilterActive = this.isFilterActive.bind(this);
-    this.formatButtons = this.formatButtons.bind(this);
-    this.setMarks = this.setMarks.bind(this);
-    this.sliderChange = this.sliderChange.bind(this);
   }
+
   isFilterActive() {
     return true;
   }
@@ -62,6 +37,7 @@ class TaxonomyFilter extends Component {
       this.setMarks();
     }
   }
+
   componentDidUpdate(prevProps) {
     if (
       this.props.agGridReact.props.lineage !==
@@ -72,75 +48,48 @@ class TaxonomyFilter extends Component {
   }
 
   setMarks() {
-    let lineage = this.props.agGridReact.props.lineage;
-    let buttons = [];
-    var new_marks = [];
-    var new_numToNode = {};
-    var n = lineage.length - 1;
-    for (var i = 0; i < lineage.length; i++) {
-      //new_numToNode[Object.values(lineage[i])[0]] = Object.keys(lineage[i])[0];
-      new_numToNode[i] = Object.values(lineage[i])[0];
-      new_marks.push({ value: i, label: Object.keys(lineage[i])[0] });
-      buttons.push(
-        <div>
-          {" "}
-          <input
-            type="radio"
-            name="gender"
-            value={Object.values(lineage[i])[0]}
-          ></input>
-          <label>{Object.keys(lineage[i])[0]}</label>
-        </div>
-      );
-
-      //buttons.push(<input type="radio" name="gender" value={Object.values(lineage[i])[0]}> {Object.keys(lineage[i])[0]} </input>)
+    const lineage = this.props.agGridReact.props.lineage;
+    const marks = [];
+    this.markValueToDistance = {};
+    for (let iLineage = 0; iLineage < lineage.length; iLineage++) {
+      const taxon = Object.keys(lineage[iLineage])[0];
+      const distance = Object.values(lineage[iLineage])[0];
+      marks.push({
+        value: iLineage,
+        label: taxon
+      });
+      this.markValueToDistance[iLineage] = distance;
     }
 
     this.setState({
-      numToNode: new_numToNode,
-      buttons: buttons,
-      marks: new_marks
+      marks: marks,
+      selectedMarkValue: Math.max(marks.length - 1)
     });
-  }
-
-  isFilterActive2() {
-    return this.state.filter !== "";
   }
 
   doesFilterPass(params) {
-    const filter = this.state.filter;
-    const value = this.valueGetter(params.node);
-
-    return value <= filter;
+    const maxDistance = this.state.maxDistance;
+    const distance = this.props.valueGetter(params.node);
+    return distance <= maxDistance;
   }
 
   getModel() {
-    return { value: this.state.text };
+    return this.filterModel;
   }
 
   setModel(model) {
-    this.state.text = model ? model.value : "";
+    this.filterModel = model;
   }
 
-  afterGuiAttached(params) {
-    this.focus();
-  }
+  afterGuiAttached() {}
 
-  focus() {
-    window.setTimeout(() => {
-      let container = ReactDOM.findDOMNode(this.refs.input);
-      if (container) {
-        container.focus();
-      }
-    });
-  }
-
-  onChange(event, newValue) {
-    let filter = this.state.numToNode[newValue];
-    if (this.state.filter !== filter) {
+  onChange(event, selectedMarkValue) {
+    const maxDistance = this.markValueToDistance[selectedMarkValue];
+    if (this.state.maxDistance !== maxDistance) {
       this.setState(
         {
-          filter: filter
+          selectedMarkValue: selectedMarkValue,
+          maxDistance: maxDistance
         },
         () => {
           this.props.filterChangedCallback();
@@ -149,40 +98,27 @@ class TaxonomyFilter extends Component {
     }
   }
 
-  formatButtons(lineage) {
-    let buttons = [];
-    for (var i = this.state.marks.length - 1; i >= 0; i--) {
-      buttons.push(
-        <input type="radio" name="gender" value="male">
-          {" "}
-          this.state.marks[i]{" "}
-        </input>
-      );
-    }
-    return buttons;
-  }
-
-  sliderChange(value) {
-    this.setState({ filter: 7 });
-  }
-
   render() {
-    let buttons = this.state.buttons;
-    let marks = this.state.marks;
-    return (
-      <div className={"slider_container"}>
-        <div className={"slider_2"} style={{ height: 140 }}>
-          <Slider
-            onChange={this.onChange}
-            orientation="vertical"
-            aria-labelledby="vertical-slider"
-            getAriaValueText={valuetext}
-            marks={marks}
-            max={marks.length - 1}
-          />
-        </div>
+    const marks = this.state.marks;
+    const max = Math.max(0, marks.length - 1);
+    const selectedMarkValue = this.state.selectedMarkValue;
+    const sliderContainer = (
+      <div className="tool-panel-slider tool-panel-normal-slider tool-panel-vertical-slider taxonomy-tool-panel-slider">
+        <Slider
+          min={0}
+          max={max}
+          step={1}
+          marks={marks}
+          value={selectedMarkValue}
+          orientation="vertical"
+          valueLabelDisplay={"on"}
+          onChange={this.onChange}
+          aria-label="Taxonomy slider"
+          getAriaValueText={valueText}
+        />
       </div>
     );
+    return sliderContainer;
   }
 }
 
