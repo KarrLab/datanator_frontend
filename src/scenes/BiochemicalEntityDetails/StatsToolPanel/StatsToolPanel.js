@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import MeasurementsBoxScatterPlot from "../MeasurementsBoxScatterPlot/MeasurementsBoxScatterPlot";
 import { mean, median, std } from "mathjs";
 import { range, roundToDecimal } from "~/utils/utils";
+import { AgGridReact } from "@ag-grid-community/react";
 
 import "./StatsToolPanel.scss";
 
@@ -42,17 +43,29 @@ class StatsToolPanel extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      /**The mean of the total data*/
+      total_mean: null,
+
+      /**The median of the total data*/
+      total_median: null,
+
+      /**The standard deviation of the total data*/
+      total_stdDev: null,
+
+      /**The range of the total data*/
+      total_range: null,
+
       /**The mean of the selected data*/
-      mean: null,
+      selected_mean: null,
 
       /**The median of the selected data*/
-      median: null,
+      selected_median: null,
 
       /**The standard deviation of the selected data*/
-      stdDev: null,
+      selected_stdDev: null,
 
       /**The range of the selected data*/
-      range: null,
+      selected_range: null,
 
       selectedColumn: ""
     };
@@ -61,7 +74,9 @@ class StatsToolPanel extends Component {
   /**
    * Sets the summary statistics for consensus
    */
-  calcStats(data, selectedColumn) {
+  calcStats(data, selectedColumn, total) {
+
+
     // get values
     const allVals = [];
     for (const datum of data) {
@@ -77,22 +92,40 @@ class StatsToolPanel extends Component {
       const newMedian = this.standardRound(median(allVals));
       const newStdDev = this.standardRound(std(allVals));
       const newRange = range(allVals);
+      if (total){
+        this.setState({
+          total_mean: newMean,
+          total_median: newMedian,
+          total_stdDev: newStdDev,
+          total_range:
+            roundToDecimal(newRange[0], 3) +
+            "-" +
+            roundToDecimal(newRange[newRange.length - 1], 3)
+        })
+      }
+      else{
+        this.setState({
+          selected_mean: newMean,
+          selected_median: newMedian,
+          selected_stdDev: newStdDev,
+          selected_range:
+            roundToDecimal(newRange[0], 3) +
+            "-" +
+            roundToDecimal(newRange[newRange.length - 1], 3)
+        })
 
-      this.setState({
-        mean: newMean,
-        median: newMedian,
-        stdDev: newStdDev,
-        range:
-          roundToDecimal(newRange[0], 3) +
-          "-" +
-          roundToDecimal(newRange[newRange.length - 1], 3)
-      });
+      }
+      ;
     } else {
       this.setState({
-        mean: null,
-        median: null,
-        stdDev: null,
-        range: null
+        total_mean: null,
+        total_median: null,
+        total_stdDev: null,
+        total_range: null,
+        selected_mean: null,
+        selected_median: null,
+        selected_stdDev: null,
+        selected_range: null,
       });
     }
   }
@@ -113,7 +146,7 @@ class StatsToolPanel extends Component {
    */
   componentDidMount() {
     if (this.props.totalData != null) {
-      this.calcStats(this.props.totalData, this.props["relevant-column"]);
+      this.calcStats(this.props.totalData, this.props["relevant-column"], true);
       this.setState({ selectedColumn: this.props["relevant-column"] });
     }
   }
@@ -123,13 +156,19 @@ class StatsToolPanel extends Component {
    */
   componentDidUpdate(prevProps) {
     if (prevProps.totalData !== this.props.totalData) {
-      this.calcStats(this.props.totalData, this.props["relevant-column"]);
+      this.calcStats(this.props.totalData, this.props["relevant-column"], true);
       this.setState({ selectedColumn: this.props["relevant-column"] });
     } else if (prevProps.selectedData !== this.props.selectedData) {
       if (this.props.selectedData.length === 0) {
-        this.calcStats(this.props.totalData, this.props["relevant-column"]);
+        //this.calcStats(this.props.totalData, this.props["relevant-column"], true);
+        this.setState({
+        selected_mean: null,
+        selected_median: null,
+        selected_stdDev: null,
+        selected_range: null,
+      })
       } else {
-        this.calcStats(this.props.selectedData, this.state.selectedColumn);
+        this.calcStats(this.props.selectedData, this.state.selectedColumn, false);
       }
     }
   }
@@ -151,7 +190,32 @@ class StatsToolPanel extends Component {
           <table className="summary">
             <tbody>
               <tr>
-                <th>Mean</th>
+                <td></td>
+                <th scope="col">Total</th>
+                <th scope="col">Selected</th>
+              </tr>
+              <tr>
+                <th scope="row">Mean</th>
+                <td>{this.state.total_mean}</td>
+                <td><td>{this.state.selected_mean}</td></td>
+              </tr>
+              <tr>
+                <th scope="row">Median</th>
+                <td>{this.state.total_median}</td>
+                <td><td>{this.state.selected_median}</td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      );
+    }
+  }
+}
+
+export { StatsToolPanel };
+
+/*
+ <th>Total</th>
                 <td>{this.state.mean}</td>
               </tr>
               <tr>
@@ -165,13 +229,4 @@ class StatsToolPanel extends Component {
               <tr>
                 <th>Range</th>
                 <td>{this.state.range}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      );
-    }
-  }
-}
-
-export { StatsToolPanel };
+                */
