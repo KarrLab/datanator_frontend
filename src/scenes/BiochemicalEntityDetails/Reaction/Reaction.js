@@ -49,7 +49,7 @@ const sideBar = {
     },
     {
       id: "stats-kcat",
-      labelDefault: "Kcat",
+      labelDefault: "k<sub>cat</sub>",
       labelKey: "chart",
       iconKey: "chart",
       toolPanel: "statsToolPanel"
@@ -245,7 +245,7 @@ class Reaction extends Component {
     );
     for (let i = km_values.length - 1; i >= 0; i--) {
       new_columns.push({
-        headerName: "Km " + km_values[i].split("_")[1] + " (M)",
+        headerName: "Km " + km_values[i].split("_")[1].toLowerCase() + " (M)",
         field: km_values[i],
         sortable: true,
         filter: "agNumberColumnFilter"
@@ -253,7 +253,7 @@ class Reaction extends Component {
       let comp_name = "CustomToolPanelReaction_" + km_values[i];
       sideBar["toolPanels"].push({
         id: km_values[i],
-        labelDefault: "Km " + km_values[i].split("_")[1],
+        labelDefault: "K<sub>M</sub> " + km_values[i].split("_")[1].toLowerCase(),
         labelKey: "chart",
         iconKey: "chart",
         toolPanel: comp_name
@@ -327,17 +327,19 @@ class Reaction extends Component {
       this.formatReactionMetadata(response.data);
       this.formatReactionData(response.data);
     });
-    getDataFromApi([
-      "taxon",
-      "canon_rank_distance_by_name/?name=" + pathArgs.organism
-    ], {}, "Unable to get taxonomic information about '" + pathArgs.organism + "'.").then(response => {
-      //this.props.dispatch(setLineage(response.data));
-      this.setState({ lineage: response.data });
-    });
-    //.catch(err => {
-    //alert('Nothing Found');
-    //this.setState({ orig_json: null });
-    //});
+    if (pathArgs.organism) {
+      getDataFromApi([
+        "taxon",
+        "canon_rank_distance_by_name/?name=" + pathArgs.organism
+      ], {}, "Unable to get taxonomic information about '" + pathArgs.organism + "'.").then(response => {
+        //this.props.dispatch(setLineage(response.data));
+        this.setState({ lineage: response.data });
+      });
+      //.catch(err => {
+      //alert('Nothing Found');
+      //this.setState({ orig_json: null });
+      //});
+    }
   }
 
   formatReactionData(data) {
