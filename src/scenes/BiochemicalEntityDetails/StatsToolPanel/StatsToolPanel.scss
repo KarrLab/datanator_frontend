@@ -1,3 +1,6 @@
+@import 'colors';
+
+
 .biochemical-entity-scene-stats-tool-panel {
   height: 100%;
   width: 100%;
@@ -13,7 +16,7 @@
     margin-right: auto;
 
     th {
-      text-align: right;
+      text-align: center;
       font-weight: 500;
       margin-right: 0.125rem;
     }
@@ -21,7 +24,7 @@
     td {
       text-align: left;
       margin-left: 0.125rem;
-      border: 1px solid black;
+      border: 1px solid $color-primary;
     }
   }
 }
