@@ -123,11 +123,23 @@ a:hover {
   margin-top: 3rem;
 }
 
+.content-block-heading-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
 .content-block-heading {
   font-size: 1.25rem;
   font-weight: bold;
   text-align: left;
   margin: 0;
+  margin-bottom: 0.5rem;
+}
+
+.content-block-heading-actions {
+  display: inline-block;
   margin-bottom: 0.5rem;
 }
 
@@ -261,6 +273,19 @@ body {
   .MuiTouchRipple-root {
     display: none;
   }
+}
+
+/* buttons */
+.text-button {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.text-button:hover,
+.text-button:active {
+  cursor: pointer;
+  color: $color-primary;
 }
 
 /* highlight */

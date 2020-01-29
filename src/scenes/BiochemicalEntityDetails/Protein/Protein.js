@@ -408,30 +408,37 @@ class Protein extends Component {
               organism={organism}
             />
 
-            <div className="content-block measurements-grid ag-theme-balham" id="abundance">
-              <h2 className="content-block-heading">Abundance</h2>
-              <AgGridReact
-                modules={AllModules}
-                frameworkComponents={frameworkComponents}
-                sideBar={sideBar}
-                defaultColDef={defaultColDef}
-                columnDefs={columnDefs}
-                rowData={this.props.allData}
-                rowSelection="multiple"
-                groupSelectsChildren={true}
-                suppressMultiSort={true}
-                suppressAutoSize={true}
-                suppressMovableColumns={true}
-                suppressCellSelection={true}
-                suppressRowClickSelection={true}
-                suppressContextMenu={true}
-                domLayout="autoHeight"
-                onGridReady={this.onGridReady.bind(this)}
-                onFirstDataRendered={this.onFirstDataRendered.bind(this)}
-                onFilterChanged={this.onFiltered.bind(this)}
-                onSelectionChanged={this.onRowSelected.bind(this)}
-                lineage={this.state.lineage}
-              ></AgGridReact>
+            <div className="content-block measurements-grid" id="abundance">
+              <div className="content-block-heading-container">
+                <h2 className="content-block-heading">Abundance</h2>
+                <div className="content-block-heading-actions">
+                  Export: <button className="text-button">CSV</button> | <button className="text-button">JSON</button>
+                </div>
+              </div>
+              <div className="ag-theme-balham">
+                <AgGridReact
+                  modules={AllModules}
+                  frameworkComponents={frameworkComponents}
+                  sideBar={sideBar}
+                  defaultColDef={defaultColDef}
+                  columnDefs={columnDefs}
+                  rowData={this.props.allData}
+                  rowSelection="multiple"
+                  groupSelectsChildren={true}
+                  suppressMultiSort={true}
+                  suppressAutoSize={true}
+                  suppressMovableColumns={true}
+                  suppressCellSelection={true}
+                  suppressRowClickSelection={true}
+                  suppressContextMenu={true}
+                  domLayout="autoHeight"
+                  onGridReady={this.onGridReady.bind(this)}
+                  onFirstDataRendered={this.onFirstDataRendered.bind(this)}
+                  onFilterChanged={this.onFiltered.bind(this)}
+                  onSelectionChanged={this.onRowSelected.bind(this)}
+                  lineage={this.state.lineage}
+                ></AgGridReact>
+              </div>
             </div>
           </div>
         </div>
