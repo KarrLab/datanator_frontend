@@ -105,9 +105,14 @@ function dictOfArraysToArrayOfDicts(dictOfArrays) {
   return arrayOfDicts;
 }
 
+function scrollTo(el) {
+  window.scrollTo({ behavior: "smooth", top: el.offsetTop - 52 });
+}
+
 export {
   mode,
   formatScientificNotation,
   formatChemicalFormula,
-  dictOfArraysToArrayOfDicts
+  dictOfArraysToArrayOfDicts,
+  scrollTo
 };

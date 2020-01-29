@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 
+import { scrollTo } from "~/utils/utils";
 import SearchForm from "~/components/SearchForm/SearchForm";
 
 import "~/scenes/Home/Home.scss";
@@ -34,10 +35,6 @@ import nsfIcon from "../About/images/nsf.svg";
 
 class Home extends Component {
   render() {
-    const scrollTo = el => {
-      window.scrollTo({ behavior: "smooth", top: el.offsetTop });
-    };
-
     return (
       <div className="content-container full-width-content-container content-container-home-scene">
         <div className="section intro">

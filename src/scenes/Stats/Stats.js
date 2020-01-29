@@ -1,14 +1,11 @@
 import React, { Component } from "react";
 import { HashLink } from "react-router-hash-link";
+import { scrollTo } from "~/utils/utils";
 
 // import "./Stats.scss";
 
 class Stats extends Component {
   render() {
-    const scrollTo = el => {
-      window.scrollTo({ behavior: "smooth", top: el.offsetTop - 52 });
-    };
-
     return (
       <div className="content-container content-container-stats-scene">
         <h1 className="page-title">Statistics</h1>

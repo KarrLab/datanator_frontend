@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { HashLink } from "react-router-hash-link";
 import { SocialIcon } from "react-social-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { scrollTo } from "~/utils/utils";
 
 import "./About.scss";
 
@@ -16,10 +17,6 @@ import nsfIcon from "./images/nsf.svg";
 
 class About extends Component {
   render() {
-    const scrollTo = el => {
-      window.scrollTo({ behavior: "smooth", top: el.offsetTop - 52 });
-    };
-
     return (      
       <div className="content-container content-container-about-scene">
         <h1 className="page-title">About</h1>

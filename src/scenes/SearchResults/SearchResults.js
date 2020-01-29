@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { HashLink } from "react-router-hash-link";
+import { scrollTo } from "~/utils/utils";
 
 import MetaboliteSearchResultsList from "./MetaboliteSearchResultsList";
 import RnaSearchResultsList from "./RnaSearchResultsList";
@@ -10,10 +11,6 @@ import "./SearchResults.scss";
 
 class SearchResults extends Component {
   render() {
-    const scrollTo = el => {
-      window.scrollTo({ behavior: "smooth", top: el.offsetTop - 52 });
-    };
-
     return (
       <div className="content-container content-container-search-results-scene">
         <h1 className="page-title">Search</h1>
