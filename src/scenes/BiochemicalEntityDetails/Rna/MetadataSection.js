@@ -17,9 +17,9 @@ class MetadataSection extends Component {
       <div>
         <div className="content-block" id="properties">
           <h2 className="content-block-heading">Properties</h2>
-          <div className="content-block-content img-description">
+          <div className="content-block-content">
             {(metadata.geneName || metadata.proteinName) && (
-            <div className="metadata-description">
+            <div>
               {metadata.geneName && (
               <p>
                 <b>Gene:</b> {metadata.geneName}

@@ -3,15 +3,18 @@ import PropTypes from "prop-types";
 
 const sprintf = require("sprintf-js").sprintf;
 
-const STRUCTURE_IMG_URL =
-  "http://cactus.nci.nih.gov/chemical/structure/%s%s/image" +
-  "?format=png" +
-  "&width=100" +
-  "&height=100" +
-  "&linewidth=2" +
-  "&symbolfontsize=16" +
-  "&bgcolor=transparent" +
-  "&antialiasing=0";
+const STRUCTURE_IMG_ARGS = {
+  format: "png",
+  width: 300,
+  height: 300,
+  linewidth: 1,
+  symbolfontsize: 10,
+  bgcolor: "transparent",
+  antialiasing: 0,
+  crop: 0,
+};
+const STRUCTURE_IMG_URL = "http://cactus.nci.nih.gov/chemical/structure/%s%s/image?" + 
+  Object.keys(STRUCTURE_IMG_ARGS).map(el => {return el + "=" + STRUCTURE_IMG_ARGS[el]}).join("&");
 
 const DATABASES = {
   biocyc: {
@@ -160,7 +163,7 @@ class MetadataSection extends Component {
         {metadata.synonyms.length > 0 && (
           <div className="content-block" id="synonyms">
             <h2 className="content-block-heading">Synonyms</h2>
-            <div className="content-block-content icon-description">
+            <div className="content-block-content">
               {metadata.synonyms.join(", ")}
             </div>
           </div>

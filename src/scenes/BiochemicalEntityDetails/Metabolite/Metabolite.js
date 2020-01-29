@@ -20,7 +20,7 @@ import "@ag-grid-enterprise/all-modules/dist/styles/ag-theme-balham/sass/ag-them
 import { formatChemicalFormula, dictOfArraysToArrayOfDicts } from "~/utils/utils";
 
 import "../BiochemicalEntityDetails.scss";
-import "./Metabolite.scss";
+// import "./Metabolite.scss";
 
 const frameworkComponents = {
   statsToolPanel: () => (<StatsToolPanel relevant-column={"concentration"} />),

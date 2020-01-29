@@ -17,7 +17,7 @@ import "@ag-grid-enterprise/all-modules/dist/styles/ag-grid.scss";
 import "@ag-grid-enterprise/all-modules/dist/styles/ag-theme-balham/sass/ag-theme-balham.scss";
 
 import "../BiochemicalEntityDetails.scss";
-import "./Reaction.scss";
+// import "./Reaction.scss";
 
 const sideBar = {
   toolPanels: [
