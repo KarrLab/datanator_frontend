@@ -180,7 +180,7 @@ class MetadataSection extends Component {
           <div className="content-block">
             <h2 className="content-block-heading">Biological context</h2>
             <div className="content-block-content">
-              <ul class="key-value-list key-value-list-spaced">
+              <ul className="key-value-list key-value-list-spaced">
               {metadata.pathways && metadata.pathways.length > 0 && (
                 <li>
                   <b>Pathways:</b>{" "}
