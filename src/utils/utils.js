@@ -83,4 +83,31 @@ function formatChemicalFormula(formula) {
   );
 }
 
-export { mode, formatScientificNotation, formatChemicalFormula };
+function dictOfArraysToArrayOfDicts(dictOfArrays) {
+  const arrayOfDicts = [];
+  for (const key in dictOfArrays) {
+    if (Array.isArray(dictOfArrays[key])) {
+      for (let iEl = 0; iEl < dictOfArrays[key].length; iEl++) {
+        if (iEl >= arrayOfDicts.length - 1) {
+          arrayOfDicts.push({});
+        }
+        arrayOfDicts[iEl][key] = dictOfArrays[key][iEl];
+      }
+    } else {
+      const iEl = 0;
+      if (iEl >= arrayOfDicts.length - 1) {
+        arrayOfDicts.push({});
+      }
+      arrayOfDicts[iEl][key] = dictOfArrays[key];
+    }
+  }
+
+  return arrayOfDicts;
+}
+
+export {
+  mode,
+  formatScientificNotation,
+  formatChemicalFormula,
+  dictOfArraysToArrayOfDicts
+};

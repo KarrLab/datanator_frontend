@@ -15,7 +15,7 @@ import { TanimotoFilter } from "../TanimotoFilter.js";
 import "@ag-grid-enterprise/all-modules/dist/styles/ag-grid.scss";
 import "@ag-grid-enterprise/all-modules/dist/styles/ag-theme-balham/sass/ag-theme-balham.scss";
 
-import { formatChemicalFormula } from "~/utils/utils";
+import { formatChemicalFormula, dictOfArraysToArrayOfDicts } from "~/utils/utils";
 
 import "../BiochemicalEntityDetails.scss";
 import "./Metabolite.scss";
@@ -296,37 +296,42 @@ class Metabolite extends Component {
     for (let iSource = 0; iSource < data.length - 1; iSource++) {
       for (const met of data[iSource]) {
         const species = "species" in met ? met.species : "Escherichia coli";
-        const metConcs = met.concentrations;
-        for (let iConc = 0; iConc < metConcs.concentration.length; iConc++) {
+        
+        const metConcs = dictOfArraysToArrayOfDicts(met.concentrations);
+
+        for (const metConc of metConcs) {
           const conc = {
             name: met.name,
             tanimoto_similarity: met.tanimoto_similarity,
-            concentration: parseFloat(metConcs.concentration[iConc]),
-            units: metConcs.concentration_units[iConc],
-            error: metConcs.error[iConc],
+            concentration: parseFloat(metConc.concentration),
+            units: metConc.concentration_units,
+            error: metConc.error,
             organism:
-              Object.prototype.hasOwnProperty(metConcs, "strain") && metConcs.strain[iConc]
-                ? species + " " + metConcs.strain[iConc]
+              Object.prototype.hasOwnProperty(metConc, "strain") && metConc.strain
+                ? species + " " + metConc.strain
                 : species,
             taxonomic_proximity: met.taxon_distance,
             growth_phase:
-              "growth_status" in metConcs
-                ? metConcs.growth_status[iConc]
+              "growth_status" in metConc
+                ? metConc.growth_status
                 : null,
             growth_media:
-              "growth_media" in metConcs ? metConcs.growth_media[iConc] : null,
+              "growth_media" in metConc ? metConc.growth_media : null,
             growth_conditions:
-              "growth_system" in metConcs
-                ? metConcs.growth_system[iConc]
+              "growth_system" in metConc
+                ? metConc.growth_system
                 : null,
             source_link:
               "m2m_id" in met
                 ? { source: "ecmdb", id: met.m2m_id }
                 : { source: "ymdb", id: met.ymdb_id }
           };
+          if (conc.growth_phase && conc.growth_phase.indexOf(" phase") >= 0) {
+            conc.growth_phase = conc.growth_phase.split(" phase")[0];
+          }
           if (conc.growth_phase && conc.growth_phase.indexOf(" Phase") >= 0) {
             conc.growth_phase = conc.growth_phase.split(" Phase")[0];
-          }
+          }          
           if (!isNaN(conc.concentration)) {
             allConcs.push(conc);
           }
