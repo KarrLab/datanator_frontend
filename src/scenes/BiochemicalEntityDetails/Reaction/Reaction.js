@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { HashLink } from "react-router-hash-link";
 import PropTypes from "prop-types";
+import { upperCaseFirstLetter, scrollTo } from "~/utils/utils";
 
 import { MetadataSection } from "./MetadataSection";
 import { getDataFromApi } from "~/services/RestApi";
@@ -438,14 +439,11 @@ class Reaction extends Component {
     if (!title) {
       title = this.state.metadata.equation;
     }
-
-    let scrollTo = el => {
-      window.scrollTo({ behavior: "smooth", top: el.offsetTop - 52 });
-    };
+    title = upperCaseFirstLetter(title);
 
     return (
       <div className="content-container biochemical-entity-scene biochemical-entity-reaction-scene">
-        <h1 className="page-title">{title}</h1>
+        <h1 className="page-title">Reaction: {title}</h1>
         <div className="content-container-columns">
           <div className="overview-column">
             <div className="content-block table-of-contents">

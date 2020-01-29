@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { HashLink } from "react-router-hash-link";
 import PropTypes from "prop-types";
+import { upperCaseFirstLetter, scrollTo } from "~/utils/utils";
 
 import { MetadataSection } from "./MetadataSection";
 import { getDataFromApi } from "~/services/RestApi";
@@ -238,17 +239,14 @@ class Rna extends Component {
     }
 
     let title = this.state.metadata.geneName;
-    if (!title){
-      title = "Gene name not found"
+    if (!title) {
+      title = this.state.metadata.proteinName;
     }
-
-    const scrollTo = el => {
-      window.scrollTo({ behavior: "smooth", top: el.offsetTop - 52 });
-    };
+    title = upperCaseFirstLetter(title);
 
     return (
        <div className="content-container biochemical-entity-scene biochemical-entity-rna-scene">
-        <h1 className="page-title">{title}</h1>
+        <h1 className="page-title">RNA: {title}</h1>
         <div className="content-container-columns">
           <div className="overview-column">
             <div className="content-block table-of-contents">

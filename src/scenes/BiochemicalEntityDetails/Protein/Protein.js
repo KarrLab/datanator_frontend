@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { HashLink } from "react-router-hash-link";
 import PropTypes from "prop-types";
+import { upperCaseFirstLetter, scrollTo } from "~/utils/utils";
 
 import { MetadataSection } from "./MetadataSection";
 import { getDataFromApi } from "~/services/RestApi";
@@ -374,13 +375,12 @@ class Protein extends Component {
       );
     }
 
-    let scrollTo = el => {
-      window.scrollTo({ behavior: "smooth", top: el.offsetTop - 52 });
-    };
+    const title = this.state.metadata.koName[0];
+    title = upperCaseFirstLetter(title);
 
     return (
       <div className="content-container biochemical-entity-scene biochemical-entity-protein-scene">
-        <h1 className="page-title">{this.state.metadata.koName[0]}</h1>
+        <h1 className="page-title">Protein: {title}</h1>
         <div className="content-container-columns">
           <div className="overview-column">
             <div className="content-block table-of-contents">

@@ -105,6 +105,10 @@ function dictOfArraysToArrayOfDicts(dictOfArrays) {
   return arrayOfDicts;
 }
 
+function upperCaseFirstLetter(string) {
+  return string.substring(0, 1).toUpperCase() + string.substring(1, string.length);
+}
+
 function scrollTo(el) {
   window.scrollTo({ behavior: "smooth", top: el.offsetTop - 52 });
 }
@@ -114,5 +118,6 @@ export {
   formatScientificNotation,
   formatChemicalFormula,
   dictOfArraysToArrayOfDicts,
+  upperCaseFirstLetter,
   scrollTo
 };

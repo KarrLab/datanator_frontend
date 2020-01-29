@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { HashLink } from "react-router-hash-link";
 import PropTypes from "prop-types";
+import { upperCaseFirstLetter, scrollTo } from "~/utils/utils";
 
 import { MetadataSection } from "./MetadataSection";
 import { getDataFromApi } from "~/services/RestApi";
@@ -394,13 +395,12 @@ class Metabolite extends Component {
       );
     }
 
-    const scrollTo = el => {
-      window.scrollTo({ behavior: "smooth", top: el.offsetTop - 52 });
-    };
+    let title = this.state.metadata.name;
+    title = upperCaseFirstLetter(title);
 
     return (
       <div className="content-container biochemical-entity-scene biochemical-entity-metabolite-scene">
-        <h1 className="page-title">{this.state.metadata.name}</h1>
+        <h1 className="page-title">Metabolite: {title}</h1>
         <div className="content-container-columns">
           <div className="overview-column">
             <div className="content-block table-of-contents">
