@@ -6,7 +6,7 @@ import "./Help.scss";
 
 class Help extends Component {
   render() {
-    let scrollTo = el => {
+    const scrollTo = el => {
       window.scrollTo({ behavior: "smooth", top: el.offsetTop - 52 });
     };
 

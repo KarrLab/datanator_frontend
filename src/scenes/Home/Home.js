@@ -34,7 +34,7 @@ import nsfIcon from "../About/images/nsf.svg";
 
 class Home extends Component {
   render() {
-    let scrollTo = el => {
+    const scrollTo = el => {
       window.scrollTo({ behavior: "smooth", top: el.offsetTop });
     };
 

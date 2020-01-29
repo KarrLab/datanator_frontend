@@ -5,7 +5,7 @@ import { HashLink } from "react-router-hash-link";
 
 class Stats extends Component {
   render() {
-    let scrollTo = el => {
+    const scrollTo = el => {
       window.scrollTo({ behavior: "smooth", top: el.offsetTop - 52 });
     };
 
