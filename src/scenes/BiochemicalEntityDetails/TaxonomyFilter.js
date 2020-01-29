@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Slider from "@material-ui/core/Slider";
+import { upperCaseFirstLetter } from "~/utils/utils";
 
 function valueText(value) {
   return `${value}`;
@@ -56,7 +57,7 @@ class TaxonomyFilter extends Component {
       const distance = Object.values(lineage[iLineage])[0];
       marks.push({
         value: iLineage,
-        label: taxon
+        label: upperCaseFirstLetter(taxon)
       });
       this.markValueToDistance[iLineage] = distance;
     }
