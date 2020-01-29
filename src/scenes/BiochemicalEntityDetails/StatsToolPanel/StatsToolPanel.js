@@ -2,15 +2,15 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import MeasurementsBoxScatterPlot from "../MeasurementsBoxScatterPlot/MeasurementsBoxScatterPlot";
-import { mean, median, std } from "mathjs";
-import { range, roundToDecimal } from "~/utils/utils";
+import { mean, median, std, min, max } from "mathjs";
+import { formatScientificNotation } from "~/utils/utils";
 import { AgGridReact } from "@ag-grid-community/react";
 
 import "./StatsToolPanel.scss";
 
 /**
  * Class to render the Consensus of results, and the save the total data to CSV file
- * This class takes the data from the store, and summarizes the data with mean, median, range, standard deviation, and a chart at bottom.
+ * This class takes the data from the store, and summarizes the data with mean, median, standard deviation, minimum, maximum, and a chart at bottom.
  * This class mostly handles the rendering, while the logic is handled elsewhere
  */
 @connect(store => {
@@ -43,29 +43,38 @@ class StatsToolPanel extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      /**The mean of the total data*/
-      total_mean: null,
+      all: {
+        /**The mean of the total data*/        
+        mean: null,
 
-      /**The median of the total data*/
-      total_median: null,
+        /**The median of the total data*/
+        median: null,
+        
+        /**The standard deviation of the total data*/
+        stdDev: null,
 
-      /**The standard deviation of the total data*/
-      total_stdDev: null,
+        /**Minimum of the total data*/
+        min: null,
 
-      /**The range of the total data*/
-      total_range: null,
+        /**Maximum of the total data*/
+        max: null,
+      },
+      selected: {
+        /**The mean of the selected data*/        
+        mean: null,
 
-      /**The mean of the selected data*/
-      selected_mean: null,
+        /**The median of the selected data*/
+        median: null,
+        
+        /**The standard deviation of the selected data*/
+        stdDev: null,
 
-      /**The median of the selected data*/
-      selected_median: null,
+        /**Minimum of the selected data*/
+        min: null,
 
-      /**The standard deviation of the selected data*/
-      selected_stdDev: null,
-
-      /**The range of the selected data*/
-      selected_range: null,
+        /**Maximum of the selected data*/
+        max: null,
+      },
 
       selectedColumn: ""
     };
@@ -88,56 +97,68 @@ class StatsToolPanel extends Component {
 
     // calcalate statistics
     if (allVals.length > 0) {
-      const newMean = this.standardRound(mean(allVals));
-      const newMedian = this.standardRound(median(allVals));
-      const newStdDev = this.standardRound(std(allVals));
-      const newRange = range(allVals);
-      if (total){
-        this.setState({
-          total_mean: newMean,
-          total_median: newMedian,
-          total_stdDev: newStdDev,
-          total_range:
-            roundToDecimal(newRange[0], 3) +
-            "-" +
-            roundToDecimal(newRange[newRange.length - 1], 3)
-        })
-      }
-      else{
-        this.setState({
-          selected_mean: newMean,
-          selected_median: newMedian,
-          selected_stdDev: newStdDev,
-          selected_range:
-            roundToDecimal(newRange[0], 3) +
-            "-" +
-            roundToDecimal(newRange[newRange.length - 1], 3)
-        })
+      let newMean = mean(allVals);
+      let newMedian = median(allVals);
+      let newStdDev = std(allVals);
+      let newMin = min(allVals);
+      let newMax = max(allVals);
 
+      const decimals = 1 + Math.max(0, min(
+        Math.ceil(-Math.log10(newMean)), 
+        Math.ceil(-Math.log10(newMedian)), 
+        Math.ceil(-Math.log10(newStdDev)),
+        Math.ceil(-Math.log10(newMin)),
+        Math.ceil(-Math.log10(newMax))));
+
+      newMean = formatScientificNotation(newMean);
+      newMedian = formatScientificNotation(newMedian);
+      newStdDev = formatScientificNotation(newStdDev);
+      newMin = formatScientificNotation(newMin);
+      newMax = formatScientificNotation(newMax);
+
+      if (allVals.length < 2) {
+        newStdDev = null;
       }
-      ;
+
+      if (total) {
+        this.setState({
+          all: {
+            mean: newMean,
+            median: newMedian,
+            stdDev: newStdDev,
+            min: newMin,
+            max: newMax,
+          }
+        })
+      } else {
+        this.setState({
+          selected: {
+            mean: newMean,
+            median: newMedian,
+            stdDev: newStdDev,
+            min: newMin,
+            max: newMax,
+          }
+        })
+      }
     } else {
       this.setState({
-        total_mean: null,
-        total_median: null,
-        total_stdDev: null,
-        total_range: null,
-        selected_mean: null,
-        selected_median: null,
-        selected_stdDev: null,
-        selected_range: null,
+        all: {
+          mean: null,
+          median: null,
+          stdDev: null,
+          min: null,
+          max: null,
+        },
+        selected: {
+          mean: null,
+          median: null,
+          stdDev: null,
+          min: null,
+          max: null,
+        },
       });
     }
-  }
-
-  standardRound(number) {
-    let rounder = null;
-    if (number > 1) {
-      rounder = 3;
-    } else {
-      rounder = 7;
-    }
-    return roundToDecimal(number, rounder);
   }
 
   /**
@@ -162,10 +183,13 @@ class StatsToolPanel extends Component {
       if (this.props.selectedData.length === 0) {
         //this.calcStats(this.props.totalData, this.props["relevant-column"], true);
         this.setState({
-        selected_mean: null,
-        selected_median: null,
-        selected_stdDev: null,
-        selected_range: null,
+          selected: {
+            mean: null,
+            median: null,
+            stdDev: null,
+            min: null,
+            max: null,
+          }
       })
       } else {
         this.calcStats(this.props.selectedData, this.state.selectedColumn, false);
@@ -191,28 +215,33 @@ class StatsToolPanel extends Component {
             <tbody>
               <tr>
                 <th></th>
-                <th scope="col">Total</th>
+                <th scope="col">All</th>
                 <th scope="col">Selected</th>
               </tr>
               <tr>
                 <th scope="row">Mean</th>
-                <td>{this.state.total_mean}</td>
-                <td>{this.state.selected_mean}</td>
+                <td>{this.state.all.mean}</td>
+                <td>{this.state.selected.mean}</td>
               </tr>
               <tr>
                 <th scope="row">Median</th>
-                <td>{this.state.total_median}</td>
-                <td>{this.state.selected_median}</td>
+                <td>{this.state.all.median}</td>
+                <td>{this.state.selected.median}</td>
               </tr>
               <tr>
-                <th scope="row">Std Dev</th>
-                <td>{this.state.total_stdDev}</td>
-                <td>{this.state.selected_stdDev}</td>
+                <th scope="row">Std dev</th>
+                <td>{this.state.all.stdDev}</td>
+                <td>{this.state.selected.stdDev}</td>
               </tr>
               <tr>
-                <th scope="row">Range</th>
-                <td>{this.state.total_range}</td>
-                <td>{this.state.selected_range}</td>
+                <th scope="row">Min</th>
+                <td>{this.state.all.min}</td>
+                <td>{this.state.selected.min}</td>
+              </tr>
+              <tr>
+                <th scope="row">Max</th>
+                <td>{this.state.all.max}</td>
+                <td>{this.state.selected.max}</td>
               </tr>
             </tbody>
           </table>
@@ -223,20 +252,3 @@ class StatsToolPanel extends Component {
 }
 
 export { StatsToolPanel };
-
-/*
- <th>Total</th>
-                <td>{this.state.mean}</td>
-              </tr>
-              <tr>
-                <th>Median</th>
-                <td>{this.state.median}</td>
-              </tr>
-              <tr>
-                <th>Std dev</th>
-                <td>{this.state.stdDev}</td>
-              </tr>
-              <tr>
-                <th>Range</th>
-                <td>{this.state.range}</td>
-                */

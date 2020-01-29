@@ -16,15 +16,16 @@
     margin-right: auto;
 
     th {
-      text-align: center;
+      text-align: right;
       font-weight: 500;
       margin-right: 0.125rem;
     }
 
     td {
-      text-align: left;
+      text-align: right;
       margin-left: 0.125rem;
-      border: 1px solid $color-primary;
+      width: 55px;
+      border: 1px solid $color-border;
     }
   }
 }

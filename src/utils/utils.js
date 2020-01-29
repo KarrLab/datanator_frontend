@@ -1,5 +1,4 @@
 import React from "react";
-import { min, max } from "mathjs";
 
 function matchAll(string, regex) {
   var matches = [];
@@ -10,53 +9,6 @@ function matchAll(string, regex) {
     matches.push(match);
   });
   return matches;
-}
-
-function jsonToCsv(jsonData) {
-  //If jsonData is not an object then JSON.parse will parse the JSON string in an Object
-  const arrData = typeof jsonData != "object" ? JSON.parse(jsonData) : jsonData;
-  let csv = "";
-  const showLabel = true;
-
-  //This condition will generate the Label/Header
-  if (showLabel) {
-    let row = "";
-
-    //This loop will extract the label from 1st index of on array
-    for (let index in arrData[0]) {
-      //Now convert each value to string and comma-seprated
-      row += index + ",";
-    }
-    row = row.slice(0, -1);
-    //append Label row with line break
-    csv += row + "\r\n";
-  }
-
-  //1st loop is to extract each row
-  for (let i = 0; i < arrData.length; i++) {
-    let row = "";
-    //2nd loop will extract each column and convert it in string comma-seprated
-    for (let index in arrData[i]) {
-      row += '"' + arrData[i][index] + '",';
-    }
-    row.slice(0, row.length - 1);
-    //add a line break after each row
-    csv += row + "\r\n";
-  }
-
-  if (csv === "") {
-    // Todo: use better way to communicate error to user
-    alert("Invalid data");
-    return;
-  }
-
-  //this trick will generate a temp "a" tag
-  const link = document.createElement("a");
-
-  //this part will append the anchor tag and remove it after automatic click
-  document.body.appendChild(link);
-
-  return csv;
 }
 
 function mode(numbers) {
@@ -89,12 +41,25 @@ function mode(numbers) {
   return modes;
 }
 
-function range(numbers) {
-  return [min(numbers), max(numbers)];
-}
+function formatScientificNotation(value) {
+  const absValue = Math.abs(value);
+  const sign = Math.sign(value);
+  const exp = Math.floor(Math.log10(absValue));
 
-function roundToDecimal(value, decimals) {
-  return Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals);
+  if (
+    absValue !== 0 &&
+    (absValue > Math.pow(10, 1) || absValue < Math.pow(10, -1))
+  ) {
+    const sciVal = ((sign * absValue) / Math.pow(10, exp)).toFixed(1);
+    return (
+      <span>
+        {sciVal}&thinsp;&times;&thinsp;10<sup>{exp}</sup>
+      </span>
+    );
+  } else {
+    const decimals = 1 - Math.max(0, exp);
+    return value.toFixed(decimals);
+  }
 }
 
 function formatChemicalFormula(formula) {
@@ -118,4 +83,4 @@ function formatChemicalFormula(formula) {
   );
 }
 
-export { jsonToCsv, mode, range, roundToDecimal, formatChemicalFormula };
+export { mode, formatScientificNotation, formatChemicalFormula };
