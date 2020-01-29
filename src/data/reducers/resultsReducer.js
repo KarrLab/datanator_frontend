@@ -1,6 +1,6 @@
 const defaultState = {
   taxonLineage: null,
-  totalData: null,
+  allData: null,
   selectedData: null
 };
 
@@ -18,11 +18,11 @@ function resultsReducer(state = defaultState, action) {
       };
     }
 
-    case "SET_TOTAL_DATA": {
+    case "SET_ALL_DATA": {
       return {
         ...state,
 
-        totalData: action.payload
+        allData: action.payload
       };
     }
     case "SET_SELECTED_DATA": {

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
+import { HashLink } from "react-router-hash-link";
 import PropTypes from "prop-types";
 
 import { MetadataSection } from "./MetadataSection";
@@ -124,7 +125,7 @@ Object.size = function(obj) {
 @connect(store => {
   return {
     //currentUrl: store.page.url,
-    totalData: store.results.totalData
+    allData: store.results.allData
   };
 }) //the names given here will be the names of props
 class Rna extends Component {
@@ -133,16 +134,8 @@ class Rna extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      search: "",
-      rnaMetadata: [],
-      orthologyMetadata: [],
-      f_abundances: null,
-      organism: "",
-      orig_json: null,
-      isFlushed: false,
+      metadata: null,
       lineage: [],
-      data_arrived: false,
-      tanimoto: false
     };
 
     this.formatData = this.formatData.bind(this);
@@ -158,16 +151,6 @@ class Rna extends Component {
       this.props.match.params.rna !== prevProps.match.params.rna ||
       this.props.match.params.organism !== prevProps.match.params.organism
     ) {
-      this.setState({
-        search: "",
-        proteinMetadata: [],
-        orthologyMetadata: [],
-        f_abundances: null,
-        organism: "",
-        orig_json: null,
-        isFlushed: false,
-        data_arrived: false
-      });
       this.getDataFromApi();
     }
   }
@@ -184,18 +167,18 @@ class Rna extends Component {
   }
 
   formatData(data) { 
-    let meta = {}
+    const metadata = {}
     if(data[0]['function']){
-      meta["protein_name"] = data[0]['function']
+      metadata["protein_name"] = data[0]['function']
     }
     else if (data[0]['protein_name']){
-       meta["protein_name"] = data[0]['protein_name']
+       metadata["protein_name"] = data[0]['protein_name']
     }
     else{
-      meta["protein_name"] = 'Protein Name not Found'
+      metadata["protein_name"] = 'Protein Name not Found'
     }
-    //meta["protein_name"] = data[0]['function']
-    meta["gene_name"] = data[0].gene_name
+    //metadata["protein_name"] = data[0]['function']
+    metadata["gene_name"] = data[0].gene_name
     console.log(data);
     if (data != null && typeof data != "string") {
       //let data_n = data[0]
@@ -211,7 +194,7 @@ class Rna extends Component {
         final_data.push(row);
       }
       this.props.dispatch(setTotalData(final_data));
-      this.setState({ data_arrived: true, rnaMetadata:[meta] }); 
+      this.setState({ metadata: metadata }); 
     }
     else {
         //alert('Nothing Found');
@@ -251,8 +234,8 @@ class Rna extends Component {
 
   render() {
     if (
-      this.state.rnaMetadata.length === 0 ||
-      this.props.totalData == null
+      this.state.metadata == null ||
+      this.props.allData == null
     ) {
       return (
         <div className="loader-full-content-container">
@@ -261,36 +244,70 @@ class Rna extends Component {
       );
     }
 
-    return (
-      <div className="content-container biochemical-entity-scene biochemical-entity-rna-scene">
-        <MetadataSection
-          rnaMetadata={this.state.rnaMetadata}
-        />
+    let title = this.state.metadata.gene_name;
+    if (!title){
+      title = "Gene name not found"
+    }
 
-        <div className="content-block measurements-grid ag-theme-balham">
-          <h2 className="content-block-heading">Half-life</h2>
-          <AgGridReact
-            modules={AllModules}
-            frameworkComponents={frameworkComponents}
-            sideBar={sideBar}
-            defaultColDef={defaultColDef}
-            columnDefs={columnDefs}
-            rowData={this.props.totalData}
-            rowSelection="multiple"
-            groupSelectsChildren={true}
-            suppressMultiSort={true}
-            suppressAutoSize={true}
-            suppressMovableColumns={true}
-            suppressCellSelection={true}
-            suppressRowClickSelection={true}
-            suppressContextMenu={true}
-            domLayout="autoHeight"
-            onGridReady={this.onGridReady.bind(this)}
-            onFirstDataRendered={this.onFirstDataRendered.bind(this)}
-            onFilterChanged={this.onFiltered.bind(this)}
-            onSelectionChanged={this.onRowSelected.bind(this)}
-            lineage={this.state.lineage}
-          ></AgGridReact>
+    let scrollTo = el => {
+      window.scrollTo({ behavior: "smooth", top: el.offsetTop - 52 });
+    };
+
+    return (
+       <div className="content-container biochemical-entity-scene biochemical-entity-rna-scene">
+        <h1 className="page-title">{title}</h1>
+        <div className="content-container-columns">
+          <div className="overview-column">
+            <div className="content-block table-of-contents">
+              <h2 className="content-block-heading">Contents</h2>
+              <div className="content-block-content">
+                <ul>
+                  <li>
+                    <HashLink to="#properties" scroll={scrollTo}>
+                      Properties
+                    </HashLink>
+                  </li>               
+                  <li>
+                    <HashLink to="#half-life" scroll={scrollTo}>
+                      Half-life
+                    </HashLink>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="content-column section">
+            <MetadataSection
+              metadata={this.state.metadata}
+            />
+
+            <div className="content-block measurements-grid ag-theme-balham" id="half-life">
+              <h2 className="content-block-heading">Half-life</h2>
+              <AgGridReact
+                modules={AllModules}
+                frameworkComponents={frameworkComponents}
+                sideBar={sideBar}
+                defaultColDef={defaultColDef}
+                columnDefs={columnDefs}
+                rowData={this.props.allData}
+                rowSelection="multiple"
+                groupSelectsChildren={true}
+                suppressMultiSort={true}
+                suppressAutoSize={true}
+                suppressMovableColumns={true}
+                suppressCellSelection={true}
+                suppressRowClickSelection={true}
+                suppressContextMenu={true}
+                domLayout="autoHeight"
+                onGridReady={this.onGridReady.bind(this)}
+                onFirstDataRendered={this.onFirstDataRendered.bind(this)}
+                onFilterChanged={this.onFiltered.bind(this)}
+                onSelectionChanged={this.onRowSelected.bind(this)}
+                lineage={this.state.lineage}
+              ></AgGridReact>
+            </div>
+          </div>
         </div>
       </div>
     );

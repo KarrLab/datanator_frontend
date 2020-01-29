@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
+import { HashLink } from "react-router-hash-link";
 import PropTypes from "prop-types";
 
 import { MetadataSection } from "./MetadataSection";
@@ -156,7 +157,7 @@ Object.size = function(obj) {
 @connect(store => {
   return {
     //currentUrl: store.page.url,
-    totalData: store.results.totalData
+    allData: store.results.allData
   };
 }) //the names given here will be the names of props
 class Protein extends Component {
@@ -165,15 +166,8 @@ class Protein extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      search: "",
-      orthologyMetadata: [],
-      f_abundances: null,
-      organism: "",
-      orig_json: null,
-      isFlushed: false,
+      metadata: null,
       lineage: [],
-      dataArrived: false,
-      tanimoto: false
     };
 
     this.processProteinData = this.processProteinData.bind(this);
@@ -191,13 +185,8 @@ class Protein extends Component {
       this.props.match.params.organism !== prevProps.match.params.organism
     ) {
       this.setState({
-        search: "",
-        orthologyMetadata: [],
-        f_abundances: null,
-        organism: "",
-        orig_json: null,
-        isFlushed: false,
-        dataArrived: false
+        metadata: null,
+        lineage: [],
       });
       this.getDataFromApi();
     }
@@ -229,36 +218,31 @@ class Protein extends Component {
   }
 
   formatOrthologyMetadata(data) {
-    let newOrthologyMetadata = [];
     let uni_ids = [];
-    let meta = {};
-    meta["ko_number"] = data[0].ko_number;
-    meta["ko_name"] = data[0].ko_name;
+    let metadata = {};
+    metadata["ko_number"] = data[0].ko_number;
+    metadata["ko_name"] = data[0].ko_name;
 
     for (var i = 0; i < data.length; i++) {
       uni_ids.push(data[i].uniprot_id);
     }
-    meta["uniprot_ids"] = uni_ids;
-    newOrthologyMetadata.push(meta);
-    this.setState({ orthologyMetadata: newOrthologyMetadata });
+    metadata["uniprot_ids"] = uni_ids;
+    this.setState({ metadata: metadata });
   }
 
   processProteinData(data) {
     if (typeof data != "string") {
-      this.setState({ orig_json: data });
       this.formatData(data);
 
-      let newOrthologyMetadata = [];
-      let meta = {};
+      const metadata = {};
       let uniprot_id = "";
       if (Object.size(data[0]) === 1) {
         uniprot_id = data[1].uniprot_id;
       } else {
         uniprot_id = data[0].uniprot_id;
       }
-      meta["ko_number"] = [data[0].ko_number, uniprot_id];
-      newOrthologyMetadata.push(meta);
-      this.setState({ orthologyMetadata: newOrthologyMetadata });
+      metadata["ko_number"] = [data[0].ko_number, uniprot_id];
+      this.setState({ metadata: metadata });
     } else {
       getDataFromApi([
         "proteins",
@@ -266,23 +250,19 @@ class Protein extends Component {
       ], {}, "Unable to data about ortholog group '" + this.props.match.params.protein + "'.").then(response => {
         this.formatData(response.data);
 
-        let newOrthologyMetadata = [];
-        let meta = {};
-        meta["ko_number"] = [
+        const metadata = {};
+        metadata["ko_number"] = [
           response.data[0].ko_number,
           response.data[1].uniprot_id
         ];
-        newOrthologyMetadata.push(meta);
-        this.setState({ orthologyMetadata: newOrthologyMetadata });
+        this.setState({ metadata: metadata });
       });
     }
   }
 
   processProteinDataUniprot(data) {
     if (typeof data != "string") {
-      this.setState({ orig_json: data });
-      let newProteinMetadata = [];
-      let uniprot_to_dist = {};
+      const uniprot_to_dist = {};
       if (data != null && typeof data != "string") {
         for (var i = 0; i < data.length; i++) {
           let docs = data[i].documents;
@@ -313,7 +293,7 @@ class Protein extends Component {
   }
 
   formatData(data, uniprot_to_dist) {
-    var f_abundances = [];
+    const f_abundances = [];
     if (data != null && typeof data != "string") {
       if (!(data[0].uniprot_id === "Please try another input combination")) {
         let start = 0;
@@ -347,7 +327,6 @@ class Protein extends Component {
           }
         }
         this.props.dispatch(setTotalData(f_abundances));
-        this.setState({ dataArrived: true });
       } else {
         //alert('Nothing Found');
       }
@@ -389,10 +368,7 @@ class Protein extends Component {
   render() {
     const organism = this.props.match.params.organism;
 
-    if (
-      this.state.orthologyMetadata.length === 0 ||
-      this.props.totalData == null
-    ) {
+    if (this.props.allData == null) {
       return (
         <div className="loader-full-content-container">
           <div className="loader"></div>
@@ -400,37 +376,66 @@ class Protein extends Component {
       );
     }
 
+    let scrollTo = el => {
+      window.scrollTo({ behavior: "smooth", top: el.offsetTop - 52 });
+    };
+
     return (
       <div className="content-container biochemical-entity-scene biochemical-entity-protein-scene">
-        <MetadataSection
-          proteinMetadata={this.state.orthologyMetadata}
-          organism={organism}
-        />
+        <h1 className="page-title">{this.state.metadata.ko_name[0]}</h1>
+        <div className="content-container-columns">
+          <div className="overview-column">
+            <div className="content-block table-of-contents">
+              <h2 className="content-block-heading">Contents</h2>
+              <div className="content-block-content">
+                <ul>
+                  <li>
+                    <HashLink to="#properties" scroll={scrollTo}>
+                      Properties
+                    </HashLink>
+                  </li>        
+                  <li>
+                    <HashLink to="#abundance" scroll={scrollTo}>
+                      Abundance
+                    </HashLink>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-        <div className="content-block measurements-grid ag-theme-balham">
-          <h2 className="content-block-heading">Abundance</h2>
-          <AgGridReact
-            modules={AllModules}
-            frameworkComponents={frameworkComponents}
-            sideBar={sideBar}
-            defaultColDef={defaultColDef}
-            columnDefs={columnDefs}
-            rowData={this.props.totalData}
-            rowSelection="multiple"
-            groupSelectsChildren={true}
-            suppressMultiSort={true}
-            suppressAutoSize={true}
-            suppressMovableColumns={true}
-            suppressCellSelection={true}
-            suppressRowClickSelection={true}
-            suppressContextMenu={true}
-            domLayout="autoHeight"
-            onGridReady={this.onGridReady.bind(this)}
-            onFirstDataRendered={this.onFirstDataRendered.bind(this)}
-            onFilterChanged={this.onFiltered.bind(this)}
-            onSelectionChanged={this.onRowSelected.bind(this)}
-            lineage={this.state.lineage}
-          ></AgGridReact>
+          <div className="content-column section">
+            <MetadataSection
+              metadata={this.state.metadata}
+              organism={organism}
+            />
+
+            <div className="content-block measurements-grid ag-theme-balham" id="abundance">
+              <h2 className="content-block-heading">Abundance</h2>
+              <AgGridReact
+                modules={AllModules}
+                frameworkComponents={frameworkComponents}
+                sideBar={sideBar}
+                defaultColDef={defaultColDef}
+                columnDefs={columnDefs}
+                rowData={this.props.allData}
+                rowSelection="multiple"
+                groupSelectsChildren={true}
+                suppressMultiSort={true}
+                suppressAutoSize={true}
+                suppressMovableColumns={true}
+                suppressCellSelection={true}
+                suppressRowClickSelection={true}
+                suppressContextMenu={true}
+                domLayout="autoHeight"
+                onGridReady={this.onGridReady.bind(this)}
+                onFirstDataRendered={this.onFirstDataRendered.bind(this)}
+                onFilterChanged={this.onFiltered.bind(this)}
+                onSelectionChanged={this.onRowSelected.bind(this)}
+                lineage={this.state.lineage}
+              ></AgGridReact>
+            </div>
+          </div>
         </div>
       </div>
     );

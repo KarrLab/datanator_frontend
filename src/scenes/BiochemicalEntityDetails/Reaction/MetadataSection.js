@@ -1,51 +1,31 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-
-import reactionIcon from "~/scenes/Home/images/left-right-arrows.svg";
 
 class MetadataSection extends Component {
-  static propTypes = {};
+  static propTypes = {
+    metadata: PropTypes.object.isRequired,
+  };
   
   render() {
-    const reactionMetadata = this.props.reactionMetadata[0];
-    let title = reactionMetadata.reaction_name;
-    if (!title) {
-      title = reactionMetadata.equation;
-    }
+    const metadata = this.props.metadata;    
 
-    if (
-      !this.props.reactionMetadata ||
-      this.props.reactionMetadata[0] === undefined
-    ) {
+    if (metadata == null) {
       return <div></div>;
     } else {
       return (
         <div>
-          <h1 className="page-title">{title}</h1>
-          <div className="content-block">
+          <div className="content-block" id="properties">
             <h2 className="content-block-heading">Properties</h2>
-            <div className="content-block-content img-description">
-              <div className="vertical-center">
-                <object
-                  data={reactionIcon}
-                  className="entity-scene-icon hover-zoom"
-                  alt="Reaction icon"
-                  aria-label="Reaction icon"
-                />
-              </div>
-
-              <div className="metadata-description">
-                <p>
-                  <b>Name:</b> {reactionMetadata.reaction_name}
-                </p>
-                <p>
-                  <b>Equation:</b> {reactionMetadata.equation}
-                </p>
-                <p>
-                  <b>EC Number:</b> {reactionMetadata.ecNumber}
-                </p>
-              </div>
+            <div className="content-block-content">
+              <p>
+                <b>Name:</b> {metadata.name}
+              </p>
+              <p>
+                <b>Equation:</b> {metadata.equation}
+              </p>
+              <p>
+                <b>EC Number:</b> {metadata.ecNumber}
+              </p>
             </div>
           </div>
         </div>

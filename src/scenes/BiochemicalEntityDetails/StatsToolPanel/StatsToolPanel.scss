@@ -2,7 +2,8 @@
 
 .biochemical-entity-scene-stats-tool-panel {
   height: 100%;
-  max-height: 400px;
+  min-height: 350px;
+  max-height: 500px;
   width: 100%;
   display: flex;
   flex-direction: column;

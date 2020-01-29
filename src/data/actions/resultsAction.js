@@ -7,11 +7,11 @@ function setLineage(lineageList) {
   };
 }
 
-function setTotalData(totalData) {
+function setTotalData(allData) {
   return function(dispatch) {
     dispatch({
-      type: "SET_TOTAL_DATA",
-      payload: totalData
+      type: "SET_ALL_DATA",
+      payload: allData
     });
   };
 }

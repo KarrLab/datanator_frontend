@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import MeasurementsBoxScatterPlot from "../MeasurementsBoxScatterPlot/MeasurementsBoxScatterPlot";
 import { mean, median, std, min, max } from "mathjs";
 import { formatScientificNotation } from "~/utils/utils";
-import { AgGridReact } from "@ag-grid-community/react";
 
 import "./StatsToolPanel.scss";
 
@@ -16,7 +15,7 @@ import "./StatsToolPanel.scss";
 @connect(store => {
   return {
     selectedData: store.results.selectedData,
-    totalData: store.results.totalData
+    allData: store.results.allData
   };
 })
 class StatsToolPanel extends Component {
@@ -30,7 +29,7 @@ class StatsToolPanel extends Component {
     /**
      * REDUX: This is a list of all the data. This is recorded in the CSV file
      */
-    totalData: PropTypes.array.isRequired,
+    allData: PropTypes.array.isRequired,
 
     /**
      * This prop tells the consensus what column contains the values that need to be summarized.
@@ -103,13 +102,6 @@ class StatsToolPanel extends Component {
       let newMin = min(allVals);
       let newMax = max(allVals);
 
-      const decimals = 1 + Math.max(0, min(
-        Math.ceil(-Math.log10(newMean)), 
-        Math.ceil(-Math.log10(newMedian)), 
-        Math.ceil(-Math.log10(newStdDev)),
-        Math.ceil(-Math.log10(newMin)),
-        Math.ceil(-Math.log10(newMax))));
-
       newMean = formatScientificNotation(newMean);
       newMedian = formatScientificNotation(newMedian);
       newStdDev = formatScientificNotation(newStdDev);
@@ -166,8 +158,8 @@ class StatsToolPanel extends Component {
    * if the total data exists
    */
   componentDidMount() {
-    if (this.props.totalData != null) {
-      this.calcStats(this.props.totalData, this.props["relevant-column"], true);
+    if (this.props.allData != null) {
+      this.calcStats(this.props.allData, this.props["relevant-column"], true);
       this.setState({ selectedColumn: this.props["relevant-column"] });
     }
   }
@@ -176,12 +168,12 @@ class StatsToolPanel extends Component {
    * If total data gets updated, then the summary stats should update too
    */
   componentDidUpdate(prevProps) {
-    if (prevProps.totalData !== this.props.totalData) {
-      this.calcStats(this.props.totalData, this.props["relevant-column"], true);
+    if (prevProps.allData !== this.props.allData) {
+      this.calcStats(this.props.allData, this.props["relevant-column"], true);
       this.setState({ selectedColumn: this.props["relevant-column"] });
     } else if (prevProps.selectedData !== this.props.selectedData) {
       if (this.props.selectedData.length === 0) {
-        //this.calcStats(this.props.totalData, this.props["relevant-column"], true);
+        //this.calcStats(this.props.allData, this.props["relevant-column"], true);
         this.setState({
           selected: {
             mean: null,
@@ -198,14 +190,14 @@ class StatsToolPanel extends Component {
   }
 
   render() {
-    if (this.props.totalData == null) {
+    if (this.props.allData == null) {
       return <div></div>;
     } else {
       return (
         <div className="biochemical-entity-scene-stats-tool-panel">
           <div className="biochemical-entity-scene-stats-tool-panel-plot">
             <MeasurementsBoxScatterPlot
-              all-measurements={this.props.totalData}
+              all-measurements={this.props.allData}
               selected-measurements={this.props.selectedData}
               data-property={this.state.selectedColumn}
             />

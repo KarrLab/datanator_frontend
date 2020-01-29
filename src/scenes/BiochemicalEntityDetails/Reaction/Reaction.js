@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
+import { HashLink } from "react-router-hash-link";
 import PropTypes from "prop-types";
 
 import { MetadataSection } from "./MetadataSection";
@@ -141,7 +142,7 @@ ph
 temperature
 */
 @connect(store => {
-  return { totalData: store.results.totalData };
+  return { allData: store.results.allData };
 }) //the names given here will be the names of props
 class Reaction extends Component {
   static propTypes = {};
@@ -149,11 +150,8 @@ class Reaction extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      reactionMetadata: [],
-      km_values: [],
+      metadata: null,
       lineage: [],
-      data_arrived: false,
-      tanimoto: false,
       columnDefs: [],
       first_columns: [
         {
@@ -230,9 +228,6 @@ class Reaction extends Component {
 
       frameworkComponents: {}
     };
-
-    this.formatReactionData = this.formatReactionData.bind(this);
-    this.setKmColumns = this.setKmColumns.bind(this);
   }
 
   setKmColumns(km_values) {
@@ -287,9 +282,7 @@ class Reaction extends Component {
       pathArgs.products !== oldPathArgs.products
     ) {
       this.setState({
-        data_arrived: false,
-        reactionMetadata: [],
-        km_values: []
+        metadata: null,
       });
       this.getResultsData();
     }
@@ -305,7 +298,7 @@ class Reaction extends Component {
         "&_from=0&size=1000&bound=tight"
     ], {}, "Unable to get data about reaction.")
       .then(response => {
-        this.formatReactionMetadata(response.data);
+        this.formatMetadata(response.data);
       })
       .catch(() => {
         //alert('Nothing Found');
@@ -324,8 +317,8 @@ class Reaction extends Component {
         pathArgs.substrates +
         "&_from=0&size=1000&bound=tight"
     ], {}, "Unable to get data about reaction.").then(response => {
-      this.formatReactionMetadata(response.data);
-      this.formatReactionData(response.data);
+      this.formatMetadata(response.data);
+      this.formatData(response.data);
     });
     if (pathArgs.organism) {
       getDataFromApi([
@@ -342,8 +335,8 @@ class Reaction extends Component {
     }
   }
 
-  formatReactionData(data) {
-    console.log("ReactionPage: Calling formatReactionData");
+  formatData(data) {
+    console.log("ReactionPage: Calling formatData");
     if (data != null) {
       const total_rows = [];
       const substrates = getSubstrates(
@@ -354,7 +347,6 @@ class Reaction extends Component {
         km_values.push("km_" + substrates[k]);
       }
       this.setKmColumns(km_values);
-      this.setState({ km_values: km_values });
 
       for (let i = 0; i < data.length; i++) {
         let wildtype_mutant = null;
@@ -394,49 +386,40 @@ class Reaction extends Component {
       }
 
       this.props.dispatch(setTotalData(total_rows));
-      this.setState({
-        data_arrived: true
-      });
     }
   }
 
-  formatReactionMetadata(data) {
-    const newReactionMetadataDict = {};
+  formatMetadata(data) {
     if (data != null) {
+      const metadata = {};
+
       const reactionID = getReactionID(data[0].resource);
-      const ecNumber = getECNumber(data[0].resource);
-      let new_dict = newReactionMetadataDict[reactionID];
-      if (!new_dict) {
-        new_dict = {};
-      }
-      const reaction_name = data[0]["enzymes"][0]["enzyme"][0]["enzyme_name"];
+      const ecNumber = getECNumber(data[0].resource);      
+      const name = data[0]["enzymes"][0]["enzyme"][0]["enzyme_name"];
       const substrates = getSubstrates(
         data[0].reaction_participant[0].substrate
       );
       const products = getProducts(data[0].reaction_participant[1].product);
-      new_dict["reactionID"] = reactionID;
-      new_dict["substrates"] = substrates;
-      new_dict["products"] = products;
+      metadata["reactionID"] = reactionID;
+      metadata["substrates"] = substrates;
+      metadata["products"] = products;
       if (ecNumber !== "-.-.-.-") {
-        new_dict["ecNumber"] = ecNumber;
+        metadata["ecNumber"] = ecNumber;
       }
 
-      if (reaction_name) {
-        const start = reaction_name[0].toUpperCase();
-        const end = reaction_name.substring(1, reaction_name.length);
-        new_dict["reaction_name"] = start + end;
+      if (name) {
+        const start = name[0].toUpperCase();
+        const end = name.substring(1, name.length);
+        metadata["name"] = start + end;
       }
 
-      new_dict["equation"] =
+      metadata["equation"] =
         formatPart(substrates) + " → " + formatPart(products);
-      newReactionMetadataDict[reactionID] = new_dict; //newReactionMetadataDict.push(meta);
-    }
 
-    this.setState({
-      reactionMetadata: Object.keys(newReactionMetadataDict).map(function(key) {
-        return newReactionMetadataDict[key];
-      })
-    });
+      this.setState({
+        metadata: metadata,
+      });
+    }    
   }
 
   onFirstDataRendered(params) {
@@ -471,8 +454,8 @@ class Reaction extends Component {
 
   render() {
     if (
-      this.props.totalData == null ||
-      this.state.reactionMetadata.length === 0
+      this.props.allData == null ||
+      this.state.metadata == null
     ) {
       return (
         <div className="loader-full-content-container">
@@ -481,34 +464,68 @@ class Reaction extends Component {
       );
     }
 
+    let title = this.state.metadata.name;
+    if (!title) {
+      title = this.state.metadata.equation;
+    }
+
+    let scrollTo = el => {
+      window.scrollTo({ behavior: "smooth", top: el.offsetTop - 52 });
+    };
+
     return (
       <div className="content-container biochemical-entity-scene biochemical-entity-reaction-scene">
-        <MetadataSection reactionMetadata={this.state.reactionMetadata} />
+        <h1 className="page-title">{title}</h1>
+        <div className="content-container-columns">
+          <div className="overview-column">
+            <div className="content-block table-of-contents">
+              <h2 className="content-block-heading">Contents</h2>
+              <div className="content-block-content">
+                <ul>
+                  <li>
+                    <HashLink to="#properties" scroll={scrollTo}>
+                      Properties
+                    </HashLink>
+                  </li>           
+                  <li>
+                    <HashLink to="#rate-constants" scroll={scrollTo}>
+                      Rate constants
+                    </HashLink>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-        <div className="content-block measurements-grid ag-theme-balham">
-          <h2 className="content-block-heading">Kinetic parameters</h2>
-          <AgGridReact
-            modules={AllModules}
-            frameworkComponents={this.state.frameworkComponents}
-            sideBar={sideBar}
-            defaultColDef={defaultColDef}
-            columnDefs={this.state.columnDefs}
-            rowData={this.props.totalData}
-            rowSelection="multiple"
-            groupSelectsChildren={true}
-            suppressMultiSort={true}
-            suppressAutoSize={true}
-            suppressMovableColumns={true}
-            suppressCellSelection={true}
-            suppressRowClickSelection={true}
-            suppressContextMenu={true}
-            domLayout="autoHeight"
-            onGridReady={this.onGridReady.bind(this)}
-            onFirstDataRendered={this.onFirstDataRendered.bind(this)}
-            onFilterChanged={this.onFiltered.bind(this)}
-            onSelectionChanged={this.onRowSelected.bind(this)}
-            lineage={this.state.lineage}
-          ></AgGridReact>
+          <div className="content-column section">        
+            <MetadataSection metadata={this.state.metadata} />
+
+            <div className="content-block measurements-grid ag-theme-balham" id="rate-constants">
+              <h2 className="content-block-heading">Kinetic parameters</h2>
+              <AgGridReact
+                modules={AllModules}
+                frameworkComponents={this.state.frameworkComponents}
+                sideBar={sideBar}
+                defaultColDef={defaultColDef}
+                columnDefs={this.state.columnDefs}
+                rowData={this.props.allData}
+                rowSelection="multiple"
+                groupSelectsChildren={true}
+                suppressMultiSort={true}
+                suppressAutoSize={true}
+                suppressMovableColumns={true}
+                suppressCellSelection={true}
+                suppressRowClickSelection={true}
+                suppressContextMenu={true}
+                domLayout="autoHeight"
+                onGridReady={this.onGridReady.bind(this)}
+                onFirstDataRendered={this.onFirstDataRendered.bind(this)}
+                onFilterChanged={this.onFiltered.bind(this)}
+                onSelectionChanged={this.onRowSelected.bind(this)}
+                lineage={this.state.lineage}
+              ></AgGridReact>
+            </div>
+          </div>
         </div>
       </div>
     );

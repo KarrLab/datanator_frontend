@@ -133,12 +133,9 @@ class MetadataSection extends Component {
 
     // render
     return (
-      <div>
-        <h1 className="page-title">{metadata.name}</h1>
-        {metadata.synonyms.length > 0 && metadata.synonyms.join(", ")}
-
+      <div>        
         {metadata.description && (
-          <div className="content-block">
+          <div className="content-block" id="description">
             <h2 className="content-block-heading">Description</h2>
             <div className="content-block-content icon-description">
               {structure && (
@@ -160,8 +157,31 @@ class MetadataSection extends Component {
           </div>
         )}
 
+        {metadata.synonyms.length > 0 && (
+          <div className="content-block" id="synonyms">
+            <h2 className="content-block-heading">Synonyms</h2>
+            <div className="content-block-content icon-description">
+              {metadata.synonyms.join(", ")}
+            </div>
+          </div>
+        )}
+
+        {dbLinks.length > 0 && (
+          <div className="content-block" id="links">
+            <h2 className="content-block-heading">Database links</h2>
+            <div className="content-block-content">
+              <ul className="key-value-list">
+                {dbLinks.reduce(
+                  (acc, x) => (acc === null ? [x] : [acc, x]),
+                  null
+                )}
+              </ul>
+            </div>
+          </div>
+        )}
+
         {physicalProps.length > 0 && (
-          <div className="content-block">
+          <div className="content-block" id="physics">
             <h2 className="content-block-heading">Physical properties</h2>
             <div className="content-block-content">
               <ul className="key-value-list">
@@ -177,7 +197,7 @@ class MetadataSection extends Component {
         {((metadata.pathways && metadata.pathways.length > 0) ||
           (metadata.cellularLocations &&
             metadata.cellularLocations.length > 0)) && (
-          <div className="content-block">
+          <div className="content-block" id="biology">
             <h2 className="content-block-heading">Biological context</h2>
             <div className="content-block-content">
               <ul className="key-value-list key-value-list-spaced">
@@ -212,21 +232,7 @@ class MetadataSection extends Component {
               </ul>
             </div>
           </div>
-        )}
-
-        {dbLinks.length > 0 && (
-          <div className="content-block">
-            <h2 className="content-block-heading">Database links</h2>
-            <div className="content-block-content">
-              <ul className="key-value-list">
-                {dbLinks.reduce(
-                  (acc, x) => (acc === null ? [x] : [acc, x]),
-                  null
-                )}
-              </ul>
-            </div>
-          </div>
-        )}
+        )}        
       </div>
     );
   }

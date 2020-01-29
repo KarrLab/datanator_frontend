@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
+import { HashLink } from "react-router-hash-link";
 import PropTypes from "prop-types";
 
 import { MetadataSection } from "./MetadataSection";
@@ -78,7 +79,7 @@ const defaultColDef = {
 
 @connect(store => {
   return {
-    measuredConcs: store.results.totalData
+    measuredConcs: store.results.allData
   };
 }) //the names given here will be the names of props
 class Metabolite extends Component {
@@ -393,38 +394,87 @@ class Metabolite extends Component {
       );
     }
 
-    return (
-      <div className="content-container section biochemical-entity-scene biochemical-entity-metabolite-scene">
-        <MetadataSection
-          metadata={this.state.metadata}
-          metabolite={this.props.match.params.metabolite}
-          organism={this.props.match.params.organism}
-        />
+    let scrollTo = el => {
+      window.scrollTo({ behavior: "smooth", top: el.offsetTop - 52 });
+    };
 
-        <div className="content-block measurements-grid ag-theme-balham">
-          <h2 className="content-block-heading">Concentration</h2>
-          <AgGridReact
-            modules={AllModules}
-            frameworkComponents={frameworkComponents}
-            sideBar={sideBar}
-            defaultColDef={defaultColDef}
-            columnDefs={this.state.columnDefs}
-            rowData={this.props.measuredConcs}
-            rowSelection="multiple"
-            groupSelectsChildren={true}
-            suppressMultiSort={true}
-            suppressAutoSize={true}
-            suppressMovableColumns={true}
-            suppressCellSelection={true}
-            suppressRowClickSelection={true}
-            suppressContextMenu={true}
-            domLayout="autoHeight"
-            onGridReady={this.onGridReady.bind(this)}
-            onFirstDataRendered={this.onFirstDataRendered.bind(this)}
-            onFilterChanged={this.onFiltered.bind(this)}
-            onSelectionChanged={this.onRowSelected.bind(this)}
-            lineage={this.state.lineage}
-          ></AgGridReact>
+    return (
+      <div className="content-container biochemical-entity-scene biochemical-entity-metabolite-scene">
+        <h1 className="page-title">{this.state.metadata.name}</h1>
+        <div className="content-container-columns">
+          <div className="overview-column">
+            <div className="content-block table-of-contents">
+              <h2 className="content-block-heading">Contents</h2>
+              <div className="content-block-content">
+                <ul>
+                  <li>
+                    <HashLink to="#description" scroll={scrollTo}>
+                      Description
+                    </HashLink>
+                  </li>
+                  <li>
+                    <HashLink to="#synonyms" scroll={scrollTo}>
+                      Synonyms
+                    </HashLink>
+                  </li>
+                  <li>
+                    <HashLink to="#links" scroll={scrollTo}>
+                      Database links
+                    </HashLink>
+                  </li>
+                  <li>
+                    <HashLink to="#physics" scroll={scrollTo}>
+                      Physics
+                    </HashLink>
+                  </li>
+                  <li>
+                    <HashLink to="#biology" scroll={scrollTo}>
+                      Biology
+                    </HashLink>
+                  </li>                  
+                  <li>
+                    <HashLink to="#concentration" scroll={scrollTo}>
+                      Concentration
+                    </HashLink>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="content-column section">
+            <MetadataSection
+              metadata={this.state.metadata}
+              metabolite={this.props.match.params.metabolite}
+              organism={this.props.match.params.organism}
+            />
+
+            <div className="content-block measurements-grid ag-theme-balham" id="concentration">
+              <h2 className="content-block-heading">Concentration</h2>
+              <AgGridReact
+                modules={AllModules}
+                frameworkComponents={frameworkComponents}
+                sideBar={sideBar}
+                defaultColDef={defaultColDef}
+                columnDefs={this.state.columnDefs}
+                rowData={this.props.measuredConcs}
+                rowSelection="multiple"
+                groupSelectsChildren={true}
+                suppressMultiSort={true}
+                suppressAutoSize={true}
+                suppressMovableColumns={true}
+                suppressCellSelection={true}
+                suppressRowClickSelection={true}
+                suppressContextMenu={true}
+                domLayout="autoHeight"
+                onGridReady={this.onGridReady.bind(this)}
+                onFirstDataRendered={this.onFirstDataRendered.bind(this)}
+                onFilterChanged={this.onFiltered.bind(this)}
+                onSelectionChanged={this.onRowSelected.bind(this)}
+                lineage={this.state.lineage}
+              ></AgGridReact>
+            </div>
+          </div>
         </div>
       </div>
     );
