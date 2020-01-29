@@ -90,10 +90,9 @@ function formatChemicalFormula(formula) {
   if (!formula) {
     return null;
   }
-
   const regex = /([A-Z][a-z]?)([0-9]*)/g;
   let formattedFormula = [];
-  for (const match of formula.matchAll(regex)) {
+  for (const match of formula.match(regex)) {
     formattedFormula.push(
       <span key={match[1]}>
         {match[1]}
