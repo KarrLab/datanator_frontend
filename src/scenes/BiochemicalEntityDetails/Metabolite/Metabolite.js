@@ -449,7 +449,7 @@ class Metabolite extends Component {
               organism={this.props.match.params.organism}
             />
 
-            <div className="content-block measurements-grid" id="concentration">
+            <div className="content-block measurements" id="concentration">
               <div className="content-block-heading-container">
                 <h2 className="content-block-heading">Concentration</h2>
                 <div className="content-block-heading-actions">

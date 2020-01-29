@@ -408,7 +408,7 @@ class Protein extends Component {
               organism={organism}
             />
 
-            <div className="content-block measurements-grid" id="abundance">
+            <div className="content-block measurements" id="abundance">
               <div className="content-block-heading-container">
                 <h2 className="content-block-heading">Abundance</h2>
                 <div className="content-block-heading-actions">

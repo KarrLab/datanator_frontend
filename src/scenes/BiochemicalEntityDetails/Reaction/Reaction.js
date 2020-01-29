@@ -470,7 +470,7 @@ class Reaction extends Component {
           <div className="content-column section">        
             <MetadataSection metadata={this.state.metadata} />
 
-            <div className="content-block measurements-grid" id="rate-constants">
+            <div className="content-block measurements" id="rate-constants">
               <div className="content-block-heading-container">
                 <h2 className="content-block-heading">Kinetic parameters</h2>
                 <div className="content-block-heading-actions">

@@ -275,7 +275,7 @@ class Rna extends Component {
               metadata={this.state.metadata}
             />
 
-            <div className="content-block measurements-grid" id="half-life">
+            <div className="content-block measurements" id="half-life">
               <div className="content-block-heading-container">
                 <h2 className="content-block-heading">Half-life</h2>
                 <div className="content-block-heading-actions">

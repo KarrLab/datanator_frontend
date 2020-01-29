@@ -42,38 +42,40 @@
   }
 
   /* measurements-grid */
-  .measurements-grid.ag-theme-balham {
-    width: 100%;
+  .measurements {
+    .ag-theme-balham {
+      width: 100%;
 
-    .ag-side-bar {
-      border-right: none;
-      border-bottom: none;
-    }
+      .ag-side-bar {
+        border-right: none;
+        border-bottom: none;
+      }
 
-    .ag-tool-panel-wrapper {
-      .ag-filter-panel {
-        .ag-filter-list-panel > div.ag-last-group-visible > .ag-group-component.ag-collapsed {
-          border-bottom: none;
+      .ag-tool-panel-wrapper {
+        .ag-filter-panel {
+          .ag-filter-list-panel > div.ag-last-group-visible > .ag-group-component.ag-collapsed {
+            border-bottom: none;
+          }
         }
       }
-    }
 
-    .ag-column-tool-panel-column {
-      .ag-column-drag {
-        display: none;
+      .ag-column-tool-panel-column {
+        .ag-column-drag {
+          display: none;
+        }
       }
-    }
 
-    .ag-react-container {
-      width: 100%;
-    }
+      .ag-react-container {
+        width: 100%;
+      }
 
-    a {
-      color: $color-text;
-    }
+      a {
+        color: $color-text;
+      }
 
-    a:hover {
-      color: $color-primary;
+      a:hover {
+        color: $color-primary;
+      }
     }
   }
 
