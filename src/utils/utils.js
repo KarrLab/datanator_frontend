@@ -1,6 +1,17 @@
 import React from "react";
 import { min, max } from "mathjs";
 
+function matchAll(string, regex) {
+  var matches = [];
+  string.replace(regex, function() {
+    var match = Array.prototype.slice.call(arguments, 0, -2);
+    match.input = arguments[arguments.length - 1];
+    match.index = arguments[arguments.length - 2];
+    matches.push(match);
+  });
+  return matches;
+}
+
 function jsonToCsv(jsonData) {
   //If jsonData is not an object then JSON.parse will parse the JSON string in an Object
   const arrData = typeof jsonData != "object" ? JSON.parse(jsonData) : jsonData;
@@ -90,9 +101,10 @@ function formatChemicalFormula(formula) {
   if (!formula) {
     return null;
   }
+
   const regex = /([A-Z][a-z]?)([0-9]*)/g;
   let formattedFormula = [];
-  for (const match of formula.match(regex)) {
+  for (const match of matchAll(formula, regex)) {
     formattedFormula.push(
       <span key={match[1]}>
         {match[1]}
