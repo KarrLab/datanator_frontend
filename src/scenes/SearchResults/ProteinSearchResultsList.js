@@ -15,15 +15,10 @@ export default class ProteinSearchResultsList extends Component {
     );
   }
 
-  getResults(data) {
-    return data["top_kos"]["buckets"];
-  }
+  formatResults(data, organism) {
+    const results = data["top_kos"]["buckets"];
+    const numResults = data["total_buckets"]["value"];
 
-  getNumResults(data) {
-    return data["total_buckets"]["value"];
-  }
-
-  formatResults(results, organism) {
     const formattedResults = {};
     for (const result of results) {
       let koNumber = result["key"];
@@ -67,7 +62,10 @@ export default class ProteinSearchResultsList extends Component {
       }
     }
 
-    return Object.values(formattedResults);
+    return {
+      results: Object.values(formattedResults),
+      numResults: numResults,
+    };
   }
 
   render() {

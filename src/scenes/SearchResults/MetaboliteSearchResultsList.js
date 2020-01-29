@@ -19,15 +19,10 @@ export default class MetaboliteSearchResultsList extends Component {
     );
   }
 
-  getResults(data) {
-    return data["metabolites_meta"];
-  }
+  formatResults(data, organism) {
+    const results = data["metabolites_meta"];
+    const numResults = data["metabolites_meta_total"]["value"];
 
-  getNumResults(data) {
-    return data["metabolites_meta_total"]["value"];
-  }
-
-  formatResults(results, organism) {
     const formattedResults = {};
     for (const result of results) {
       if (result.InChI_Key) {
@@ -92,15 +87,16 @@ export default class MetaboliteSearchResultsList extends Component {
       }
     }
 
-    return Object.values(formattedResults);
+    return {
+      results: Object.values(formattedResults),
+      numResults: numResults,
+    };
   }
 
   render() {
     return (
       <SearchResultsList
         get-results-url={this.getResultsUrl}
-        get-results={this.getResults}
-        get-num-results={this.getNumResults}
         format-results={this.formatResults}
         html-anchor-id="metabolites"
         title="Metabolites"

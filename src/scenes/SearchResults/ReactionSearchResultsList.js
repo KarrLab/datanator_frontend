@@ -18,15 +18,10 @@ export default class ReactionSearchResultsList extends Component {
     );
   }
 
-  getResults(data) {
-    return data["sabio_reaction_entries"];
-  }
+  formatResults(data, organism) {
+    const results = data["sabio_reaction_entries"];
+    const numResults = data["sabio_reaction_entries_total"]["value"];
 
-  getNumResults(data) {
-    return data["sabio_reaction_entries_total"]["value"];
-  }
-
-  formatResults(results, organism) {
     const formattedResults = {};
     for (const result of results) {
       const id = result["rxn_id"];
@@ -75,7 +70,10 @@ export default class ReactionSearchResultsList extends Component {
       }
     }
 
-    return Object.values(formattedResults);
+    return {
+      results: Object.values(formattedResults),
+      numResults: numResults,
+    };
   }
 
   render() {

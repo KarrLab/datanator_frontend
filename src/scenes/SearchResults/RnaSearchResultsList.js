@@ -35,16 +35,6 @@ export default class RnaSearchResultsList extends Component {
     return "ftx/text_search/num_of_index/?" + strArgs.join("&");
   }
 
-  /* Extract array of dictionaries from result of REST call */
-  getResults(data) {
-    return data["rna_halflife"];
-  }
-
-  /* Extract number of RNAs that match query from result of REST call */
-  getNumResults(data) {
-    return data["rna_halflife_total"]["value"];
-  }
-
   /* Return a list of dictionaries with content to populate the search results
   
   Each dictionary should contain three fields
@@ -52,7 +42,10 @@ export default class RnaSearchResultsList extends Component {
   - description
   - route: URL for page with details about search result
   */
-  formatResults(results, organism) {
+  formatResults(data, organism) {
+    const results = data["rna_halflife"];
+    const numResults = data["rna_halflife_total"]["value"];
+
     const formattedResults = [];
     for (const result of results) {
       let description = "";
@@ -69,7 +62,10 @@ export default class RnaSearchResultsList extends Component {
           (organism ? organism + "/" : "")
       });
     }
-    return formattedResults;
+    return {
+      results: formattedResults,
+      numResults: numResults,
+    };
   }
 
   render() {

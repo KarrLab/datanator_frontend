@@ -10,8 +10,6 @@ class SearchResultsList extends Component {
   static propTypes = {
     history: PropTypes.object.isRequired,
     "get-results-url": PropTypes.func.isRequired,
-    "get-results": PropTypes.func.isRequired,
-    "get-num-results": PropTypes.func.isRequired,
     "format-results": PropTypes.func.isRequired,
     "html-anchor-id": PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
@@ -28,10 +26,10 @@ class SearchResultsList extends Component {
     this.unlistenToHistory = null;
     this.cancelTokenSource = null;
     this.pageCount = 0;
-    this.formattedResults = null;
+    this.results = null;
 
     this.state = {
-      formattedResults: null,
+      results: null,
       numResults: null
     };
 
@@ -61,9 +59,9 @@ class SearchResultsList extends Component {
         this.query = match[1].trim();
         this.organism = match[3].trim() || null;
         this.pageCount = 0;
-        this.formattedResults = null;
+        this.results = null;
         this.setState({
-          formattedResults: null,
+          results: null,
           numResults: null
         });
         this.fetchResults();
@@ -92,37 +90,27 @@ class SearchResultsList extends Component {
       .then(response => {
         this.pageCount++;
 
-        const results = this.props["get-results"](response.data);
-        this.formatResults(results);
-
-        this.setState({
-          numResults: this.props["get-num-results"](response.data)
-        });
-      })
-      .catch(error => {
-        if (!axios.isCancel(error)) {
-          // TODO: handle error
-          console.log(error);
-        }
+        this.updateResults(this.props["format-results"](response.data, this.organism));
       })
       .finally(() => {
         this.cancelTokenSource = null;
       });
   }
 
-  formatResults(newResults) {
-    const newFormattedResults = this.props["format-results"](
-      newResults,
-      this.organism
-    ).map(this.formatResult);
-    let formattedResults;
-    if (this.formattedResults == null) {
-      formattedResults = newFormattedResults;
+  updateResults(newUnformattedResults) {
+    const newResults = newUnformattedResults.results.map(this.formatResult);    
+    let results;
+    if (this.results == null) {
+      results = newResults;
     } else {
-      formattedResults = this.formattedResults.concat(newFormattedResults);
+      results = this.results.concat(newResults);
     }
-    this.formattedResults = formattedResults;
-    this.setState({ formattedResults: formattedResults });
+    this.results = results;
+
+    this.setState({ 
+      results: results,
+      numResults: newUnformattedResults.numResults
+     });
   }
 
   formatResult(result, iResult) {
@@ -137,7 +125,7 @@ class SearchResultsList extends Component {
   }
 
   render() {
-    const results = this.state.formattedResults;
+    const results = this.state.results;
     const numResults = this.state.numResults;
     const pageSize = this.props["page-size"];
     const numMore = Math.min(pageSize, numResults - pageSize * this.pageCount);
