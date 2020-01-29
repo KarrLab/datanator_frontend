@@ -7,7 +7,7 @@ class MetadataSection extends Component {
   };
   
   render() {
-    const metadata = this.props.metadata;    
+    const metadata = this.props.metadata;
 
     if (metadata == null) {
       return <div></div>;

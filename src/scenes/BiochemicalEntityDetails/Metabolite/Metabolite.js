@@ -127,7 +127,7 @@ class Metabolite extends Component {
       },
       {
         headerName: "Chemical similarity",
-        field: "tanimoto_similarity",
+        field: "tanimotoSimilarity",
         hide: true,
         filter: "tanimotoFilter"
       },
@@ -138,7 +138,7 @@ class Metabolite extends Component {
       },
       {
         headerName: "Taxonomic distance",
-        field: "taxonomic_proximity",
+        field: "taxonomicProximity",
         hide: true,
         filter: "taxonomyFilter",
         valueFormatter: params => {
@@ -252,8 +252,8 @@ class Metabolite extends Component {
     }
 
     let metadata = null;
-    for (let iSource = 0; iSource < data.length - 1; iSource++) {
-      for (const met of data[iSource]) {
+    for (const datum of data) {
+      for (const met of datum) {
         metadata = {};
 
         metadata.name = met.name;
@@ -278,7 +278,7 @@ class Metabolite extends Component {
           biocyc: met.biocyc_id,
           cas: met.cas_registry_number,
           chebi: met.chebi_id,
-          chemspider_id: met.chemspider_id,
+          chemspider: met.chemspider_id,
           ecmdb: met.m2m_id,
           foodb: met.foodb_id,
           hmdb: met.hmdb_id,
@@ -294,8 +294,8 @@ class Metabolite extends Component {
     }
 
     const allConcs = [];
-    for (let iSource = 0; iSource < data.length - 1; iSource++) {
-      for (const met of data[iSource]) {
+    for (const datum of data) {
+      for (const met of datum) {
         const species = "species" in met ? met.species : "Escherichia coli";
         
         const metConcs = dictOfArraysToArrayOfDicts(met.concentrations);
@@ -303,7 +303,7 @@ class Metabolite extends Component {
         for (const metConc of metConcs) {
           const conc = {
             name: met.name,
-            tanimoto_similarity: met.tanimoto_similarity,
+            tanimotoSimilarity: met.tanimoto_similarity,
             concentration: parseFloat(metConc.concentration),
             units: metConc.concentration_units,
             error: metConc.error,
@@ -311,7 +311,7 @@ class Metabolite extends Component {
               Object.prototype.hasOwnProperty(metConc, "strain") && metConc.strain
                 ? species + " " + metConc.strain
                 : species,
-            taxonomic_proximity: met.taxon_distance,
+            taxonomicProximity: met.taxon_distance,
             growth_phase:
               "growth_status" in metConc
                 ? metConc.growth_status
@@ -394,7 +394,7 @@ class Metabolite extends Component {
       );
     }
 
-    let scrollTo = el => {
+    const scrollTo = el => {
       window.scrollTo({ behavior: "smooth", top: el.offsetTop - 52 });
     };
 

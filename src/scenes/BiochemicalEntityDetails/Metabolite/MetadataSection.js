@@ -26,7 +26,7 @@ const DATABASES = {
     name: "CHEBI",
     url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:%s"
   },
-  chemspider_id: {
+  chemspider: {
     name: "ChemSpider",
     url: "http://www.chemspider.com/Chemical-Structure.%s.html"
   },
@@ -65,7 +65,7 @@ class MetadataSection extends Component {
   };
 
   render() {
-    let metadata = this.props.metadata;
+    const metadata = this.props.metadata;
 
     if (!metadata) {
       return <div></div>;

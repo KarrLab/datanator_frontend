@@ -88,27 +88,27 @@ const columnDefs = [
   },
   {
     headerName: "Protein",
-    field: "protein_name",
+    field: "proteinName",
     filter: "agNumberColumnFilter",
     menuTabs: ["filterMenuTab"]
   },
   {
     headerName: "UniProt id",
-    field: "uniprot_source",
+    field: "uniprotSource",
 
     cellRenderer: function(params) {
       return (
         '<a href="https://www.uniprot.org/uniprot/' +
-        params.value.uniprot_id +
+        params.value.uniprotId +
         '" target="_blank" rel="noopener noreferrer">' +
-        params.value.uniprot_id +
+        params.value.uniprotId +
         "</a>"
       );
     }
   },
   {
     headerName: "Gene",
-    field: "gene_symbol",
+    field: "geneSymbol",
     filter: "agTextColumnFilter",
     hide: true
   },
@@ -119,7 +119,7 @@ const columnDefs = [
   },
   {
     headerName: "Taxonomic distance",
-    field: "taxonomic_proximity",
+    field: "taxonomicProximity",
     hide: true,
     filter: "taxonomyFilter"
   },
@@ -131,12 +131,12 @@ const columnDefs = [
   },
   {
     headerName: "Source",
-    field: "source_link",
+    field: "source",
 
     cellRenderer: function(params) {
       return (
         '<a href="https://pax-db.org/search?q=' +
-        params.value.uniprot_id +
+        params.value.uniprotId +
         '" target="_blank" rel="noopener noreferrer">' +
         "PAXdb" +
         "</a>"
@@ -146,10 +146,11 @@ const columnDefs = [
 ];
 
 Object.size = function(obj) {
-  var size = 0,
-    key;
-  for (key in obj) {
-    if (Object.prototype.hasOwnProperty.call(obj, key)) size++;
+  let size = 0;
+  for (const key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      size++;
+    }
   }
   return size;
 };
@@ -218,15 +219,17 @@ class Protein extends Component {
   }
 
   formatOrthologyMetadata(data) {
-    let uni_ids = [];
-    let metadata = {};
-    metadata["ko_number"] = data[0].ko_number;
-    metadata["ko_name"] = data[0].ko_name;
+    const metadata = {};
 
-    for (var i = 0; i < data.length; i++) {
-      uni_ids.push(data[i].uniprot_id);
+    metadata["koNumber"] = data[0].ko_number;
+    metadata["koName"] = data[0].ko_name;
+
+    const uniprotIds = [];    
+    for (const datum of data) {
+      uniprotIds.push(datum.uniprot_id);
     }
-    metadata["uniprot_ids"] = uni_ids;
+    metadata["uniprotIds"] = uniprotIds;
+
     this.setState({ metadata: metadata });
   }
 
@@ -235,13 +238,14 @@ class Protein extends Component {
       this.formatData(data);
 
       const metadata = {};
-      let uniprot_id = "";
+
+      let uniprotId = "";
       if (Object.size(data[0]) === 1) {
-        uniprot_id = data[1].uniprot_id;
+        uniprotId = data[1].uniprot_id;
       } else {
-        uniprot_id = data[0].uniprot_id;
+        uniprotId = data[0].uniprot_id;
       }
-      metadata["ko_number"] = [data[0].ko_number, uniprot_id];
+      metadata["koNumber"] = [data[0].ko_number, uniprotId];
       this.setState({ metadata: metadata });
     } else {
       getDataFromApi([
@@ -251,7 +255,7 @@ class Protein extends Component {
         this.formatData(response.data);
 
         const metadata = {};
-        metadata["ko_number"] = [
+        metadata["koNumber"] = [
           response.data[0].ko_number,
           response.data[1].uniprot_id
         ];
@@ -262,71 +266,67 @@ class Protein extends Component {
 
   processProteinDataUniprot(data) {
     if (typeof data != "string") {
-      const uniprot_to_dist = {};
+      const uniprotToDist = {};
       if (data != null && typeof data != "string") {
-        for (var i = 0; i < data.length; i++) {
-          let docs = data[i].documents;
-          for (var q = docs.length - 1; q >= 0; q--) {
-            var uniprot = docs[q].abundances;
-            if (uniprot !== undefined) {
-              for (var n = 0; n < uniprot.length; n++) {
-                uniprot_to_dist[docs[q].uniprot_id] = data[i].distance;
-              }
+        for (const datum of data) {
+          for (const doc of datum.documents) {
+            if (doc.abundances !== undefined) {
+              uniprotToDist[doc.uniprot_id] = datum.distance;
             }
           }
         }
       }
-      let total_ids = Object.keys(uniprot_to_dist);
-      let end_query = "";
-      for (var f = total_ids.length - 1; f >= 0; f--) {
-        end_query = end_query + "uniprot_id=" + total_ids[f] + "&";
+      const uniprotIds = Object.keys(uniprotToDist);
+      let endQuery = "";
+      for (const uniprotId of uniprotIds) {
+        endQuery += "uniprot_id=" + uniprotId + "&";
       }
-      getDataFromApi(["proteins", "meta/meta_combo/?" + end_query], {}, 
+      getDataFromApi(["proteins", "meta/meta_combo/?" + endQuery], {}, 
         "Unable to get data about proteins for ortholog group '" + this.props.match.params.protein + "'.")
         .then(
           response => {
             this.formatOrthologyMetadata(response.data);
-            this.formatData(response.data, uniprot_to_dist);
+            this.formatData(response.data, uniprotToDist);
           }
         );
     }
   }
 
-  formatData(data, uniprot_to_dist) {
-    const f_abundances = [];
+  formatData(data, uniprotToDist) {
     if (data != null && typeof data != "string") {
       if (!(data[0].uniprot_id === "Please try another input combination")) {
         let start = 0;
         if (Object.size(data[0]) === 1) {
           start = 1;
         }
-        for (var i = start; i < data.length; i++) {
-          let uniprot = data[i];
+
+        const allData = []
+        for (const uniprot of data.slice(start)) {
           if (uniprot.abundances !== undefined) {
-            for (var n = 0; n < uniprot.abundances.length; n++) {
+            for (let iMeasurement = 0; iMeasurement < uniprot.abundances.length; iMeasurement++) {
               let row = {};
-              row["abundance"] = uniprot.abundances[n].abundance;
-              row["organ"] = uniprot.abundances[n].organ;
-              row["gene_symbol"] = uniprot.gene_name;
+              row["abundance"] = uniprot.abundances[iMeasurement].abundance;
+              row["organ"] = uniprot.abundances[iMeasurement].organ;
+              row["geneSymbol"] = uniprot.gene_name;
               row["organism"] = uniprot.species_name;
-              row["uniprot_id"] = uniprot.uniprot_id;
-              row["uniprot_source"] = { uniprot_id: uniprot.uniprot_id };
-              let protein_name = uniprot.protein_name;
-              if (protein_name.includes("(")) {
-                protein_name = protein_name.substring(
+              row["uniprotId"] = uniprot.uniprot_id;
+              row["uniprotSource"] = { uniprotId: uniprot.uniprot_id };
+              let proteinName = uniprot.protein_name;
+              if (proteinName.includes("(")) {
+                proteinName = proteinName.substring(
                   0,
-                  protein_name.indexOf("(")
+                  proteinName.indexOf("(")
                 );
               }
-              row["protein_name"] = protein_name;
-              row["taxonomic_proximity"] =
-                uniprot_to_dist[uniprot.uniprot_id];
-              row["source_link"] = { uniprot_id: uniprot.uniprot_id };
-              f_abundances.push(row);
+              row["proteinName"] = proteinName;
+              row["taxonomicProximity"] =
+                uniprotToDist[uniprot.uniprot_id];
+              row["source"] = { uniprotId: uniprot.uniprot_id };
+              allData.push(row);
             }
           }
         }
-        this.props.dispatch(setTotalData(f_abundances));
+        this.props.dispatch(setTotalData(allData));
       } else {
         //alert('Nothing Found');
       }
@@ -336,9 +336,7 @@ class Protein extends Component {
   }
 
   onFirstDataRendered(params) {
-    //params.columnApi.autoSizeColumns(['concentration'])
-
-    var allColumnIds = [];
+    const allColumnIds = [];
     params.columnApi.getAllColumns().forEach(function(column) {
       allColumnIds.push(column.colId);
     });
@@ -348,8 +346,8 @@ class Protein extends Component {
 
   onRowSelected(event) {
     let selectedRows = [];
-    for (var i = event.api.getSelectedNodes().length - 1; i >= 0; i--) {
-      selectedRows.push(event.api.getSelectedNodes()[i].data);
+    for (const selectedNode of event.api.getSelectedNodes()) {
+      selectedRows.push(selectedNode.data);
     }
     this.props.dispatch(setSelectedData(selectedRows));
   }
@@ -382,7 +380,7 @@ class Protein extends Component {
 
     return (
       <div className="content-container biochemical-entity-scene biochemical-entity-protein-scene">
-        <h1 className="page-title">{this.state.metadata.ko_name[0]}</h1>
+        <h1 className="page-title">{this.state.metadata.koName[0]}</h1>
         <div className="content-container-columns">
           <div className="overview-column">
             <div className="content-block table-of-contents">

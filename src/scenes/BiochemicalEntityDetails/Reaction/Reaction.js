@@ -68,75 +68,68 @@ const defaultColDef = {
   suppressMenu: true
 };
 
-function getReactionID(resource) {
-  for (let i = 0; i < resource.length; i++)
-    if (resource[i].namespace === "sabiork.reaction") {
-      return resource[i].id;
-    }
-}
-
-function getECNumber(resource) {
-  for (let i = 0; i < resource.length; i++)
-    if (resource[i].namespace === "ec-code") {
-      return resource[i].id;
-    }
-}
-
-function getSubstrates(substrate) {
-  const subNames = [];
-  for (let i = 0; i < substrate.length; i++) {
-    subNames.push(substrate[i].substrate_name);
-  }
-  return subNames;
-}
-
-function getProducts(product) {
-  const subNames = [];
-  for (let i = 0; i < product.length; i++) {
-    subNames.push(product[i].product_name);
-  }
-  return subNames;
-}
-
-function formatPart(parts) {
-  let participants_string = "";
-  for (let i = parts.length - 1; i >= 0; i--) {
-    participants_string = participants_string + parts[i] + " + ";
-  }
-  participants_string = participants_string.substring(
-    0,
-    participants_string.length - 3
-  );
-  return participants_string;
-}
-
-function getKcat(parameters) {
-  const kinetic_params = {};
-  for (let i = 0; i < parameters.length; i++) {
-    if (parameters[i].name === "k_cat") {
-      kinetic_params["kcat"] = parameters[i].value;
+function getReactionId(resources) {
+  for (const resource of resources) {
+    if (resource.namespace === "sabiork.reaction") {
+      return resource.id;
     }
   }
-  return kinetic_params;
 }
 
-function getKm(parameters, substrates) {
+function getEcNumber(resources) {
+  for (const resource of resources) {
+    if (resource.namespace === "ec-code") {
+      return resource.id;
+    }
+  }
+}
+
+function getSubstrateNames(substrates) {
+  const names = [];
+  for (const substrate of substrates) {
+    names.push(substrate.substrate_name);
+  }
+  return names;
+}
+
+function getProductNames(products) {
+  const names = [];
+  for (const product of products) {
+    names.push(product.product_name);
+  }
+  return names;
+}
+
+function formatSide(parts) {
+  return parts.join(' + ');
+}
+
+function getKcatValues(parameters) {
+  for (const parameter of parameters) {
+    if (parameter.name === "k_cat") {
+      return parameter.value;
+    }
+  }
+}
+
+function getKmValues(parameters, substrates) {
   const kms = {};
-  for (let i = 0; i < parameters.length; i++) {
+  for (const parameter of parameters) {
     if (
-      parameters[i].type === "27" &&
-      substrates.includes(parameters[i]["name"]) &&
-      parameters[i]["observed_name"].toLowerCase() === "km"
+      parameter.type === "27" &&
+      substrates.includes(parameter.name) &&
+      parameter.observed_name.toLowerCase() === "km"
     ) {
-      kms["km_" + parameters[i]["name"]] = parameters[i].value;
+      kms["km_" + parameter.name] = parameter.value;
     }
   }
   return kms;
 }
+
 /*
-reaction_id
+reactionId
 kcat
-wildtype_mutant
+wildtypeMutant
 organism
 ph
 temperature
@@ -165,7 +158,7 @@ class Reaction extends Component {
         },
         {
           headerName: "SABIO-RK id",
-          field: "kinlaw_id",
+          field: "kinLawId",
           filter: "agNumberColumnFilter",
           menuTabs: ["filterMenuTab"],
 
@@ -187,37 +180,13 @@ class Reaction extends Component {
           filter: "agTextColumnFilter"
         },
         {
-          headerName: "Taxonomic distance",
-          field: "taxonomic_proximity",
-          hide: true,
-          filter: "taxonomyFilter"
-        },
-        {
-          headerName: "Growth phase",
-          field: "growth_phase",
-          filter: "agTextColumnFilter",
-          hide: true
-        },
-        {
-          headerName: "Conditions",
-          field: "growth_conditions",
-          filter: "agTextColumnFilter",
-          hide: true
-        },
-        {
-          headerName: "Media",
-          field: "growth_media",
-          filter: "agTextColumnFilter",
-          hide: true
-        },
-        {
           headerName: "Source",
-          field: "source_link",
+          field: "source",
 
           cellRenderer: function(params) {
             return (
               '<a href="http://sabio.h-its.org/reacdetails.jsp?reactid=' +
-              params.value.reactionID +
+              params.value.reactionId +
               '" target="_blank" rel="noopener noreferrer">' +
               "SABIO-RK" +
               "</a>"
@@ -338,54 +307,54 @@ class Reaction extends Component {
   formatData(data) {
     console.log("ReactionPage: Calling formatData");
     if (data != null) {
-      const total_rows = [];
-      const substrates = getSubstrates(
+      const allData = [];
+      const substrates = getSubstrateNames(
         data[0].reaction_participant[0].substrate
       );
       const km_values = [];
-      for (let k = substrates.length - 1; k >= 0; k--) {
-        km_values.push("km_" + substrates[k]);
+      for (const substrate of substrates) {
+        km_values.push("km_" + substrate);
       }
       this.setKmColumns(km_values);
 
-      for (let i = 0; i < data.length; i++) {
-        let wildtype_mutant = null;
-        if (data[i]["taxon_wildtype"] === "1") {
-          wildtype_mutant = "wildtype";
-        } else if (data[i]["taxon_wildtype"] === "0") {
-          wildtype_mutant = "mutant";
+      for (const datum of data) {
+        let wildtypeMutant = null;
+        if (datum["taxon_wildtype"] === "1") {
+          wildtypeMutant = "wildtype";
+        } else if (datum["taxon_wildtype"] === "0") {
+          wildtypeMutant = "mutant";
         }
         let row = {
-          kinlaw_id: data[i]["kinlaw_id"],
-          kcat: getKcat(data[i].parameter)["kcat"],
-          wildtype_mutant: wildtype_mutant,
-          organism: data[i].taxon_name,
-          ph: data[i].ph,
-          temperature: data[i].temperature,
-          source_link: { reactionID: getReactionID(data[i].resource) }
+          kinLawId: datum["kinlaw_id"],
+          kcat: getKcatValues(datum.parameter),
+          wildtypeMutant: wildtypeMutant,
+          organism: datum.taxon_name,
+          ph: datum.ph,
+          temperature: datum.temperature,
+          source: { reactionId: getReactionId(datum.resource) }
         };
         let row_with_km = Object.assign(
           {},
           row,
-          getKm(data[i].parameter, substrates)
+          getKmValues(datum.parameter, substrates)
         );
 
-        let has_data = false;
-        for (let l = km_values.length - 1; l >= 0; l--) {
-          if (row_with_km[km_values[l]] != null) {
-            has_data = true;
+        let hasData = false;
+        for (const km_value of km_values) {
+          if (row_with_km[km_value] != null) {
+            hasData = true;
           }
         }
         if (row_with_km.kcat != null) {
-          has_data = true;
+          hasData = true;
         }
-        if (has_data) {
-          total_rows.push(row_with_km);
+        if (hasData) {
+          allData.push(row_with_km);
         }
         //console.log(row_with_km)
       }
 
-      this.props.dispatch(setTotalData(total_rows));
+      this.props.dispatch(setTotalData(allData));
     }
   }
 
@@ -393,14 +362,14 @@ class Reaction extends Component {
     if (data != null) {
       const metadata = {};
 
-      const reactionID = getReactionID(data[0].resource);
-      const ecNumber = getECNumber(data[0].resource);      
+      const reactionId = getReactionId(data[0].resource);
+      const ecNumber = getEcNumber(data[0].resource);      
       const name = data[0]["enzymes"][0]["enzyme"][0]["enzyme_name"];
-      const substrates = getSubstrates(
+      const substrates = getSubstrateNames(
         data[0].reaction_participant[0].substrate
       );
-      const products = getProducts(data[0].reaction_participant[1].product);
-      metadata["reactionID"] = reactionID;
+      const products = getProductNames(data[0].reaction_participant[1].product);
+      metadata["reactionId"] = reactionId;
       metadata["substrates"] = substrates;
       metadata["products"] = products;
       if (ecNumber !== "-.-.-.-") {
@@ -414,7 +383,7 @@ class Reaction extends Component {
       }
 
       metadata["equation"] =
-        formatPart(substrates) + " → " + formatPart(products);
+        formatSide(substrates) + " → " + formatSide(products);
 
       this.setState({
         metadata: metadata,
@@ -434,9 +403,10 @@ class Reaction extends Component {
   }
 
   onRowSelected(event) {
-    const selectedRows = [];
-    for (let i = event.api.getSelectedNodes().length - 1; i >= 0; i--) {
-      selectedRows.push(event.api.getSelectedNodes()[i].data);
+    const selectedNodes = event.api.getSelectedNodes();
+    const selectedRows = [];    
+    for (const selectedNode of selectedNodes) {
+      selectedRows.push(selectedNode.data);
     }
     this.props.dispatch(setSelectedData(selectedRows));
   }

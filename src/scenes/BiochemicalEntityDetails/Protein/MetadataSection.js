@@ -7,40 +7,40 @@ class MetadataSection extends Component {
   };
   
   render() {
-    let metadata = this.props.metadata;
+    const metadata = this.props.metadata;
 
     if (metadata === undefined || metadata == null) {
       return <div></div>;
     }
 
-    const uniprot_ids = metadata.uniprot_ids;
-    const uniprot_links = [];
-    for (let i = uniprot_ids.length - 1; i >= 0; i--) {
+    const uniprotIds = metadata.uniprotIds;
+    const uniprotLinks = [];
+    for (let i = uniprotIds.length - 1; i >= 0; i--) {
       let link = "";
       if (i === 0) {
         link = (
           <a
-            href={"https://www.uniprot.org/uniprot/" + uniprot_ids[i]}
+            href={"https://www.uniprot.org/uniprot/" + uniprotIds[i]}
             target="_blank"
             rel="noopener noreferrer"
           >
             {" "}
-            {uniprot_ids[i]}{" "}
+            {uniprotIds[i]}{" "}
           </a>
         );
       } else {
         link = (
           <a
-            href={"https://www.uniprot.org/uniprot/" + uniprot_ids[i]}
+            href={"https://www.uniprot.org/uniprot/" + uniprotIds[i]}
             target="_blank"
             rel="noopener noreferrer"
           >
             {" "}
-            {uniprot_ids[i]},{" "}
+            {uniprotIds[i]},{" "}
           </a>
         );
       }
-      uniprot_links.push(link);
+      uniprotLinks.push(link);
     }
 
     return (
@@ -50,24 +50,24 @@ class MetadataSection extends Component {
           <div className="content-block-content img-description">
             <div className="metadata-description">
               <p>
-                <b>Name:</b> {metadata.ko_name[0]}
+                <b>Name:</b> {metadata.koName[0]}
               </p>
               <p>
                 <b>KO Number:</b>{" "}
                 <a
                   href={
                     "https://www.genome.jp/dbget-bin/www_bget?ko:" +
-                    metadata.ko_number
+                    metadata.koNumber
                   }
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   {" "}
-                  {metadata.ko_number}
+                  {metadata.koNumber}
                 </a>
               </p>
               <p>
-                <b>Uniprot IDs:</b> {uniprot_links}
+                <b>UniProt IDs:</b> {uniprotLinks}
               </p>
             </div>
           </div>

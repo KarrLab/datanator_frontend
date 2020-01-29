@@ -7,7 +7,7 @@ class MetadataSection extends Component {
   };
 
   render() {
-    let metadata = this.props.metadata;
+    const metadata = this.props.metadata;
 
     if (metadata == null || metadata === undefined) {
       return <div></div>;
@@ -18,16 +18,16 @@ class MetadataSection extends Component {
         <div className="content-block" id="properties">
           <h2 className="content-block-heading">Properties</h2>
           <div className="content-block-content img-description">
-            {(metadata.gene_name || metadata.protein_name) && (
+            {(metadata.geneName || metadata.proteinName) && (
             <div className="metadata-description">
-              {metadata.gene_name && (
+              {metadata.geneName && (
               <p>
-                <b>Gene:</b> {metadata.gene_name}
+                <b>Gene:</b> {metadata.geneName}
               </p>
               )}
-              {metadata.protein_name && (
+              {metadata.proteinName && (
               <p>
-                <b>Protein:</b> {metadata.protein_name}
+                <b>Protein:</b> {metadata.proteinName}
               </p>
               )}
             </div>

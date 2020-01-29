@@ -22,7 +22,7 @@ import "../BiochemicalEntityDetails.scss";
 import "./Rna.scss";
 
 const frameworkComponents = {
-  statsToolPanel: () => (<StatsToolPanel relevant-column={"half_life"} />),
+  statsToolPanel: () => (<StatsToolPanel relevant-column={"halfLife"} />),
   taxonomyFilter: TaxonomyFilter
 };
 
@@ -79,7 +79,7 @@ const defaultColDef = {
 const columnDefs = [
   {
     headerName: "Half life (s^-1)",
-    field: "half_life",
+    field: "halfLife",
     sortable: true,
     filter: "agNumberColumnFilter",
     checkboxSelection: true,
@@ -93,7 +93,7 @@ const columnDefs = [
   },
   {
     headerName: "Media",
-    field: "growth_medium",
+    field: "growthMedium",
     filter: "agTextColumnFilter",
     hide: false
   },
@@ -114,10 +114,11 @@ const columnDefs = [
 ];
 
 Object.size = function(obj) {
-  var size = 0,
-    key;
-  for (key in obj) {
-    if (Object.prototype.hasOwnProperty.call(obj, key)) size++;
+  let size = 0;
+  for (const key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      size++;
+    }
   }
   return size;
 };
@@ -168,44 +169,35 @@ class Rna extends Component {
 
   formatData(data) { 
     const metadata = {}
-    if(data[0]['function']){
-      metadata["protein_name"] = data[0]['function']
-    }
-    else if (data[0]['protein_name']){
-       metadata["protein_name"] = data[0]['protein_name']
-    }
-    else{
-      metadata["protein_name"] = 'Protein Name not Found'
-    }
-    //metadata["protein_name"] = data[0]['function']
-    metadata["gene_name"] = data[0].gene_name
-    console.log(data);
+    
+    metadata["geneName"] = data[0].gene_name;
+
+    if(data[0]['function']) {
+      metadata["proteinName"] = data[0]['function']
+    } else if (data[0]['protein_name']){
+       metadata["proteinName"] = data[0]['protein_name']
+    } else{
+      metadata["proteinName"] = 'Protein Name not Found'
+    }    
+
     if (data != null && typeof data != "string") {
-      //let data_n = data[0]
-      let half_lives = data[0].halflives;
-      let final_data = []
-      for (var i = 0; i < half_lives.length; i++) {
-        let entry = half_lives[i];
-        let row = {};
-        row["half_life"] = entry.halflife;
-        row["reference"] = entry.reference[0]["doi"];
-        row["organism"] = entry.species;
-        row["growth_medium"] = entry.growth_medium;
-        final_data.push(row);
+      const measurements = data[0].halflives;
+      const allData = [];
+      for (const measurement of measurements) {
+        const row = {};
+        row["halfLife"] = measurement.halflife;
+        row["reference"] = measurement.reference[0]["doi"];
+        row["organism"] = measurement.species;
+        row["growthMedium"] = measurement.growth_medium;
+        allData.push(row);
       }
-      this.props.dispatch(setTotalData(final_data));
+      this.props.dispatch(setTotalData(allData));
       this.setState({ metadata: metadata }); 
     }
-    else {
-        //alert('Nothing Found');
-
-    } 
   }
 
   onFirstDataRendered(params) {
-    //params.columnApi.autoSizeColumns(['concentration'])
-
-    var allColumnIds = [];
+    const allColumnIds = [];
     params.columnApi.getAllColumns().forEach(function(column) {
       allColumnIds.push(column.colId);
     });
@@ -214,9 +206,10 @@ class Rna extends Component {
   }
 
   onRowSelected(event) {
-    let selectedRows = [];
-    for (var i = event.api.getSelectedNodes().length - 1; i >= 0; i--) {
-      selectedRows.push(event.api.getSelectedNodes()[i].data);
+    const selectedRows = [];
+    const selectedNodes = event.api.getSelectedNodes();
+    for (const selectedNode of selectedNodes) {
+      selectedRows.push(selectedNode.data);
     }
     this.props.dispatch(setSelectedData(selectedRows));
   }
@@ -244,12 +237,12 @@ class Rna extends Component {
       );
     }
 
-    let title = this.state.metadata.gene_name;
+    let title = this.state.metadata.geneName;
     if (!title){
       title = "Gene name not found"
     }
 
-    let scrollTo = el => {
+    const scrollTo = el => {
       window.scrollTo({ behavior: "smooth", top: el.offsetTop - 52 });
     };
 
