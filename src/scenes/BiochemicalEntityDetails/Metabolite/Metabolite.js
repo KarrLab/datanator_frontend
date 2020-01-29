@@ -218,7 +218,7 @@ class Metabolite extends Component {
   }
 
   getDataFromApi() {
-    const abstract = false;
+    const abstract = true;
     const metabolite = this.props.match.params.metabolite;
     const organism = this.props.match.params.organism;
     getDataFromApi(
