@@ -20,7 +20,7 @@ import "./index.scss";
 
 // Font Awesome icons
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faAtom, faDna, faBug } from "@fortawesome/free-solid-svg-icons";
+import { faAtom, faDna, faBug, faEnvelope, faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 
 // Common page components
 import Header from "~/components/Header/Header";
@@ -41,7 +41,7 @@ import About from "~/scenes/About/About";
 import Error404 from "~/scenes/Error404/Error404";
 
 // Setup Font Awesome icon library
-library.add(faAtom, faDna, faBug);
+library.add(faAtom, faDna, faBug, faEnvelope, faExclamationCircle);
 
 // Render site
 const SiteRouter = () => {

@@ -66,6 +66,19 @@ a:hover {
   display: flex;
   justify-content: space-between;
 
+  .overview-column {
+    height: min-content;
+    margin-right: 3rem;
+    position: sticky;
+    top: calc(50px + 3rem);
+    width: 160px;
+    min-width: 160px;
+
+    .content-block-heading {
+      color: $color-heading;
+    }
+  }
+
   .content-column {
     width: 100%;
   }
@@ -125,18 +138,7 @@ a:hover {
 }
 
 /* table of contents */
-.table-of-contents {
-  height: min-content;
-  margin-right: 3rem;
-  position: sticky;
-  top: calc(50px + 3rem);
-  width: 160px;
-  min-width: 160px;
-
-  .content-block-heading {
-    color: $color-heading;
-  }
-
+.table-of-contents {  
   ul {
     list-style-type: circle;
     margin: 0;

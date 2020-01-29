@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { HashLink } from "react-router-hash-link";
 import { SocialIcon } from "react-social-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./About.scss";
 
@@ -23,41 +24,58 @@ class About extends Component {
       <div className="content-container content-container-about-scene">
         <h1 className="page-title">About</h1>
         <div className="content-container-columns">
-          <div className="content-block table-of-contents">
-            <h2 className="content-block-heading">Contents</h2>
-            <div className="content-block-content">
-              <ul>
-                <li>
-                  <HashLink to="#features" scroll={scrollTo}>
-                    Features
-                  </HashLink>
-                </li>
-                <li>
-                  <HashLink to="#data" scroll={scrollTo}>
-                    Data types
-                  </HashLink>
-                </li>
-                <li>
-                  <HashLink to="#searching" scroll={scrollTo}>
-                    Searching
-                  </HashLink>
-                </li>
-                <li>
-                  <HashLink to="#team" scroll={scrollTo}>
-                    Team
-                  </HashLink>
-                </li>
-                <li>
-                  <HashLink to="#acknowledgements" scroll={scrollTo}>
-                    Acknowledgements
-                  </HashLink>
-                </li>
-                <li>
-                  <HashLink to="#source" scroll={scrollTo}>
-                    Source code
-                  </HashLink>
-                </li>
-              </ul>
+          <div className="overview-column">
+            <div className="content-block table-of-contents">
+              <h2 className="content-block-heading">Contents</h2>
+              <div className="content-block-content">
+                <ul>
+                  <li>
+                    <HashLink to="#features" scroll={scrollTo}>
+                      Features
+                    </HashLink>
+                  </li>
+                  <li>
+                    <HashLink to="#data" scroll={scrollTo}>
+                      Data types
+                    </HashLink>
+                  </li>
+                  <li>
+                    <HashLink to="#searching" scroll={scrollTo}>
+                      Searching
+                    </HashLink>
+                  </li>
+                  <li>
+                    <HashLink to="#team" scroll={scrollTo}>
+                      Team
+                    </HashLink>
+                  </li>
+                  <li>
+                    <HashLink to="#acknowledgements" scroll={scrollTo}>
+                      Acknowledgements
+                    </HashLink>
+                  </li>
+                  <li>
+                    <HashLink to="#source" scroll={scrollTo}>
+                      Source code
+                    </HashLink>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="content-block table-of-contents">
+              <h2 className="content-block-heading">Citing us</h2>
+              <div className="content-block-content">
+                Please check back soon for citation information. 
+              </div>
+            </div>
+
+            <div className="content-block table-of-contents">
+              <h2 className="content-block-heading">Need help?</h2>
+              <div className="content-block-content">              
+                <div><a href="mailto:info@karrlab.org"><FontAwesomeIcon icon="envelope" /> Contact us</a></div>
+                <div><a href="https://github.com/karrlab/datanator_frontend/issues"><FontAwesomeIcon icon="exclamation-circle" /> Submit an issue</a></div>
+              </div>
             </div>
           </div>
 

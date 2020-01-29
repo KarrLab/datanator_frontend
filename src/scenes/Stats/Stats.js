@@ -13,26 +13,28 @@ class Stats extends Component {
       <div className="content-container content-container-stats-scene">
         <h1 className="page-title">Statistics</h1>
         <div className="content-container-columns">
-          <div className="content-block table-of-contents">
-            <h2 className="content-block-heading">Contents</h2>
-            <div className="content-block-content">
-              <ul>
-                <li>
-                  <HashLink to="#section-1" scroll={scrollTo}>
-                    Section 1
-                  </HashLink>
-                </li>
-                <li>
-                  <HashLink to="#section-2" scroll={scrollTo}>
-                    Section 2
-                  </HashLink>
-                </li>
-                <li>
-                  <HashLink to="#section-3" scroll={scrollTo}>
-                    Section 3
-                  </HashLink>
-                </li>
-              </ul>
+          <div className="overview-column">
+            <div className="content-block table-of-contents">
+              <h2 className="content-block-heading">Contents</h2>
+              <div className="content-block-content">
+                <ul>
+                  <li>
+                    <HashLink to="#section-1" scroll={scrollTo}>
+                      Section 1
+                    </HashLink>
+                  </li>
+                  <li>
+                    <HashLink to="#section-2" scroll={scrollTo}>
+                      Section 2
+                    </HashLink>
+                  </li>
+                  <li>
+                    <HashLink to="#section-3" scroll={scrollTo}>
+                      Section 3
+                    </HashLink>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
 

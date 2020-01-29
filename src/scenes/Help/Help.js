@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { HashLink } from "react-router-hash-link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./Help.scss";
 
@@ -13,26 +14,38 @@ class Help extends Component {
       <div className="content-container content-container-help-scene">
         <h1 className="page-title">Help</h1>
         <div className="content-container-columns">
-          <div className="content-block table-of-contents">
-            <h2 className="content-block-heading">Contents</h2>
-            <div className="content-block-content">
-              <ul>
-                <li>
-                  <HashLink to="#tutorial" scroll={scrollTo}>
-                    Tutorial
-                  </HashLink>
-                </li>
-                <li>
-                  <HashLink to="#faq" scroll={scrollTo}>
-                    FAQ
-                  </HashLink>
-                </li>
-                <li>
-                  <HashLink to="#contact-info" scroll={scrollTo}>
-                    Contact info
-                  </HashLink>
-                </li>
-              </ul>
+          <div className="overview-column">
+            <div className="content-block table-of-contents">
+              <h2 className="content-block-heading">Contents</h2>
+              <div className="content-block-content">
+                <ul>
+                  <li>
+                    <HashLink to="#tutorial" scroll={scrollTo}>
+                      Tutorial
+                    </HashLink>
+                  </li>
+                  <li>
+                    <HashLink to="#faq" scroll={scrollTo}>
+                      FAQ
+                    </HashLink>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="content-block table-of-contents">
+              <h2 className="content-block-heading">Citing us</h2>
+              <div className="content-block-content">
+                Please check back soon for citation information. 
+              </div>
+            </div>
+
+            <div className="content-block table-of-contents">
+              <h2 className="content-block-heading">Need more help?</h2>
+              <div className="content-block-content">              
+                <div><a href="mailto:info@karrlab.org"><FontAwesomeIcon icon="envelope" /> Contact us</a></div>
+                <div><a href="https://github.com/karrlab/datanator_frontend/issues"><FontAwesomeIcon icon="exclamation-circle" /> Submit an issue</a></div>
+              </div>
             </div>
           </div>
 
@@ -146,17 +159,6 @@ class Help extends Component {
                     for more information.
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div className="content-block section" id="contact-info">
-              <h2 className="content-block-heading">
-                Contact info for further questions
-              </h2>
-              <div className="content-block-content">
-                Please contact us at{" "}
-                <a href="mailto:info@karrlab.org">info@karrlab.org</a> for further
-                help.
               </div>
             </div>
           </div>
