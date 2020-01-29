@@ -190,19 +190,29 @@ class StatsToolPanel extends Component {
           <table className="summary">
             <tbody>
               <tr>
-                <td></td>
+                <th></th>
                 <th scope="col">Total</th>
                 <th scope="col">Selected</th>
               </tr>
               <tr>
                 <th scope="row">Mean</th>
                 <td>{this.state.total_mean}</td>
-                <td><td>{this.state.selected_mean}</td></td>
+                <td>{this.state.selected_mean}</td>
               </tr>
               <tr>
                 <th scope="row">Median</th>
                 <td>{this.state.total_median}</td>
-                <td><td>{this.state.selected_median}</td></td>
+                <td>{this.state.selected_median}</td>
+              </tr>
+              <tr>
+                <th scope="row">Std Dev</th>
+                <td>{this.state.total_stdDev}</td>
+                <td>{this.state.selected_stdDev}</td>
+              </tr>
+              <tr>
+                <th scope="row">Range</th>
+                <td>{this.state.total_range}</td>
+                <td>{this.state.selected_range}</td>
               </tr>
             </tbody>
           </table>
