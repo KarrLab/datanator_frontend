@@ -30,6 +30,11 @@
     .ag-theme-balham {
       width: 100%;
 
+      .ag-root,
+      .ag-row.ag-row-last {
+        border-bottom-width: 0;
+      }
+
       // right align numeric cells with check boxes
       .ag-numeric-cell {
         .ag-cell-wrapper {
