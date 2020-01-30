@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { HashLink } from "react-router-hash-link";
 import PropTypes from "prop-types";
-import DownloadLink from 'react-download-link';
+import DownloadLink from "react-download-link";
 import {
   formatChemicalFormula,
   dictOfArraysToArrayOfDicts,
@@ -93,9 +93,6 @@ const defaultColDef = {
   resizable: true,
   suppressMenu: true
 };
-
-
-
 
 @connect(store => {
   return {
@@ -245,7 +242,7 @@ class Metabolite extends Component {
 
   recordData() {
     //console.log('Consensus: Calling recordData');
-    return (JSON.stringify(this.props.measuredConcs));
+    return JSON.stringify(this.props.measuredConcs);
   }
 
   getDataFromApi() {
@@ -455,7 +452,6 @@ class Metabolite extends Component {
     const updateData = data => {
       this.setState({ rowData: data });
     };
-
   }
 
   onBtnExportDataAsCsv() {
@@ -534,11 +530,22 @@ class Metabolite extends Component {
               <div className="content-block-heading-container">
                 <h2 className="content-block-heading">Concentration</h2>
                 <div className="content-block-heading-actions">
-                  Export: <button className="text-button"
-                  onClick= {this.onBtnExportDataAsCsv.bind(this)}>
-                  CSV</button> | {" "} <DownloadLink filename="Data.json" label="JSON" style={{}} className="text-button" tagName ="button" exportFile={() => this.recordData()}>
-                    </DownloadLink>
-
+                  Export:{" "}
+                  <button
+                    className="text-button"
+                    onClick={this.onBtnExportDataAsCsv.bind(this)}
+                  >
+                    CSV
+                  </button>{" "}
+                  |{" "}
+                  <DownloadLink
+                    filename="Data.json"
+                    label="JSON"
+                    style={{}}
+                    className="text-button"
+                    tagName="button"
+                    exportFile={() => this.recordData()}
+                  ></DownloadLink>
                 </div>
               </div>
               <div className="ag-theme-balham">

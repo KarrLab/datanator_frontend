@@ -174,7 +174,8 @@ function getParams() {
     columnKeys: getBooleanValue("#columnKeys"),
     onlySelected: getBooleanValue("#onlySelected"),
     onlySelectedAllPages: getBooleanValue("#onlySelectedAllPages"),
-    shouldRowBeSkipped: getBooleanValue("#shouldRowBeSkipped") && only20YearOlds,
+    shouldRowBeSkipped:
+      getBooleanValue("#shouldRowBeSkipped") && only20YearOlds,
     skipFooters: getBooleanValue("#skipFooters"),
     skipGroups: getBooleanValue("#skipGroups"),
     skipHeader: getBooleanValue("#skipHeader"),
