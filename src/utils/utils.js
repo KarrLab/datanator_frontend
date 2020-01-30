@@ -188,8 +188,28 @@ function updateGridHorizontalScrolling(event, grid) {
 
 const gridDataExportParams = {
   allColumns: true,
-  onlySelected: false,
+  onlySelected: false
 };
+
+function downloadData(data, filename, mimeType) {
+  const anchor = document.createElement("a");
+
+  anchor.download = filename;
+
+  const blob = new Blob([data], { type: mimeType });
+  const url = URL.createObjectURL(blob);
+  anchor.href = url;
+
+  const clickHandler = () => {
+    setTimeout(() => {
+      URL.revokeObjectURL(url);
+      anchor.removeEventListener("click", clickHandler);
+    }, 150);
+  };
+  anchor.addEventListener("click", clickHandler, false);
+
+  anchor.click();
+}
 
 export {
   mode,
@@ -202,5 +222,6 @@ export {
   removeDuplicates,
   sizeGridColumnsToFit,
   updateGridHorizontalScrolling,
-  gridDataExportParams
+  gridDataExportParams,
+  downloadData
 };

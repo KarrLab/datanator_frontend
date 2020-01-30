@@ -3,7 +3,14 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { HashLink } from "react-router-hash-link";
 import PropTypes from "prop-types";
-import { upperCaseFirstLetter, scrollTo, sizeGridColumnsToFit, updateGridHorizontalScrolling, gridDataExportParams } from "~/utils/utils";
+import {
+  upperCaseFirstLetter,
+  scrollTo,
+  sizeGridColumnsToFit,
+  updateGridHorizontalScrolling,
+  gridDataExportParams,
+  downloadData
+} from "~/utils/utils";
 
 import { MetadataSection } from "./MetadataSection";
 import { getDataFromApi } from "~/services/RestApi";
@@ -124,7 +131,7 @@ const columnDefs = [
   {
     headerName: "Organism",
     field: "organism",
-    filter: "agSetColumnFilter",
+    filter: "agSetColumnFilter"
   },
   {
     headerName: "Taxonomic distance",
@@ -150,7 +157,7 @@ const columnDefs = [
         "</a>"
       );
     },
-    filter: "agSetColumnFilter",
+    filter: "agSetColumnFilter"
   }
 ];
 
@@ -186,10 +193,21 @@ class Protein extends Component {
     this.processProteinData = this.processProteinData.bind(this);
     this.formatData = this.formatData.bind(this);
     this.sizeGridColumnsToFit = this.sizeGridColumnsToFit.bind(this);
-    this.updateGridHorizontalScrolling = this.updateGridHorizontalScrolling.bind(this);
+    this.updateGridHorizontalScrolling = this.updateGridHorizontalScrolling.bind(
+      this
+    );
     this.onFilterChanged = this.onFilterChanged.bind(this);
     this.onSelectionChanged = this.onSelectionChanged.bind(this);
     this.onClickExportDataCsv = this.onClickExportDataCsv.bind(this);
+    this.onClickExportDataJson = this.onClickExportDataJson.bind(this);
+  }
+
+  onClickExportDataJson() {
+    downloadData(
+      JSON.stringify(this.props.allData),
+      "data.json",
+      "application/json"
+    );
   }
 
   componentDidMount() {
@@ -447,8 +465,20 @@ class Protein extends Component {
               <div className="content-block-heading-container">
                 <h2 className="content-block-heading">Abundance</h2>
                 <div className="content-block-heading-actions">
-                  Export: <button className="text-button" onClick={this.onClickExportDataCsv}>CSV</button> |{" "}
-                  <button className="text-button">JSON</button>
+                  Export:{" "}
+                  <button
+                    className="text-button"
+                    onClick={this.onClickExportDataCsv}
+                  >
+                    CSV
+                  </button>{" "}
+                  |{" "}
+                  <button
+                    className="text-button"
+                    onClick={this.onClickExportDataJson}
+                  >
+                    JSON
+                  </button>
                 </div>
               </div>
               <div className="ag-theme-balham">

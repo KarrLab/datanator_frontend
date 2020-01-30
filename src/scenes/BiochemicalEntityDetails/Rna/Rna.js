@@ -3,7 +3,14 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { HashLink } from "react-router-hash-link";
 import PropTypes from "prop-types";
-import { upperCaseFirstLetter, scrollTo, sizeGridColumnsToFit, updateGridHorizontalScrolling, gridDataExportParams } from "~/utils/utils";
+import {
+  upperCaseFirstLetter,
+  scrollTo,
+  sizeGridColumnsToFit,
+  updateGridHorizontalScrolling,
+  gridDataExportParams,
+  downloadData
+} from "~/utils/utils";
 
 import { MetadataSection } from "./MetadataSection";
 import { getDataFromApi } from "~/services/RestApi";
@@ -119,7 +126,7 @@ const columnDefs = [
         "</a>"
       );
     },
-    filter: "agSetColumnFilter",
+    filter: "agSetColumnFilter"
   }
 ];
 
@@ -154,10 +161,13 @@ class Rna extends Component {
 
     this.formatData = this.formatData.bind(this);
     this.sizeGridColumnsToFit = this.sizeGridColumnsToFit.bind(this);
-    this.updateGridHorizontalScrolling = this.updateGridHorizontalScrolling.bind(this);
+    this.updateGridHorizontalScrolling = this.updateGridHorizontalScrolling.bind(
+      this
+    );
     this.onFilterChanged = this.onFilterChanged.bind(this);
     this.onSelectionChanged = this.onSelectionChanged.bind(this);
     this.onClickExportDataCsv = this.onClickExportDataCsv.bind(this);
+    this.onClickExportDataJson = this.onClickExportDataJson.bind(this);
   }
 
   componentDidMount() {
@@ -246,6 +256,14 @@ class Rna extends Component {
     gridApi.exportDataAsCsv(gridDataExportParams);
   }
 
+  onClickExportDataJson() {
+    downloadData(
+      JSON.stringify(this.props.allData),
+      "data.json",
+      "application/json"
+    );
+  }
+
   render() {
     if (this.state.metadata == null || this.props.allData == null) {
       return (
@@ -292,8 +310,20 @@ class Rna extends Component {
               <div className="content-block-heading-container">
                 <h2 className="content-block-heading">Half-life</h2>
                 <div className="content-block-heading-actions">
-                  Export: <button className="text-button" onClick={this.onClickExportDataCsv}>CSV</button> |{" "}
-                  <button className="text-button">JSON</button>
+                  Export:{" "}
+                  <button
+                    className="text-button"
+                    onClick={this.onClickExportDataCsv}
+                  >
+                    CSV
+                  </button>{" "}
+                  |{" "}
+                  <button
+                    className="text-button"
+                    onClick={this.onClickExportDataJson}
+                  >
+                    JSON
+                  </button>
                 </div>
               </div>
               <div className="ag-theme-balham">
