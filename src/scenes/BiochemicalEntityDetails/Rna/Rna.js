@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { HashLink } from "react-router-hash-link";
 import PropTypes from "prop-types";
-import { upperCaseFirstLetter, scrollTo } from "~/utils/utils";
+import { upperCaseFirstLetter, scrollTo, sizeGridColumnsToFit, updateGridHorizontalScrolling } from "~/utils/utils";
 
 import { MetadataSection } from "./MetadataSection";
 import { getDataFromApi } from "~/services/RestApi";
@@ -78,6 +78,7 @@ const sideBar = {
 };
 
 const defaultColDef = {
+  minWidth: 100,
   filter: "agTextColumnFilter",
   sortable: true,
   resizable: true,
@@ -143,13 +144,21 @@ class Rna extends Component {
 
   constructor(props) {
     super(props);
+
+    this.grid = React.createRef();
+
     this.state = {
       metadata: null,
       lineage: []
     };
 
     this.formatData = this.formatData.bind(this);
+    this.sizeGridColumnsToFit = this.sizeGridColumnsToFit.bind(this);
+    this.updateGridHorizontalScrolling = this.updateGridHorizontalScrolling.bind(this);
+    this.onFilterChanged = this.onFilterChanged.bind(this);
+    this.onSelectionChanged = this.onSelectionChanged.bind(this);
   }
+
   componentDidMount() {
     this.getDataFromApi();
   }
@@ -210,33 +219,26 @@ class Rna extends Component {
     }
   }
 
-  onFirstDataRendered(params) {
-    const allColumnIds = [];
-    params.columnApi.getAllColumns().forEach(function(column) {
-      allColumnIds.push(column.colId);
-    });
-    params.columnApi.autoSizeColumns(allColumnIds);
-    //params.gridColumnApi.autoSizeColumns(allColumnIds, false);
+  sizeGridColumnsToFit(event) {
+    sizeGridColumnsToFit(event, this.grid.current);
   }
 
-  onRowSelected(event) {
+  updateGridHorizontalScrolling(event) {
+    updateGridHorizontalScrolling(event, this.grid.current);
+  }
+
+  onFilterChanged(event) {
+    event.api.deselectAll();
+    this.props.dispatch(setSelectedData([]));
+  }
+
+  onSelectionChanged(event) {
     const selectedRows = [];
     const selectedNodes = event.api.getSelectedNodes();
     for (const selectedNode of selectedNodes) {
       selectedRows.push(selectedNode.data);
     }
     this.props.dispatch(setSelectedData(selectedRows));
-  }
-
-  onFiltered(event) {
-    event.api.deselectAll();
-    this.props.dispatch(setSelectedData([]));
-  }
-
-  onGridReady(params) {
-    this.gridApi = params.api;
-    this.gridColumnApi = params.columnApi;
-    params.api.sizeColumnsToFit();
   }
 
   render() {
@@ -291,6 +293,7 @@ class Rna extends Component {
               </div>
               <div className="ag-theme-balham">
                 <AgGridReact
+                  ref={this.grid}
                   modules={AllModules}
                   frameworkComponents={frameworkComponents}
                   sideBar={sideBar}
@@ -306,10 +309,13 @@ class Rna extends Component {
                   suppressRowClickSelection={true}
                   suppressContextMenu={true}
                   domLayout="autoHeight"
-                  onGridReady={this.onGridReady.bind(this)}
-                  onFirstDataRendered={this.onFirstDataRendered.bind(this)}
-                  onFilterChanged={this.onFiltered.bind(this)}
-                  onSelectionChanged={this.onRowSelected.bind(this)}
+                  onGridSizeChanged={this.sizeGridColumnsToFit}
+                  onColumnVisible={this.sizeGridColumnsToFit}
+                  onColumnResized={this.updateGridHorizontalScrolling}
+                  onToolPanelVisibleChanged={this.sizeGridColumnsToFit}
+                  onFirstDataRendered={this.sizeGridColumnsToFit}
+                  onFilterChanged={this.onFilterChanged}
+                  onSelectionChanged={this.onSelectionChanged}
                   lineage={this.state.lineage}
                 ></AgGridReact>
               </div>

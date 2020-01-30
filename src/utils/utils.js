@@ -160,6 +160,32 @@ function removeDuplicates(array, keyFunc = null) {
   return Object.values(uniqueKeyVals);
 }
 
+function sizeGridColumnsToFit(event, grid) {
+  const gridApi = event.api;
+  gridApi.sizeColumnsToFit();
+  updateGridHorizontalScrolling(event, grid);
+}
+
+function updateGridHorizontalScrolling(event, grid) {
+  const columnApi = event.columnApi;
+
+  const gridRoot = grid.eGridDiv.getElementsByClassName("ag-root")[0];
+  const gridWidth: number = gridRoot.offsetWidth;
+
+  const displayedCols = columnApi.getAllDisplayedColumns();
+  const numDisplayedCols: number = displayedCols.length;
+  let totDisplayedColMinWidth = 0;
+  for (const col of displayedCols) {
+    totDisplayedColMinWidth += col.getActualWidth();
+  }
+
+  if (totDisplayedColMinWidth + 2 * (numDisplayedCols + 1) > gridWidth) {
+    grid.gridOptions.suppressHorizontalScroll = false;
+  } else {
+    grid.gridOptions.suppressHorizontalScroll = true;
+  }
+}
+
 export {
   mode,
   formatScientificNotation,
@@ -168,5 +194,7 @@ export {
   upperCaseFirstLetter,
   scrollTo,
   strCompare,
-  removeDuplicates
+  removeDuplicates,
+  sizeGridColumnsToFit,
+  updateGridHorizontalScrolling
 };
