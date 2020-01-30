@@ -77,10 +77,7 @@ function formatChemicalFormula(formula) {
       </span>
     );
   }
-  return formattedFormula.reduce(
-    (acc, x) => (acc === null ? [x] : [acc, x]),
-    null
-  );
+  return formattedFormula;
 }
 
 function dictOfArraysToArrayOfDicts(dictOfArrays) {

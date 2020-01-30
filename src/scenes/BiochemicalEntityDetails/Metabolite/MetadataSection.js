@@ -181,10 +181,7 @@ class MetadataSection extends Component {
             <h2 className="content-block-heading">Database links</h2>
             <div className="content-block-content">
               <ul className="key-value-list">
-                {dbLinks.reduce(
-                  (acc, x) => (acc === null ? [x] : [acc, x]),
-                  null
-                )}
+                {dbLinks}
               </ul>
             </div>
           </div>
@@ -195,10 +192,7 @@ class MetadataSection extends Component {
             <h2 className="content-block-heading">Physical properties</h2>
             <div className="content-block-content">
               <ul className="key-value-list">
-                {physicalProps.reduce(
-                  (acc, x) => (acc === null ? [x] : [acc, x]),
-                  null
-                )}
+                {physicalProps}
               </ul>
             </div>
           </div>
@@ -241,8 +235,7 @@ class MetadataSection extends Component {
                         </a>
                         </li>
                       );
-                    })
-                    .reduce((acc, x) => (acc === null ? [x] : [acc, x]), null)}
+                    })}
                 </ul>
                 </li>
               )}
