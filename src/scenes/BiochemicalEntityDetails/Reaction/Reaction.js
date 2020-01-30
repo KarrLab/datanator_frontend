@@ -3,7 +3,14 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { HashLink } from "react-router-hash-link";
 import PropTypes from "prop-types";
-import { upperCaseFirstLetter, scrollTo } from "~/utils/utils";
+import {
+  upperCaseFirstLetter,
+  scrollTo,
+  sizeGridColumnsToFit,
+  updateGridHorizontalScrolling,
+  gridDataExportParams,
+  downloadData
+} from "~/utils/utils";
 
 import { MetadataSection } from "./MetadataSection";
 import { getDataFromApi } from "~/services/RestApi";
@@ -69,6 +76,7 @@ const sideBar = {
 };
 
 const defaultColDef = {
+  minWidth: 100,
   filter: "agTextColumnFilter",
   sortable: true,
   resizable: true,
@@ -149,6 +157,9 @@ class Reaction extends Component {
 
   constructor(props) {
     super(props);
+
+    this.grid = React.createRef();
+
     this.state = {
       metadata: null,
       lineage: [],
@@ -177,14 +188,14 @@ class Reaction extends Component {
               "</a>"
             );
           },
-          filter: "agTextColumnFilter",
+          filter: "agTextColumnFilter"
         }
       ],
       second_columns: [
         {
           headerName: "Organism",
           field: "organism",
-          filter: "agSetColumnFilter",
+          filter: "agSetColumnFilter"
         },
         {
           headerName: "Source",
@@ -198,12 +209,21 @@ class Reaction extends Component {
               "</a>"
             );
           },
-          filter: "agSetColumnFilter",
+          filter: "agSetColumnFilter"
         }
       ],
 
       frameworkComponents: {}
     };
+
+    this.sizeGridColumnsToFit = this.sizeGridColumnsToFit.bind(this);
+    this.updateGridHorizontalScrolling = this.updateGridHorizontalScrolling.bind(
+      this
+    );
+    this.onFilterChanged = this.onFilterChanged.bind(this);
+    this.onSelectionChanged = this.onSelectionChanged.bind(this);
+    this.onClickExportDataCsv = this.onClickExportDataCsv.bind(this);
+    this.onClickExportDataJson = this.onClickExportDataJson.bind(this);
   }
 
   setKmColumns(km_values) {
@@ -408,18 +428,20 @@ class Reaction extends Component {
     }
   }
 
-  onFirstDataRendered(params) {
-    //params.columnApi.autoSizeColumns(['concentration'])
-
-    const allColumnIds = [];
-    params.columnApi.getAllColumns().forEach(function(column) {
-      allColumnIds.push(column.colId);
-    });
-    params.columnApi.autoSizeColumns(allColumnIds);
-    //params.gridColumnApi.autoSizeColumns(allColumnIds, false);
+  sizeGridColumnsToFit(event) {
+    sizeGridColumnsToFit(event, this.grid.current);
   }
 
-  onRowSelected(event) {
+  updateGridHorizontalScrolling(event) {
+    updateGridHorizontalScrolling(event, this.grid.current);
+  }
+
+  onFilterChanged(event) {
+    event.api.deselectAll();
+    this.props.dispatch(setSelectedData([]));
+  }
+
+  onSelectionChanged(event) {
     const selectedNodes = event.api.getSelectedNodes();
     const selectedRows = [];
     for (const selectedNode of selectedNodes) {
@@ -428,15 +450,17 @@ class Reaction extends Component {
     this.props.dispatch(setSelectedData(selectedRows));
   }
 
-  onFiltered(event) {
-    event.api.deselectAll();
-    this.props.dispatch(setSelectedData([]));
+  onClickExportDataCsv() {
+    const gridApi = this.grid.current.api;
+    gridApi.exportDataAsCsv(gridDataExportParams);
   }
 
-  onGridReady(params) {
-    this.gridApi = params.api;
-    this.gridColumnApi = params.columnApi;
-    params.api.sizeColumnsToFit();
+  onClickExportDataJson() {
+    downloadData(
+      JSON.stringify(this.props.allData),
+      "data.json",
+      "application/json"
+    );
   }
 
   render() {
@@ -485,12 +509,25 @@ class Reaction extends Component {
               <div className="content-block-heading-container">
                 <h2 className="content-block-heading">Kinetic parameters</h2>
                 <div className="content-block-heading-actions">
-                  Export: <button className="text-button">CSV</button> |{" "}
-                  <button className="text-button">JSON</button>
+                  Export:{" "}
+                  <button
+                    className="text-button"
+                    onClick={this.onClickExportDataCsv}
+                  >
+                    CSV
+                  </button>{" "}
+                  |{" "}
+                  <button
+                    className="text-button"
+                    onClick={this.onClickExportDataJson}
+                  >
+                    JSON
+                  </button>
                 </div>
               </div>
               <div className="ag-theme-balham">
                 <AgGridReact
+                  ref={this.grid}
                   modules={AllModules}
                   frameworkComponents={this.state.frameworkComponents}
                   sideBar={sideBar}
@@ -506,10 +543,13 @@ class Reaction extends Component {
                   suppressRowClickSelection={true}
                   suppressContextMenu={true}
                   domLayout="autoHeight"
-                  onGridReady={this.onGridReady.bind(this)}
-                  onFirstDataRendered={this.onFirstDataRendered.bind(this)}
-                  onFilterChanged={this.onFiltered.bind(this)}
-                  onSelectionChanged={this.onRowSelected.bind(this)}
+                  onGridSizeChanged={this.sizeGridColumnsToFit}
+                  onColumnVisible={this.sizeGridColumnsToFit}
+                  onColumnResized={this.updateGridHorizontalScrolling}
+                  onToolPanelVisibleChanged={this.sizeGridColumnsToFit}
+                  onFirstDataRendered={this.sizeGridColumnsToFit}
+                  onFilterChanged={this.onFilterChanged}
+                  onSelectionChanged={this.onSelectionChanged}
                   lineage={this.state.lineage}
                 ></AgGridReact>
               </div>

@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { HashLink } from "react-router-hash-link";
 import PropTypes from "prop-types";
-import DownloadLink from "react-download-link";
 import {
   formatChemicalFormula,
   dictOfArraysToArrayOfDicts,
@@ -11,7 +10,10 @@ import {
   scrollTo,
   strCompare,
   removeDuplicates,
-  getParams
+  sizeGridColumnsToFit,
+  updateGridHorizontalScrolling,
+  gridDataExportParams,
+  downloadData
 } from "~/utils/utils";
 
 import { MetadataSection } from "./MetadataSection";
@@ -88,6 +90,7 @@ const sideBar = {
 };
 
 const defaultColDef = {
+  minWidth: 100,
   filter: "agTextColumnFilter",
   sortable: true,
   resizable: true,
@@ -96,12 +99,12 @@ const defaultColDef = {
 
 @connect(store => {
   return {
-    measuredConcs: store.results.allData
+    allData: store.results.allData
   };
 }) //the names given here will be the names of props
 class Metabolite extends Component {
   static propTypes = {
-    measuredConcs: PropTypes.array,
+    allData: PropTypes.array,
     dispatch: PropTypes.func
   };
 
@@ -214,6 +217,8 @@ class Metabolite extends Component {
       }
     ];
 
+    this.grid = React.createRef();
+
     this.state = {
       metadata: null,
       lineage: [],
@@ -221,8 +226,16 @@ class Metabolite extends Component {
     };
 
     this.formatData = this.formatData.bind(this);
-    this.recordData = this.recordData.bind(this);
+    this.sizeGridColumnsToFit = this.sizeGridColumnsToFit.bind(this);
+    this.updateGridHorizontalScrolling = this.updateGridHorizontalScrolling.bind(
+      this
+    );
+    this.onFilterChanged = this.onFilterChanged.bind(this);
+    this.onSelectionChanged = this.onSelectionChanged.bind(this);
+    this.onClickExportDataCsv = this.onClickExportDataCsv.bind(this);
+    this.onClickExportDataJson = this.onClickExportDataJson.bind(this);
   }
+
   componentDidMount() {
     this.setColumnDefs();
     this.getDataFromApi();
@@ -238,11 +251,6 @@ class Metabolite extends Component {
       this.setState({ metadata: null });
       this.getDataFromApi();
     }
-  }
-
-  recordData() {
-    //console.log('Consensus: Calling recordData');
-    return JSON.stringify(this.props.measuredConcs);
   }
 
   getDataFromApi() {
@@ -424,15 +432,20 @@ class Metabolite extends Component {
     });
   }
 
-  onFirstDataRendered(params) {
-    const allColumnIds = [];
-    params.columnApi.getAllColumns().forEach(function(column) {
-      allColumnIds.push(column.colId);
-    });
-    params.columnApi.autoSizeColumns(allColumnIds);
+  sizeGridColumnsToFit(event) {
+    sizeGridColumnsToFit(event, this.grid.current);
   }
 
-  onRowSelected(event) {
+  updateGridHorizontalScrolling(event) {
+    updateGridHorizontalScrolling(event, this.grid.current);
+  }
+
+  onFilterChanged(event) {
+    event.api.deselectAll();
+    this.props.dispatch(setSelectedData([]));
+  }
+
+  onSelectionChanged(event) {
     const selectedRows = [];
     for (const selectedNode of event.api.getSelectedNodes()) {
       selectedRows.push(selectedNode.data);
@@ -440,26 +453,21 @@ class Metabolite extends Component {
     this.props.dispatch(setSelectedData(selectedRows));
   }
 
-  onFiltered(event) {
-    event.api.deselectAll();
-    this.props.dispatch(setSelectedData([]));
+  onClickExportDataCsv() {
+    const gridApi = this.grid.current.api;
+    gridApi.exportDataAsCsv(gridDataExportParams);
   }
 
-  onGridReady(params) {
-    this.gridApi = params.api;
-    this.gridColumnApi = params.columnApi;
-    params.api.sizeColumnsToFit();
-    const updateData = data => {
-      this.setState({ rowData: data });
-    };
-  }
-
-  onBtnExportDataAsCsv() {
-    this.gridApi.exportDataAsCsv(getParams());
+  onClickExportDataJson() {
+    downloadData(
+      JSON.stringify(this.props.allData),
+      "data.json",
+      "application/json"
+    );
   }
 
   render() {
-    if (!this.state.metadata || this.props.measuredConcs == null) {
+    if (!this.state.metadata || this.props.allData == null) {
       return (
         <div className="loader-full-content-container">
           <div className="loader"></div>
@@ -533,29 +541,28 @@ class Metabolite extends Component {
                   Export:{" "}
                   <button
                     className="text-button"
-                    onClick={this.onBtnExportDataAsCsv.bind(this)}
+                    onClick={this.onClickExportDataCsv}
                   >
                     CSV
                   </button>{" "}
                   |{" "}
-                  <DownloadLink
-                    filename="Data.json"
-                    label="JSON"
-                    style={{}}
+                  <button
                     className="text-button"
-                    tagName="button"
-                    exportFile={() => this.recordData()}
-                  ></DownloadLink>
+                    onClick={this.onClickExportDataJson}
+                  >
+                    JSON
+                  </button>
                 </div>
               </div>
               <div className="ag-theme-balham">
                 <AgGridReact
+                  ref={this.grid}
                   modules={AllModules}
                   frameworkComponents={frameworkComponents}
                   sideBar={sideBar}
                   defaultColDef={defaultColDef}
                   columnDefs={this.state.columnDefs}
-                  rowData={this.props.measuredConcs}
+                  rowData={this.props.allData}
                   rowSelection="multiple"
                   groupSelectsChildren={true}
                   suppressMultiSort={true}
@@ -565,10 +572,13 @@ class Metabolite extends Component {
                   suppressRowClickSelection={true}
                   suppressContextMenu={true}
                   domLayout="autoHeight"
-                  onGridReady={this.onGridReady.bind(this)}
-                  onFirstDataRendered={this.onFirstDataRendered.bind(this)}
-                  onFilterChanged={this.onFiltered.bind(this)}
-                  onSelectionChanged={this.onRowSelected.bind(this)}
+                  onGridSizeChanged={this.sizeGridColumnsToFit}
+                  onColumnVisible={this.sizeGridColumnsToFit}
+                  onColumnResized={this.updateGridHorizontalScrolling}
+                  onToolPanelVisibleChanged={this.sizeGridColumnsToFit}
+                  onFirstDataRendered={this.sizeGridColumnsToFit}
+                  onFilterChanged={this.onFilterChanged}
+                  onSelectionChanged={this.onSelectionChanged}
                   lineage={this.state.lineage}
                 ></AgGridReact>
               </div>

@@ -49,7 +49,7 @@ function formatScientificNotation(
   fixedDeminals = 1,
   minFixedDecimals = 0
 ) {
-  if (value == null) return null;
+  if (value == null || isNaN(value) || value === undefined) return null;
 
   const absValue = Math.abs(value);
   const sign = Math.sign(value);
@@ -66,7 +66,7 @@ function formatScientificNotation(
         {sciVal}&thinsp;&times;&thinsp;10<sup>{exp}</sup>
       </span>
     );
-  } else if (absValue > 1) {
+  } else if (absValue > 1 || absValue === 0) {
     return value.toFixed(fixedDeminals);
   } else {
     const decimals = Math.max(minFixedDecimals, fixedDeminals - exp);
@@ -160,28 +160,55 @@ function removeDuplicates(array, keyFunc = null) {
   return Object.values(uniqueKeyVals);
 }
 
-function getBooleanValue(checkboxSelector) {
-  return document.querySelector(checkboxSelector);
-}
-function only20YearOlds(params) {
-  return params.node.data && params.node.data.age != 20;
+function sizeGridColumnsToFit(event, grid) {
+  const gridApi = event.api;
+  gridApi.sizeColumnsToFit();
+  updateGridHorizontalScrolling(event, grid);
 }
 
-function getParams() {
-  return {
-    allColumns: getBooleanValue("#allColumns"),
-    columnGroups: getBooleanValue("#columnGroups"),
-    columnKeys: getBooleanValue("#columnKeys"),
-    onlySelected: getBooleanValue("#onlySelected"),
-    onlySelectedAllPages: getBooleanValue("#onlySelectedAllPages"),
-    shouldRowBeSkipped:
-      getBooleanValue("#shouldRowBeSkipped") && only20YearOlds,
-    skipFooters: getBooleanValue("#skipFooters"),
-    skipGroups: getBooleanValue("#skipGroups"),
-    skipHeader: getBooleanValue("#skipHeader"),
-    skipPinnedTop: getBooleanValue("#skipPinnedTop"),
-    skipPinnedBottom: getBooleanValue("#skipPinnedBottom")
+function updateGridHorizontalScrolling(event, grid) {
+  const columnApi = event.columnApi;
+
+  const gridRoot = grid.eGridDiv.getElementsByClassName("ag-root")[0];
+  const gridWidth: number = gridRoot.offsetWidth;
+
+  const displayedCols = columnApi.getAllDisplayedColumns();
+  const numDisplayedCols: number = displayedCols.length;
+  let totDisplayedColMinWidth = 0;
+  for (const col of displayedCols) {
+    totDisplayedColMinWidth += col.getActualWidth();
+  }
+
+  if (totDisplayedColMinWidth + 2 * (numDisplayedCols + 1) > gridWidth) {
+    grid.gridOptions.suppressHorizontalScroll = false;
+  } else {
+    grid.gridOptions.suppressHorizontalScroll = true;
+  }
+}
+
+const gridDataExportParams = {
+  allColumns: true,
+  onlySelected: false
+};
+
+function downloadData(data, filename, mimeType) {
+  const anchor = document.createElement("a");
+
+  anchor.download = filename;
+
+  const blob = new Blob([data], { type: mimeType });
+  const url = URL.createObjectURL(blob);
+  anchor.href = url;
+
+  const clickHandler = () => {
+    setTimeout(() => {
+      URL.revokeObjectURL(url);
+      anchor.removeEventListener("click", clickHandler);
+    }, 150);
   };
+  anchor.addEventListener("click", clickHandler, false);
+
+  anchor.click();
 }
 
 export {
@@ -193,5 +220,8 @@ export {
   scrollTo,
   strCompare,
   removeDuplicates,
-  getParams
+  sizeGridColumnsToFit,
+  updateGridHorizontalScrolling,
+  gridDataExportParams,
+  downloadData
 };
