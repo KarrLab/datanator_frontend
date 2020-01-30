@@ -20,7 +20,6 @@ import "@ag-grid-enterprise/all-modules/dist/styles/ag-grid.scss";
 import "@ag-grid-enterprise/all-modules/dist/styles/ag-theme-balham/sass/ag-theme-balham.scss";
 
 import "../BiochemicalEntityDetails.scss";
-// import "./Rna.scss";
 
 class StatsToolPanel extends Component {
   render() {

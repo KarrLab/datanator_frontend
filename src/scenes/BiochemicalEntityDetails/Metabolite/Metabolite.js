@@ -23,7 +23,6 @@ import {
 } from "~/utils/utils";
 
 import "../BiochemicalEntityDetails.scss";
-// import "./Metabolite.scss";
 
 const reactStringReplace = require("react-string-replace");
 
