@@ -77,7 +77,7 @@ export default class MeasurementsBoxScatterPlot extends Component {
       borderWidth: 1,
       data: dataForScatterPlot,
       order: 1,
-      type: "scatter",
+      type: "scatter"
     });
 
     // selected measurements
@@ -109,7 +109,7 @@ export default class MeasurementsBoxScatterPlot extends Component {
         borderWidth: 1,
         data: dataForScatterPlot,
         order: 1,
-        type: "scatter",
+        type: "scatter"
       });
     }
 
