@@ -43,12 +43,13 @@ class StatsToolPanel extends Component {
     super(props);
     this.state = {
       all: {
-        /**The mean of the total data*/        
+        /**The mean of the total data*/
+
         mean: null,
 
         /**The median of the total data*/
         median: null,
-        
+
         /**The standard deviation of the total data*/
         stdDev: null,
 
@@ -56,15 +57,16 @@ class StatsToolPanel extends Component {
         min: null,
 
         /**Maximum of the total data*/
-        max: null,
+        max: null
       },
       selected: {
-        /**The mean of the selected data*/        
+        /**The mean of the selected data*/
+
         mean: null,
 
         /**The median of the selected data*/
         median: null,
-        
+
         /**The standard deviation of the selected data*/
         stdDev: null,
 
@@ -72,7 +74,7 @@ class StatsToolPanel extends Component {
         min: null,
 
         /**Maximum of the selected data*/
-        max: null,
+        max: null
       },
 
       selectedColumn: ""
@@ -83,8 +85,6 @@ class StatsToolPanel extends Component {
    * Sets the summary statistics for consensus
    */
   calcStats(data, selectedColumn, total) {
-
-
     // get values
     const allVals = [];
     for (const datum of data) {
@@ -119,9 +119,9 @@ class StatsToolPanel extends Component {
             median: newMedian,
             stdDev: newStdDev,
             min: newMin,
-            max: newMax,
+            max: newMax
           }
-        })
+        });
       } else {
         this.setState({
           selected: {
@@ -129,9 +129,9 @@ class StatsToolPanel extends Component {
             median: newMedian,
             stdDev: newStdDev,
             min: newMin,
-            max: newMax,
+            max: newMax
           }
-        })
+        });
       }
     } else {
       this.setState({
@@ -140,15 +140,15 @@ class StatsToolPanel extends Component {
           median: null,
           stdDev: null,
           min: null,
-          max: null,
+          max: null
         },
         selected: {
           mean: null,
           median: null,
           stdDev: null,
           min: null,
-          max: null,
-        },
+          max: null
+        }
       });
     }
   }
@@ -180,11 +180,15 @@ class StatsToolPanel extends Component {
             median: null,
             stdDev: null,
             min: null,
-            max: null,
+            max: null
           }
-      })
+        });
       } else {
-        this.calcStats(this.props.selectedData, this.state.selectedColumn, false);
+        this.calcStats(
+          this.props.selectedData,
+          this.state.selectedColumn,
+          false
+        );
       }
     }
   }

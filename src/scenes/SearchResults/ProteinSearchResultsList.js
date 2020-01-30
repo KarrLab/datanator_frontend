@@ -43,14 +43,11 @@ export default class ProteinSearchResultsList extends Component {
         // description
         const href = "https://www.genome.jp/dbget-bin/www_bget?ko:" + koNumber;
         formattedResult["description"] = (
-          <div className="external-links">
-            <p>
-              KEGG:{" "}
-              <a href={href} target="_blank" rel="noopener noreferrer">
-                {" "}
-                {koNumber}{" "}
-              </a>
-            </p>
+          <div>
+            KEGG:{" "}
+            <a href={href} target="_blank" rel="noopener noreferrer">
+              {koNumber}
+            </a>
           </div>
         );
 
@@ -64,7 +61,7 @@ export default class ProteinSearchResultsList extends Component {
 
     return {
       results: Object.values(formattedResults),
-      numResults: numResults,
+      numResults: numResults
     };
   }
 

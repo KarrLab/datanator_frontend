@@ -90,7 +90,9 @@ class SearchResultsList extends Component {
       .then(response => {
         this.pageCount++;
 
-        this.updateResults(this.props["format-results"](response.data, this.organism));
+        this.updateResults(
+          this.props["format-results"](response.data, this.organism)
+        );
       })
       .finally(() => {
         this.cancelTokenSource = null;
@@ -98,7 +100,7 @@ class SearchResultsList extends Component {
   }
 
   updateResults(newUnformattedResults) {
-    const newResults = newUnformattedResults.results.map(this.formatResult);    
+    const newResults = newUnformattedResults.results.map(this.formatResult);
     let results;
     if (this.results == null) {
       results = newResults;
@@ -107,10 +109,10 @@ class SearchResultsList extends Component {
     }
     this.results = results;
 
-    this.setState({ 
+    this.setState({
       results: results,
       numResults: newUnformattedResults.numResults
-     });
+    });
   }
 
   formatResult(result, iResult) {

@@ -13,7 +13,6 @@ const DEFAULT_ERROR_MESSAGE = (
   </span>
 );
 
-
 function getDataFromApi(params, options = {}, errorMessage = null) {
   const url = ROOT_URL + params.join("/");
   //console.log(url)

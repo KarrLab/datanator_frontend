@@ -72,7 +72,7 @@ export default class ReactionSearchResultsList extends Component {
 
     return {
       results: Object.values(formattedResults),
-      numResults: numResults,
+      numResults: numResults
     };
   }
 

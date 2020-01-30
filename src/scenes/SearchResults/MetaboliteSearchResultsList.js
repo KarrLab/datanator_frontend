@@ -44,39 +44,31 @@ export default class MetaboliteSearchResultsList extends Component {
           name[0].toUpperCase() + name.substring(1, name.length);
 
         // description
-        let hrefYmdb = null;
-        let hrefEcmdb = null;
-        let ymdbPreface = "";
-        let ecmdbPreface = "";
-        let comma = "";
-
-        if (result["ymdb_id"] != null) {
-          hrefYmdb = "http://www.ymdb.ca/compounds/" + result["ymdb_id"];
-          ymdbPreface = "YMDB: ";
-        }
-
-        if (result["m2m_id"] != null) {
-          if (ymdbPreface !== "") {
-            comma = ", ";
+        const linkTypes = [
+          { label: "ECMDB", attribute: "m2m_id" },
+          { label: "YMDB", attribute: "ymdb_id" }
+        ];
+        const links = [];
+        for (const linkType of linkTypes) {
+          const linkId = result[linkType.attribute];
+          if (linkId != null && linkId !== undefined) {
+            links.push(
+              <li>
+                {linkType.label}:{" "}
+                <a
+                  href={"http://www.ymdb.ca/compounds/" + linkId}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {linkId}
+                </a>
+              </li>
+            );
           }
-
-          hrefEcmdb = "http://ecmdb.ca/compounds/" + result["m2m_id"];
-          ecmdbPreface = "ECMDB: ";
         }
+
         formattedResult["description"] = (
-          <div className="external-links">
-            <p>
-              {ymdbPreface}{" "}
-              <a href={hrefYmdb} target="_blank" rel="noopener noreferrer">
-                {result["ymdb_id"]}
-              </a>
-              {comma}
-              {ecmdbPreface}{" "}
-              <a href={hrefEcmdb} target="_blank" rel="noopener noreferrer">
-                {result["m2m_id"]}
-              </a>
-            </p>
-          </div>
+          <ul className="comma-separated-list">{links}</ul>
         );
 
         //route
@@ -89,7 +81,7 @@ export default class MetaboliteSearchResultsList extends Component {
 
     return {
       results: Object.values(formattedResults),
-      numResults: numResults,
+      numResults: numResults
     };
   }
 

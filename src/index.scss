@@ -38,6 +38,19 @@ ol:first-child {
   margin-top: 0;
 }
 
+.comma-separated-list {
+  list-style-type: none;
+  margin: 0;
+
+  li {
+    display: inline;
+  }
+  
+  li:not(:last-child):after {
+    content: ", ";
+  }
+}
+
 /* links */
 a,
 a:hover {

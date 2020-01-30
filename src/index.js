@@ -20,7 +20,13 @@ import "./index.scss";
 
 // Font Awesome icons
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faAtom, faDna, faBug, faEnvelope, faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAtom,
+  faDna,
+  faBug,
+  faEnvelope,
+  faExclamationCircle
+} from "@fortawesome/free-solid-svg-icons";
 
 // Common page components
 import Header from "~/components/Header/Header";

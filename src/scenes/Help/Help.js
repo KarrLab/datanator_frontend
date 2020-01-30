@@ -33,15 +33,24 @@ class Help extends Component {
             <div className="content-block table-of-contents">
               <h2 className="content-block-heading">Citing us</h2>
               <div className="content-block-content">
-                Please check back soon for citation information. 
+                Please check back soon for citation information.
               </div>
             </div>
 
             <div className="content-block table-of-contents">
               <h2 className="content-block-heading">Need more help?</h2>
-              <div className="content-block-content">              
-                <div><a href="mailto:info@karrlab.org"><FontAwesomeIcon icon="envelope" /> Contact us</a></div>
-                <div><a href="https://github.com/karrlab/datanator_frontend/issues"><FontAwesomeIcon icon="exclamation-circle" /> Submit an issue</a></div>
+              <div className="content-block-content">
+                <div>
+                  <a href="mailto:info@karrlab.org">
+                    <FontAwesomeIcon icon="envelope" /> Contact us
+                  </a>
+                </div>
+                <div>
+                  <a href="https://github.com/karrlab/datanator_frontend/issues">
+                    <FontAwesomeIcon icon="exclamation-circle" /> Submit an
+                    issue
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -57,8 +66,8 @@ class Help extends Component {
                       or reaction)
                     </div>
                     <div className="tutorial-step-text">
-                      Use the search form at the top to search for measurements of
-                      a metabolite, RNA, protein, or reaction relevant to a
+                      Use the search form at the top to search for measurements
+                      of a metabolite, RNA, protein, or reaction relevant to a
                       specific organism.
                     </div>
                   </li>
@@ -71,10 +80,10 @@ class Help extends Component {
                     <div className="tutorial-step-text">
                       Select a metabolite, RNA, protein, or reaction class (e.g,
                       KEGG ortholog group) to obtain potentially relevant
-                      measurements to the entity of interest. Then filter for data
-                      about similar entities (e.g., by sequence similarity)
-                      measured in similar organisms (by phylogenetic distance) and
-                      environments (e.g., temperature, pH).
+                      measurements to the entity of interest. Then filter for
+                      data about similar entities (e.g., by sequence similarity)
+                      measured in similar organisms (by phylogenetic distance)
+                      and environments (e.g., temperature, pH).
                     </div>
                   </li>
 
@@ -84,9 +93,9 @@ class Help extends Component {
                       the relevant measurements.
                     </div>
                     <div className="tutorial-step-text">
-                      Inspect each potentially relevant measurement and select the
-                      most relevant measurements to the entity and organism of
-                      interest.
+                      Inspect each potentially relevant measurement and select
+                      the most relevant measurements to the entity and organism
+                      of interest.
                     </div>
                   </li>
 
@@ -95,14 +104,15 @@ class Help extends Component {
                       Analyze the distribution of relevant measurements.
                     </div>
                     <div className="tutorial-step-text">
-                      Review box plots and statistical properties of the selected
-                      and potentially relevant measurements.
+                      Review box plots and statistical properties of the
+                      selected and potentially relevant measurements.
                     </div>
                   </li>
 
                   <li className="tutorial-step">
                     <div className="tutorial-step-title">
-                      Export molecular data for model construction and validation.
+                      Export molecular data for model construction and
+                      validation.
                     </div>
                     <div className="tutorial-step-text">
                       Export the selected measurements, or all of the
@@ -152,8 +162,8 @@ class Help extends Component {
                   </div>
                   <div className="faq-a">
                     We aim to submit an article for publication and to a
-                    pre-printer server in 2020. Please check back later this year
-                    for more information.
+                    pre-printer server in 2020. Please check back later this
+                    year for more information.
                   </div>
                 </div>
               </div>

@@ -64,7 +64,7 @@ export default class RnaSearchResultsList extends Component {
     }
     return {
       results: formattedResults,
-      numResults: numResults,
+      numResults: numResults
     };
   }
 
