@@ -3,7 +3,13 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { HashLink } from "react-router-hash-link";
 import PropTypes from "prop-types";
-import { upperCaseFirstLetter, scrollTo } from "~/utils/utils";
+import {
+  formatChemicalFormula,
+  dictOfArraysToArrayOfDicts,
+  upperCaseFirstLetter,
+  scrollTo,
+  strCompare
+} from "~/utils/utils";
 
 import { MetadataSection } from "./MetadataSection";
 import { getDataFromApi } from "~/services/RestApi";
@@ -16,11 +22,6 @@ import { TaxonomyFilter } from "../TaxonomyFilter.js";
 import { TanimotoFilter } from "../TanimotoFilter.js";
 import "@ag-grid-enterprise/all-modules/dist/styles/ag-grid.scss";
 import "@ag-grid-enterprise/all-modules/dist/styles/ag-theme-balham/sass/ag-theme-balham.scss";
-
-import {
-  formatChemicalFormula,
-  dictOfArraysToArrayOfDicts
-} from "~/utils/utils";
 
 import "../BiochemicalEntityDetails.scss";
 
@@ -270,7 +271,11 @@ class Metabolite extends Component {
         metadata = {};
 
         metadata.name = met.name;
+
         metadata.synonyms = met.synonyms.synonym;
+        metadata.synonyms.sort((a, b) => {
+          return strCompare(a, b);
+        });
 
         if (met.description != null && met.description !== undefined) {
           metadata.description = reactStringReplace(
@@ -278,7 +283,7 @@ class Metabolite extends Component {
             /[([]PMID: *(\d+)[)\]]/gi,
             pmid => {
               return (
-                <span>
+                <span key={pmid}>
                   [
                   <a href={"https://www.ncbi.nlm.nih.gov/pubmed/" + pmid}>
                     PMID: {pmid}
@@ -305,6 +310,9 @@ class Metabolite extends Component {
         ).value;
 
         metadata.pathways = met.pathways.pathway;
+        metadata.pathways.sort((a, b) => {
+          return strCompare(a.name, b.name);
+        });
 
         metadata.cellularLocations = met.cellular_locations.cellular_location;
         if (!Array.isArray(metadata.cellularLocations)) {

@@ -112,11 +112,29 @@ function scrollTo(el) {
   window.scrollTo({ behavior: "smooth", top: el.offsetTop - 52 });
 }
 
+function strCompare(a, b, caseInsensitive = true) {
+  if (caseInsensitive) {
+    a = a.toLowerCase();
+    b = b.toLowerCase();
+  }
+
+  if (a < b) {
+    return -1;
+  }
+
+  if (a > b) {
+    return 1;
+  }
+
+  return 0;
+}
+
 export {
   mode,
   formatScientificNotation,
   formatChemicalFormula,
   dictOfArraysToArrayOfDicts,
   upperCaseFirstLetter,
-  scrollTo
+  scrollTo,
+  strCompare
 };

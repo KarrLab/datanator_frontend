@@ -117,7 +117,7 @@ class MetadataSection extends Component {
     const synonyms = [];
     for (var i = metadata.synonyms.length - 1; i >= 0; i--) {
       synonyms.push(
-        <li>
+        <li key={metadata.synonyms[i]}>
           <div className="bulleted-list-item">{metadata.synonyms[i]}</div>
         </li>
       );
