@@ -263,7 +263,7 @@ class Metabolite extends Component {
         metadata.synonyms = met.synonyms.synonym;
 
         if (met.description != null && met.description !== undefined) {
-          metadata.description = reactStringReplace(met.description, /[\(\[]PMID: *(\d+)[\)\]]/gi,
+          metadata.description = reactStringReplace(met.description, /[([]PMID: *(\d+)[)\]]/gi,
             (pmid) => {
               return (<span>[<a href={"https://www.ncbi.nlm.nih.gov/pubmed/" + pmid}>PMID: {pmid}</a>]</span>);
           });
@@ -313,7 +313,7 @@ class Metabolite extends Component {
 
         for (const metConc of metConcs) {
           let error = metConc.error
-          if (error == 0){
+          if (error === 0){
             error = null
           }
           const conc = {

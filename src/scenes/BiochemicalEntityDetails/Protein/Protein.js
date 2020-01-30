@@ -375,7 +375,7 @@ class Protein extends Component {
       );
     }
 
-    const title = this.state.metadata.koName[0];
+    let title = this.state.metadata.koName[0];
     title = upperCaseFirstLetter(title);
 
     return (
