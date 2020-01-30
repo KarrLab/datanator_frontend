@@ -8,6 +8,6 @@ export class NumericCellRenderer extends Component {
   };
 
   render() {
-    return formatScientificNotation(this.props.value, 4, 1, 1);
+    return formatScientificNotation(this.props.value, 4, 3, 1, 1, 3);
   }
 }

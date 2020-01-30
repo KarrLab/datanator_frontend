@@ -14,6 +14,7 @@ import {
 } from "~/data/actions/resultsAction";
 import { AgGridReact } from "@ag-grid-community/react";
 import { AllModules } from "@ag-grid-enterprise/all-modules";
+import { NumericCellRenderer } from "../NumericCellRenderer";
 import { StatsToolPanel as BaseStatsToolPanel } from "../StatsToolPanel/StatsToolPanel.js";
 import { TaxonomyFilter } from "~/scenes/BiochemicalEntityDetails/TaxonomyFilter.js";
 import "@ag-grid-enterprise/all-modules/dist/styles/ag-grid.scss";
@@ -28,6 +29,7 @@ class StatsToolPanel extends Component {
 }
 
 const frameworkComponents = {
+  numericCellRenderer: NumericCellRenderer,
   statsToolPanel: StatsToolPanel,
   taxonomyFilter: TaxonomyFilter
 };
@@ -86,7 +88,8 @@ const columnDefs = [
   {
     headerName: "Abundance",
     field: "abundance",
-    sortable: true,
+    cellRenderer: "numericCellRenderer",
+    type: "numericColumn",
     filter: "agNumberColumnFilter",
     checkboxSelection: true,
     headerCheckboxSelection: true,
@@ -95,13 +98,12 @@ const columnDefs = [
   {
     headerName: "Protein",
     field: "proteinName",
-    filter: "agNumberColumnFilter",
+    filter: "agSetColumnFilter",
     menuTabs: ["filterMenuTab"]
   },
   {
     headerName: "UniProt id",
     field: "uniprotSource",
-
     cellRenderer: function(params) {
       return (
         '<a href="https://www.uniprot.org/uniprot/' +
@@ -115,13 +117,13 @@ const columnDefs = [
   {
     headerName: "Gene",
     field: "geneSymbol",
-    filter: "agTextColumnFilter",
+    filter: "agSetColumnFilter",
     hide: true
   },
   {
     headerName: "Organism",
     field: "organism",
-    filter: "agTextColumnFilter"
+    filter: "agSetColumnFilter",
   },
   {
     headerName: "Taxonomic distance",
@@ -132,13 +134,12 @@ const columnDefs = [
   {
     headerName: "Organ",
     field: "organ",
-    filter: "agTextColumnFilter",
+    filter: "agSetColumnFilter",
     hide: false
   },
   {
     headerName: "Source",
     field: "source",
-
     cellRenderer: function(params) {
       return (
         '<a href="https://pax-db.org/search?q=' +
@@ -147,7 +148,8 @@ const columnDefs = [
         "PAXdb" +
         "</a>"
       );
-    }
+    },
+    filter: "agSetColumnFilter",
   }
 ];
 

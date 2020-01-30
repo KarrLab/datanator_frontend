@@ -11,6 +11,7 @@ import { setAllData, setSelectedData } from "~/data/actions/resultsAction";
 
 import { AgGridReact } from "@ag-grid-community/react";
 import { AllModules } from "@ag-grid-enterprise/all-modules";
+import { NumericCellRenderer } from "../NumericCellRenderer";
 import { StatsToolPanel as BaseStatsToolPanel } from "../StatsToolPanel/StatsToolPanel.js";
 import { TaxonomyFilter } from "~/scenes/BiochemicalEntityDetails/TaxonomyFilter.js";
 import "@ag-grid-enterprise/all-modules/dist/styles/ag-grid.scss";
@@ -156,7 +157,8 @@ class Reaction extends Component {
         {
           headerName: "Kcat",
           field: "kcat",
-          sortable: true,
+          cellRenderer: "numericCellRenderer",
+          type: "numericColumn",
           filter: "agNumberColumnFilter",
           checkboxSelection: true,
           headerCheckboxSelection: true,
@@ -165,9 +167,7 @@ class Reaction extends Component {
         {
           headerName: "SABIO-RK id",
           field: "kinLawId",
-          filter: "agNumberColumnFilter",
           menuTabs: ["filterMenuTab"],
-
           cellRenderer: function(params) {
             return (
               '<a href="http://sabiork.h-its.org/newSearch/index?q=EntryID:' +
@@ -176,19 +176,19 @@ class Reaction extends Component {
               params.value +
               "</a>"
             );
-          }
+          },
+          filter: "agTextColumnFilter",
         }
       ],
       second_columns: [
         {
           headerName: "Organism",
           field: "organism",
-          filter: "agTextColumnFilter"
+          filter: "agSetColumnFilter",
         },
         {
           headerName: "Source",
           field: "source",
-
           cellRenderer: function(params) {
             return (
               '<a href="http://sabio.h-its.org/reacdetails.jsp?reactid=' +
@@ -197,7 +197,8 @@ class Reaction extends Component {
               "SABIO-RK" +
               "</a>"
             );
-          }
+          },
+          filter: "agSetColumnFilter",
         }
       ],
 
@@ -208,6 +209,7 @@ class Reaction extends Component {
   setKmColumns(km_values) {
     const new_columns = [];
     const frameworkComponents = {
+      numericCellRenderer: NumericCellRenderer,
       taxonomyFilter: TaxonomyFilter
     };
 
@@ -217,7 +219,8 @@ class Reaction extends Component {
       new_columns.push({
         headerName: "Km " + km_values[i].split("_")[1].toLowerCase() + " (M)",
         field: km_values[i],
-        sortable: true,
+        cellRenderer: "numericCellRenderer",
+        type: "numericColumn",
         filter: "agNumberColumnFilter"
       });
       let comp_name = "CustomToolPanelReaction_" + km_values[i];

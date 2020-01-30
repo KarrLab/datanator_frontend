@@ -43,9 +43,11 @@ function mode(numbers) {
 
 function formatScientificNotation(
   value,
-  sciMagThresh = 1,
+  sciMagUpThresh = 1,
+  sciMagDownThresh = 1,
   sciDecimals = 1,
-  fixedDeminals = 1
+  fixedDeminals = 1,
+  minFixedDecimals = 0
 ) {
   if (value == null) return null;
 
@@ -55,8 +57,8 @@ function formatScientificNotation(
 
   if (
     absValue !== 0 &&
-    (absValue > Math.pow(10, sciMagThresh) ||
-      absValue < Math.pow(10, -sciMagThresh))
+    (absValue > Math.pow(10, sciMagUpThresh) ||
+      absValue < Math.pow(10, -sciMagDownThresh))
   ) {
     const sciVal = ((sign * absValue) / Math.pow(10, exp)).toFixed(sciDecimals);
     return (
@@ -67,7 +69,7 @@ function formatScientificNotation(
   } else if (absValue > 1) {
     return value.toFixed(fixedDeminals);
   } else {
-    const decimals = fixedDeminals - exp;
+    const decimals = Math.max(minFixedDecimals, fixedDeminals - exp);
     return value.toFixed(decimals);
   }
 }

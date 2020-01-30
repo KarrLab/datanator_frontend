@@ -14,6 +14,7 @@ import {
 } from "~/data/actions/resultsAction";
 import { AgGridReact } from "@ag-grid-community/react";
 import { AllModules } from "@ag-grid-enterprise/all-modules";
+import { NumericCellRenderer } from "../NumericCellRenderer";
 import { StatsToolPanel as BaseStatsToolPanel } from "../StatsToolPanel/StatsToolPanel.js";
 import { TaxonomyFilter } from "~/scenes/BiochemicalEntityDetails/TaxonomyFilter.js";
 import "@ag-grid-enterprise/all-modules/dist/styles/ag-grid.scss";
@@ -28,6 +29,7 @@ class StatsToolPanel extends Component {
 }
 
 const frameworkComponents = {
+  numericCellRenderer: NumericCellRenderer,
   statsToolPanel: StatsToolPanel,
   taxonomyFilter: TaxonomyFilter
 };
@@ -86,7 +88,8 @@ const columnDefs = [
   {
     headerName: "Half life (s^-1)",
     field: "halfLife",
-    sortable: true,
+    cellRenderer: "numericCellRenderer",
+    type: "numericColumn",
     filter: "agNumberColumnFilter",
     checkboxSelection: true,
     headerCheckboxSelection: true,
@@ -95,7 +98,7 @@ const columnDefs = [
   {
     headerName: "Organism",
     field: "organism",
-    filter: "agTextColumnFilter"
+    filter: "agSetColumnFilter"
   },
   {
     headerName: "Media",
@@ -106,7 +109,6 @@ const columnDefs = [
   {
     headerName: "Source",
     field: "reference",
-
     cellRenderer: function(params) {
       return (
         '<a href="https://scholar.google.com/scholar?q=' +
@@ -115,7 +117,8 @@ const columnDefs = [
         "DOI" +
         "</a>"
       );
-    }
+    },
+    filter: "agSetColumnFilter",
   }
 ];
 
