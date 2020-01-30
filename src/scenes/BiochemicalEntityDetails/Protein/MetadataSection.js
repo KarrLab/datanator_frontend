@@ -47,7 +47,7 @@ class MetadataSection extends Component {
       <div>
         <div className="content-block" id="properties">
           <h2 className="content-block-heading">Properties</h2>
-          <div className="content-block-content>
+          <div className="content-block-content">
             <div>
               <p>
                 <b>Name:</b> {metadata.koName[0]}
