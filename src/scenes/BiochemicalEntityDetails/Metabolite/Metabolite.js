@@ -4,6 +4,7 @@ import { withRouter } from "react-router";
 import { HashLink } from "react-router-hash-link";
 import PropTypes from "prop-types";
 import { upperCaseFirstLetter, scrollTo } from "~/utils/utils";
+import DownloadLink from 'react-download-link';
 
 import { MetadataSection } from "./MetadataSection";
 import { getDataFromApi } from "~/services/RestApi";
@@ -203,6 +204,7 @@ class Metabolite extends Component {
     };
 
     this.formatData = this.formatData.bind(this);
+    this.recordData = this.recordData.bind(this);
   }
   componentDidMount() {
     this.setColumnDefs();
@@ -219,6 +221,11 @@ class Metabolite extends Component {
       this.setState({ metadata: null });
       this.getDataFromApi();
     }
+  }
+
+  recordData() {
+    //console.log('Consensus: Calling recordData');
+    return (JSON.stringify(this.props.measuredConcs));
   }
 
   getDataFromApi() {
@@ -471,6 +478,12 @@ class Metabolite extends Component {
           </div>
 
           <div className="content-column section">
+          <DownloadLink
+    filename="myfile.txt"
+    exportFile={() => "My cached data"}
+>
+        d to disk
+</DownloadLink>
             <MetadataSection
               metadata={this.state.metadata}
               metabolite={this.props.match.params.metabolite}
@@ -481,7 +494,10 @@ class Metabolite extends Component {
               <div className="content-block-heading-container">
                 <h2 className="content-block-heading">Concentration</h2>
                 <div className="content-block-heading-actions">
-                  Export: <button className="text-button">CSV</button> | <button className="text-button">JSON</button>
+                  Export: <button className="text-button">CSV</button> | <DownloadLink filename="Data.json" className="text-button" tagName ="button" exportFile={() => this.recordData()}
+                    >
+                    JSON
+                    </DownloadLink>
                 </div>
               </div>
               <div className="ag-theme-balham">
