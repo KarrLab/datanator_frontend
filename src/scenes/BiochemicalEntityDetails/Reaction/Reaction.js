@@ -7,17 +7,23 @@ import { upperCaseFirstLetter, scrollTo } from "~/utils/utils";
 
 import { MetadataSection } from "./MetadataSection";
 import { getDataFromApi } from "~/services/RestApi";
-import { setTotalData, setSelectedData } from "~/data/actions/resultsAction";
+import { setAllData, setSelectedData } from "~/data/actions/resultsAction";
 
 import { AgGridReact } from "@ag-grid-community/react";
 import { AllModules } from "@ag-grid-enterprise/all-modules";
-import { StatsToolPanel } from "../StatsToolPanel/StatsToolPanel.js";
+import { NumericCellRenderer } from "../NumericCellRenderer";
+import { StatsToolPanel as BaseStatsToolPanel } from "../StatsToolPanel/StatsToolPanel.js";
 import { TaxonomyFilter } from "~/scenes/BiochemicalEntityDetails/TaxonomyFilter.js";
 import "@ag-grid-enterprise/all-modules/dist/styles/ag-grid.scss";
 import "@ag-grid-enterprise/all-modules/dist/styles/ag-theme-balham/sass/ag-theme-balham.scss";
 
 import "../BiochemicalEntityDetails.scss";
-// import "./Reaction.scss";
+
+class KcatStatsToolPanel extends Component {
+  render() {
+    return <BaseStatsToolPanel col="kcat" />;
+  }
+}
 
 const sideBar = {
   toolPanels: [
@@ -102,13 +108,13 @@ function getProductNames(products) {
 }
 
 function formatSide(parts) {
-  return parts.join(' + ');
+  return parts.join(" + ");
 }
 
 function getKcatValues(parameters) {
   for (const parameter of parameters) {
     if (parameter.name === "k_cat") {
-      return parameter.value;
+      return parseFloat(parameter.value);
     }
   }
 }
@@ -121,7 +127,7 @@ function getKmValues(parameters, substrates) {
       substrates.includes(parameter.name) &&
       parameter.observed_name.toLowerCase() === "km"
     ) {
-      kms["km_" + parameter.name] = parameter.value;
+      kms["km_" + parameter.name] = parseFloat(parameter.value);
     }
   }
   return kms;
@@ -151,7 +157,8 @@ class Reaction extends Component {
         {
           headerName: "Kcat",
           field: "kcat",
-          sortable: true,
+          cellRenderer: "numericCellRenderer",
+          type: "numericColumn",
           filter: "agNumberColumnFilter",
           checkboxSelection: true,
           headerCheckboxSelection: true,
@@ -160,9 +167,7 @@ class Reaction extends Component {
         {
           headerName: "SABIO-RK id",
           field: "kinLawId",
-          filter: "agNumberColumnFilter",
           menuTabs: ["filterMenuTab"],
-
           cellRenderer: function(params) {
             return (
               '<a href="http://sabiork.h-its.org/newSearch/index?q=EntryID:' +
@@ -171,19 +176,19 @@ class Reaction extends Component {
               params.value +
               "</a>"
             );
-          }
+          },
+          filter: "agTextColumnFilter",
         }
       ],
       second_columns: [
         {
           headerName: "Organism",
           field: "organism",
-          filter: "agTextColumnFilter"
+          filter: "agSetColumnFilter",
         },
         {
           headerName: "Source",
           field: "source",
-
           cellRenderer: function(params) {
             return (
               '<a href="http://sabio.h-its.org/reacdetails.jsp?reactid=' +
@@ -192,7 +197,8 @@ class Reaction extends Component {
               "SABIO-RK" +
               "</a>"
             );
-          }
+          },
+          filter: "agSetColumnFilter",
         }
       ],
 
@@ -203,31 +209,37 @@ class Reaction extends Component {
   setKmColumns(km_values) {
     const new_columns = [];
     const frameworkComponents = {
+      numericCellRenderer: NumericCellRenderer,
       taxonomyFilter: TaxonomyFilter
     };
-    frameworkComponents["statsToolPanel"] = () => (
-      <StatsToolPanel relevant-column={"kcat"} />
-    );
+
+    frameworkComponents["statsToolPanel"] = KcatStatsToolPanel;
+
     for (let i = km_values.length - 1; i >= 0; i--) {
       new_columns.push({
         headerName: "Km " + km_values[i].split("_")[1].toLowerCase() + " (M)",
         field: km_values[i],
-        sortable: true,
+        cellRenderer: "numericCellRenderer",
+        type: "numericColumn",
         filter: "agNumberColumnFilter"
       });
       let comp_name = "CustomToolPanelReaction_" + km_values[i];
       sideBar["toolPanels"].push({
         id: km_values[i],
-        labelDefault: "K<sub>M</sub> " + km_values[i].split("_")[1].toLowerCase(),
+        labelDefault:
+          "K<sub>M</sub> " + km_values[i].split("_")[1].toLowerCase(),
         labelKey: "chart",
         iconKey: "chart",
         toolPanel: comp_name
       });
 
       let km = km_values[i].toString();
-      frameworkComponents[comp_name] = () => (
-        <StatsToolPanel relevant-column={km} />
-      );
+      class KmStatsToolPanel extends Component {
+        render() {
+          return <BaseStatsToolPanel col={km} />;
+        }
+      }
+      frameworkComponents[comp_name] = KmStatsToolPanel;
     }
 
     const final_columns = this.state.first_columns
@@ -252,7 +264,7 @@ class Reaction extends Component {
       pathArgs.products !== oldPathArgs.products
     ) {
       this.setState({
-        metadata: null,
+        metadata: null
       });
       this.getResultsData();
     }
@@ -260,48 +272,52 @@ class Reaction extends Component {
 
   getMetaData() {
     const pathArgs = this.props.match.params;
-    getDataFromApi([
-      "reactions/kinlaw_by_name/?products=" +
-        pathArgs.products +
-        "&substrates=" +
-        pathArgs.substrates +
-        "&_from=0&size=1000&bound=tight"
-    ], {}, "Unable to get data about reaction.")
-      .then(response => {
-        this.formatMetadata(response.data);
-      })
-      .catch(() => {
-        //alert('Nothing Found');
-        this.setState({ orig_json: null });
-      });
+    getDataFromApi(
+      [
+        "reactions/kinlaw_by_name/?products=" +
+          pathArgs.products +
+          "&substrates=" +
+          pathArgs.substrates +
+          "&_from=0&size=1000&bound=tight"
+      ],
+      {},
+      "Unable to get data about reaction."
+    ).then(response => {
+      if (!response) return;
+      this.formatMetadata(response.data);
+    });
   }
 
   getResultsData() {
     const pathArgs = this.props.match.params;
     console.log(pathArgs.organism);
 
-    getDataFromApi([
-      "reactions/kinlaw_by_name/?products=" +
-        pathArgs.products +
-        "&substrates=" +
-        pathArgs.substrates +
-        "&_from=0&size=1000&bound=tight"
-    ], {}, "Unable to get data about reaction.").then(response => {
+    getDataFromApi(
+      [
+        "reactions/kinlaw_by_name/?products=" +
+          pathArgs.products +
+          "&substrates=" +
+          pathArgs.substrates +
+          "&_from=0&size=1000&bound=tight"
+      ],
+      {},
+      "Unable to get data about reaction."
+    ).then(response => {
+      if (!response) return;
       this.formatMetadata(response.data);
       this.formatData(response.data);
     });
+
     if (pathArgs.organism) {
-      getDataFromApi([
-        "taxon",
-        "canon_rank_distance_by_name/?name=" + pathArgs.organism
-      ], {}, "Unable to get taxonomic information about '" + pathArgs.organism + "'.").then(response => {
+      getDataFromApi(
+        ["taxon", "canon_rank_distance_by_name/?name=" + pathArgs.organism],
+        {},
+        "Unable to get taxonomic information about '" + pathArgs.organism + "'."
+      ).then(response => {
+        if (!response) return;
         //this.props.dispatch(setLineage(response.data));
         this.setState({ lineage: response.data });
       });
-      //.catch(err => {
-      //alert('Nothing Found');
-      //this.setState({ orig_json: null });
-      //});
     }
   }
 
@@ -355,7 +371,7 @@ class Reaction extends Component {
         //console.log(row_with_km)
       }
 
-      this.props.dispatch(setTotalData(allData));
+      this.props.dispatch(setAllData(allData));
     }
   }
 
@@ -364,7 +380,7 @@ class Reaction extends Component {
       const metadata = {};
 
       const reactionId = getReactionId(data[0].resource);
-      const ecNumber = getEcNumber(data[0].resource);      
+      const ecNumber = getEcNumber(data[0].resource);
       const name = data[0]["enzymes"][0]["enzyme"][0]["enzyme_name"];
       const substrates = getSubstrateNames(
         data[0].reaction_participant[0].substrate
@@ -387,9 +403,9 @@ class Reaction extends Component {
         formatSide(substrates) + " → " + formatSide(products);
 
       this.setState({
-        metadata: metadata,
+        metadata: metadata
       });
-    }    
+    }
   }
 
   onFirstDataRendered(params) {
@@ -405,7 +421,7 @@ class Reaction extends Component {
 
   onRowSelected(event) {
     const selectedNodes = event.api.getSelectedNodes();
-    const selectedRows = [];    
+    const selectedRows = [];
     for (const selectedNode of selectedNodes) {
       selectedRows.push(selectedNode.data);
     }
@@ -424,10 +440,7 @@ class Reaction extends Component {
   }
 
   render() {
-    if (
-      this.props.allData == null ||
-      this.state.metadata == null
-    ) {
+    if (this.props.allData == null || this.state.metadata == null) {
       return (
         <div className="loader-full-content-container">
           <div className="loader"></div>
@@ -454,7 +467,7 @@ class Reaction extends Component {
                     <HashLink to="#properties" scroll={scrollTo}>
                       Properties
                     </HashLink>
-                  </li>           
+                  </li>
                   <li>
                     <HashLink to="#rate-constants" scroll={scrollTo}>
                       Rate constants
@@ -465,14 +478,15 @@ class Reaction extends Component {
             </div>
           </div>
 
-          <div className="content-column section">        
+          <div className="content-column section">
             <MetadataSection metadata={this.state.metadata} />
 
             <div className="content-block measurements" id="rate-constants">
               <div className="content-block-heading-container">
                 <h2 className="content-block-heading">Kinetic parameters</h2>
                 <div className="content-block-heading-actions">
-                  Export: <button className="text-button">CSV</button> | <button className="text-button">JSON</button>
+                  Export: <button className="text-button">CSV</button> |{" "}
+                  <button className="text-button">JSON</button>
                 </div>
               </div>
               <div className="ag-theme-balham">

@@ -8,55 +8,55 @@ import { formatScientificNotation } from "~/utils/utils";
 import "./StatsToolPanel.scss";
 
 /**
- * Class to render the Consensus of results, and the save the total data to CSV file
- * This class takes the data from the store, and summarizes the data with mean, median, standard deviation, minimum, maximum, and a chart at bottom.
+ * Class to render the statistics of results
+ * This class takes the data from the store, and summarizes the data with mean, median, standard deviation, minimum, maximum, and a chart at top.
  * This class mostly handles the rendering, while the logic is handled elsewhere
  */
 @connect(store => {
   return {
-    selectedData: store.results.selectedData,
-    allData: store.results.allData
+    allData: store.results.allData,
+    selectedData: store.results.selectedData
   };
 })
 class StatsToolPanel extends Component {
   static propTypes = {
-    /**
-     * REDUX: this is a list of rows of all the selected data. This is used to generate consensus
-     * only of the displayed data
-     */
-    selectedData: PropTypes.array,
-
     /**
      * REDUX: This is a list of all the data. This is recorded in the CSV file
      */
     allData: PropTypes.array.isRequired,
 
     /**
-     * This prop tells the consensus what column contains the values that need to be summarized.
+     * REDUX: this is a list of rows of all the selected data. This is used to generate statistics
+     * only of the displayed data
+     */
+    selectedData: PropTypes.array,
+
+    /**
+     * This prop indicates which column contains the values that need to be summarized.
      * For example, in metabolite concentrations, we want the summarize the value of "concentration",
      * so we need to tell the compomenet to look for the column labeled "concentration"
      */
-    "relevant-column": PropTypes.string.isRequired
+    col: PropTypes.string.isRequired
   };
 
   constructor(props) {
     super(props);
     this.state = {
       all: {
-        /**The mean of the total data*/
+        /**The mean of all of the data*/
 
         mean: null,
 
-        /**The median of the total data*/
+        /**The median of all of the data*/
         median: null,
 
-        /**The standard deviation of the total data*/
+        /**The standard deviation of all of the data*/
         stdDev: null,
 
-        /**Minimum of the total data*/
+        /**Minimum of all of the data*/
         min: null,
 
-        /**Maximum of the total data*/
+        /**Maximum of all of the data*/
         max: null
       },
       selected: {
@@ -75,121 +75,80 @@ class StatsToolPanel extends Component {
 
         /**Maximum of the selected data*/
         max: null
-      },
-
-      selectedColumn: ""
+      }
     };
   }
 
   /**
-   * Sets the summary statistics for consensus
+   * Calculate the summary statistics
    */
-  calcStats(data, selectedColumn, total) {
+  calcStats(data) {
     // get values
-    const allVals = [];
+    const vals = [];
     for (const datum of data) {
-      const datumVal = parseFloat(datum[selectedColumn]);
-      if (!isNaN(datumVal)) {
-        allVals.push(datumVal);
+      const val = datum[this.props.col];
+      if (val != null) {
+        vals.push(val);
       }
     }
 
     // calcalate statistics
-    if (allVals.length > 0) {
-      let newMean = mean(allVals);
-      let newMedian = median(allVals);
-      let newStdDev = std(allVals);
-      let newMin = min(allVals);
-      let newMax = max(allVals);
+    const stats = {
+      mean: null,
+      median: null,
+      stdDev: null,
+      min: null,
+      max: null
+    };
 
-      newMean = formatScientificNotation(newMean);
-      newMedian = formatScientificNotation(newMedian);
-      newStdDev = formatScientificNotation(newStdDev);
-      newMin = formatScientificNotation(newMin);
-      newMax = formatScientificNotation(newMax);
+    if (vals.length > 0) {
+      stats.mean = formatScientificNotation(mean(vals));
+      stats.median = formatScientificNotation(median(vals));
+      stats.stdDev = formatScientificNotation(std(vals));
+      stats.min = formatScientificNotation(min(vals));
+      stats.max = formatScientificNotation(max(vals));
+    }
 
-      if (allVals.length < 2) {
-        newStdDev = null;
-      }
+    if (vals.length < 2) {
+      stats.stdDev = null;
+    }
 
-      if (total) {
-        this.setState({
-          all: {
-            mean: newMean,
-            median: newMedian,
-            stdDev: newStdDev,
-            min: newMin,
-            max: newMax
-          }
-        });
-      } else {
-        this.setState({
-          selected: {
-            mean: newMean,
-            median: newMedian,
-            stdDev: newStdDev,
-            min: newMin,
-            max: newMax
-          }
-        });
-      }
-    } else {
+    // return statistics
+    return stats;
+  }
+
+  /**
+   * When mounted, this component should set summary stats
+   * if the data exists
+   */
+  componentDidMount() {
+    if (this.props.allData != null) {
       this.setState({
-        all: {
-          mean: null,
-          median: null,
-          stdDev: null,
-          min: null,
-          max: null
-        },
-        selected: {
-          mean: null,
-          median: null,
-          stdDev: null,
-          min: null,
-          max: null
-        }
+        all: this.calcStats(this.props.allData)
+      });
+    }
+
+    if (this.props.selectedData != null) {
+      this.setState({
+        selected: this.calcStats(this.props.selectedData)
       });
     }
   }
 
   /**
-   * When mounted, this component should set summary stats
-   * if the total data exists
-   */
-  componentDidMount() {
-    if (this.props.allData != null) {
-      this.calcStats(this.props.allData, this.props["relevant-column"], true);
-      this.setState({ selectedColumn: this.props["relevant-column"] });
-    }
-  }
-
-  /**
-   * If total data gets updated, then the summary stats should update too
+   * If all data gets updated, then the summary stats should update too
    */
   componentDidUpdate(prevProps) {
     if (prevProps.allData !== this.props.allData) {
-      this.calcStats(this.props.allData, this.props["relevant-column"], true);
-      this.setState({ selectedColumn: this.props["relevant-column"] });
-    } else if (prevProps.selectedData !== this.props.selectedData) {
-      if (this.props.selectedData.length === 0) {
-        //this.calcStats(this.props.allData, this.props["relevant-column"], true);
-        this.setState({
-          selected: {
-            mean: null,
-            median: null,
-            stdDev: null,
-            min: null,
-            max: null
-          }
-        });
-      } else {
-        this.calcStats(
-          this.props.selectedData,
-          this.state.selectedColumn,
-          false
-        );
-      }
+      this.setState({
+        all: this.calcStats(this.props.allData)
+      });
+    }
+
+    if (prevProps.selectedData !== this.props.selectedData) {
+      this.setState({
+        selected: this.calcStats(this.props.selectedData)
+      });
     }
   }
 
@@ -203,7 +162,7 @@ class StatsToolPanel extends Component {
             <MeasurementsBoxScatterPlot
               all-measurements={this.props.allData}
               selected-measurements={this.props.selectedData}
-              data-property={this.state.selectedColumn}
+              data-property={this.props.col}
             />
           </div>
 

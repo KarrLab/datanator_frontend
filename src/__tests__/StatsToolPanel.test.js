@@ -6,7 +6,7 @@ import { ResultsTable } from '~/components/Results/ResultsTable';
 
 
 import createStore from '~/data/Store.js'
-import { setTotalData } from '~/data/actions/resultsAction';
+import { setAllData } from '~/data/actions/resultsAction';
 
 import { fireEvent, waitForElement } from '@testing-library/react'
 
@@ -37,7 +37,7 @@ f_concentrations.push({
               units: "mM",
             });
 
-store.dispatch(setTotalData(f_concentrations))
+store.dispatch(setAllData(f_concentrations))
 
 
 
@@ -52,7 +52,7 @@ test('hello world', async () => {
               advanced_columns={[]}
               potential_columns={{}}
       />
-      <StatsToolPanel relevant-column="concentration" />
+      <StatsToolPanel col="concentration" />
   </Provider>
   )
   

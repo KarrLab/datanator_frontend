@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 
 import { ResultsTable, getSelectedData } from '~/components/Results/ResultsTable.js';
 import createStore from '~/data/Store.js'
-import { setTotalData } from '~/data/actions/resultsAction';
+import { setAllData } from '~/data/actions/resultsAction';
 
 import axiosMock from 'axios'
 import { fireEvent, waitForElement } from '@testing-library/react'
@@ -42,7 +42,7 @@ f_concentrations.push({
               tanimoto_similarity: 0.9,
             });
 
-store.dispatch(setTotalData(f_concentrations))
+store.dispatch(setAllData(f_concentrations))
 
 test('hello world', async () => {
   const { getByText, getByPlaceholderText, getByTestId, toHaveTextContent, container, getByLabelText, getAllByText, queryByText } = render(

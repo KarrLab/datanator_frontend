@@ -3,30 +3,43 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { HashLink } from "react-router-hash-link";
 import PropTypes from "prop-types";
-import { upperCaseFirstLetter, scrollTo } from "~/utils/utils";
 import DownloadLink from 'react-download-link';
+import {
+  formatChemicalFormula,
+  dictOfArraysToArrayOfDicts,
+  upperCaseFirstLetter,
+  scrollTo,
+  strCompare,
+  removeDuplicates,
+  getParams
+} from "~/utils/utils";
 
 import { MetadataSection } from "./MetadataSection";
 import { getDataFromApi } from "~/services/RestApi";
-import { setTotalData, setSelectedData } from "~/data/actions/resultsAction";
+import { setAllData, setSelectedData } from "~/data/actions/resultsAction";
 
 import { AgGridReact } from "@ag-grid-community/react";
 import { AllModules } from "@ag-grid-enterprise/all-modules";
-import { StatsToolPanel } from "../StatsToolPanel/StatsToolPanel.js";
+import { NumericCellRenderer } from "../NumericCellRenderer";
+import { StatsToolPanel as BaseStatsToolPanel } from "../StatsToolPanel/StatsToolPanel.js";
 import { TaxonomyFilter } from "../TaxonomyFilter.js";
 import { TanimotoFilter } from "../TanimotoFilter.js";
 import "@ag-grid-enterprise/all-modules/dist/styles/ag-grid.scss";
 import "@ag-grid-enterprise/all-modules/dist/styles/ag-theme-balham/sass/ag-theme-balham.scss";
 
-import { formatChemicalFormula, dictOfArraysToArrayOfDicts } from "~/utils/utils";
-
 import "../BiochemicalEntityDetails.scss";
-// import "./Metabolite.scss";
 
-const reactStringReplace = require('react-string-replace');
+const reactStringReplace = require("react-string-replace");
+
+class StatsToolPanel extends Component {
+  render() {
+    return <BaseStatsToolPanel col="value" />;
+  }
+}
 
 const frameworkComponents = {
-  statsToolPanel: () => (<StatsToolPanel relevant-column={"concentration"} />),
+  numericCellRenderer: NumericCellRenderer,
+  statsToolPanel: StatsToolPanel,
   taxonomyFilter: TaxonomyFilter,
   tanimotoFilter: TanimotoFilter
 };
@@ -81,6 +94,9 @@ const defaultColDef = {
   suppressMenu: true
 };
 
+
+
+
 @connect(store => {
   return {
     measuredConcs: store.results.allData
@@ -98,7 +114,9 @@ class Metabolite extends Component {
     this.allColumnDefs = [
       {
         headerName: "Concentration (µM)",
-        field: "concentration",
+        field: "value",
+        cellRenderer: "numericCellRenderer",
+        type: "numericColumn",
         filter: "agNumberColumnFilter",
         checkboxSelection: true,
         headerCheckboxSelection: true,
@@ -106,13 +124,10 @@ class Metabolite extends Component {
       },
       {
         headerName: "Uncertainty (µM)",
-        field: "error",
-        valueGetter: params => {
-          const val = params.data.error;
-          return val === 0 ? null : val;
-        },
+        field: "uncertainty",
+        cellRenderer: "numericCellRenderer",
+        type: "numericColumn",
         hide: true,
-        sortable: true,
         filter: "agNumberColumnFilter"
       },
       {
@@ -132,8 +147,13 @@ class Metabolite extends Component {
       {
         headerName: "Chemical similarity",
         field: "tanimotoSimilarity",
+        cellRenderer: "numericCellRenderer",
+        type: "numericColumn",
         hide: true,
-        filter: "tanimotoFilter"
+        filter: "tanimotoFilter",
+        valueFormatter: params => {
+          return params.value.toFixed(3);
+        }
       },
       {
         headerName: "Organism",
@@ -243,6 +263,7 @@ class Metabolite extends Component {
       {},
       "Unable to retrieve data about metabolite '" + metabolite + "'."
     ).then(response => {
+      if (!response) return;
       this.formatData(response.data);
     });
     if (organism) {
@@ -251,6 +272,7 @@ class Metabolite extends Component {
         {},
         "Unable to obtain taxonomic information about '" + organism + "'."
       ).then(response => {
+        if (!response) return;
         this.setState({ lineage: response.data });
       });
     }
@@ -267,13 +289,28 @@ class Metabolite extends Component {
         metadata = {};
 
         metadata.name = met.name;
+
         metadata.synonyms = met.synonyms.synonym;
+        metadata.synonyms.sort((a, b) => {
+          return strCompare(a, b);
+        });
 
         if (met.description != null && met.description !== undefined) {
-          metadata.description = reactStringReplace(met.description, /[([]PMID: *(\d+)[)\]]/gi,
-            (pmid) => {
-              return (<span>[<a href={"https://www.ncbi.nlm.nih.gov/pubmed/" + pmid}>PMID: {pmid}</a>]</span>);
-          });
+          metadata.description = reactStringReplace(
+            met.description,
+            /[([]PMID: *(\d+)[)\]]/gi,
+            pmid => {
+              return (
+                <span key={pmid}>
+                  [
+                  <a href={"https://www.ncbi.nlm.nih.gov/pubmed/" + pmid}>
+                    PMID: {pmid}
+                  </a>
+                  ]
+                </span>
+              );
+            }
+          );
         } else {
           metadata.description = null;
         }
@@ -291,7 +328,11 @@ class Metabolite extends Component {
         ).value;
 
         metadata.pathways = met.pathways.pathway;
-        
+        metadata.pathways = removeDuplicates(metadata.pathways, el => el.name);
+        metadata.pathways.sort((a, b) => {
+          return strCompare(a.name, b.name);
+        });
+
         metadata.cellularLocations = met.cellular_locations.cellular_location;
         if (!Array.isArray(metadata.cellularLocations)) {
           if (metadata.cellularLocations) {
@@ -324,35 +365,32 @@ class Metabolite extends Component {
     for (const datum of data) {
       for (const met of datum) {
         const species = "species" in met ? met.species : "Escherichia coli";
-        
+
         const metConcs = dictOfArraysToArrayOfDicts(met.concentrations);
 
         for (const metConc of metConcs) {
-          let error = metConc.error
-          if (error === 0){
-            error = null
+          let uncertainty = parseFloat(metConc.error);
+          if (uncertainty === 0 || isNaN(uncertainty)) {
+            uncertainty = null;
           }
           const conc = {
             name: met.name,
             tanimotoSimilarity: met.tanimoto_similarity,
-            concentration: parseFloat(metConc.concentration),
+            value: parseFloat(metConc.concentration),
+            uncertainty: uncertainty,
             units: metConc.concentration_units,
-            error: error,
             organism:
-              Object.prototype.hasOwnProperty(metConc, "strain") && metConc.strain
+              Object.prototype.hasOwnProperty.call(metConc, "strain") &&
+              metConc.strain
                 ? species + " " + metConc.strain
                 : species,
             taxonomicProximity: met.taxon_distance,
             growth_phase:
-              "growth_status" in metConc
-                ? metConc.growth_status
-                : null,
+              "growth_status" in metConc ? metConc.growth_status : null,
             growth_media:
               "growth_media" in metConc ? metConc.growth_media : null,
             growth_conditions:
-              "growth_system" in metConc
-                ? metConc.growth_system
-                : null,
+              "growth_system" in metConc ? metConc.growth_system : null,
             source_link:
               "m2m_id" in met
                 ? { source: "ecmdb", id: met.m2m_id }
@@ -363,15 +401,15 @@ class Metabolite extends Component {
           }
           if (conc.growth_phase && conc.growth_phase.indexOf(" Phase") >= 0) {
             conc.growth_phase = conc.growth_phase.split(" Phase")[0];
-          }          
-          if (!isNaN(conc.concentration)) {
+          }
+          if (!isNaN(conc.value)) {
             allConcs.push(conc);
           }
         }
       }
     }
 
-    this.props.dispatch(setTotalData(allConcs));
+    this.props.dispatch(setAllData(allConcs));
     this.setState({ metadata: metadata });
   }
 
@@ -414,6 +452,14 @@ class Metabolite extends Component {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     params.api.sizeColumnsToFit();
+    const updateData = data => {
+      this.setState({ rowData: data });
+    };
+
+  }
+
+  onBtnExportDataAsCsv() {
+    this.gridApi.exportDataAsCsv(getParams());
   }
 
   render() {
@@ -461,12 +507,12 @@ class Metabolite extends Component {
                     <HashLink to="#localizations" scroll={scrollTo}>
                       Localizations
                     </HashLink>
-                  </li> 
+                  </li>
                   <li>
                     <HashLink to="#pathways" scroll={scrollTo}>
                       Pathways
                     </HashLink>
-                  </li>                  
+                  </li>
                   <li>
                     <HashLink to="#concentration" scroll={scrollTo}>
                       Concentration
@@ -478,12 +524,6 @@ class Metabolite extends Component {
           </div>
 
           <div className="content-column section">
-          <DownloadLink
-    filename="myfile.txt"
-    exportFile={() => "My cached data"}
->
-        d to disk
-</DownloadLink>
             <MetadataSection
               metadata={this.state.metadata}
               metabolite={this.props.match.params.metabolite}
@@ -494,10 +534,13 @@ class Metabolite extends Component {
               <div className="content-block-heading-container">
                 <h2 className="content-block-heading">Concentration</h2>
                 <div className="content-block-heading-actions">
-                  Export: <button className="text-button">CSV</button> | <DownloadLink filename="Data.json" className="text-button" tagName ="button" exportFile={() => this.recordData()}
+                  Export: <button className="text-button"
+                  onClick= {this.onBtnExportDataAsCsv.bind(this)}>
+                  CSV</button> | {" "} <DownloadLink filename="Data.json" className="text-button" tagName ="button" exportFile={() => this.recordData()}
                     >
                     JSON
                     </DownloadLink>
+
                 </div>
               </div>
               <div className="ag-theme-balham">

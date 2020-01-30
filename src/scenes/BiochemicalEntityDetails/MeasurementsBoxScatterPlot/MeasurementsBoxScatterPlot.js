@@ -74,9 +74,10 @@ export default class MeasurementsBoxScatterPlot extends Component {
     chartConfig.data.datasets[0].borderColor.push(colorPalette["primary"]);
     chartConfig.data.datasets.push({
       borderColor: colorPalette["text-light"],
+      borderWidth: 1,
       data: dataForScatterPlot,
-      type: "scatter",
-      order: 1
+      order: 1,
+      type: "scatter"
     });
 
     // selected measurements
@@ -104,11 +105,11 @@ export default class MeasurementsBoxScatterPlot extends Component {
       );
       chartConfig.data.datasets[0].borderColor.push(colorPalette["accent"]);
       chartConfig.data.datasets.push({
-        backgroundColor: colorPalette["text"],
-        borderColor: colorPalette["text"],
+        borderColor: colorPalette["text-light"],
+        borderWidth: 1,
         data: dataForScatterPlot,
-        type: "scatter",
-        order: 1
+        order: 1,
+        type: "scatter"
       });
     }
 

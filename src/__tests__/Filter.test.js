@@ -9,7 +9,7 @@ import {
   getTotalColumns,
   filterLaxon,
   setLineage,
-  setTotalData,
+  setAllData,
 } from '~/data/actions/resultsAction';
 
 import axiosMock from 'axios'

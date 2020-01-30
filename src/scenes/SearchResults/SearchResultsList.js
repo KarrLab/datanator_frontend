@@ -88,6 +88,8 @@ class SearchResultsList extends Component {
       "We were unable to conduct your search for '" + this.query + "'."
     )
       .then(response => {
+        if (!response) return;
+
         this.pageCount++;
 
         this.updateResults(

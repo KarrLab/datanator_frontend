@@ -41,23 +41,35 @@ function mode(numbers) {
   return modes;
 }
 
-function formatScientificNotation(value) {
+function formatScientificNotation(
+  value,
+  sciMagUpThresh = 1,
+  sciMagDownThresh = 1,
+  sciDecimals = 1,
+  fixedDeminals = 1,
+  minFixedDecimals = 0
+) {
+  if (value == null) return null;
+
   const absValue = Math.abs(value);
   const sign = Math.sign(value);
   const exp = Math.floor(Math.log10(absValue));
 
   if (
     absValue !== 0 &&
-    (absValue > Math.pow(10, 1) || absValue < Math.pow(10, -1))
+    (absValue > Math.pow(10, sciMagUpThresh) ||
+      absValue < Math.pow(10, -sciMagDownThresh))
   ) {
-    const sciVal = ((sign * absValue) / Math.pow(10, exp)).toFixed(1);
+    const sciVal = ((sign * absValue) / Math.pow(10, exp)).toFixed(sciDecimals);
     return (
       <span>
         {sciVal}&thinsp;&times;&thinsp;10<sup>{exp}</sup>
       </span>
     );
+  } else if (absValue > 1) {
+    return value.toFixed(fixedDeminals);
   } else {
-    const decimals = 1 - Math.max(0, exp);
+    const decimals = Math.max(minFixedDecimals, fixedDeminals - exp);
     return value.toFixed(decimals);
   }
 }
@@ -112,11 +124,73 @@ function scrollTo(el) {
   window.scrollTo({ behavior: "smooth", top: el.offsetTop - 52 });
 }
 
+function strCompare(a, b, caseInsensitive = true) {
+  if (caseInsensitive) {
+    a = a.toLowerCase();
+    b = b.toLowerCase();
+  }
+
+  if (a < b) {
+    return -1;
+  }
+
+  if (a > b) {
+    return 1;
+  }
+
+  return 0;
+}
+
+function removeDuplicates(array, keyFunc = null) {
+  const uniqueKeyVals = {};
+
+  for (const el of array) {
+    let key;
+    if (keyFunc == null) {
+      key = el;
+    } else {
+      key = keyFunc(el);
+    }
+
+    if (!(key in uniqueKeyVals)) {
+      uniqueKeyVals[key] = el;
+    }
+  }
+
+  return Object.values(uniqueKeyVals);
+}
+
+function getBooleanValue(checkboxSelector) {
+  return document.querySelector(checkboxSelector);
+}
+function only20YearOlds(params) {
+  return params.node.data && params.node.data.age != 20;
+}
+
+function getParams() {
+  return {
+    allColumns: getBooleanValue("#allColumns"),
+    columnGroups: getBooleanValue("#columnGroups"),
+    columnKeys: getBooleanValue("#columnKeys"),
+    onlySelected: getBooleanValue("#onlySelected"),
+    onlySelectedAllPages: getBooleanValue("#onlySelectedAllPages"),
+    shouldRowBeSkipped: getBooleanValue("#shouldRowBeSkipped") && only20YearOlds,
+    skipFooters: getBooleanValue("#skipFooters"),
+    skipGroups: getBooleanValue("#skipGroups"),
+    skipHeader: getBooleanValue("#skipHeader"),
+    skipPinnedTop: getBooleanValue("#skipPinnedTop"),
+    skipPinnedBottom: getBooleanValue("#skipPinnedBottom")
+  };
+}
+
 export {
   mode,
   formatScientificNotation,
   formatChemicalFormula,
   dictOfArraysToArrayOfDicts,
   upperCaseFirstLetter,
-  scrollTo
+  scrollTo,
+  strCompare,
+  removeDuplicates,
+  getParams
 };

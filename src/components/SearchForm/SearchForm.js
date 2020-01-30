@@ -98,17 +98,13 @@ class SearchForm extends Component {
       "Unable to search for organisms that match '" + query + "'."
     )
       .then(response => {
+        if (!response) return;
+
         this.setState({
           matchingOrganisms: response.data["hits"]["hits"].map(
             hit => hit["_source"]["tax_name"]
           )
         });
-      })
-      .catch(error => {
-        if (!axios.isCancel(error)) {
-          // TODO: handle error
-          console.log(error);
-        }
       })
       .finally(() => {
         this.cancelTokenSource = null;

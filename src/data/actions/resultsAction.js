@@ -7,7 +7,7 @@ function setLineage(lineageList) {
   };
 }
 
-function setTotalData(allData) {
+function setAllData(allData) {
   return function(dispatch) {
     dispatch({
       type: "SET_ALL_DATA",
@@ -15,6 +15,7 @@ function setTotalData(allData) {
     });
   };
 }
+
 function setSelectedData(selectedData) {
   return function(dispatch) {
     dispatch({
@@ -23,4 +24,5 @@ function setSelectedData(selectedData) {
     });
   };
 }
-export { setLineage, setTotalData, setSelectedData };
+
+export { setLineage, setAllData, setSelectedData };

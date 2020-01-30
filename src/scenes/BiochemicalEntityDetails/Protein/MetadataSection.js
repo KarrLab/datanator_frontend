@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 
 class MetadataSection extends Component {
   static propTypes = {
-    metadata: PropTypes.object.isRequired,
+    metadata: PropTypes.object.isRequired
   };
-  
+
   render() {
     const metadata = this.props.metadata;
 
