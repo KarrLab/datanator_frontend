@@ -9,7 +9,7 @@ import { MetadataSection } from "./MetadataSection";
 import { getDataFromApi } from "~/services/RestApi";
 import {
   setLineage,
-  setTotalData,
+  setAllData,
   setSelectedData
 } from "~/data/actions/resultsAction";
 import { AgGridReact } from "@ag-grid-community/react";
@@ -194,7 +194,7 @@ class Rna extends Component {
         row["growthMedium"] = measurement.growth_medium;
         allData.push(row);
       }
-      this.props.dispatch(setTotalData(allData));
+      this.props.dispatch(setAllData(allData));
       this.setState({ metadata: metadata }); 
     }
   }

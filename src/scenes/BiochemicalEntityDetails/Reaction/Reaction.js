@@ -7,7 +7,7 @@ import { upperCaseFirstLetter, scrollTo } from "~/utils/utils";
 
 import { MetadataSection } from "./MetadataSection";
 import { getDataFromApi } from "~/services/RestApi";
-import { setTotalData, setSelectedData } from "~/data/actions/resultsAction";
+import { setAllData, setSelectedData } from "~/data/actions/resultsAction";
 
 import { AgGridReact } from "@ag-grid-community/react";
 import { AllModules } from "@ag-grid-enterprise/all-modules";
@@ -354,7 +354,7 @@ class Reaction extends Component {
         //console.log(row_with_km)
       }
 
-      this.props.dispatch(setTotalData(allData));
+      this.props.dispatch(setAllData(allData));
     }
   }
 

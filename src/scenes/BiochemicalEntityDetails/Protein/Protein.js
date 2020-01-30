@@ -9,7 +9,7 @@ import { MetadataSection } from "./MetadataSection";
 import { getDataFromApi } from "~/services/RestApi";
 import {
   setLineage,
-  setTotalData,
+  setAllData,
   setSelectedData
 } from "~/data/actions/resultsAction";
 import { AgGridReact } from "@ag-grid-community/react";
@@ -336,7 +336,7 @@ class Protein extends Component {
             }
           }
         }
-        this.props.dispatch(setTotalData(allData));
+        this.props.dispatch(setAllData(allData));
       } else {
         //alert('Nothing Found');
       }
