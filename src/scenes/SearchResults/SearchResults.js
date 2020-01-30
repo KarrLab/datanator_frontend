@@ -10,6 +10,7 @@ import ReactionSearchResultsList from "./ReactionSearchResultsList";
 import "./SearchResults.scss";
 
 class SearchResults extends Component {
+  
   render() {
     return (
       <div className="content-container content-container-search-results-scene">
