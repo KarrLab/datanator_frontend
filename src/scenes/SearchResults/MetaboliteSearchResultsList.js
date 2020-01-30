@@ -53,7 +53,7 @@ export default class MetaboliteSearchResultsList extends Component {
           const linkId = result[linkType.attribute];
           if (linkId != null && linkId !== undefined) {
             links.push(
-              <li>
+              <li key={linkType.label}>
                 {linkType.label}:{" "}
                 <a
                   href={"http://www.ymdb.ca/compounds/" + linkId}
