@@ -216,12 +216,16 @@ class MetadataSection extends Component {
                   <b>Pathways:</b>{" "}
                   {metadata.pathways
                     .map(el => {
+                      let map_id = null
+                      if (el.kegg_map_id){
+                        map_id = el.kegg_map_id.substring(2, el.kegg_map_id.length)
+                      }
                       return (
                         <a
-                          key={el.kegg_map_id}
+                          key={map_id}
                           href={
                             "https://www.genome.jp/dbget-bin/www_bget?map" +
-                            el.kegg_map_id
+                            map_id
                           }
                           target="_blank"
                           rel="noopener noreferrer"
