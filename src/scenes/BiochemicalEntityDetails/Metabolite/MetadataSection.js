@@ -15,7 +15,7 @@ const STRUCTURE_IMG_ARGS = {
   crop: 0
 };
 const STRUCTURE_IMG_URL =
-  "http://cactus.nci.nih.gov/chemical/structure/%s%s/image?" +
+  "https://cactus.nci.nih.gov/chemical/structure/%s%s/image?" +
   Object.keys(STRUCTURE_IMG_ARGS)
     .map(el => {
       return el + "=" + STRUCTURE_IMG_ARGS[el];
@@ -37,7 +37,7 @@ const DATABASES = {
   },
   chemspider: {
     name: "ChemSpider",
-    url: "http://www.chemspider.com/Chemical-Structure.%s.html"
+    url: "https://www.chemspider.com/Chemical-Structure.%s.html"
   },
   ecmdb: {
     name: "ECMDB",
