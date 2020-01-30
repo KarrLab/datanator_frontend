@@ -22,6 +22,8 @@ import { formatChemicalFormula, dictOfArraysToArrayOfDicts } from "~/utils/utils
 import "../BiochemicalEntityDetails.scss";
 // import "./Metabolite.scss";
 
+const reactStringReplace = require('react-string-replace');
+
 const frameworkComponents = {
   statsToolPanel: () => (<StatsToolPanel relevant-column={"concentration"} />),
   taxonomyFilter: TaxonomyFilter,
@@ -259,7 +261,15 @@ class Metabolite extends Component {
 
         metadata.name = met.name;
         metadata.synonyms = met.synonyms.synonym;
-        metadata.description = met.description;
+
+        if (met.description != null && met.description !== undefined) {
+          metadata.description = reactStringReplace(met.description, /[\(\[]PMID: *(\d+)[\)\]]/gi,
+            (pmid) => {
+              return (<span>[<a href={"https://www.ncbi.nlm.nih.gov/pubmed/" + pmid}>PMID: {pmid}</a>]</span>);
+          });
+        } else {
+          metadata.description = null;
+        }
 
         metadata.smiles = met.smiles;
         metadata.inchi = met.inchi;
