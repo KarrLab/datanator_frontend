@@ -13,7 +13,11 @@ import promise from "redux-promise-middleware";
 import reducer from "./reducers";
 
 //create middleware
-const middleware = applyMiddleware(promise, thunk, logger);
+const middleware = [promise, thunk];
+if (process.env.NODE_ENV === "development") {
+  middleware.push(logger);
+}
+const enhancers = applyMiddleware(...middleware);
 
 //set up firefox dev tools
 const composeEnhancers = composeWithDevTools({
@@ -21,4 +25,4 @@ const composeEnhancers = composeWithDevTools({
   trace: true
 });
 
-export default createStore(reducer, composeEnhancers(middleware));
+export default createStore(reducer, composeEnhancers(enhancers));
