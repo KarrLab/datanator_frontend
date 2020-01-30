@@ -25,7 +25,7 @@ import "../BiochemicalEntityDetails.scss";
 const reactStringReplace = require('react-string-replace');
 
 const frameworkComponents = {
-  statsToolPanel: () => (<StatsToolPanel relevant-column={"concentration"} />),
+  statsToolPanel: () => (<StatsToolPanel relevant-column={"value"} />),
   taxonomyFilter: TaxonomyFilter,
   tanimotoFilter: TanimotoFilter
 };
@@ -97,7 +97,7 @@ class Metabolite extends Component {
     this.allColumnDefs = [
       {
         headerName: "Concentration (µM)",
-        field: "concentration",
+        field: "value",
         filter: "agNumberColumnFilter",
         checkboxSelection: true,
         headerCheckboxSelection: true,
@@ -105,9 +105,9 @@ class Metabolite extends Component {
       },
       {
         headerName: "Uncertainty (µM)",
-        field: "error",
+        field: "uncertainty",
         valueGetter: params => {
-          const val = params.data.error;
+          const val = params.data.uncertainty;
           return val === 0 ? null : val;
         },
         hide: true,
@@ -325,16 +325,16 @@ class Metabolite extends Component {
         const metConcs = dictOfArraysToArrayOfDicts(met.concentrations);
 
         for (const metConc of metConcs) {
-          let error = metConc.error
-          if (error === 0){
-            error = null
+          let uncertainty = parseFloat(metConc.error)
+          if (uncertainty === 0 || isNaN(uncertainty)){
+            uncertainty = null;
           }
           const conc = {
             name: met.name,
             tanimotoSimilarity: met.tanimoto_similarity,
-            concentration: parseFloat(metConc.concentration),
-            units: metConc.concentration_units,
-            error: error,
+            value: parseFloat(metConc.concentration),
+            uncertainty: uncertainty,
+            units: metConc.concentration_units,            
             organism:
               Object.prototype.hasOwnProperty(metConc, "strain") && metConc.strain
                 ? species + " " + metConc.strain
@@ -361,7 +361,7 @@ class Metabolite extends Component {
           if (conc.growth_phase && conc.growth_phase.indexOf(" Phase") >= 0) {
             conc.growth_phase = conc.growth_phase.split(" Phase")[0];
           }          
-          if (!isNaN(conc.concentration)) {
+          if (!isNaN(conc.value)) {
             allConcs.push(conc);
           }
         }
