@@ -268,11 +268,9 @@ class Reaction extends Component {
         "&_from=0&size=1000&bound=tight"
     ], {}, "Unable to get data about reaction.")
       .then(response => {
+        if (!response)
+          return;
         this.formatMetadata(response.data);
-      })
-      .catch(() => {
-        //alert('Nothing Found');
-        this.setState({ orig_json: null });
       });
   }
 
@@ -287,21 +285,22 @@ class Reaction extends Component {
         pathArgs.substrates +
         "&_from=0&size=1000&bound=tight"
     ], {}, "Unable to get data about reaction.").then(response => {
+      if (!response)
+          return;
       this.formatMetadata(response.data);
       this.formatData(response.data);
     });
+
     if (pathArgs.organism) {
       getDataFromApi([
         "taxon",
         "canon_rank_distance_by_name/?name=" + pathArgs.organism
       ], {}, "Unable to get taxonomic information about '" + pathArgs.organism + "'.").then(response => {
+        if (!response)
+          return;
         //this.props.dispatch(setLineage(response.data));
         this.setState({ lineage: response.data });
       });
-      //.catch(err => {
-      //alert('Nothing Found');
-      //this.setState({ orig_json: null });
-      //});
     }
   }
 

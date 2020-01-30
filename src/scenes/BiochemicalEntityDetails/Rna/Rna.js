@@ -164,6 +164,8 @@ class Rna extends Component {
         rna +
         "&_from=0&size=1000"
     ], {}, "Unable to get data about RNA '" + rna + "'.").then(response => {
+      if (!response)
+        return;
       this.formatData(response.data);
     });
   }

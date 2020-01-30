@@ -236,6 +236,8 @@ class Metabolite extends Component {
       {},
       "Unable to retrieve data about metabolite '" + metabolite + "'."
     ).then(response => {
+      if (!response)
+          return;
       this.formatData(response.data);
     });
     if (organism) {
@@ -244,7 +246,9 @@ class Metabolite extends Component {
         {},
         "Unable to obtain taxonomic information about '" + organism + "'."
       ).then(response => {
-        this.setState({ lineage: response.data });
+        if (!response)
+          return;
+        this.setState({ lineage: response.data });        
       });
     }
   }

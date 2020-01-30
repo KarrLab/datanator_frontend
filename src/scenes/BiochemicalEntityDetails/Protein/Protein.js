@@ -206,6 +206,8 @@ class Protein extends Component {
         organism +
         "&distance=40&depth=40"
     ], {}, "Unable to get data about ortholog group '" + ko + "'.").then(response => {
+      if (!response)
+          return;
       this.processProteinDataUniprot(response.data);
     });
 
@@ -214,6 +216,8 @@ class Protein extends Component {
         "taxon",
         "canon_rank_distance_by_name/?name=" + organism
       ], {}, "Unable to get taxonomic information about '" + organism + "'.").then(response => {
+        if (!response)
+          return;
         this.setState({ lineage: response.data });
       });
     }
@@ -253,6 +257,9 @@ class Protein extends Component {
         "proteins",
         "meta?uniprot_id=" + this.props.match.params.protein
       ], {}, "Unable to data about ortholog group '" + this.props.match.params.protein + "'.").then(response => {
+        if (!response)
+          return;
+
         this.formatData(response.data);
 
         const metadata = {};
@@ -286,6 +293,8 @@ class Protein extends Component {
         "Unable to get data about proteins for ortholog group '" + this.props.match.params.protein + "'.")
         .then(
           response => {
+            if (!response)
+              return;
             this.formatOrthologyMetadata(response.data);
             this.formatData(response.data, uniprotToDist);
           }
