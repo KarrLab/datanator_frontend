@@ -536,9 +536,7 @@ class Metabolite extends Component {
                 <div className="content-block-heading-actions">
                   Export: <button className="text-button"
                   onClick= {this.onBtnExportDataAsCsv.bind(this)}>
-                  CSV</button> | {" "} <DownloadLink filename="Data.json" label="JSON" className="text-button" tagName ="button" exportFile={() => this.recordData()}
-                    >
-                    JSON
+                  CSV</button> | {" "} <DownloadLink filename="Data.json" label="JSON" style={{}} className="text-button" tagName ="button" exportFile={() => this.recordData()}>
                     </DownloadLink>
 
                 </div>
