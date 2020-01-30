@@ -41,23 +41,33 @@ function mode(numbers) {
   return modes;
 }
 
-function formatScientificNotation(value) {
+function formatScientificNotation(
+  value,
+  sciMagThresh = 1,
+  sciDecimals = 1,
+  fixedDeminals = 1
+) {
+  if (value == null) return null;
+
   const absValue = Math.abs(value);
   const sign = Math.sign(value);
   const exp = Math.floor(Math.log10(absValue));
 
   if (
     absValue !== 0 &&
-    (absValue > Math.pow(10, 1) || absValue < Math.pow(10, -1))
+    (absValue > Math.pow(10, sciMagThresh) ||
+      absValue < Math.pow(10, -sciMagThresh))
   ) {
-    const sciVal = ((sign * absValue) / Math.pow(10, exp)).toFixed(1);
+    const sciVal = ((sign * absValue) / Math.pow(10, exp)).toFixed(sciDecimals);
     return (
       <span>
         {sciVal}&thinsp;&times;&thinsp;10<sup>{exp}</sup>
       </span>
     );
+  } else if (absValue > 1) {
+    return value.toFixed(fixedDeminals);
   } else {
-    const decimals = 1 - Math.max(0, exp);
+    const decimals = fixedDeminals - exp;
     return value.toFixed(decimals);
   }
 }

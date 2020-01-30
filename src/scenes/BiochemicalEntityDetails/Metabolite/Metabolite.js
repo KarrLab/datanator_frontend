@@ -18,6 +18,7 @@ import { setAllData, setSelectedData } from "~/data/actions/resultsAction";
 
 import { AgGridReact } from "@ag-grid-community/react";
 import { AllModules } from "@ag-grid-enterprise/all-modules";
+import { NumericCellRenderer } from "../NumericCellRenderer";
 import { StatsToolPanel as BaseStatsToolPanel } from "../StatsToolPanel/StatsToolPanel.js";
 import { TaxonomyFilter } from "../TaxonomyFilter.js";
 import { TanimotoFilter } from "../TanimotoFilter.js";
@@ -35,6 +36,7 @@ class StatsToolPanel extends Component {
 }
 
 const frameworkComponents = {
+  numericCellRenderer: NumericCellRenderer,
   statsToolPanel: StatsToolPanel,
   taxonomyFilter: TaxonomyFilter,
   tanimotoFilter: TanimotoFilter
@@ -108,6 +110,8 @@ class Metabolite extends Component {
       {
         headerName: "Concentration (µM)",
         field: "value",
+        cellRenderer: "numericCellRenderer",
+        type: "numericColumn",
         filter: "agNumberColumnFilter",
         checkboxSelection: true,
         headerCheckboxSelection: true,
@@ -116,12 +120,9 @@ class Metabolite extends Component {
       {
         headerName: "Uncertainty (µM)",
         field: "uncertainty",
-        valueGetter: params => {
-          const val = params.data.uncertainty;
-          return val === 0 ? null : val;
-        },
+        cellRenderer: "numericCellRenderer",
+        type: "numericColumn",
         hide: true,
-        sortable: true,
         filter: "agNumberColumnFilter"
       },
       {
@@ -141,8 +142,13 @@ class Metabolite extends Component {
       {
         headerName: "Chemical similarity",
         field: "tanimotoSimilarity",
+        cellRenderer: "numericCellRenderer",
+        type: "numericColumn",
         hide: true,
-        filter: "tanimotoFilter"
+        filter: "tanimotoFilter",
+        valueFormatter: params => {
+          return params.value.toFixed(3);
+        }
       },
       {
         headerName: "Organism",
