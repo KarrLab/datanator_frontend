@@ -30,18 +30,18 @@ class SearchResultsList extends Component {
     this.state = {
       results: null,
       numResults: null,
-      location:""
+      locationPathname: ""
     };
 
     this.formatResult = this.formatResult.bind(this);
   }
 
   componentDidMount() {
-    this.setState({location:this.props.history.location.pathname})
-    this.unlistenToHistory = this.props.history.listen((location, action) => {
-      if (this.props.history.location.pathname !== this.state.location){
+    this.setState({ locationPathname: this.props.history.location.pathname });
+    this.unlistenToHistory = this.props.history.listen(location => {
+      if (location.pathname !== this.state.locationPathname) {
+        this.setState({ locationPathname: location.pathname });
         this.updateStateFromLocation();
-        this.setState({location:this.props.history.location.pathname})
       }
     });
     this.updateStateFromLocation();
