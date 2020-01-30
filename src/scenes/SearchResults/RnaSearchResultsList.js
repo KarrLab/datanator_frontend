@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import SearchResultsList from "./SearchResultsList.js";
+import { removeDuplicates } from "~/utils/utils";
 
 export default class RnaSearchResultsList extends Component {
   /* Return URL for REST query for search */
@@ -48,14 +49,16 @@ export default class RnaSearchResultsList extends Component {
 
     const formattedResults = [];
     for (const result of results) {
-      const genes = [];
+      let genes = [];
       if (result["gene_name"]) {
         genes.push(result["gene_name"]);
       } else {
         for (const halfLife of result["halflives"]) {
           genes.push(halfLife["ordered_locus_name"]);
         }
-      }
+        genes = removeDuplicates(genes);
+        genes.sort();
+      }      
 
       let description = "";
       if (genes.length) {
