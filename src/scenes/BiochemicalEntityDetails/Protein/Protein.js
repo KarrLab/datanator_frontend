@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { HashLink } from "react-router-hash-link";
 import PropTypes from "prop-types";
-import { upperCaseFirstLetter, scrollTo, sizeGridColumnsToFit, updateGridHorizontalScrolling } from "~/utils/utils";
+import { upperCaseFirstLetter, scrollTo, sizeGridColumnsToFit, updateGridHorizontalScrolling, gridDataExportParams } from "~/utils/utils";
 
 import { MetadataSection } from "./MetadataSection";
 import { getDataFromApi } from "~/services/RestApi";
@@ -189,6 +189,7 @@ class Protein extends Component {
     this.updateGridHorizontalScrolling = this.updateGridHorizontalScrolling.bind(this);
     this.onFilterChanged = this.onFilterChanged.bind(this);
     this.onSelectionChanged = this.onSelectionChanged.bind(this);
+    this.onClickExportDataCsv = this.onClickExportDataCsv.bind(this);
   }
 
   componentDidMount() {
@@ -393,6 +394,11 @@ class Protein extends Component {
     this.props.dispatch(setSelectedData(selectedRows));
   }
 
+  onClickExportDataCsv() {
+    const gridApi = this.grid.current.api;
+    gridApi.exportDataAsCsv(gridDataExportParams);
+  }
+
   render() {
     const organism = this.props.match.params.organism;
 
@@ -441,7 +447,7 @@ class Protein extends Component {
               <div className="content-block-heading-container">
                 <h2 className="content-block-heading">Abundance</h2>
                 <div className="content-block-heading-actions">
-                  Export: <button className="text-button">CSV</button> |{" "}
+                  Export: <button className="text-button" onClick={this.onClickExportDataCsv}>CSV</button> |{" "}
                   <button className="text-button">JSON</button>
                 </div>
               </div>
