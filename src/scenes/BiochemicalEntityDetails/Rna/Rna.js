@@ -188,7 +188,7 @@ class Rna extends Component {
       const allData = [];
       for (const measurement of measurements) {
         const row = {};
-        row["halfLife"] = measurement.halflife;
+        row["halfLife"] = parseFloat(measurement.halflife);
         row["reference"] = measurement.reference[0]["doi"];
         row["organism"] = measurement.species;
         row["growthMedium"] = measurement.growth_medium;

@@ -315,7 +315,7 @@ class Protein extends Component {
           if (uniprot.abundances !== undefined) {
             for (let iMeasurement = 0; iMeasurement < uniprot.abundances.length; iMeasurement++) {
               let row = {};
-              row["abundance"] = uniprot.abundances[iMeasurement].abundance;
+              row["abundance"] = parseFloat(uniprot.abundances[iMeasurement].abundance);
               row["organ"] = uniprot.abundances[iMeasurement].organ;
               row["geneSymbol"] = uniprot.gene_name;
               row["organism"] = uniprot.species_name;

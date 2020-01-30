@@ -108,7 +108,7 @@ function formatSide(parts) {
 function getKcatValues(parameters) {
   for (const parameter of parameters) {
     if (parameter.name === "k_cat") {
-      return parameter.value;
+      return parseFloat(parameter.value);
     }
   }
 }
@@ -121,7 +121,7 @@ function getKmValues(parameters, substrates) {
       substrates.includes(parameter.name) &&
       parameter.observed_name.toLowerCase() === "km"
     ) {
-      kms["km_" + parameter.name] = parameter.value;
+      kms["km_" + parameter.name] = parseFloat(parameter.value);
     }
   }
   return kms;
