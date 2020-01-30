@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { HashLink } from "react-router-hash-link";
 import PropTypes from "prop-types";
+import DownloadLink from "react-download-link";
 import {
   formatChemicalFormula,
   dictOfArraysToArrayOfDicts,
@@ -11,7 +12,8 @@ import {
   strCompare,
   removeDuplicates,
   sizeGridColumnsToFit,
-  updateGridHorizontalScrolling
+  updateGridHorizontalScrolling,
+  getParams
 } from "~/utils/utils";
 
 import { MetadataSection } from "./MetadataSection";
@@ -225,11 +227,10 @@ class Metabolite extends Component {
 
     this.formatData = this.formatData.bind(this);
     this.sizeGridColumnsToFit = this.sizeGridColumnsToFit.bind(this);
-    this.updateGridHorizontalScrolling = this.updateGridHorizontalScrolling.bind(
-      this
-    );
+    this.updateGridHorizontalScrolling = this.updateGridHorizontalScrolling.bind(this);
     this.onFilterChanged = this.onFilterChanged.bind(this);
     this.onSelectionChanged = this.onSelectionChanged.bind(this);
+    this.recordData = this.recordData.bind(this);
   }
 
   componentDidMount() {
@@ -247,6 +248,10 @@ class Metabolite extends Component {
       this.setState({ metadata: null });
       this.getDataFromApi();
     }
+  }
+
+  recordData() {
+    return JSON.stringify(this.props.measuredConcs);
   }
 
   getDataFromApi() {
@@ -449,6 +454,10 @@ class Metabolite extends Component {
     this.props.dispatch(setSelectedData(selectedRows));
   }
 
+  onBtnExportDataAsCsv() {
+    this.gridApi.exportDataAsCsv(getParams());
+  }
+
   render() {
     if (!this.state.metadata || this.props.measuredConcs == null) {
       return (
@@ -521,8 +530,22 @@ class Metabolite extends Component {
               <div className="content-block-heading-container">
                 <h2 className="content-block-heading">Concentration</h2>
                 <div className="content-block-heading-actions">
-                  Export: <button className="text-button">CSV</button> |{" "}
-                  <button className="text-button">JSON</button>
+                  Export:{" "}
+                  <button
+                    className="text-button"
+                    onClick={this.onBtnExportDataAsCsv.bind(this)}
+                  >
+                    CSV
+                  </button>{" "}
+                  |{" "}
+                  <DownloadLink
+                    filename="Data.json"
+                    label="JSON"
+                    className="text-button"
+                    style={{}}
+                    tagName="button"
+                    exportFile={() => this.recordData()}
+                  ></DownloadLink>
                 </div>
               </div>
               <div className="ag-theme-balham">

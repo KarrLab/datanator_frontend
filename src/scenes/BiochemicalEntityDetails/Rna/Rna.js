@@ -234,8 +234,7 @@ class Rna extends Component {
 
   onSelectionChanged(event) {
     const selectedRows = [];
-    const selectedNodes = event.api.getSelectedNodes();
-    for (const selectedNode of selectedNodes) {
+    for (const selectedNode of event.api.getSelectedNodes()) {
       selectedRows.push(selectedNode.data);
     }
     this.props.dispatch(setSelectedData(selectedRows));

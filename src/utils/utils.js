@@ -49,7 +49,7 @@ function formatScientificNotation(
   fixedDeminals = 1,
   minFixedDecimals = 0
 ) {
-  if (value == null) return null;
+  if (value == null || isNaN(value) || value === undefined) return null;
 
   const absValue = Math.abs(value);
   const sign = Math.sign(value);
@@ -66,7 +66,7 @@ function formatScientificNotation(
         {sciVal}&thinsp;&times;&thinsp;10<sup>{exp}</sup>
       </span>
     );
-  } else if (absValue > 1) {
+  } else if (absValue > 1 || absValue === 0) {
     return value.toFixed(fixedDeminals);
   } else {
     const decimals = Math.max(minFixedDecimals, fixedDeminals - exp);
@@ -186,6 +186,31 @@ function updateGridHorizontalScrolling(event, grid) {
   }
 }
 
+function getBooleanValue(checkboxSelector) {
+  return document.querySelector(checkboxSelector);
+}
+
+function only20YearOlds(params) {
+  return params.node.data && params.node.data.age != 20;
+}
+
+function getParams() {
+  return {
+    allColumns: getBooleanValue("#allColumns"),
+    columnGroups: getBooleanValue("#columnGroups"),
+    columnKeys: getBooleanValue("#columnKeys"),
+    onlySelected: getBooleanValue("#onlySelected"),
+    onlySelectedAllPages: getBooleanValue("#onlySelectedAllPages"),
+    shouldRowBeSkipped:
+      getBooleanValue("#shouldRowBeSkipped") && only20YearOlds,
+    skipFooters: getBooleanValue("#skipFooters"),
+    skipGroups: getBooleanValue("#skipGroups"),
+    skipHeader: getBooleanValue("#skipHeader"),
+    skipPinnedTop: getBooleanValue("#skipPinnedTop"),
+    skipPinnedBottom: getBooleanValue("#skipPinnedBottom")
+  };
+}
+
 export {
   mode,
   formatScientificNotation,
@@ -196,5 +221,6 @@ export {
   strCompare,
   removeDuplicates,
   sizeGridColumnsToFit,
-  updateGridHorizontalScrolling
+  updateGridHorizontalScrolling,
+  getParams
 };
