@@ -229,9 +229,8 @@ class MetadataSection extends Component {
                           className="bulleted-list-item"
                           target="_blank"
                           rel="noopener noreferrer"
-                        >
-                          {upperCaseFirstLetter(el.name)}
-                        </a>
+                          dangerouslySetInnerHTML={{__html: upperCaseFirstLetter(el.name)}}
+                        ></a>
                       </li>
                     );
                 })}
