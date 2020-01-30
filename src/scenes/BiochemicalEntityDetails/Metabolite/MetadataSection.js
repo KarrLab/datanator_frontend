@@ -201,7 +201,7 @@ class MetadataSection extends Component {
             <h2 className="content-block-heading">Cellular localizations</h2>
             <div className="content-block-content">
               <ul className="two-col-list">
-                {cellularLocations.map(el => (<li><div class="bulleted-list-item">{el}</div></li>))}
+                {cellularLocations.map(el => (<li><div className="bulleted-list-item">{el}</div></li>))}
               </ul>
             </div>
           </div>
