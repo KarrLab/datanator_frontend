@@ -52,7 +52,7 @@ test('hello world', async () => {
               advanced_columns={[]}
               potential_columns={{}}
       />
-      <StatsToolPanel relevant-column="concentration" />
+      <StatsToolPanel col="concentration" />
   </Provider>
   )
   

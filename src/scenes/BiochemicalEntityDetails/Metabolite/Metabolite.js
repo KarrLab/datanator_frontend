@@ -25,7 +25,7 @@ import "../BiochemicalEntityDetails.scss";
 const reactStringReplace = require('react-string-replace');
 
 const frameworkComponents = {
-  statsToolPanel: () => (<StatsToolPanel relevant-column={"value"} />),
+  statsToolPanel: () => (<StatsToolPanel col={"value"} />),
   taxonomyFilter: TaxonomyFilter,
   tanimotoFilter: TanimotoFilter
 };

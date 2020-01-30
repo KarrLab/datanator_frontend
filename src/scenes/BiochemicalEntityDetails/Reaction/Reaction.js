@@ -206,7 +206,7 @@ class Reaction extends Component {
       taxonomyFilter: TaxonomyFilter
     };
     frameworkComponents["statsToolPanel"] = () => (
-      <StatsToolPanel relevant-column={"kcat"} />
+      <StatsToolPanel col={"kcat"} />
     );
     for (let i = km_values.length - 1; i >= 0; i--) {
       new_columns.push({
@@ -226,7 +226,7 @@ class Reaction extends Component {
 
       let km = km_values[i].toString();
       frameworkComponents[comp_name] = () => (
-        <StatsToolPanel relevant-column={km} />
+        <StatsToolPanel col={km} />
       );
     }
 

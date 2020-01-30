@@ -23,7 +23,7 @@ import "../BiochemicalEntityDetails.scss";
 // import "./Protein.scss";
 
 const frameworkComponents = {
-  statsToolPanel: () => (<StatsToolPanel relevant-column={"abundance"} />),
+  statsToolPanel: () => (<StatsToolPanel col={"abundance"} />),
   taxonomyFilter: TaxonomyFilter
 };
 

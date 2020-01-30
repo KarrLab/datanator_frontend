@@ -23,7 +23,7 @@ import "../BiochemicalEntityDetails.scss";
 // import "./Rna.scss";
 
 const frameworkComponents = {
-  statsToolPanel: () => (<StatsToolPanel relevant-column={"halfLife"} />),
+  statsToolPanel: () => (<StatsToolPanel col={"halfLife"} />),
   taxonomyFilter: TaxonomyFilter
 };
 

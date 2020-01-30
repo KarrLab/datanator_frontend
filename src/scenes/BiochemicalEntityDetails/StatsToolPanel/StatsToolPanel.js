@@ -36,7 +36,7 @@ class StatsToolPanel extends Component {
      * For example, in metabolite concentrations, we want the summarize the value of "concentration",
      * so we need to tell the compomenet to look for the column labeled "concentration"
      */
-    "relevant-column": PropTypes.string.isRequired
+    col: PropTypes.string.isRequired
   };
 
   constructor(props) {
@@ -76,15 +76,15 @@ class StatsToolPanel extends Component {
         /**Maximum of the selected data*/
         max: null
       },
-
-      selectedColumn: ""
     };
   }
 
   /**
    * Sets the summary statistics for consensus
    */
-  calcStats(data, selectedColumn, total) {
+  calcStats(data, total) {
+    const selectedColumn = this.props.col;
+
     // get values
     const allVals = [];
     for (const datum of data) {
@@ -159,8 +159,7 @@ class StatsToolPanel extends Component {
    */
   componentDidMount() {
     if (this.props.allData != null) {
-      this.calcStats(this.props.allData, this.props["relevant-column"], true);
-      this.setState({ selectedColumn: this.props["relevant-column"] });
+      this.calcStats(this.props.allData, true);
     }
   }
 
@@ -169,11 +168,10 @@ class StatsToolPanel extends Component {
    */
   componentDidUpdate(prevProps) {
     if (prevProps.allData !== this.props.allData) {
-      this.calcStats(this.props.allData, this.props["relevant-column"], true);
-      this.setState({ selectedColumn: this.props["relevant-column"] });
+      this.calcStats(this.props.allData, true);
     } else if (prevProps.selectedData !== this.props.selectedData) {
       if (this.props.selectedData.length === 0) {
-        //this.calcStats(this.props.allData, this.props["relevant-column"], true);
+        //this.calcStats(this.props.allData, true);
         this.setState({
           selected: {
             mean: null,
@@ -186,7 +184,6 @@ class StatsToolPanel extends Component {
       } else {
         this.calcStats(
           this.props.selectedData,
-          this.state.selectedColumn,
           false
         );
       }
@@ -203,7 +200,7 @@ class StatsToolPanel extends Component {
             <MeasurementsBoxScatterPlot
               all-measurements={this.props.allData}
               selected-measurements={this.props.selectedData}
-              data-property={this.state.selectedColumn}
+              data-property={this.props.col}
             />
           </div>
 
