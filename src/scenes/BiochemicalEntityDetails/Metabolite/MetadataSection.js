@@ -106,6 +106,11 @@ class MetadataSection extends Component {
       structure = { type: "InChIKey=", value: metadata.inchiKey };
     }
 
+    let synonym_list = []
+    for (var i = metadata.synonyms.length - 1; i >= 0; i--) {
+      synonym_list.push(<li>{metadata.synonyms[i]}</li>)
+    }
+
     // database links
     const dbLinks = [];
     for (const dbKey in metadata.dbLinks) {
@@ -160,11 +165,13 @@ class MetadataSection extends Component {
           </div>
         )}
 
-        {metadata.synonyms.length > 0 && (
+        {synonym_list.length > 0 && (
           <div className="content-block" id="synonyms">
             <h2 className="content-block-heading">Synonyms</h2>
             <div className="content-block-content">
-              {metadata.synonyms.join(", ")}
+              <ul>
+                {synonym_list}
+              </ul>
             </div>
           </div>
         )}
