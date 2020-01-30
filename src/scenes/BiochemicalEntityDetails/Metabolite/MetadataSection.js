@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { upperCaseFirstLetter } from "~/utils/utils";
 
 const sprintf = require("sprintf-js").sprintf;
 
@@ -97,6 +98,7 @@ class MetadataSection extends Component {
         );
       });
 
+    // structure
     let structure = null;
     if (metadata.smiles) {
       structure = { type: "", value: metadata.smiles };
@@ -106,9 +108,10 @@ class MetadataSection extends Component {
       structure = { type: "InChIKey=", value: metadata.inchiKey };
     }
 
-    let synonym_list = []
+    // synonyms
+    const synonyms = []
     for (var i = metadata.synonyms.length - 1; i >= 0; i--) {
-      synonym_list.push(<li>{metadata.synonyms[i]}</li>)
+      synonyms.push(<li><div className="bulleted-list-item">{metadata.synonyms[i]}</div></li>)
     }
 
     // database links
@@ -132,12 +135,7 @@ class MetadataSection extends Component {
       }
     }
 
-    let cellularLocations;
-    if (Array.isArray(metadata.cellularLocations)) {
-      cellularLocations = metadata.cellularLocations.join(', ');
-    } else if (metadata.cellularLocations) {
-      cellularLocations = metadata.cellularLocations;
-    }
+    const cellularLocations = metadata.cellularLocations;
 
     // render
     return (
@@ -165,12 +163,12 @@ class MetadataSection extends Component {
           </div>
         )}
 
-        {synonym_list.length > 0 && (
+        {synonyms.length > 0 && (
           <div className="content-block" id="synonyms">
             <h2 className="content-block-heading">Synonyms</h2>
             <div className="content-block-content">
-              <ul>
-                {synonym_list}
+              <ul className="three-col-list">
+                {synonyms}
               </ul>
             </div>
           </div>
@@ -180,7 +178,7 @@ class MetadataSection extends Component {
           <div className="content-block" id="links">
             <h2 className="content-block-heading">Database links</h2>
             <div className="content-block-content">
-              <ul className="key-value-list">
+              <ul className="key-value-list three-col-list link-list">
                 {dbLinks}
               </ul>
             </div>
@@ -191,59 +189,56 @@ class MetadataSection extends Component {
           <div className="content-block" id="physics">
             <h2 className="content-block-heading">Physical properties</h2>
             <div className="content-block-content">
-              <ul className="key-value-list">
+              <ul className="key-value-list link-list">
                 {physicalProps}
               </ul>
             </div>
           </div>
         )}
 
-        {((metadata.pathways && metadata.pathways.length > 0) ||
-          (metadata.cellularLocations &&
-            metadata.cellularLocations.length > 0)) && (
-          <div className="content-block" id="biology">
-            <h2 className="content-block-heading">Biological context</h2>
+        {metadata.cellularLocations && metadata.cellularLocations.length > 0 && (
+          <div className="content-block" id="localizations">
+            <h2 className="content-block-heading">Cellular localizations</h2>
             <div className="content-block-content">
-              <ul className="key-value-list">
-              {cellularLocations && (
-                  <li>
-                    <b>Localizations:</b>{" "}{cellularLocations}
-                  </li>
-                )}
-              {metadata.pathways && metadata.pathways.length > 0 && (
-                <li>
-                  <b>Pathways:</b>{" "}
-                  <ul>
-                  {metadata.pathways
-                    .map(el => {
-                      let map_id = null
-                      if (el.kegg_map_id){
-                        map_id = el.kegg_map_id.substring(2, el.kegg_map_id.length)
-                      }
-                      return (
-                        <li>
+              <ul className="two-col-list">
+                {cellularLocations.map(el => (<li><div class="bulleted-list-item">{el}</div></li>))}
+              </ul>
+            </div>
+          </div>
+        )}
+
+        {metadata.pathways && metadata.pathways.length > 0 && (
+          <div className="content-block" id="biology">
+            <h2 className="content-block-heading">Pathways</h2>
+            <div className="content-block-content">
+              <ul className="two-col-list link-list">
+                {metadata.pathways
+                  .map(el => {
+                    let map_id = null
+                    if (el.kegg_map_id){
+                      map_id = el.kegg_map_id.substring(2, el.kegg_map_id.length)
+                    }
+                    return (
+                      <li>
                         <a
                           key={map_id}
                           href={
                             "https://www.genome.jp/dbget-bin/www_bget?map" +
                             map_id
                           }
+                          className="bulleted-list-item"
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          {el.name}
+                          {upperCaseFirstLetter(el.name)}
                         </a>
-                        </li>
-                      );
-                    })}
-                </ul>
-                </li>
-              )}
-
+                      </li>
+                    );
+                })}
               </ul>
             </div>
           </div>
-        )}        
+        )}
       </div>
     );
   }

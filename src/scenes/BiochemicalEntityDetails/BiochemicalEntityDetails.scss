@@ -15,31 +15,13 @@
     margin-right: 1rem;
   }
 
-  .key-value-list {
-    list-style-type: none;
-    margin: 0;
-
-    li:not(:first-child) {
-      margin-top: 0.25rem;
-    }
-
-    b {
-      font-weight: 500;
-      text-align: left;
-    }
-
+  .link-list {
     a {
       color: $color-text;
     }
 
     a:hover {
       color: $color-primary;
-    }
-  }
-
-  .key-value-list.key-value-list-spaced {
-    li:not(:first-child) {
-      margin-top: 0.5rem;
     }
   }
 

@@ -284,7 +284,16 @@ class Metabolite extends Component {
         ).value;
 
         metadata.pathways = met.pathways.pathway;
+        
         metadata.cellularLocations = met.cellular_locations.cellular_location;
+        if (!Array.isArray(metadata.cellularLocations)) {
+          if (metadata.cellularLocations) {
+            metadata.cellularLocations = [metadata.cellularLocations];
+          } else {
+            metadata.cellularLocations = [];
+          }
+        }
+
         metadata.dbLinks = {
           biocyc: met.biocyc_id,
           cas: met.cas_registry_number,
@@ -442,8 +451,13 @@ class Metabolite extends Component {
                     </HashLink>
                   </li>
                   <li>
-                    <HashLink to="#biology" scroll={scrollTo}>
-                      Biology
+                    <HashLink to="#localizations" scroll={scrollTo}>
+                      Localizations
+                    </HashLink>
+                  </li> 
+                  <li>
+                    <HashLink to="#pathways" scroll={scrollTo}>
+                      Pathways
                     </HashLink>
                   </li>                  
                   <li>

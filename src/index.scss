@@ -45,10 +45,67 @@ ol:first-child {
   li {
     display: inline;
   }
-  
-  li:not(:last-child):after {
+
+  li:not(:last-child)::after {
     content: ", ";
   }
+}
+
+.two-col-list {
+  columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+  column-gap: 1rem;
+}
+
+.three-col-list {
+  columns: 3;
+  -webkit-columns: 3;
+  -moz-columns: 3;
+  column-gap: 1rem;
+}
+
+.four-col-list {
+  columns: 4;
+  -webkit-columns: 4;
+  -moz-columns: 4;
+  column-gap: 1rem;
+}
+
+.five-col-list {
+  columns: 5;
+  -webkit-columns: 5;
+  -moz-columns: 5;
+  column-gap: 1rem;
+}
+
+.key-value-list {
+  list-style-type: none;
+  margin: 0;
+
+  li {
+    padding-left: 0.5rem;
+    text-indent: -0.5rem;
+  }
+
+  li:not(:first-child) {
+    margin-top: 0.25rem;
+  }
+
+  b {
+    font-weight: 500;
+    text-align: left;
+  }
+}
+
+.key-value-list.key-value-list-spaced {
+  li:not(:first-child) {
+    margin-top: 0.5rem;
+  }
+}
+
+.bulleted-list-item {
+  margin-left: -0.25rem;
 }
 
 /* links */
