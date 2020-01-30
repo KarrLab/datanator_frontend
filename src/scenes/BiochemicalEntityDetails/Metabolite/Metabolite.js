@@ -302,12 +302,16 @@ class Metabolite extends Component {
         const metConcs = dictOfArraysToArrayOfDicts(met.concentrations);
 
         for (const metConc of metConcs) {
+          let error = metConc.error
+          if (error == 0){
+            error = null
+          }
           const conc = {
             name: met.name,
             tanimotoSimilarity: met.tanimoto_similarity,
             concentration: parseFloat(metConc.concentration),
             units: metConc.concentration_units,
-            error: metConc.error,
+            error: error,
             organism:
               Object.prototype.hasOwnProperty(metConc, "strain") && metConc.strain
                 ? species + " " + metConc.strain
