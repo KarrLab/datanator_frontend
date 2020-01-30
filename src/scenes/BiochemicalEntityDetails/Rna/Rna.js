@@ -14,7 +14,7 @@ import {
 } from "~/data/actions/resultsAction";
 import { AgGridReact } from "@ag-grid-community/react";
 import { AllModules } from "@ag-grid-enterprise/all-modules";
-import { StatsToolPanel } from "../StatsToolPanel/StatsToolPanel.js";
+import { StatsToolPanel as BaseStatsToolPanel } from "../StatsToolPanel/StatsToolPanel.js";
 import { TaxonomyFilter } from "~/scenes/BiochemicalEntityDetails/TaxonomyFilter.js";
 import "@ag-grid-enterprise/all-modules/dist/styles/ag-grid.scss";
 import "@ag-grid-enterprise/all-modules/dist/styles/ag-theme-balham/sass/ag-theme-balham.scss";
@@ -22,8 +22,14 @@ import "@ag-grid-enterprise/all-modules/dist/styles/ag-theme-balham/sass/ag-them
 import "../BiochemicalEntityDetails.scss";
 // import "./Rna.scss";
 
+class StatsToolPanel extends Component {
+  render() {
+    return <BaseStatsToolPanel col="halfLife" />;
+  }
+}
+
 const frameworkComponents = {
-  statsToolPanel: () => (<StatsToolPanel col={"halfLife"} />),
+  statsToolPanel: StatsToolPanel,
   taxonomyFilter: TaxonomyFilter
 };
 
@@ -98,7 +104,7 @@ const columnDefs = [
     filter: "agTextColumnFilter",
     hide: false
   },
-   {
+  {
     headerName: "Source",
     field: "reference",
 
@@ -111,7 +117,7 @@ const columnDefs = [
         "</a>"
       );
     }
-  },
+  }
 ];
 
 Object.size = function(obj) {
@@ -137,7 +143,7 @@ class Rna extends Component {
     super(props);
     this.state = {
       metadata: null,
-      lineage: [],
+      lineage: []
     };
 
     this.formatData = this.formatData.bind(this);
@@ -159,29 +165,32 @@ class Rna extends Component {
 
   getDataFromApi() {
     const rna = this.props.match.params.rna;
-    getDataFromApi([
-      "/rna/halflife/get_info_by_protein_name/?protein_name=" +
-        rna +
-        "&_from=0&size=1000"
-    ], {}, "Unable to get data about RNA '" + rna + "'.").then(response => {
-      if (!response)
-        return;
+    getDataFromApi(
+      [
+        "/rna/halflife/get_info_by_protein_name/?protein_name=" +
+          rna +
+          "&_from=0&size=1000"
+      ],
+      {},
+      "Unable to get data about RNA '" + rna + "'."
+    ).then(response => {
+      if (!response) return;
       this.formatData(response.data);
     });
   }
 
-  formatData(data) { 
-    const metadata = {}
-    
+  formatData(data) {
+    const metadata = {};
+
     metadata["geneName"] = data[0].gene_name;
 
-    if(data[0]['function']) {
-      metadata["proteinName"] = data[0]['function']
-    } else if (data[0]['protein_name']){
-       metadata["proteinName"] = data[0]['protein_name']
-    } else{
-      metadata["proteinName"] = 'Protein Name not Found'
-    }    
+    if (data[0]["function"]) {
+      metadata["proteinName"] = data[0]["function"];
+    } else if (data[0]["protein_name"]) {
+      metadata["proteinName"] = data[0]["protein_name"];
+    } else {
+      metadata["proteinName"] = "Protein Name not Found";
+    }
 
     if (data != null && typeof data != "string") {
       const measurements = data[0].halflives;
@@ -195,7 +204,7 @@ class Rna extends Component {
         allData.push(row);
       }
       this.props.dispatch(setAllData(allData));
-      this.setState({ metadata: metadata }); 
+      this.setState({ metadata: metadata });
     }
   }
 
@@ -229,10 +238,7 @@ class Rna extends Component {
   }
 
   render() {
-    if (
-      this.state.metadata == null ||
-      this.props.allData == null
-    ) {
+    if (this.state.metadata == null || this.props.allData == null) {
       return (
         <div className="loader-full-content-container">
           <div className="loader"></div>
@@ -247,7 +253,7 @@ class Rna extends Component {
     title = upperCaseFirstLetter(title);
 
     return (
-       <div className="content-container biochemical-entity-scene biochemical-entity-rna-scene">
+      <div className="content-container biochemical-entity-scene biochemical-entity-rna-scene">
         <h1 className="page-title">RNA: {title}</h1>
         <div className="content-container-columns">
           <div className="overview-column">
@@ -259,7 +265,7 @@ class Rna extends Component {
                     <HashLink to="#properties" scroll={scrollTo}>
                       Properties
                     </HashLink>
-                  </li>               
+                  </li>
                   <li>
                     <HashLink to="#half-life" scroll={scrollTo}>
                       Half-life
@@ -271,15 +277,14 @@ class Rna extends Component {
           </div>
 
           <div className="content-column section">
-            <MetadataSection
-              metadata={this.state.metadata}
-            />
+            <MetadataSection metadata={this.state.metadata} />
 
             <div className="content-block measurements" id="half-life">
               <div className="content-block-heading-container">
                 <h2 className="content-block-heading">Half-life</h2>
                 <div className="content-block-heading-actions">
-                  Export: <button className="text-button">CSV</button> | <button className="text-button">JSON</button>
+                  Export: <button className="text-button">CSV</button> |{" "}
+                  <button className="text-button">JSON</button>
                 </div>
               </div>
               <div className="ag-theme-balham">

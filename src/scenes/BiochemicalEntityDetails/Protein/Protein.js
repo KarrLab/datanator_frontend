@@ -14,7 +14,7 @@ import {
 } from "~/data/actions/resultsAction";
 import { AgGridReact } from "@ag-grid-community/react";
 import { AllModules } from "@ag-grid-enterprise/all-modules";
-import { StatsToolPanel } from "../StatsToolPanel/StatsToolPanel.js";
+import { StatsToolPanel as BaseStatsToolPanel } from "../StatsToolPanel/StatsToolPanel.js";
 import { TaxonomyFilter } from "~/scenes/BiochemicalEntityDetails/TaxonomyFilter.js";
 import "@ag-grid-enterprise/all-modules/dist/styles/ag-grid.scss";
 import "@ag-grid-enterprise/all-modules/dist/styles/ag-theme-balham/sass/ag-theme-balham.scss";
@@ -22,8 +22,14 @@ import "@ag-grid-enterprise/all-modules/dist/styles/ag-theme-balham/sass/ag-them
 import "../BiochemicalEntityDetails.scss";
 // import "./Protein.scss";
 
+class StatsToolPanel extends Component {
+  render() {
+    return <BaseStatsToolPanel col="abundance" />;
+  }
+}
+
 const frameworkComponents = {
-  statsToolPanel: () => (<StatsToolPanel col={"abundance"} />),
+  statsToolPanel: StatsToolPanel,
   taxonomyFilter: TaxonomyFilter
 };
 
@@ -169,7 +175,7 @@ class Protein extends Component {
     super(props);
     this.state = {
       metadata: null,
-      lineage: [],
+      lineage: []
     };
 
     this.processProteinData = this.processProteinData.bind(this);
@@ -188,7 +194,7 @@ class Protein extends Component {
     ) {
       this.setState({
         metadata: null,
-        lineage: [],
+        lineage: []
       });
       this.getDataFromApi();
     }
@@ -198,26 +204,29 @@ class Protein extends Component {
     const ko = this.props.match.params.protein;
     const organism = this.props.match.params.organism;
 
-    getDataFromApi([
-      "proteins",
-      "proximity_abundance/proximity_abundance_kegg/?kegg_id=" +
-        ko +
-        "&anchor=" +
-        organism +
-        "&distance=40&depth=40"
-    ], {}, "Unable to get data about ortholog group '" + ko + "'.").then(response => {
-      if (!response)
-          return;
+    getDataFromApi(
+      [
+        "proteins",
+        "proximity_abundance/proximity_abundance_kegg/?kegg_id=" +
+          ko +
+          "&anchor=" +
+          organism +
+          "&distance=40&depth=40"
+      ],
+      {},
+      "Unable to get data about ortholog group '" + ko + "'."
+    ).then(response => {
+      if (!response) return;
       this.processProteinDataUniprot(response.data);
     });
 
     if (organism != null) {
-      getDataFromApi([
-        "taxon",
-        "canon_rank_distance_by_name/?name=" + organism
-      ], {}, "Unable to get taxonomic information about '" + organism + "'.").then(response => {
-        if (!response)
-          return;
+      getDataFromApi(
+        ["taxon", "canon_rank_distance_by_name/?name=" + organism],
+        {},
+        "Unable to get taxonomic information about '" + organism + "'."
+      ).then(response => {
+        if (!response) return;
         this.setState({ lineage: response.data });
       });
     }
@@ -229,7 +238,7 @@ class Protein extends Component {
     metadata["koNumber"] = data[0].ko_number;
     metadata["koName"] = data[0].ko_name;
 
-    const uniprotIds = [];    
+    const uniprotIds = [];
     for (const datum of data) {
       uniprotIds.push(datum.uniprot_id);
     }
@@ -253,12 +262,14 @@ class Protein extends Component {
       metadata["koNumber"] = [data[0].ko_number, uniprotId];
       this.setState({ metadata: metadata });
     } else {
-      getDataFromApi([
-        "proteins",
-        "meta?uniprot_id=" + this.props.match.params.protein
-      ], {}, "Unable to data about ortholog group '" + this.props.match.params.protein + "'.").then(response => {
-        if (!response)
-          return;
+      getDataFromApi(
+        ["proteins", "meta?uniprot_id=" + this.props.match.params.protein],
+        {},
+        "Unable to data about ortholog group '" +
+          this.props.match.params.protein +
+          "'."
+      ).then(response => {
+        if (!response) return;
 
         this.formatData(response.data);
 
@@ -289,16 +300,17 @@ class Protein extends Component {
       for (const uniprotId of uniprotIds) {
         endQuery += "uniprot_id=" + uniprotId + "&";
       }
-      getDataFromApi(["proteins", "meta/meta_combo/?" + endQuery], {}, 
-        "Unable to get data about proteins for ortholog group '" + this.props.match.params.protein + "'.")
-        .then(
-          response => {
-            if (!response)
-              return;
-            this.formatOrthologyMetadata(response.data);
-            this.formatData(response.data, uniprotToDist);
-          }
-        );
+      getDataFromApi(
+        ["proteins", "meta/meta_combo/?" + endQuery],
+        {},
+        "Unable to get data about proteins for ortholog group '" +
+          this.props.match.params.protein +
+          "'."
+      ).then(response => {
+        if (!response) return;
+        this.formatOrthologyMetadata(response.data);
+        this.formatData(response.data, uniprotToDist);
+      });
     }
   }
 
@@ -310,12 +322,18 @@ class Protein extends Component {
           start = 1;
         }
 
-        const allData = []
+        const allData = [];
         for (const uniprot of data.slice(start)) {
           if (uniprot.abundances !== undefined) {
-            for (let iMeasurement = 0; iMeasurement < uniprot.abundances.length; iMeasurement++) {
+            for (
+              let iMeasurement = 0;
+              iMeasurement < uniprot.abundances.length;
+              iMeasurement++
+            ) {
               let row = {};
-              row["abundance"] = parseFloat(uniprot.abundances[iMeasurement].abundance);
+              row["abundance"] = parseFloat(
+                uniprot.abundances[iMeasurement].abundance
+              );
               row["organ"] = uniprot.abundances[iMeasurement].organ;
               row["geneSymbol"] = uniprot.gene_name;
               row["organism"] = uniprot.species_name;
@@ -329,8 +347,7 @@ class Protein extends Component {
                 );
               }
               row["proteinName"] = proteinName;
-              row["taxonomicProximity"] =
-                uniprotToDist[uniprot.uniprot_id];
+              row["taxonomicProximity"] = uniprotToDist[uniprot.uniprot_id];
               row["source"] = { uniprotId: uniprot.uniprot_id };
               allData.push(row);
             }
@@ -400,7 +417,7 @@ class Protein extends Component {
                     <HashLink to="#properties" scroll={scrollTo}>
                       Properties
                     </HashLink>
-                  </li>        
+                  </li>
                   <li>
                     <HashLink to="#abundance" scroll={scrollTo}>
                       Abundance
@@ -421,7 +438,8 @@ class Protein extends Component {
               <div className="content-block-heading-container">
                 <h2 className="content-block-heading">Abundance</h2>
                 <div className="content-block-heading-actions">
-                  Export: <button className="text-button">CSV</button> | <button className="text-button">JSON</button>
+                  Export: <button className="text-button">CSV</button> |{" "}
+                  <button className="text-button">JSON</button>
                 </div>
               </div>
               <div className="ag-theme-balham">

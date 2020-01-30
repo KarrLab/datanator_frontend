@@ -12,10 +12,15 @@ const STRUCTURE_IMG_ARGS = {
   symbolfontsize: 10,
   bgcolor: "transparent",
   antialiasing: 0,
-  crop: 0,
+  crop: 0
 };
-const STRUCTURE_IMG_URL = "http://cactus.nci.nih.gov/chemical/structure/%s%s/image?" + 
-  Object.keys(STRUCTURE_IMG_ARGS).map(el => {return el + "=" + STRUCTURE_IMG_ARGS[el]}).join("&");
+const STRUCTURE_IMG_URL =
+  "http://cactus.nci.nih.gov/chemical/structure/%s%s/image?" +
+  Object.keys(STRUCTURE_IMG_ARGS)
+    .map(el => {
+      return el + "=" + STRUCTURE_IMG_ARGS[el];
+    })
+    .join("&");
 
 const DATABASES = {
   biocyc: {
@@ -109,9 +114,13 @@ class MetadataSection extends Component {
     }
 
     // synonyms
-    const synonyms = []
+    const synonyms = [];
     for (var i = metadata.synonyms.length - 1; i >= 0; i--) {
-      synonyms.push(<li><div className="bulleted-list-item">{metadata.synonyms[i]}</div></li>)
+      synonyms.push(
+        <li>
+          <div className="bulleted-list-item">{metadata.synonyms[i]}</div>
+        </li>
+      );
     }
 
     // database links
@@ -139,26 +148,24 @@ class MetadataSection extends Component {
 
     // render
     return (
-      <div>        
+      <div>
         {metadata.description && (
           <div className="content-block" id="description">
             <h2 className="content-block-heading">Description</h2>
             <div className="content-block-content icon-description">
               {structure && (
-              <img
-                src={sprintf(
-                  STRUCTURE_IMG_URL,
-                  structure.type,
-                  structure.value
-                )}
-                className="entity-scene-icon hover-zoom"
-                alt="Chemical structure"
-                aria-label="Chemical structure"
-              />
+                <img
+                  src={sprintf(
+                    STRUCTURE_IMG_URL,
+                    structure.type,
+                    structure.value
+                  )}
+                  className="entity-scene-icon hover-zoom"
+                  alt="Chemical structure"
+                  aria-label="Chemical structure"
+                />
               )}
-              <div>
-                {metadata.description}
-              </div>
+              <div>{metadata.description}</div>
             </div>
           </div>
         )}
@@ -167,9 +174,7 @@ class MetadataSection extends Component {
           <div className="content-block" id="synonyms">
             <h2 className="content-block-heading">Synonyms</h2>
             <div className="content-block-content">
-              <ul className="three-col-list">
-                {synonyms}
-              </ul>
+              <ul className="three-col-list">{synonyms}</ul>
             </div>
           </div>
         )}
@@ -189,9 +194,7 @@ class MetadataSection extends Component {
           <div className="content-block" id="physics">
             <h2 className="content-block-heading">Physical properties</h2>
             <div className="content-block-content">
-              <ul className="key-value-list link-list">
-                {physicalProps}
-              </ul>
+              <ul className="key-value-list link-list">{physicalProps}</ul>
             </div>
           </div>
         )}
@@ -201,7 +204,11 @@ class MetadataSection extends Component {
             <h2 className="content-block-heading">Cellular localizations</h2>
             <div className="content-block-content">
               <ul className="two-col-list">
-                {cellularLocations.map(el => (<li><div className="bulleted-list-item">{el}</div></li>))}
+                {cellularLocations.map(el => (
+                  <li key={el}>
+                    <div className="bulleted-list-item">{el}</div>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -212,27 +219,28 @@ class MetadataSection extends Component {
             <h2 className="content-block-heading">Pathways</h2>
             <div className="content-block-content">
               <ul className="two-col-list link-list">
-                {metadata.pathways
-                  .map(el => {
-                    let map_id = null
-                    if (el.kegg_map_id){
-                      map_id = el.kegg_map_id.substring(2, el.kegg_map_id.length)
-                    }
-                    return (
-                      <li>
-                        <a
-                          key={map_id}
-                          href={
-                            "https://www.genome.jp/dbget-bin/www_bget?map" +
-                            map_id
-                          }
-                          className="bulleted-list-item"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          dangerouslySetInnerHTML={{__html: upperCaseFirstLetter(el.name)}}
-                        ></a>
-                      </li>
-                    );
+                {metadata.pathways.map(el => {
+                  let map_id = null;
+                  if (el.kegg_map_id) {
+                    map_id = el.kegg_map_id.substring(2, el.kegg_map_id.length);
+                  }
+                  return (
+                    <li key={map_id}>
+                      <a
+                        key={map_id}
+                        href={
+                          "https://www.genome.jp/dbget-bin/www_bget?map" +
+                          map_id
+                        }
+                        className="bulleted-list-item"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        dangerouslySetInnerHTML={{
+                          __html: upperCaseFirstLetter(el.name)
+                        }}
+                      ></a>
+                    </li>
+                  );
                 })}
               </ul>
             </div>

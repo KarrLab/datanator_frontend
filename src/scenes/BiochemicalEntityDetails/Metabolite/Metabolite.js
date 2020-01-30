@@ -11,21 +11,30 @@ import { setAllData, setSelectedData } from "~/data/actions/resultsAction";
 
 import { AgGridReact } from "@ag-grid-community/react";
 import { AllModules } from "@ag-grid-enterprise/all-modules";
-import { StatsToolPanel } from "../StatsToolPanel/StatsToolPanel.js";
+import { StatsToolPanel as BaseStatsToolPanel } from "../StatsToolPanel/StatsToolPanel.js";
 import { TaxonomyFilter } from "../TaxonomyFilter.js";
 import { TanimotoFilter } from "../TanimotoFilter.js";
 import "@ag-grid-enterprise/all-modules/dist/styles/ag-grid.scss";
 import "@ag-grid-enterprise/all-modules/dist/styles/ag-theme-balham/sass/ag-theme-balham.scss";
 
-import { formatChemicalFormula, dictOfArraysToArrayOfDicts } from "~/utils/utils";
+import {
+  formatChemicalFormula,
+  dictOfArraysToArrayOfDicts
+} from "~/utils/utils";
 
 import "../BiochemicalEntityDetails.scss";
 // import "./Metabolite.scss";
 
-const reactStringReplace = require('react-string-replace');
+const reactStringReplace = require("react-string-replace");
+
+class StatsToolPanel extends Component {
+  render() {
+    return <BaseStatsToolPanel col="value" />;
+  }
+}
 
 const frameworkComponents = {
-  statsToolPanel: () => (<StatsToolPanel col={"value"} />),
+  statsToolPanel: StatsToolPanel,
   taxonomyFilter: TaxonomyFilter,
   tanimotoFilter: TanimotoFilter
 };
@@ -236,8 +245,7 @@ class Metabolite extends Component {
       {},
       "Unable to retrieve data about metabolite '" + metabolite + "'."
     ).then(response => {
-      if (!response)
-          return;
+      if (!response) return;
       this.formatData(response.data);
     });
     if (organism) {
@@ -246,9 +254,8 @@ class Metabolite extends Component {
         {},
         "Unable to obtain taxonomic information about '" + organism + "'."
       ).then(response => {
-        if (!response)
-          return;
-        this.setState({ lineage: response.data });        
+        if (!response) return;
+        this.setState({ lineage: response.data });
       });
     }
   }
@@ -267,10 +274,21 @@ class Metabolite extends Component {
         metadata.synonyms = met.synonyms.synonym;
 
         if (met.description != null && met.description !== undefined) {
-          metadata.description = reactStringReplace(met.description, /[([]PMID: *(\d+)[)\]]/gi,
-            (pmid) => {
-              return (<span>[<a href={"https://www.ncbi.nlm.nih.gov/pubmed/" + pmid}>PMID: {pmid}</a>]</span>);
-          });
+          metadata.description = reactStringReplace(
+            met.description,
+            /[([]PMID: *(\d+)[)\]]/gi,
+            pmid => {
+              return (
+                <span>
+                  [
+                  <a href={"https://www.ncbi.nlm.nih.gov/pubmed/" + pmid}>
+                    PMID: {pmid}
+                  </a>
+                  ]
+                </span>
+              );
+            }
+          );
         } else {
           metadata.description = null;
         }
@@ -288,7 +306,7 @@ class Metabolite extends Component {
         ).value;
 
         metadata.pathways = met.pathways.pathway;
-        
+
         metadata.cellularLocations = met.cellular_locations.cellular_location;
         if (!Array.isArray(metadata.cellularLocations)) {
           if (metadata.cellularLocations) {
@@ -321,12 +339,12 @@ class Metabolite extends Component {
     for (const datum of data) {
       for (const met of datum) {
         const species = "species" in met ? met.species : "Escherichia coli";
-        
+
         const metConcs = dictOfArraysToArrayOfDicts(met.concentrations);
 
         for (const metConc of metConcs) {
-          let uncertainty = parseFloat(metConc.error)
-          if (uncertainty === 0 || isNaN(uncertainty)){
+          let uncertainty = parseFloat(metConc.error);
+          if (uncertainty === 0 || isNaN(uncertainty)) {
             uncertainty = null;
           }
           const conc = {
@@ -334,22 +352,19 @@ class Metabolite extends Component {
             tanimotoSimilarity: met.tanimoto_similarity,
             value: parseFloat(metConc.concentration),
             uncertainty: uncertainty,
-            units: metConc.concentration_units,            
+            units: metConc.concentration_units,
             organism:
-              Object.prototype.hasOwnProperty(metConc, "strain") && metConc.strain
+              Object.prototype.hasOwnProperty.call(metConc, "strain") &&
+              metConc.strain
                 ? species + " " + metConc.strain
                 : species,
             taxonomicProximity: met.taxon_distance,
             growth_phase:
-              "growth_status" in metConc
-                ? metConc.growth_status
-                : null,
+              "growth_status" in metConc ? metConc.growth_status : null,
             growth_media:
               "growth_media" in metConc ? metConc.growth_media : null,
             growth_conditions:
-              "growth_system" in metConc
-                ? metConc.growth_system
-                : null,
+              "growth_system" in metConc ? metConc.growth_system : null,
             source_link:
               "m2m_id" in met
                 ? { source: "ecmdb", id: met.m2m_id }
@@ -360,7 +375,7 @@ class Metabolite extends Component {
           }
           if (conc.growth_phase && conc.growth_phase.indexOf(" Phase") >= 0) {
             conc.growth_phase = conc.growth_phase.split(" Phase")[0];
-          }          
+          }
           if (!isNaN(conc.value)) {
             allConcs.push(conc);
           }
@@ -458,12 +473,12 @@ class Metabolite extends Component {
                     <HashLink to="#localizations" scroll={scrollTo}>
                       Localizations
                     </HashLink>
-                  </li> 
+                  </li>
                   <li>
                     <HashLink to="#pathways" scroll={scrollTo}>
                       Pathways
                     </HashLink>
-                  </li>                  
+                  </li>
                   <li>
                     <HashLink to="#concentration" scroll={scrollTo}>
                       Concentration
@@ -485,7 +500,8 @@ class Metabolite extends Component {
               <div className="content-block-heading-container">
                 <h2 className="content-block-heading">Concentration</h2>
                 <div className="content-block-heading-actions">
-                  Export: <button className="text-button">CSV</button> | <button className="text-button">JSON</button>
+                  Export: <button className="text-button">CSV</button> |{" "}
+                  <button className="text-button">JSON</button>
                 </div>
               </div>
               <div className="ag-theme-balham">
