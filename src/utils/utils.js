@@ -129,6 +129,25 @@ function strCompare(a, b, caseInsensitive = true) {
   return 0;
 }
 
+function removeDuplicates(array, keyFunc = null) {
+  const uniqueKeyVals = {};
+
+  for (const el of array) {
+    let key;
+    if (keyFunc == null) {
+      key = el;
+    } else {
+      key = keyFunc(el);
+    }
+
+    if (!(key in uniqueKeyVals)) {
+      uniqueKeyVals[key] = el;
+    }
+  }
+
+  return Object.values(uniqueKeyVals);
+}
+
 export {
   mode,
   formatScientificNotation,
@@ -136,5 +155,6 @@ export {
   dictOfArraysToArrayOfDicts,
   upperCaseFirstLetter,
   scrollTo,
-  strCompare
+  strCompare,
+  removeDuplicates
 };

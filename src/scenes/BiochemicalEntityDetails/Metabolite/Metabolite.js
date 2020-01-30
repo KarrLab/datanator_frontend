@@ -8,7 +8,8 @@ import {
   dictOfArraysToArrayOfDicts,
   upperCaseFirstLetter,
   scrollTo,
-  strCompare
+  strCompare,
+  removeDuplicates
 } from "~/utils/utils";
 
 import { MetadataSection } from "./MetadataSection";
@@ -310,6 +311,7 @@ class Metabolite extends Component {
         ).value;
 
         metadata.pathways = met.pathways.pathway;
+        metadata.pathways = removeDuplicates(metadata.pathways, el => el.name);
         metadata.pathways.sort((a, b) => {
           return strCompare(a.name, b.name);
         });

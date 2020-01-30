@@ -220,27 +220,39 @@ class MetadataSection extends Component {
             <div className="content-block-content">
               <ul className="two-col-list link-list">
                 {metadata.pathways.map(el => {
-                  let map_id = null;
                   if (el.kegg_map_id) {
-                    map_id = el.kegg_map_id.substring(2, el.kegg_map_id.length);
+                    const map_id = el.kegg_map_id.substring(
+                      2,
+                      el.kegg_map_id.length
+                    );
+                    return (
+                      <li key={el.name}>
+                        <a
+                          href={
+                            "https://www.genome.jp/dbget-bin/www_bget?map" +
+                            map_id
+                          }
+                          className="bulleted-list-item"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          dangerouslySetInnerHTML={{
+                            __html: upperCaseFirstLetter(el.name)
+                          }}
+                        ></a>
+                      </li>
+                    );
+                  } else {
+                    return (
+                      <li key={el.name}>
+                        <div
+                          className="bulleted-list-item"
+                          dangerouslySetInnerHTML={{
+                            __html: upperCaseFirstLetter(el.name)
+                          }}
+                        ></div>
+                      </li>
+                    );
                   }
-                  return (
-                    <li key={map_id}>
-                      <a
-                        key={map_id}
-                        href={
-                          "https://www.genome.jp/dbget-bin/www_bget?map" +
-                          map_id
-                        }
-                        className="bulleted-list-item"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        dangerouslySetInnerHTML={{
-                          __html: upperCaseFirstLetter(el.name)
-                        }}
-                      ></a>
-                    </li>
-                  );
                 })}
               </ul>
             </div>
