@@ -41,6 +41,7 @@ ol:first-child {
 .comma-separated-list {
   list-style-type: none;
   margin: 0;
+  display: inline;  
 
   li {
     display: inline;

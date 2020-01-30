@@ -48,10 +48,39 @@ export default class RnaSearchResultsList extends Component {
 
     const formattedResults = [];
     for (const result of results) {
-      let description = "";
+      const genes = [];
       if (result["gene_name"]) {
-        description = "Gene: " + result["gene_name"];
+        genes.push(result["gene_name"]);
+      } else {
+        for (const halfLife of result["halflives"]) {
+          genes.push(halfLife["ordered_locus_name"]);
+        }
       }
+
+      let description = "";
+      if (genes.length) {
+        description = (
+          <span>
+            Gene:{" "}
+            <ul className="comma-separated-list">
+              {genes.map(gene => {
+                return (
+                  <li key={gene}>
+                    <a
+                      href={"https://www.uniprot.org/uniprot/?query=" + gene}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {gene}
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </span>
+        );
+      }
+
       formattedResults.push({
         title: result["protein_name"],
         description: description,
