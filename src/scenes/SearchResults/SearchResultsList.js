@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
-
 import { getDataFromApi } from "~/services/RestApi";
 import axios from "axios";
 
@@ -30,15 +29,20 @@ class SearchResultsList extends Component {
 
     this.state = {
       results: null,
-      numResults: null
+      numResults: null,
+      location:""
     };
 
     this.formatResult = this.formatResult.bind(this);
   }
 
   componentDidMount() {
-    this.unlistenToHistory = this.props.history.listen(() => {
-      this.updateStateFromLocation();
+    this.setState({location:this.props.history.location.pathname})
+    this.unlistenToHistory = this.props.history.listen((location, action) => {
+      if (this.props.history.location.pathname !== this.state.location){
+        this.updateStateFromLocation();
+        this.setState({location:this.props.history.location.pathname})
+      }
     });
     this.updateStateFromLocation();
   }
