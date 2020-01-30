@@ -186,30 +186,10 @@ function updateGridHorizontalScrolling(event, grid) {
   }
 }
 
-function getBooleanValue(checkboxSelector) {
-  return document.querySelector(checkboxSelector);
-}
-
-function only20YearOlds(params) {
-  return params.node.data && params.node.data.age != 20;
-}
-
-function getParams() {
-  return {
-    allColumns: getBooleanValue("#allColumns"),
-    columnGroups: getBooleanValue("#columnGroups"),
-    columnKeys: getBooleanValue("#columnKeys"),
-    onlySelected: getBooleanValue("#onlySelected"),
-    onlySelectedAllPages: getBooleanValue("#onlySelectedAllPages"),
-    shouldRowBeSkipped:
-      getBooleanValue("#shouldRowBeSkipped") && only20YearOlds,
-    skipFooters: getBooleanValue("#skipFooters"),
-    skipGroups: getBooleanValue("#skipGroups"),
-    skipHeader: getBooleanValue("#skipHeader"),
-    skipPinnedTop: getBooleanValue("#skipPinnedTop"),
-    skipPinnedBottom: getBooleanValue("#skipPinnedBottom")
-  };
-}
+const gridDataExportParams = {
+  allColumns: true,
+  onlySelected: false,
+};
 
 export {
   mode,
@@ -222,5 +202,5 @@ export {
   removeDuplicates,
   sizeGridColumnsToFit,
   updateGridHorizontalScrolling,
-  getParams
+  gridDataExportParams
 };

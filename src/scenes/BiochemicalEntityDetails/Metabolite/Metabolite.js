@@ -13,7 +13,7 @@ import {
   removeDuplicates,
   sizeGridColumnsToFit,
   updateGridHorizontalScrolling,
-  getParams
+  gridDataExportParams
 } from "~/utils/utils";
 
 import { MetadataSection } from "./MetadataSection";
@@ -230,6 +230,7 @@ class Metabolite extends Component {
     this.updateGridHorizontalScrolling = this.updateGridHorizontalScrolling.bind(this);
     this.onFilterChanged = this.onFilterChanged.bind(this);
     this.onSelectionChanged = this.onSelectionChanged.bind(this);
+    this.onClickExportDataCsv = this.onClickExportDataCsv.bind(this);
     this.recordData = this.recordData.bind(this);
   }
 
@@ -454,8 +455,9 @@ class Metabolite extends Component {
     this.props.dispatch(setSelectedData(selectedRows));
   }
 
-  onBtnExportDataAsCsv() {
-    this.gridApi.exportDataAsCsv(getParams());
+  onClickExportDataCsv() {
+    const gridApi = this.grid.current.api;
+    gridApi.exportDataAsCsv(gridDataExportParams);
   }
 
   render() {
@@ -533,7 +535,7 @@ class Metabolite extends Component {
                   Export:{" "}
                   <button
                     className="text-button"
-                    onClick={this.onBtnExportDataAsCsv.bind(this)}
+                    onClick={this.onClickExportDataCsv}
                   >
                     CSV
                   </button>{" "}
