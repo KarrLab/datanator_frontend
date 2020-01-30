@@ -99,12 +99,12 @@ const defaultColDef = {
 
 @connect(store => {
   return {
-    measuredConcs: store.results.allData
+    allData: store.results.allData
   };
 }) //the names given here will be the names of props
 class Metabolite extends Component {
   static propTypes = {
-    measuredConcs: PropTypes.array,
+    allData: PropTypes.array,
     dispatch: PropTypes.func
   };
 
@@ -460,14 +460,14 @@ class Metabolite extends Component {
 
   onClickExportDataJson() {
     downloadData(
-      JSON.stringify(this.props.measuredConcs),
+      JSON.stringify(this.props.allData),
       "data.json",
       "application/json"
     );
   }
 
   render() {
-    if (!this.state.metadata || this.props.measuredConcs == null) {
+    if (!this.state.metadata || this.props.allData == null) {
       return (
         <div className="loader-full-content-container">
           <div className="loader"></div>
@@ -562,7 +562,7 @@ class Metabolite extends Component {
                   sideBar={sideBar}
                   defaultColDef={defaultColDef}
                   columnDefs={this.state.columnDefs}
-                  rowData={this.props.measuredConcs}
+                  rowData={this.props.allData}
                   rowSelection="multiple"
                   groupSelectsChildren={true}
                   suppressMultiSort={true}
