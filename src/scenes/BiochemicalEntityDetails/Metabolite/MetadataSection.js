@@ -210,10 +210,16 @@ class MetadataSection extends Component {
           <div className="content-block" id="biology">
             <h2 className="content-block-heading">Biological context</h2>
             <div className="content-block-content">
-              <ul className="key-value-list key-value-list-spaced">
+              <ul className="key-value-list">
+              {cellularLocations && (
+                  <li>
+                    <b>Localizations:</b>{" "}{cellularLocations}
+                  </li>
+                )}
               {metadata.pathways && metadata.pathways.length > 0 && (
                 <li>
                   <b>Pathways:</b>{" "}
+                  <ul>
                   {metadata.pathways
                     .map(el => {
                       let map_id = null
@@ -221,6 +227,7 @@ class MetadataSection extends Component {
                         map_id = el.kegg_map_id.substring(2, el.kegg_map_id.length)
                       }
                       return (
+                        <li>
                         <a
                           key={map_id}
                           href={
@@ -232,17 +239,14 @@ class MetadataSection extends Component {
                         >
                           {el.name}
                         </a>
+                        </li>
                       );
                     })
                     .reduce((acc, x) => (acc === null ? [x] : [acc, x]), null)}
+                </ul>
                 </li>
               )}
 
-              {cellularLocations && (
-                  <li>
-                    <b>Localizations:</b>{" "}{cellularLocations}
-                  </li>
-                )}
               </ul>
             </div>
           </div>
