@@ -220,7 +220,6 @@ class Reaction extends Component {
     this.updateGridHorizontalScrolling = this.updateGridHorizontalScrolling.bind(
       this
     );
-    this.onFilterChanged = this.onFilterChanged.bind(this);
     this.onSelectionChanged = this.onSelectionChanged.bind(this);
     this.onClickExportDataCsv = this.onClickExportDataCsv.bind(this);
     this.onClickExportDataJson = this.onClickExportDataJson.bind(this);
@@ -436,10 +435,7 @@ class Reaction extends Component {
     updateGridHorizontalScrolling(event, this.grid.current);
   }
 
-  onFilterChanged(event) {
-    event.api.deselectAll();
-    this.props.dispatch(setSelectedData([]));
-  }
+
 
   onSelectionChanged(event) {
     const selectedNodes = event.api.getSelectedNodes();
@@ -548,7 +544,6 @@ class Reaction extends Component {
                   onColumnResized={this.updateGridHorizontalScrolling}
                   onToolPanelVisibleChanged={this.sizeGridColumnsToFit}
                   onFirstDataRendered={this.sizeGridColumnsToFit}
-                  onFilterChanged={this.onFilterChanged}
                   onSelectionChanged={this.onSelectionChanged}
                   lineage={this.state.lineage}
                 ></AgGridReact>
