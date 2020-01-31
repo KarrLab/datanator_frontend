@@ -184,6 +184,7 @@ function updateGridHorizontalScrolling(event, grid) {
   } else {
     grid.gridOptions.suppressHorizontalScroll = true;
   }
+  
 }
 
 const gridDataExportParams = {
