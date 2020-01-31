@@ -131,7 +131,7 @@ function getKmValues(parameters, substrates) {
   const kms = {};
   for (const parameter of parameters) {
     if (
-      parameter.type === "27" &&
+      parameter.type === 27 &&
       substrates.includes(parameter.name) &&
       parameter.observed_name.toLowerCase() === "km"
     ) {
@@ -140,6 +140,7 @@ function getKmValues(parameters, substrates) {
   }
   return kms;
 }
+
 
 /*
 reactionId
@@ -347,11 +348,14 @@ class Reaction extends Component {
       const substrates = getSubstrateNames(
         data[0].reaction_participant[0].substrate
       );
-      const km_values = [];
+      const potential_km_values = {}
+      //const km_values = [];
       for (const substrate of substrates) {
-        km_values.push("km_" + substrate);
+        //km_values.push("km_" + substrate);
+        potential_km_values["km_" + substrate] = false;
       }
-      this.setKmColumns(km_values);
+      console.log(Object.keys(potential_km_values))
+      this.setKmColumns(Object.keys(potential_km_values));
 
       for (const datum of data) {
         let wildtypeMutant = null;
@@ -376,9 +380,11 @@ class Reaction extends Component {
         );
 
         let hasData = false;
-        for (const km_value of km_values) {
+        for (const km_value of Object.keys(potential_km_values)) {
+          console.log(km_value)
           if (row_with_km[km_value] != null) {
             hasData = true;
+            //potential_km_values[]
           }
         }
         if (row_with_km.kcat != null) {

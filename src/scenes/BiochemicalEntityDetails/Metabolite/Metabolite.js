@@ -120,7 +120,7 @@ class Metabolite extends Component {
         filter: "agNumberColumnFilter",
         checkboxSelection: true,
         headerCheckboxSelection: true,
-        headerCheckboxSelectionFilteredOnly: true
+        headerCheckboxSelectionFilteredOnly: false
       },
       {
         headerName: "Uncertainty (µM)",
