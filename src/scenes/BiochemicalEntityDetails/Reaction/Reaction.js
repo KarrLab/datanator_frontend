@@ -141,7 +141,6 @@ function getKmValues(parameters, substrates) {
   return kms;
 }
 
-
 /*
 reactionId
 kcat
@@ -310,7 +309,6 @@ class Reaction extends Component {
 
   getResultsData() {
     const pathArgs = this.props.match.params;
-    console.log(pathArgs.organism);
 
     getDataFromApi(
       [
@@ -348,14 +346,10 @@ class Reaction extends Component {
       const substrates = getSubstrateNames(
         data[0].reaction_participant[0].substrate
       );
-      const potential_km_values = {}
-      //const km_values = [];
+      const potential_km_values = {};
       for (const substrate of substrates) {
-        //km_values.push("km_" + substrate);
         potential_km_values["km_" + substrate] = false;
       }
-      console.log(Object.keys(potential_km_values))
-      this.setKmColumns(Object.keys(potential_km_values));
 
       for (const datum of data) {
         let wildtypeMutant = null;
@@ -381,10 +375,9 @@ class Reaction extends Component {
 
         let hasData = false;
         for (const km_value of Object.keys(potential_km_values)) {
-          console.log(km_value)
           if (row_with_km[km_value] != null) {
             hasData = true;
-            //potential_km_values[]
+            potential_km_values[km_value] = true;
           }
         }
         if (row_with_km.kcat != null) {
@@ -393,8 +386,15 @@ class Reaction extends Component {
         if (hasData) {
           allData.push(row_with_km);
         }
-        //console.log(row_with_km)
       }
+
+      this.setKmColumns(
+        Object.keys(potential_km_values)
+          .filter(function(k) {
+            return potential_km_values[k];
+          })
+          .map(String)
+      );
 
       this.props.dispatch(setAllData(allData));
     }
@@ -440,8 +440,6 @@ class Reaction extends Component {
   updateGridHorizontalScrolling(event) {
     updateGridHorizontalScrolling(event, this.grid.current);
   }
-
-
 
   onSelectionChanged(event) {
     const selectedNodes = event.api.getSelectedNodes();
