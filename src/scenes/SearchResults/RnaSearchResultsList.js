@@ -58,7 +58,7 @@ export default class RnaSearchResultsList extends Component {
         }
         genes = removeDuplicates(genes);
         genes.sort();
-      }      
+      }
 
       let description = "";
       if (genes.length) {
