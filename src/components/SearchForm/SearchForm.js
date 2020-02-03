@@ -24,13 +24,14 @@ class SearchForm extends Component {
 
     this.state = {
       query: "",
-      organism: null,
+      organism: "",
       matchingOrganisms: [],
       queryValid: false,
       organismValid: true
     };
 
     this.getMatchingOrganisms = this.getMatchingOrganisms.bind(this);
+    this.selectOrganism = this.selectOrganism.bind(this);
     this.submitSearch = this.submitSearch.bind(this);
 
     this.gettingMatchingOrganisms = false;
@@ -58,7 +59,7 @@ class SearchForm extends Component {
       const match = this.props.history.location.pathname.match(pathRegex);
       if (match) {
         const query = match[1].trim();
-        const organism = match[3].trim() || null;
+        const organism = match[3].trim() || "";
 
         this.setState({
           query: query,
@@ -73,13 +74,16 @@ class SearchForm extends Component {
     }
   }
 
-  getMatchingOrganisms(query, event) {
+  getMatchingOrganisms(query, event, isSelectEvent = false) {
     // Blueprint appears to issue two calls per input change; ignore the one with no defined event
     if (!event) {
       return;
     }
 
-    this.setState({ organismValid: query !== "" });
+    this.setState({
+      organism: query,
+      organismValid: query === "" || isSelectEvent
+    });
 
     // cancel earlier query
     if (this.cancelTokenSource) {
@@ -128,6 +132,11 @@ class SearchForm extends Component {
     return organism;
   }
 
+  selectOrganism(value, event) {
+    this.getMatchingOrganisms(value, event, true);
+    this.organismSuggest.input.focus();
+  }
+
   submitSearch(event) {
     event.preventDefault();
 
@@ -174,17 +183,10 @@ class SearchForm extends Component {
           openOnKeyDown={true}
           onQueryChange={this.getMatchingOrganisms}
           itemRenderer={this.genOrganismMenuItem}
-          selectedItem={this.state.organism}
-          activeItem={null}
           inputValueRenderer={this.renderOrganism}
           noResults={<MenuItem disabled={true} text="No matching organisms" />}
-          onItemSelect={value => {
-            this.setState({
-              organism: value,
-              organismValid: true
-            });
-            this.organismSuggest.input.focus();
-          }}
+          onItemSelect={this.selectOrganism}
+          query={this.state.organism}
         >
           <InputGroup />
         </Suggest>
