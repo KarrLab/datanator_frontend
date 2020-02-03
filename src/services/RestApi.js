@@ -25,7 +25,9 @@ function getDataFromApi(params, options = {}, errorMessage = null) {
       );
       if (IS_DEVELOPMENT) {
         const errorInfo = error.response.data;
-        console.log("Server error " + errorInfo.status + ': ' + errorInfo.detail);
+        console.log(
+          "Server error " + errorInfo.status + ": " + errorInfo.detail
+        );
       }
     }
   });
