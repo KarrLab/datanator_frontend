@@ -34,8 +34,8 @@ class MetadataSection extends Component {
 
     return (
       <div>
-        <div className="content-block" id="properties">
-          <h2 className="content-block-heading">Properties</h2>
+        <div className="content-block" id="description">
+          <h2 className="content-block-heading">Description</h2>
           <div className="content-block-content">
             <ul className="key-value-list link-list">
               <li>

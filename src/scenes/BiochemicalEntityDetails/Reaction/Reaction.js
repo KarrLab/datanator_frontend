@@ -518,8 +518,8 @@ class Reaction extends Component {
               <div className="content-block-content">
                 <ul>
                   <li>
-                    <HashLink to="#properties" scroll={scrollTo}>
-                      Properties
+                    <HashLink to="#description" scroll={scrollTo}>
+                      Description
                     </HashLink>
                   </li>
                   <li>
