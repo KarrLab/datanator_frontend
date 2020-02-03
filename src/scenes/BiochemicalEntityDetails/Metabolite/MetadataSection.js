@@ -163,6 +163,7 @@ class MetadataSection extends Component {
                   className="entity-scene-icon hover-zoom"
                   alt="Chemical structure"
                   aria-label="Chemical structure"
+                  crossOrigin=""
                 />
               )}
               <div>{metadata.description}</div>
