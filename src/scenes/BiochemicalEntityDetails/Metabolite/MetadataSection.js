@@ -150,7 +150,7 @@ class MetadataSection extends Component {
     return (
       <div>
         {metadata.description && (
-          <div className="content-block" id="description" test-id="description">
+          <div className="content-block" id="description" data-testid="description">
             <h2 className="content-block-heading">Description</h2>
             <div className="content-block-content icon-description">
               {structure && (

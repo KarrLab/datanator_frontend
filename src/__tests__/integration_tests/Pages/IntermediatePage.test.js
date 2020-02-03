@@ -31,7 +31,7 @@ const renderComponent = (query, organism) =>
   );
 
 
-it('query general search', async () => {
+it.skip('query general search', async () => {
   // Render new instance in every test to prevent leaking state
   let query = 'glucose'  
   let organism = 'homo sapiens'

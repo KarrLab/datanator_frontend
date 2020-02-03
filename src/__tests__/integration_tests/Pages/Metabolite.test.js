@@ -7,6 +7,7 @@ import Metabolite from '~/scenes/BiochemicalEntityDetails/Metabolite/Metabolite'
 import { MemoryRouter } from "react-router-dom";
 import createStore from '~/data/Store.js'
 import {fireEvent, waitForElement } from '@testing-library/react'
+import '@testing-library/jest-dom/extend-expect'
 
 jest.useFakeTimers();
 
@@ -38,9 +39,12 @@ it('render metabolite page', async () => {
   const { getByTestId, getByText, getAllByText, getByPlaceholderText  } =  renderComponent('ATP', 'Bacillus subtilis');
 
   await waitForElement(() => getByTestId('description'));
-  expect(getByTestId('description'))
-  expect(getAllByText('Escherichia coli K12 NCM3722', { exact: false }))
-  expect(getAllByText('Saccharomyces cerevisiae', { exact: false }))
+  //const text = getNodeText(getByTestId('description'))
+  //const getByTextWithMarkup = withMarkup(getByTestId('description'))
+  //getByTextWithMarkup("is a multifunctional nucleotide")
+  expect(getByTestId('description')).toHaveTextContent("is a multifunctional nucleotide")
+  //expect(getAllByText('Escherichia coli K12 NCM3722', { exact: false }))
+  //expect(getAllByText('Saccharomyces cerevisiae', { exact: false }))
 
 });
 
