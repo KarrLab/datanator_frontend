@@ -31,7 +31,7 @@ const renderComponent = (searchType, protein) =>
   );
 
 
-it('render protein page', async () => {
+it.skip('render protein page', async () => {
   // Render new instance in every test to prevent leaking state
   const { getByTestId, getByText, getAllByText, getByPlaceholderText  } =  renderComponent('uniprot', 'P01112');
 
@@ -40,7 +40,7 @@ it('render protein page', async () => {
 });
 
 
-it('filter and update consensus', async () => {
+it.skip('filter and update consensus', async () => {
   // Render new instance in every test to prevent leaking state
   const {getByText, getAllByText, getByPlaceholderText  } =  renderComponent('uniprot', 'P01112', false);
 
@@ -64,7 +64,7 @@ it('filter and update consensus', async () => {
 
 
 
-it('render protein name search', async () => {
+it.skip('render protein name search', async () => {
   // Render new instance in every test to prevent leaking state
   const {getByText, getAllByText, getByPlaceholderText  } =  renderComponent('name', 'phosphofructokinase', false);
   jest.runAllTimers();
@@ -83,7 +83,7 @@ it('render protein name search', async () => {
 
 
 
-it('test no results found', async () => {
+it.skip('test no results found', async () => {
   window.alert = jest.fn();
   const {getByText} =  renderComponent('uniprot', 'fake_id_for_the_win', false);
   await waitForElement(() => getByText('Nothing Found.', { exact: false }))

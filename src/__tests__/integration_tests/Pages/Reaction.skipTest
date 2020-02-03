@@ -31,7 +31,7 @@ const renderComponent = (substrates, products, sub_inchis, prod_inchis) =>
     </MemoryRouter>
   );
 
-it('render reaction data page', async () => {
+it.skip('render reaction data page', async () => {
   // Render new instance in every test to prevent leaking state
   let substrates = ["ATP", "AMP"]
   let products = ['ADP']

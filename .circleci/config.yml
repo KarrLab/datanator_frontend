@@ -41,7 +41,7 @@ jobs:
             export PATH=$PATH:node_modules/.bin
 
             # Run tests
-            jest .
+            npm test .
             if [[ $? -ne 0 ]]; then error=1; fi
 
             # Lint JavaScript

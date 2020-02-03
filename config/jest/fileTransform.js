@@ -35,6 +35,12 @@ module.exports = {
       };`;
     }
 
+    else if (filename.match(/.scss/)) {
+      // Ignoring require'd SASS files
+      return '';
+    }
+
+
     return `module.exports = ${assetFilename};`;
   }
 };

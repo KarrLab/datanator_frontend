@@ -41,7 +41,7 @@ store.dispatch(setAllData(f_concentrations))
 
 
 
-test('hello world', async () => {
+test.skip('hello world', async () => {
   const { getByText, getByTitle, getByPlaceholderText, getByTestId, toHaveTextContent, container, getByLabelText, getAllByText, queryByText } = render(
     <Provider store={store}>
     <ResultsTable  
