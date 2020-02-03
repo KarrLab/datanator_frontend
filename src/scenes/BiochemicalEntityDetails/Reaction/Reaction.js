@@ -3,13 +3,15 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { HashLink } from "react-router-hash-link";
 import PropTypes from "prop-types";
+import axios from "axios";
 import {
   upperCaseFirstLetter,
   scrollTo,
   sizeGridColumnsToFit,
   updateGridHorizontalScrolling,
   gridDataExportParams,
-  downloadData
+  downloadData,
+  parseHistoryLocationPathname
 } from "~/utils/utils";
 
 import { MetadataSection } from "./MetadataSection";
@@ -153,12 +155,21 @@ temperature
   return { allData: store.results.allData };
 }) //the names given here will be the names of props
 class Reaction extends Component {
-  static propTypes = {};
+  static propTypes = {
+    history: PropTypes.object.isRequired,
+    allData: PropTypes.array,
+    dispatch: PropTypes.func
+  };
 
   constructor(props) {
     super(props);
 
     this.grid = React.createRef();
+
+    this.locationPathname = null;
+    this.unlistenToHistory = null;
+    this.cancelDataTokenSource = null;
+    this.cancelTaxonInfoTokenSource = null;
 
     this.state = {
       metadata: null,
@@ -272,16 +283,29 @@ class Reaction extends Component {
   }
 
   componentDidMount() {
-    this.getResultsData();
+    this.locationPathname = this.props.history.location.pathname;
+    this.unlistenToHistory = this.props.history.listen(location => {
+      if (location.pathname !== this.locationPathname) {
+        this.locationPathname = this.props.history.location.pathname;
+        this.updateStateFromLocation();
+      }
+    });
+    this.updateStateFromLocation();
   }
 
-  componentDidUpdate(prevProps) {
-    const pathArgs = this.props.match.params;
-    const oldPathArgs = prevProps.match.params;
-    if (
-      pathArgs.substrates !== oldPathArgs.substrates ||
-      pathArgs.products !== oldPathArgs.products
-    ) {
+  componentWillUnmount() {
+    this.unlistenToHistory();
+    this.unlistenToHistory = null;
+    if (this.cancelDataTokenSource) {
+      this.cancelDataTokenSource.cancel();
+    }
+    if (this.cancelTaxonInfoTokenSource) {
+      this.cancelTaxonInfoTokenSource.cancel();
+    }
+  }
+
+  updateStateFromLocation() {
+    if (this.unlistenToHistory) {
       this.setState({
         metadata: null
       });
@@ -289,53 +313,59 @@ class Reaction extends Component {
     }
   }
 
-  getMetaData() {
-    const pathArgs = this.props.match.params;
-    getDataFromApi(
-      [
-        "reactions/kinlaw_by_name/?products=" +
-          pathArgs.products +
-          "&substrates=" +
-          pathArgs.substrates +
-          "&_from=0&size=1000&bound=tight"
-      ],
-      {},
-      "Unable to get data about reaction."
-    ).then(response => {
-      if (!response) return;
-      this.formatMetadata(response.data);
-    });
-  }
-
   getResultsData() {
-    const pathArgs = this.props.match.params;
+    const route = parseHistoryLocationPathname(this.props.history);
+    const substratesProducts = route.query.split("-->");
+    const substrates = substratesProducts[0].trim();
+    const products = substratesProducts[1].trim();
+    const organism = route.organism;
 
+    if (this.cancelDataTokenSource) {
+      this.cancelDataTokenSource.cancel();
+    }
+
+    this.cancelDataTokenSource = axios.CancelToken.source();
     getDataFromApi(
       [
-        "reactions/kinlaw_by_name/?products=" +
-          pathArgs.products +
-          "&substrates=" +
-          pathArgs.substrates +
-          "&_from=0&size=1000&bound=tight"
+        "reactions/kinlaw_by_name/" +
+          "?substrates=" +
+          substrates +
+          "&products=" +
+          products +
+          "&_from=0" +
+          "&size=1000" +
+          "&bound=tight"
       ],
-      {},
+      { cancelToken: this.cancelDataTokenSource.token },
       "Unable to get data about reaction."
-    ).then(response => {
-      if (!response) return;
-      this.formatMetadata(response.data);
-      this.formatData(response.data);
-    });
-
-    if (pathArgs.organism) {
-      getDataFromApi(
-        ["taxon", "canon_rank_distance_by_name/?name=" + pathArgs.organism],
-        {},
-        "Unable to get taxonomic information about '" + pathArgs.organism + "'."
-      ).then(response => {
+    )
+      .then(response => {
         if (!response) return;
-        //this.props.dispatch(setLineage(response.data));
-        this.setState({ lineage: response.data });
+        this.formatMetadata(response.data);
+        this.formatData(response.data);
+      })
+      .finally(() => {
+        this.cancelDataTokenSource = null;
       });
+
+    if (organism) {
+      if (this.cancelTaxonInfoTokenSource) {
+        this.cancelTaxonInfoTokenSource.cancel();
+      }
+
+      this.cancelTaxonInfoTokenSource = axios.CancelToken.source();
+      getDataFromApi(
+        ["taxon", "canon_rank_distance_by_name/?name=" + organism],
+        { cancelToken: this.cancelTaxonInfoTokenSource.token },
+        "Unable to get taxonomic information about '" + organism + "'."
+      )
+        .then(response => {
+          if (!response) return;
+          this.setState({ lineage: response.data });
+        })
+        .finally(() => {
+          this.cancelTaxonInfoTokenSource = null;
+        });
     }
   }
 

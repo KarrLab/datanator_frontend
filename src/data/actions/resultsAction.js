@@ -1,12 +1,3 @@
-function setLineage(lineageList) {
-  return function(dispatch) {
-    dispatch({
-      type: "SET_LINEAGE",
-      payload: lineageList
-    });
-  };
-}
-
 function setAllData(allData) {
   return function(dispatch) {
     dispatch({
@@ -25,4 +16,4 @@ function setSelectedData(selectedData) {
   };
 }
 
-export { setLineage, setAllData, setSelectedData };
+export { setAllData, setSelectedData };

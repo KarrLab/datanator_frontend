@@ -84,12 +84,12 @@ ol:first-child {
   list-style-type: none;
   margin: 0;
 
-  li {
+  > li {
     padding-left: 0.5rem;
     text-indent: -0.5rem;
   }
 
-  li:not(:first-child) {
+  > li:not(:first-child) {
     margin-top: 0.25rem;
   }
 

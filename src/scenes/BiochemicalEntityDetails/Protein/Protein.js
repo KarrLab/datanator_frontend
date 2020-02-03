@@ -3,22 +3,20 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { HashLink } from "react-router-hash-link";
 import PropTypes from "prop-types";
+import axios from "axios";
 import {
   upperCaseFirstLetter,
   scrollTo,
   sizeGridColumnsToFit,
   updateGridHorizontalScrolling,
   gridDataExportParams,
-  downloadData
+  downloadData,
+  parseHistoryLocationPathname
 } from "~/utils/utils";
 
 import { MetadataSection } from "./MetadataSection";
 import { getDataFromApi } from "~/services/RestApi";
-import {
-  setLineage,
-  setAllData,
-  setSelectedData
-} from "~/data/actions/resultsAction";
+import { setAllData, setSelectedData } from "~/data/actions/resultsAction";
 import { AgGridReact } from "@ag-grid-community/react";
 import { AllModules } from "@ag-grid-enterprise/all-modules";
 import { NumericCellRenderer } from "../NumericCellRenderer";
@@ -178,12 +176,23 @@ Object.size = function(obj) {
   };
 }) //the names given here will be the names of props
 class Protein extends Component {
-  static propTypes = {};
+  static propTypes = {
+    history: PropTypes.object.isRequired,
+    allData: PropTypes.array,
+    dispatch: PropTypes.func
+  };
 
   constructor(props) {
     super(props);
 
     this.grid = React.createRef();
+
+    this.locationPathname = null;
+    this.unlistenToHistory = null;
+    this.cancelDataTokenSource = null;
+    this.cancelTaxonInfoTokenSource = null;
+    this.cancelUniprotMetadataTokenSource = null;
+    this.cancelComboMetadataTokenSource = null;
 
     this.state = {
       metadata: null,
@@ -201,25 +210,36 @@ class Protein extends Component {
     this.onClickExportDataJson = this.onClickExportDataJson.bind(this);
   }
 
-  onClickExportDataJson() {
-    downloadData(
-      JSON.stringify(this.props.allData),
-      "data.json",
-      "application/json"
-    );
-  }
-
   componentDidMount() {
-    this.getDataFromApi();
+    this.locationPathname = this.props.history.location.pathname;
+    this.unlistenToHistory = this.props.history.listen(location => {
+      if (location.pathname !== this.locationPathname) {
+        this.locationPathname = this.props.history.location.pathname;
+        this.updateStateFromLocation();
+      }
+    });
+    this.updateStateFromLocation();
   }
 
-  componentDidUpdate(prevProps) {
-    // respond to parameter change in scenario 3
+  componentWillUnmount() {
+    this.unlistenToHistory();
+    this.unlistenToHistory = null;
+    if (this.cancelDataTokenSource) {
+      this.cancelDataTokenSource.cancel();
+    }
+    if (this.cancelTaxonInfoTokenSource) {
+      this.cancelTaxonInfoTokenSource.cancel();
+    }
+    if (this.cancelUniprotMetadataTokenSource) {
+      this.cancelUniprotMetadataTokenSource.cancel();
+    }
+    if (this.cancelComboMetadataTokenSource) {
+      this.cancelComboMetadataTokenSource.cancel();
+    }
+  }
 
-    if (
-      this.props.match.params.protein !== prevProps.match.params.protein ||
-      this.props.match.params.organism !== prevProps.match.params.organism
-    ) {
+  updateStateFromLocation() {
+    if (this.unlistenToHistory) {
       this.setState({
         metadata: null,
         lineage: []
@@ -229,34 +249,57 @@ class Protein extends Component {
   }
 
   getDataFromApi() {
-    const ko = this.props.match.params.protein;
-    const organism = this.props.match.params.organism;
+    const route = parseHistoryLocationPathname(this.props.history);
+    const query = route.query;
+    const organism = route.organism;
 
+    // cancel earlier query
+    if (this.cancelDataTokenSource) {
+      this.cancelDataTokenSource.cancel();
+    }
+
+    this.cancelDataTokenSource = axios.CancelToken.source();
     getDataFromApi(
       [
         "proteins",
-        "proximity_abundance/proximity_abundance_kegg/?kegg_id=" +
-          ko +
+        "proximity_abundance/proximity_abundance_kegg/" +
+          "?kegg_id=" +
+          query +
           "&anchor=" +
           organism +
-          "&distance=40&depth=40"
+          "&distance=40" +
+          "&depth=40"
       ],
-      {},
-      "Unable to get data about ortholog group '" + ko + "'."
-    ).then(response => {
-      if (!response) return;
-      this.processProteinDataUniprot(response.data);
-    });
+      { cancelToken: this.cancelDataTokenSource.token },
+      "Unable to get data about ortholog group '" + query + "'."
+    )
+      .then(response => {
+        if (!response) return;
+        this.processProteinDataUniprot(response.data);
+      })
+      .finally(() => {
+        this.cancelDataTokenSource = null;
+      });
 
     if (organism != null) {
+      // cancel earlier query
+      if (this.cancelTaxonInfoTokenSource) {
+        this.cancelTaxonInfoTokenSource.cancel();
+      }
+
+      this.cancelTaxonInfoTokenSource = axios.CancelToken.source();
       getDataFromApi(
         ["taxon", "canon_rank_distance_by_name/?name=" + organism],
-        {},
+        { cancelToken: this.cancelTaxonInfoTokenSource.token },
         "Unable to get taxonomic information about '" + organism + "'."
-      ).then(response => {
-        if (!response) return;
-        this.setState({ lineage: response.data });
-      });
+      )
+        .then(response => {
+          if (!response) return;
+          this.setState({ lineage: response.data });
+        })
+        .finally(() => {
+          this.cancelTaxonInfoTokenSource = null;
+        });
     }
   }
 
@@ -290,24 +333,34 @@ class Protein extends Component {
       metadata["koNumber"] = [data[0].ko_number, uniprotId];
       this.setState({ metadata: metadata });
     } else {
+      const route = parseHistoryLocationPathname(this.props.history);
+      const query = route.query;
+
+      if (this.cancelUniprotMetadataTokenSource) {
+        this.cancelUniprotMetadataTokenSource.cancel();
+      }
+
+      this.cancelUniprotMetadataTokenSource = axios.CancelToken.source();
       getDataFromApi(
-        ["proteins", "meta?uniprot_id=" + this.props.match.params.protein],
-        {},
-        "Unable to data about ortholog group '" +
-          this.props.match.params.protein +
-          "'."
-      ).then(response => {
-        if (!response) return;
+        ["proteins", "meta?uniprot_id=" + query],
+        { cancelToken: this.cancelUniprotMetadataTokenSource.token },
+        "Unable to data about ortholog group '" + query + "'."
+      )
+        .then(response => {
+          if (!response) return;
 
-        this.formatData(response.data);
+          this.formatData(response.data);
 
-        const metadata = {};
-        metadata["koNumber"] = [
-          response.data[0].ko_number,
-          response.data[1].uniprot_id
-        ];
-        this.setState({ metadata: metadata });
-      });
+          const metadata = {};
+          metadata["koNumber"] = [
+            response.data[0].ko_number,
+            response.data[1].uniprot_id
+          ];
+          this.setState({ metadata: metadata });
+        })
+        .finally(() => {
+          this.cancelUniprotMetadataTokenSource = null;
+        });
     }
   }
 
@@ -328,17 +381,28 @@ class Protein extends Component {
       for (const uniprotId of uniprotIds) {
         endQuery += "uniprot_id=" + uniprotId + "&";
       }
+
+      const route = parseHistoryLocationPathname(this.props.history);
+      const query = route.query;
+
+      if (this.cancelComboMetadataTokenSource) {
+        this.cancelComboMetadataTokenSource.cancel();
+      }
+
+      this.cancelComboMetadataTokenSource = axios.CancelToken.source();
       getDataFromApi(
         ["proteins", "meta/meta_combo/?" + endQuery],
-        {},
-        "Unable to get data about proteins for ortholog group '" +
-          this.props.match.params.protein +
-          "'."
-      ).then(response => {
-        if (!response) return;
-        this.formatOrthologyMetadata(response.data);
-        this.formatData(response.data, uniprotToDist);
-      });
+        { cancelToken: this.cancelComboMetadataTokenSource.token },
+        "Unable to get data about proteins for ortholog group '" + query + "'."
+      )
+        .then(response => {
+          if (!response) return;
+          this.formatOrthologyMetadata(response.data);
+          this.formatData(response.data, uniprotToDist);
+        })
+        .finally(() => {
+          this.cancelComboMetadataTokenSource = null;
+        });
     }
   }
 
@@ -398,7 +462,6 @@ class Protein extends Component {
     updateGridHorizontalScrolling(event, this.grid.current);
   }
 
-
   onSelectionChanged(event) {
     let selectedRows = [];
     for (const selectedNode of event.api.getSelectedNodes()) {
@@ -412,8 +475,17 @@ class Protein extends Component {
     gridApi.exportDataAsCsv(gridDataExportParams);
   }
 
+  onClickExportDataJson() {
+    downloadData(
+      JSON.stringify(this.props.allData),
+      "data.json",
+      "application/json"
+    );
+  }
+
   render() {
-    const organism = this.props.match.params.organism;
+    const route = parseHistoryLocationPathname(this.props.history);
+    const organism = route.organism;
 
     if (this.props.allData == null) {
       return (

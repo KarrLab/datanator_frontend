@@ -19,18 +19,18 @@ class MetadataSection extends Component {
           <h2 className="content-block-heading">Properties</h2>
           <div className="content-block-content">
             {(metadata.geneName || metadata.proteinName) && (
-              <div>
+              <ul className="key-value-list">
                 {metadata.geneName && (
-                  <p>
+                  <li>
                     <b>Gene:</b> {metadata.geneName}
-                  </p>
+                  </li>
                 )}
                 {metadata.proteinName && (
-                  <p>
+                  <li>
                     <b>Protein:</b> {metadata.proteinName}
-                  </p>
+                  </li>
                 )}
-              </div>
+              </ul>
             )}
           </div>
         </div>

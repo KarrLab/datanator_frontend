@@ -3,22 +3,20 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { HashLink } from "react-router-hash-link";
 import PropTypes from "prop-types";
+import axios from "axios";
 import {
   upperCaseFirstLetter,
   scrollTo,
   sizeGridColumnsToFit,
   updateGridHorizontalScrolling,
   gridDataExportParams,
-  downloadData
+  downloadData,
+  parseHistoryLocationPathname
 } from "~/utils/utils";
 
 import { MetadataSection } from "./MetadataSection";
 import { getDataFromApi } from "~/services/RestApi";
-import {
-  setLineage,
-  setAllData,
-  setSelectedData
-} from "~/data/actions/resultsAction";
+import { setAllData, setSelectedData } from "~/data/actions/resultsAction";
 import { AgGridReact } from "@ag-grid-community/react";
 import { AllModules } from "@ag-grid-enterprise/all-modules";
 import { NumericCellRenderer } from "../NumericCellRenderer";
@@ -142,17 +140,25 @@ Object.size = function(obj) {
 
 @connect(store => {
   return {
-    //currentUrl: store.page.url,
     allData: store.results.allData
   };
 }) //the names given here will be the names of props
 class Rna extends Component {
-  static propTypes = {};
+  static propTypes = {
+    history: PropTypes.object.isRequired,
+    allData: PropTypes.array,
+    dispatch: PropTypes.func
+  };
 
   constructor(props) {
     super(props);
 
     this.grid = React.createRef();
+
+    this.locationPathname = null;
+    this.unlistenToHistory = null;
+    this.cancelDataTokenSource = null;
+    this.cancelTaxonInfoTokenSource = null;
 
     this.state = {
       metadata: null,
@@ -170,34 +176,60 @@ class Rna extends Component {
   }
 
   componentDidMount() {
-    this.getDataFromApi();
+    this.locationPathname = this.props.history.location.pathname;
+    this.unlistenToHistory = this.props.history.listen(location => {
+      if (location.pathname !== this.locationPathname) {
+        this.locationPathname = this.props.history.location.pathname;
+        this.updateStateFromLocation();
+      }
+    });
+    this.updateStateFromLocation();
   }
 
-  componentDidUpdate(prevProps) {
-    // respond to parameter change in scenario 3
+  componentWillUnmount() {
+    this.unlistenToHistory();
+    this.unlistenToHistory = null;
+    if (this.cancelDataTokenSource) {
+      this.cancelDataTokenSource.cancel();
+    }
+    if (this.cancelTaxonInfoTokenSource) {
+      this.cancelTaxonInfoTokenSource.cancel();
+    }
+  }
 
-    if (
-      this.props.match.params.rna !== prevProps.match.params.rna ||
-      this.props.match.params.organism !== prevProps.match.params.organism
-    ) {
+  updateStateFromLocation() {
+    if (this.unlistenToHistory) {
       this.getDataFromApi();
     }
   }
 
   getDataFromApi() {
-    const rna = this.props.match.params.rna;
+    const route = parseHistoryLocationPathname(this.props.history);
+    const query = route.query;
+
+    if (this.cancelDataTokenSource) {
+      this.cancelDataTokenSource.cancel();
+    }
+
+    this.cancelDataTokenSource = axios.CancelToken.source();
     getDataFromApi(
       [
-        "/rna/halflife/get_info_by_protein_name/?protein_name=" +
-          rna +
-          "&_from=0&size=1000"
+        "/rna/halflife/get_info_by_protein_name/" +
+          "?protein_name=" +
+          query +
+          "&_from=0" +
+          "&size=1000"
       ],
-      {},
-      "Unable to get data about RNA '" + rna + "'."
-    ).then(response => {
-      if (!response) return;
-      this.formatData(response.data);
-    });
+      { cancelToken: this.cancelDataTokenSource.token },
+      "Unable to get data about RNA '" + query + "'."
+    )
+      .then(response => {
+        if (!response) return;
+        this.formatData(response.data);
+      })
+      .finally(() => {
+        this.cancelDataTokenSource = null;
+      });
   }
 
   formatData(data) {
@@ -236,7 +268,6 @@ class Rna extends Component {
   updateGridHorizontalScrolling(event) {
     updateGridHorizontalScrolling(event, this.grid.current);
   }
-
 
   onSelectionChanged(event) {
     const selectedRows = [];
