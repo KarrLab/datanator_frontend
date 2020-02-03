@@ -199,7 +199,7 @@ class MetadataSection extends Component {
           <div className="content-block" id="physics">
             <h2 className="content-block-heading">Physical properties</h2>
             <div className="content-block-content">
-              <ul className="key-value-list link-list">{physicalProps}</ul>
+              <ul className="key-value-list">{physicalProps}</ul>
             </div>
           </div>
         )}
