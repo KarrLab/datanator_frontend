@@ -184,7 +184,6 @@ function updateGridHorizontalScrolling(event, grid) {
   } else {
     grid.gridOptions.suppressHorizontalScroll = true;
   }
-  
 }
 
 const gridDataExportParams = {
@@ -212,6 +211,21 @@ function downloadData(data, filename, mimeType) {
   anchor.click();
 }
 
+function parseHistoryLocationPathname(history) {
+  const pathRegex = /^\/.*?\/(.*?)(\/(.*?))?\/?$/;
+  const match = history.location.pathname.match(pathRegex);
+  let query = null;
+  let organism = null;
+  if (match) {
+    query = match[1].trim();
+    organism = match[3].trim() || null;
+  }
+  return {
+    query: query,
+    organism: organism
+  };
+}
+
 export {
   mode,
   formatScientificNotation,
@@ -224,5 +238,6 @@ export {
   sizeGridColumnsToFit,
   updateGridHorizontalScrolling,
   gridDataExportParams,
-  downloadData
+  downloadData,
+  parseHistoryLocationPathname
 };
