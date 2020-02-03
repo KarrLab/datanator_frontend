@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Navbar } from "@blueprintjs/core";
 import { Button } from "@blueprintjs/core";
+import { parseHistoryLocationPathname } from "~/utils/utils";
 
 import "./Header.scss";
 import { Logo } from "./Logo/Logo";
@@ -35,11 +36,8 @@ class Header extends Component {
   }
 
   updateStateFromLocation() {
-    const pathRegex = /^\/search(\/|$)/;
-    if (
-      this.unlistenToHistory &&
-      this.props.history.location.pathname.match(pathRegex)
-    ) {
+    const args = parseHistoryLocationPathname(this.props.history);
+    if (this.unlistenToHistory && args.route === "search") {
       this.setState({ showSearchForm: true });
     }
   }

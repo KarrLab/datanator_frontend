@@ -212,15 +212,18 @@ function downloadData(data, filename, mimeType) {
 }
 
 function parseHistoryLocationPathname(history) {
-  const pathRegex = /^\/.*?\/(.*?)(\/(.*?))?\/?$/;
+  const pathRegex = /^\/(.*?)(\/(.*?)(\/(.*?))?)?\/?$/;
   const match = history.location.pathname.match(pathRegex);
+  let route = null;
   let query = null;
   let organism = null;
   if (match) {
-    query = match[1].trim();
-    organism = match[3].trim() || null;
+    route = match[1];
+    query = match[3] ? match[3].trim() || null : null;
+    organism = match[5] ? match[5].trim() || null : null;
   }
   return {
+    route: route,
     query: query,
     organism: organism
   };

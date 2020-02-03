@@ -9,6 +9,7 @@ import { Suggest } from "@blueprintjs/select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getDataFromApi } from "~/services/RestApi";
 import axios from "axios";
+import { parseHistoryLocationPathname } from "~/utils/utils";
 
 import "./SearchForm.scss";
 
@@ -55,11 +56,10 @@ class SearchForm extends Component {
 
   updateStateFromLocation() {
     if (this.unlistenToHistory) {
-      const pathRegex = /^\/search\/(.*?)(\/(.*?))?\/?$/;
-      const match = this.props.history.location.pathname.match(pathRegex);
-      if (match) {
-        const query = match[1].trim();
-        const organism = match[3].trim() || "";
+      const route = parseHistoryLocationPathname(this.props.history);
+      if (route.route === "search") {
+        const query = route.query;
+        const organism = route.organism;
 
         this.setState({
           query: query,

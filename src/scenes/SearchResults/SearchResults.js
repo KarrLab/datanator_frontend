@@ -37,7 +37,11 @@ class SearchResults extends Component {
 
   updateStateFromLocation() {
     if (this.unlistenToHistory) {
-      this.setState(parseHistoryLocationPathname(this.props.history));
+      const route = parseHistoryLocationPathname(this.props.history);
+      this.setState({
+        query: route.query,
+        organism: route.organism
+      });
     }
   }
 

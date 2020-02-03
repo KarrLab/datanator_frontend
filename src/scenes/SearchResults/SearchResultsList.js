@@ -4,6 +4,7 @@ import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import { getDataFromApi } from "~/services/RestApi";
 import axios from "axios";
+import { parseHistoryLocationPathname } from "~/utils/utils";
 
 class SearchResultsList extends Component {
   static propTypes = {
@@ -57,19 +58,16 @@ class SearchResultsList extends Component {
 
   updateStateFromLocation() {
     if (this.unlistenToHistory) {
-      const pathRegex = /^\/search\/(.*?)(\/(.*?))?\/?$/;
-      const match = this.props.history.location.pathname.match(pathRegex);
-      if (match) {
-        this.query = match[1].trim();
-        this.organism = match[3].trim() || null;
-        this.pageCount = 0;
-        this.results = null;
-        this.setState({
-          results: null,
-          numResults: null
-        });
-        this.fetchResults();
-      }
+      const route = parseHistoryLocationPathname(this.props.history);
+      this.query = route.query;
+      this.organism = route.organism;
+      this.pageCount = 0;
+      this.results = null;
+      this.setState({
+        results: null,
+        numResults: null
+      });
+      this.fetchResults();
     }
   }
 
