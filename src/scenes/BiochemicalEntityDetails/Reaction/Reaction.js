@@ -20,6 +20,7 @@ import { setAllData, setSelectedData } from "~/data/actions/resultsAction";
 
 import { AgGridReact } from "@ag-grid-community/react";
 import { AllModules } from "@ag-grid-enterprise/all-modules";
+import { HtmlColumnHeader } from "../HtmlColumnHeader";
 import { NumericCellRenderer } from "../NumericCellRenderer";
 import { StatsToolPanel as BaseStatsToolPanel } from "../StatsToolPanel/StatsToolPanel.js";
 import { TaxonomyFilter } from "~/scenes/BiochemicalEntityDetails/TaxonomyFilter.js";
@@ -175,9 +176,15 @@ class Reaction extends Component {
       metadata: null,
       lineage: [],
       columnDefs: [],
-      first_columns: [
+      firstColumns: [
         {
           headerName: "Kcat",
+          headerHtmlName: (
+            <span>
+              k<sub>cat</sub>
+            </span>
+          ),
+          headerComponentFramework: HtmlColumnHeader,
           field: "kcat",
           cellRenderer: "numericCellRenderer",
           type: "numericColumn",
@@ -202,7 +209,7 @@ class Reaction extends Component {
           filter: "agTextColumnFilter"
         }
       ],
-      second_columns: [
+      secondColumns: [
         {
           headerName: "Organism",
           field: "organism",
@@ -236,48 +243,55 @@ class Reaction extends Component {
     this.onClickExportDataJson = this.onClickExportDataJson.bind(this);
   }
 
-  setKmColumns(km_values) {
-    const new_columns = [];
+  setKmColumns(kmValues) {
+    const newColumns = [];
     const frameworkComponents = {
+      htmlColumnHeader: HtmlColumnHeader,
       numericCellRenderer: NumericCellRenderer,
       taxonomyFilter: TaxonomyFilter
     };
 
     frameworkComponents["statsToolPanel"] = KcatStatsToolPanel;
 
-    for (let i = km_values.length - 1; i >= 0; i--) {
-      new_columns.push({
-        headerName: "Km " + km_values[i].split("_")[1].toLowerCase() + " (M)",
-        field: km_values[i],
+    for (const kmValue of kmValues) {
+      const metabolite = kmValue.split("_")[1];
+      newColumns.push({
+        headerName: "Km " + metabolite + " (M)",
+        headerHtmlName: (
+          <span>
+            K<sub>M</sub> {metabolite} (M)
+          </span>
+        ),
+        headerComponentFramework: HtmlColumnHeader,
+        field: kmValue,
         cellRenderer: "numericCellRenderer",
         type: "numericColumn",
         filter: "agNumberColumnFilter"
       });
-      let comp_name = "CustomToolPanelReaction_" + km_values[i];
+
+      const toolPanelName = kmValue + "KmToolPanel";
       sideBar["toolPanels"].push({
-        id: km_values[i],
-        labelDefault:
-          "K<sub>M</sub> " + km_values[i].split("_")[1].toLowerCase(),
+        id: kmValue,
+        labelDefault: "K<sub>M</sub> " + metabolite,
         labelKey: "chart",
         iconKey: "chart",
-        toolPanel: comp_name
+        toolPanel: toolPanelName
       });
 
-      let km = km_values[i].toString();
+      const km = kmValue.toString();
       class KmStatsToolPanel extends Component {
         render() {
           return <BaseStatsToolPanel col={km} />;
         }
       }
-      frameworkComponents[comp_name] = KmStatsToolPanel;
+      frameworkComponents[toolPanelName] = KmStatsToolPanel;
     }
 
-    const final_columns = this.state.first_columns
-      .concat(new_columns)
-      .concat(this.state.second_columns);
-    //final_columns = final_columns.concat(default_second_columns)
+    const finalColumns = this.state.firstColumns
+      .concat(newColumns)
+      .concat(this.state.secondColumns);
     this.setState({
-      columnDefs: final_columns,
+      columnDefs: finalColumns,
       frameworkComponents: frameworkComponents
     });
   }
@@ -376,9 +390,9 @@ class Reaction extends Component {
       const substrates = getSubstrateNames(
         data[0].reaction_participant[0].substrate
       );
-      const potential_km_values = {};
+      const potentialKmValues = {};
       for (const substrate of substrates) {
-        potential_km_values["km_" + substrate] = false;
+        potentialKmValues["km_" + substrate] = false;
       }
 
       for (const datum of data) {
@@ -388,7 +402,7 @@ class Reaction extends Component {
         } else if (datum["taxon_wildtype"] === "0") {
           wildtypeMutant = "mutant";
         }
-        let row = {
+        const row = {
           kinLawId: datum["kinlaw_id"],
           kcat: getKcatValues(datum.parameter),
           wildtypeMutant: wildtypeMutant,
@@ -397,31 +411,31 @@ class Reaction extends Component {
           temperature: datum.temperature,
           source: { reactionId: getReactionId(datum.resource) }
         };
-        let row_with_km = Object.assign(
+        const rowWithKm = Object.assign(
           {},
           row,
           getKmValues(datum.parameter, substrates)
         );
 
         let hasData = false;
-        for (const km_value of Object.keys(potential_km_values)) {
-          if (row_with_km[km_value] != null) {
+        for (const KmValue of Object.keys(potentialKmValues)) {
+          if (rowWithKm[KmValue] != null) {
             hasData = true;
-            potential_km_values[km_value] = true;
+            potentialKmValues[KmValue] = true;
           }
         }
-        if (row_with_km.kcat != null) {
+        if (rowWithKm.kcat != null) {
           hasData = true;
         }
         if (hasData) {
-          allData.push(row_with_km);
+          allData.push(rowWithKm);
         }
       }
 
       this.setKmColumns(
-        Object.keys(potential_km_values)
+        Object.keys(potentialKmValues)
           .filter(function(k) {
-            return potential_km_values[k];
+            return potentialKmValues[k];
           })
           .map(String)
       );
