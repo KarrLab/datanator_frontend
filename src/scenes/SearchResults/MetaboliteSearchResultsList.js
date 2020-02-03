@@ -45,8 +45,31 @@ export default class MetaboliteSearchResultsList extends Component {
 
         // description
         const linkTypes = [
-          { label: "ECMDB", attribute: "m2m_id" },
-          { label: "YMDB", attribute: "ymdb_id" }
+          {
+            label: "ChEBI",
+            url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=",
+            attribute: "chebi_id"
+          },
+          // {
+          //   label: "ECMDB",
+          //   url: "http://ecmdb.ca/compounds/",
+          //   attribute: "m2m_id"
+          // },
+          // {
+          //   label: "HMDB",
+          //   url: "http://www.hmdb.ca/metabolites/",
+          //   attribute: "hmdb_id"
+          // },
+          {
+            label: "KEGG",
+            url: "https://www.genome.jp/dbget-bin/www_bget?cpd:",
+            attribute: "kegg_id"
+          }
+          // {
+          //   label: "YMDB",
+          //   url: "http://www.ymdb.ca/compounds/",
+          //   attribute: "ymdb_id"
+          // }
         ];
         const links = [];
         for (const linkType of linkTypes) {
@@ -56,7 +79,7 @@ export default class MetaboliteSearchResultsList extends Component {
               <li key={linkType.label}>
                 {linkType.label}:{" "}
                 <a
-                  href={"http://www.ymdb.ca/compounds/" + linkId}
+                  href={linkType.url + linkId}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
