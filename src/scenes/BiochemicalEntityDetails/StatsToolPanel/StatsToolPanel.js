@@ -208,8 +208,8 @@ class StatsToolPanel extends Component {
         <div className="biochemical-entity-scene-stats-tool-panel">
           <div className="biochemical-entity-scene-stats-tool-panel-plot">
             <MeasurementsBoxScatterPlot
-              all-measurements={this.state.all.values}
-              selected-measurements={this.state.selected.values}
+              all={this.state.all.values}
+              selected={this.state.selected.values}
             />
           </div>
 

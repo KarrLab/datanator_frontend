@@ -7,12 +7,12 @@ import * as colorPalette from "~/colors.scss";
 
 export default class MeasurementsBoxScatterPlot extends Component {
   static propTypes = {
-    "all-measurements": PropTypes.array,
-    "selected-measurements": PropTypes.array
+    "all": PropTypes.array,
+    "selected": PropTypes.array
   };
 
   static defaultProps = {
-    "selected-measurements": null
+    "selected": null
   };
 
   canvas = React.createRef();
@@ -50,7 +50,7 @@ export default class MeasurementsBoxScatterPlot extends Component {
     };
 
     // all measurements
-    let measurements = this.props["all-measurements"] || [];
+    let measurements = this.props.all || [];
     let dataForBoxPlot = measurements;
     let dataForScatterPlot = [];
     for (const measurement of measurements) {
@@ -73,8 +73,8 @@ export default class MeasurementsBoxScatterPlot extends Component {
     });
 
     // selected measurements
-    if (this.props["selected-measurements"] != null) {
-      let measurements = this.props["selected-measurements"];
+    if (this.props.selected != null) {
+      let measurements = this.props.selected;
       let dataForBoxPlot = measurements;
       let dataForScatterPlot = [];
       for (const measurement of measurements) {
