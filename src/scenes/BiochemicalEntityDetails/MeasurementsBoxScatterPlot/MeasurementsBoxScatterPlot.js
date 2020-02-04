@@ -7,9 +7,8 @@ import * as colorPalette from "~/colors.scss";
 
 export default class MeasurementsBoxScatterPlot extends Component {
   static propTypes = {
-    "all-measurements": PropTypes.array.isRequired,
-    "selected-measurements": PropTypes.array,
-    "data-property": PropTypes.string.isRequired
+    "all-measurements": PropTypes.array,
+    "selected-measurements": PropTypes.array
   };
 
   static defaultProps = {
@@ -51,20 +50,13 @@ export default class MeasurementsBoxScatterPlot extends Component {
     };
 
     // all measurements
-    let measurements = this.props["all-measurements"];
-    let dataForBoxPlot = [];
+    let measurements = this.props["all-measurements"] || [];
+    let dataForBoxPlot = measurements;
     let dataForScatterPlot = [];
-    for (
-      let iMeasurement = measurements.length - 1;
-      iMeasurement >= 0;
-      iMeasurement--
-    ) {
-      dataForBoxPlot.push(
-        parseFloat(measurements[iMeasurement][this.props["data-property"]])
-      );
+    for (const measurement of measurements) {
       dataForScatterPlot.push({
         x: "All",
-        y: parseFloat(measurements[iMeasurement][this.props["data-property"]])
+        y: measurement
       });
     }
     chartConfig.data.datasets[0].data.push(dataForBoxPlot);
@@ -83,19 +75,12 @@ export default class MeasurementsBoxScatterPlot extends Component {
     // selected measurements
     if (this.props["selected-measurements"] != null) {
       let measurements = this.props["selected-measurements"];
-      let dataForBoxPlot = [];
+      let dataForBoxPlot = measurements;
       let dataForScatterPlot = [];
-      for (
-        let iMeasurement = measurements.length - 1;
-        iMeasurement >= 0;
-        iMeasurement--
-      ) {
-        dataForBoxPlot.push(
-          parseFloat(measurements[iMeasurement][this.props["data-property"]])
-        );
+      for (const measurement of measurements) {
         dataForScatterPlot.push({
           x: "Selected",
-          y: parseFloat(measurements[iMeasurement][this.props["data-property"]])
+          y: parseFloat(measurement)
         });
       }
 

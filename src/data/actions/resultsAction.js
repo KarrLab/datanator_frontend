@@ -7,13 +7,4 @@ function setAllData(allData) {
   };
 }
 
-function setSelectedData(selectedData) {
-  return function(dispatch) {
-    dispatch({
-      type: "SET_SELECTED_DATA",
-      payload: selectedData
-    });
-  };
-}
-
-export { setAllData, setSelectedData };
+export { setAllData };

@@ -16,24 +16,18 @@ import {
 
 import { MetadataSection } from "./MetadataSection";
 import { getDataFromApi } from "~/services/RestApi";
-import { setAllData, setSelectedData } from "~/data/actions/resultsAction";
+import { setAllData } from "~/data/actions/resultsAction";
 
 import { AgGridReact } from "@ag-grid-community/react";
 import { AllModules } from "@ag-grid-enterprise/all-modules";
 import { HtmlColumnHeader } from "../HtmlColumnHeader";
 import { NumericCellRenderer } from "../NumericCellRenderer";
-import { StatsToolPanel as BaseStatsToolPanel } from "../StatsToolPanel/StatsToolPanel.js";
+import { StatsToolPanel } from "../StatsToolPanel/StatsToolPanel.js";
 import { TaxonomyFilter } from "~/scenes/BiochemicalEntityDetails/TaxonomyFilter.js";
 import "@ag-grid-enterprise/all-modules/dist/styles/ag-grid.scss";
 import "@ag-grid-enterprise/all-modules/dist/styles/ag-theme-balham/sass/ag-theme-balham.scss";
 
 import "../BiochemicalEntityDetails.scss";
-
-class KcatStatsToolPanel extends Component {
-  render() {
-    return <BaseStatsToolPanel col="kcat" />;
-  }
-}
 
 const sideBar = {
   toolPanels: [
@@ -70,7 +64,10 @@ const sideBar = {
       labelDefault: "k<sub>cat</sub>",
       labelKey: "chart",
       iconKey: "chart",
-      toolPanel: "statsToolPanel"
+      toolPanel: "statsToolPanel",
+      toolPanelParams: {
+        col: "kcat"
+      }
     }
   ],
   position: "left",
@@ -241,7 +238,6 @@ class Reaction extends Component {
     this.updateGridHorizontalScrolling = this.updateGridHorizontalScrolling.bind(
       this
     );
-    this.onSelectionChanged = this.onSelectionChanged.bind(this);
     this.onClickExportDataCsv = this.onClickExportDataCsv.bind(this);
     this.onClickExportDataJson = this.onClickExportDataJson.bind(this);
   }
@@ -251,10 +247,9 @@ class Reaction extends Component {
     const frameworkComponents = {
       htmlColumnHeader: HtmlColumnHeader,
       numericCellRenderer: NumericCellRenderer,
-      taxonomyFilter: TaxonomyFilter
+      taxonomyFilter: TaxonomyFilter,
+      statsToolPanel: StatsToolPanel
     };
-
-    frameworkComponents["statsToolPanel"] = KcatStatsToolPanel;
 
     for (const kmValue of kmValues) {
       const metabolite = kmValue.split("_")[1];
@@ -274,22 +269,16 @@ class Reaction extends Component {
         filter: "agNumberColumnFilter"
       });
 
-      const toolPanelName = kmValue + "KmToolPanel";
       sideBar["toolPanels"].push({
         id: kmValue,
         labelDefault: "K<sub>M</sub> " + metabolite,
         labelKey: "chart",
         iconKey: "chart",
-        toolPanel: toolPanelName
-      });
-
-      const km = kmValue.toString();
-      class KmStatsToolPanel extends Component {
-        render() {
-          return <BaseStatsToolPanel col={km} />;
+        toolPanel: "statsToolPanel",
+        toolPanelParams: {
+          col: kmValue.toString()
         }
-      }
-      frameworkComponents[toolPanelName] = KmStatsToolPanel;
+      });
     }
 
     const finalColumns = this.state.firstColumns
@@ -513,15 +502,6 @@ class Reaction extends Component {
     updateGridHorizontalScrolling(event, this.grid.current);
   }
 
-  onSelectionChanged(event) {
-    const selectedNodes = event.api.getSelectedNodes();
-    const selectedRows = [];
-    for (const selectedNode of selectedNodes) {
-      selectedRows.push(selectedNode.data);
-    }
-    this.props.dispatch(setSelectedData(selectedRows));
-  }
-
   onClickExportDataCsv() {
     const gridApi = this.grid.current.api;
     gridApi.exportDataAsCsv(gridDataExportParams);
@@ -621,7 +601,6 @@ class Reaction extends Component {
                   onColumnResized={this.updateGridHorizontalScrolling}
                   onToolPanelVisibleChanged={this.sizeGridColumnsToFit}
                   onFirstDataRendered={this.sizeGridColumnsToFit}
-                  onSelectionChanged={this.onSelectionChanged}
                   lineage={this.state.lineage}
                 ></AgGridReact>
               </div>

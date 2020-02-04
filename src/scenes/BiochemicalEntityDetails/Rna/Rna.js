@@ -16,22 +16,16 @@ import {
 
 import { MetadataSection } from "./MetadataSection";
 import { getDataFromApi } from "~/services/RestApi";
-import { setAllData, setSelectedData } from "~/data/actions/resultsAction";
+import { setAllData } from "~/data/actions/resultsAction";
 import { AgGridReact } from "@ag-grid-community/react";
 import { AllModules } from "@ag-grid-enterprise/all-modules";
 import { NumericCellRenderer } from "../NumericCellRenderer";
-import { StatsToolPanel as BaseStatsToolPanel } from "../StatsToolPanel/StatsToolPanel.js";
+import { StatsToolPanel } from "../StatsToolPanel/StatsToolPanel.js";
 import { TaxonomyFilter } from "~/scenes/BiochemicalEntityDetails/TaxonomyFilter.js";
 import "@ag-grid-enterprise/all-modules/dist/styles/ag-grid.scss";
 import "@ag-grid-enterprise/all-modules/dist/styles/ag-theme-balham/sass/ag-theme-balham.scss";
 
 import "../BiochemicalEntityDetails.scss";
-
-class StatsToolPanel extends Component {
-  render() {
-    return <BaseStatsToolPanel col="halfLife" />;
-  }
-}
 
 const frameworkComponents = {
   numericCellRenderer: NumericCellRenderer,
@@ -74,7 +68,10 @@ const sideBar = {
       labelDefault: "Stats",
       labelKey: "chart",
       iconKey: "chart",
-      toolPanel: "statsToolPanel"
+      toolPanel: "statsToolPanel",
+      toolPanelParams: {
+        col: "halfLife"
+      }
     }
   ],
   position: "left",
@@ -170,7 +167,6 @@ class Rna extends Component {
     this.updateGridHorizontalScrolling = this.updateGridHorizontalScrolling.bind(
       this
     );
-    this.onSelectionChanged = this.onSelectionChanged.bind(this);
     this.onClickExportDataCsv = this.onClickExportDataCsv.bind(this);
     this.onClickExportDataJson = this.onClickExportDataJson.bind(this);
   }
@@ -267,14 +263,6 @@ class Rna extends Component {
 
   updateGridHorizontalScrolling(event) {
     updateGridHorizontalScrolling(event, this.grid.current);
-  }
-
-  onSelectionChanged(event) {
-    const selectedRows = [];
-    for (const selectedNode of event.api.getSelectedNodes()) {
-      selectedRows.push(selectedNode.data);
-    }
-    this.props.dispatch(setSelectedData(selectedRows));
   }
 
   onClickExportDataCsv() {
@@ -375,7 +363,6 @@ class Rna extends Component {
                   onColumnResized={this.updateGridHorizontalScrolling}
                   onToolPanelVisibleChanged={this.sizeGridColumnsToFit}
                   onFirstDataRendered={this.sizeGridColumnsToFit}
-                  onSelectionChanged={this.onSelectionChanged}
                   lineage={this.state.lineage}
                 ></AgGridReact>
               </div>
