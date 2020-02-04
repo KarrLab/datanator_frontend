@@ -236,6 +236,7 @@ class Reaction extends Component {
       frameworkComponents: {}
     };
 
+    this.formatColumnHeadings = this.formatColumnHeadings.bind(this);
     this.sizeGridColumnsToFit = this.sizeGridColumnsToFit.bind(this);
     this.updateGridHorizontalScrolling = this.updateGridHorizontalScrolling.bind(
       this
@@ -480,6 +481,30 @@ class Reaction extends Component {
     }
   }
 
+  formatColumnHeadings(event) {
+    const gridApi = event.api;
+    const panelLabelClasses = {
+      columns: "ag-column-tool-panel-column-label",
+      filters: "ag-group-component-title"
+    };
+    for (const panelId in panelLabelClasses) {
+      const panel = gridApi.getToolPanelInstance(panelId);
+      const labels = panel.eGui.getElementsByClassName(
+        panelLabelClasses[panelId]
+      );
+      for (const label of labels) {
+        if (!label.innerHTML.startsWith("<span>")) {
+          label.innerHTML =
+            "<span>" +
+            label.innerHTML
+              .replace("Kcat", "k<sub>cat</sub>")
+              .replace("Km", "K<sub>m</sub>") +
+            "</span>";
+        }
+      }
+    }
+  }
+
   sizeGridColumnsToFit(event) {
     sizeGridColumnsToFit(event, this.grid.current);
   }
@@ -590,6 +615,7 @@ class Reaction extends Component {
                   suppressRowClickSelection={true}
                   suppressContextMenu={true}
                   domLayout="autoHeight"
+                  onGridColumnsChanged={this.formatColumnHeadings}
                   onGridSizeChanged={this.sizeGridColumnsToFit}
                   onColumnVisible={this.sizeGridColumnsToFit}
                   onColumnResized={this.updateGridHorizontalScrolling}
