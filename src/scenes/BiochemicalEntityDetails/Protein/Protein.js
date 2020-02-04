@@ -446,11 +446,7 @@ class Protein extends Component {
           }
         }
         this.props.dispatch(setAllData(allData));
-      } else {
-        //alert('Nothing Found');
       }
-    } else {
-      //alert('Nothing Found');
     }
   }
 

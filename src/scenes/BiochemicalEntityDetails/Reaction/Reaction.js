@@ -388,7 +388,6 @@ class Reaction extends Component {
   }
 
   formatData(data) {
-    console.log("ReactionPage: Calling formatData");
     if (data != null) {
       const allData = [];
       const substrates = getSubstrateNames(
