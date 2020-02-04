@@ -6,7 +6,8 @@ import Metabolite from '~/scenes/BiochemicalEntityDetails/Metabolite/Metabolite'
 import { MemoryRouter } from "react-router-dom";
 import {fireEvent, waitForElement } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
-
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 jest.useFakeTimers();
 
 
