@@ -199,7 +199,7 @@ class StatsToolPanel extends Component {
             />
           </div>
 
-          <table className="summary">
+          <table className="summary" data-testid="summary">
             <tbody>
               <tr>
                 <th></th>
