@@ -205,7 +205,11 @@ class MetadataSection extends Component {
         )}
 
         {metadata.cellularLocations && metadata.cellularLocations.length > 0 && (
-          <div className="content-block" id="localizations" data-testid="localizations">
+          <div
+            className="content-block"
+            id="localizations"
+            data-testid="localizations"
+          >
             <h2 className="content-block-heading">Cellular localizations</h2>
             <div className="content-block-content">
               <ul className="two-col-list">
