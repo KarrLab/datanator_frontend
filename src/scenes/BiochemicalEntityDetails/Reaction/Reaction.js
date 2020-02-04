@@ -179,12 +179,14 @@ class Reaction extends Component {
       firstColumns: [
         {
           headerName: "Kcat",
-          headerHtmlName: (
-            <span>
-              k<sub>cat</sub>
-            </span>
-          ),
           headerComponentFramework: HtmlColumnHeader,
+          headerComponentParams: {
+            name: (
+              <span>
+                k<sub>cat</sub>
+              </span>
+            )
+          },
           field: "kcat",
           cellRenderer: "numericCellRenderer",
           type: "numericColumn",
@@ -257,12 +259,14 @@ class Reaction extends Component {
       const metabolite = kmValue.split("_")[1];
       newColumns.push({
         headerName: "Km " + metabolite + " (M)",
-        headerHtmlName: (
-          <span>
-            K<sub>M</sub> {metabolite} (M)
-          </span>
-        ),
         headerComponentFramework: HtmlColumnHeader,
+        headerComponentParams: {
+          name: (
+            <span>
+              K<sub>M</sub> {metabolite} (M)
+            </span>
+          )
+        },
         field: kmValue,
         cellRenderer: "numericCellRenderer",
         type: "numericColumn",

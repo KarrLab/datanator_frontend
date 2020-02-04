@@ -5,7 +5,9 @@ class HtmlColumnHeader extends Component {
   static propTypes = {
     column: PropTypes.shape({
       colDef: PropTypes.shape({
-        headerHtmlName: PropTypes.string
+        headerComponentParams: PropTypes.shape({
+          name: PropTypes.object.isRequired
+        }).isRequired
       }).isRequired
     }).isRequired,
     setSort: PropTypes.func.isRequired
@@ -22,6 +24,7 @@ class HtmlColumnHeader extends Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div
         className={
@@ -36,7 +39,7 @@ class HtmlColumnHeader extends Component {
           onTouchEnd={this.toggleSort}
         >
           <div className="ag-header-cell-text">
-            {this.props.column.colDef.headerHtmlName}
+            {this.props.column.colDef.headerComponentParams.name}
           </div>
           <div>
             <span
