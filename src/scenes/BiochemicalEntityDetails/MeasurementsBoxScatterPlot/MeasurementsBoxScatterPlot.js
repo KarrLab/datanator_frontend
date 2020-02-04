@@ -7,12 +7,12 @@ import * as colorPalette from "~/colors.scss";
 
 export default class MeasurementsBoxScatterPlot extends Component {
   static propTypes = {
-    "all": PropTypes.array,
-    "selected": PropTypes.array
+    all: PropTypes.array,
+    selected: PropTypes.array
   };
 
   static defaultProps = {
-    "selected": null
+    selected: null
   };
 
   canvas = React.createRef();

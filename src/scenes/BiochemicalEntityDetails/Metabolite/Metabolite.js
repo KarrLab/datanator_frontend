@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { HashLink } from "react-router-hash-link";
 import PropTypes from "prop-types";
@@ -20,7 +19,6 @@ import {
 
 import { MetadataSection } from "./MetadataSection";
 import { getDataFromApi } from "~/services/RestApi";
-import { setAllData } from "~/data/actions/resultsAction";
 
 import { AgGridReact } from "@ag-grid-community/react";
 import { AllModules } from "@ag-grid-enterprise/all-modules";
@@ -98,16 +96,9 @@ const defaultColDef = {
   suppressMenu: true
 };
 
-@connect(store => {
-  return {
-    allData: store.results.allData
-  };
-}) //the names given here will be the names of props
 class Metabolite extends Component {
   static propTypes = {
-    history: PropTypes.object.isRequired,
-    allData: PropTypes.array,
-    dispatch: PropTypes.func
+    history: PropTypes.object.isRequired
   };
 
   constructor(props) {
@@ -122,6 +113,7 @@ class Metabolite extends Component {
 
     this.state = {
       metadata: null,
+      data: null,
       lineage: [],
       columnDefs: null
     };
@@ -160,7 +152,7 @@ class Metabolite extends Component {
   updateStateFromLocation() {
     if (this.unlistenToHistory) {
       this.setColumnDefs();
-      this.setState({ metadata: null });
+      this.setState({ metadata: null, data: null });
       this.getDataFromApi();
     }
   }
@@ -358,8 +350,10 @@ class Metabolite extends Component {
       }
     }
 
-    this.props.dispatch(setAllData(allConcs));
-    this.setState({ metadata: metadata });
+    this.setState({
+      metadata: metadata,
+      data: allConcs
+    });
   }
 
   setColumnDefs() {
@@ -492,14 +486,14 @@ class Metabolite extends Component {
 
   onClickExportDataJson() {
     downloadData(
-      JSON.stringify(this.props.allData),
+      JSON.stringify(this.state.data),
       "data.json",
       "application/json"
     );
   }
 
   render() {
-    if (!this.state.metadata || this.props.allData == null) {
+    if (this.state.metadata == null || this.state.data == null) {
       return (
         <div className="loader-full-content-container">
           <div className="loader"></div>
@@ -598,7 +592,7 @@ class Metabolite extends Component {
                   sideBar={sideBar}
                   defaultColDef={defaultColDef}
                   columnDefs={this.state.columnDefs}
-                  rowData={this.props.allData}
+                  rowData={this.state.data}
                   rowSelection="multiple"
                   groupSelectsChildren={true}
                   suppressMultiSort={true}

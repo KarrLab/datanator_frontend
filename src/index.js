@@ -5,8 +5,6 @@ import ReactDOM from "react-dom";
 import { Router, Switch, Route } from "react-router-dom";
 
 // Redux (used for state management)
-import { Provider } from "react-redux";
-import store from "~/data/Store";
 import history from "~/utils/history";
 
 // Feedback form
@@ -80,15 +78,8 @@ const SiteRouter = () => {
     </Router>
   );
 };
-const SiteProvider = () => {
-  return (
-    <Provider store={store}>
-      <SiteRouter />
-    </Provider>
-  );
-};
 
-ReactDOM.render(<SiteProvider />, document.getElementById("root"));
+ReactDOM.render(<SiteRouter />, document.getElementById("root"));
 
 applyPolyfills().then(() => {
   defineCustomElements(window);

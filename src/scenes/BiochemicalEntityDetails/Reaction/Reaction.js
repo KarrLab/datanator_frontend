@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { HashLink } from "react-router-hash-link";
 import PropTypes from "prop-types";
@@ -16,7 +15,6 @@ import {
 
 import { MetadataSection } from "./MetadataSection";
 import { getDataFromApi } from "~/services/RestApi";
-import { setAllData } from "~/data/actions/resultsAction";
 
 import { AgGridReact } from "@ag-grid-community/react";
 import { AllModules } from "@ag-grid-enterprise/all-modules";
@@ -149,14 +147,9 @@ organism
 ph
 temperature
 */
-@connect(store => {
-  return { allData: store.results.allData };
-}) //the names given here will be the names of props
 class Reaction extends Component {
   static propTypes = {
-    history: PropTypes.object.isRequired,
-    allData: PropTypes.array,
-    dispatch: PropTypes.func
+    history: PropTypes.object.isRequired
   };
 
   constructor(props) {
@@ -171,6 +164,7 @@ class Reaction extends Component {
 
     this.state = {
       metadata: null,
+      data: null,
       lineage: [],
       columnDefs: [],
       firstColumns: [
@@ -315,7 +309,8 @@ class Reaction extends Component {
   updateStateFromLocation() {
     if (this.unlistenToHistory) {
       this.setState({
-        metadata: null
+        metadata: null,
+        data: null
       });
       this.getResultsData();
     }
@@ -433,7 +428,9 @@ class Reaction extends Component {
           .map(String)
       );
 
-      this.props.dispatch(setAllData(allData));
+      this.setState({
+        data: allData
+      });
     }
   }
 
@@ -509,14 +506,14 @@ class Reaction extends Component {
 
   onClickExportDataJson() {
     downloadData(
-      JSON.stringify(this.props.allData),
+      JSON.stringify(this.state.data),
       "data.json",
       "application/json"
     );
   }
 
   render() {
-    if (this.props.allData == null || this.state.metadata == null) {
+    if (this.state.metadata == null || this.state.data == null) {
       return (
         <div className="loader-full-content-container">
           <div className="loader"></div>
@@ -585,7 +582,7 @@ class Reaction extends Component {
                   sideBar={sideBar}
                   defaultColDef={defaultColDef}
                   columnDefs={this.state.columnDefs}
-                  rowData={this.props.allData}
+                  rowData={this.state.data}
                   rowSelection="multiple"
                   groupSelectsChildren={true}
                   suppressMultiSort={true}

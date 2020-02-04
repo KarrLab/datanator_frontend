@@ -1,11 +1,9 @@
 import React from 'react';
 import { render, } from '@testing-library/react';
-import { Provider } from 'react-redux'
 import {Route, Switch } from 'react-router-dom'
 
 import Metabolite from '~/scenes/BiochemicalEntityDetails/Metabolite/Metabolite';
 import { MemoryRouter } from "react-router-dom";
-import createStore from '~/data/Store.js'
 import {fireEvent, waitForElement } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 
@@ -17,17 +15,13 @@ let the_json = ""
 
 //jest.useFakeTimers();
 
-const store = createStore
-
 //jest.runAllTimers();
 
 const renderComponent = (metabolite, organism, abstract) =>
   render (
     <MemoryRouter initialEntries={['/metabolite/' + metabolite + '/' + organism ]}>
       <Route path="/metabolite/:metabolite/:organism?/">
-       <Provider store={store}>
         <Metabolite />
-        </Provider>
       </Route>
     </MemoryRouter>
   );

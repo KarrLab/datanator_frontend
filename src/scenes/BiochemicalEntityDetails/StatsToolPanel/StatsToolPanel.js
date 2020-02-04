@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
 import MeasurementsBoxScatterPlot from "../MeasurementsBoxScatterPlot/MeasurementsBoxScatterPlot";
 import { mean, median, std, min, max } from "mathjs";
 import { formatScientificNotation } from "~/utils/utils";
@@ -12,18 +11,8 @@ import "./StatsToolPanel.scss";
  * This class takes the data from the store, and summarizes the data with mean, median, standard deviation, minimum, maximum, and a chart at top.
  * This class mostly handles the rendering, while the logic is handled elsewhere
  */
-@connect(store => {
-  return {
-    allData: store.results.allData
-  };
-})
 class StatsToolPanel extends Component {
   static propTypes = {
-    /**
-     * REDUX: This is a list of all the data. This is recorded in the CSV file
-     */
-    allData: PropTypes.array.isRequired,
-
     /* AG-Grid API */
     api: PropTypes.shape({
       addEventListener: PropTypes.func.isRequired,
@@ -43,51 +32,26 @@ class StatsToolPanel extends Component {
 
     this.state = {
       all: {
-        /* values of all of the data */
         values: null,
-
-        /* The count of all of the data */
         count: null,
-
-        /* The mean of all of the data */
         mean: null,
-
-        /* The median of all of the data */
         median: null,
-
-        /* The standard deviation of all of the data */
         stdDev: null,
-
-        /* Minimum of all of the data */
         min: null,
-
-        /* Maximum of all of the data */
         max: null
       },
       selected: {
-        /* selected values */
         values: null,
-
-        /* The count of the selected data */
         count: null,
-
-        /* The mean of the selected data */
         mean: null,
-
-        /* The median of the selected data */
         median: null,
-
-        /* The standard deviation of the selected data */
         stdDev: null,
-
-        /* Minimum of the selected data */
         min: null,
-
-        /* Maximum of the selected data */
         max: null
       }
     };
 
+    this.updateStats = this.updateStats.bind(this);
     this.updateSelectedStats = this.updateSelectedStats.bind(this);
   }
 
@@ -96,13 +60,54 @@ class StatsToolPanel extends Component {
    * if the data exists
    */
   componentDidMount() {
-    if (this.props.allData != null) {
-      this.setState({
-        all: this.calcStats(this.props.allData)
-      });
-    }
+    this.props.api.addEventListener("firstDataRendered", this.updateStats);
+    this.props.api.addEventListener("rowDataChanged", this.updateStats);
+    this.props.api.addEventListener("filterChanged", this.updateSelectedStats);
+    this.props.api.addEventListener(
+      "selectionChanged",
+      this.updateSelectedStats
+    );
+  }
 
-    if (this.props.api != null) {
+  /**
+   * If all data gets updated, then the summary stats should update too
+   */
+  componentDidUpdate(prevProps) {
+    if (prevProps.api !== this.props.api) {
+      prevProps.api.removeEventListener("firstDataRendered", this.updateStats);
+      prevProps.api.removeEventListener("rowDataChanged", this.updateStats);
+      prevProps.api.removeEventListener(
+        "filterChanged",
+        this.updateSelectedStats
+      );
+      prevProps.api.removeEventListener(
+        "selectionChanged",
+        this.updateSelectedStats
+      );
+
+      this.setState({
+        all: {
+          values: null,
+          count: null,
+          mean: null,
+          median: null,
+          stdDev: null,
+          min: null,
+          max: null
+        },
+        selected: {
+          values: null,
+          count: null,
+          mean: null,
+          median: null,
+          stdDev: null,
+          min: null,
+          max: null
+        }
+      });
+
+      this.props.api.addEventListener("firstDataRendered", this.updateStats);
+      this.props.api.addEventListener("rowDataChanged", this.updateStats);
       this.props.api.addEventListener(
         "filterChanged",
         this.updateSelectedStats
@@ -114,36 +119,17 @@ class StatsToolPanel extends Component {
     }
   }
 
-  /**
-   * If all data gets updated, then the summary stats should update too
-   */
-  componentDidUpdate(prevProps) {
-    if (prevProps.allData !== this.props.allData) {
-      this.setState({
-        all: this.calcStats(this.props.allData)
-      });
-    }
+  updateStats(event) {
+    const dataPoints = [];
+    event.api.forEachNode(node => {
+      dataPoints.push(node.data);
+    });
 
-    if (prevProps.api !== this.props.api) {
-      prevProps.api.removeEventListener(
-        "filterChanged",
-        this.updateSelectedStats
-      );
-      prevProps.api.removeEventListener(
-        "selectionChanged",
-        this.updateSelectedStats
-      );
-      if (this.props.api != null) {
-        this.props.api.addEventListener(
-          "filterChanged",
-          this.updateSelectedStats
-        );
-        this.props.api.addEventListener(
-          "selectionChanged",
-          this.updateSelectedStats
-        );
-      }
-    }
+    this.setState({
+      all: this.calcStats(dataPoints)
+    });
+
+    this.updateSelectedStats(event);
   }
 
   updateSelectedStats(event) {
@@ -201,7 +187,7 @@ class StatsToolPanel extends Component {
   }
 
   render() {
-    if (this.props.allData == null) {
+    if (this.state.all.values == null) {
       return <div></div>;
     } else {
       return (

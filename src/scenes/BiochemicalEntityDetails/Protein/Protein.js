@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { HashLink } from "react-router-hash-link";
 import PropTypes from "prop-types";
@@ -16,7 +15,6 @@ import {
 
 import { MetadataSection } from "./MetadataSection";
 import { getDataFromApi } from "~/services/RestApi";
-import { setAllData } from "~/data/actions/resultsAction";
 import { AgGridReact } from "@ag-grid-community/react";
 import { AllModules } from "@ag-grid-enterprise/all-modules";
 import { NumericCellRenderer } from "../NumericCellRenderer";
@@ -166,17 +164,9 @@ Object.size = function(obj) {
   return size;
 };
 
-@connect(store => {
-  return {
-    //currentUrl: store.page.url,
-    allData: store.results.allData
-  };
-}) //the names given here will be the names of props
 class Protein extends Component {
   static propTypes = {
-    history: PropTypes.object.isRequired,
-    allData: PropTypes.array,
-    dispatch: PropTypes.func
+    history: PropTypes.object.isRequired
   };
 
   constructor(props) {
@@ -193,6 +183,7 @@ class Protein extends Component {
 
     this.state = {
       metadata: null,
+      data: null,
       lineage: []
     };
 
@@ -238,6 +229,7 @@ class Protein extends Component {
     if (this.unlistenToHistory) {
       this.setState({
         metadata: null,
+        data: null,
         lineage: []
       });
       this.getDataFromApi();
@@ -441,7 +433,7 @@ class Protein extends Component {
             }
           }
         }
-        this.props.dispatch(setAllData(allData));
+        this.setState({ data: allData });
       }
     }
   }
@@ -461,7 +453,7 @@ class Protein extends Component {
 
   onClickExportDataJson() {
     downloadData(
-      JSON.stringify(this.props.allData),
+      JSON.stringify(this.state.data),
       "data.json",
       "application/json"
     );
@@ -471,7 +463,7 @@ class Protein extends Component {
     const route = parseHistoryLocationPathname(this.props.history);
     const organism = route.organism;
 
-    if (this.props.allData == null) {
+    if (this.state.metadata == null || this.state.data == null) {
       return (
         <div className="loader-full-content-container">
           <div className="loader"></div>
@@ -540,7 +532,7 @@ class Protein extends Component {
                   sideBar={sideBar}
                   defaultColDef={defaultColDef}
                   columnDefs={columnDefs}
-                  rowData={this.props.allData}
+                  rowData={this.state.data}
                   rowSelection="multiple"
                   groupSelectsChildren={true}
                   suppressMultiSort={true}
