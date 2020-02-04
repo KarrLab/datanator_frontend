@@ -273,6 +273,14 @@ class Metabolite extends Component {
         ).value;
 
         metadata.pathways = met.pathways.pathway;
+        if (metadata.pathways) {
+          if (!Array.isArray(metadata.pathways)) {
+            metadata.pathways = [metadata.pathways];
+          }
+        } else {
+          metadata.pathways = [];
+        }
+
         metadata.pathways = removeDuplicates(metadata.pathways, el => el.name);
         metadata.pathways.sort((a, b) => {
           return strCompare(a.name, b.name);
@@ -387,8 +395,10 @@ class Metabolite extends Component {
         filter: "agSetColumnFilter",
         menuTabs: ["filterMenuTab"],
         cellRenderer: "linkCellRenderer",
-        route: "metabolite",
-        organism: organism
+        cellRendererParams: {
+          route: "metabolite",
+          organism: organism
+        }
       },
       {
         headerName: "Chemical similarity",
