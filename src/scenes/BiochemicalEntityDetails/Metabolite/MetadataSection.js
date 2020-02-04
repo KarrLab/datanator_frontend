@@ -176,7 +176,7 @@ class MetadataSection extends Component {
         )}
 
         {synonyms.length > 0 && (
-          <div className="content-block" id="synonyms">
+          <div className="content-block" id="synonyms" data-testid="synonyms">
             <h2 className="content-block-heading">Synonyms</h2>
             <div className="content-block-content">
               <ul className="three-col-list">{synonyms}</ul>
@@ -185,7 +185,7 @@ class MetadataSection extends Component {
         )}
 
         {dbLinks.length > 0 && (
-          <div className="content-block" id="links">
+          <div className="content-block" id="links" data-testid="links">
             <h2 className="content-block-heading">Database links</h2>
             <div className="content-block-content">
               <ul className="key-value-list three-col-list link-list">
@@ -196,7 +196,7 @@ class MetadataSection extends Component {
         )}
 
         {physicalProps.length > 0 && (
-          <div className="content-block" id="physics">
+          <div className="content-block" id="physics" data-testid="physics">
             <h2 className="content-block-heading">Physical properties</h2>
             <div className="content-block-content">
               <ul className="key-value-list">{physicalProps}</ul>
@@ -205,7 +205,7 @@ class MetadataSection extends Component {
         )}
 
         {metadata.cellularLocations && metadata.cellularLocations.length > 0 && (
-          <div className="content-block" id="localizations">
+          <div className="content-block" id="localizations" data-testid="localizations">
             <h2 className="content-block-heading">Cellular localizations</h2>
             <div className="content-block-content">
               <ul className="two-col-list">
@@ -220,7 +220,7 @@ class MetadataSection extends Component {
         )}
 
         {metadata.pathways && metadata.pathways.length > 0 && (
-          <div className="content-block" id="biology">
+          <div className="content-block" id="biology" data-testid="biology">
             <h2 className="content-block-heading">Pathways</h2>
             <div className="content-block-content">
               <ul className="two-col-list link-list">

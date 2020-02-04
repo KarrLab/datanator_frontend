@@ -29,20 +29,22 @@ const renderComponent = (metabolite, organism, abstract) =>
 
 describe('Page Rendering and Consensus', () => {
 
-it('render metabolite page', async () => {
+it('test metabolite metadata', async () => {
   // Render new instance in every test to prevent leaking state
   const { getByTestId, getByText, getAllByText, getByPlaceholderText  } =  renderComponent('ATP', 'Bacillus subtilis');
 
   await waitForElement(() => getByTestId('description'));
-  //const text = getNodeText(getByTestId('description'))
-  //const getByTextWithMarkup = withMarkup(getByTestId('description'))
-  //getByTextWithMarkup("is a multifunctional nucleotide")
+
   expect(getByTestId('description')).toHaveTextContent("is a multifunctional nucleotide")
-  //expect(getAllByText('Escherichia coli K12 NCM3722', { exact: false }))
-  //expect(getAllByText('Saccharomyces cerevisiae', { exact: false }))
+  expect(getByTestId('synonyms')).toHaveTextContent("Glucobasin")
+
+  expect(getByTestId('links')).toHaveTextContent("BioCyC: ATP")
+  expect(getByTestId('physics')).toHaveTextContent("SMILES: NC1=NC=NC2=C1N=CN2[C@@H]1O[C@H](COP(O)(=O)OP(O)(=O)OP(O)(O)=O)[C@@H](O)[C@H]1O")
+  expect(getByTestId('localizations')).toHaveTextContent("Cytosol")
+  expect(getByTestId('biology')).toHaveTextContent("2-O-α-mannosyl-D-glycerate degradation")
+
 
 });
-
 
 
 
