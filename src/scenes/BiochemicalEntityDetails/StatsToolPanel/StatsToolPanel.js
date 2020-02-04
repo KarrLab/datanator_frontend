@@ -43,8 +43,10 @@ class StatsToolPanel extends Component {
     super(props);
     this.state = {
       all: {
-        /**The mean of all of the data*/
+        /**The count of all of the data*/
+        count: null,
 
+        /**The mean of all of the data*/
         mean: null,
 
         /**The median of all of the data*/
@@ -60,8 +62,10 @@ class StatsToolPanel extends Component {
         max: null
       },
       selected: {
-        /**The mean of the selected data*/
+        /**The count of the selected data*/
+        count: null,
 
+        /**The mean of the selected data*/
         mean: null,
 
         /**The median of the selected data*/
@@ -94,6 +98,7 @@ class StatsToolPanel extends Component {
 
     // calcalate statistics
     const stats = {
+      count: null,
       mean: null,
       median: null,
       stdDev: null,
@@ -102,6 +107,7 @@ class StatsToolPanel extends Component {
     };
 
     if (vals.length > 0) {
+      stats.count = vals.length;
       stats.mean = formatScientificNotation(mean(vals));
       stats.median = formatScientificNotation(median(vals));
       stats.stdDev = formatScientificNotation(std(vals));
@@ -172,6 +178,11 @@ class StatsToolPanel extends Component {
                 <th></th>
                 <th scope="col">All</th>
                 <th scope="col">Selected</th>
+              </tr>
+              <tr>
+                <th scope="row">Count</th>
+                <td>{this.state.all.count}</td>
+                <td>{this.state.selected.count}</td>
               </tr>
               <tr>
                 <th scope="row">Mean</th>
