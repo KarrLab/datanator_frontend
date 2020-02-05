@@ -1,103 +1,47 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router";
 import PropTypes from "prop-types";
-import axios from "axios";
-import { getDataFromApi } from "~/services/RestApi";
-import {
-  parseHistoryLocationPathname,
-  upperCaseFirstLetter
-} from "~/utils/utils";
+import { upperCaseFirstLetter } from "~/utils/utils";
+import BaseMetadataSection from "../MetadataSection";
 
 class MetadataSection extends Component {
   static propTypes = {
-    history: PropTypes.object.isRequired,
     "set-scene-metadata": PropTypes.func.isRequired
   };
 
   constructor(props) {
     super(props);
-
-    this.locationPathname = null;
-    this.unlistenToHistory = null;
-    this.cancelDataTokenSource = null;
-
     this.state = { metadata: null };
   }
 
-  componentDidMount() {
-    this.locationPathname = this.props.history.location.pathname;
-    this.unlistenToHistory = this.props.history.listen(location => {
-      if (location.pathname !== this.locationPathname) {
-        this.locationPathname = this.props.history.location.pathname;
-        this.updateStateFromLocation();
-      }
-    });
-    this.updateStateFromLocation();
+  getMetadataUrl(query) {
+    return (
+      "/rna/halflife/get_info_by_protein_name/" +
+      "?protein_name=" +
+      query +
+      "&_from=0" +
+      "&size=1000"
+    );
   }
 
-  componentWillUnmount() {
-    this.unlistenToHistory();
-    this.unlistenToHistory = null;
-    if (this.cancelDataTokenSource) {
-      this.cancelDataTokenSource.cancel();
-    }
-  }
+  formatMetadata(rawData) {
+    const formattedData = {};
 
-  updateStateFromLocation() {
-    if (this.unlistenToHistory) {
-      this.setState({ metadata: null });
-      this.props["set-scene-metadata"](null);
-      this.getMetadataFromApi();
-    }
-  }
+    formattedData.geneName = rawData[0].gene_name;
 
-  getMetadataFromApi() {
-    const route = parseHistoryLocationPathname(this.props.history);
-    const query = route.query;
-
-    if (this.cancelDataTokenSource) {
-      this.cancelDataTokenSource.cancel();
-    }
-
-    this.cancelDataTokenSource = axios.CancelToken.source();
-    getDataFromApi(
-      [
-        "/rna/halflife/get_info_by_protein_name/" +
-          "?protein_name=" +
-          query +
-          "&_from=0" +
-          "&size=1000"
-      ],
-      { cancelToken: this.cancelDataTokenSource.token },
-      "Unable to get data about RNA '" + query + "'."
-    )
-      .then(response => {
-        if (!response) return;
-        this.formatMetadata(response.data);
-      })
-      .finally(() => {
-        this.cancelDataTokenSource = null;
-      });
-  }
-
-  formatMetadata(data) {
-    const metadata = {};
-
-    metadata.geneName = data[0].gene_name;
-
-    if (data[0].function) {
-      metadata.proteinName = data[0].function;
-    } else if (data[0].protein_name) {
-      metadata.proteinName = data[0].protein_name;
+    if (rawData[0].function) {
+      formattedData.proteinName = rawData[0].function;
+    } else if (rawData[0].protein_name) {
+      formattedData.proteinName = rawData[0].protein_name;
     } else {
-      metadata.proteinName = "Protein Name not Found";
+      formattedData.proteinName = "Protein Name not Found";
     }
 
-    this.setState({ metadata: metadata });
+    this.setState({ metadata: formattedData });
 
-    let title = this.state.metadata.geneName;
+    let title = formattedData.geneName;
     if (!title) {
-      title = this.state.metadata.proteinName;
+      title = formattedData.proteinName;
     }
     title = upperCaseFirstLetter(title);
 
@@ -117,31 +61,38 @@ class MetadataSection extends Component {
   render() {
     const metadata = this.state.metadata;
 
-    if (metadata == null || metadata === undefined) {
-      return <div></div>;
-    }
-
     return (
       <div>
-        <div className="content-block" id="description">
-          <h2 className="content-block-heading">Description</h2>
-          <div className="content-block-content">
-            {(metadata.geneName || metadata.proteinName) && (
-              <ul className="key-value-list">
-                {metadata.geneName && (
-                  <li>
-                    <b>Gene:</b> {metadata.geneName}
-                  </li>
+        <BaseMetadataSection
+          entity-type="RNA"
+          get-metadata-url={this.getMetadataUrl}
+          format-metadata={this.formatMetadata.bind(this)}
+          set-scene-metadata={this.props["set-scene-metadata"]}
+        />
+
+        {metadata && (
+          <div>
+            <div className="content-block" id="description">
+              <h2 className="content-block-heading">Description</h2>
+              <div className="content-block-content">
+                {(metadata.geneName || metadata.proteinName) && (
+                  <ul className="key-value-list">
+                    {metadata.geneName && (
+                      <li>
+                        <b>Gene:</b> {metadata.geneName}
+                      </li>
+                    )}
+                    {metadata.proteinName && (
+                      <li>
+                        <b>Protein:</b> {metadata.proteinName}
+                      </li>
+                    )}
+                  </ul>
                 )}
-                {metadata.proteinName && (
-                  <li>
-                    <b>Protein:</b> {metadata.proteinName}
-                  </li>
-                )}
-              </ul>
-            )}
+              </div>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     );
   }

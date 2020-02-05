@@ -1,12 +1,8 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router";
 import PropTypes from "prop-types";
-import axios from "axios";
-import { getDataFromApi } from "~/services/RestApi";
-import {
-  upperCaseFirstLetter,
-  parseHistoryLocationPathname
-} from "~/utils/utils";
+import { upperCaseFirstLetter } from "~/utils/utils";
+import BaseMetadataSection from "../MetadataSection";
 
 const DB_LINKS = [
   { label: "Brenda", url: "https://www.brenda-enzymes.org/enzyme.php?ecno=" },
@@ -26,117 +22,67 @@ const DB_LINKS = [
 
 class MetadataSection extends Component {
   static propTypes = {
-    history: PropTypes.object.isRequired,
     "set-scene-metadata": PropTypes.func.isRequired
   };
 
   constructor(props) {
     super(props);
-
-    this.locationPathname = null;
-    this.unlistenToHistory = null;
-    this.cancelTokenSource = null;
-
     this.state = { metadata: null };
   }
 
-  componentDidMount() {
-    this.locationPathname = this.props.history.location.pathname;
-    this.unlistenToHistory = this.props.history.listen(location => {
-      if (location.pathname !== this.locationPathname) {
-        this.locationPathname = this.props.history.location.pathname;
-        this.updateStateFromLocation();
-      }
-    });
-    this.updateStateFromLocation();
-  }
-
-  componentWillUnmount() {
-    this.unlistenToHistory();
-    this.unlistenToHistory = null;
-    if (this.cancelTokenSource) {
-      this.cancelTokenSource.cancel();
-    }
-  }
-
-  updateStateFromLocation() {
-    if (this.unlistenToHistory) {
-      this.setState({ metadata: null });
-      this.props["set-scene-metadata"](null);
-      this.getMetadataFromApi();
-    }
-  }
-
-  getMetadataFromApi() {
-    const route = parseHistoryLocationPathname(this.props.history);
-    const substratesProducts = route.query.split("-->");
+  getMetadataUrl(query) {
+    const substratesProducts = query.split("-->");
     const substrates = substratesProducts[0].trim();
     const products = substratesProducts[1].trim();
 
-    if (this.cancelTokenSource) {
-      this.cancelTokenSource.cancel();
-    }
-
-    this.cancelTokenSource = axios.CancelToken.source();
-    getDataFromApi(
-      [
-        "reactions/kinlaw_by_name/" +
-          "?substrates=" +
-          substrates +
-          "&products=" +
-          products +
-          "&_from=0" +
-          "&size=1000" +
-          "&bound=tight"
-      ],
-      { cancelToken: this.cancelTokenSource.token },
-      "Unable to get data about reaction."
-    )
-      .then(response => {
-        if (!response) return;
-        this.formatMetadata(response.data);
-      })
-      .finally(() => {
-        this.cancelTokenSource = null;
-      });
+    return (
+      "reactions/kinlaw_by_name/" +
+      "?substrates=" +
+      substrates +
+      "&products=" +
+      products +
+      "&_from=0" +
+      "&size=1000" +
+      "&bound=tight"
+    );
   }
 
-  formatMetadata(data) {
-    if (data != null) {
-      const metadata = {};
+  formatMetadata(rawData) {
+    if (rawData != null) {
+      const formattedData = {};
 
-      const reactionId = MetadataSection.getReactionId(data[0].resource);
-      const ecNumber = MetadataSection.getEcNum(data[0].resource);
-      const name = data[0]["enzymes"][0]["enzyme"][0]["enzyme_name"];
+      const reactionId = MetadataSection.getReactionId(rawData[0].resource);
+      const ecNumber = MetadataSection.getEcNum(rawData[0].resource);
+      const name = rawData[0]["enzymes"][0]["enzyme"][0]["enzyme_name"];
       const substrates = MetadataSection.getSubstrateNames(
-        data[0].reaction_participant[0].substrate
+        rawData[0].reaction_participant[0].substrate
       );
       const products = MetadataSection.getProductNames(
-        data[0].reaction_participant[1].product
+        rawData[0].reaction_participant[1].product
       );
-      metadata["reactionId"] = reactionId;
-      metadata["substrates"] = substrates;
-      metadata["products"] = products;
+      formattedData["reactionId"] = reactionId;
+      formattedData["substrates"] = substrates;
+      formattedData["products"] = products;
       if (ecNumber !== "-.-.-.-") {
-        metadata["ecNumber"] = ecNumber;
+        formattedData["ecNumber"] = ecNumber;
       }
 
       if (name) {
         const start = name[0].toUpperCase();
         const end = name.substring(1, name.length);
-        metadata["name"] = start + end;
+        formattedData["name"] = start + end;
       }
 
-      metadata["equation"] =
+      formattedData["equation"] =
         MetadataSection.formatSide(substrates) +
         " → " +
         MetadataSection.formatSide(products);
 
-      this.setState({ metadata: metadata });
+      this.setState({ metadata: formattedData });
 
-      let title = metadata.name;
+      let title = formattedData.name;
       if (!title) {
-        title = metadata.equation;
+        title = formattedData.equation;
       }
       title = upperCaseFirstLetter(title);
 
@@ -193,11 +139,9 @@ class MetadataSection extends Component {
   render() {
     const metadata = this.state.metadata;
 
-    if (metadata == null) {
-      return <div></div>;
-    } else {
-      const props = [];
-      const dbLinks = [];
+    const props = [];
+    const dbLinks = [];
+    if (metadata != null) {
       if (metadata.name) {
         props.push({ label: "Name", value: metadata.name });
       }
@@ -233,33 +177,44 @@ class MetadataSection extends Component {
           );
         }
       }
+    }
 
-      return (
-        <div>
-          <div className="content-block" id="description">
-            <h2 className="content-block-heading">Description</h2>
-            <div className="content-block-content">
-              <ul className="key-value-list link-list">
-                {props.map(el => (
-                  <li key={el.label}>
-                    <b>{el.label}:</b> {el.value}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+    return (
+      <div>
+        <BaseMetadataSection
+          entity-type="reaction"
+          get-metadata-url={this.getMetadataUrl}
+          format-metadata={this.formatMetadata.bind(this)}
+          set-scene-metadata={this.props["set-scene-metadata"]}
+        />
 
-          {dbLinks.length > 0 && (
-            <div className="content-block" id="properties">
-              <h2 className="content-block-heading">Database Links</h2>
+        {metadata && (
+          <div>
+            <div className="content-block" id="description">
+              <h2 className="content-block-heading">Description</h2>
               <div className="content-block-content">
-                <ul className="three-col-list link-list">{dbLinks}</ul>
+                <ul className="key-value-list link-list">
+                  {props.map(el => (
+                    <li key={el.label}>
+                      <b>{el.label}:</b> {el.value}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
-          )}
-        </div>
-      );
-    }
+
+            {dbLinks.length > 0 && (
+              <div className="content-block" id="properties">
+                <h2 className="content-block-heading">Database Links</h2>
+                <div className="content-block-content">
+                  <ul className="three-col-list link-list">{dbLinks}</ul>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    );
   }
 }
 
