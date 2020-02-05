@@ -188,17 +188,17 @@ class MetadataSection extends Component {
           metadata.description = null;
         }
 
-        metadata.smiles = met.smiles;
-        metadata.inchi = met.inchi;
-        metadata.inchiKey = met.inchikey;
-        metadata.formula = formatChemicalFormula(met.chemical_formula);
-        metadata.molWt = met.average_molecular_weight;
-        metadata.charge = met.property.find(
-          el => el.kind === "formal_charge"
-        ).value;
-        metadata.physiologicalCharge = met.property.find(
-          el => el.kind === "physiological_charge"
-        ).value;
+        metadata.physics = {
+          smiles: met.smiles,
+          inchi: met.inchi,
+          inchiKey: met.inchikey,
+          formula: formatChemicalFormula(met.chemical_formula),
+          molWt: met.average_molecular_weight,
+          charge: met.property.find(el => el.kind === "formal_charge").value,
+          physiologicalCharge: met.property.find(
+            el => el.kind === "physiological_charge"
+          ).value
+        };
 
         metadata.pathways = met.pathways.pathway;
         if (metadata.pathways) {
@@ -247,14 +247,20 @@ class MetadataSection extends Component {
     let title = metadata.name;
     title = upperCaseFirstLetter(title);
 
-    const sections = [
-      { id: "description", title: "Description" },
-      { id: "synonyms", title: "Synonyms" },
-      { id: "links", title: "Database links" },
-      { id: "physics", title: "Physics" },
-      { id: "localizations", title: "Localizations" },
-      { id: "pathways", title: "Pathways" }
-    ];
+    const sections = [];
+    if (metadata.description)
+      sections.push({ id: "description", title: "Description" });
+    if (metadata.synonyms.length > 0)
+      sections.push({ id: "synonyms", title: "Synonyms" });
+    if (Object.keys(metadata.dbLinks).length > 0)
+      sections.push({ id: "links", title: "Database links" });
+    if (Object.values(metadata.physics).some(val => val !== undefined))
+      sections.push({ id: "physics", title: "Physics" });
+    if (metadata.cellularLocations.length > 0)
+      sections.push({ id: "localizations", title: "Localizations" });
+    if (metadata.pathways.length > 0)
+      sections.push({ id: "pathways", title: "Pathways" });
+
     this.props["set-scene-metadata"]({
       title: title,
       metadataSections: sections
@@ -270,14 +276,14 @@ class MetadataSection extends Component {
 
     // physical properties
     const physicalProps = [
-      { name: "SMILES", value: metadata.smiles },
-      { name: "InChI", value: metadata.inchi },
-      { name: "Formula", value: metadata.formula },
-      { name: "Molecular weight", value: metadata.molWt },
-      { name: "Charge", value: metadata.charge },
+      { name: "SMILES", value: metadata.physics.smiles },
+      { name: "InChI", value: metadata.physics.inchi },
+      { name: "Formula", value: metadata.physics.formula },
+      { name: "Molecular weight", value: metadata.physics.molWt },
+      { name: "Charge", value: metadata.physics.charge },
       {
         name: "Physiological charge",
-        value: metadata.physiologicalCharge
+        value: metadata.physics.physiologicalCharge
       }
     ]
       .filter(prop => {
@@ -293,12 +299,12 @@ class MetadataSection extends Component {
 
     // structure
     let structure = null;
-    if (metadata.smiles) {
-      structure = { type: "", value: metadata.smiles };
-    } else if (metadata.smiles) {
-      structure = { type: "InChI=", value: metadata.inchi };
-    } else if (metadata.smiles) {
-      structure = { type: "InChIKey=", value: metadata.inchiKey };
+    if (metadata.physics.smiles) {
+      structure = { type: "", value: metadata.physics.smiles };
+    } else if (metadata.physics.inchi) {
+      structure = { type: "InChI=", value: metadata.physics.inchi };
+    } else if (metadata.physics.inchiKey) {
+      structure = { type: "InChIKey=", value: metadata.physics.inchiKey };
     }
 
     // synonyms
@@ -392,7 +398,7 @@ class MetadataSection extends Component {
           </div>
         )}
 
-        {metadata.cellularLocations && metadata.cellularLocations.length > 0 && (
+        {metadata.cellularLocations.length > 0 && (
           <div
             className="content-block"
             id="localizations"
@@ -411,8 +417,8 @@ class MetadataSection extends Component {
           </div>
         )}
 
-        {metadata.pathways && metadata.pathways.length > 0 && (
-          <div className="content-block" id="biology" data-testid="biology">
+        {metadata.pathways.length > 0 && (
+          <div className="content-block" id="pathways" data-testid="pathways">
             <h2 className="content-block-heading">Pathways</h2>
             <div className="content-block-content">
               <ul className="two-col-list link-list">

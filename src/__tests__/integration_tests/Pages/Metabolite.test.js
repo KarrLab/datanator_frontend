@@ -43,7 +43,7 @@ describe("Page Rendering and Consensus", () => {
     expect(getByTestId("links")).toHaveTextContent("BioCyC: ATP");
     expect(getByTestId("physics")).toHaveTextContent("SMILES: NC1=NC=NC2=C1N=CN2[C@@H]1O[C@H](COP(O)(=O)OP(O)(=O)OP(O)(O)=O)[C@@H](O)[C@H]1O");
     expect(getByTestId("localizations")).toHaveTextContent("Cytosol");
-    expect(getByTestId("biology")).toHaveTextContent("2-O-α-mannosyl-D-glycerate degradation");
+    expect(getByTestId("pathways")).toHaveTextContent("2-O-α-mannosyl-D-glycerate degradation");
 
 
   });
