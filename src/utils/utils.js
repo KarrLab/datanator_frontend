@@ -11,36 +11,6 @@ function matchAll(string, regex) {
   return matches;
 }
 
-function mode(numbers) {
-  // as result can be bimodal or multi-modal,
-  // the returned result is provided as an array
-  // mode of [3, 5, 4, 4, 1, 1, 2, 3] = [1, 3, 4]
-  let counts = [];
-  let maxCount = 0;
-
-  // count occurence of each number and determine maximum number of occurences
-  for (const number of numbers) {
-    counts[number] = (counts[number] || 0) + 1;
-    if (counts[number] > maxCount) {
-      maxCount = counts[number];
-    }
-  }
-
-  // find all modes
-  let modes = [];
-  for (const number in counts) {
-    if (counts[number] === maxCount) {
-      modes.push(number);
-    }
-  }
-
-  // sort modes
-  modes.sort();
-
-  // return modes
-  return modes;
-}
-
 function formatScientificNotation(
   value,
   sciMagUpThresh = 1,
@@ -160,37 +130,6 @@ function removeDuplicates(array, keyFunc = null) {
   return Object.values(uniqueKeyVals);
 }
 
-function sizeGridColumnsToFit(event, grid) {
-  const gridApi = event.api;
-  gridApi.sizeColumnsToFit();
-  updateGridHorizontalScrolling(event, grid);
-}
-
-function updateGridHorizontalScrolling(event, grid) {
-  const columnApi = event.columnApi;
-
-  const gridRoot = grid.eGridDiv.getElementsByClassName("ag-root")[0];
-  const gridWidth: number = gridRoot.offsetWidth;
-
-  const displayedCols = columnApi.getAllDisplayedColumns();
-  const numDisplayedCols: number = displayedCols.length;
-  let totDisplayedColMinWidth = 0;
-  for (const col of displayedCols) {
-    totDisplayedColMinWidth += col.getActualWidth();
-  }
-
-  if (totDisplayedColMinWidth + 2 * (numDisplayedCols + 1) > gridWidth) {
-    grid.gridOptions.suppressHorizontalScroll = false;
-  } else {
-    grid.gridOptions.suppressHorizontalScroll = true;
-  }
-}
-
-const gridDataExportParams = {
-  allColumns: true,
-  onlySelected: false
-};
-
 function downloadData(data, filename, mimeType) {
   const anchor = document.createElement("a");
 
@@ -229,8 +168,17 @@ function parseHistoryLocationPathname(history) {
   };
 }
 
+function getNumProperties(obj) {
+  let size = 0;
+  for (const key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      size++;
+    }
+  }
+  return size;
+}
+
 export {
-  mode,
   formatScientificNotation,
   formatChemicalFormula,
   dictOfArraysToArrayOfDicts,
@@ -238,9 +186,7 @@ export {
   scrollTo,
   strCompare,
   removeDuplicates,
-  sizeGridColumnsToFit,
-  updateGridHorizontalScrolling,
-  gridDataExportParams,
   downloadData,
-  parseHistoryLocationPathname
+  parseHistoryLocationPathname,
+  getNumProperties
 };

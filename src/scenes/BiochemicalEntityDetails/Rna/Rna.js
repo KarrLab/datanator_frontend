@@ -3,135 +3,17 @@ import { withRouter } from "react-router";
 import { HashLink } from "react-router-hash-link";
 import PropTypes from "prop-types";
 import axios from "axios";
+import { getDataFromApi } from "~/services/RestApi";
 import {
   upperCaseFirstLetter,
   scrollTo,
-  sizeGridColumnsToFit,
-  updateGridHorizontalScrolling,
-  gridDataExportParams,
-  downloadData,
   parseHistoryLocationPathname
 } from "~/utils/utils";
-
 import { MetadataSection } from "./MetadataSection";
-import { getDataFromApi } from "~/services/RestApi";
-import { AgGridReact } from "@ag-grid-community/react";
-import { AllModules } from "@ag-grid-enterprise/all-modules";
-import { NumericCellRenderer } from "../NumericCellRenderer";
-import { StatsToolPanel } from "../StatsToolPanel/StatsToolPanel.js";
-import { TaxonomyFilter } from "~/scenes/BiochemicalEntityDetails/TaxonomyFilter.js";
-import "@ag-grid-enterprise/all-modules/dist/styles/ag-grid.scss";
-import "@ag-grid-enterprise/all-modules/dist/styles/ag-theme-balham/sass/ag-theme-balham.scss";
+import DataTable from "../DataTable/DataTable";
+import { HtmlColumnHeader } from "../HtmlColumnHeader";
 
 import "../BiochemicalEntityDetails.scss";
-
-const frameworkComponents = {
-  numericCellRenderer: NumericCellRenderer,
-  statsToolPanel: StatsToolPanel,
-  taxonomyFilter: TaxonomyFilter
-};
-
-const sideBar = {
-  toolPanels: [
-    {
-      id: "columns",
-      labelDefault: "Columns",
-      labelKey: "columns",
-      iconKey: "columns",
-      toolPanel: "agColumnsToolPanel",
-      toolPanelParams: {
-        suppressRowGroups: true,
-        suppressValues: true,
-        suppressPivots: true,
-        suppressPivotMode: true,
-        suppressSideButtons: false,
-        suppressColumnFilter: true,
-        suppressColumnSelectAll: true,
-        suppressColumnExpandAll: true
-      }
-    },
-    {
-      id: "filters",
-      labelDefault: "Filters",
-      labelKey: "filters",
-      iconKey: "filter",
-      toolPanel: "agFiltersToolPanel",
-      toolPanelParams: {
-        suppressFilterSearch: true,
-        suppressExpandAll: true
-      }
-    },
-    {
-      id: "stats",
-      labelDefault: "Stats",
-      labelKey: "chart",
-      iconKey: "chart",
-      toolPanel: "statsToolPanel",
-      toolPanelParams: {
-        col: "halfLife"
-      }
-    }
-  ],
-  position: "left",
-  defaultToolPanel: "filters",
-  hiddenByDefault: false
-};
-
-const defaultColDef = {
-  minWidth: 100,
-  filter: "agTextColumnFilter",
-  sortable: true,
-  resizable: true,
-  suppressMenu: true
-};
-
-const columnDefs = [
-  {
-    headerName: "Half life (s^-1)",
-    field: "halfLife",
-    cellRenderer: "numericCellRenderer",
-    type: "numericColumn",
-    filter: "agNumberColumnFilter",
-    checkboxSelection: true,
-    headerCheckboxSelection: true,
-    headerCheckboxSelectionFilteredOnly: true
-  },
-  {
-    headerName: "Organism",
-    field: "organism",
-    filter: "agSetColumnFilter"
-  },
-  {
-    headerName: "Media",
-    field: "growthMedium",
-    filter: "agTextColumnFilter",
-    hide: false
-  },
-  {
-    headerName: "Source",
-    field: "reference",
-    cellRenderer: function(params) {
-      return (
-        '<a href="https://scholar.google.com/scholar?q=' +
-        params.value +
-        '" target="_blank" rel="noopener noreferrer">' +
-        "DOI" +
-        "</a>"
-      );
-    },
-    filter: "agSetColumnFilter"
-  }
-];
-
-Object.size = function(obj) {
-  let size = 0;
-  for (const key in obj) {
-    if (Object.prototype.hasOwnProperty.call(obj, key)) {
-      size++;
-    }
-  }
-  return size;
-};
 
 class Rna extends Component {
   static propTypes = {
@@ -141,26 +23,11 @@ class Rna extends Component {
   constructor(props) {
     super(props);
 
-    this.grid = React.createRef();
-
     this.locationPathname = null;
     this.unlistenToHistory = null;
     this.cancelDataTokenSource = null;
-    this.cancelTaxonInfoTokenSource = null;
 
-    this.state = {
-      metadata: null,
-      data: null,
-      lineage: []
-    };
-
-    this.formatData = this.formatData.bind(this);
-    this.sizeGridColumnsToFit = this.sizeGridColumnsToFit.bind(this);
-    this.updateGridHorizontalScrolling = this.updateGridHorizontalScrolling.bind(
-      this
-    );
-    this.onClickExportDataCsv = this.onClickExportDataCsv.bind(this);
-    this.onClickExportDataJson = this.onClickExportDataJson.bind(this);
+    this.state = { metadata: null };
   }
 
   componentDidMount() {
@@ -180,18 +47,16 @@ class Rna extends Component {
     if (this.cancelDataTokenSource) {
       this.cancelDataTokenSource.cancel();
     }
-    if (this.cancelTaxonInfoTokenSource) {
-      this.cancelTaxonInfoTokenSource.cancel();
-    }
   }
 
   updateStateFromLocation() {
     if (this.unlistenToHistory) {
-      this.getDataFromApi();
+      this.setState({ metadata: null });
+      this.getMetadataFromApi();
     }
   }
 
-  getDataFromApi() {
+  getMetadataFromApi() {
     const route = parseHistoryLocationPathname(this.props.history);
     const query = route.query;
 
@@ -213,73 +78,199 @@ class Rna extends Component {
     )
       .then(response => {
         if (!response) return;
-        this.formatData(response.data);
+        this.formatMetadata(response.data);
       })
       .finally(() => {
         this.cancelDataTokenSource = null;
       });
   }
 
-  formatData(data) {
+  formatMetadata(data) {
     const metadata = {};
 
-    metadata["geneName"] = data[0].gene_name;
+    metadata.geneName = data[0].gene_name;
 
-    if (data[0]["function"]) {
-      metadata["proteinName"] = data[0]["function"];
-    } else if (data[0]["protein_name"]) {
-      metadata["proteinName"] = data[0]["protein_name"];
+    if (data[0].function) {
+      metadata.proteinName = data[0].function;
+    } else if (data[0].protein_name) {
+      metadata.proteinName = data[0].protein_name;
     } else {
-      metadata["proteinName"] = "Protein Name not Found";
+      metadata.proteinName = "Protein Name not Found";
     }
 
-    if (data != null && typeof data != "string") {
-      const measurements = data[0].halflives;
-      const allData = [];
-      for (const measurement of measurements) {
-        const row = {};
-        row["halfLife"] = parseFloat(measurement.halflife);
-        row["reference"] = measurement.reference[0]["doi"];
-        row["organism"] = measurement.species;
-        row["growthMedium"] = measurement.growth_medium;
-        allData.push(row);
-      }
-      this.setState({
-        metadata: metadata,
-        data: allData
-      });
-    }
+    this.setState({ metadata: metadata });
   }
 
-  sizeGridColumnsToFit(event) {
-    sizeGridColumnsToFit(event, this.grid.current);
-  }
-
-  updateGridHorizontalScrolling(event) {
-    updateGridHorizontalScrolling(event, this.grid.current);
-  }
-
-  onClickExportDataCsv() {
-    const gridApi = this.grid.current.api;
-    gridApi.exportDataAsCsv(gridDataExportParams);
-  }
-
-  onClickExportDataJson() {
-    downloadData(
-      JSON.stringify(this.state.data),
-      "data.json",
-      "application/json"
+  getHalfLifeUrl(query) {
+    return (
+      "/rna/halflife/get_info_by_protein_name/" +
+      "?protein_name=" +
+      query +
+      "&_from=0" +
+      "&size=1000"
     );
   }
 
+  formatHalfLifeData(rawData) {
+    if (rawData != null && typeof rawData != "string") {
+      const measurements = rawData[0].halflives;
+      const formattedData = [];
+      for (const measurement of measurements) {
+        formattedData.push({
+          halfLife: parseFloat(measurement.halflife),
+          organism: measurement.species,
+          growthMedium: measurement.growth_medium,
+          source: measurement.reference[0].doi
+        });
+      }
+      return formattedData;
+    } else {
+      return [];
+    }
+  }
+
+  getHalfLifeSideBarDef() {
+    return {
+      toolPanels: [
+        {
+          id: "columns",
+          labelDefault: "Columns",
+          labelKey: "columns",
+          iconKey: "columns",
+          toolPanel: "agColumnsToolPanel",
+          toolPanelParams: {
+            suppressRowGroups: true,
+            suppressValues: true,
+            suppressPivots: true,
+            suppressPivotMode: true,
+            suppressSideButtons: false,
+            suppressColumnFilter: true,
+            suppressColumnSelectAll: true,
+            suppressColumnExpandAll: true
+          }
+        },
+        {
+          id: "filters",
+          labelDefault: "Filters",
+          labelKey: "filters",
+          iconKey: "filter",
+          toolPanel: "agFiltersToolPanel",
+          toolPanelParams: {
+            suppressFilterSearch: true,
+            suppressExpandAll: true
+          }
+        },
+        {
+          id: "stats",
+          labelDefault: "Stats",
+          labelKey: "chart",
+          iconKey: "chart",
+          toolPanel: "statsToolPanel",
+          toolPanelParams: {
+            col: ["halfLife"]
+          }
+        }
+      ],
+      position: "left",
+      defaultToolPanel: "filters",
+      hiddenByDefault: false
+    };
+  }
+
+  getHalfLifeColDefs() {
+    return [
+      {
+        headerName: "Half-life (s^{-1})",
+        headerComponentFramework: HtmlColumnHeader,
+        headerComponentParams: {
+          name: (
+            <span>
+              Half-life (s<sup>-1</sup>)
+            </span>
+          )
+        },
+        field: "halfLife",
+        cellRenderer: "numericCellRenderer",
+        type: "numericColumn",
+        filter: "agNumberColumnFilter",
+        checkboxSelection: true,
+        headerCheckboxSelection: true,
+        headerCheckboxSelectionFilteredOnly: true
+      },
+      {
+        headerName: "Organism",
+        field: "organism",
+        filter: "agSetColumnFilter"
+      },
+      /*
+      {
+        headerName: "Taxonomic distance",
+        field: "taxonomicProximity",
+        hide: true,
+        filter: "taxonomyFilter",
+        valueFormatter: params => {
+          const value = params.value;
+          return value;
+      },
+      */
+      {
+        headerName: "Media",
+        field: "growthMedium",
+        filter: "agTextColumnFilter",
+        hide: false
+      },
+      {
+        headerName: "Source",
+        field: "source",
+        cellRenderer: function(params) {
+          return (
+            '<a href="https://dx.doi.org/' +
+            params.value +
+            '" target="_blank" rel="noopener noreferrer">' +
+            "DOI" +
+            "</a>"
+          );
+        },
+        filterValueGetter: () => "DOI",
+        filter: "agSetColumnFilter"
+      }
+    ];
+  }
+
+  formatHalfLifeColHeadings(event) {
+    const gridApi = event.api;
+    const panelLabelClasses = {
+      columns: "ag-column-tool-panel-column-label",
+      filters: "ag-group-component-title"
+    };
+    for (const panelId in panelLabelClasses) {
+      const panel = gridApi.getToolPanelInstance(panelId);
+      const labels = panel.eGui.getElementsByClassName(
+        panelLabelClasses[panelId]
+      );
+      for (const label of labels) {
+        if (!label.innerHTML.startsWith("<span>")) {
+          label.innerHTML =
+            "<span>" +
+            label.innerHTML.replace("s^{-1}", "s<sup>-1</sup>") +
+            "</span>";
+        }
+      }
+    }
+  }
+
   render() {
-    if (this.state.metadata == null || this.state.data == null) {
+    if (this.state.metadata == null) {
       return (
         <div className="loader-full-content-container">
           <div className="loader"></div>
         </div>
       );
     }
+
+    const route = parseHistoryLocationPathname(this.props.history);
+    const query = route.query;
+    const organism = route.organism;
 
     let title = this.state.metadata.geneName;
     if (!title) {
@@ -312,55 +303,23 @@ class Rna extends Component {
           </div>
 
           <div className="content-column section">
-            <MetadataSection metadata={this.state.metadata} />
+            <MetadataSection
+              metadata={this.state.metadata}
+              rna={query}
+              organism={organism}
+            />
 
-            <div className="content-block measurements" id="half-life">
-              <div className="content-block-heading-container">
-                <h2 className="content-block-heading">Half-life</h2>
-                <div className="content-block-heading-actions">
-                  Export:{" "}
-                  <button
-                    className="text-button"
-                    onClick={this.onClickExportDataCsv}
-                  >
-                    CSV
-                  </button>{" "}
-                  |{" "}
-                  <button
-                    className="text-button"
-                    onClick={this.onClickExportDataJson}
-                  >
-                    JSON
-                  </button>
-                </div>
-              </div>
-              <div className="ag-theme-balham">
-                <AgGridReact
-                  ref={this.grid}
-                  modules={AllModules}
-                  frameworkComponents={frameworkComponents}
-                  sideBar={sideBar}
-                  defaultColDef={defaultColDef}
-                  columnDefs={columnDefs}
-                  rowData={this.state.data}
-                  rowSelection="multiple"
-                  groupSelectsChildren={true}
-                  suppressMultiSort={true}
-                  suppressAutoSize={true}
-                  suppressMovableColumns={true}
-                  suppressCellSelection={true}
-                  suppressRowClickSelection={true}
-                  suppressContextMenu={true}
-                  domLayout="autoHeight"
-                  onGridSizeChanged={this.sizeGridColumnsToFit}
-                  onColumnVisible={this.sizeGridColumnsToFit}
-                  onColumnResized={this.updateGridHorizontalScrolling}
-                  onToolPanelVisibleChanged={this.sizeGridColumnsToFit}
-                  onFirstDataRendered={this.sizeGridColumnsToFit}
-                  lineage={this.state.lineage}
-                ></AgGridReact>
-              </div>
-            </div>
+            <DataTable
+              id="half-life"
+              title="Half-life"
+              entity-type="RNA"
+              data-type="half-life"
+              get-data-url={this.getHalfLifeUrl}
+              format-data={this.formatHalfLifeData}
+              get-side-bar-def={this.getHalfLifeSideBarDef}
+              get-col-defs={this.getHalfLifeColDefs}
+              format-col-headings={this.formatHalfLifeColHeadings}
+            />
           </div>
         </div>
       </div>

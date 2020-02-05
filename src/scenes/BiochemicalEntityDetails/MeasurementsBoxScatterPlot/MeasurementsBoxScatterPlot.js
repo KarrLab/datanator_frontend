@@ -17,7 +17,15 @@ export default class MeasurementsBoxScatterPlot extends Component {
 
   canvas = React.createRef();
 
+  componentDidMount() {
+    this.configChart();
+  }
+
   componentDidUpdate() {
+    this.configChart();
+  }
+
+  configChart() {
     let chartConfig = {
       type: "boxplot",
       data: {
@@ -74,7 +82,7 @@ export default class MeasurementsBoxScatterPlot extends Component {
 
     // selected measurements
     if (this.props.selected != null) {
-      let measurements = this.props.selected;
+      let measurements = this.props.selected || [];
       let dataForBoxPlot = measurements;
       let dataForScatterPlot = [];
       for (const measurement of measurements) {

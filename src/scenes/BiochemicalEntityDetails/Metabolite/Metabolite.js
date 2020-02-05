@@ -3,98 +3,22 @@ import { withRouter } from "react-router";
 import { HashLink } from "react-router-hash-link";
 import PropTypes from "prop-types";
 import axios from "axios";
+import { getDataFromApi } from "~/services/RestApi";
 import {
   formatChemicalFormula,
-  dictOfArraysToArrayOfDicts,
   upperCaseFirstLetter,
   scrollTo,
   strCompare,
   removeDuplicates,
-  sizeGridColumnsToFit,
-  updateGridHorizontalScrolling,
-  gridDataExportParams,
-  downloadData,
-  parseHistoryLocationPathname
+  parseHistoryLocationPathname,
+  dictOfArraysToArrayOfDicts
 } from "~/utils/utils";
-
 import { MetadataSection } from "./MetadataSection";
-import { getDataFromApi } from "~/services/RestApi";
-
-import { AgGridReact } from "@ag-grid-community/react";
-import { AllModules } from "@ag-grid-enterprise/all-modules";
-import { LinkCellRenderer } from "../LinkCellRenderer";
-import { NumericCellRenderer } from "../NumericCellRenderer";
-import { StatsToolPanel } from "../StatsToolPanel/StatsToolPanel.js";
-import { TaxonomyFilter } from "../TaxonomyFilter.js";
-import { TanimotoFilter } from "../TanimotoFilter.js";
-import "@ag-grid-enterprise/all-modules/dist/styles/ag-grid.scss";
-import "@ag-grid-enterprise/all-modules/dist/styles/ag-theme-balham/sass/ag-theme-balham.scss";
+import DataTable from "../DataTable/DataTable";
 
 import "../BiochemicalEntityDetails.scss";
 
 const reactStringReplace = require("react-string-replace");
-
-const frameworkComponents = {
-  linkCellRenderer: LinkCellRenderer,
-  numericCellRenderer: NumericCellRenderer,
-  statsToolPanel: StatsToolPanel,
-  taxonomyFilter: TaxonomyFilter,
-  tanimotoFilter: TanimotoFilter
-};
-
-const sideBar = {
-  toolPanels: [
-    {
-      id: "columns",
-      labelDefault: "Columns",
-      labelKey: "columns",
-      iconKey: "columns",
-      toolPanel: "agColumnsToolPanel",
-      toolPanelParams: {
-        suppressRowGroups: true,
-        suppressValues: true,
-        suppressPivots: true,
-        suppressPivotMode: true,
-        suppressSideButtons: false,
-        suppressColumnFilter: true,
-        suppressColumnSelectAll: true,
-        suppressColumnExpandAll: true
-      }
-    },
-    {
-      id: "filters",
-      labelDefault: "Filters",
-      labelKey: "filters",
-      iconKey: "filter",
-      toolPanel: "agFiltersToolPanel",
-      toolPanelParams: {
-        suppressFilterSearch: true,
-        suppressExpandAll: true
-      }
-    },
-    {
-      id: "stats",
-      labelDefault: "Stats",
-      labelKey: "chart",
-      iconKey: "chart",
-      toolPanel: "statsToolPanel",
-      toolPanelParams: {
-        col: "value"
-      }
-    }
-  ],
-  position: "left",
-  defaultToolPanel: "filters",
-  hiddenByDefault: false
-};
-
-const defaultColDef = {
-  minWidth: 100,
-  filter: "agTextColumnFilter",
-  sortable: true,
-  resizable: true,
-  suppressMenu: true
-};
 
 class Metabolite extends Component {
   static propTypes = {
@@ -104,27 +28,11 @@ class Metabolite extends Component {
   constructor(props) {
     super(props);
 
-    this.grid = React.createRef();
-
     this.locationPathname = null;
     this.unlistenToHistory = null;
-    this.cancelDataTokenSource = null;
-    this.cancelTaxonInfoTokenSource = null;
+    this.cancelTokenSource = null;
 
-    this.state = {
-      metadata: null,
-      data: null,
-      lineage: [],
-      columnDefs: null
-    };
-
-    this.formatData = this.formatData.bind(this);
-    this.sizeGridColumnsToFit = this.sizeGridColumnsToFit.bind(this);
-    this.updateGridHorizontalScrolling = this.updateGridHorizontalScrolling.bind(
-      this
-    );
-    this.onClickExportDataCsv = this.onClickExportDataCsv.bind(this);
-    this.onClickExportDataJson = this.onClickExportDataJson.bind(this);
+    this.state = { metadata: null };
   }
 
   componentDidMount() {
@@ -141,31 +49,27 @@ class Metabolite extends Component {
   componentWillUnmount() {
     this.unlistenToHistory();
     this.unlistenToHistory = null;
-    if (this.cancelDataTokenSource) {
-      this.cancelDataTokenSource.cancel();
-    }
-    if (this.cancelTaxonInfoTokenSource) {
-      this.cancelTaxonInfoTokenSource.cancel();
+    if (this.cancelTokenSource) {
+      this.cancelTokenSource.cancel();
     }
   }
 
   updateStateFromLocation() {
     if (this.unlistenToHistory) {
-      this.setColumnDefs();
-      this.setState({ metadata: null, data: null });
-      this.getDataFromApi();
+      this.setState({ metadata: null });
+      this.getMetadataFromApi();
     }
   }
 
-  getDataFromApi() {
+  getMetadataFromApi() {
     const route = parseHistoryLocationPathname(this.props.history);
     const query = route.query;
     const organism = route.organism;
     const abstract = true;
 
     // cancel earlier query
-    if (this.cancelDataTokenSource) {
-      this.cancelDataTokenSource.cancel();
+    if (this.cancelTokenSource) {
+      this.cancelTokenSource.cancel();
     }
 
     const url =
@@ -175,43 +79,22 @@ class Metabolite extends Component {
       "&abstract=" +
       abstract +
       (organism ? "&species=" + organism : "");
-    this.cancelDataTokenSource = axios.CancelToken.source();
+    this.cancelTokenSource = axios.CancelToken.source();
     getDataFromApi(
       [url],
-      { cancelToken: this.cancelDataTokenSource.token },
+      { cancelToken: this.cancelTokenSource.token },
       "Unable to retrieve data about metabolite '" + query + "'."
     )
       .then(response => {
         if (!response) return;
-        this.formatData(response.data);
+        this.formatMetadata(response.data);
       })
       .finally(() => {
-        this.cancelDataTokenSource = null;
+        this.cancelTokenSource = null;
       });
-
-    if (organism) {
-      // cancel earlier query
-      if (this.cancelTaxonInfoTokenSource) {
-        this.cancelTaxonInfoTokenSource.cancel();
-      }
-
-      this.cancelTaxonInfoTokenSource = axios.CancelToken.source();
-      getDataFromApi(
-        ["taxon", "canon_rank_distance_by_name/?name=" + organism],
-        { cancelToken: this.cancelTaxonInfoTokenSource.token },
-        "Unable to obtain taxonomic information about '" + organism + "'."
-      )
-        .then(response => {
-          if (!response) return;
-          this.setState({ lineage: response.data });
-        })
-        .finally(() => {
-          this.cancelTaxonInfoTokenSource = null;
-        });
-    }
   }
 
-  formatData(data) {
+  formatMetadata(data) {
     if (data == null) {
       return;
     }
@@ -254,10 +137,10 @@ class Metabolite extends Component {
         metadata.formula = formatChemicalFormula(met.chemical_formula);
         metadata.molWt = met.average_molecular_weight;
         metadata.charge = met.property.find(
-          el => el["kind"] === "formal_charge"
+          el => el.kind === "formal_charge"
         ).value;
         metadata.physiologicalCharge = met.property.find(
-          el => el["kind"] === "physiological_charge"
+          el => el.kind === "physiological_charge"
         ).value;
 
         metadata.pathways = met.pathways.pathway;
@@ -302,9 +185,25 @@ class Metabolite extends Component {
       }
     }
 
-    const allConcs = [];
-    for (const datum of data) {
-      for (const met of datum) {
+    this.setState({ metadata: metadata });
+  }
+
+  getConcUrl(query, organism) {
+    const abstract = true;
+    return (
+      "metabolites/concentration/" +
+      "?metabolite=" +
+      query +
+      "&abstract=" +
+      abstract +
+      (organism ? "&species=" + organism : "")
+    );
+  }
+
+  formatConcData(rawData) {
+    const formattedData = [];
+    for (const rawDatum of rawData) {
+      for (const met of rawDatum) {
         const species = "species" in met ? met.species : "Escherichia coli";
 
         const metConcs = dictOfArraysToArrayOfDicts(met.concentrations);
@@ -326,41 +225,82 @@ class Metabolite extends Component {
                 ? species + " " + metConc.strain
                 : species,
             taxonomicProximity: met.taxon_distance,
-            growth_phase:
+            growthPhase:
               "growth_status" in metConc ? metConc.growth_status : null,
-            growth_media:
+            growthMedia:
               "growth_media" in metConc ? metConc.growth_media : null,
-            growth_conditions:
+            growthConditions:
               "growth_system" in metConc ? metConc.growth_system : null,
-            source_link:
+            source:
               "m2m_id" in met
                 ? { source: "ecmdb", id: met.m2m_id }
                 : { source: "ymdb", id: met.ymdb_id }
           };
-          if (conc.growth_phase && conc.growth_phase.indexOf(" phase") >= 0) {
-            conc.growth_phase = conc.growth_phase.split(" phase")[0];
+          if (conc.growthPhase && conc.growthPhase.indexOf(" phase") >= 0) {
+            conc.growthPhase = conc.growthPhase.split(" phase")[0];
           }
-          if (conc.growth_phase && conc.growth_phase.indexOf(" Phase") >= 0) {
-            conc.growth_phase = conc.growth_phase.split(" Phase")[0];
+          if (conc.growthPhase && conc.growthPhase.indexOf(" Phase") >= 0) {
+            conc.growthPhase = conc.growthPhase.split(" Phase")[0];
           }
           if (!isNaN(conc.value)) {
-            allConcs.push(conc);
+            formattedData.push(conc);
           }
         }
       }
     }
-
-    this.setState({
-      metadata: metadata,
-      data: allConcs
-    });
+    return formattedData;
   }
 
-  setColumnDefs() {
-    const route = parseHistoryLocationPathname(this.props.history);
-    const organism = route.organism;
+  getConcSideBarDef() {
+    return {
+      toolPanels: [
+        {
+          id: "columns",
+          labelDefault: "Columns",
+          labelKey: "columns",
+          iconKey: "columns",
+          toolPanel: "agColumnsToolPanel",
+          toolPanelParams: {
+            suppressRowGroups: true,
+            suppressValues: true,
+            suppressPivots: true,
+            suppressPivotMode: true,
+            suppressSideButtons: false,
+            suppressColumnFilter: true,
+            suppressColumnSelectAll: true,
+            suppressColumnExpandAll: true
+          }
+        },
+        {
+          id: "filters",
+          labelDefault: "Filters",
+          labelKey: "filters",
+          iconKey: "filter",
+          toolPanel: "agFiltersToolPanel",
+          toolPanelParams: {
+            suppressFilterSearch: true,
+            suppressExpandAll: true
+          }
+        },
+        {
+          id: "stats",
+          labelDefault: "Stats",
+          labelKey: "chart",
+          iconKey: "chart",
+          toolPanel: "statsToolPanel",
+          toolPanelParams: {
+            col: ["value"]
+          }
+        }
+      ],
+      position: "left",
+      defaultToolPanel: "filters",
+      hiddenByDefault: false
+    };
+  }
 
-    const columnDefs = [
+  getConcColDefs(organism) {
+    const colDefs = [
       {
         headerName: "Concentration (µM)",
         field: "value",
@@ -383,7 +323,6 @@ class Metabolite extends Component {
         headerName: "Metabolite",
         field: "name",
         filter: "agSetColumnFilter",
-        menuTabs: ["filterMenuTab"],
         cellRenderer: "linkCellRenderer",
         cellRendererParams: {
           route: "metabolite",
@@ -418,27 +357,27 @@ class Metabolite extends Component {
       },
       {
         headerName: "Growth phase",
-        field: "growth_phase",
+        field: "growthPhase",
         filter: "agSetColumnFilter",
         hide: true
       },
       {
         headerName: "Conditions",
-        field: "growth_conditions",
+        field: "growthConditions",
         filter: "agTextColumnFilter",
         hide: true
       },
       {
         headerName: "Media",
-        field: "growth_media",
+        field: "growthMedia",
         filter: "agTextColumnFilter",
         hide: true
       },
       {
         headerName: "Source",
-        field: "source_link",
+        field: "source",
         cellRenderer: function(params) {
-          if (params.value["source"] === "ecmdb") {
+          if (params.value.source === "ecmdb") {
             return (
               '<a href="http://ecmdb.ca/compounds/' +
               params.value.id +
@@ -456,44 +395,21 @@ class Metabolite extends Component {
             );
           }
         },
-        filter: "agSetColumnFilter",
         filterValueGetter: params => {
-          return params.data.source_link.source.toUpperCase();
-        }
+          return params.data.source.source.toUpperCase();
+        },
+        filter: "agSetColumnFilter"
       }
     ];
 
     if (!organism) {
-      columnDefs.splice(5, 1);
+      colDefs.splice(5, 1);
     }
-    this.setState({
-      columnDefs: columnDefs
-    });
-  }
-
-  sizeGridColumnsToFit(event) {
-    sizeGridColumnsToFit(event, this.grid.current);
-  }
-
-  updateGridHorizontalScrolling(event) {
-    updateGridHorizontalScrolling(event, this.grid.current);
-  }
-
-  onClickExportDataCsv() {
-    const gridApi = this.grid.current.api;
-    gridApi.exportDataAsCsv(gridDataExportParams);
-  }
-
-  onClickExportDataJson() {
-    downloadData(
-      JSON.stringify(this.state.data),
-      "data.json",
-      "application/json"
-    );
+    return colDefs;
   }
 
   render() {
-    if (this.state.metadata == null || this.state.data == null) {
+    if (this.state.metadata == null) {
       return (
         <div className="loader-full-content-container">
           <div className="loader"></div>
@@ -564,53 +480,16 @@ class Metabolite extends Component {
               organism={organism}
             />
 
-            <div className="content-block measurements" id="concentration">
-              <div className="content-block-heading-container">
-                <h2 className="content-block-heading">Concentration</h2>
-                <div className="content-block-heading-actions">
-                  Export:{" "}
-                  <button
-                    className="text-button"
-                    onClick={this.onClickExportDataCsv}
-                  >
-                    CSV
-                  </button>{" "}
-                  |{" "}
-                  <button
-                    className="text-button"
-                    onClick={this.onClickExportDataJson}
-                  >
-                    JSON
-                  </button>
-                </div>
-              </div>
-              <div className="ag-theme-balham">
-                <AgGridReact
-                  ref={this.grid}
-                  modules={AllModules}
-                  frameworkComponents={frameworkComponents}
-                  sideBar={sideBar}
-                  defaultColDef={defaultColDef}
-                  columnDefs={this.state.columnDefs}
-                  rowData={this.state.data}
-                  rowSelection="multiple"
-                  groupSelectsChildren={true}
-                  suppressMultiSort={true}
-                  suppressAutoSize={true}
-                  suppressMovableColumns={true}
-                  suppressCellSelection={true}
-                  suppressRowClickSelection={true}
-                  suppressContextMenu={true}
-                  domLayout="autoHeight"
-                  onGridSizeChanged={this.sizeGridColumnsToFit}
-                  onColumnVisible={this.sizeGridColumnsToFit}
-                  onColumnResized={this.updateGridHorizontalScrolling}
-                  onToolPanelVisibleChanged={this.sizeGridColumnsToFit}
-                  onFirstDataRendered={this.sizeGridColumnsToFit}
-                  lineage={this.state.lineage}
-                ></AgGridReact>
-              </div>
-            </div>
+            <DataTable
+              id="concentration"
+              title="Concentration"
+              entity-type="metabolite"
+              data-type="concentration"
+              get-data-url={this.getConcUrl}
+              format-data={this.formatConcData}
+              get-side-bar-def={this.getConcSideBarDef}
+              get-col-defs={this.getConcColDefs}
+            />
           </div>
         </div>
       </div>

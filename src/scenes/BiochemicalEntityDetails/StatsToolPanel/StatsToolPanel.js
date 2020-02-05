@@ -24,7 +24,7 @@ class StatsToolPanel extends Component {
      * For example, in metabolite concentrations, we want the summarize the value of "concentration",
      * so we need to tell the compomenet to look for the column labeled "concentration"
      */
-    col: PropTypes.string.isRequired
+    col: PropTypes.array.isRequired
   };
 
   constructor(props) {
@@ -60,7 +60,7 @@ class StatsToolPanel extends Component {
    * if the data exists
    */
   componentDidMount() {
-    this.props.api.addEventListener("firstDataRendered", this.updateStats);
+    this.updateStats(this.props);
     this.props.api.addEventListener("rowDataChanged", this.updateStats);
     this.props.api.addEventListener("filterChanged", this.updateSelectedStats);
     this.props.api.addEventListener(
@@ -74,7 +74,7 @@ class StatsToolPanel extends Component {
    */
   componentDidUpdate(prevProps) {
     if (prevProps.api !== this.props.api) {
-      prevProps.api.removeEventListener("firstDataRendered", this.updateStats);
+      this.updateStats(this.props);
       prevProps.api.removeEventListener("rowDataChanged", this.updateStats);
       prevProps.api.removeEventListener(
         "filterChanged",
@@ -106,7 +106,7 @@ class StatsToolPanel extends Component {
         }
       });
 
-      this.props.api.addEventListener("firstDataRendered", this.updateStats);
+      this.updateStats(this.props);
       this.props.api.addEventListener("rowDataChanged", this.updateStats);
       this.props.api.addEventListener(
         "filterChanged",
@@ -152,7 +152,11 @@ class StatsToolPanel extends Component {
     // get values
     const vals = [];
     for (const datum of data) {
-      const val = datum[this.props.col];
+      let val = datum;
+      for (const col of this.props.col) {
+        val = val[col];
+      }
+
       if (val != null) {
         vals.push(val);
       }

@@ -34,22 +34,22 @@ class TaxonomyFilter extends Component {
   }
 
   componentDidMount() {
-    if (this.props.agGridReact.props.lineage != null) {
+    if (this.props.agGridReact.props["taxon-lineage"] != null) {
       this.setMarks();
     }
   }
 
   componentDidUpdate(prevProps) {
     if (
-      this.props.agGridReact.props.lineage !==
-      prevProps.agGridReact.props.lineage
+      this.props.agGridReact.props["taxon-lineage"] !==
+      prevProps.agGridReact.props["taxon-lineage"]
     ) {
       this.setMarks();
     }
   }
 
   setMarks() {
-    const lineage = this.props.agGridReact.props.lineage;
+    const lineage = this.props.agGridReact.props["taxon-lineage"];
     const marks = [];
     this.markValueToDistance = {};
     for (let iLineage = 0; iLineage < lineage.length; iLineage++) {

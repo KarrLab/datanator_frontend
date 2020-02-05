@@ -3,149 +3,20 @@ import { withRouter } from "react-router";
 import { HashLink } from "react-router-hash-link";
 import PropTypes from "prop-types";
 import axios from "axios";
+import { getDataFromApi } from "~/services/RestApi";
 import {
   upperCaseFirstLetter,
   scrollTo,
-  sizeGridColumnsToFit,
-  updateGridHorizontalScrolling,
-  gridDataExportParams,
-  downloadData,
   parseHistoryLocationPathname
 } from "~/utils/utils";
-
 import { MetadataSection } from "./MetadataSection";
-import { getDataFromApi } from "~/services/RestApi";
-
-import { AgGridReact } from "@ag-grid-community/react";
-import { AllModules } from "@ag-grid-enterprise/all-modules";
+import DataTable from "../DataTable/DataTable";
 import { HtmlColumnHeader } from "../HtmlColumnHeader";
-import { NumericCellRenderer } from "../NumericCellRenderer";
-import { StatsToolPanel } from "../StatsToolPanel/StatsToolPanel.js";
-import { TaxonomyFilter } from "~/scenes/BiochemicalEntityDetails/TaxonomyFilter.js";
-import "@ag-grid-enterprise/all-modules/dist/styles/ag-grid.scss";
-import "@ag-grid-enterprise/all-modules/dist/styles/ag-theme-balham/sass/ag-theme-balham.scss";
 
 import "../BiochemicalEntityDetails.scss";
 
-const sideBar = {
-  toolPanels: [
-    {
-      id: "columns",
-      labelDefault: "Columns",
-      labelKey: "columns",
-      iconKey: "columns",
-      toolPanel: "agColumnsToolPanel",
-      toolPanelParams: {
-        suppressRowGroups: true,
-        suppressValues: true,
-        suppressPivots: true,
-        suppressPivotMode: true,
-        suppressSideButtons: false,
-        suppressColumnFilter: true,
-        suppressColumnSelectAll: true,
-        suppressColumnExpandAll: true
-      }
-    },
-    {
-      id: "filters",
-      labelDefault: "Filters",
-      labelKey: "filters",
-      iconKey: "filter",
-      toolPanel: "agFiltersToolPanel",
-      toolPanelParams: {
-        suppressFilterSearch: true,
-        suppressExpandAll: true
-      }
-    },
-    {
-      id: "stats-kcat",
-      labelDefault: "k<sub>cat</sub>",
-      labelKey: "chart",
-      iconKey: "chart",
-      toolPanel: "statsToolPanel",
-      toolPanelParams: {
-        col: "kcat"
-      }
-    }
-  ],
-  position: "left",
-  defaultToolPanel: "filters",
-  hiddenByDefault: false
-};
-
-const defaultColDef = {
-  minWidth: 100,
-  filter: "agTextColumnFilter",
-  sortable: true,
-  resizable: true,
-  suppressMenu: true
-};
-
-function getReactionId(resources) {
-  for (const resource of resources) {
-    if (resource.namespace === "sabiork.reaction") {
-      return resource.id;
-    }
-  }
-}
-
-function getEcNumber(resources) {
-  for (const resource of resources) {
-    if (resource.namespace === "ec-code") {
-      return resource.id;
-    }
-  }
-}
-
-function getSubstrateNames(substrates) {
-  const names = [];
-  for (const substrate of substrates) {
-    names.push(substrate.substrate_name);
-  }
-  return names;
-}
-
-function getProductNames(products) {
-  const names = [];
-  for (const product of products) {
-    names.push(product.product_name);
-  }
-  return names;
-}
-
-function formatSide(parts) {
-  return parts.join(" + ");
-}
-
-function getKcatValues(parameters) {
-  for (const parameter of parameters) {
-    if (parameter.name === "k_cat") {
-      return parseFloat(parameter.value);
-    }
-  }
-}
-
-function getKmValues(parameters, substrates) {
-  const kms = {};
-  for (const parameter of parameters) {
-    if (
-      parameter.type === 27 &&
-      substrates.includes(parameter.name) &&
-      parameter.observed_name.toLowerCase() === "km"
-    ) {
-      kms["km_" + parameter.name] = parseFloat(parameter.value);
-    }
-  }
-  return kms;
-}
-
 /*
-reactionId
-kcat
 wildtypeMutant
-organism
-ph
-temperature
 */
 class Reaction extends Component {
   static propTypes = {
@@ -155,133 +26,11 @@ class Reaction extends Component {
   constructor(props) {
     super(props);
 
-    this.grid = React.createRef();
-
     this.locationPathname = null;
     this.unlistenToHistory = null;
-    this.cancelDataTokenSource = null;
-    this.cancelTaxonInfoTokenSource = null;
+    this.cancelTokenSource = null;
 
-    this.state = {
-      metadata: null,
-      data: null,
-      lineage: [],
-      columnDefs: [],
-      firstColumns: [
-        {
-          headerName: "Kcat",
-          headerComponentFramework: HtmlColumnHeader,
-          headerComponentParams: {
-            name: (
-              <span>
-                k<sub>cat</sub>
-              </span>
-            )
-          },
-          field: "kcat",
-          cellRenderer: "numericCellRenderer",
-          type: "numericColumn",
-          filter: "agNumberColumnFilter",
-          checkboxSelection: true,
-          headerCheckboxSelection: true,
-          headerCheckboxSelectionFilteredOnly: true
-        },
-        {
-          headerName: "SABIO-RK id",
-          field: "kinLawId",
-          menuTabs: ["filterMenuTab"],
-          cellRenderer: function(params) {
-            return (
-              '<a href="http://sabiork.h-its.org/newSearch/index?q=EntryID:' +
-              params.value +
-              '" target="_blank" rel="noopener noreferrer">' +
-              params.value +
-              "</a>"
-            );
-          },
-          filter: "agTextColumnFilter"
-        }
-      ],
-      secondColumns: [
-        {
-          headerName: "Organism",
-          field: "organism",
-          filter: "agSetColumnFilter"
-        },
-        {
-          headerName: "Source",
-          field: "source",
-          cellRenderer: function(params) {
-            return (
-              '<a href="http://sabio.h-its.org/reacdetails.jsp?reactid=' +
-              params.value.reactionId +
-              '" target="_blank" rel="noopener noreferrer">' +
-              "SABIO-RK" +
-              "</a>"
-            );
-          },
-          filter: "agSetColumnFilter"
-        }
-      ],
-
-      frameworkComponents: {}
-    };
-
-    this.formatColumnHeadings = this.formatColumnHeadings.bind(this);
-    this.sizeGridColumnsToFit = this.sizeGridColumnsToFit.bind(this);
-    this.updateGridHorizontalScrolling = this.updateGridHorizontalScrolling.bind(
-      this
-    );
-    this.onClickExportDataCsv = this.onClickExportDataCsv.bind(this);
-    this.onClickExportDataJson = this.onClickExportDataJson.bind(this);
-  }
-
-  setKmColumns(kmValues) {
-    const newColumns = [];
-    const frameworkComponents = {
-      htmlColumnHeader: HtmlColumnHeader,
-      numericCellRenderer: NumericCellRenderer,
-      taxonomyFilter: TaxonomyFilter,
-      statsToolPanel: StatsToolPanel
-    };
-
-    for (const kmValue of kmValues) {
-      const metabolite = kmValue.split("_")[1];
-      newColumns.push({
-        headerName: "Km " + metabolite + " (M)",
-        headerComponentFramework: HtmlColumnHeader,
-        headerComponentParams: {
-          name: (
-            <span>
-              K<sub>M</sub> {metabolite} (M)
-            </span>
-          )
-        },
-        field: kmValue,
-        cellRenderer: "numericCellRenderer",
-        type: "numericColumn",
-        filter: "agNumberColumnFilter"
-      });
-
-      sideBar["toolPanels"].push({
-        id: kmValue,
-        labelDefault: "K<sub>M</sub> " + metabolite,
-        labelKey: "chart",
-        iconKey: "chart",
-        toolPanel: "statsToolPanel",
-        toolPanelParams: {
-          col: kmValue.toString()
-        }
-      });
-    }
-
-    const finalColumns = this.state.firstColumns
-      .concat(newColumns)
-      .concat(this.state.secondColumns);
-    this.setState({
-      columnDefs: finalColumns,
-      frameworkComponents: frameworkComponents
-    });
+    this.state = { metadata: null };
   }
 
   componentDidMount() {
@@ -298,36 +47,29 @@ class Reaction extends Component {
   componentWillUnmount() {
     this.unlistenToHistory();
     this.unlistenToHistory = null;
-    if (this.cancelDataTokenSource) {
-      this.cancelDataTokenSource.cancel();
-    }
-    if (this.cancelTaxonInfoTokenSource) {
-      this.cancelTaxonInfoTokenSource.cancel();
+    if (this.cancelTokenSource) {
+      this.cancelTokenSource.cancel();
     }
   }
 
   updateStateFromLocation() {
     if (this.unlistenToHistory) {
-      this.setState({
-        metadata: null,
-        data: null
-      });
-      this.getResultsData();
+      this.setState({ metadata: null });
+      this.getMetadataFromApi();
     }
   }
 
-  getResultsData() {
+  getMetadataFromApi() {
     const route = parseHistoryLocationPathname(this.props.history);
     const substratesProducts = route.query.split("-->");
     const substrates = substratesProducts[0].trim();
     const products = substratesProducts[1].trim();
-    const organism = route.organism;
 
-    if (this.cancelDataTokenSource) {
-      this.cancelDataTokenSource.cancel();
+    if (this.cancelTokenSource) {
+      this.cancelTokenSource.cancel();
     }
 
-    this.cancelDataTokenSource = axios.CancelToken.source();
+    this.cancelTokenSource = axios.CancelToken.source();
     getDataFromApi(
       [
         "reactions/kinlaw_by_name/" +
@@ -339,112 +81,31 @@ class Reaction extends Component {
           "&size=1000" +
           "&bound=tight"
       ],
-      { cancelToken: this.cancelDataTokenSource.token },
+      { cancelToken: this.cancelTokenSource.token },
       "Unable to get data about reaction."
     )
       .then(response => {
         if (!response) return;
         this.formatMetadata(response.data);
-        this.formatData(response.data);
       })
       .finally(() => {
-        this.cancelDataTokenSource = null;
+        this.cancelTokenSource = null;
       });
-
-    if (organism) {
-      if (this.cancelTaxonInfoTokenSource) {
-        this.cancelTaxonInfoTokenSource.cancel();
-      }
-
-      this.cancelTaxonInfoTokenSource = axios.CancelToken.source();
-      getDataFromApi(
-        ["taxon", "canon_rank_distance_by_name/?name=" + organism],
-        { cancelToken: this.cancelTaxonInfoTokenSource.token },
-        "Unable to get taxonomic information about '" + organism + "'."
-      )
-        .then(response => {
-          if (!response) return;
-          this.setState({ lineage: response.data });
-        })
-        .finally(() => {
-          this.cancelTaxonInfoTokenSource = null;
-        });
-    }
-  }
-
-  formatData(data) {
-    if (data != null) {
-      const allData = [];
-      const substrates = getSubstrateNames(
-        data[0].reaction_participant[0].substrate
-      );
-      const potentialKmValues = {};
-      for (const substrate of substrates) {
-        potentialKmValues["km_" + substrate] = false;
-      }
-
-      for (const datum of data) {
-        let wildtypeMutant = null;
-        if (datum["taxon_wildtype"] === "1") {
-          wildtypeMutant = "wildtype";
-        } else if (datum["taxon_wildtype"] === "0") {
-          wildtypeMutant = "mutant";
-        }
-        const row = {
-          kinLawId: datum["kinlaw_id"],
-          kcat: getKcatValues(datum.parameter),
-          wildtypeMutant: wildtypeMutant,
-          organism: datum.taxon_name,
-          ph: datum.ph,
-          temperature: datum.temperature,
-          source: { reactionId: getReactionId(datum.resource) }
-        };
-        const rowWithKm = Object.assign(
-          {},
-          row,
-          getKmValues(datum.parameter, substrates)
-        );
-
-        let hasData = false;
-        for (const KmValue of Object.keys(potentialKmValues)) {
-          if (rowWithKm[KmValue] != null) {
-            hasData = true;
-            potentialKmValues[KmValue] = true;
-          }
-        }
-        if (rowWithKm.kcat != null) {
-          hasData = true;
-        }
-        if (hasData) {
-          allData.push(rowWithKm);
-        }
-      }
-
-      this.setKmColumns(
-        Object.keys(potentialKmValues)
-          .filter(function(k) {
-            return potentialKmValues[k];
-          })
-          .map(String)
-      );
-
-      this.setState({
-        data: allData
-      });
-    }
   }
 
   formatMetadata(data) {
     if (data != null) {
       const metadata = {};
 
-      const reactionId = getReactionId(data[0].resource);
-      const ecNumber = getEcNumber(data[0].resource);
+      const reactionId = Reaction.getReactionId(data[0].resource);
+      const ecNumber = Reaction.getEcNumber(data[0].resource);
       const name = data[0]["enzymes"][0]["enzyme"][0]["enzyme_name"];
-      const substrates = getSubstrateNames(
+      const substrates = Reaction.getSubstrateNames(
         data[0].reaction_participant[0].substrate
       );
-      const products = getProductNames(data[0].reaction_participant[1].product);
+      const products = Reaction.getProductNames(
+        data[0].reaction_participant[1].product
+      );
       metadata["reactionId"] = reactionId;
       metadata["substrates"] = substrates;
       metadata["products"] = products;
@@ -459,15 +120,318 @@ class Reaction extends Component {
       }
 
       metadata["equation"] =
-        formatSide(substrates) + " → " + formatSide(products);
+        Reaction.formatSide(substrates) + " → " + Reaction.formatSide(products);
 
-      this.setState({
-        metadata: metadata
-      });
+      this.setState({ metadata: metadata });
     }
   }
 
-  formatColumnHeadings(event) {
+  static getReactionId(resources) {
+    for (const resource of resources) {
+      if (resource.namespace === "sabiork.reaction") {
+        return resource.id;
+      }
+    }
+  }
+
+  static getEcNumber(resources) {
+    for (const resource of resources) {
+      if (resource.namespace === "ec-code") {
+        return resource.id;
+      }
+    }
+  }
+
+  static getSubstrateNames(substrates) {
+    const names = [];
+    for (const substrate of substrates) {
+      names.push(substrate.substrate_name);
+    }
+    return names;
+  }
+
+  static getProductNames(products) {
+    const names = [];
+    for (const product of products) {
+      names.push(product.product_name);
+    }
+    return names;
+  }
+
+  static formatSide(parts) {
+    return parts.join(" + ");
+  }
+
+  getRateConstantsUrl(query) {
+    const substratesProducts = query.split("-->");
+    const substrates = substratesProducts[0].trim();
+    const products = substratesProducts[1].trim();
+    return (
+      "reactions/kinlaw_by_name/" +
+      "?substrates=" +
+      substrates +
+      "&products=" +
+      products +
+      "&_from=0" +
+      "&size=1000" +
+      "&bound=tight"
+    );
+  }
+
+  formatRateConstantsData(rawData) {
+    if (rawData != null) {
+      const formattedData = [];
+
+      for (const datum of rawData) {
+        let wildtypeMutant = null;
+        if (datum["taxon_wildtype"] === "1") {
+          wildtypeMutant = "wildtype";
+        } else if (datum["taxon_wildtype"] === "0") {
+          wildtypeMutant = "mutant";
+        }
+
+        const formattedDatum = {
+          kcat: Reaction.getKcatValues(datum.parameter),
+          km: Reaction.getKmValues(datum.parameter),
+          organism: datum.taxon_name,
+          wildtypeMutant: wildtypeMutant,
+          temperature: datum.temperature,
+          ph: datum.ph,
+          source: datum["kinlaw_id"]
+        };
+
+        if (
+          formattedDatum.kcat != null ||
+          Object.keys(formattedDatum.km).length > 0
+        ) {
+          formattedData.push(formattedDatum);
+        }
+      }
+
+      return formattedData;
+    }
+  }
+
+  static getKcatValues(parameters) {
+    for (const parameter of parameters) {
+      if (parameter.name === "k_cat") {
+        return parseFloat(parameter.value);
+      }
+    }
+  }
+
+  static getKmValues(parameters) {
+    const kms = {};
+    for (const parameter of parameters) {
+      if (
+        parameter.type === 27 &&
+        parameter.observed_name.toLowerCase() === "km"
+      ) {
+        kms[parameter.name] = parseFloat(parameter.value);
+      }
+    }
+    return kms;
+  }
+
+  getConcRateConstantsBarDef(formattedData) {
+    const sideBar = {
+      toolPanels: [
+        {
+          id: "columns",
+          labelDefault: "Columns",
+          labelKey: "columns",
+          iconKey: "columns",
+          toolPanel: "agColumnsToolPanel",
+          toolPanelParams: {
+            suppressRowGroups: true,
+            suppressValues: true,
+            suppressPivots: true,
+            suppressPivotMode: true,
+            suppressSideButtons: false,
+            suppressColumnFilter: true,
+            suppressColumnSelectAll: true,
+            suppressColumnExpandAll: true
+          }
+        },
+        {
+          id: "filters",
+          labelDefault: "Filters",
+          labelKey: "filters",
+          iconKey: "filter",
+          toolPanel: "agFiltersToolPanel",
+          toolPanelParams: {
+            suppressFilterSearch: true,
+            suppressExpandAll: true
+          }
+        },
+        {
+          id: "stats-kcat",
+          labelDefault: "Stats: k<sub>cat</sub> (s<sup>-1</sup>)",
+          labelKey: "chart",
+          iconKey: "chart",
+          toolPanel: "statsToolPanel",
+          toolPanelParams: {
+            col: ["kcat"]
+          }
+        }
+      ],
+      position: "left",
+      defaultToolPanel: "filters",
+      hiddenByDefault: false
+    };
+
+    // K_M tool panels
+    let kmMets = {};
+    for (const formattedDatum of formattedData) {
+      for (const met in formattedDatum.km) {
+        kmMets[met] = true;
+      }
+    }
+    kmMets = Object.keys(kmMets);
+    kmMets.sort();
+
+    for (const kmMet of kmMets) {
+      sideBar["toolPanels"].push({
+        id: "stats-km-" + kmMet,
+        labelDefault: "Stats: K<sub>M</sub> " + kmMet + " (M)",
+        labelKey: "chart",
+        iconKey: "chart",
+        toolPanel: "statsToolPanel",
+        toolPanelParams: {
+          col: ["km", kmMet]
+        }
+      });
+    }
+
+    // return all tool panels
+    return sideBar;
+  }
+
+  getRateConstantsColDefs(organism, formattedData) {
+    const colDefs = [];
+
+    // k_cat column
+    let hasKcat = false;
+    for (const formattedDatum of formattedData) {
+      if (formattedDatum.kcat != null) {
+        hasKcat = true;
+        break;
+      }
+    }
+
+    if (hasKcat) {
+      colDefs.push({
+        headerName: "k_{cat}",
+        headerComponentFramework: HtmlColumnHeader,
+        headerComponentParams: {
+          name: (
+            <span>
+              k<sub>cat</sub> (s<sup>-1</sup>)
+            </span>
+          )
+        },
+        field: "kcat",
+        cellRenderer: "numericCellRenderer",
+        type: "numericColumn",
+        filter: "agNumberColumnFilter",
+        checkboxSelection: true,
+        headerCheckboxSelection: true,
+        headerCheckboxSelectionFilteredOnly: true
+      });
+    }
+
+    // K_M columns
+    let kmMets = {};
+    for (const formattedDatum of formattedData) {
+      for (const kmMet in formattedDatum.km) {
+        kmMets[kmMet] = true;
+      }
+    }
+    kmMets = Object.keys(kmMets);
+    kmMets.sort();
+
+    for (const kmMet of kmMets) {
+      colDefs.push({
+        headerName: "K_M " + kmMet + " (M)",
+        headerComponentFramework: HtmlColumnHeader,
+        headerComponentParams: {
+          name: (
+            <span>
+              K<sub>M</sub> {kmMet} (M)
+            </span>
+          )
+        },
+        field: "km." + kmMet,
+        cellRenderer: "numericCellRenderer",
+        type: "numericColumn",
+        filter: "agNumberColumnFilter"
+      });
+    }
+
+    // metadata columns
+    colDefs.push({
+      headerName: "Organism",
+      field: "organism",
+      filter: "agSetColumnFilter"
+    });
+
+    colDefs.push({
+      headerName: "Variant",
+      field: "wildtypeMutant",
+      hide: true,
+      filter: "agSetColumnFilter"
+    });
+
+    /*
+    colDefs.push({
+      headerName: "Taxonomic distance",
+      field: "taxonomicProximity",
+      hide: true,
+      filter: "taxonomyFilter",
+      valueFormatter: params => {
+        const value = params.value;
+        return value;
+      }
+    })
+    */
+
+    colDefs.push({
+      headerName: "Temperature (C)",
+      field: "temperature",
+      cellRenderer: "numericCellRenderer",
+      type: "numericColumn",
+      filter: "agNumberColumnFilter"
+    });
+
+    colDefs.push({
+      headerName: "pH",
+      field: "ph",
+      cellRenderer: "numericCellRenderer",
+      type: "numericColumn",
+      filter: "agNumberColumnFilter"
+    });
+
+    colDefs.push({
+      headerName: "Source",
+      field: "source",
+      cellRenderer: function(params) {
+        return (
+          '<a href="http://sabiork.h-its.org/newSearch/index?q=EntryID:' +
+          params.value +
+          '" target="_blank" rel="noopener noreferrer">' +
+          "SABIO-RK" +
+          "</a>"
+        );
+      },
+      filterValueGetter: () => "SABIO-RK",
+      filter: "agSetColumnFilter"
+    });
+
+    // return column definitions
+    return colDefs;
+  }
+
+  formatRateConstantsColHeadings(event) {
     const gridApi = event.api;
     const panelLabelClasses = {
       columns: "ag-column-tool-panel-column-label",
@@ -483,43 +447,27 @@ class Reaction extends Component {
           label.innerHTML =
             "<span>" +
             label.innerHTML
-              .replace("Kcat", "k<sub>cat</sub>")
-              .replace("Km", "K<sub>m</sub>") +
+              .replace("k_{cat}", "k<sub>cat</sub>")
+              .replace("K_M", "K<sub>M</sub>")
+              .replace("s^{-1}", "s<sup>-1</sup>") +
             "</span>";
         }
       }
     }
   }
 
-  sizeGridColumnsToFit(event) {
-    sizeGridColumnsToFit(event, this.grid.current);
-  }
-
-  updateGridHorizontalScrolling(event) {
-    updateGridHorizontalScrolling(event, this.grid.current);
-  }
-
-  onClickExportDataCsv() {
-    const gridApi = this.grid.current.api;
-    gridApi.exportDataAsCsv(gridDataExportParams);
-  }
-
-  onClickExportDataJson() {
-    downloadData(
-      JSON.stringify(this.state.data),
-      "data.json",
-      "application/json"
-    );
-  }
-
   render() {
-    if (this.state.metadata == null || this.state.data == null) {
+    if (this.state.metadata == null) {
       return (
         <div className="loader-full-content-container">
           <div className="loader"></div>
         </div>
       );
     }
+
+    const route = parseHistoryLocationPathname(this.props.history);
+    const query = route.query;
+    const organism = route.organism;
 
     let title = this.state.metadata.name;
     if (!title) {
@@ -552,56 +500,23 @@ class Reaction extends Component {
           </div>
 
           <div className="content-column section">
-            <MetadataSection metadata={this.state.metadata} />
+            <MetadataSection
+              metadata={this.state.metadata}
+              reaction={query}
+              organism={organism}
+            />
 
-            <div className="content-block measurements" id="rate-constants">
-              <div className="content-block-heading-container">
-                <h2 className="content-block-heading">Kinetic parameters</h2>
-                <div className="content-block-heading-actions">
-                  Export:{" "}
-                  <button
-                    className="text-button"
-                    onClick={this.onClickExportDataCsv}
-                  >
-                    CSV
-                  </button>{" "}
-                  |{" "}
-                  <button
-                    className="text-button"
-                    onClick={this.onClickExportDataJson}
-                  >
-                    JSON
-                  </button>
-                </div>
-              </div>
-              <div className="ag-theme-balham">
-                <AgGridReact
-                  ref={this.grid}
-                  modules={AllModules}
-                  frameworkComponents={this.state.frameworkComponents}
-                  sideBar={sideBar}
-                  defaultColDef={defaultColDef}
-                  columnDefs={this.state.columnDefs}
-                  rowData={this.state.data}
-                  rowSelection="multiple"
-                  groupSelectsChildren={true}
-                  suppressMultiSort={true}
-                  suppressAutoSize={true}
-                  suppressMovableColumns={true}
-                  suppressCellSelection={true}
-                  suppressRowClickSelection={true}
-                  suppressContextMenu={true}
-                  domLayout="autoHeight"
-                  onGridColumnsChanged={this.formatColumnHeadings}
-                  onGridSizeChanged={this.sizeGridColumnsToFit}
-                  onColumnVisible={this.sizeGridColumnsToFit}
-                  onColumnResized={this.updateGridHorizontalScrolling}
-                  onToolPanelVisibleChanged={this.sizeGridColumnsToFit}
-                  onFirstDataRendered={this.sizeGridColumnsToFit}
-                  lineage={this.state.lineage}
-                ></AgGridReact>
-              </div>
-            </div>
+            <DataTable
+              id="rate-constants"
+              title="Rate constants"
+              entity-type="reaction"
+              data-type="rate constants"
+              get-data-url={this.getRateConstantsUrl}
+              format-data={this.formatRateConstantsData}
+              get-side-bar-def={this.getConcRateConstantsBarDef}
+              get-col-defs={this.getRateConstantsColDefs}
+              format-col-headings={this.formatRateConstantsColHeadings}
+            />
           </div>
         </div>
       </div>

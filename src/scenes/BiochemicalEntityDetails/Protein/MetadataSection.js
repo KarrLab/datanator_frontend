@@ -39,7 +39,7 @@ class MetadataSection extends Component {
           <div className="content-block-content">
             <ul className="key-value-list link-list">
               <li>
-                <b>Name:</b> {metadata.koName[0]}
+                <b>Name:</b> {metadata.koName}
               </li>
               <li>
                 <b>KEGG Orthology id:</b>{" "}
