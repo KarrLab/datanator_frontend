@@ -5,11 +5,15 @@ import DataTable from "../DataTable/DataTable";
 
 class AbundanceDataTable extends Component {
   static propTypes = {
-    uniprotIdToTaxonDist: PropTypes.object.isRequired
+    "uniprot-id-to-taxon-dist": PropTypes.object
+  };
+
+  static defaultProps = {
+    "uniprot-id-to-taxon-dist": null
   };
 
   getUrl() {
-    const queryArgs = Object.keys(this.props.uniprotIdToTaxonDist)
+    const queryArgs = Object.keys(this.props["uniprot-id-to-taxon-dist"])
       .map(el => "uniprot_id=" + el)
       .join("&");
     return "proteins/meta/meta_combo/?" + queryArgs;
@@ -41,10 +45,10 @@ class AbundanceDataTable extends Component {
                 uniprotId: rawDatum.uniprot_id,
                 geneSymbol: rawDatum.gene_name,
                 organism: rawDatum.species_name,
-                taxonomicProximity: this.props.uniprotIdToTaxonDist[
+                taxonomicProximity: this.props["uniprot-id-to-taxon-dist"][
                   rawDatum.uniprot_id
                 ],
-                organ: measurement.organ
+                organ: measurement.organ.replace("_", " ").toLowerCase()
               });
             }
           }
@@ -174,18 +178,22 @@ class AbundanceDataTable extends Component {
   }
 
   render() {
-    return (
-      <DataTable
-        id="abundance"
-        title="Abundance"
-        entity-type="ortholog group"
-        data-type="abundance"
-        get-data-url={this.getUrl.bind(this)}
-        format-data={this.formatData.bind(this)}
-        get-side-bar-def={this.getSideBarDef}
-        get-col-defs={this.getColDefs}
-      />
-    );
+    if (this.props["uniprot-id-to-taxon-dist"] == null) {
+      return <div></div>;
+    } else {
+      return (
+        <DataTable
+          id="abundance"
+          title="Abundance"
+          entity-type="ortholog group"
+          data-type="abundance"
+          get-data-url={this.getUrl.bind(this)}
+          format-data={this.formatData.bind(this)}
+          get-side-bar-def={this.getSideBarDef}
+          get-col-defs={this.getColDefs}
+        />
+      );
+    }
   }
 }
 export { AbundanceDataTable };

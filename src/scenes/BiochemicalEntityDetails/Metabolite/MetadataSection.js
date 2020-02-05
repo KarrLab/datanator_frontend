@@ -1,7 +1,17 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router";
 import PropTypes from "prop-types";
-import { upperCaseFirstLetter } from "~/utils/utils";
+import axios from "axios";
+import { getDataFromApi } from "~/services/RestApi";
+import {
+  formatChemicalFormula,
+  upperCaseFirstLetter,
+  strCompare,
+  removeDuplicates,
+  parseHistoryLocationPathname
+} from "~/utils/utils";
 
+const reactStringReplace = require("react-string-replace");
 const sprintf = require("sprintf-js").sprintf;
 
 const STRUCTURE_IMG_ARGS = {
@@ -67,14 +77,192 @@ const DATABASES = {
 
 class MetadataSection extends Component {
   static propTypes = {
-    metabolite: PropTypes.string.isRequired,
-    metadata: PropTypes.object.isRequired,
-    organism: PropTypes.string,
-    dispatch: PropTypes.func
+    history: PropTypes.object.isRequired,
+    "set-scene-metadata": PropTypes.func.isRequired
   };
 
+  constructor(props) {
+    super(props);
+
+    this.locationPathname = null;
+    this.unlistenToHistory = null;
+    this.cancelTokenSource = null;
+
+    this.state = { metadata: null };
+  }
+
+  componentDidMount() {
+    this.locationPathname = this.props.history.location.pathname;
+    this.unlistenToHistory = this.props.history.listen(location => {
+      if (location.pathname !== this.locationPathname) {
+        this.locationPathname = this.props.history.location.pathname;
+        this.updateStateFromLocation();
+      }
+    });
+    this.updateStateFromLocation();
+  }
+
+  componentWillUnmount() {
+    this.unlistenToHistory();
+    this.unlistenToHistory = null;
+    if (this.cancelTokenSource) {
+      this.cancelTokenSource.cancel();
+    }
+  }
+
+  updateStateFromLocation() {
+    if (this.unlistenToHistory) {
+      this.setState({ metadata: null });
+      this.props["set-scene-metadata"](null);
+      this.getMetadataFromApi();
+    }
+  }
+
+  getMetadataFromApi() {
+    const route = parseHistoryLocationPathname(this.props.history);
+    const query = route.query;
+    const organism = route.organism;
+    const abstract = true;
+
+    // cancel earlier query
+    if (this.cancelTokenSource) {
+      this.cancelTokenSource.cancel();
+    }
+
+    const url =
+      "metabolites/concentration/" +
+      "?metabolite=" +
+      query +
+      "&abstract=" +
+      abstract +
+      (organism ? "&species=" + organism : "");
+    this.cancelTokenSource = axios.CancelToken.source();
+    getDataFromApi(
+      [url],
+      { cancelToken: this.cancelTokenSource.token },
+      "Unable to retrieve data about metabolite '" + query + "'."
+    )
+      .then(response => {
+        if (!response) return;
+        this.formatMetadata(response.data);
+      })
+      .finally(() => {
+        this.cancelTokenSource = null;
+      });
+  }
+
+  formatMetadata(data) {
+    if (data == null) {
+      return;
+    }
+
+    let metadata = null;
+    for (const datum of data) {
+      for (const met of datum) {
+        metadata = {};
+
+        metadata.name = met.name;
+
+        metadata.synonyms = met.synonyms.synonym;
+        metadata.synonyms.sort((a, b) => {
+          return strCompare(a, b);
+        });
+
+        if (met.description != null && met.description !== undefined) {
+          metadata.description = reactStringReplace(
+            met.description,
+            /[([]PMID: *(\d+)[)\]]/gi,
+            pmid => {
+              return (
+                <span key={pmid}>
+                  [
+                  <a href={"https://www.ncbi.nlm.nih.gov/pubmed/" + pmid}>
+                    PMID: {pmid}
+                  </a>
+                  ]
+                </span>
+              );
+            }
+          );
+        } else {
+          metadata.description = null;
+        }
+
+        metadata.smiles = met.smiles;
+        metadata.inchi = met.inchi;
+        metadata.inchiKey = met.inchikey;
+        metadata.formula = formatChemicalFormula(met.chemical_formula);
+        metadata.molWt = met.average_molecular_weight;
+        metadata.charge = met.property.find(
+          el => el.kind === "formal_charge"
+        ).value;
+        metadata.physiologicalCharge = met.property.find(
+          el => el.kind === "physiological_charge"
+        ).value;
+
+        metadata.pathways = met.pathways.pathway;
+        if (metadata.pathways) {
+          if (!Array.isArray(metadata.pathways)) {
+            metadata.pathways = [metadata.pathways];
+          }
+        } else {
+          metadata.pathways = [];
+        }
+
+        metadata.pathways = removeDuplicates(metadata.pathways, el => el.name);
+        metadata.pathways.sort((a, b) => {
+          return strCompare(a.name, b.name);
+        });
+
+        metadata.cellularLocations = met.cellular_locations.cellular_location;
+        if (!Array.isArray(metadata.cellularLocations)) {
+          if (metadata.cellularLocations) {
+            metadata.cellularLocations = [metadata.cellularLocations];
+          } else {
+            metadata.cellularLocations = [];
+          }
+        }
+
+        metadata.dbLinks = {
+          biocyc: met.biocyc_id,
+          cas: met.cas_registry_number,
+          chebi: met.chebi_id,
+          chemspider: met.chemspider_id,
+          ecmdb: met.m2m_id,
+          foodb: met.foodb_id,
+          hmdb: met.hmdb_id,
+          kegg: met.kegg_id,
+          pubchem: met.pubchem_compound_id,
+          ymdb: met.ymdb_id
+        };
+        break;
+      }
+      if (metadata != null) {
+        break;
+      }
+    }
+
+    this.setState({ metadata: metadata });
+
+    let title = metadata.name;
+    title = upperCaseFirstLetter(title);
+
+    const sections = [
+      { id: "description", title: "Description" },
+      { id: "synonyms", title: "Synonyms" },
+      { id: "links", title: "Database links" },
+      { id: "physics", title: "Physics" },
+      { id: "localizations", title: "Localizations" },
+      { id: "pathways", title: "Pathways" }
+    ];
+    this.props["set-scene-metadata"]({
+      title: title,
+      metadataSections: sections
+    });
+  }
+
   render() {
-    const metadata = this.props.metadata;
+    const metadata = this.state.metadata;
 
     if (!metadata) {
       return <div></div>;
@@ -272,4 +460,4 @@ class MetadataSection extends Component {
   }
 }
 
-export { MetadataSection };
+export default withRouter(MetadataSection);
