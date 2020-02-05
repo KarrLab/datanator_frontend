@@ -496,5 +496,4 @@ class Metabolite extends Component {
     );
   }
 }
-
 export default withRouter(Metabolite);

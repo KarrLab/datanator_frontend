@@ -1,5 +1,4 @@
 "use strict";
-
 const path = require("path");
 const camelcase = require("camelcase");
 
@@ -33,13 +32,10 @@ module.exports = {
           };
         }),
       };`;
-    }
-
-    else if (filename.match(/.scss/)) {
+    } else if (filename.match(/.scss/)) {
       // Ignoring require'd SASS files
-      return '';
+      return "";
     }
-
 
     return `module.exports = ${assetFilename};`;
   }
