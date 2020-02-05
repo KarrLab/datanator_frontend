@@ -10,11 +10,10 @@ import {
   scrollTo,
   strCompare,
   removeDuplicates,
-  parseHistoryLocationPathname,
-  dictOfArraysToArrayOfDicts
+  parseHistoryLocationPathname
 } from "~/utils/utils";
 import { MetadataSection } from "./MetadataSection";
-import DataTable from "../DataTable/DataTable";
+import { ConcentrationDataTable } from "./ConcentrationDataTable";
 
 import "../BiochemicalEntityDetails.scss";
 
@@ -188,226 +187,6 @@ class Metabolite extends Component {
     this.setState({ metadata: metadata });
   }
 
-  getConcUrl(query, organism) {
-    const abstract = true;
-    return (
-      "metabolites/concentration/" +
-      "?metabolite=" +
-      query +
-      "&abstract=" +
-      abstract +
-      (organism ? "&species=" + organism : "")
-    );
-  }
-
-  formatConcData(rawData) {
-    const formattedData = [];
-    for (const rawDatum of rawData) {
-      for (const met of rawDatum) {
-        const species = "species" in met ? met.species : "Escherichia coli";
-
-        const metConcs = dictOfArraysToArrayOfDicts(met.concentrations);
-
-        for (const metConc of metConcs) {
-          let uncertainty = parseFloat(metConc.error);
-          if (uncertainty === 0 || isNaN(uncertainty)) {
-            uncertainty = null;
-          }
-          const conc = {
-            name: met.name,
-            tanimotoSimilarity: met.tanimoto_similarity,
-            value: parseFloat(metConc.concentration),
-            uncertainty: uncertainty,
-            units: metConc.concentration_units,
-            organism:
-              Object.prototype.hasOwnProperty.call(metConc, "strain") &&
-              metConc.strain
-                ? species + " " + metConc.strain
-                : species,
-            taxonomicProximity: met.taxon_distance,
-            growthPhase:
-              "growth_status" in metConc ? metConc.growth_status : null,
-            growthMedia:
-              "growth_media" in metConc ? metConc.growth_media : null,
-            growthConditions:
-              "growth_system" in metConc ? metConc.growth_system : null,
-            source:
-              "m2m_id" in met
-                ? { source: "ecmdb", id: met.m2m_id }
-                : { source: "ymdb", id: met.ymdb_id }
-          };
-          if (conc.growthPhase && conc.growthPhase.indexOf(" phase") >= 0) {
-            conc.growthPhase = conc.growthPhase.split(" phase")[0];
-          }
-          if (conc.growthPhase && conc.growthPhase.indexOf(" Phase") >= 0) {
-            conc.growthPhase = conc.growthPhase.split(" Phase")[0];
-          }
-          if (!isNaN(conc.value)) {
-            formattedData.push(conc);
-          }
-        }
-      }
-    }
-    return formattedData;
-  }
-
-  getConcSideBarDef() {
-    return {
-      toolPanels: [
-        {
-          id: "columns",
-          labelDefault: "Columns",
-          labelKey: "columns",
-          iconKey: "columns",
-          toolPanel: "agColumnsToolPanel",
-          toolPanelParams: {
-            suppressRowGroups: true,
-            suppressValues: true,
-            suppressPivots: true,
-            suppressPivotMode: true,
-            suppressSideButtons: false,
-            suppressColumnFilter: true,
-            suppressColumnSelectAll: true,
-            suppressColumnExpandAll: true
-          }
-        },
-        {
-          id: "filters",
-          labelDefault: "Filters",
-          labelKey: "filters",
-          iconKey: "filter",
-          toolPanel: "agFiltersToolPanel",
-          toolPanelParams: {
-            suppressFilterSearch: true,
-            suppressExpandAll: true
-          }
-        },
-        {
-          id: "stats",
-          labelDefault: "Stats",
-          labelKey: "chart",
-          iconKey: "chart",
-          toolPanel: "statsToolPanel",
-          toolPanelParams: {
-            col: ["value"]
-          }
-        }
-      ],
-      position: "left",
-      defaultToolPanel: "filters",
-      hiddenByDefault: false
-    };
-  }
-
-  getConcColDefs(organism) {
-    const colDefs = [
-      {
-        headerName: "Concentration (µM)",
-        field: "value",
-        cellRenderer: "numericCellRenderer",
-        type: "numericColumn",
-        filter: "agNumberColumnFilter",
-        checkboxSelection: true,
-        headerCheckboxSelection: true,
-        headerCheckboxSelectionFilteredOnly: true
-      },
-      {
-        headerName: "Uncertainty (µM)",
-        field: "uncertainty",
-        cellRenderer: "numericCellRenderer",
-        type: "numericColumn",
-        hide: true,
-        filter: "agNumberColumnFilter"
-      },
-      {
-        headerName: "Metabolite",
-        field: "name",
-        filter: "agSetColumnFilter",
-        cellRenderer: "linkCellRenderer",
-        cellRendererParams: {
-          route: "metabolite",
-          organism: organism
-        }
-      },
-      {
-        headerName: "Chemical similarity",
-        field: "tanimotoSimilarity",
-        cellRenderer: "numericCellRenderer",
-        type: "numericColumn",
-        hide: true,
-        filter: "tanimotoFilter",
-        valueFormatter: params => {
-          return params.value.toFixed(3);
-        }
-      },
-      {
-        headerName: "Organism",
-        field: "organism",
-        filter: "agSetColumnFilter"
-      },
-      {
-        headerName: "Taxonomic distance",
-        field: "taxonomicProximity",
-        hide: true,
-        filter: "taxonomyFilter",
-        valueFormatter: params => {
-          const value = params.value;
-          return value;
-        }
-      },
-      {
-        headerName: "Growth phase",
-        field: "growthPhase",
-        filter: "agSetColumnFilter",
-        hide: true
-      },
-      {
-        headerName: "Conditions",
-        field: "growthConditions",
-        filter: "agTextColumnFilter",
-        hide: true
-      },
-      {
-        headerName: "Media",
-        field: "growthMedia",
-        filter: "agTextColumnFilter",
-        hide: true
-      },
-      {
-        headerName: "Source",
-        field: "source",
-        cellRenderer: function(params) {
-          if (params.value.source === "ecmdb") {
-            return (
-              '<a href="http://ecmdb.ca/compounds/' +
-              params.value.id +
-              '" target="_blank" rel="noopener noreferrer">' +
-              "ECMDB" +
-              "</a>"
-            );
-          } else {
-            return (
-              '<a href="http://www.ymdb.ca/compounds/' +
-              params.value.id +
-              '" target="_blank" rel="noopener noreferrer">' +
-              "YMDB" +
-              "</a>"
-            );
-          }
-        },
-        filterValueGetter: params => {
-          return params.data.source.source.toUpperCase();
-        },
-        filter: "agSetColumnFilter"
-      }
-    ];
-
-    if (!organism) {
-      colDefs.splice(5, 1);
-    }
-    return colDefs;
-  }
-
   render() {
     if (this.state.metadata == null) {
       return (
@@ -480,16 +259,7 @@ class Metabolite extends Component {
               organism={organism}
             />
 
-            <DataTable
-              id="concentration"
-              title="Concentration"
-              entity-type="metabolite"
-              data-type="concentration"
-              get-data-url={this.getConcUrl}
-              format-data={this.formatConcData}
-              get-side-bar-def={this.getConcSideBarDef}
-              get-col-defs={this.getConcColDefs}
-            />
+            <ConcentrationDataTable />
           </div>
         </div>
       </div>
