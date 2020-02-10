@@ -1,9 +1,9 @@
 import React from "react";
 
 function matchAll(string, regex) {
-  var matches = [];
+  const matches = [];
   string.replace(regex, function() {
-    var match = Array.prototype.slice.call(arguments, 0, -2);
+    const match = Array.prototype.slice.call(arguments, 0, -2);
     match.input = arguments[arguments.length - 1];
     match.index = arguments[arguments.length - 2];
     matches.push(match);
@@ -50,8 +50,16 @@ function formatChemicalFormula(formula) {
   }
 
   const regex = /([A-Z][a-z]?)([0-9]*)/g;
-  let formattedFormula = [];
+  const formattedFormula = [];
   for (const match of matchAll(formula, regex)) {
+    if (parseFloat(match[2]) === 0) {
+      continue;
+    }
+
+    if (parseFloat(match[2]) == 1) {
+      match[2] = "";
+    }
+
     formattedFormula.push(
       <span key={match[1]}>
         {match[1]}
@@ -67,14 +75,14 @@ function dictOfArraysToArrayOfDicts(dictOfArrays) {
   for (const key in dictOfArrays) {
     if (Array.isArray(dictOfArrays[key])) {
       for (let iEl = 0; iEl < dictOfArrays[key].length; iEl++) {
-        if (iEl >= arrayOfDicts.length - 1) {
+        if (iEl > arrayOfDicts.length - 1) {
           arrayOfDicts.push({});
         }
         arrayOfDicts[iEl][key] = dictOfArrays[key][iEl];
       }
     } else {
       const iEl = 0;
-      if (iEl >= arrayOfDicts.length - 1) {
+      if (iEl > arrayOfDicts.length - 1) {
         arrayOfDicts.push({});
       }
       arrayOfDicts[iEl][key] = dictOfArrays[key];
@@ -90,8 +98,8 @@ function upperCaseFirstLetter(string) {
   );
 }
 
-function scrollTo(el) {
-  window.scrollTo({ behavior: "smooth", top: el.offsetTop - 52 });
+function scrollTo(el, offsetTop = -52) {
+  window.scrollTo({ behavior: "smooth", top: el.offsetTop + offsetTop });
 }
 
 function strCompare(a, b, caseInsensitive = true) {
@@ -151,15 +159,15 @@ function downloadData(data, filename, mimeType) {
 }
 
 function parseHistoryLocationPathname(history) {
-  const pathRegex = /^\/(.*?)(\/(.*?)(\/(.*?))?)?\/?$/;
+  const pathRegex = /^(\/(.*?)(\/(.*?)(\/(.*?))?)?)?\/?$/;
   const match = history.location.pathname.match(pathRegex);
   let route = null;
   let query = null;
   let organism = null;
   if (match) {
-    route = match[1];
-    query = match[3] ? match[3].trim() || null : null;
-    organism = match[5] ? match[5].trim() || null : null;
+    route = match[2];
+    query = match[4] ? match[4].trim() || null : null;
+    organism = match[6] ? match[6].trim() || null : null;
   }
   return {
     route: route,

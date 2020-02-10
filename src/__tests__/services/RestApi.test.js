@@ -6,6 +6,8 @@ import { render } from "@testing-library/react";
 
 jest.mock("axios");
 
+/* global jest, test, expect */
+
 test("Request successful", async () => {
   axios.get.mockResolvedValue({
     status: 200,
