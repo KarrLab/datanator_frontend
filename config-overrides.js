@@ -14,10 +14,5 @@ const rootImportConfig = [
 ];
 module.exports = override(
   useBabelRc(),
-  ...addBabelPlugins(rootImportConfig),
-  fixBabelImports("import", {
-    libraryName: "antd",
-    libraryDirectory: "es",
-    style: "css"
-  })
+  ...addBabelPlugins(rootImportConfig)
 );

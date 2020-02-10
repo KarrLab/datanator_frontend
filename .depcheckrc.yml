@@ -1,0 +1,12 @@
+ignore-dirs:
+  - config
+  - scripts
+ignores: 
+  - "~"
+  - depcheck
+  - jsonlint
+  - node-sass
+  - stylelint
+  - stylelint-config-standard
+  - svglint
+  - svgo

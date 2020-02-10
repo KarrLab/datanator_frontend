@@ -44,6 +44,10 @@ jobs:
             npm test .
             if [[ $? -ne 0 ]]; then error=1; fi
 
+            # check for missing and unused dependencies
+            depcheck .
+            if [[ $? -ne 0 ]]; then error=1; fi
+
             # Lint JavaScript
             eslint . \
               --ignore-pattern node_modules/ \
