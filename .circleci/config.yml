@@ -78,6 +78,9 @@ jobs:
             NODE_ENV=production npm run build
             if [[ $? -ne 0 ]]; then error=1; fi
 
+            # Analyze licenses of dependencies
+            tldrlegal .
+
             # Return error status
             if [[ $error -eq 0 ]]; then
               exit 0;

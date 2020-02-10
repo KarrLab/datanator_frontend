@@ -10,3 +10,4 @@ ignores:
   - stylelint-config-standard
   - svglint
   - svgo
+  - tldrlegal
