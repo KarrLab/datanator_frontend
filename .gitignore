@@ -64,3 +64,6 @@ typings/
 
 #vscode settings 
 .vscode/
+
+# test results
+test-results/

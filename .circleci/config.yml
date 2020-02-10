@@ -33,6 +33,8 @@ jobs:
 
       - run:
           name: Run tests, lint code, and build production package
+          environment:
+            JEST_JUNIT_OUTPUT_DIR: "test-results/unit-tests"
           command: |
             set +e
             error=0
@@ -40,8 +42,15 @@ jobs:
             # Add node programs to path
             export PATH=$PATH:node_modules/.bin
 
-            # Run tests
-            npm test .
+            # Run unit tests
+            npm run test-unit .
+            if [[ $? -ne 0 ]]; then error=1; fi
+
+            # Run integration tests
+            npm run test-integration-run
+            if [[ $? -ne 0 ]]; then error=1; fi
+
+            npm run test-integration-report
             if [[ $? -ne 0 ]]; then error=1; fi
 
             # check for missing and unused dependencies
@@ -87,3 +96,9 @@ jobs:
             else
               exit 1;
             fi
+
+      - store_test_results:
+          path: /root/project/test-results
+      - store_artifacts:
+          path: /root/project/test-coverage
+          destination: coverage
