@@ -56,7 +56,7 @@ function formatChemicalFormula(formula) {
       continue;
     }
 
-    if (parseFloat(match[2]) == 1) {
+    if (parseFloat(match[2]) === 1) {
       match[2] = "";
     }
 
