@@ -1,7 +1,3 @@
-/**
- * @jest-environment jsdom
- */
-
 import { getDataFromApi } from "~/services/RestApi";
 import axios from "axios";
 import { ErrorDialog } from "~/components/ErrorDialog/ErrorDialog";
