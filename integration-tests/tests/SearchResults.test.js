@@ -153,3 +153,96 @@ describe("Search results scene with entity and organism", function() {
       });
   });
 });
+
+describe("Search results scene with more results", function() {
+  it("successfully loads", function() {
+    cy.visit("/search/glucose");
+    cy.get(".page-title").should("contain", "Search: glucose");
+
+    // initial results
+    cy.get("#metabolites .search-results-list > li").should("have.length", 10);
+    cy.get("#reactions .search-results-list > li").should("have.length", 10);
+
+    // request more metabolites
+    cy.get("#metabolites .more-search-results-button")
+      .first()
+      .click();
+    cy.get("#metabolites .more-search-results-button")
+      .first()
+      .click();
+
+    // appended metabolite results
+    cy.get("#metabolites .search-results-list > li").should("have.length", 20);
+
+    // request more proteins
+    cy.get("#proteins .more-search-results-button")
+      .first()
+      .click();
+    cy.get("#proteins .search-results-list > li").should("have.length", 20);
+    cy.get("#proteins .more-search-results-button")
+      .first()
+      .click();
+    cy.get("#proteins .search-results-list > li").should("have.length", 30);
+    cy.get("#proteins .more-search-results-button")
+      .first()
+      .click();
+    cy.get("#proteins .search-results-list > li").should("have.length", 40);
+    cy.get("#proteins .more-search-results-button")
+      .first()
+      .click();
+    cy.get("#proteins .search-results-list > li").should("have.length", 50);
+    cy.get("#proteins .more-search-results-button")
+      .first()
+      .click();
+    cy.get("#proteins .search-results-list > li").should("have.length", 60);
+    cy.get("#proteins .more-search-results-button")
+      .first()
+      .click();
+    cy.get("#proteins .search-results-list > li").should("have.length", 70);
+  });
+});
+
+describe("Search results scene with no results", function() {
+  it("successfully loads", function() {
+    cy.visit("/search/__blank__");
+
+    /* metabolites */
+    cy.get("#metabolites .no-search-results").should($el => {
+      const text = $el.text();
+      expect(text).to.equal("No results found");
+    });
+  });
+});
+
+describe("Navigate to page and search again", function() {
+  it("successfully loads", function() {
+    cy.visit("/");
+
+    // search for glucose
+    cy.get(".header-component .page-links .bp3-icon-search")
+      .parent()
+      .click();
+    cy.get(".header-component .search-form-el-entity input").type("glucose");
+    cy.get(".header-component .search-submit").click();
+
+    // test page has results for glucose
+    cy.get(".page-title").should("contain", "Search: glucose");
+    cy.get("#metabolites .search-results-list > li").should("have.length", 10);
+
+    // search for fructose
+    cy.get(".header-component .search-form-el-entity input").clear();
+    cy.get(".header-component .search-form-el-entity input").type("fructose");
+    cy.get(".header-component .search-submit").click();
+
+    // test page has results for fructose
+    cy.get(".page-title").should("contain", "Search: fructose");
+    cy.get("#metabolites .search-results-list > li").should("have.length", 10);
+  });
+});
+
+describe("Navigate away from page", function() {
+  it("successfully loads", function() {
+    cy.visit("/search/__blank__");
+    cy.get(".header-component .logo").click();
+  });
+});
