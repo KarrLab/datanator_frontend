@@ -14,9 +14,9 @@ jobs:
       # Restore dependencies from cache
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "package.json" }}
+            - v2-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+            - v2-
 
       # Install package
       - run:
@@ -29,7 +29,8 @@ jobs:
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+            - ~/.cache
+          key: v2-{{ checksum "package.json" }}
 
       # Run tests, linting, building
       - run:
@@ -62,23 +63,20 @@ jobs:
             if [[ $? -ne 0 ]]; then error=1; fi
 
             # Lint JavaScript
-            eslint . \
+            eslint src \
               --ignore-pattern node_modules/ \
               --ignore-pattern "test.js" \
               --ignore-pattern "*.test.js"
             if [[ $? -ne 0 ]]; then error=1; fi
 
             # Lint CSS
-            stylelint src \
-              --ip "*.ai" \
-              --ip "*.png" \
-              --ip "*.svg" \
-              --ip "*.xcf"
+            stylelint .
             if [[ $? -ne 0 ]]; then error=1; fi
 
             # Lint JSON
             find . -name "*.json" -not -path "./node_modules/*" -print0 |
             while IFS= read -r -d '' line; do
+              echo $line
               jsonlint -q "$line"
               if [[ $? -ne 0 ]]; then error=1; fi
             done
@@ -92,7 +90,7 @@ jobs:
             if [[ $? -ne 0 ]]; then error=1; fi
 
             # Analyze licenses of dependencies
-            tldrlegal .
+            tldrlegal
 
             # Return error status
             if [[ $error -eq 0 ]]; then
