@@ -7,10 +7,10 @@ export default class MetaboliteSearchResultsList extends Component {
 
     return (
       "ftx/text_search/num_of_index/" +
-      "?query_message=" +
-      query +
-      "&index=" +
+      "?index=" +
       indexQueryArg +
+      "&query_message=" +
+      query +      
       "&from_=" +
       pageCount * pageSize +
       "&size=" +
