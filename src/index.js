@@ -52,22 +52,22 @@ const SiteRouter = () => {
       <Header />
       <Switch>
         <Route path="/" exact component={Home} />
-        <Route path="/search/:query/:organism?/" component={SearchResults} />
+        <Route path="/search/:query/:organism?/" exact component={SearchResults} />
         <Route
           path="/metabolite/:metabolite/:organism?/"
+          exact 
           component={Metabolite}
         />
-        <Route path="/rna/:rna/:organism?/" component={Rna} />
-        <Route path="/protein/:protein/:organism?/" component={Protein} />
+        <Route path="/rna/:rna/:organism?/" exact component={Rna} />
+        <Route path="/protein/:protein/:organism?/" exact component={Protein} />
         <Route
           path="/reaction/:substrates-->:products/:organism?/"
+          exact 
           component={Reaction}
         />
-        <Route path="/rna/:protein_name" component={Rna} />
-
-        <Route path="/stats/" component={Stats} />
-        <Route path="/help/" component={Help} />
-        <Route path="/about/" component={About} />
+        <Route path="/stats/" exact component={Stats} />
+        <Route path="/help/" exact component={Help} />
+        <Route path="/about/" exact component={About} />
         <Route path="*" component={Error404} />
       </Switch>
       <Footer />
