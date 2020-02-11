@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./FeedbackForm.scss";
 
-const API_KEY = process.env.BRUIT_API_KEY;
+const API_KEY = process.env.REACT_APP_BRUIT_API_KEY;
 
 export default class FeedbackForm extends Component {
   render() {
