@@ -118,6 +118,7 @@ jobs:
       # Save coverage reports
       - run:
           name: Save coverage reports
+          when: always
           command: |
             # merge coverage results
             lcov-result-merger \
@@ -141,7 +142,7 @@ jobs:
               --id ${CODECLIMATE_REPO_TOKEN}
 
       - store_test_results:
-          path: /root/project/test-results
+          path: ~/project/test-results
       - store_artifacts:
-          path: /root/project/test-coverage
+          path: ~/project/test-coverage
           destination: coverage
