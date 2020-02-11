@@ -14,12 +14,7 @@ const DEFAULT_ERROR_MESSAGE = (
   </span>
 );
 
-function getDataFromApi(
-  params,
-  options = {},
-  errorMessage = null,
-  dialogRef = null
-) {
+function getDataFromApi(params, options = {}, errorMessage = null) {
   const url = ROOT_URL + params.join("/");
   return axios.get(url, options).catch(error => {
     if (axios.isCancel(error)) {
@@ -27,10 +22,7 @@ function getDataFromApi(
         console.log("Request '" + params.join("/") + "' cancelled");
       }
     } else {
-      if (dialogRef == null) {
-        dialogRef = errorDialogRef;
-      }
-      dialogRef.current.open(
+      errorDialogRef.current.open(
         <span className="dialog-message-container">
           {errorMessage && <span>{errorMessage}</span>}
           {DEFAULT_ERROR_MESSAGE}

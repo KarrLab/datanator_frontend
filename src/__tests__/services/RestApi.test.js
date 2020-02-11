@@ -1,7 +1,9 @@
 import { getDataFromApi } from "~/services/RestApi";
 import axios from "axios";
-import { ErrorDialog } from "~/components/ErrorDialog/ErrorDialog";
-import React from "react";
+import {
+  errorDialog,
+  errorDialogRef
+} from "~/components/ErrorDialog/ErrorDialog";
 import { render } from "@testing-library/react";
 
 jest.mock("axios");
@@ -25,11 +27,14 @@ test("Request failed", async () => {
     response: { status: 404, data: { status: 404, detail: "Server error." } }
   });
 
-  const errorDialogRef = React.createRef();
-  render(<ErrorDialog ref={errorDialogRef} />);
+  render(errorDialog);
   console.log = jest.fn();
-  await getDataFromApi(["not-implemented"], {}, null, errorDialogRef);
+  const customErrMsg = "Custom error message";
+  await getDataFromApi(["not-implemented"], {}, customErrMsg, errorDialogRef);
   expect(console.log.mock.calls[0][0]).toMatch(/^Server error 404:/);
+
+  // close error dialog
+  errorDialogRef.current.close();
 });
 
 test("Request canceled", async () => {

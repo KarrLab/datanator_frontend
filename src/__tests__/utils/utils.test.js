@@ -211,6 +211,14 @@ test("parseHistoryLocationPathname", () => {
     query: "glucose",
     organism: "Homo sapiens"
   });
+
+  expect(
+    parseHistoryLocationPathname({ location: { pathname: "/search/ / /" } })
+  ).toEqual({
+    route: "search",
+    query: null,
+    organism: null
+  });
 });
 
 test("getNumProperties", () => {
