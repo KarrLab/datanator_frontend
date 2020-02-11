@@ -93,13 +93,13 @@ class SearchForm extends Component {
     // make new query
     this.cancelTokenSource = axios.CancelToken.source();
     const url =
-      "ftx/text_search/" + 
-      "?index=taxon_tree" + 
+      "ftx/text_search/" +
+      "?index=taxon_tree" +
       "&query_message=" +
       query +
-      "&from_=0" + 
-      "&size=100" + 
-      "&fields=tax_name" + 
+      "&from_=0" +
+      "&size=100" +
+      "&fields=tax_name" +
       "&_source_includes=tax_name";
     getDataFromApi(
       [url],

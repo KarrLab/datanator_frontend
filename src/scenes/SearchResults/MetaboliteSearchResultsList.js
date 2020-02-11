@@ -10,7 +10,7 @@ export default class MetaboliteSearchResultsList extends Component {
       "?index=" +
       indexQueryArg +
       "&query_message=" +
-      query +      
+      query +
       "&from_=" +
       pageCount * pageSize +
       "&size=" +
