@@ -72,6 +72,7 @@
     "stop": "node scripts/stop.js",
     "build": "react-app-rewired build",
     "test-unit": "jest",
+    "test-unit-coverage": "jest --coverage",
     "test-integration-run": "cypress run",
     "test-integration-open": "cypress open",
     "test-integration-report": "nyc report --reporter=text-summary --reporter=html",
@@ -79,6 +80,14 @@
     "clean-heroku": "scripts/clean-heroku.sh"
   },
   "eslintConfig": {
+    "ignorePatterns": [
+      "build/",
+      "coverage/",
+      "node_modules/",
+      "scripts/",
+      "test-results",
+      "config-overrides.js"
+    ],
     "plugins": [
       "react",
       "prettier"
@@ -159,17 +168,16 @@
         {
           "legacy": true
         }
-      ],
-      [
-        "istanbul",
-        {}
       ]
     ]
   },
   "jest": {
     "rootDir": ".",
+    "modulePaths": [
+      "<rootDir>/src"
+    ],
     "roots": [
-      "src/__tests__"
+      "<rootDir>/src/__tests__"
     ],
     "setupFilesAfterEnv": [
       "<rootDir>/src/setupTests.js"
@@ -179,14 +187,26 @@
       "default",
       "jest-junit"
     ],
+    "collectCoverage": false,
+    "collectCoverageFrom": [
+      "**/*.js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/build/",
+      "<rootDir>/coverage/",
+      "<rootDir>/integration-tests/",
+      "<rootDir>/node_modules/",
+      "<rootDir>/scripts/",
+      "<rootDir>/src/__tests__",
+      "<rootDir>/test-results/"
+    ],
     "coverageDirectory": "coverage/unit-tests",
     "coverageReporters": [
       "json",
       "lcov",
       "text",
       "clover"
-    ],
-    "collectCoverage": false
+    ]
   },
   "jest-junit": {
     "outputDirectory": "test-results/unit-tests/",
