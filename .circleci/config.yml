@@ -48,7 +48,7 @@ jobs:
             if [[ $? -ne 0 ]]; then error=1; fi
 
             # Run integration tests
-            num start &
+            npm start &
             wait-on http://localhost:3000
             npm run test-integration-run
             if [[ $? -ne 0 ]]; then error=1; fi
