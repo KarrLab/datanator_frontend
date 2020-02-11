@@ -11,6 +11,23 @@ jobs:
       # Clone repo
       - checkout
 
+      # Install dependencies for Cypress
+      - run:
+        name: Install dependencies for Cypress
+        command: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            libgtk2.0-0 \
+            libgtk-3-0 \
+            libnotify-dev \
+            libgconf-2-4 \
+            libnss3 \
+            libxss1 \
+            libasound2 \
+            libxtst6 \
+            xauth \
+            xvfb
+
       # Restore dependencies from cache
       - restore_cache:
           keys:
@@ -35,8 +52,6 @@ jobs:
       # Run tests, linting, building
       - run:
           name: Run tests, lint code, and build production package
-          environment:
-            JEST_JUNIT_OUTPUT_DIR: "test-results/unit-tests"
           command: |
             set +e
             error=0
@@ -76,13 +91,12 @@ jobs:
             # Lint JSON
             find . -name "*.json" -not -path "./node_modules/*" -print0 |
             while IFS= read -r -d '' line; do
-              echo $line
               jsonlint -q "$line"
               if [[ $? -ne 0 ]]; then error=1; fi
             done
 
             # Lint svg
-            find src -name "*.svg" | xargs -r svglint
+            find src -name "*.svg" | xargs -r svglint --ci
             if [[ $? -ne 0 ]]; then error=1; fi
 
             # Build production package
@@ -112,8 +126,9 @@ jobs:
             cat ./coverage/lcov.info | coveralls
 
             # submit to Code Climate
-            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > /usr/local/bin/cc-test-reporter
-            chmod +x /usr/local/bin/cc-test-reporter
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > cc-test-reporter
+            chmod +x cc-test-reporter
+            sudo mv cc-test-reporter /usr/local/bin/cc-test-reporter
 
             cc-test-reporter format-coverage \
               coverage/lcov.info \
@@ -122,7 +137,6 @@ jobs:
             cc-test-reporter upload-coverage \
               --input coverage/codeclimate.json \
               --id ${CODECLIMATE_REPO_TOKEN}
-
 
       - store_test_results:
           path: /root/project/test-results
