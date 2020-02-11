@@ -68,7 +68,7 @@ jobs:
             export PATH=$PATH:node_modules/.bin
 
             # Run unit tests
-            npm run test-unit
+            npm run test-unit-coverage
             if [[ $? -ne 0 ]]; then error=1; fi
 
             # Run integration tests
@@ -86,10 +86,7 @@ jobs:
             if [[ $? -ne 0 ]]; then error=1; fi
 
             # Lint JavaScript
-            eslint src \
-              --ignore-pattern node_modules/ \
-              --ignore-pattern "test.js" \
-              --ignore-pattern "*.test.js"
+            eslint .
             if [[ $? -ne 0 ]]; then error=1; fi
 
             # Lint CSS
