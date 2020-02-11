@@ -30,6 +30,7 @@ class Header extends Component {
     this.updateStateFromLocation();
   }
 
+  /* istanbul ignore next */
   componentWillUnmount() {
     this.unlistenToHistory();
     this.unlistenToHistory = null;
