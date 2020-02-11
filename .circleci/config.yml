@@ -13,10 +13,11 @@ jobs:
       # Clone repo
       - checkout
 
-      # Install dependencies for Cypress
+      # Install dependencies
       - run:
-          name: Install dependencies for Cypress
+          name: Install dependencies
           command: |
+            # for Cypress
             sudo apt-get update
             sudo apt-get install -y --no-install-recommends \
               libgtk2.0-0 \
@@ -29,6 +30,11 @@ jobs:
               libxtst6 \
               xauth \
               xvfb
+
+            # Code Climate test reporter
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > cc-test-reporter
+            chmod +x cc-test-reporter
+            sudo mv cc-test-reporter /usr/local/bin/cc-test-reporter
 
       # Restore dependencies from cache
       - restore_cache:
@@ -120,6 +126,9 @@ jobs:
           name: Save coverage reports
           when: always
           command: |
+            # Add node programs to path
+            export PATH=$PATH:node_modules/.bin
+
             # merge coverage results
             lcov-result-merger \
               "./coverage/**/lcov.info" \
@@ -127,11 +136,6 @@ jobs:
 
             # submit to Coveralls
             cat ./coverage/lcov.info | coveralls
-
-            # submit to Code Climate
-            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > cc-test-reporter
-            chmod +x cc-test-reporter
-            sudo mv cc-test-reporter /usr/local/bin/cc-test-reporter
 
             cc-test-reporter format-coverage \
               coverage/lcov.info \
