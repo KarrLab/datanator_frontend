@@ -1,0 +1,12 @@
+build/
+coverage/
+node_modules/
+test-results/
+LICENSE
+*.ai
+*.ico
+*.json
+*.png
+*.sh
+*.svg
+*.xcf
