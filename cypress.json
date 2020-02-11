@@ -13,7 +13,7 @@
   "videosFolder": "test-results/integration-tests/videos",
   "reporter": "junit",
   "reporterOptions": {
-    "mochaFile": "test-results/integration-tests/results.xml",
+    "mochaFile": "test-results/integration-tests/specs/results-[hash].xml",
     "toConsole": false
   }
 }

@@ -78,7 +78,10 @@ jobs:
             if [[ $? -ne 0 ]]; then error=1; fi
             npm stop
 
-            npm run test-integration-report
+            npm run test-integration-results-report
+            if [[ $? -ne 0 ]]; then error=1; fi
+
+            npm run test-integration-coverage-report
             if [[ $? -ne 0 ]]; then error=1; fi
 
             # check for missing and unused dependencies
@@ -143,7 +146,9 @@ jobs:
               --id ${CODECLIMATE_REPO_TOKEN}
 
       - store_test_results:
-          path: ~/project/test-results
+          path: ~/project/test-results/unit-tests/results.xml
+      - store_test_results:
+          path: ~/project/test-results/integration-tests/results.xml
       - store_artifacts:
           path: ~/project/test-results
           destination: test-results

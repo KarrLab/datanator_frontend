@@ -52,6 +52,7 @@
     "jest": "^24.9.0",
     "jest-junit": "^10.0.0",
     "jsonlint": "^1.6.3",
+    "junit-merge": "^2.0.0",
     "lcov-result-merger": "^3.1.0",
     "mocha-junit-reporter": "^1.23.3",
     "node-sass": "^4.13.1",
@@ -75,7 +76,8 @@
     "test-unit-coverage": "jest --coverage",
     "test-integration-run": "cypress run",
     "test-integration-open": "cypress open",
-    "test-integration-report": "nyc report --reporter=text-summary --reporter=html",
+    "test-integration-results-report": "junit-merge --dir test-results/integration-tests/specs --recursive --out test-results/integration-tests/results.xml",
+    "test-integration-coverage-report": "nyc report --reporter=text-summary --reporter=html",
     "eject": "react-scripts eject",
     "clean-heroku": "scripts/clean-heroku.sh"
   },
@@ -168,7 +170,8 @@
         {
           "legacy": true
         }
-      ]
+      ],
+      "istanbul"
     ]
   },
   "jest": {
