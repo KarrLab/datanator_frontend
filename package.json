@@ -75,7 +75,8 @@
     "test-integration-run": "cypress run",
     "test-integration-open": "cypress open",
     "test-integration-report": "nyc report --reporter=text-summary --reporter=html",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "clean-heroku": "scripts/clean-heroku.sh"
   },
   "eslintConfig": {
     "plugins": [
