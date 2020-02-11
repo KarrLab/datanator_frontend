@@ -9,7 +9,7 @@
   "viewportWidth": 1920,
   "viewportHeight": 1080,
   "screenshotsFolder": "test-results/integration-tests/screenshots",
-  "video": true,
+  "video": false,
   "videosFolder": "test-results/integration-tests/videos",
   "reporter": "junit",
   "reporterOptions": {
