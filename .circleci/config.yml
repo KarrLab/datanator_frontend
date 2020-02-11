@@ -31,6 +31,7 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
+      # Run tests, linting, building
       - run:
           name: Run tests, lint code, and build production package
           environment:
@@ -99,6 +100,31 @@ jobs:
             else
               exit 1;
             fi
+
+      # Save coverage reports
+      - run:
+          name: Save coverage reports
+          command: |
+            # merge coverage results
+            lcov-result-merger \
+              "./coverage/**/lcov.info" \
+              "./coverage/lcov.info"
+
+            # submit to Coveralls
+            cat ./coverage/lcov.info | coveralls
+
+            # submit to Code Climate
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > /usr/local/bin/cc-test-reporter
+            chmod +x /usr/local/bin/cc-test-reporter
+
+            cc-test-reporter format-coverage \
+              coverage/lcov.info \
+              --input-type lcov \
+              --output coverage/codeclimate.json
+            cc-test-reporter upload-coverage \
+              --input coverage/codeclimate.json \
+              --id ${CODECLIMATE_REPO_TOKEN}
+
 
       - store_test_results:
           path: /root/project/test-results
