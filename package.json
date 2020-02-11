@@ -189,8 +189,8 @@
     "collectCoverage": true
   },
   "jest-junit": {
-    "outputDirectory": "test-results/",
-    "outputName": "unit-tests.xml"
+    "outputDirectory": "test-results/unit-tests/",
+    "outputName": "results.xml"
   },
   "nyc": {
     "report-dir": "coverage/integration-tests"
