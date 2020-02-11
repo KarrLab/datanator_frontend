@@ -186,7 +186,7 @@
       "text",
       "clover"
     ],
-    "collectCoverage": true
+    "collectCoverage": false
   },
   "jest-junit": {
     "outputDirectory": "test-results/unit-tests/",

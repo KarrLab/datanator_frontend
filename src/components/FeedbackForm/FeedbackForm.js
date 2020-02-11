@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import "./FeedbackForm.scss";
 
+const API_KEY = process.env.BRUIT_API_KEY;
+
 export default class FeedbackForm extends Component {
   render() {
     return (
       <bruit-io
         brt-config={JSON.stringify({
-          apiKey: "e9e463f9-8444-48d1-acad-a22803854221",
+          apiKey: API_KEY,
           labels: {
             title: "Send us feedback",
             button: "Send"
