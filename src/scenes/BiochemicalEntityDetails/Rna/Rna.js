@@ -35,7 +35,10 @@ class Rna extends Component {
           }
         >
           <h1 className="page-title">
-            RNA: {this.state.metadata ? this.state.metadata.title : ""}
+            RNA:{" "}
+            <span className="highlight-accent">
+              {this.state.metadata ? this.state.metadata.title : ""}
+            </span>
             {this.state.metadata && this.state.metadata.organism && (
               <span>
                 <span className="highlight-text"> in </span>

@@ -35,7 +35,10 @@ export default class Reaction extends Component {
           }
         >
           <h1 className="page-title">
-            Reaction: {this.state.metadata ? this.state.metadata.title : ""}
+            Reaction:{" "}
+            <span className="highlight-accent">
+              {this.state.metadata ? this.state.metadata.title : ""}
+            </span>
             {this.state.metadata && this.state.metadata.organism && (
               <span>
                 <span className="highlight-text"> in </span>
