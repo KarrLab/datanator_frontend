@@ -43,7 +43,7 @@ jobs:
             export PATH=$PATH:node_modules/.bin
 
             # Run unit tests
-            npm run test-unit .
+            npm run test-unit
             if [[ $? -ne 0 ]]; then error=1; fi
 
             # Run integration tests
