@@ -9,5 +9,6 @@ public/favicon-chrome.svg
 
 # test files
 src/setupTests.js
-__tests__/
+src/__tests__/
+integration-tests/
 *.test.js
