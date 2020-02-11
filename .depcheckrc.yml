@@ -3,11 +3,22 @@ ignore-dirs:
   - scripts
 ignores: 
   - "~"
+  - "@testing-library/jest-dom"
+  - babel-jest
+  - core-js
+  - coveralls
   - depcheck
+  - http
   - jsonlint
+  - lcov-result-merger
+  - mocha-junit-reporter
   - node-sass
+  - regenerator-runtime
+  - socket.io
+  - socket.io-client
   - stylelint
   - stylelint-config-standard
   - svglint
   - svgo
   - tldrlegal
+  - wait-on
