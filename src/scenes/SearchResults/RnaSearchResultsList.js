@@ -88,10 +88,10 @@ export default class RnaSearchResultsList extends Component {
         title: result["protein_name"],
         description: description,
         route:
-          "/rna/" +
-          result["protein_name"] +
+          "/rna" +
           "/" +
-          (organism ? organism + "/" : "")
+          result["protein_name"] +
+          (organism ? "/" + organism : "")
       });
     }
     return {
