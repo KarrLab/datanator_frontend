@@ -51,9 +51,9 @@ class SearchResults extends Component {
         <h1 className="page-title">
           Search: <span className="highlight-accent">{this.state.query}</span>
           {this.state.organism && (
-            <span className="highlight-text">
-              {" "}
-              in <span className="highlight-accent">{this.state.organism}</span>
+            <span>
+              <span className="highlight-text"> in </span>
+              <span className="highlight-accent">{this.state.organism}</span>
             </span>
           )}
         </h1>

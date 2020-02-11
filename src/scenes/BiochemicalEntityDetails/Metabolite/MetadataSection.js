@@ -5,7 +5,8 @@ import {
   formatChemicalFormula,
   upperCaseFirstLetter,
   strCompare,
-  removeDuplicates
+  removeDuplicates,
+  castToArray
 } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
 
@@ -96,11 +97,7 @@ class MetadataSection extends Component {
     );
   }
 
-  formatMetadata(rawData) {
-    if (rawData == null) {
-      return;
-    }
-
+  formatMetadata(rawData, organism) {
     let formattedData = null;
     for (const rawDataum of rawData) {
       for (const met of rawDataum) {
@@ -113,6 +110,7 @@ class MetadataSection extends Component {
           return strCompare(a, b);
         });
 
+        formattedData.description = null;
         if (met.description != null && met.description !== undefined) {
           formattedData.description = reactStringReplace(
             met.description,
@@ -129,8 +127,6 @@ class MetadataSection extends Component {
               );
             }
           );
-        } else {
-          formattedData.description = null;
         }
 
         formattedData.physics = {
@@ -145,14 +141,7 @@ class MetadataSection extends Component {
           ).value
         };
 
-        formattedData.pathways = met.pathways.pathway;
-        if (formattedData.pathways) {
-          if (!Array.isArray(formattedData.pathways)) {
-            formattedData.pathways = [formattedData.pathways];
-          }
-        } else {
-          formattedData.pathways = [];
-        }
+        formattedData.pathways = castToArray(met.pathways.pathway);
 
         formattedData.pathways = removeDuplicates(
           formattedData.pathways,
@@ -162,15 +151,9 @@ class MetadataSection extends Component {
           return strCompare(a.name, b.name);
         });
 
-        formattedData.cellularLocations =
-          met.cellular_locations.cellular_location;
-        if (!Array.isArray(formattedData.cellularLocations)) {
-          if (formattedData.cellularLocations) {
-            formattedData.cellularLocations = [formattedData.cellularLocations];
-          } else {
-            formattedData.cellularLocations = [];
-          }
-        }
+        formattedData.cellularLocations = castToArray(
+          met.cellular_locations.cellular_location
+        );
 
         formattedData.dbLinks = {
           biocyc: met.biocyc_id,
@@ -211,6 +194,7 @@ class MetadataSection extends Component {
 
     this.props["set-scene-metadata"]({
       title: title,
+      organism: organism,
       metadataSections: sections
     });
   }

@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import { getDataFromApi } from "~/services/RestApi";
 import { parseHistoryLocationPathname } from "~/utils/utils";
+import { errorDialogRef } from "~/components/ErrorDialog/ErrorDialog";
 
 class MetadataSection extends Component {
   static propTypes = {
@@ -72,8 +73,28 @@ class MetadataSection extends Component {
         "'."
     )
       .then(response => {
-        if (!response) return;
-        this.props["format-metadata"](response.data);
+        if (
+          response == null ||
+          response === undefined ||
+          typeof response === "string"
+        ) {
+          errorDialogRef.current.open(
+            <span className="dialog-message-container">
+              <span>
+                We were unable to retrieve data about {query}
+                {organism && " in " + organism}.
+              </span>
+              <span>
+                We&apos;re sorry our server could not complete your request.
+                Please try again, or contact us at{" "}
+                <a href="mailto:info@karrlab.org">info@karrlab.org</a> if the
+                problem persists.
+              </span>
+            </span>
+          );
+          return;
+        }
+        this.props["format-metadata"](response.data, organism);
       })
       .finally(() => {
         this.cancelDataTokenSource = null;

@@ -186,6 +186,18 @@ function getNumProperties(obj) {
   return size;
 }
 
+function castToArray(obj) {
+  if (Array.isArray(obj)) {
+    return obj;
+  } else {
+    if (obj == null || obj === undefined) {
+      return [];
+    } else {
+      return [obj];
+    }
+  }
+}
+
 export {
   formatScientificNotation,
   formatChemicalFormula,
@@ -196,5 +208,6 @@ export {
   removeDuplicates,
   downloadData,
   parseHistoryLocationPathname,
-  getNumProperties
+  getNumProperties,
+  castToArray
 };

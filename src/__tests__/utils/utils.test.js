@@ -11,7 +11,8 @@ import {
   removeDuplicates,
   downloadData,
   parseHistoryLocationPathname,
-  getNumProperties
+  getNumProperties,
+  castToArray
 } from "~/utils/utils";
 
 /* global jest, test, expect */
@@ -216,4 +217,11 @@ test("getNumProperties", () => {
   expect(getNumProperties({})).toBe(0);
   expect(getNumProperties({ a: 1, b: 2 })).toBe(2);
   expect(getNumProperties({ a: 1, b: 2, c: 3, d: 4 })).toBe(4);
+});
+
+test("castToArray", () => {
+  expect(castToArray(null)).toEqual([]);
+  expect(castToArray(undefined)).toEqual([]);
+  expect(castToArray("a")).toEqual(["a"]);
+  expect(castToArray(["b"])).toEqual(["b"]);
 });

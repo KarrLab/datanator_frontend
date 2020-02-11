@@ -35,7 +35,18 @@ export default class Metabolite extends Component {
           }
         >
           <h1 className="page-title">
-            Metabolite: {this.state.metadata ? this.state.metadata.title : ""}
+            Metabolite:{" "}
+            <span className="highlight-accent">
+              {this.state.metadata ? this.state.metadata.title : ""}
+            </span>
+            {this.state.metadata && this.state.metadata.organism && (
+              <span>
+                <span className="highlight-text"> in </span>
+                <span className="highlight-accent">
+                  {this.state.metadata.organism}
+                </span>
+              </span>
+            )}
           </h1>
           <div className="content-container-columns">
             <div className="overview-column">

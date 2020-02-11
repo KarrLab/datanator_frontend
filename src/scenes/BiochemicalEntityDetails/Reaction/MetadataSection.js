@@ -47,57 +47,56 @@ class MetadataSection extends Component {
     );
   }
 
-  formatMetadata(rawData) {
-    if (rawData != null) {
-      const formattedData = {};
+  formatMetadata(rawData, organism) {
+    const formattedData = {};
 
-      const reactionId = MetadataSection.getReactionId(rawData[0].resource);
-      const ecNumber = MetadataSection.getEcNum(rawData[0].resource);
-      const name = rawData[0]["enzymes"][0]["enzyme"][0]["enzyme_name"];
-      const substrates = MetadataSection.getSubstrateNames(
-        rawData[0].reaction_participant[0].substrate
-      );
-      const products = MetadataSection.getProductNames(
-        rawData[0].reaction_participant[1].product
-      );
-      formattedData["reactionId"] = reactionId;
-      formattedData["substrates"] = substrates;
-      formattedData["products"] = products;
-      if (ecNumber !== "-.-.-.-") {
-        formattedData["ecNumber"] = ecNumber;
-      }
-
-      if (name) {
-        const start = name[0].toUpperCase();
-        const end = name.substring(1, name.length);
-        formattedData["name"] = start + end;
-      }
-
-      formattedData["equation"] =
-        MetadataSection.formatSide(substrates) +
-        " → " +
-        MetadataSection.formatSide(products);
-
-      this.setState({ metadata: formattedData });
-
-      let title = formattedData.name;
-      if (!title) {
-        title = formattedData.equation;
-      }
-      title = upperCaseFirstLetter(title);
-
-      const sections = [
-        {
-          id: "description",
-          title: "Description"
-        }
-      ];
-
-      this.props["set-scene-metadata"]({
-        title: title,
-        metadataSections: sections
-      });
+    const reactionId = MetadataSection.getReactionId(rawData[0].resource);
+    const ecNumber = MetadataSection.getEcNum(rawData[0].resource);
+    const name = rawData[0]["enzymes"][0]["enzyme"][0]["enzyme_name"];
+    const substrates = MetadataSection.getSubstrateNames(
+      rawData[0].reaction_participant[0].substrate
+    );
+    const products = MetadataSection.getProductNames(
+      rawData[0].reaction_participant[1].product
+    );
+    formattedData["reactionId"] = reactionId;
+    formattedData["substrates"] = substrates;
+    formattedData["products"] = products;
+    if (ecNumber !== "-.-.-.-") {
+      formattedData["ecNumber"] = ecNumber;
     }
+
+    if (name) {
+      const start = name[0].toUpperCase();
+      const end = name.substring(1, name.length);
+      formattedData["name"] = start + end;
+    }
+
+    formattedData["equation"] =
+      MetadataSection.formatSide(substrates) +
+      " → " +
+      MetadataSection.formatSide(products);
+
+    this.setState({ metadata: formattedData });
+
+    let title = formattedData.name;
+    if (!title) {
+      title = formattedData.equation;
+    }
+    title = upperCaseFirstLetter(title);
+
+    const sections = [
+      {
+        id: "description",
+        title: "Description"
+      }
+    ];
+
+    this.props["set-scene-metadata"]({
+      title: title,
+      organism: organism,
+      metadataSections: sections
+    });
   }
 
   static getReactionId(resources) {

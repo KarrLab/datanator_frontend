@@ -26,41 +26,40 @@ class MetadataSection extends Component {
     );
   }
 
-  formatMetadata(rawData) {
-    if (typeof rawData != "string") {
-      const uniprotIdToTaxonDist = {};
-      if (rawData != null && typeof rawData != "string") {
-        for (const rawDatum of rawData) {
-          for (const doc of rawDatum.documents) {
-            if (doc.abundances !== undefined) {
-              uniprotIdToTaxonDist[doc.uniprot_id] = rawDatum.distance;
-            }
+  formatMetadata(rawData, organism) {
+    const uniprotIdToTaxonDist = {};
+    if (rawData != null && typeof rawData != "string") {
+      for (const rawDatum of rawData) {
+        for (const doc of rawDatum.documents) {
+          if (doc.abundances !== undefined) {
+            uniprotIdToTaxonDist[doc.uniprot_id] = rawDatum.distance;
           }
         }
       }
-
-      const uniprotIds = removeDuplicates(Object.keys(uniprotIdToTaxonDist));
-      uniprotIds.sort();
-
-      this.setState({
-        metadata: {
-          koNumber: rawData[0].documents[0].ko_number,
-          koName: rawData[0].documents[0].ko_name[0],
-          uniprotIdToTaxonDist: uniprotIdToTaxonDist,
-          uniprotIds: uniprotIds
-        }
-      });
-
-      const title = upperCaseFirstLetter(rawData[0].documents[0].ko_name[0]);
-
-      const sections = [{ id: "description", title: "Description" }];
-
-      this.props["set-scene-metadata"]({
-        title: title,
-        metadataSections: sections,
-        uniprotIdToTaxonDist: uniprotIdToTaxonDist
-      });
     }
+
+    const uniprotIds = removeDuplicates(Object.keys(uniprotIdToTaxonDist));
+    uniprotIds.sort();
+
+    this.setState({
+      metadata: {
+        koNumber: rawData[0].documents[0].ko_number,
+        koName: rawData[0].documents[0].ko_name[0],
+        uniprotIdToTaxonDist: uniprotIdToTaxonDist,
+        uniprotIds: uniprotIds
+      }
+    });
+
+    const title = upperCaseFirstLetter(rawData[0].documents[0].ko_name[0]);
+
+    const sections = [{ id: "description", title: "Description" }];
+
+    this.props["set-scene-metadata"]({
+      title: title,
+      organism: organism,
+      metadataSections: sections,
+      uniprotIdToTaxonDist: uniprotIdToTaxonDist
+    });
   }
 
   render() {

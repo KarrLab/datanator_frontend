@@ -24,7 +24,7 @@ class MetadataSection extends Component {
     );
   }
 
-  formatMetadata(rawData) {
+  formatMetadata(rawData, organism) {
     const formattedData = {};
 
     formattedData.geneName = rawData[0].gene_name;
@@ -54,6 +54,7 @@ class MetadataSection extends Component {
 
     this.props["set-scene-metadata"]({
       title: title,
+      organism: organism,
       metadataSections: sections
     });
   }
