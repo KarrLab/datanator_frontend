@@ -83,6 +83,7 @@ jobs:
 
             npm run test-integration-results-report
             if [[ $? -ne 0 ]]; then error=1; fi
+            rm -rf test-results/integration-tests/specs
 
             npm run test-integration-coverage-report
             if [[ $? -ne 0 ]]; then error=1; fi
@@ -149,12 +150,7 @@ jobs:
               --id ${CODECLIMATE_REPO_TOKEN}
 
       - store_test_results:
-          path: ~/project/test-results/unit-tests/results.xml
-      - store_test_results:
-          path: ~/project/test-results/integration-tests/results.xml
-      - store_artifacts:
           path: ~/project/test-results
-          destination: test-results
       - store_artifacts:
           path: ~/project/coverage
           destination: coverage
