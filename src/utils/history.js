@@ -1,3 +1,9 @@
 import { createBrowserHistory } from "history";
 
-export default createBrowserHistory();
+const history = createBrowserHistory();
+
+if (window.Cypress) {
+  window.cypressHistory = history;
+}
+
+export default history;

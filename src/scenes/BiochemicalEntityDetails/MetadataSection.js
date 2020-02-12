@@ -81,7 +81,8 @@ class MetadataSection extends Component {
           errorDialogRef.current.open(
             <span className="dialog-message-container">
               <span>
-                We were unable to retrieve data about {query}
+                We were unable to retrieve data about{" "}
+                {this.props["entity-type"]} &apos;{query}&apos;
                 {organism && " in " + organism}.
               </span>
               <span>

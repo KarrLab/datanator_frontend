@@ -126,9 +126,6 @@ class DataTable extends Component {
     }
 
     const url = this.props["get-data-url"](query, organism);
-    if (!url) {
-      return;
-    }
     this.cancelDataTokenSource = axios.CancelToken.source();
     getDataFromApi(
       [url],
@@ -137,12 +134,12 @@ class DataTable extends Component {
         this.props["data-type"] +
         " data about " +
         this.props["entity-type"] +
-        "'" +
+        " '" +
         query +
         "'."
     )
       .then(response => {
-        if (!response) return;
+        if (!response || response.data == null) return;
         this.formatData(response.data);
       })
       .finally(() => {
@@ -172,10 +169,6 @@ class DataTable extends Component {
   }
 
   formatData(rawData) {
-    if (rawData == null) {
-      return;
-    }
-
     const route = parseHistoryLocationPathname(this.props.history);
     const organism = route.organism;
 
