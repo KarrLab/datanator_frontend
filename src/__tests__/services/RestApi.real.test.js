@@ -5,7 +5,7 @@ import axios from "axios";
 
 describe("With real API calls", () => {
   it("Request canceled", async () => {
-    console.log = jest.fn();
+    console.info = jest.fn();
     let cancelTokenSource = axios.CancelToken.source();
     const request = getDataFromApi(["status"], {
       cancelToken: cancelTokenSource.token
@@ -16,6 +16,8 @@ describe("With real API calls", () => {
       });
     cancelTokenSource.cancel();
     await request;
-    expect(console.log.mock.calls[0][0]).toMatch(/^Request 'status' cancelled/);
+    expect(console.info.mock.calls[0][0]).toMatch(
+      /^Request 'status' cancelled/
+    );
   });
 });

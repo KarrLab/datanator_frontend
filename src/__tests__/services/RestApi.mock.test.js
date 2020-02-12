@@ -29,12 +29,12 @@ describe("With mocked API calls", () => {
     });
 
     render(errorDialog);
-    console.log = jest.fn();
+    console.error = jest.fn();
     const customErrMsg = "Custom error message";
     await getDataFromApi(["not-implemented"], {}).catch(
       genApiErrorHandler(["not-implemented"], customErrMsg)
     );
-    expect(console.log.mock.calls[0][0]).toMatch(/^Server error 404:/);
+    expect(console.error.mock.calls[0][0]).toMatch(/^Server error 404:/);
 
     // close error dialog
     errorDialogRef.current.close();
@@ -44,13 +44,13 @@ describe("With mocked API calls", () => {
     axios.get.mockRejectedValue({});
     axios.isCancel.mockResolvedValue(true);
 
-    console.log = jest.fn();
+    console.info = jest.fn();
     let cancelTokenSource = { token: 0, cancel: () => {} };
     const request = getDataFromApi(["status"], {
       cancelToken: cancelTokenSource.token
     }).catch(genApiErrorHandler(["status"]));
     cancelTokenSource.cancel();
     await request;
-    expect(console.log.mock.calls[0][0]).toMatch(/^Request 'status' cancelled/);
+    expect(console.info.mock.calls[0][0]).toMatch(/^Request 'status' cancelled/);
   });
 });

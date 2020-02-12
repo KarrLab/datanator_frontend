@@ -23,7 +23,7 @@ function genApiErrorHandler(params, errorMessage = null) {
   return error => {
     if (axios.isCancel(error)) {
       if (IS_DEVELOPMENT || IS_TEST) {
-        console.log("Request '" + params.join("/") + "' cancelled");
+        console.info("Request '" + params.join("/") + "' cancelled");
       }
     } else {
       errorDialogRef.current.open(
@@ -35,7 +35,7 @@ function genApiErrorHandler(params, errorMessage = null) {
 
       if (IS_DEVELOPMENT || IS_TEST) {
         const errorInfo = error.response.data;
-        console.log(
+        console.error(
           "Server error " + errorInfo.status + ": " + errorInfo.detail
         );
       }
