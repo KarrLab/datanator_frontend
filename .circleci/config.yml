@@ -72,11 +72,14 @@ jobs:
             if [[ $? -ne 0 ]]; then error=1; fi
 
             # Run integration tests
+            cp package.json package.json.default
+            cp package.json.cypress package.json
             npm start &
             wait-on http://localhost:3000
             npm run test-integration-run
             if [[ $? -ne 0 ]]; then error=1; fi
             npm stop
+            mv package.json.default package.json
 
             npm run test-integration-results-report
             if [[ $? -ne 0 ]]; then error=1; fi
