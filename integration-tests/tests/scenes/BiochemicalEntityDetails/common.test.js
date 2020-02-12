@@ -135,7 +135,9 @@ describe("Common components", function() {
     cy.get(".header-component .logo").click();
     cy.url().should("match", /:\/\/.*?\/$/);
 
-    cy.visit("/metabolite/" + metabolite + "/" + organism);
+    cy.window()
+      .its("cypressHistory")
+      .invoke("push", "/metabolite/" + metabolite + "/" + organism);
     cy.wait("@getData");
     cy.get(".dialog-message-container span")
       .first()

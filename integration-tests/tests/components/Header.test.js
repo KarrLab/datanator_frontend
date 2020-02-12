@@ -6,6 +6,8 @@ describe("Loads and opens search form on search results page", function() {
     cy.get(".header-component .page-links button")
       .first()
       .click();
-    cy.visit("/search/glucose");
+    cy.window()
+      .its("cypressHistory")
+      .invoke("push", "/search/glucose");
   });
 });
