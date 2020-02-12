@@ -12,6 +12,7 @@ ignores:
   - http
   - jsonlint
   - lcov-result-merger
+  - license-checker
   - mocha-junit-reporter
   - node-sass
   - regenerator-runtime

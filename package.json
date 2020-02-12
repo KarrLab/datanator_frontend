@@ -2,17 +2,27 @@
   "name": "datanator_frontend",
   "version": "0.1.0",
   "description": "Frontend of the Datanator web application for discovering data for modeling cells",
-  "keywords": ["molecular", "cell", "biology", "computational biology", "systems biology", "modeling", "simulation", "database", "search engine"],
+  "keywords": [
+    "molecular",
+    "cell",
+    "biology",
+    "computational biology",
+    "systems biology",
+    "modeling",
+    "simulation",
+    "database",
+    "search engine"
+  ],
   "homepage": "https://datanator.info",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/KarrLab/datanator_frontend.git"
+    "type": "git",
+    "url": "https://github.com/KarrLab/datanator_frontend.git"
   },
   "bugs": {
-    "url" : "https://github.com/KarrLab/datanator_frontend/issues",
-    "email" : "project@hostname.com"
+    "url": "https://github.com/KarrLab/datanator_frontend/issues",
+    "email": "project@hostname.com"
   },
-  "license" : "MIT",
+  "license": "MIT",
   "author": {
     "name": "Karr Lab",
     "email": "info@karrlab.org",
@@ -20,32 +30,34 @@
   },
   "contributors": [
     {
-      "name" : "Yosef Roth",
-      "email" : "yosef.roth@icahn.mssm.edu",
-      "url" : "https://www.linkedin.com/in/yosef-roth-a80a378a"
+      "name": "Yosef Roth",
+      "email": "yosef.roth@icahn.mssm.edu",
+      "url": "https://www.linkedin.com/in/yosef-roth-a80a378a"
     },
     {
-      "name" : "Zhouyang Lian",
-      "email" : "zhouyang.lian@familian.life",
-      "url" : "https://www.linkedin.com/in/zlian/"
+      "name": "Zhouyang Lian",
+      "email": "zhouyang.lian@familian.life",
+      "url": "https://www.linkedin.com/in/zlian/"
     },
     {
-      "name" : "Bilal Shaikh",
-      "email" : "bilalshaikh42@gmail.com",
-      "url" : "https://www.bshaikh.com/"
+      "name": "Bilal Shaikh",
+      "email": "bilalshaikh42@gmail.com",
+      "url": "https://www.bshaikh.com/"
     },
     {
-      "name" : "Saahith Pochiraju",
-      "email" : "saahith116@gmail.com",
-      "url" : "https://www.saahith.com/"
+      "name": "Saahith Pochiraju",
+      "email": "saahith116@gmail.com",
+      "url": "https://www.saahith.com/"
     },
     {
-      "name" : "Jonathan Karr",
-      "email" : "karr@mssm.edu",
-      "url" : "https://www.linkedin.com/in/jonrkarr/"
+      "name": "Jonathan Karr",
+      "email": "karr@mssm.edu",
+      "url": "https://www.linkedin.com/in/jonrkarr/"
     }
   ],
-  "files": ["*"],
+  "files": [
+    "*"
+  ],
   "dependencies": {
     "@ag-grid-community/react": "^22.1.2",
     "@ag-grid-enterprise/all-modules": "^22.1.2",
@@ -98,6 +110,7 @@
     "jsonlint": "^1.6.3",
     "junit-merge": "^2.0.0",
     "lcov-result-merger": "^3.1.0",
+    "license-checker": "^25.0.1",
     "mocha-junit-reporter": "^1.23.3",
     "node-sass": "^4.13.1",
     "nyc": "^15.0.0",
@@ -123,6 +136,7 @@
     "test-integration-results-report": "junit-merge --dir test-results/integration-tests/specs --recursive --out test-results/integration-tests/results.xml",
     "test-integration-coverage-report": "nyc report --reporter=text-summary --reporter=html",
     "eject": "react-scripts eject",
+    "get-third-party-licenses": "scripts/get-third-party-licenses.sh",
     "clean-heroku": "scripts/clean-heroku.sh"
   },
   "eslintConfig": {
