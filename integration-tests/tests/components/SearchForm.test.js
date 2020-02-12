@@ -1,4 +1,4 @@
-/* global cy, describe, it */
+/* global cy, describe, it, expect */
 
 describe("Works correctly", function() {
   it("Works correctly", function() {
@@ -53,26 +53,44 @@ describe("Works correctly", function() {
 
     // enter organism and select suggestion
     cy.server();
-    cy.route("/ftx/text_search/?index=taxon_tree*").as("getTaxa");
+    cy.route(
+      "/ftx/text_search/?index=taxon_tree&query_message=Escherichia coli&*"
+    ).as("getTaxa");
 
     cy.get(
       ".content-container-home-scene .search-form .search-form-el-organism input"
-    ).type("coli");
+    ).type("Escherichia coli");
     cy.get(".content-container-home-scene .search-form .search-submit").should(
       "have.class",
       "bp3-disabled"
     );
 
     cy.wait("@getTaxa");
-    cy.get(".bp3-popover-content .bp3-menu .bp3-menu-item")
+    cy.get(".bp3-popover-content .bp3-menu li")
+      .eq(1)
+      .find(".bp3-menu-item")
+      .should($el => {
+        expect($el.text().startsWith("Escherichia coli ")).to.be.true;
+      });
+    cy.get(".bp3-popover-content .bp3-menu li")
       .first()
-      .click({ force: true });
-    //cy.get(".content-container-home-scene .search-form .search-submit")
-    //  .should('not.have.class', 'bp3-disabled');
+      .next()
+      .find(".bp3-menu-item")
+      .click();
+    cy.get(
+      ".content-container-home-scene .search-form .search-form-el-organism input"
+    ).should($el => {
+      expect($el.val().startsWith("Escherichia coli ")).to.be.true;
+    });
+    cy.get(".content-container-home-scene .search-form .search-submit").should(
+      "not.have.class",
+      "bp3-disabled"
+    );
 
     // submit search
     cy.get(".content-container-home-scene .search-form .search-submit").click();
     cy.url().should("include", "/search/glucose/");
     cy.url().should("not.eq", "/search/glucose/");
+    cy.url().should("include", encodeURI("/Escherichia coli "));
   });
 });
