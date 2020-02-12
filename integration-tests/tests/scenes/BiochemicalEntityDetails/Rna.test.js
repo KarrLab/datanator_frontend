@@ -1,30 +1,30 @@
 /* global cy, describe, it, expect */
 
-describe("Metabolite scene", function() {
-  it("Metabolite scene without organism successfully loads", function() {
-    const route = "metabolite";
-    const entity = "dTDP-D-Glucose";
+describe("RNA scene", function() {
+  it("RNA scene without organism successfully loads", function() {
+    const route = "rna";
+    const entity = "Dolichol-P-glucose synthetase";
     const url = "/" + route + "/" + entity;
 
     cy.visit(url);
 
     // page title
     cy.get(".page-title").should($el => {
-      expect($el.text().startsWith("Metabolite: ")).to.be.true;
+      expect($el.text().startsWith("RNA: ")).to.be.true;
     });
 
     // data table
-    const dataContainerId = "concentration";
+    const dataContainerId = "half-life";
     cy.get("#" + dataContainerId + " .ag-root .ag-header-row")
       .find(".ag-header-cell")
       .first()
       .find(".ag-header-cell-text")
-      .should("have.text", "Concentration (µM)");
+      .should("have.text", "Half-life (s-1)");
   });
 
-  it("Metabolite scene with organism successfully loads", function() {
-    const route = "metabolite";
-    const entity = "dTDP-D-Glucose";
+  it("RNA scene with organism successfully loads", function() {
+    const route = "rna";
+    const entity = "Dolichol-P-glucose synthetase";
     const organism = "Escherichia coli";
     const url = "/" + route + "/" + entity + "/" + organism;
 
@@ -32,16 +32,16 @@ describe("Metabolite scene", function() {
 
     // page title
     cy.get(".page-title").should($el => {
-      expect($el.text().startsWith("Metabolite: ")).to.be.true;
+      expect($el.text().startsWith("RNA: ")).to.be.true;
       expect($el.text().endsWith(" in " + organism)).to.be.true;
     });
 
     // data table
-    const dataContainerId = "concentration";
+    const dataContainerId = "half-life";
     cy.get("#" + dataContainerId + " .ag-root .ag-header-row")
       .find(".ag-header-cell")
       .first()
       .find(".ag-header-cell-text")
-      .should("have.text", "Concentration (µM)");
+      .should("have.text", "Half-life (s-1)");
   });
 });

@@ -1,25 +1,42 @@
 /* global cy, describe, it, expect */
 
 describe("Common components", function() {
+  it("Table of contents links scrolls to elements", function() {
+    const route = "metabolite";
+    const entity = "dTDP-D-Glucose";
+    const url = "/" + route + "/" + entity;
+    const dataContainerId = "concentration";
+
+    cy.visit(url);
+    cy.get(".table-of-contents ul")
+      .first()
+      .find("li")
+      .last()
+      .find("a")
+      .click();
+    cy.location("hash").should("equal", "#" + dataContainerId);
+  });
+
   it("Metadata section mounts and unmounts", function() {
-    const metabolite = "dTDP-D-Glucose";
+    const route = "metabolite";
+    const entity = "dTDP-D-Glucose";
     const organism = "Escherichia coli";
 
-    cy.visit("/metabolite/" + metabolite);
+    cy.visit("/" + route + "/" + entity);
     cy.get(".page-title").should($el => {
       expect($el.text().startsWith("Metabolite: ")).to.be.true;
     });
 
     cy.window()
       .its("cypressHistory")
-      .invoke("push", "/metabolite/" + metabolite + "#description");
+      .invoke("push", "/" + route + "/" + entity + "#description");
     cy.get(".page-title").should($el => {
       expect($el.text().startsWith("Metabolite: ")).to.be.true;
     });
 
     cy.window()
       .its("cypressHistory")
-      .invoke("push", "/metabolite/" + metabolite + "/" + organism);
+      .invoke("push", "/" + route + "/" + entity + "/" + organism);
     cy.get(".page-title").should($el => {
       expect($el.text().startsWith("Metabolite: ")).to.be.true;
       expect($el.text().endsWith(" in " + organism)).to.be.true;
@@ -27,10 +44,10 @@ describe("Common components", function() {
 
     cy.window()
       .its("cypressHistory")
-      .invoke("push", "/metabolite/" + metabolite);
+      .invoke("push", "/" + route + "/" + entity);
     cy.window()
       .its("cypressHistory")
-      .invoke("push", "/metabolite/" + metabolite + "/" + organism);
+      .invoke("push", "/" + route + "/" + entity + "/" + organism);
     cy.get(".page-title").should($el => {
       expect($el.text().startsWith("Metabolite: ")).to.be.true;
       expect($el.text().endsWith(" in " + organism)).to.be.true;
@@ -38,9 +55,10 @@ describe("Common components", function() {
   });
 
   it("Data table displays, toggles columns, downloads data, and mount and unmounts", function() {
-    const metabolite = "dTDP-D-Glucose";
+    const route = "metabolite";
+    const entity = "dTDP-D-Glucose";
     const organism = "Escherichia coli";
-    const url = "/metabolite/" + metabolite + "/" + organism;
+    const url = "/" + route + "/" + entity + "/" + organism;
 
     cy.visit(url);
     cy.get(".page-title").should($el => {
@@ -83,30 +101,46 @@ describe("Common components", function() {
     // navigate to new page, back, to home, back
     cy.window()
       .its("cypressHistory")
-      .invoke("push", "/metabolite/" + metabolite + "/" + "Esperiana esperi");
+      .invoke("push", "/" + route + "/" + entity + "/" + "Esperiana esperi");
     cy.window()
       .its("cypressHistory")
-      .invoke("push", "/metabolite/" + metabolite + "/" + organism);
+      .invoke("push", "/" + route + "/" + entity + "/" + organism);
     cy.window()
       .its("cypressHistory")
       .invoke("push", "/");
     cy.window()
       .its("cypressHistory")
-      .invoke("push", "/metabolite/" + metabolite + "/" + organism);
+      .invoke("push", "/" + route + "/" + entity + "/" + organism);
     cy.get(".page-title").should($el => {
       expect($el.text().startsWith("Metabolite: ")).to.be.true;
       expect($el.text().endsWith(" in " + organism)).to.be.true;
     });
   });
 
+  it("Displays HTML column headings correctly", function() {
+    const route = "rna";
+    const entity = "Dolichol-P-glucose synthetase";
+    const url = "/" + route + "/" + entity;
+    const dataContainerId = "half-life";
+
+    cy.visit(url);
+    cy.get("#" + dataContainerId + " .ag-root .ag-header-row")
+      .find(".ag-header-cell")
+      .first()
+      .find(".ag-header-cell-text")
+      .find("span")
+      .should("have.html", "Half-life (s<sup>-1</sup>)");
+  });
+
   it("Displays REST API errors correctly", function() {
-    const metabolite = "dTDP-D-Glucose";
+    const route = "metabolite";
+    const entity = "dTDP-D-Glucose";
     const organism = "Escherichia coli";
 
     cy.server();
     cy.route({
       method: "GET",
-      url: "/metabolites/concentration/?metabolite=" + metabolite + "&*",
+      url: "/metabolites/concentration/?metabolite=" + entity + "&*",
       status: 400,
       response: {
         status: 400,
@@ -114,14 +148,14 @@ describe("Common components", function() {
       }
     }).as("getData");
 
-    cy.visit("/metabolite/" + metabolite);
+    cy.visit("/" + route + "/" + entity);
     cy.wait("@getData");
     cy.get(".dialog-message-container span")
       .first()
       .should(
         "have.text",
         "Unable to retrieve concentration data about metabolite '" +
-          metabolite +
+          entity +
           "'."
       );
 
@@ -137,14 +171,14 @@ describe("Common components", function() {
 
     cy.window()
       .its("cypressHistory")
-      .invoke("push", "/metabolite/" + metabolite + "/" + organism);
+      .invoke("push", "/" + route + "/" + entity + "/" + organism);
     cy.wait("@getData");
     cy.get(".dialog-message-container span")
       .first()
       .should(
         "have.text",
         "Unable to retrieve concentration data about metabolite '" +
-          metabolite +
+          entity +
           "'."
       );
   });
