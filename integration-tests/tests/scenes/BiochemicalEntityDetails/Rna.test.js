@@ -43,5 +43,15 @@ describe("RNA scene", function() {
       .first()
       .find(".ag-header-cell-text")
       .should("have.text", "Half-life (s-1)");
+
+    // toggle all columns
+    cy.get("#" + dataContainerId + " .ag-side-button")
+      .first()
+      .click();
+    cy.get("#" + dataContainerId + " .ag-column-select-checkbox").each(
+      $input => {
+        cy.wrap($input).click();
+      }
+    );
   });
 });

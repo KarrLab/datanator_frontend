@@ -78,7 +78,7 @@ describe("Common components", function() {
         expect($el.text().startsWith("Concentration (")).to.be.true;
       });
 
-    // display all columns
+    // toggle all columns
     cy.get("#concentration .ag-side-button")
       .first()
       .click();

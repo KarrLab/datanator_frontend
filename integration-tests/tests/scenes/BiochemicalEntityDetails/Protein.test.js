@@ -43,5 +43,15 @@ describe("Protein scene", function() {
       .first()
       .find(".ag-header-cell-text")
       .should("have.text", "Abundance");
+
+    // toggle all columns
+    cy.get("#" + dataContainerId + " .ag-side-button")
+      .first()
+      .click();
+    cy.get("#" + dataContainerId + " .ag-column-select-checkbox").each(
+      $input => {
+        cy.wrap($input).click();
+      }
+    );
   });
 });
