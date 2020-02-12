@@ -51,6 +51,8 @@ describe("With mocked API calls", () => {
     }).catch(genApiErrorHandler(["status"]));
     cancelTokenSource.cancel();
     await request;
-    expect(console.info.mock.calls[0][0]).toMatch(/^Request 'status' cancelled/);
+    expect(console.info.mock.calls[0][0]).toMatch(
+      /^Request 'status' cancelled/
+    );
   });
 });
