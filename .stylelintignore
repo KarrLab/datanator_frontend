@@ -3,6 +3,7 @@ coverage/
 node_modules/
 test-results/
 LICENSE
+LICENSE*
 *.ai
 *.ico
 *.json
