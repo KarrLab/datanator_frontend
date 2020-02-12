@@ -5,6 +5,7 @@ ignores:
   - "~"
   - "@testing-library/jest-dom"
   - babel-jest
+  - babel-plugin-istanbul
   - core-js
   - coveralls
   - depcheck

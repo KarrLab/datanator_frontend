@@ -6,6 +6,7 @@ LICENSE
 *.ai
 *.ico
 *.json
+*.json.cypress
 *.png
 *.sh
 *.svg
