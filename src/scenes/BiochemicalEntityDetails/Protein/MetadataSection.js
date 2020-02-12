@@ -19,21 +19,26 @@ class MetadataSection extends Component {
       "proteins/proximity_abundance/proximity_abundance_kegg/" +
       "?kegg_id=" +
       query +
-      "&anchor=" +
-      organism +
+      (organism ? "&anchor=" + organism : "") +
       "&distance=40" +
       "&depth=40"
     );
   }
 
   formatMetadata(rawData, organism) {
+    let koNumber;
+    let koName;
     const uniprotIdToTaxonDist = {};
-    if (rawData != null && typeof rawData != "string") {
-      for (const rawDatum of rawData) {
-        for (const doc of rawDatum.documents) {
-          if (doc.abundances !== undefined) {
-            uniprotIdToTaxonDist[doc.uniprot_id] = rawDatum.distance;
-          }
+    for (const rawDatum of rawData) {
+      for (const doc of rawDatum.documents) {
+        if ("ko_number" in doc) {
+          koNumber = doc.ko_number;
+        }
+        if ("ko_name" in doc && doc.ko_name.length > 0) {
+          koName = doc.ko_name[0];
+        }
+        if (doc.abundances !== undefined) {
+          uniprotIdToTaxonDist[doc.uniprot_id] = rawDatum.distance;
         }
       }
     }
@@ -43,14 +48,14 @@ class MetadataSection extends Component {
 
     this.setState({
       metadata: {
-        koNumber: rawData[0].documents[0].ko_number,
-        koName: rawData[0].documents[0].ko_name[0],
+        koNumber: koNumber,
+        koName: koName,
         uniprotIdToTaxonDist: uniprotIdToTaxonDist,
         uniprotIds: uniprotIds
       }
     });
 
-    const title = upperCaseFirstLetter(rawData[0].documents[0].ko_name[0]);
+    const title = upperCaseFirstLetter(koName);
 
     const sections = [{ id: "description", title: "Description" }];
 
