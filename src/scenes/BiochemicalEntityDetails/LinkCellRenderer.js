@@ -24,6 +24,10 @@ export class LinkCellRenderer extends Component {
       url += organism + "/";
     }
 
-    return <Link to={url}>{query}</Link>;
+    return (
+      <Link className="ag-cell-link" to={url}>
+        {query}
+      </Link>
+    );
   }
 }
