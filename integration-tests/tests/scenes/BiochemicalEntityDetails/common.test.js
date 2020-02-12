@@ -133,7 +133,7 @@ describe("Common components", function() {
       .click();
 
     cy.get(".header-component .logo").click();
-    cy.url().should("match", /:\/\/.*?\/$/);
+    cy.location("pathname").should("equal", "/");
 
     cy.window()
       .its("cypressHistory")

@@ -89,8 +89,8 @@ describe("Works correctly", function() {
 
     // submit search
     cy.get(".content-container-home-scene .search-form .search-submit").click();
-    cy.url().should("include", "/search/glucose/");
-    cy.url().should("not.eq", "/search/glucose/");
-    cy.url().should("include", encodeURI("/Escherichia coli "));
+    cy.location("pathname").should("include", "/search/glucose/");
+    cy.location("pathname").should("not.eq", "/search/glucose/");
+    cy.location("pathname").should("include", encodeURI("/Escherichia coli "));
   });
 });
