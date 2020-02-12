@@ -14,21 +14,17 @@ class HalfLifeDataTable extends Component {
   }
 
   formatData(rawData) {
-    if (rawData != null && typeof rawData != "string") {
-      const measurements = rawData[0].halflives;
-      const formattedData = [];
-      for (const measurement of measurements) {
-        formattedData.push({
-          halfLife: parseFloat(measurement.halflife),
-          organism: measurement.species,
-          growthMedium: measurement.growth_medium,
-          source: measurement.reference[0].doi
-        });
-      }
-      return formattedData;
-    } else {
-      return [];
+    const measurements = rawData[0].halflives;
+    const formattedData = [];
+    for (const measurement of measurements) {
+      formattedData.push({
+        halfLife: parseFloat(measurement.halflife),
+        organism: measurement.species,
+        growthMedium: measurement.growth_medium,
+        source: measurement.reference[0].doi
+      });
     }
+    return formattedData;
   }
 
   getSideBarDef() {

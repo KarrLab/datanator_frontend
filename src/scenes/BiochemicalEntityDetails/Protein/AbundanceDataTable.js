@@ -20,42 +20,35 @@ class AbundanceDataTable extends Component {
   }
 
   formatData(rawData) {
-    if (rawData != null && typeof rawData != "string") {
-      if (!(rawData[0].uniprot_id === "Please try another input combination")) {
-        let start = 0;
-        if (getNumProperties(rawData[0]) === 1) {
-          start = 1;
-        }
+    let start = 0;
+    if (getNumProperties(rawData[0]) === 1) {
+      start = 1;
+    }
 
-        const formattedData = [];
-        for (const rawDatum of rawData.slice(start)) {
-          if (rawDatum.abundances !== undefined) {
-            for (const measurement of rawDatum.abundances) {
-              let proteinName = rawDatum.protein_name;
-              if (proteinName.includes("(")) {
-                proteinName = proteinName.substring(
-                  0,
-                  proteinName.indexOf("(")
-                );
-              }
-
-              formattedData.push({
-                abundance: parseFloat(measurement.abundance),
-                proteinName: proteinName,
-                uniprotId: rawDatum.uniprot_id,
-                geneSymbol: rawDatum.gene_name,
-                organism: rawDatum.species_name,
-                taxonomicProximity: this.props["uniprot-id-to-taxon-dist"][
-                  rawDatum.uniprot_id
-                ],
-                organ: measurement.organ.replace("_", " ").toLowerCase()
-              });
-            }
+    const formattedData = [];
+    for (const rawDatum of rawData.slice(start)) {
+      if (rawDatum.abundances !== undefined) {
+        for (const measurement of rawDatum.abundances) {
+          let proteinName = rawDatum.protein_name;
+          if (proteinName.includes("(")) {
+            proteinName = proteinName.substring(0, proteinName.indexOf("("));
           }
+
+          formattedData.push({
+            abundance: parseFloat(measurement.abundance),
+            proteinName: proteinName,
+            uniprotId: rawDatum.uniprot_id,
+            geneSymbol: rawDatum.gene_name,
+            organism: rawDatum.species_name,
+            taxonomicProximity: this.props["uniprot-id-to-taxon-dist"][
+              rawDatum.uniprot_id
+            ],
+            organ: measurement.organ.replace("_", " ").toLowerCase()
+          });
         }
-        return formattedData;
       }
     }
+    return formattedData;
   }
 
   getSideBarDef() {

@@ -20,37 +20,35 @@ class RateConstantsDataTable extends Component {
   }
 
   formatData(rawData) {
-    if (rawData != null) {
-      const formattedData = [];
+    const formattedData = [];
 
-      for (const datum of rawData) {
-        let wildtypeMutant = null;
-        if (datum["taxon_wildtype"] === "1") {
-          wildtypeMutant = "wildtype";
-        } else if (datum["taxon_wildtype"] === "0") {
-          wildtypeMutant = "mutant";
-        }
-
-        const formattedDatum = {
-          kcat: RateConstantsDataTable.getKcatValues(datum.parameter),
-          km: RateConstantsDataTable.getKmValues(datum.parameter),
-          organism: datum.taxon_name,
-          wildtypeMutant: wildtypeMutant,
-          temperature: datum.temperature,
-          ph: datum.ph,
-          source: datum["kinlaw_id"]
-        };
-
-        if (
-          formattedDatum.kcat != null ||
-          Object.keys(formattedDatum.km).length > 0
-        ) {
-          formattedData.push(formattedDatum);
-        }
+    for (const datum of rawData) {
+      let wildtypeMutant = null;
+      if (datum["taxon_wildtype"] === "1") {
+        wildtypeMutant = "wildtype";
+      } else if (datum["taxon_wildtype"] === "0") {
+        wildtypeMutant = "mutant";
       }
 
-      return formattedData;
+      const formattedDatum = {
+        kcat: RateConstantsDataTable.getKcatValues(datum.parameter),
+        km: RateConstantsDataTable.getKmValues(datum.parameter),
+        organism: datum.taxon_name,
+        wildtypeMutant: wildtypeMutant,
+        temperature: datum.temperature,
+        ph: datum.ph,
+        source: datum["kinlaw_id"]
+      };
+
+      if (
+        formattedDatum.kcat != null ||
+        Object.keys(formattedDatum.km).length > 0
+      ) {
+        formattedData.push(formattedDatum);
+      }
     }
+
+    return formattedData;
   }
 
   static getKcatValues(parameters) {
