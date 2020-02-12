@@ -12,6 +12,7 @@ describe("Open and close", function() {
         detail: "Missing parameters"
       }
     }).as("getResults");
+
     cy.visit("/search/glucose");
     cy.wait("@getResults");
     cy.get(".dialog-message-container span")
@@ -29,5 +30,7 @@ describe("Open and close", function() {
       .parent()
       .find("button")
       .click();
+
+    cy.get(".MuiDialog-root").should("not.exist");
   });
 });
