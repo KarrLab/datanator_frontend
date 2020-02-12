@@ -7,7 +7,7 @@ import { MenuItem } from "@blueprintjs/core";
 import { Button } from "@blueprintjs/core";
 import { Suggest } from "@blueprintjs/select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { getDataFromApi } from "~/services/RestApi";
+import { getDataFromApi, genApiErrorHandler } from "~/services/RestApi";
 import axios from "axios";
 import { parseHistoryLocationPathname } from "~/utils/utils";
 
@@ -101,20 +101,20 @@ class SearchForm extends Component {
       "&size=100" +
       "&fields=tax_name" +
       "&_source_includes=tax_name";
-    getDataFromApi(
-      [url],
-      { cancelToken: this.cancelTokenSource.token },
-      "Unable to search for organisms that match '" + query + "'."
-    )
+    getDataFromApi([url], { cancelToken: this.cancelTokenSource.token })
       .then(response => {
-        if (!response) return;
-
         this.setState({
           matchingOrganisms: response.data["hits"]["hits"].map(
             hit => hit["_source"]["tax_name"]
           )
         });
       })
+      .catch(
+        genApiErrorHandler(
+          [url],
+          "Unable to search for organisms that match '" + query + "'."
+        )
+      )
       .finally(() => {
         this.cancelTokenSource = null;
       });

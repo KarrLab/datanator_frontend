@@ -14,9 +14,13 @@ const DEFAULT_ERROR_MESSAGE = (
   </span>
 );
 
-function getDataFromApi(params, options = {}, errorMessage = null) {
+function getDataFromApi(params, options = {}) {
   const url = ROOT_URL + params.join("/");
-  return axios.get(url, options).catch(error => {
+  return axios.get(url, options);
+}
+
+function genApiErrorHandler(params, errorMessage = null) {
+  return error => {
     if (axios.isCancel(error)) {
       if (IS_DEVELOPMENT || IS_TEST) {
         console.log("Request '" + params.join("/") + "' cancelled");
@@ -36,7 +40,7 @@ function getDataFromApi(params, options = {}, errorMessage = null) {
         );
       }
     }
-  });
+  };
 }
 
-export { getDataFromApi };
+export { getDataFromApi, genApiErrorHandler };

@@ -286,11 +286,7 @@ class MetadataSection extends Component {
         {metadata && (
           <div>
             {metadata.description && (
-              <div
-                className="content-block"
-                id="description"
-                data-testid="description"
-              >
+              <div className="content-block" id="description">
                 <h2 className="content-block-heading">Description</h2>
                 <div className="content-block-content icon-description">
                   {structure && (
@@ -312,11 +308,7 @@ class MetadataSection extends Component {
             )}
 
             {synonyms.length > 0 && (
-              <div
-                className="content-block"
-                id="synonyms"
-                data-testid="synonyms"
-              >
+              <div className="content-block" id="synonyms">
                 <h2 className="content-block-heading">Synonyms</h2>
                 <div className="content-block-content">
                   <ul className="three-col-list">{synonyms}</ul>
@@ -325,7 +317,7 @@ class MetadataSection extends Component {
             )}
 
             {dbLinks.length > 0 && (
-              <div className="content-block" id="links" data-testid="links">
+              <div className="content-block" id="links">
                 <h2 className="content-block-heading">Database links</h2>
                 <div className="content-block-content">
                   <ul className="key-value-list three-col-list link-list">
@@ -336,7 +328,7 @@ class MetadataSection extends Component {
             )}
 
             {physicalProps.length > 0 && (
-              <div className="content-block" id="physics" data-testid="physics">
+              <div className="content-block" id="physics">
                 <h2 className="content-block-heading">Physical properties</h2>
                 <div className="content-block-content">
                   <ul className="key-value-list">{physicalProps}</ul>
@@ -345,11 +337,7 @@ class MetadataSection extends Component {
             )}
 
             {metadata.cellularLocations.length > 0 && (
-              <div
-                className="content-block"
-                id="localizations"
-                data-testid="localizations"
-              >
+              <div className="content-block" id="localizations">
                 <h2 className="content-block-heading">
                   Cellular localizations
                 </h2>
@@ -366,11 +354,7 @@ class MetadataSection extends Component {
             )}
 
             {metadata.pathways.length > 0 && (
-              <div
-                className="content-block"
-                id="pathways"
-                data-testid="pathways"
-              >
+              <div className="content-block" id="pathways">
                 <h2 className="content-block-heading">Pathways</h2>
                 <div className="content-block-content">
                   <ul className="two-col-list link-list">

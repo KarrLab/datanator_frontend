@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import { withRouter } from "react-router";
 import PropTypes from "prop-types";
 import axios from "axios";
-import { getDataFromApi } from "~/services/RestApi";
+import { getDataFromApi, genApiErrorHandler } from "~/services/RestApi";
 import { parseHistoryLocationPathname } from "~/utils/utils";
-import { errorDialogRef } from "~/components/ErrorDialog/ErrorDialog";
 
 class MetadataSection extends Component {
   static propTypes = {
@@ -63,40 +62,20 @@ class MetadataSection extends Component {
 
     this.cancelDataTokenSource = axios.CancelToken.source();
     const url = this.props["get-metadata-url"](query, organism);
-    getDataFromApi(
-      [url],
-      { cancelToken: this.cancelDataTokenSource.token },
-      "Unable to get metadata about " +
-        this.props["entity-type"] +
-        " '" +
-        query +
-        "'."
-    )
+    getDataFromApi([url], { cancelToken: this.cancelDataTokenSource.token })
       .then(response => {
-        if (
-          response == null ||
-          response === undefined ||
-          typeof response === "string"
-        ) {
-          errorDialogRef.current.open(
-            <span className="dialog-message-container">
-              <span>
-                We were unable to retrieve data about{" "}
-                {this.props["entity-type"]} &apos;{query}&apos;
-                {organism && " in " + organism}.
-              </span>
-              <span>
-                We&apos;re sorry our server could not complete your request.
-                Please try again, or contact us at{" "}
-                <a href="mailto:info@karrlab.org">info@karrlab.org</a> if the
-                problem persists.
-              </span>
-            </span>
-          );
-          return;
-        }
         this.props["format-metadata"](response.data, organism);
       })
+      .catch(
+        genApiErrorHandler(
+          [url],
+          "Unable to get metadata about " +
+            this.props["entity-type"] +
+            " '" +
+            query +
+            "'."
+        )
+      )
       .finally(() => {
         this.cancelDataTokenSource = null;
       });

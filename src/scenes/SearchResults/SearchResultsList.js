@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
-import { getDataFromApi } from "~/services/RestApi";
+import { getDataFromApi, genApiErrorHandler } from "~/services/RestApi";
 import axios from "axios";
 import { parseHistoryLocationPathname } from "~/utils/utils";
 
@@ -84,20 +84,20 @@ class SearchResultsList extends Component {
     }
 
     this.cancelTokenSource = axios.CancelToken.source();
-    getDataFromApi(
-      [url],
-      { cancelToken: this.cancelTokenSource.token },
-      "We were unable to conduct your search for '" + this.query + "'."
-    )
+    getDataFromApi([url], { cancelToken: this.cancelTokenSource.token })
       .then(response => {
-        if (!response) return;
-
         this.pageCount++;
 
         this.updateResults(
           this.props["format-results"](response.data, this.organism)
         );
       })
+      .catch(
+        genApiErrorHandler(
+          [url],
+          "We were unable to conduct your search for '" + this.query + "'."
+        )
+      )
       .finally(() => {
         this.cancelTokenSource = null;
       });

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router";
 import PropTypes from "prop-types";
 import axios from "axios";
-import { getDataFromApi } from "~/services/RestApi";
+import { getDataFromApi, genApiErrorHandler } from "~/services/RestApi";
 import { parseHistoryLocationPathname, downloadData } from "~/utils/utils";
 import { AgGridReact } from "@ag-grid-community/react";
 import { AllModules } from "@ag-grid-enterprise/all-modules";
@@ -127,21 +127,22 @@ class DataTable extends Component {
 
     const url = this.props["get-data-url"](query, organism);
     this.cancelDataTokenSource = axios.CancelToken.source();
-    getDataFromApi(
-      [url],
-      { cancelToken: this.cancelDataTokenSource.token },
-      "Unable to retrieve " +
-        this.props["data-type"] +
-        " data about " +
-        this.props["entity-type"] +
-        " '" +
-        query +
-        "'."
-    )
+    getDataFromApi([url], { cancelToken: this.cancelDataTokenSource.token })
       .then(response => {
-        if (!response || response.data == null) return;
         this.formatData(response.data);
       })
+      .catch(
+        genApiErrorHandler(
+          [url],
+          "Unable to retrieve " +
+            this.props["data-type"] +
+            " data about " +
+            this.props["entity-type"] +
+            " '" +
+            query +
+            "'."
+        )
+      )
       .finally(() => {
         this.cancelDataTokenSource = null;
       });
@@ -155,13 +156,17 @@ class DataTable extends Component {
       this.cancelTaxonInfoTokenSource = axios.CancelToken.source();
       getDataFromApi(
         ["taxon", "canon_rank_distance_by_name/?name=" + organism],
-        { cancelToken: this.cancelTaxonInfoTokenSource.token },
-        "Unable to obtain taxonomic information about '" + organism + "'."
+        { cancelToken: this.cancelTaxonInfoTokenSource.token }
       )
         .then(response => {
-          if (!response) return;
           this.setState({ taxonLineage: response.data });
         })
+        .catch(
+          genApiErrorHandler(
+            ["taxon", "canon_rank_distance_by_name/?name=" + organism],
+            "Unable to obtain taxonomic information about '" + organism + "'."
+          )
+        )
         .finally(() => {
           this.cancelTaxonInfoTokenSource = null;
         });
