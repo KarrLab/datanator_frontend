@@ -56,8 +56,7 @@ class StatsToolPanel extends Component {
   }
 
   /**
-   * When mounted, this component should set summary stats
-   * if the data exists
+   * When mounted, setup listeners to update stats
    */
   componentDidMount() {
     this.updateStats(this.props);
@@ -70,7 +69,7 @@ class StatsToolPanel extends Component {
   }
 
   /**
-   * If all data gets updated, then the summary stats should update too
+   * When component updates, update listeners to update stats
    */
   componentDidUpdate(prevProps) {
     if (prevProps.api !== this.props.api) {
