@@ -242,6 +242,10 @@
     "setupFilesAfterEnv": [
       "<rootDir>/src/setupTests.js"
     ],
+    "moduleNameMapper": {
+      "\\.(css|less|sass|scss)$": "<rootDir>/src/__tests__/__mocks__/styleMock.js",
+      "\\.(gif|png|jpeg|jpg|svg|webp)$": "<rootDir>/src/__tests__/__mocks__/fileMock.js"
+    },
     "testEnvironment": "jsdom",
     "reporters": [
       "default",
