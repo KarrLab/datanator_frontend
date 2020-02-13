@@ -11,15 +11,23 @@ class TaxonomyFilter extends Component {
   static propTypes = {
     agGridReact: PropTypes.object.isRequired,
     valueGetter: PropTypes.func.isRequired,
-    filterChangedCallback: PropTypes.func.isRequired
+    filterChangedCallback: PropTypes.func.isRequired,
+    colDef: PropTypes.shape({
+      filterParams: PropTypes.shape({
+        taxonLineage: PropTypes.array.isRequired
+      }).isRequired
+    }).isRequired,
+    taxonLineage: PropTypes.array.isRequired
   };
 
   constructor(props) {
     super(props);
 
+    this.selectedMarkValue = 0;
+    this.maxDistance = null;
     this.state = {
       marks: [],
-      selectedMarkValue: 0,
+      selectedMarkValue: this.selectedMarkValue,
       maxDistance: null
     };
 
@@ -34,24 +42,39 @@ class TaxonomyFilter extends Component {
   }
 
   componentDidMount() {
-    if (this.props.agGridReact.props["taxon-lineage"] != null) {
+    if (this.getTaxonLineage(this.props).length > 0) {
       this.setMarks();
     }
   }
 
   componentDidUpdate(prevProps) {
-    if (
-      this.props.agGridReact.props["taxon-lineage"] !==
-      prevProps.agGridReact.props["taxon-lineage"]
-    ) {
+    const lineage = this.getTaxonLineage(this.props);
+    const prevLineage = this.getTaxonLineage(prevProps);
+
+    if (lineage !== prevLineage) {
       this.setMarks();
     }
   }
 
+  getTaxonLineage(props) {
+    let lineage = props.taxonLineage;
+
+    // the following two statments are necessary because the taxonLineage property doesn't appear to be set correctly in cypress tests
+    if (lineage.length === 0) {
+      lineage = props.colDef.filterParams.taxonLineage;
+    }
+    if (lineage.length === 0) {
+      lineage =
+        props.agGridReact.gridOptions.columnDefs[5].filterParams.taxonLineage;
+    }
+
+    return lineage;
+  }
+
   setMarks() {
-    const lineage = this.props.agGridReact.props["taxon-lineage"];
+    const lineage = this.getTaxonLineage(this.props);
     const marks = [];
-    this.markValueToDistance = {};
+    const markValueToDistance = [];
     for (let iLineage = 0; iLineage < lineage.length; iLineage++) {
       const taxon = Object.keys(lineage[iLineage])[0];
       const distance = Object.values(lineage[iLineage])[0];
@@ -59,34 +82,57 @@ class TaxonomyFilter extends Component {
         value: iLineage,
         label: upperCaseFirstLetter(taxon)
       });
-      this.markValueToDistance[iLineage] = distance;
+      markValueToDistance.push(distance);
     }
+
+    this.selectedMarkValue = Math.max(marks.length - 1);
+    this.maxDistance = markValueToDistance[this.selectedMarkValue];
+    this.markValueToDistance = markValueToDistance;
 
     this.setState({
       marks: marks,
-      selectedMarkValue: Math.max(marks.length - 1)
+      selectedMarkValue: this.selectedMarkValue,
+      maxDistance: this.maxDistance
     });
   }
 
   doesFilterPass(params) {
-    const maxDistance = this.state.maxDistance;
+    const maxDistance = this.maxDistance;
     const distance = this.props.valueGetter(params.node);
     return distance <= maxDistance;
   }
 
   getModel() {
-    return this.filterModel;
+    return this.selectedMarkValue;
   }
 
-  setModel(model) {
-    this.filterModel = model;
+  setModel(selectedMarkValue) {
+    if (selectedMarkValue == null) {
+      this.selectedMarkValue = this.markValueToDistance.length - 1;
+    } else {
+      this.selectedMarkValue = Math.round(
+        Math.min(
+          Math.max(0, selectedMarkValue),
+          this.markValueToDistance.length - 1
+        )
+      );
+    }
+    this.maxDistance = this.markValueToDistance[this.selectedMarkValue];
+    this.setState({
+      selectedMarkValue: this.selectedMarkValue,
+      maxDistance: this.maxDistance
+    });
+    this.props.filterChangedCallback();
   }
 
-  afterGuiAttached() {}
+  // Method could be used to dynamically set the min/max of the slider to the min/max Tanimoto similarity of all of the rows
+  // onNewRowsLoaded() {}
 
   onChange(event, selectedMarkValue) {
     const maxDistance = this.markValueToDistance[selectedMarkValue];
-    if (this.state.maxDistance !== maxDistance) {
+    if (this.maxDistance !== maxDistance) {
+      this.selectedMarkValue = selectedMarkValue;
+      this.maxDistance = maxDistance;
       this.setState(
         {
           selectedMarkValue: selectedMarkValue,

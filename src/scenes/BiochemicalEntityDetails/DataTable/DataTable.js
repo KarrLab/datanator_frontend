@@ -68,11 +68,14 @@ class DataTable extends Component {
     this.cancelDataTokenSource = null;
     this.cancelTaxonInfoTokenSource = null;
 
+    this.sideBarDef = null;
+    this.colDefs = null;
+    this.taxonLineage = [];
     this.state = {
-      sideBarDef: null,
-      colDefs: null,
-      data: null,
-      taxonLineage: []
+      sideBarDef: this.sideBarDef,
+      colDefs: this.colDefs,
+      taxonLineage: this.taxonLineage,
+      data: null
     };
 
     this.fitCols = this.fitCols.bind(this);
@@ -105,11 +108,14 @@ class DataTable extends Component {
 
   updateStateFromLocation() {
     if (this.unlistenToHistory) {
+      this.sideBarDef = null;
+      this.colDefs = null;
+      this.taxonLineage = [];
       this.setState({
-        sideBarDef: null,
-        colDefs: null,
-        data: null,
-        taxonLineage: []
+        sideBarDef: this.sideBarDef,
+        colDefs: this.colDefs,
+        taxonLineage: this.taxonLineage,
+        data: null
       });
       this.getDataFromApi();
     }
@@ -159,7 +165,26 @@ class DataTable extends Component {
         { cancelToken: this.cancelTaxonInfoTokenSource.token }
       )
         .then(response => {
-          this.setState({ taxonLineage: response.data });
+          this.taxonLineage = response.data;
+          if (this.colDefs != null) {
+            this.colDefs = this.colDefs.slice();
+            for (const colDef of this.colDefs) {
+              if (colDef.filter === "taxonomyFilter") {
+                colDef["filterParams"] = {
+                  taxonLineage: this.taxonLineage
+                };
+                break;
+              }
+            }
+            this.setState({
+              colDefs: this.colDefs,
+              taxonLineage: this.taxonLineage
+            });
+          } else {
+            this.setState({
+              taxonLineage: this.taxonLineage
+            });
+          }
         })
         .catch(
           genApiErrorHandler(
@@ -178,12 +203,21 @@ class DataTable extends Component {
     const organism = route.organism;
 
     const formattedData = this.props["format-data"](rawData);
-    const sideBarDef = this.props["get-side-bar-def"](formattedData);
-    const colDefs = this.props["get-col-defs"](organism, formattedData);
+    this.sideBarDef = this.props["get-side-bar-def"](formattedData);
+    this.colDefs = this.props["get-col-defs"](organism, formattedData);
+
+    for (const colDef of this.colDefs) {
+      if (colDef.filter === "taxonomyFilter") {
+        colDef["filterParams"] = {
+          taxonLineage: this.taxonLineage
+        };
+        break;
+      }
+    }
 
     this.setState({
-      sideBarDef: sideBarDef,
-      colDefs: colDefs,
+      sideBarDef: this.sideBarDef,
+      colDefs: this.colDefs,
       data: formattedData
     });
   }
@@ -268,7 +302,6 @@ class DataTable extends Component {
             onColumnResized={this.updateHorzScrolling}
             onToolPanelVisibleChanged={this.fitCols}
             onFirstDataRendered={this.fitCols}
-            taxon-lineage={this.state.taxonLineage}
           ></AgGridReact>
         </div>
       </div>

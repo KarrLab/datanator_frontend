@@ -52,7 +52,10 @@ class TanimotoFilter extends Component {
     if (minSimilarity == null) {
       this.minSimilarity = marks[0].value;
     } else {
-      this.minSimilarity = minSimilarity;
+      this.minSimilarity = Math.min(
+        Math.max(marks[0].value, minSimilarity),
+        marks[1].value
+      );
     }
     this.setState({ minSimilarity: this.minSimilarity });
     this.props.filterChangedCallback();

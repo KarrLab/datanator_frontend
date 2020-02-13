@@ -144,7 +144,14 @@ class AbundanceDataTable extends Component {
         headerName: "Taxonomic distance",
         field: "taxonomicProximity",
         hide: true,
-        filter: "taxonomyFilter"
+        filter: "taxonomyFilter",
+        filterParams: {
+          taxonLineage: []
+        },
+        valueFormatter: params => {
+          const value = params.value;
+          return value;
+        }
       },
       {
         headerName: "Organ",

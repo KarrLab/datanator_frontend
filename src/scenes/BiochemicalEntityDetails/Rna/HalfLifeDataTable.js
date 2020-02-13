@@ -106,9 +106,13 @@ class HalfLifeDataTable extends Component {
         field: "taxonomicProximity",
         hide: true,
         filter: "taxonomyFilter",
+        filterParams: {
+          taxonLineage: []
+        },
         valueFormatter: params => {
           const value = params.value;
           return value;
+        }
       },
       */
       {
