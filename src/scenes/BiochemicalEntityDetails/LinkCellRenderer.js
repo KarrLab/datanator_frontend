@@ -8,7 +8,7 @@ export class LinkCellRenderer extends Component {
     colDef: PropTypes.shape({
       cellRendererParams: PropTypes.shape({
         route: PropTypes.string.isRequired,
-        organism: PropTypes.string.isRequired
+        organism: PropTypes.string
       }).isRequired
     }).isRequired
   };
@@ -20,7 +20,7 @@ export class LinkCellRenderer extends Component {
     url += query + "/";
 
     const organism = this.props.colDef.cellRendererParams.organism;
-    if (organism) {
+    if (organism != null || organism !== undefined) {
       url += organism + "/";
     }
 
