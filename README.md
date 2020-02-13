@@ -1,4 +1,8 @@
+[![Test results](https://circleci.com/gh/KarrLab/datanator_frontend.svg?style=shield)](https://circleci.com/gh/KarrLab/datanator_frontend)
+[![Test coverage](https://coveralls.io/repos/github/KarrLab/datanator_frontend/badge.svg)](https://coveralls.io/github/KarrLab/datanator_frontend)
+[![Code analysis](https://api.codeclimate.com/v1/badges/11857e8791e9e9000039/maintainability)](https://codeclimate.com/github/KarrLab/datanator_frontend)
 [![License](https://img.shields.io/github/license/KarrLab/datanator_frontend.svg)](LICENSE)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FKarrLab%2Fdatanator_frontend.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FKarrLab%2Fdatanator_frontend?ref=badge_shield)
 ![Analytics](https://ga-beacon.appspot.com/UA-86759801-1/datanator_frontend/README.md?pixel)
 
 # Datanator-frontend
