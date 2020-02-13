@@ -3,8 +3,7 @@ import { dictOfArraysToArrayOfDicts } from "~/utils/utils";
 import DataTable from "../DataTable/DataTable";
 
 class ConcentrationDataTable extends Component {
-  getUrl(query, organism) {
-    const abstract = true;
+  getUrl(query, organism, abstract = true) {
     return (
       "metabolites/concentration/" +
       "?metabolite=" +
