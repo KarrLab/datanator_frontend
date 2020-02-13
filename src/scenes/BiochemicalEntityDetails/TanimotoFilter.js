@@ -28,8 +28,11 @@ class TanimotoFilter extends Component {
     super(props);
 
     this.minSimilarity = 0.6;
-    this.filterModel = null;
+    this.state = {
+      minSimilarity: this.minSimilarity
+    };
 
+    this.slider = React.createRef();
     this.onChange = this.onChange.bind(this);
   }
 
@@ -42,18 +45,26 @@ class TanimotoFilter extends Component {
   }
 
   getModel() {
-    return this.filterModel;
+    return this.minSimilarity;
   }
 
-  setModel(model) {
-    this.filterModel = model;
+  setModel(minSimilarity) {
+    if (minSimilarity == null) {
+      this.minSimilarity = marks[0].value;
+    } else {
+      this.minSimilarity = minSimilarity;
+    }
+    this.setState({ minSimilarity: this.minSimilarity });
+    this.props.filterChangedCallback();
   }
 
-  afterGuiAttached() {}
+  // Method could be used to dynamically set the min/max of the slider to the min/max Tanimoto similarity of all of the rows
+  // onNewRowsLoaded() {}
 
   onChange(event, minSimilarity) {
     if (this.minSimilarity !== minSimilarity) {
       this.minSimilarity = minSimilarity;
+      this.setState({ minSimilarity: this.minSimilarity });
       this.props.filterChangedCallback();
     }
   }
@@ -62,11 +73,12 @@ class TanimotoFilter extends Component {
     return (
       <div className="tool-panel-slider tool-panel-inverted-slider tool-panel-horizontal-slider tanimoto-tool-panel-slider">
         <Slider
+          ref={this.slider}
           min={marks[0].value}
           max={marks[1].value}
           step={0.01}
           marks={marks}
-          defaultValue={marks[0].value}
+          value={this.state.minSimilarity}
           orientation="horizontal"
           track="inverted"
           valueLabelDisplay={"on"}
