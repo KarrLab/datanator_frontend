@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { formatScientificNotation } from "~/utils/utils";
 
@@ -8,6 +8,10 @@ export class NumericCellRenderer extends Component {
   };
 
   render() {
-    return formatScientificNotation(this.props.value, 4, 3, 1, 1, 3);
+    return (
+      <span className="ag-numeric-cell">
+        {formatScientificNotation(this.props.value, 4, 3, 1, 1, 3)}
+      </span>
+    );
   }
 }
