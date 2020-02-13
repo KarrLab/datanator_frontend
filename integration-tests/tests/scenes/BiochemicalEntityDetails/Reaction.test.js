@@ -46,13 +46,30 @@ describe("Reaction scene", function() {
       .find(".ag-header-cell-text")
       .should("have.text", "kcat (s-1)");
 
-    // toggle all columns
+    // open columns tool panel and toggle all columns
     cy.get("#" + dataContainerId + " .ag-side-button")
       .first()
       .click();
     cy.get("#" + dataContainerId + " .ag-column-select-checkbox").each(
       $input => {
         cy.wrap($input).click();
+      }
+    );
+
+    // open filters tool panel and open all filters
+    cy.get("#" + dataContainerId + " .ag-side-button")
+      .eq(1)
+      .click();
+    cy.get(
+      "#" + dataContainerId + " .ag-filter-panel .ag-group-component"
+    ).each($filter => {
+      cy.wrap($filter).click();
+    });
+
+    // open stats tool panels
+    cy.get("#" + dataContainerId + " .ag-side-button").each(
+      $toolPanelButton => {
+        cy.wrap($toolPanelButton).click();
       }
     );
   });
