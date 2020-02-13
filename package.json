@@ -239,6 +239,10 @@
     "roots": [
       "<rootDir>/src/__tests__"
     ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/src/__tests__/__mocks__/",
+      "<rootDir>/src/__tests__/fixtures/"
+    ],
     "setupFiles": ["dotenv/config"],
     "setupFilesAfterEnv": [
       "<rootDir>/src/setupTests.js"
