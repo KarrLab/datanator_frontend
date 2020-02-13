@@ -240,6 +240,7 @@
     "roots": [
       "<rootDir>/src/__tests__"
     ],
+    "setupFiles": ["dotenv/config"],
     "setupFilesAfterEnv": [
       "<rootDir>/src/setupTests.js"
     ],
