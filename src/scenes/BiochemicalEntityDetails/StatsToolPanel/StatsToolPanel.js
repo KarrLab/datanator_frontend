@@ -72,8 +72,9 @@ class StatsToolPanel extends Component {
    * When component updates, update listeners to update stats
    */
   componentDidUpdate(prevProps) {
+    /* istanbul ignore next */
+    /* Never reached because the application never changes the 'api' property */
     if (prevProps.api !== this.props.api) {
-      this.updateStats(this.props);
       prevProps.api.removeEventListener("rowDataChanged", this.updateStats);
       prevProps.api.removeEventListener(
         "filterChanged",
@@ -84,28 +85,6 @@ class StatsToolPanel extends Component {
         this.updateSelectedStats
       );
 
-      this.setState({
-        all: {
-          values: null,
-          count: null,
-          mean: null,
-          median: null,
-          stdDev: null,
-          min: null,
-          max: null
-        },
-        selected: {
-          values: null,
-          count: null,
-          mean: null,
-          median: null,
-          stdDev: null,
-          min: null,
-          max: null
-        }
-      });
-
-      this.updateStats(this.props);
       this.props.api.addEventListener("rowDataChanged", this.updateStats);
       this.props.api.addEventListener(
         "filterChanged",
@@ -115,6 +94,12 @@ class StatsToolPanel extends Component {
         "selectionChanged",
         this.updateSelectedStats
       );
+    }
+
+    /* istanbul ignore next */
+    /* Never reached because the application never changes the 'api' or 'col' properties */
+    if (prevProps.api !== this.props.api || prevProps.col !== this.props.col) {
+      this.updateStats(this.props);
     }
   }
 
