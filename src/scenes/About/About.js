@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { HashLink } from "react-router-hash-link";
 import { SocialIcon } from "react-social-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import LazyLoad from "react-lazyload";
 import { scrollTo } from "~/utils/utils";
 
 import "./About.scss";
@@ -271,33 +272,45 @@ class About extends Component {
                   <h3>Main developers</h3>
                   <div className="main-developers-group-list">
                     <div className="main-developer">
-                      <img
-                        src={rothPhoto}
-                        className="hover-zoom"
-                        alt="Yosef Roth headshot"
-                      />
+                      <div className="main-developer-headshot-container">
+                        <LazyLoad>
+                          <img
+                            src={rothPhoto}
+                            className="hover-zoom"
+                            alt="Yosef Roth headshot"
+                          />
+                        </LazyLoad>
+                      </div>
                       <div className="developer-name">
                         Yosef Roth
                         <SocialIcon url="https://www.linkedin.com/in/yosef-roth-a80a378a" />
                       </div>
                     </div>
                     <div className="main-developer">
-                      <img
-                        src={lianPhoto}
-                        className="hover-zoom"
-                        alt="Zhouyang Lian headshot"
-                      />
+                      <div className="main-developer-headshot-container">
+                        <LazyLoad>
+                          <img
+                            src={lianPhoto}
+                            className="hover-zoom"
+                            alt="Zhouyang Lian headshot"
+                          />
+                        </LazyLoad>
+                      </div>
                       <div className="developer-name">
                         Zhouyang Lian
                         <SocialIcon url="https://www.linkedin.com/in/zlian/" />
                       </div>
                     </div>
                     <div className="main-developer">
-                      <img
-                        src={karrPhoto}
-                        className="hover-zoom"
-                        alt="Jonathan Karr headshot"
-                      />
+                      <div className="main-developer-headshot-container">
+                        <LazyLoad>
+                          <img
+                            src={karrPhoto}
+                            className="hover-zoom"
+                            alt="Jonathan Karr headshot"
+                          />
+                        </LazyLoad>
+                      </div>
                       <div className="developer-name">
                         Jonathan Karr
                         <SocialIcon url="https://www.linkedin.com/in/jonrkarr/" />
@@ -348,48 +361,56 @@ class About extends Component {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <img
-                      src={nihIcon}
-                      className="hover-zoom"
-                      title="National Institutes of Health"
-                      alt="National Institutes of Health logo"
-                    />
+                    <LazyLoad>
+                      <img
+                        src={nihIcon}
+                        className="hover-zoom"
+                        title="National Institutes of Health"
+                        alt="National Institutes of Health logo"
+                      />
+                    </LazyLoad>
                   </a>
                   <a
                     href="https://nibib.nih.gov"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <img
-                      src={nibibIcon}
-                      className="hover-zoom"
-                      title="National Institute of Bioimaging and Bioengineering"
-                      alt="National Institute of Bioimaging and Bioengineering logo"
-                    />
+                    <LazyLoad>
+                      <img
+                        src={nibibIcon}
+                        className="hover-zoom"
+                        title="National Institute of Bioimaging and Bioengineering"
+                        alt="National Institute of Bioimaging and Bioengineering logo"
+                      />
+                    </LazyLoad>
                   </a>
                   <a
                     href="https://nigms.nih.gov"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <img
-                      src={nigmsIcon}
-                      className="hover-zoom"
-                      title="National Institute of General Medical Sciences"
-                      alt="National Institute of General Medical Sciences logo"
-                    />
+                    <LazyLoad>
+                      <img
+                        src={nigmsIcon}
+                        className="hover-zoom"
+                        title="National Institute of General Medical Sciences"
+                        alt="National Institute of General Medical Sciences logo"
+                      />
+                    </LazyLoad>
                   </a>
                   <a
                     href="https://nsf.gov"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <img
-                      src={nsfIcon}
-                      className="hover-zoom"
-                      title="National Science Foundation"
-                      alt="National Science Foundation logo"
-                    />
+                    <LazyLoad>
+                      <img
+                        src={nsfIcon}
+                        className="hover-zoom"
+                        title="National Science Foundation"
+                        alt="National Science Foundation logo"
+                      />
+                    </LazyLoad>
                   </a>
                 </div>
               </div>

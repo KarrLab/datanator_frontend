@@ -163,6 +163,7 @@
       .main-developer {
         width: calc((100% - 2 * 0.25rem) / 3);
 
+        .main-developer-headshot-container,
         img {
           width: 100%;
           height: auto;

@@ -295,7 +295,7 @@ class DataTable extends Component {
               FiltersToolPanelModule,
               SetFilterModule,
               SideBarModule
-              ]}
+            ]}
             frameworkComponents={DataTable.frameworkComponents}
             sideBar={this.state.sideBarDef}
             defaultColDef={DataTable.defaultColDef}

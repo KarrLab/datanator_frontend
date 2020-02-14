@@ -9,9 +9,13 @@
     justify-content: flex-start;
   }
 
+  .entity-scene-icon-container,
   .entity-scene-icon {
     max-height: 150px;
     max-width: 150px;
+  }
+
+  .entity-scene-icon-container {
     margin-right: 1rem;
   }
 

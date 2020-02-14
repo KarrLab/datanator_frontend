@@ -65,6 +65,7 @@
     text-align: center;
   }
 
+  .section-column-icon-container,
   .section-column-icon {
     height: 64px;
   }
@@ -92,9 +93,13 @@
       justify-content: center;
     }
 
+    .logo-container,
     .logo {
-      margin-right: 0.5rem;
       height: 5rem;
+    }
+
+    .logo-container {
+      margin-right: 0.5rem;
     }
 
     h1 {
@@ -211,8 +216,12 @@
     margin-bottom: 0.5rem;
   }
 
+  .vertical-workflow-el-icon-container,
   .vertical-workflow-el-icon {
-    height: 64px;
+    width: 64px;
+  }
+
+  .vertical-workflow-el-icon-container {
     margin-right: 1rem;
     z-index: 1;
   }
@@ -255,6 +264,10 @@
 
   /* about */
   .about-icons {
+    .about-icon {
+      margin-top: 1rem;
+    }
+
     a:not(:first-child) {
       margin-left: 1rem;
     }
@@ -263,6 +276,7 @@
       margin-left: 0;
     }
 
+    a,
     .about-icon {
       height: 64px;
     }

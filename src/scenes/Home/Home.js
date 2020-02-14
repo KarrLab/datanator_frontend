@@ -4,6 +4,7 @@ import { HashLink } from "react-router-hash-link";
 
 import { scrollTo } from "~/utils/utils";
 import SearchForm from "~/components/SearchForm/SearchForm";
+import LazyLoad from "react-lazyload";
 
 import "~/scenes/Home/Home.scss";
 import logo from "./images/logo.svg";
@@ -40,12 +41,16 @@ class Home extends Component {
         <div className="section intro">
           <div className="section-inner-container">
             <div className="logo-title">
-              <object
-                data={logo}
-                className="logo hover-zoom"
-                alt="Datanator logo"
-                aria-label="Datanator logo"
-              />
+              <div className="logo-container">
+                <LazyLoad>
+                  <object
+                    data={logo}
+                    className="logo hover-zoom"
+                    alt="Datanator logo"
+                    aria-label="Datanator logo"
+                  />
+                </LazyLoad>
+              </div>
               <h1>Datanator</h1>
             </div>
             <h2>Tools to discover data to model cellular biochemistry</h2>
@@ -81,12 +86,16 @@ class Home extends Component {
             <div className="section-title-separator"></div>
             <div className="section-columns section-4-columns">
               <div className="section-column">
-                <object
-                  data={identifyUseCaseIcon}
-                  className="section-column-icon hover-zoom"
-                  alt="Identify parameters icon"
-                  aria-label="Identify parameters icon"
-                />
+                <div className="section-column-icon-container">
+                  <LazyLoad>
+                    <object
+                      data={identifyUseCaseIcon}
+                      className="section-column-icon hover-zoom"
+                      alt="Identify parameters icon"
+                      aria-label="Identify parameters icon"
+                    />
+                  </LazyLoad>
+                </div>
                 <div className="section-column-subtitle">Kinetic models</div>
                 <div className="section-column-title">
                   Identify initial conditions and rate parameters
@@ -101,12 +110,16 @@ class Home extends Component {
               </div>
 
               <div className="section-column">
-                <object
-                  data={constrainUseCaseIcon}
-                  className="section-column-icon hover-zoom"
-                  alt="Constrain models icon"
-                  aria-label="Constrain models icon"
-                />
+                <div className="section-column-icon-container">
+                  <LazyLoad>
+                    <object
+                      data={constrainUseCaseIcon}
+                      className="section-column-icon hover-zoom"
+                      alt="Constrain models icon"
+                      aria-label="Constrain models icon"
+                    />
+                  </LazyLoad>
+                </div>
                 <div className="section-column-subtitle">
                   Constraint-based models
                 </div>
@@ -123,12 +136,16 @@ class Home extends Component {
               </div>
 
               <div className="section-column">
-                <object
-                  data={recalibrateUseCaseIcon}
-                  className="section-column-icon hover-zoom"
-                  alt="Recalibrate models icon"
-                  aria-label="Recalibrate models icon"
-                />
+                <div className="section-column-icon-container">
+                  <LazyLoad>
+                    <object
+                      data={recalibrateUseCaseIcon}
+                      className="section-column-icon hover-zoom"
+                      alt="Recalibrate models icon"
+                      aria-label="Recalibrate models icon"
+                    />
+                  </LazyLoad>
+                </div>
                 <div className="section-column-subtitle">Kinetic models</div>
                 <div className="section-column-title">
                   Re-calibrate models to capture other cells
@@ -143,12 +160,16 @@ class Home extends Component {
               </div>
 
               <div className="section-column">
-                <object
-                  data={dataDrivenUseCaseIcon}
-                  className="section-column-icon hover-zoom"
-                  alt="Recalibrate models icon"
-                  aria-label="Recalibrate models icon"
-                />
+                <div className="section-column-icon-container">
+                  <LazyLoad>
+                    <object
+                      data={dataDrivenUseCaseIcon}
+                      className="section-column-icon hover-zoom"
+                      alt="Recalibrate models icon"
+                      aria-label="Recalibrate models icon"
+                    />
+                  </LazyLoad>
+                </div>
                 <div className="section-column-subtitle">
                   Data-driven models
                 </div>
@@ -176,12 +197,16 @@ class Home extends Component {
             <div className="section-title-separator"></div>
             <div className="section-columns section-4-columns">
               <div className="section-column">
-                <object
-                  data={metaboliteIcon}
-                  className="section-column-icon hover-zoom"
-                  alt="Metabolite icon"
-                  aria-label="Metabolite icon"
-                />
+                <div className="section-column-icon-container">
+                  <LazyLoad>
+                    <object
+                      data={metaboliteIcon}
+                      className="section-column-icon hover-zoom"
+                      alt="Metabolite icon"
+                      aria-label="Metabolite icon"
+                    />
+                  </LazyLoad>
+                </div>
                 <div className="section-column-subtitle">Available</div>
                 <div className="section-column-title">
                   Metabolite concentrations
@@ -209,12 +234,16 @@ class Home extends Component {
               </div>
 
               <div className="section-column">
-                <object
-                  data={rnaIcon}
-                  className="section-column-icon hover-zoom"
-                  alt="RNA icon"
-                  aria-label="RNA icon"
-                />
+                <div className="section-column-icon-container">
+                  <LazyLoad>
+                    <object
+                      data={rnaIcon}
+                      className="section-column-icon hover-zoom"
+                      alt="RNA icon"
+                      aria-label="RNA icon"
+                    />
+                  </LazyLoad>
+                </div>
                 <div className="section-column-subtitle">Coming soon</div>
                 <div className="section-column-title">RNA half-lives</div>
                 <div className="section-column-description">
@@ -224,12 +253,16 @@ class Home extends Component {
               </div>
 
               <div className="section-column">
-                <object
-                  data={proteinIcon}
-                  className="section-column-icon hover-zoom"
-                  alt="Protein icon"
-                  aria-label="Protein icon"
-                />
+                <div className="section-column-icon-container">
+                  <LazyLoad>
+                    <object
+                      data={proteinIcon}
+                      className="section-column-icon hover-zoom"
+                      alt="Protein icon"
+                      aria-label="Protein icon"
+                    />
+                  </LazyLoad>
+                </div>
                 <div className="section-column-subtitle">Available</div>
                 <div className="section-column-title">Protein abundances</div>
                 <div className="section-column-description">
@@ -264,12 +297,16 @@ class Home extends Component {
               </div>
 
               <div className="section-column">
-                <object
-                  data={reactionIcon}
-                  className="section-column-icon hover-zoom"
-                  alt="Reaction icon"
-                  aria-label="Reaction icon"
-                />
+                <div className="section-column-icon-container">
+                  <LazyLoad>
+                    <object
+                      data={reactionIcon}
+                      className="section-column-icon hover-zoom"
+                      alt="Reaction icon"
+                      aria-label="Reaction icon"
+                    />
+                  </LazyLoad>
+                </div>
                 <div className="section-column-subtitle">Available</div>
                 <div className="section-column-title">Reaction constants</div>
                 <div className="section-column-description">
@@ -301,12 +338,16 @@ class Home extends Component {
             <div className="vertical-workflow">
               <div className="vertical-workflow-el vertical-workflow-el-search">
                 <div className="vertical-workflow-el-line"></div>
-                <object
-                  data={searchIcon}
-                  className="vertical-workflow-el-icon hover-zoom"
-                  alt="Search icon"
-                  aria-label="Search icon"
-                />
+                <div className="vertical-workflow-el-icon-container">
+                  <LazyLoad>
+                    <object
+                      data={searchIcon}
+                      className="vertical-workflow-el-icon hover-zoom"
+                      alt="Search icon"
+                      aria-label="Search icon"
+                    />
+                  </LazyLoad>
+                </div>
                 <div className="vertical-workflow-el-text">
                   <div className="vertical-workflow-el-text-inner">
                     <div className="vertical-workflow-el-title">
@@ -328,12 +369,16 @@ class Home extends Component {
 
               <div className="vertical-workflow-el">
                 <div className="vertical-workflow-el-line"></div>
-                <object
-                  data={filterIcon}
-                  className="vertical-workflow-el-icon hover-zoom"
-                  alt="Filter icon"
-                  aria-label="Filter icon"
-                />
+                <div className="vertical-workflow-el-icon-container">
+                  <LazyLoad>
+                    <object
+                      data={filterIcon}
+                      className="vertical-workflow-el-icon hover-zoom"
+                      alt="Filter icon"
+                      aria-label="Filter icon"
+                    />
+                  </LazyLoad>
+                </div>
                 <div className="vertical-workflow-el-text">
                   <div className="vertical-workflow-el-title">
                     Step 2: <span className="highlight-primary">Filter</span>{" "}
@@ -353,12 +398,16 @@ class Home extends Component {
 
               <div className="vertical-workflow-el">
                 <div className="vertical-workflow-el-line"></div>
-                <object
-                  data={reviewIcon}
-                  className="vertical-workflow-el-icon hover-zoom"
-                  alt="Review icon"
-                  aria-label="Review icon"
-                />
+                <div className="vertical-workflow-el-icon-container">
+                  <LazyLoad>
+                    <object
+                      data={reviewIcon}
+                      className="vertical-workflow-el-icon hover-zoom"
+                      alt="Review icon"
+                      aria-label="Review icon"
+                    />
+                  </LazyLoad>
+                </div>
                 <div className="vertical-workflow-el-text">
                   <div className="vertical-workflow-el-title">
                     Step 3: <span className="highlight-primary">Review</span>{" "}
@@ -375,12 +424,16 @@ class Home extends Component {
 
               <div className="vertical-workflow-el vertical-workflow-el-analyze">
                 <div className="vertical-workflow-el-line"></div>
-                <object
-                  data={analyzeIcon}
-                  className="vertical-workflow-el-icon hover-zoom"
-                  alt="Analyze icon"
-                  aria-label="Analyze icon"
-                />
+                <div className="vertical-workflow-el-icon-container">
+                  <LazyLoad>
+                    <object
+                      data={analyzeIcon}
+                      className="vertical-workflow-el-icon hover-zoom"
+                      alt="Analyze icon"
+                      aria-label="Analyze icon"
+                    />
+                  </LazyLoad>
+                </div>
                 <div className="vertical-workflow-el-text">
                   <div className="vertical-workflow-el-title">
                     Step 4: <span className="highlight-primary">Analyze</span>{" "}
@@ -395,12 +448,16 @@ class Home extends Component {
 
               <div className="vertical-workflow-el">
                 <div className="vertical-workflow-el-line"></div>
-                <object
-                  data={exportIcon}
-                  className="vertical-workflow-el-icon hover-zoom"
-                  alt="Export icon"
-                  aria-label="Export icon"
-                />
+                <div className="vertical-workflow-el-icon-container">
+                  <LazyLoad>
+                    <object
+                      data={exportIcon}
+                      className="vertical-workflow-el-icon hover-zoom"
+                      alt="Export icon"
+                      aria-label="Export icon"
+                    />
+                  </LazyLoad>
+                </div>
                 <div className="vertical-workflow-el-text">
                   <div className="vertical-workflow-el-title">
                     Step 5: <span className="highlight-primary">Export</span>{" "}
@@ -435,7 +492,7 @@ class Home extends Component {
               at the Icahn School of Medicine at Mount Sinai in New York. See
               the <Link to="about">About</Link> page for more information.
             </p>
-            <p>
+            <p className="no-bottom-margin">
               <i>Datanator</i> was developed with support from the National
               Institutes of Health and the National Science Foundation.
             </p>
@@ -445,12 +502,14 @@ class Home extends Component {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img
-                  src={karrLabIcon}
-                  className="about-icon hover-zoom"
-                  title="Karr Lab"
-                  alt="Karr Lab logo"
-                />
+                <LazyLoad>
+                  <img
+                    src={karrLabIcon}
+                    className="about-icon hover-zoom"
+                    title="Karr Lab"
+                    alt="Karr Lab logo"
+                  />
+                </LazyLoad>
               </a>
               <a
                 href="https://reproduciblebiomodels.org"
@@ -458,12 +517,14 @@ class Home extends Component {
                 rel="noopener noreferrer"
                 className="hover-zoom"
               >
-                <img
-                  src={crbmIcon}
-                  className="about-icon hover-zoom"
-                  title="Center for Reproducible Biomedical Modeling"
-                  alt="Center for Reproducible Biomedical Modeling logo"
-                />
+                <LazyLoad>
+                  <img
+                    src={crbmIcon}
+                    className="about-icon hover-zoom"
+                    title="Center for Reproducible Biomedical Modeling"
+                    alt="Center for Reproducible Biomedical Modeling logo"
+                  />
+                </LazyLoad>
               </a>
               <a
                 href="https://mssm.edu"
@@ -471,60 +532,70 @@ class Home extends Component {
                 rel="noopener noreferrer"
                 className="about-icon-mssm"
               >
-                <img
-                  src={sinaiIcon}
-                  className="about-icon hover-zoom"
-                  title="Icahn School of Medicine at Mount Sinai"
-                  alt="Icahn School of Medicine at Mount Sinai logo"
-                />
+                <LazyLoad>
+                  <img
+                    src={sinaiIcon}
+                    className="about-icon hover-zoom"
+                    title="Icahn School of Medicine at Mount Sinai"
+                    alt="Icahn School of Medicine at Mount Sinai logo"
+                  />
+                </LazyLoad>
               </a>
               <a
                 href="https://nih.gov"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img
-                  src={nihIcon}
-                  className="about-icon hover-zoom"
-                  title="National Institutes of Health"
-                  alt="National Institutes of Health logo"
-                />
+                <LazyLoad>
+                  <img
+                    src={nihIcon}
+                    className="about-icon hover-zoom"
+                    title="National Institutes of Health"
+                    alt="National Institutes of Health logo"
+                  />
+                </LazyLoad>
               </a>
               <a
                 href="https://nibib.nih.gov"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img
-                  src={nibibIcon}
-                  className="about-icon hover-zoom"
-                  title="National Institute of Bioimaging and Bioengineering"
-                  alt="National Institute of Bioimaging and Bioengineering logo"
-                />
+                <LazyLoad>
+                  <img
+                    src={nibibIcon}
+                    className="about-icon hover-zoom"
+                    title="National Institute of Bioimaging and Bioengineering"
+                    alt="National Institute of Bioimaging and Bioengineering logo"
+                  />
+                </LazyLoad>
               </a>
               <a
                 href="https://nigms.nih.gov"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img
-                  src={nigmsIcon}
-                  className="about-icon hover-zoom"
-                  title="National Institute of General Medical Sciences"
-                  alt="National Institute of General Medical Sciences logo"
-                />
+                <LazyLoad>
+                  <img
+                    src={nigmsIcon}
+                    className="about-icon hover-zoom"
+                    title="National Institute of General Medical Sciences"
+                    alt="National Institute of General Medical Sciences logo"
+                  />
+                </LazyLoad>
               </a>
               <a
                 href="https://nsf.gov"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img
-                  src={nsfIcon}
-                  className="about-icon hover-zoom"
-                  title="National Science Foundation"
-                  alt="National Science Foundation logo"
-                />
+                <LazyLoad>
+                  <img
+                    src={nsfIcon}
+                    className="about-icon hover-zoom"
+                    title="National Science Foundation"
+                    alt="National Science Foundation logo"
+                  />
+                </LazyLoad>
               </a>
             </div>
           </div>

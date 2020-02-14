@@ -9,6 +9,7 @@ import {
   castToArray
 } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
+import LazyLoad from "react-lazyload";
 
 const reactStringReplace = require("react-string-replace");
 const sprintf = require("sprintf-js").sprintf;
@@ -290,17 +291,21 @@ class MetadataSection extends Component {
                 <h2 className="content-block-heading">Description</h2>
                 <div className="content-block-content icon-description">
                   {structure && (
-                    <img
-                      src={sprintf(
-                        STRUCTURE_IMG_URL,
-                        structure.type,
-                        structure.value
-                      )}
-                      className="entity-scene-icon hover-zoom"
-                      alt="Chemical structure"
-                      aria-label="Chemical structure"
-                      crossOrigin=""
-                    />
+                    <div className="entity-scene-icon-container">
+                      <LazyLoad>
+                        <img
+                          src={sprintf(
+                            STRUCTURE_IMG_URL,
+                            structure.type,
+                            structure.value
+                          )}
+                          className="entity-scene-icon hover-zoom"
+                          alt="Chemical structure"
+                          aria-label="Chemical structure"
+                          crossOrigin=""
+                        />
+                      </LazyLoad>
+                    </div>
                   )}
                   <div>{metadata.description}</div>
                 </div>
