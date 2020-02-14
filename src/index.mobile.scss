@@ -171,6 +171,26 @@
       }
     }
 
+    /* data pages */
+    .biochemical-entity-scene {
+      .icon-description {
+        display: block;
+      }
+
+      .entity-scene-icon-container {
+        margin-right: 0;
+        margin-bottom: 1rem;
+      }
+    }
+
+    /* columns */
+    .two-col-list,
+    .three-col-list,
+    .four-col-list,
+    .five-col-list {
+      columns: 1;
+    }
+
     /* data grid */
     .ag-tool-panel-wrapper {
       width: 120px;
