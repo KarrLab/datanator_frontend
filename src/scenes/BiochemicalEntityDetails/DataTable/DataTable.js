@@ -5,7 +5,13 @@ import axios from "axios";
 import { getDataFromApi, genApiErrorHandler } from "~/services/RestApi";
 import { parseHistoryLocationPathname, downloadData } from "~/utils/utils";
 import { AgGridReact } from "@ag-grid-community/react";
-import { AllModules } from "@ag-grid-enterprise/all-modules";
+import { ClientSideRowModelModule } from "@ag-grid-community/client-side-row-model";
+import { CsvExportModule } from "@ag-grid-community/csv-export";
+import { LicenseManager } from "@ag-grid-enterprise/core";
+import { ColumnsToolPanelModule } from "@ag-grid-enterprise/column-tool-panel";
+import { FiltersToolPanelModule } from "@ag-grid-enterprise/filter-tool-panel";
+import { SetFilterModule } from "@ag-grid-enterprise/set-filter";
+import { SideBarModule } from "@ag-grid-enterprise/side-bar";
 import { HtmlColumnHeader } from "../HtmlColumnHeader";
 import { LinkCellRenderer } from "../LinkCellRenderer";
 import { NumericCellRenderer } from "../NumericCellRenderer";
@@ -13,8 +19,8 @@ import { StatsToolPanel } from "../StatsToolPanel/StatsToolPanel";
 import { TaxonomyFilter } from "../TaxonomyFilter";
 import { TanimotoFilter } from "../TanimotoFilter";
 
-import "@ag-grid-enterprise/all-modules/dist/styles/ag-grid.scss";
-import "@ag-grid-enterprise/all-modules/dist/styles/ag-theme-balham/sass/ag-theme-balham.scss";
+import "@ag-grid-community/all-modules/dist/styles/ag-grid.scss";
+import "@ag-grid-community/all-modules/dist/styles/ag-theme-balham/sass/ag-theme-balham.scss";
 
 import "./DataTable.scss";
 
@@ -281,7 +287,15 @@ class DataTable extends Component {
         <div className="biochemical-entity-data-table ag-theme-balham">
           <AgGridReact
             ref={this.grid}
-            modules={AllModules}
+            modules={[
+              ClientSideRowModelModule,
+              CsvExportModule,
+              LicenseManager,
+              ColumnsToolPanelModule,
+              FiltersToolPanelModule,
+              SetFilterModule,
+              SideBarModule
+              ]}
             frameworkComponents={DataTable.frameworkComponents}
             sideBar={this.state.sideBarDef}
             defaultColDef={DataTable.defaultColDef}

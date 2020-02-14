@@ -3,7 +3,6 @@
 .biochemical-entity-data-table.ag-theme-balham {
   width: 100%;
 
-  .ag-root,
   .ag-row.ag-row-last {
     border-bottom-width: 0;
   }
@@ -17,15 +16,6 @@
 
   .ag-side-bar {
     border-right: none;
-    border-bottom: none;
-  }
-
-  .ag-tool-panel-wrapper {
-    .ag-filter-panel {
-      .ag-filter-list-panel > div.ag-last-group-visible > .ag-group-component.ag-collapsed {
-        border-bottom: none;
-      }
-    }
   }
 
   .ag-column-tool-panel-column {
