@@ -59,6 +59,7 @@
     "*"
   ],
   "dependencies": {
+    "@ag-grid-community/all-modules": "^22.1.1",
     "@ag-grid-community/client-side-row-model": "^22.1.1",
     "@ag-grid-community/core": "^22.1.1",
     "@ag-grid-community/csv-export": "^22.1.1",
