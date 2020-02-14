@@ -71,7 +71,7 @@ class Header extends Component {
         <Navbar.Group align className="page-links">
           <Button
             minimal="true"
-            className="navbutton"
+            className="navbutton navbutton-search"
             icon={searchIcon}
             text={searchText}
             onClick={() =>
@@ -81,7 +81,7 @@ class Header extends Component {
           <Link to="/stats">
             <Button
               minimal="true"
-              className="navbutton"
+              className="navbutton navbutton-stats"
               icon="horizontal-bar-chart"
               text="Stats"
             />
@@ -89,7 +89,7 @@ class Header extends Component {
           <Link to="/help">
             <Button
               minimal="true"
-              className="navbutton"
+              className="navbutton navbutton-help"
               icon="help"
               text="Help"
             />
@@ -97,7 +97,7 @@ class Header extends Component {
           <Link to="/about">
             <Button
               minimal="true"
-              className="navbutton"
+              className="navbutton navbutton-about"
               icon="info-sign"
               text="About"
             />

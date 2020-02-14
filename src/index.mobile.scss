@@ -1,0 +1,178 @@
+@media only screen and (max-width: 1000px) {
+  #root {
+    .bp3-navbar.bp3-fixed-top {
+      position: static;
+    }
+
+    .content-container {
+      margin-top: 3rem;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .page-title {
+      margin-right: 0.5rem;
+      margin-left: 0.5rem;
+      font-size: 1.5rem;
+    }
+
+    .content-container-columns {
+      display: block;
+      margin-right: 0.5rem;
+      margin-left: 0.5rem;
+
+      .overview-column {
+        position: static;
+        width: 100%;
+        min-width: unset;
+        height: auto;
+        margin-right: 0;
+        margin-bottom: 3rem;
+      }
+    }
+
+    .content-block-content {
+      border-width: 0;
+      padding: 0;
+    }
+
+    /* header */
+    .header-component {
+      &.bp3-navbar {
+        padding-left: 0.5rem;
+        padding-right: 0.25rem;
+      }
+
+      .titles .subtitle {
+        display: none;
+      }
+
+      .search-container {
+        display: none;
+      }
+
+      .page-links {
+        .navbutton-search {
+          display: none;
+        }
+
+        .bp3-button {
+          padding-left: 0.375rem;
+          padding-right: 0.375rem;
+        }
+
+        .bp3-button > * {
+          margin-right: 0.2rem;
+        }
+      }
+    }
+
+    /* home scene */
+    .content-container-home-scene {
+      margin-top: 0;
+
+      .section {
+        padding-right: 0.5rem;
+        padding-left: 0.5rem;
+      }
+
+      .section-columns {
+        display: block;
+      }
+
+      .section-4-columns .section-column {
+        width: 100%;
+      }
+
+      .section-4-columns .section-column:not(:first-child) {
+        margin-top: 2rem;
+      }
+
+      .section-column-title {
+        font-size: 16px;
+      }
+
+      h2 {
+        font-size: 24px;
+      }
+
+      .intro {
+        h1 {
+          font-size: 48px;
+        }
+
+        h2 {
+          font-size: 24px;
+        }
+
+        .search-form .search-label {
+          font-size: 14px;
+        }
+      }
+
+      .vertical-workflow-el {
+        height: auto;
+      }
+
+      .vertical-workflow-el .vertical-workflow-el-line {
+        bottom: 0;
+      }
+
+      .vertical-workflow-el:nth-child(1) .vertical-workflow-el-line {
+        top: 56px;
+        height: 6.7rem;
+      }
+
+      .vertical-workflow-el:nth-child(2) .vertical-workflow-el-line {
+        top: 65px;
+        height: 12.9rem;
+      }
+
+      .vertical-workflow-el:nth-child(3) .vertical-workflow-el-line {
+        top: 35px;
+        height: 9.7rem;
+      }
+
+      .vertical-workflow-el:nth-child(4) .vertical-workflow-el-line {
+        top: 0;
+        height: 6rem;
+      }
+
+      .vertical-workflow-el:nth-child(5) .vertical-workflow-el-line {
+        top: -35px;
+        height: 2rem;
+        display: block;
+      }
+
+      .vertical-workflow-el-title {
+        font-size: 16px;
+        margin-top: -4px;
+      }
+    }
+
+    /* about scene */
+    .content-container-about-scene {
+      .main-developers-group-list {
+        display: flex;
+      }
+
+      .main-developer:not(:first-child) {
+        margin-left: 0.25rem;
+      }
+
+      .main-developer {
+        width: calc((100% - 2 * 0.25rem) / 3);
+
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
+
+    /* data grid */
+    .ag-tool-panel-wrapper {
+      width: 120px;
+    }
+  }
+}

@@ -13,6 +13,7 @@ import { applyPolyfills, defineCustomElements } from "@bruit/component/loader";
 // Styles for @Blueprint JS (Template Components)
 import "@blueprintjs/core/lib/css/blueprint.css";
 import "./index.scss";
+import "./index.mobile.scss";
 
 // Font Awesome icons
 import { library } from "@fortawesome/fontawesome-svg-core";

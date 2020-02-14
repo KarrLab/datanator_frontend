@@ -219,7 +219,9 @@
 
   .vertical-workflow-el:not(:last-child) {
     margin-bottom: 2rem;
+  }
 
+  .vertical-workflow-el {
     .vertical-workflow-el-line {
       border-left: 2px dotted $color-border;
       height: calc(100% + 2rem);
@@ -228,6 +230,12 @@
       left: 32px;
       top: 32px;
       z-index: 0;
+    }
+  }
+
+  .vertical-workflow-el:last-child {
+    .vertical-workflow-el-line {
+      display: none;
     }
   }
 

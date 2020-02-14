@@ -123,7 +123,7 @@ a:hover {
 .content-container {
   max-width: 1200px;
   margin: calc(50px + 3rem) auto 3rem;
-  padding: 0;
+  padding: 0 1rem;
   min-height: calc(100vh - 42px - 50px - 3rem - 3rem);
 }
 
@@ -131,6 +131,11 @@ a:hover {
   max-width: none;
   margin-left: 0;
   margin-right: 0;
+  padding: 0;
+
+  .section {
+    padding: 0 1rem;
+  }
 }
 
 .content-container-columns {
