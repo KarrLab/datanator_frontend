@@ -8,8 +8,8 @@ const Logo = () => {
       <object
         data={logo}
         className="logo-image no-pointer-events"
-        alt="Datanator Logo"
-        aria-label="Datanator Logo"
+        alt="Datanator logo"
+        aria-label="Datanator logo"
       />
     </Link>
   );

@@ -159,10 +159,11 @@ class SearchForm extends Component {
         <div className="search-label search-label-find">Find data about</div>
 
         <InputGroup
+          aria-label="Biochemical entity (e.g., metabolite, RNA, protein, or reaction)"
           type="text"
           className="search-form-el search-form-el-entity search-input"
           leftIcon=<FontAwesomeIcon icon="atom" />
-          placeholder="metabolite, protein, or reaction (e.g., glucose)"
+          placeholder="metabolite, RNA, protein, or reaction (e.g., glucose)"
           value={this.state.query}
           onChange={event => {
             this.setState({
@@ -180,9 +181,10 @@ class SearchForm extends Component {
           }}
           className="search-form-el search-form-el-organism"
           inputProps={{
+            "aria-label": "Taxon (e.g., Escherichia coli)",
             className: "search-input",
             leftIcon: <FontAwesomeIcon icon="dna" />,
-            placeholder: "organism (e.g., Escherichia coli)"
+            placeholder: "taxon (e.g., Escherichia coli)"
           }}
           items={this.state.matchingOrganisms}
           openOnKeyDown={true}
