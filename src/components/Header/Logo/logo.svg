@@ -2,7 +2,7 @@
     <style>
         .fill-accent{fill:#ffc306}.fill-accent-light{fill:#ffd144}.fill-white{fill:#fff}
     </style>
-    <link rel="preload" href="/images.css" as="style">
+    <link xmlns="http://www.w3.org/1999/xhtml" rel="preload" href="/images.css" as="style"/>
     <link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" href="/images.css" type="text/css"/>
     <g id="Background-Hexagon">
         <path class="fill-accent" d="M0 34.95v-23.3L20.178 0l20.177 11.65v23.3L20.178 46.6z"/>

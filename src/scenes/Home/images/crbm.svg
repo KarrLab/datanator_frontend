@@ -2,7 +2,7 @@
     <style>
         .st0{filter:url(#Adobe_OpacityMaskFilter)}.st3,.st4{stroke-width:1.5}.st6,.st7{stroke-width:.2}.st10,.st13,.st14{stroke-width:.1}.fill-none{fill:none}.fill-primary{fill:#1890ff}.fill-accent{fill:#ffc306}.stroke-primary{stroke:#1890ff}.stroke-accent{stroke:#ffc306}
     </style>
-    <link rel="preload" href="/images.css" as="style">
+    <link xmlns="http://www.w3.org/1999/xhtml" rel="preload" href="/images.css" as="style"/>
     <link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" href="/images.css" type="text/css"/>
     <defs>
         <filter id="Adobe_OpacityMaskFilter" filterUnits="userSpaceOnUse" x=".996" y=".468" width="56.298" height="59.28">
