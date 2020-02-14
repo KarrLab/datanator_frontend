@@ -3,6 +3,7 @@
         .fill-none{fill:none}.fill-accent-lighter{fill:#ffe182}.fill-accent-lightest{fill:#fff0c0}.stroke-accent{stroke:#ffc306}.home-scene-feature-icon{stroke-width:14px}
         .dashed{stroke-dasharray:32.3834,32.3834}
     </style>
+    <link rel="preload" href="/images.css" as="style">
     <link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" href="/images.css" type="text/css"/>
     <path class="home-scene-feature-icon fill-accent-lighter stroke-accent" d="M220.5 219.1L7.4 140.6 220.5 519l213.1-378.4z"/>
     <path class="home-scene-feature-icon fill-accent-lightest stroke-accent" d="M220.5 219.1l213.1-78.5L351.7 9H89.3L7.4 140.6z"/>
