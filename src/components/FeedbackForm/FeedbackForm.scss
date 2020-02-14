@@ -16,6 +16,13 @@
   width: 95.5px;
 }
 
+@supports (-ms-ime-align:auto) {
+  .feedback-form-component {
+    top: calc(50px + (100vh - 50px) / 2 - 126px * 3 / 4);
+    width: 109px;
+  }
+}
+
 .feedback-form-component:hover {
   background: $color-button-hover;
 }
