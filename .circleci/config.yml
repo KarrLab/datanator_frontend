@@ -4,12 +4,16 @@ workflows:
   React:
     jobs:
       - build
-  Stage:
-    jobs:
-      - stage
-  Deploy:
-    jobs:
-      - deploy
+      - stage:
+          requires:
+            - build
+      - approve deploy:
+          type: approval
+          requires:
+            - stage
+      - deploy:
+          requires:
+            - approve deploy
 
 jobs:
   build:
