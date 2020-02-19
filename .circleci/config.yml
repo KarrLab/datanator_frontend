@@ -152,6 +152,9 @@ jobs:
       - store_test_results:
           path: ~/project/test-results
       - store_artifacts:
+          path: ~/project/test-results/integration-tests/screenshots
+          destination: test-results/integration-tests/screenshots
+      - store_artifacts:
           path: ~/project/coverage
           destination: coverage
       - store_artifacts:
