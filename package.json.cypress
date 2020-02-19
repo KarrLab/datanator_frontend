@@ -105,7 +105,7 @@
     "babel-plugin-istanbul": "^6.0.0",
     "core-js": "^3.6.4",
     "coveralls": "^3.0.9",
-    "cypress": "^4.0.1",
+    "cypress": "^4.0.2",
     "depcheck": "^0.9.2",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
