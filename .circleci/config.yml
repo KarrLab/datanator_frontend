@@ -5,6 +5,9 @@ workflows:
     jobs:
       - build
       - stage:
+          filters:
+            branches:
+              only: master
           requires:
             - build
       - approve deploy:
