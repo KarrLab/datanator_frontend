@@ -5,7 +5,7 @@ describe("Open and close", function() {
     cy.server();
     cy.route({
       method: "GET",
-      url: "/ftx/text_search/num_of_index/*",
+      url: "/ftx/**",
       status: 400,
       response: {
         status: 400,
@@ -31,6 +31,6 @@ describe("Open and close", function() {
       .find("button")
       .click();
 
-    cy.get(".MuiDialog-root").should("not.exist");
+    cy.get("body > .MuiDialog-root").should("not.exist");
   });
 });
