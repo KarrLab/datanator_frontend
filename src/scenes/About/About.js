@@ -43,6 +43,16 @@ class About extends Component {
                     </HashLink>
                   </li>
                   <li>
+                    <HashLink to="#source" scroll={scrollTo}>
+                      Source code
+                    </HashLink>
+                  </li>
+                  <li>
+                    <HashLink to="#tech" scroll={scrollTo}>
+                      Technology
+                    </HashLink>
+                  </li>
+                  <li>
                     <HashLink to="#team" scroll={scrollTo}>
                       Team
                     </HashLink>
@@ -50,11 +60,6 @@ class About extends Component {
                   <li>
                     <HashLink to="#acknowledgements" scroll={scrollTo}>
                       Acknowledgements
-                    </HashLink>
-                  </li>
-                  <li>
-                    <HashLink to="#source" scroll={scrollTo}>
-                      Source code
                     </HashLink>
                   </li>
                 </ul>
@@ -252,6 +257,355 @@ class About extends Component {
               </div>
             </div>
 
+            <div className="content-block section" id="source">
+              <h2 className="content-block-heading">Source code and license</h2>
+
+              <div className="content-block-content">
+                <p className="no-bottom-margin">
+                  <i>Datanator</i> is available open-source from GitHub and is
+                  released under the{" "}
+                  <a
+                    href={
+                      "https://github.com/KarrLab/datanator/blob/master/LICENSE"
+                    }
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    MIT license
+                  </a>
+                  . The source code <i>Datanator</i> is composed of the
+                  following packages:
+                </p>
+                <ul className="no-top-margin">
+                  <li>
+                    <a
+                      href={"https://github.com/KarrLab/datanator"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Core package
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={"https://github.com/KarrLab/datanator_frontend"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Web application
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={"https://github.com/KarrLab/datanator_rest_api"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      REST API
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={"https://github.com/KarrLab/datanator_query_python"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Python API
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="content-block section tech" id="tech">
+              <h2 className="content-block-heading">
+                Technological foundation
+              </h2>
+              <div className="content-block-content">
+                <p className="no-bottom-margin">
+                  <i>Datanator</i> is implemented using the following
+                  technologies:
+                </p>
+                <ul className="three-col-list">
+                  <li>
+                    <a
+                      href="https://www.ag-grid.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      ag-Grid
+                    </a>
+                    : data tables
+                  </li>
+                  <li>
+                    <a
+                      href="https://aws.amazon.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      AWS
+                    </a>
+                    : database hosting
+                  </li>
+                  <li>
+                    <a
+                      href="https://bruit.io/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      bruit.io
+                    </a>
+                    : feedback form
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.docker.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Docker
+                    </a>
+                    : containers
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.elastic.co/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Elasticsearch
+                    </a>
+                    : full text search
+                  </li>
+                  <li>
+                    <a
+                      href="https://flask.palletsprojects.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Flask
+                    </a>
+                    : framework for RESI API
+                  </li>
+                  <li>
+                    <a
+                      href="https://gunicorn.org/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      gunicorn
+                    </a>
+                    : web server
+                  </li>
+                  <li>
+                    <a
+                      href="https://heroku.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Heroku
+                    </a>
+                    : web hostring
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.mongodb.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      MongoDB
+                    </a>
+                    : database engine
+                  </li>
+                  <li>
+                    <a
+                      href="https://swagger.io/docs/specification/about/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      OpenAPI
+                    </a>
+                    : REST API specification
+                  </li>
+                  <li>
+                    <a
+                      href="http://openbabel.org/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Open Babel
+                    </a>
+                    : chemoinformatics
+                  </li>
+                  <li>
+                    <a
+                      href="https://pint.readthedocs.io/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      pint
+                    </a>
+                    : units
+                  </li>
+                  <li>
+                    <a
+                      href="https://reactjs.org/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      React
+                    </a>
+                    : web application framework
+                  </li>
+                  <li>
+                    <a
+                      href="https://requests.readthedocs.io/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      requests
+                    </a>
+                    : HTTP client
+                  </li>
+
+                  {false && (
+                    <ul>
+                      <li>
+                        <a
+                          href="https://github.com/axios/axios"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          axios
+                        </a>
+                        : HTTP client
+                      </li>
+                      <li>
+                        <a
+                          href="https://www.chartjs.org/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Chart.JS
+                        </a>
+                        : box plot
+                      </li>
+                      <li>
+                        <a
+                          href="https://circleci.com/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          CircleCI
+                        </a>
+                        : continuous integration
+                      </li>
+                      <li>
+                        <a
+                          href="https://coveralls.io/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Coveralls
+                        </a>
+                        : coverage analysis
+                      </li>
+                      <li>
+                        <a
+                          href="https://www.cypress.io/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          cypress
+                        </a>
+                        : end-to-end testing
+                      </li>
+                      <li>
+                        <a
+                          href="https://hub.docker.com/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          DockerHub
+                        </a>
+                        : container repository
+                      </li>
+                      <li>
+                        <a
+                          href="https://eslint.org/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          ESLint
+                        </a>
+                        : JS linting
+                      </li>
+                      <li>
+                        <a
+                          href="https://fontawesome.com/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Font Awesome
+                        </a>
+                        : icons
+                      </li>
+                      <li>
+                        <a
+                          href="https://github.com/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          GitHub
+                        </a>
+                        : code repository
+                      </li>
+                      <li>
+                        <a
+                          href="https://jestjs.io/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Jest
+                        </a>
+                        : unit testing
+                      </li>
+                      <li>
+                        <a
+                          href="https://material-ui.com/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Material UI
+                        </a>
+                        : UI components
+                      </li>
+                      <li>
+                        <a
+                          href="https://prettier.io/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Prettier
+                        </a>
+                        : code formatting
+                      </li>
+                      <li>
+                        <a
+                          href="https://open.quiltdata.com/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Quilt
+                        </a>
+                        : date repository
+                      </li>
+                    </ul>
+                  )}
+                </ul>
+              </div>
+            </div>
+
             <div className="content-block section developers" id="team">
               <h2 className="content-block-heading">Development team</h2>
               <div className="content-block-content">
@@ -413,65 +767,6 @@ class About extends Component {
                     </LazyLoad>
                   </a>
                 </div>
-              </div>
-            </div>
-
-            <div className="content-block section" id="source">
-              <h2 className="content-block-heading">Source code and license</h2>
-
-              <div className="content-block-content">
-                <p className="no-bottom-margin">
-                  <i>Datanator</i> is available open-source from GitHub and is
-                  released under the{" "}
-                  <a
-                    href={
-                      "https://github.com/KarrLab/datanator/blob/master/LICENSE"
-                    }
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    MIT license
-                  </a>
-                  .
-                </p>
-                <ul className="no-top-margin">
-                  <li>
-                    <a
-                      href={"https://github.com/KarrLab/datanator"}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Core package
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href={"https://github.com/KarrLab/datanator_frontend"}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Web application
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href={"https://github.com/KarrLab/datanator_rest_api"}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      REST API
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href={"https://github.com/KarrLab/datanator_query_python"}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Python API
-                    </a>
-                  </li>
-                </ul>
               </div>
             </div>
           </div>

@@ -34,6 +34,22 @@ import nibibIcon from "../About/images/nibib.svg";
 import nigmsIcon from "../About/images/nigms.svg";
 import nsfIcon from "../About/images/nsf.svg";
 
+import agGridIcon from "./images/tech/ag-grid.svg";
+import awsIcon from "./images/tech/aws.svg";
+import bruitIoIcon from "./images/tech/bruit-io.svg";
+import dockerIcon from "./images/tech/docker.svg";
+import elasticsearchIcon from "./images/tech/elasticsearch.svg";
+import flaskIcon from "./images/tech/flask.svg";
+import herokuIcon from "./images/tech/heroku.svg";
+import gunicornIcon from "./images/tech/gunicorn.svg";
+import mongoDbIcon from "./images/tech/mongodb.svg";
+import netlifyIcon from "./images/tech/netlify.svg";
+import openapiIcon from "./images/tech/open-api.svg";
+import openbabelIcon from "./images/tech/open-babel.png";
+import pintIcon from "./images/tech/pint.png";
+import reactIcon from "./images/tech/react.svg";
+import requestsIcon from "./images/tech/requests.png";
+
 class Home extends Component {
   render() {
     return (
@@ -489,12 +505,18 @@ class Home extends Component {
               >
                 Karr Lab
               </a>{" "}
-              at the Icahn School of Medicine at Mount Sinai in New York. See
-              the <Link to="about">About</Link> page for more information.
+              at the Icahn School of Medicine at Mount Sinai in New York support
+              from the National Institutes of Health and the National Science
+              Foundation.
+            </p>
+            <p>
+              <i>Datanator</i> was implemented using numerous open-source tools
+              including Elasticsearch, Flask, MongoDB, OpenAPI, and React. The
+              code is available open-source under the MIT license.
             </p>
             <p className="no-bottom-margin">
-              <i>Datanator</i> was developed with support from the National
-              Institutes of Health and the National Science Foundation.
+              Please see the <Link to="about">About</Link> page for more
+              information.
             </p>
             <div className="about-icons">
               <a
@@ -594,6 +616,222 @@ class Home extends Component {
                     className="about-icon hover-zoom"
                     title="National Science Foundation"
                     alt="National Science Foundation logo"
+                  />
+                </LazyLoad>
+              </a>
+            </div>
+            <div className="about-icons">
+              <a
+                href="https://www.ag-grid.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <LazyLoad>
+                  <img
+                    src={agGridIcon}
+                    className="about-icon hover-zoom"
+                    title="ag-Grid"
+                    alt="ag-Grid logo"
+                  />
+                </LazyLoad>
+              </a>
+              <a
+                href="https://aws.amazon.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <LazyLoad>
+                  <img
+                    src={awsIcon}
+                    className="about-icon hover-zoom"
+                    title="AWS"
+                    alt="AWS logo"
+                  />
+                </LazyLoad>
+              </a>
+              <a
+                href="https://bruit.io/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <LazyLoad>
+                  <img
+                    src={bruitIoIcon}
+                    className="about-icon hover-zoom"
+                    title="bruit.io"
+                    alt="bruit.io logo"
+                  />
+                </LazyLoad>
+              </a>
+              <a
+                href="https://www.docker.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <LazyLoad>
+                  <img
+                    src={dockerIcon}
+                    className="about-icon hover-zoom"
+                    title="Docker"
+                    alt="Docker logo"
+                  />
+                </LazyLoad>
+              </a>
+              <a
+                href="https://www.elastic.co/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <LazyLoad>
+                  <img
+                    src={elasticsearchIcon}
+                    className="about-icon hover-zoom"
+                    title="Elasticsearch"
+                    alt="Elasticsearch logo"
+                  />
+                </LazyLoad>
+              </a>
+              <a
+                href="https://flask.palletsprojects.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <LazyLoad>
+                  <img
+                    src={flaskIcon}
+                    className="about-icon hover-zoom"
+                    title="Flask"
+                    alt="Flask logo"
+                  />
+                </LazyLoad>
+              </a>
+              <a
+                href="https://heroku.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <LazyLoad>
+                  <img
+                    src={herokuIcon}
+                    className="about-icon hover-zoom"
+                    title="Heroku"
+                    alt="Heroku logo"
+                  />
+                </LazyLoad>
+              </a>
+            </div>
+            <div className="about-icons">
+              <a
+                href="https://gunicorn.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <LazyLoad>
+                  <img
+                    src={gunicornIcon}
+                    className="about-icon hover-zoom"
+                    title="Gunicorn"
+                    alt="Gunicorn logo"
+                  />
+                </LazyLoad>
+              </a>
+              <a
+                href="https://www.mongodb.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <LazyLoad>
+                  <img
+                    src={mongoDbIcon}
+                    className="about-icon hover-zoom"
+                    title="MongoDB"
+                    alt="MongoDB logo"
+                  />
+                </LazyLoad>
+              </a>
+              {false && (
+                <a
+                  href="https://www.netlify.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <LazyLoad>
+                    <img
+                      src={netlifyIcon}
+                      className="about-icon hover-zoom"
+                      title="Netlify"
+                      alt="Netlify logo"
+                    />
+                  </LazyLoad>
+                </a>
+              )}
+              <a
+                href="https://swagger.io/docs/specification/about/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <LazyLoad>
+                  <img
+                    src={openapiIcon}
+                    className="about-icon hover-zoom"
+                    title="Open API"
+                    alt="Open API logo"
+                  />
+                </LazyLoad>
+              </a>
+              <a
+                href="http://openbabel.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <LazyLoad>
+                  <img
+                    src={openbabelIcon}
+                    className="about-icon hover-zoom"
+                    title="Open Babel"
+                    alt="Open Babel logo"
+                  />
+                </LazyLoad>
+              </a>
+              <a
+                href="https://pint.readthedocs.io/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <LazyLoad>
+                  <img
+                    src={pintIcon}
+                    className="about-icon hover-zoom"
+                    title="pint"
+                    alt="pint logo"
+                  />
+                </LazyLoad>
+              </a>
+              <a
+                href="https://reactjs.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <LazyLoad>
+                  <img
+                    src={reactIcon}
+                    className="about-icon hover-zoom"
+                    title="Rewact"
+                    alt="React logo"
+                  />
+                </LazyLoad>
+              </a>
+              <a
+                href="https://requests.readthedocs.io/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <LazyLoad>
+                  <img
+                    src={requestsIcon}
+                    className="about-icon hover-zoom"
+                    title="requests"
+                    alt="requests logo"
                   />
                 </LazyLoad>
               </a>
