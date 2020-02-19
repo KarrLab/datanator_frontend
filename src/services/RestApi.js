@@ -34,10 +34,14 @@ function genApiErrorHandler(params, errorMessage = null) {
       );
 
       if (IS_DEVELOPMENT || IS_TEST) {
-        const errorInfo = error.response.data;
-        console.error(
-          "Server error " + errorInfo.status + ": " + errorInfo.detail
-        );
+        if ("isAxiosError" in error && error.isAxiosError) {
+          const errorInfo = error.response.data;
+          console.error(
+            "Server error " + errorInfo.status + ": " + errorInfo.detail
+          );
+        } else {
+          console.error(error);
+        }
       }
     }
   };

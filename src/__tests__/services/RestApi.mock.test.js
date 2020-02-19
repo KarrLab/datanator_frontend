@@ -25,7 +25,11 @@ describe("With mocked API calls", () => {
 
   it("Request failed", async () => {
     axios.get.mockRejectedValue({
-      response: { status: 404, data: { status: 404, detail: "Server error." } }
+      isAxiosError: true,
+      response: {
+        status: 404,
+        data: { status: 404, detail: "Server error." }
+      }
     });
 
     render(errorDialog);
@@ -35,6 +39,27 @@ describe("With mocked API calls", () => {
       genApiErrorHandler(["not-implemented"], customErrMsg)
     );
     expect(console.error.mock.calls[0][0]).toMatch(/^Server error 404:/);
+
+    // close error dialog
+    errorDialogRef.current.close();
+  });
+
+  it("Request failed for other error", async () => {
+    const error = {
+      response: {
+        status: 404,
+        data: { status: 404, detail: "Server error." }
+      }
+    };
+    axios.get.mockRejectedValue(error);
+
+    render(errorDialog);
+    console.error = jest.fn();
+    const customErrMsg = "Custom error message";
+    await getDataFromApi(["not-implemented"], {}).catch(
+      genApiErrorHandler(["not-implemented"], customErrMsg)
+    );
+    expect(console.error.mock.calls[0][0]).toEqual(error);
 
     // close error dialog
     errorDialogRef.current.close();
