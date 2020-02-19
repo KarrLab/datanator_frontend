@@ -145,7 +145,7 @@
     "test-integration-results-report": "junit-merge --dir test-results/integration-tests/specs --recursive --out test-results/integration-tests/results.xml",
     "test-integration-coverage-report": "nyc report --reporter=text-summary --reporter=html",
     "eject": "react-scripts eject",
-    "get-third-party-licenses": "scripts/get-third-party-licenses.sh",
+    "build-third-party-license-report": "scripts/build-third-party-license-report.sh",
     "clean-heroku": "scripts/clean-heroku.sh"
   },
   "eslintConfig": {
