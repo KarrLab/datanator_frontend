@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import SearchResultsList from "./SearchResultsList.js";
+import { upperCaseFirstLetter } from "~/utils/utils";
 
 export default class ProteinSearchResultsList extends Component {
   getResultsUrl(query, pageCount, pageSize) {
@@ -21,10 +22,8 @@ export default class ProteinSearchResultsList extends Component {
 
     const formattedResults = {};
     for (const result of results) {
-      let koNumber = result["key"];
-      if (koNumber !== "nan") {
-        koNumber =
-          koNumber[0].toUpperCase() + koNumber.substring(1, koNumber.length);
+      if (Array.isArray(result.key) && result.key.length > 0) {
+        const koNumber = upperCaseFirstLetter(result.key[0]);
         let formattedResult = formattedResults[koNumber];
         if (!formattedResult) {
           formattedResult = {};

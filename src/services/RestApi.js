@@ -4,7 +4,7 @@ import { errorDialogRef } from "~/components/ErrorDialog/ErrorDialog";
 
 const ROOT_URL = process.env.REACT_APP_REST_SERVER;
 const IS_DEVELOPMENT = process.env.NODE_ENV === "development";
-const IS_TEST = process.env.NODE_ENV === "test";
+const IS_TEST = process.env.NODE_ENV.startsWith("test");
 const DEFAULT_ERROR_MESSAGE = (
   <span>
     We&apos;re sorry our server could not complete your request. Please try
@@ -34,10 +34,14 @@ function genApiErrorHandler(params, errorMessage = null) {
       );
 
       if (IS_DEVELOPMENT || IS_TEST) {
-        const errorInfo = error.response.data;
-        console.error(
-          "Server error " + errorInfo.status + ": " + errorInfo.detail
-        );
+        if ("isAxiosError" in error && error.isAxiosError) {
+          const errorInfo = error.response.data;
+          console.error(
+            "Server error " + errorInfo.status + ": " + errorInfo.detail
+          );
+        } else {
+          console.error(error);
+        }
       }
     }
   };

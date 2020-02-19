@@ -57,7 +57,11 @@ class SearchForm extends Component {
   updateStateFromLocation() {
     if (this.unlistenToHistory) {
       const route = parseHistoryLocationPathname(this.props.history);
-      if (route.route === "search") {
+      if (
+        route.route === "search" &&
+        route.query != null &&
+        route.query !== undefined
+      ) {
         const query = route.query;
         const organism = route.organism;
 

@@ -130,8 +130,8 @@ jobs:
             NODE_ENV=production npm run build
             if [[ $? -ne 0 ]]; then error=1; fi
 
-            # Analyze licenses of dependencies
-            tldrlegal
+            # Generate report of licenses of dependencies
+            npm run build-third-party-license-report
 
             # Return error status
             if [[ $error -eq 0 ]]; then
@@ -167,8 +167,14 @@ jobs:
       - store_test_results:
           path: ~/project/test-results
       - store_artifacts:
+          path: ~/project/test-results/integration-tests/screenshots
+          destination: test-results/integration-tests/screenshots
+      - store_artifacts:
           path: ~/project/coverage
           destination: coverage
+      - store_artifacts:
+          path: ~/project/LICENSE-THIRD-PARTY
+          destination: LICENSE-THIRD-PARTY
   stage:
     docker:
       - image: buildpack-deps:trusty
