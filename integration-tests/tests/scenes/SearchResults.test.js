@@ -13,7 +13,7 @@ describe("Search results scene with entity", function() {
     cy.visit("/search/glucose");
     cy.get(".page-title").should("contain", "Search: glucose");
 
-    /* metabolites */
+    // metabolites
     cy.get("#metabolites .search-results-list > li")
       .first()
       .find(".search-result-title")
@@ -37,7 +37,7 @@ describe("Search results scene with entity", function() {
         expect(text).to.match(/^(ChEBI: \d+|KEGG: C\d+)$/);
       });
 
-    /* RNA */
+    // RNA
     cy.get("#rnas .search-results-list > li")
       .first()
       .find(".search-result-title a")
@@ -53,7 +53,7 @@ describe("Search results scene with entity", function() {
         expect(text).to.match(/^Gene: [a-zA-Z0-9]+/);
       });
 
-    /* Proteins */
+    // Proteins
     cy.get("#proteins .search-results-list > li")
       .first()
       .find(".search-result-title")
@@ -76,7 +76,7 @@ describe("Search results scene with entity", function() {
         expect(text).to.match(/^KEGG: K[0-9]+$/);
       });
 
-    /* Reactions */
+    // Reactions
     cy.get("#reactions .search-results-list > li")
       .first()
       .find(".search-result-title a")
@@ -102,7 +102,7 @@ describe("Search results scene with entity and organism", function() {
       "Search: glucose in Escherichia coli"
     );
 
-    /* metabolites */
+    // metabolites
     cy.get("#metabolites .search-results-list > li")
       .first()
       .find(".search-result-title")
@@ -118,7 +118,7 @@ describe("Search results scene with entity and organism", function() {
         expect($el.attr("href")).to.match(/\/Escherichia coli$/i);
       });
 
-    /* RNA */
+    // RNA
     cy.get("#rnas .search-results-list > li")
       .first()
       .find(".search-result-title a")
@@ -127,7 +127,7 @@ describe("Search results scene with entity and organism", function() {
         expect($el.attr("href")).to.match(/\/Escherichia coli$/i);
       });
 
-    /* proteins */
+    // proteins
     cy.get("#proteins .search-results-list > li")
       .first()
       .find(".search-result-title")
@@ -143,7 +143,7 @@ describe("Search results scene with entity and organism", function() {
         expect($el.attr("href")).to.match(/\/Escherichia coli$/i);
       });
 
-    /* Reactions */
+    // Reactions
     cy.get("#reactions .search-results-list > li")
       .first()
       .find(".search-result-title a")
@@ -206,7 +206,7 @@ describe("Search results scene with no results", function() {
   it("successfully loads", function() {
     cy.visit("/search/__blank__");
 
-    /* metabolites */
+    // metabolites
     cy.get("#metabolites .no-search-results").should($el => {
       const text = $el.text();
       expect(text).to.equal("No results found");
