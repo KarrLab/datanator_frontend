@@ -419,6 +419,16 @@ class About extends Component {
                   </li>
                   <li>
                     <a
+                      href="https://www.netlify.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Netlify
+                    </a>
+                    : web hostring
+                  </li>
+                  <li>
+                    <a
                       href="https://swagger.io/docs/specification/about/"
                       target="_blank"
                       rel="noopener noreferrer"

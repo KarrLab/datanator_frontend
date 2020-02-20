@@ -749,22 +749,20 @@ class Home extends Component {
                   />
                 </LazyLoad>
               </a>
-              {false && (
-                <a
-                  href="https://www.netlify.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <LazyLoad>
-                    <img
-                      src={netlifyIcon}
-                      className="about-icon hover-zoom"
-                      title="Netlify"
-                      alt="Netlify logo"
-                    />
-                  </LazyLoad>
-                </a>
-              )}
+              <a
+                href="https://www.netlify.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <LazyLoad>
+                  <img
+                    src={netlifyIcon}
+                    className="about-icon hover-zoom"
+                    title="Netlify"
+                    alt="Netlify logo"
+                  />
+                </LazyLoad>
+              </a>
               <a
                 href="https://swagger.io/docs/specification/about/"
                 target="_blank"
