@@ -59,17 +59,7 @@ class AbundanceDataTable extends Component {
           labelDefault: "Columns",
           labelKey: "columns",
           iconKey: "columns",
-          toolPanel: "agColumnsToolPanel",
-          toolPanelParams: {
-            suppressRowGroups: true,
-            suppressValues: true,
-            suppressPivots: true,
-            suppressPivotMode: true,
-            suppressSideButtons: false,
-            suppressColumnFilter: true,
-            suppressColumnSelectAll: true,
-            suppressColumnExpandAll: true
-          }
+          toolPanel: "columnsToolPanel"
         },
         {
           id: "filters",

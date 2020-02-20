@@ -65,7 +65,7 @@ class Header extends Component {
           <SearchForm />
         </div>
 
-        <div align className="page-links">
+        <div className="page-links">
           <Button
             minimal="true"
             className="icon-button"

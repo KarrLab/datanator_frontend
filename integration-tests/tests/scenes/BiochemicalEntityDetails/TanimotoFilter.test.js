@@ -24,11 +24,13 @@ describe("TanimotoFilter", function() {
     cy.get("#" + dataContainerId + " .ag-side-button")
       .eq(0)
       .click();
-    cy.get("#" + dataContainerId + " .ag-column-tool-panel-column input").each(
-      $input => {
-        cy.wrap($input).check({ force: true });
-      }
-    );
+    cy.get(
+      "#" +
+        dataContainerId +
+        " .biochemical-entity-scene-columns-tool-panel input"
+    ).each($input => {
+      cy.wrap($input).check({ force: true });
+    });
 
     // open filters tool panel and open all filters, including the Tanimoto filter
     cy.get("#" + dataContainerId + " .ag-side-button")

@@ -8,13 +8,13 @@ import { AgGridReact } from "@ag-grid-community/react";
 import { ClientSideRowModelModule } from "@ag-grid-community/client-side-row-model";
 import { CsvExportModule } from "@ag-grid-community/csv-export";
 import { LicenseManager } from "@ag-grid-enterprise/core";
-import { ColumnsToolPanelModule } from "@ag-grid-enterprise/column-tool-panel";
 import { FiltersToolPanelModule } from "@ag-grid-enterprise/filter-tool-panel";
 import { SetFilterModule } from "@ag-grid-enterprise/set-filter";
 import { SideBarModule } from "@ag-grid-enterprise/side-bar";
 import { HtmlColumnHeader } from "../HtmlColumnHeader";
 import { LinkCellRenderer } from "../LinkCellRenderer";
 import { NumericCellRenderer } from "../NumericCellRenderer";
+import { ColumnsToolPanel } from "../ColumnsToolPanel/ColumnsToolPanel";
 import { StatsToolPanel } from "../StatsToolPanel/StatsToolPanel";
 import { TaxonomyFilter } from "../TaxonomyFilter";
 import { TanimotoFilter } from "../TanimotoFilter";
@@ -46,6 +46,7 @@ class DataTable extends Component {
     htmlColumnHeader: HtmlColumnHeader,
     linkCellRenderer: LinkCellRenderer,
     numericCellRenderer: NumericCellRenderer,
+    columnsToolPanel: ColumnsToolPanel,
     statsToolPanel: StatsToolPanel,
     taxonomyFilter: TaxonomyFilter,
     tanimotoFilter: TanimotoFilter
@@ -291,7 +292,6 @@ class DataTable extends Component {
               ClientSideRowModelModule,
               CsvExportModule,
               LicenseManager,
-              ColumnsToolPanelModule,
               FiltersToolPanelModule,
               SetFilterModule,
               SideBarModule

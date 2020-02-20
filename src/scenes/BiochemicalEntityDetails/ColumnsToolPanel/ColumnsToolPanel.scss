@@ -1,0 +1,22 @@
+@import 'colors';
+
+.biochemical-entity-scene-columns-tool-panel {
+  list-style-type: none;
+  margin: 0;
+  padding: 0.5rem;
+
+  li {
+    display: flex;
+    align-items: center;
+  }
+
+  li:not(:first-child) {
+    margin-top: 0.25rem;
+  }
+
+  input {
+    border-radius: 3px;
+    margin: 0;
+    margin-right: 0.25rem;
+  }
+}

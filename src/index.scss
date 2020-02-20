@@ -1,13 +1,13 @@
 @import 'colors';
 
 * {
+  font-family: "Ubuntu", sans-serif;
   line-height: 1.28581;
 }
 
 body {
   margin: 0;
   color: $color-text;
-  font-family: "Ubuntu", sans-serif;
   font-size: 14px;
 }
 

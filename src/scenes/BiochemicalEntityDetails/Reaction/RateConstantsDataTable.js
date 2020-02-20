@@ -80,17 +80,7 @@ class RateConstantsDataTable extends Component {
           labelDefault: "Columns",
           labelKey: "columns",
           iconKey: "columns",
-          toolPanel: "agColumnsToolPanel",
-          toolPanelParams: {
-            suppressRowGroups: true,
-            suppressValues: true,
-            suppressPivots: true,
-            suppressPivotMode: true,
-            suppressSideButtons: false,
-            suppressColumnFilter: true,
-            suppressColumnSelectAll: true,
-            suppressColumnExpandAll: true
-          }
+          toolPanel: "columnsToolPanel"
         },
         {
           id: "filters",
@@ -276,7 +266,6 @@ class RateConstantsDataTable extends Component {
   formatColHeadings(event) {
     const gridApi = event.api;
     const panelLabelClasses = {
-      columns: "ag-column-tool-panel-column-label",
       filters: "ag-group-component-title"
     };
     for (const panelId in panelLabelClasses) {

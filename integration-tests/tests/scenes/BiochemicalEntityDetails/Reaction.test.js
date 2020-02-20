@@ -50,11 +50,13 @@ describe("Reaction scene", function() {
     cy.get("#" + dataContainerId + " .ag-side-button")
       .first()
       .click();
-    cy.get("#" + dataContainerId + " .ag-column-select-checkbox").each(
-      $input => {
-        cy.wrap($input).click();
-      }
-    );
+    cy.get(
+      "#" +
+        dataContainerId +
+        " .biochemical-entity-scene-columns-tool-panel input"
+    ).each($input => {
+      cy.wrap($input).click();
+    });
 
     // open filters tool panel and open all filters
     cy.get("#" + dataContainerId + " .ag-side-button")
