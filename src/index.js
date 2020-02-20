@@ -11,7 +11,6 @@ import history from "~/utils/history";
 import { applyPolyfills, defineCustomElements } from "@bruit/component/loader";
 
 // Styles for @Blueprint JS (Template Components)
-import "@blueprintjs/core/lib/css/blueprint.css";
 import "./index.scss";
 import "./index.mobile.scss";
 

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { Navbar } from "@blueprintjs/core";
 import { Button } from "@blueprintjs/core";
 import { parseHistoryLocationPathname } from "~/utils/utils";
 
@@ -53,25 +52,23 @@ class Header extends Component {
     }
 
     return (
-      <Navbar fixedToTop="true" className="header-component" id="top">
-        <Navbar.Group className="logo-title-container">
+      <div className="header-component" id="top">
+        <div className="logo-title-container">
           <Logo />
           <div className="titles">
             <div className="title">Datanator</div>
             <div className="subtitle">Data for modeling cells</div>
           </div>
-        </Navbar.Group>
+        </div>
 
-        <Navbar.Group
-          className={"search-container" + (showSearchForm ? "" : " hide")}
-        >
+        <div className={"search-container" + (showSearchForm ? "" : " hide")}>
           <SearchForm />
-        </Navbar.Group>
+        </div>
 
-        <Navbar.Group align className="page-links">
+        <div align className="page-links">
           <Button
             minimal="true"
-            className="navbutton navbutton-search"
+            className="icon-button"
             icon={searchIcon}
             text={searchText}
             onClick={() =>
@@ -81,7 +78,7 @@ class Header extends Component {
           <Link to="/stats">
             <Button
               minimal="true"
-              className="navbutton navbutton-stats"
+              className="icon-button"
               icon="horizontal-bar-chart"
               text="Stats"
             />
@@ -89,7 +86,7 @@ class Header extends Component {
           <Link to="/help">
             <Button
               minimal="true"
-              className="navbutton navbutton-help"
+              className="icon-button"
               icon="help"
               text="Help"
             />
@@ -97,13 +94,13 @@ class Header extends Component {
           <Link to="/about">
             <Button
               minimal="true"
-              className="navbutton navbutton-about"
+              className="icon-button"
               icon="info-sign"
               text="About"
             />
           </Link>
-        </Navbar.Group>
-      </Navbar>
+        </div>
+      </div>
     );
   }
 }
