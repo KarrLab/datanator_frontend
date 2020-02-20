@@ -98,22 +98,19 @@ jobs:
             if [[ $? -ne 0 ]]; then error=1; fi
 
             # Lint JavaScript
-            eslint .
+            npm run lint-js
             if [[ $? -ne 0 ]]; then error=1; fi
 
             # Lint CSS
-            stylelint .
+            npm run lint-style
             if [[ $? -ne 0 ]]; then error=1; fi
 
             # Lint JSON
-            find . -name "*.json" -not -path "./node_modules/*" -print0 |
-            while IFS= read -r -d '' line; do
-              jsonlint -q "$line"
-              if [[ $? -ne 0 ]]; then error=1; fi
-            done
+            npm run lint-json
+            if [[ $? -ne 0 ]]; then error=1; fi
 
             # Lint svg
-            find src -name "*.svg" | xargs -r svglint --ci
+            npm run lint-svg
             if [[ $? -ne 0 ]]; then error=1; fi
 
             # Build production package
