@@ -87,11 +87,7 @@ class RateConstantsDataTable extends Component {
           labelDefault: "Filters",
           labelKey: "filters",
           iconKey: "filter",
-          toolPanel: "agFiltersToolPanel",
-          toolPanelParams: {
-            suppressFilterSearch: true,
-            suppressExpandAll: true
-          }
+          toolPanel: "filtersToolPanel"
         },
         {
           id: "stats-kcat",
@@ -217,9 +213,6 @@ class RateConstantsDataTable extends Component {
       field: "taxonomicProximity",
       hide: true,
       filter: "taxonomyFilter",
-      filterParams: {
-        taxonLineage: []
-      },
       valueFormatter: params => {
         const value = params.value;
         return value;
@@ -263,30 +256,6 @@ class RateConstantsDataTable extends Component {
     return colDefs;
   }
 
-  formatColHeadings(event) {
-    const gridApi = event.api;
-    const panelLabelClasses = {
-      filters: "ag-group-component-title"
-    };
-    for (const panelId in panelLabelClasses) {
-      const panel = gridApi.getToolPanelInstance(panelId);
-      const labels = panel.eGui.getElementsByClassName(
-        panelLabelClasses[panelId]
-      );
-      for (const label of labels) {
-        if (!label.innerHTML.startsWith("<span>")) {
-          label.innerHTML =
-            "<span>" +
-            label.innerHTML
-              .replace("k_{cat}", "k<sub>cat</sub>")
-              .replace("K_M", "K<sub>M</sub>")
-              .replace("s^{-1}", "s<sup>-1</sup>") +
-            "</span>";
-        }
-      }
-    }
-  }
-
   render() {
     return (
       <DataTable
@@ -298,7 +267,6 @@ class RateConstantsDataTable extends Component {
         format-data={this.formatData}
         get-side-bar-def={this.getConcBarDef}
         get-col-defs={this.getColDefs}
-        format-col-headings={this.formatColHeadings}
       />
     );
   }

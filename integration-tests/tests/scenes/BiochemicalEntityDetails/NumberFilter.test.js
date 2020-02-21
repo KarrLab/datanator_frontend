@@ -37,22 +37,25 @@ describe("NumberFilter", function() {
       .eq(1)
       .click();
     cy.get(
-      "#" + dataContainerId + " .ag-filter-panel .ag-group-component"
+      "#" +
+        dataContainerId +
+        " .biochemical-entity-scene-filters-tool-panel .MuiExpansionPanelSummary-root"
     ).each($filter => {
       cy.wrap($filter).click();
     });
 
     // change the value of the filter to the maximum
-    cy.get("#" + dataContainerId + " .number-slider-filter .MuiSlider-thumb")
+    cy.get("#" + dataContainerId + " .number-slider-filter")
+      .eq(2)
+      .find(".MuiSlider-thumb")
       .first()
       .trigger("mousedown", { which: 1 })
       .trigger("mousemove", { clientX: 1e4, clientY: 0 })
       .trigger("mouseup", { force: true });
-    cy.get("#" + dataContainerId + " .number-slider-filter input").should(
-      "have.attr",
-      "value",
-      "1,1"
-    );
+    cy.get("#" + dataContainerId + " .number-slider-filter")
+      .eq(2)
+      .find("input")
+      .should("have.attr", "value", "1,1");
 
     // check that rows were filtered
     cy.get("#" + dataContainerId + " .ag-center-cols-container")

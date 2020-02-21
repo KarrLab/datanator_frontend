@@ -192,7 +192,7 @@ class NumberFilter extends Component {
 
   render() {
     return (
-      <div className="biochemical-entity-scene-slider-filter biochemical-entity-scene-normal-slider-filter biochemical-entity-scene-horizontal-slider-filter number-slider-filter">
+      <div className="biochemical-entity-scene-filter biochemical-entity-scene-slider-filter biochemical-entity-scene-normal-slider-filter biochemical-entity-scene-horizontal-slider-filter number-slider-filter">
         <Slider
           ref={this.slider}
           min={this.state.marks[0].value}

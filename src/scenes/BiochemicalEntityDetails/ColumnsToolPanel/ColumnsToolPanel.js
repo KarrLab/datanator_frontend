@@ -67,6 +67,10 @@ class ColumnsToolPanel extends Component {
   updateCols(event) {
     const cols = [];
     for (const colApi of event.columnApi.getAllGridColumns()) {
+      if (colApi.colDef.suppressColumnsToolPanel) {
+        continue;
+      }
+
       const col = {
         index: cols.length,
         id: colApi.colId,

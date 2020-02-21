@@ -80,11 +80,7 @@ class ConcentrationDataTable extends Component {
           labelDefault: "Filters",
           labelKey: "filters",
           iconKey: "filter",
-          toolPanel: "agFiltersToolPanel",
-          toolPanelParams: {
-            suppressFilterSearch: true,
-            suppressExpandAll: true
-          }
+          toolPanel: "filtersToolPanel"
         },
         {
           id: "stats",
@@ -157,9 +153,6 @@ class ConcentrationDataTable extends Component {
         field: "taxonomicProximity",
         hide: true,
         filter: "taxonomyFilter",
-        filterParams: {
-          taxonLineage: []
-        },
         valueFormatter: params => {
           const value = params.value;
           return value;

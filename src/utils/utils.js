@@ -32,7 +32,7 @@ function formatScientificNotation(
   ) {
     const sciVal = ((sign * absValue) / Math.pow(10, exp)).toFixed(sciDecimals);
     return (
-      <span>
+      <span className="sci-notation">
         {sciVal}&thinsp;&times;&thinsp;10<sup>{exp}</sup>
       </span>
     );

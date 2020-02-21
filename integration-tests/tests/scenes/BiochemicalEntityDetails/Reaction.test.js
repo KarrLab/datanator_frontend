@@ -63,7 +63,9 @@ describe("Reaction scene", function() {
       .eq(1)
       .click();
     cy.get(
-      "#" + dataContainerId + " .ag-filter-panel .ag-group-component"
+      "#" +
+        dataContainerId +
+        " .biochemical-entity-scene-filters-tool-panel .MuiExpansionPanelSummary-root"
     ).each($filter => {
       cy.wrap($filter).click();
     });

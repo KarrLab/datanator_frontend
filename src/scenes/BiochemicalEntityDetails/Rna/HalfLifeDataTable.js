@@ -42,11 +42,7 @@ class HalfLifeDataTable extends Component {
           labelDefault: "Filters",
           labelKey: "filters",
           iconKey: "filter",
-          toolPanel: "agFiltersToolPanel",
-          toolPanelParams: {
-            suppressFilterSearch: true,
-            suppressExpandAll: true
-          }
+          toolPanel: "filtersToolPanel"
         },
         {
           id: "stats",
@@ -96,9 +92,6 @@ class HalfLifeDataTable extends Component {
         field: "taxonomicProximity",
         hide: true,
         filter: "taxonomyFilter",
-        filterParams: {
-          taxonLineage: []
-        },
         valueFormatter: params => {
           const value = params.value;
           return value;
@@ -129,27 +122,6 @@ class HalfLifeDataTable extends Component {
     ];
   }
 
-  formatColHeadings(event) {
-    const gridApi = event.api;
-    const panelLabelClasses = {
-      filters: "ag-group-component-title"
-    };
-    for (const panelId in panelLabelClasses) {
-      const panel = gridApi.getToolPanelInstance(panelId);
-      const labels = panel.eGui.getElementsByClassName(
-        panelLabelClasses[panelId]
-      );
-      for (const label of labels) {
-        if (!label.innerHTML.startsWith("<span>")) {
-          label.innerHTML =
-            "<span>" +
-            label.innerHTML.replace("s^{-1}", "s<sup>-1</sup>") +
-            "</span>";
-        }
-      }
-    }
-  }
-
   render() {
     return (
       <DataTable
@@ -161,7 +133,6 @@ class HalfLifeDataTable extends Component {
         format-data={this.formatData}
         get-side-bar-def={this.getSideBarDef}
         get-col-defs={this.getColDefs}
-        format-col-headings={this.formatColHeadings}
       />
     );
   }

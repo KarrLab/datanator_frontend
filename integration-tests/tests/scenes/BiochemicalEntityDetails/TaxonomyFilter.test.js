@@ -38,7 +38,9 @@ describe("TaxonomyFilter", function() {
       .eq(1)
       .click();
     cy.get(
-      "#" + dataContainerId + " .ag-filter-panel .ag-group-component"
+      "#" +
+        dataContainerId +
+        " .biochemical-entity-scene-filters-tool-panel .MuiExpansionPanelSummary-root"
     ).each($filter => {
       cy.wrap($filter).click();
     });
@@ -70,6 +72,7 @@ describe("TaxonomyFilter", function() {
     cy.get("#" + dataContainerId + " .ag-root-wrapper").then($grid => {
       expect(
         $grid[0].__agComponent.gridApi.getFilterModel().taxonomicProximity
+          .selectedMarkValue
       ).to.equal(0);
     });
 
@@ -86,7 +89,12 @@ describe("TaxonomyFilter", function() {
     // programmatically set filter so no rows are displayed
     cy.get("#" + dataContainerId + " .ag-root-wrapper").then($grid => {
       $grid[0].__agComponent.gridApi.setFilterModel({
-        taxonomicProximity: 0
+        taxonomicProximity: {
+          selectedMarkValue: 0,
+          markValueToDistance: Array(7)
+            .fill()
+            .map((x, i) => i)
+        }
       });
     });
     cy.get("#" + dataContainerId + " .ag-center-cols-container")

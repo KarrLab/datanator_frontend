@@ -131,7 +131,7 @@ class TextFilter extends Component {
 
   render() {
     return (
-      <ul className="biochemical-entity-scene-text-filter">
+      <ul className="biochemical-entity-scene-filter biochemical-entity-scene-text-filter">
         {this.state.vals.map(val => {
           return (
             <li key={val.val} title={val.val}>

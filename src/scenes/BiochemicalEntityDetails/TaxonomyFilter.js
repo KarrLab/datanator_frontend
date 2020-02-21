@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Slider from "@material-ui/core/Slider";
 import { upperCaseFirstLetter } from "~/utils/utils";
+import axios from "axios";
+import { getDataFromApi, genApiErrorHandler } from "~/services/RestApi";
+import { parseHistoryLocationPathname } from "~/utils/utils";
+import history from "~/utils/history";
 
 function valueText(value) {
   return `${value}`;
@@ -11,18 +15,16 @@ class TaxonomyFilter extends Component {
   static propTypes = {
     agGridReact: PropTypes.object.isRequired,
     valueGetter: PropTypes.func.isRequired,
-    filterChangedCallback: PropTypes.func.isRequired,
-    colDef: PropTypes.shape({
-      filterParams: PropTypes.shape({
-        taxonLineage: PropTypes.array.isRequired
-      }).isRequired
-    }).isRequired,
-    taxonLineage: PropTypes.array.isRequired
+    filterChangedCallback: PropTypes.func.isRequired
   };
 
   constructor(props) {
     super(props);
 
+    this.locationPathname = null;
+    this.unlistenToHistory = null;
+    this.cancelTokenSource = null;
+    this.taxonLineage = [];
     this.selectedMarkValue = 0;
     this.maxDistance = null;
     this.state = {
@@ -41,37 +43,61 @@ class TaxonomyFilter extends Component {
   }
 
   componentDidMount() {
-    if (this.getTaxonLineage(this.props).length > 0) {
-      this.setMarks();
+    this.locationPathname = history.location.pathname;
+    this.unlistenToHistory = history.listen(location => {
+      if (location.pathname !== this.locationPathname) {
+        this.locationPathname = history.location.pathname;
+        this.updateStateFromLocation();
+      }
+    });
+    this.updateStateFromLocation();
+  }
+
+  componentWillUnmount() {
+    this.unlistenToHistory();
+    this.unlistenToHistory = null;
+    if (this.cancelTokenSource) {
+      this.cancelTokenSource.cancel();
     }
   }
 
-  componentDidUpdate(prevProps) {
-    const lineage = this.getTaxonLineage(this.props);
-    const prevLineage = this.getTaxonLineage(prevProps);
-
-    if (lineage !== prevLineage) {
-      this.setMarks();
+  updateStateFromLocation() {
+    if (this.unlistenToHistory) {
+      this.taxonLineage = [];
+      this.getDataFromApi();
     }
   }
 
-  getTaxonLineage(props) {
-    let lineage = props.taxonLineage;
+  getDataFromApi() {
+    const route = parseHistoryLocationPathname(history);
+    const organism = route.organism;
 
-    // the following two statments are necessary because the taxonLineage property doesn't appear to be set correctly in cypress tests
-    if (lineage.length === 0) {
-      lineage = props.colDef.filterParams.taxonLineage;
-    }
-    if (lineage.length === 0) {
-      lineage =
-        props.agGridReact.gridOptions.columnDefs[5].filterParams.taxonLineage;
+    // cancel earlier query
+    if (this.cancelTokenSource) {
+      this.cancelTokenSource.cancel();
     }
 
-    return lineage;
+    this.cancelTokenSource = axios.CancelToken.source();
+    getDataFromApi(["taxon", "canon_rank_distance_by_name/?name=" + organism], {
+      cancelToken: this.cancelTokenSource.token
+    })
+      .then(response => {
+        this.taxonLineage = response.data;
+        this.setMarks();
+      })
+      .catch(
+        genApiErrorHandler(
+          ["taxon", "canon_rank_distance_by_name/?name=" + organism],
+          "Unable to obtain taxonomic information about '" + organism + "'."
+        )
+      )
+      .finally(() => {
+        this.cancelTokenSource = null;
+      });
   }
 
   setMarks() {
-    const lineage = this.getTaxonLineage(this.props);
+    const lineage = this.taxonLineage;
     const marks = [];
     const markValueToDistance = [];
     for (let iLineage = 0; iLineage < lineage.length; iLineage++) {
@@ -102,10 +128,24 @@ class TaxonomyFilter extends Component {
   }
 
   getModel() {
-    return this.selectedMarkValue;
+    return {
+      markValueToDistance: this.markValueToDistance,
+      selectedMarkValue: this.selectedMarkValue
+    };
   }
 
-  setModel(selectedMarkValue) {
+  setModel(model) {
+    if (model && "markValueToDistance" in model) {
+      this.markValueToDistance = model.markValueToDistance;
+    }
+
+    let selectedMarkValue;
+    if (model && "selectedMarkValue" in model) {
+      selectedMarkValue = model.selectedMarkValue;
+    } else {
+      selectedMarkValue = null;
+    }
+
     if (selectedMarkValue == null) {
       this.selectedMarkValue = this.markValueToDistance.length - 1;
     } else {
@@ -149,7 +189,7 @@ class TaxonomyFilter extends Component {
     const max = Math.max(0, marks.length - 1);
     const selectedMarkValue = this.state.selectedMarkValue;
     const sliderContainer = (
-      <div className="biochemical-entity-scene-slider-filter biochemical-entity-scene-normal-slider-filter biochemical-entity-scene-vertical-slider-filter biochemical-entity-scene-taxonomy-slider-filter">
+      <div className="biochemical-entity-scene-filter biochemical-entity-scene-slider-filter biochemical-entity-scene-normal-slider-filter biochemical-entity-scene-vertical-slider-filter biochemical-entity-scene-taxonomy-slider-filter">
         <Slider
           min={0}
           max={max}
