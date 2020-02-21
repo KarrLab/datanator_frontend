@@ -104,7 +104,7 @@ class AbundanceDataTable extends Component {
       {
         headerName: "Protein",
         field: "proteinName",
-        filter: "agSetColumnFilter"
+        filter: "textFilter"
       },
       {
         headerName: "UniProt id",
@@ -122,13 +122,13 @@ class AbundanceDataTable extends Component {
       {
         headerName: "Gene",
         field: "geneSymbol",
-        filter: "agSetColumnFilter",
+        filter: "textFilter",
         hide: true
       },
       {
         headerName: "Organism",
         field: "organism",
-        filter: "agSetColumnFilter"
+        filter: "textFilter"
       },
       {
         headerName: "Taxonomic distance",
@@ -146,7 +146,7 @@ class AbundanceDataTable extends Component {
       {
         headerName: "Organ",
         field: "organ",
-        filter: "agSetColumnFilter",
+        filter: "textFilter",
         hide: false
       },
       {
@@ -162,7 +162,7 @@ class AbundanceDataTable extends Component {
           );
         },
         filterValueGetter: () => "PAXdb",
-        filter: "agSetColumnFilter"
+        filter: "textFilter"
       }
     ];
   }

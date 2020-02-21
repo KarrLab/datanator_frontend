@@ -9,15 +9,15 @@ import { ClientSideRowModelModule } from "@ag-grid-community/client-side-row-mod
 import { CsvExportModule } from "@ag-grid-community/csv-export";
 import { LicenseManager } from "@ag-grid-enterprise/core";
 import { FiltersToolPanelModule } from "@ag-grid-enterprise/filter-tool-panel";
-import { SetFilterModule } from "@ag-grid-enterprise/set-filter";
 import { SideBarModule } from "@ag-grid-enterprise/side-bar";
 import { HtmlColumnHeader } from "../HtmlColumnHeader";
 import { LinkCellRenderer } from "../LinkCellRenderer";
 import { NumericCellRenderer } from "../NumericCellRenderer";
 import { ColumnsToolPanel } from "../ColumnsToolPanel/ColumnsToolPanel";
 import { StatsToolPanel } from "../StatsToolPanel/StatsToolPanel";
-import { TaxonomyFilter } from "../TaxonomyFilter";
 import { TanimotoFilter } from "../TanimotoFilter";
+import { TaxonomyFilter } from "../TaxonomyFilter";
+import { TextFilter } from "../TextFilter";
 
 import "@ag-grid-community/all-modules/dist/styles/ag-grid.scss";
 import "@ag-grid-community/all-modules/dist/styles/ag-theme-balham/sass/ag-theme-balham.scss";
@@ -48,13 +48,14 @@ class DataTable extends Component {
     numericCellRenderer: NumericCellRenderer,
     columnsToolPanel: ColumnsToolPanel,
     statsToolPanel: StatsToolPanel,
+    textFilter: TextFilter,
     taxonomyFilter: TaxonomyFilter,
     tanimotoFilter: TanimotoFilter
   };
 
   static defaultColDef = {
     minWidth: 100,
-    filter: "agTextColumnFilter",
+    filter: "textFilter",
     sortable: true,
     resizable: true,
     suppressMenu: true
@@ -293,7 +294,6 @@ class DataTable extends Component {
               CsvExportModule,
               LicenseManager,
               FiltersToolPanelModule,
-              SetFilterModule,
               SideBarModule
             ]}
             frameworkComponents={DataTable.frameworkComponents}

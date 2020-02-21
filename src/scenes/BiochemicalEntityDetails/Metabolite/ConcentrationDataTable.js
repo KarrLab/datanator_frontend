@@ -126,7 +126,7 @@ class ConcentrationDataTable extends Component {
       {
         headerName: "Metabolite",
         field: "name",
-        filter: "agSetColumnFilter",
+        filter: "textFilter",
         cellRenderer: "linkCellRenderer",
         cellRendererParams: {
           route: "metabolite",
@@ -147,7 +147,7 @@ class ConcentrationDataTable extends Component {
       {
         headerName: "Organism",
         field: "organism",
-        filter: "agSetColumnFilter"
+        filter: "textFilter"
       },
       {
         headerName: "Taxonomic distance",
@@ -165,19 +165,19 @@ class ConcentrationDataTable extends Component {
       {
         headerName: "Growth phase",
         field: "growthPhase",
-        filter: "agSetColumnFilter",
+        filter: "textFilter",
         hide: true
       },
       {
         headerName: "Conditions",
         field: "growthConditions",
-        filter: "agTextColumnFilter",
+        filter: "textFilter",
         hide: true
       },
       {
         headerName: "Media",
         field: "growthMedia",
-        filter: "agTextColumnFilter",
+        filter: "textFilter",
         hide: true
       },
       {
@@ -205,7 +205,7 @@ class ConcentrationDataTable extends Component {
         filterValueGetter: params => {
           return params.data.source.source.toUpperCase();
         },
-        filter: "agSetColumnFilter"
+        filter: "textFilter"
       }
     ];
 

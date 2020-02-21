@@ -88,7 +88,7 @@ class HalfLifeDataTable extends Component {
       {
         headerName: "Organism",
         field: "organism",
-        filter: "agSetColumnFilter"
+        filter: "textFilter"
       },
       /*
       {
@@ -108,7 +108,7 @@ class HalfLifeDataTable extends Component {
       {
         headerName: "Media",
         field: "growthMedium",
-        filter: "agTextColumnFilter",
+        filter: "textFilter",
         hide: false
       },
       {
@@ -124,7 +124,7 @@ class HalfLifeDataTable extends Component {
           );
         },
         filterValueGetter: () => "DOI",
-        filter: "agSetColumnFilter"
+        filter: "textFilter"
       }
     ];
   }

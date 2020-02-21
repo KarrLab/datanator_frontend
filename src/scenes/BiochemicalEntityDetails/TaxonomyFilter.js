@@ -32,7 +32,6 @@ class TaxonomyFilter extends Component {
     };
 
     this.markValueToDistance = null;
-    this.filterModel = null;
 
     this.onChange = this.onChange.bind(this);
   }

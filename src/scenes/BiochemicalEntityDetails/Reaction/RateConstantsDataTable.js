@@ -201,14 +201,14 @@ class RateConstantsDataTable extends Component {
     colDefs.push({
       headerName: "Organism",
       field: "organism",
-      filter: "agSetColumnFilter"
+      filter: "textFilter"
     });
 
     colDefs.push({
       headerName: "Variant",
       field: "wildtypeMutant",
       hide: true,
-      filter: "agSetColumnFilter"
+      filter: "textFilter"
     });
 
     /*
@@ -256,7 +256,7 @@ class RateConstantsDataTable extends Component {
         );
       },
       filterValueGetter: () => "SABIO-RK",
-      filter: "agSetColumnFilter"
+      filter: "textFilter"
     });
 
     // return column definitions
