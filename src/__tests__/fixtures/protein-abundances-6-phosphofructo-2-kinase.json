@@ -62,9 +62,7 @@
     "gene_name_alt": null,
     "gene_name_oln": "YIL107C",
     "gene_name_orf": null,
-    "ko_name": [
-      "6-phosphofructo-2-kinase"
-    ],
+    "ko_name": ["6-phosphofructo-2-kinase"],
     "ko_number": "K00900",
     "length": 827,
     "mass": "93417",
@@ -105,9 +103,7 @@
     "gene_name_alt": null,
     "gene_name_oln": "YOL136C",
     "gene_name_orf": null,
-    "ko_name": [
-      "6-phosphofructo-2-kinase"
-    ],
+    "ko_name": ["6-phosphofructo-2-kinase"],
     "ko_number": "K00900",
     "length": 397,
     "mass": "45318",
@@ -152,9 +148,7 @@
     "gene_name_alt": null,
     "gene_name_oln": null,
     "gene_name_orf": "SPAPB17E12.14c",
-    "ko_name": [
-      "6-phosphofructo-2-kinase"
-    ],
+    "ko_name": ["6-phosphofructo-2-kinase"],
     "ko_number": "K00900",
     "length": 668,
     "mass": "76393",
@@ -199,9 +193,7 @@
     "gene_name_alt": null,
     "gene_name_oln": null,
     "gene_name_orf": "SPAC222.13c",
-    "ko_name": [
-      "6-phosphofructo-2-kinase"
-    ],
+    "ko_name": ["6-phosphofructo-2-kinase"],
     "ko_number": "K00900",
     "length": 592,
     "mass": "68640",

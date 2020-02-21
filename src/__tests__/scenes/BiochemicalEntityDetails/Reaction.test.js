@@ -5,7 +5,6 @@ import testRawData from "~/__tests__/fixtures/reaction-constants-adenylate-kinas
 describe("Reaction data page", () => {
   it("Gets correct reaction data url", () => {
     const entity = "ATP,AMP --> ADP";
-    const organism = "Escherichia coli";
     // instantiate data table
     const dataTable = new RateConstantsDataTable();
 
@@ -26,24 +25,22 @@ describe("Reaction data page", () => {
     expect(formattedData).toHaveLength(62);
 
     let formatedDatum = formattedData[0];
-    expect(formatedDatum).toEqual(
-      {
-        kcat: 650,
-        km: {},
-        organism: "Gallus gallus",
-        ph: 8,
-        source: 6051,
-        temperature: 30,
-        wildtypeMutant: null
-      },
-    );
+    expect(formatedDatum).toEqual({
+      kcat: 650,
+      km: {},
+      organism: "Gallus gallus",
+      ph: 8,
+      source: 6051,
+      temperature: 30,
+      wildtypeMutant: null
+    });
 
     expect(formattedData[20].organism).toEqual("Homo sapiens");
     //expect(formattedData[7].source).toEqual({
     //  source: "ymdb",
     //  id: "ymdb_id_xxx"
     //});
-    expect(formattedData[5].km).toEqual({AMP:0.0014});
+    expect(formattedData[5].km).toEqual({ AMP: 0.0014 });
     expect(formattedData[10].km).toEqual({});
   });
 });

@@ -5,7 +5,6 @@ import testRawData from "~/__tests__/fixtures/protein-abundances-6-phosphofructo
 describe("Protein data page", () => {
   it("Gets correct concentration data url", () => {
     const entity = "K00900";
-    const organism = "Escherichia coli";
     const uniprot_to_taxon = { Q9UTE1: 6, Q8TFH0: 6, Q12471: 6, P40433: 6 };
     // instantiate data table
     const dataTable = new AbundanceDataTable({
@@ -48,6 +47,5 @@ describe("Protein data page", () => {
     //  id: "ymdb_id_xxx"
     //});
     expect(formattedData[20].geneSymbol).toEqual(null);
-
   });
 });

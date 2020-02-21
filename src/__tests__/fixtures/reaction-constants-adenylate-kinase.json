@@ -159,12 +159,12 @@
         "observed_error": null,
         "observed_name": "Ka",
         "observed_units": "M",
-        "observed_value": 3.5e-05,
+        "observed_value": 3.5e-5,
         "sabio_compound_id": 34,
         "sbo_type": 27,
         "type": 27,
         "units": "M",
-        "value": 3.5e-05
+        "value": 3.5e-5
       },
       {
         "compartment": null,
@@ -192,12 +192,12 @@
         "observed_error": null,
         "observed_name": "Kb",
         "observed_units": "M",
-        "observed_value": 9.2e-05,
+        "observed_value": 9.2e-5,
         "sabio_compound_id": 1273,
         "sbo_type": 27,
         "type": 27,
         "units": "M",
-        "value": 9.2e-05
+        "value": 9.2e-5
       }
     ],
     "ph": 8.0,
@@ -324,9 +324,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -683,9 +681,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -877,12 +873,12 @@
         "observed_error": null,
         "observed_name": "Ka",
         "observed_units": "M",
-        "observed_value": 7.8e-05,
+        "observed_value": 7.8e-5,
         "sabio_compound_id": 34,
         "sbo_type": 27,
         "type": 27,
         "units": "M",
-        "value": 7.8e-05
+        "value": 7.8e-5
       },
       {
         "compartment": null,
@@ -1042,9 +1038,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -1269,12 +1263,12 @@
         "observed_error": null,
         "observed_name": "Ka",
         "observed_units": "M",
-        "observed_value": 9.1e-05,
+        "observed_value": 9.1e-5,
         "sabio_compound_id": 34,
         "sbo_type": 27,
         "type": 27,
         "units": "M",
-        "value": 9.1e-05
+        "value": 9.1e-5
       }
     ],
     "ph": 8.0,
@@ -1401,9 +1395,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -1569,10 +1561,10 @@
           }
         ],
         "compound_synonyms": [],
-        "error": 1.5e-05,
+        "error": 1.5e-5,
         "is_name_ambiguous": 0,
         "name": "AMP",
-        "observed_error": 1.5e-05,
+        "observed_error": 1.5e-5,
         "observed_name": "Km",
         "observed_units": "M",
         "observed_value": 0.00015,
@@ -1760,9 +1752,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -2119,9 +2109,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -2478,9 +2466,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -2682,7 +2668,7 @@
         "error": null,
         "is_name_ambiguous": 0,
         "name": "AMP",
-        "observed_error": 3.7e-05,
+        "observed_error": 3.7e-5,
         "observed_name": "Ke",
         "observed_units": "M",
         "observed_value": 0.00037,
@@ -2712,18 +2698,18 @@
           }
         ],
         "compound_synonyms": [],
-        "error": 9.8e-06,
+        "error": 9.8e-6,
         "is_name_ambiguous": 0,
         "name": "AMP",
-        "observed_error": 9.8e-06,
+        "observed_error": 9.8e-6,
         "observed_name": "Kb",
         "observed_units": "M",
-        "observed_value": 9.8e-05,
+        "observed_value": 9.8e-5,
         "sabio_compound_id": 1273,
         "sbo_type": 27,
         "type": 27,
         "units": "M",
-        "value": 9.8e-05
+        "value": 9.8e-5
       },
       {
         "compartment": null,
@@ -2748,7 +2734,7 @@
         "error": null,
         "is_name_ambiguous": 0,
         "name": "ATP",
-        "observed_error": 1.6e-05,
+        "observed_error": 1.6e-5,
         "observed_name": "Kd",
         "observed_units": "M",
         "observed_value": 0.00016,
@@ -2798,18 +2784,18 @@
           }
         ],
         "compound_synonyms": [],
-        "error": 4.2e-06,
+        "error": 4.2e-6,
         "is_name_ambiguous": 0,
         "name": "ATP",
-        "observed_error": 4.2e-06,
+        "observed_error": 4.2e-6,
         "observed_name": "Ka",
         "observed_units": "M",
-        "observed_value": 4.2e-05,
+        "observed_value": 4.2e-5,
         "sabio_compound_id": 34,
         "sbo_type": 27,
         "type": 27,
         "units": "M",
-        "value": 4.2e-05
+        "value": 4.2e-5
       },
       {
         "compartment": null,
@@ -2969,9 +2955,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -3140,7 +3124,7 @@
         "error": null,
         "is_name_ambiguous": 0,
         "name": "AMP",
-        "observed_error": 1.5e-05,
+        "observed_error": 1.5e-5,
         "observed_name": "Ke",
         "observed_units": "M",
         "observed_value": 0.00015,
@@ -3170,10 +3154,10 @@
           }
         ],
         "compound_synonyms": [],
-        "error": 2.5e-05,
+        "error": 2.5e-5,
         "is_name_ambiguous": 0,
         "name": "ATP",
-        "observed_error": 2.5e-05,
+        "observed_error": 2.5e-5,
         "observed_name": "Ka",
         "observed_units": "M",
         "observed_value": 0.00025,
@@ -3239,7 +3223,7 @@
         "error": null,
         "is_name_ambiguous": 0,
         "name": "ATP",
-        "observed_error": 1.7e-05,
+        "observed_error": 1.7e-5,
         "observed_name": "Kd",
         "observed_units": "M",
         "observed_value": 0.00017,
@@ -3322,10 +3306,10 @@
           }
         ],
         "compound_synonyms": [],
-        "error": 5.5e-05,
+        "error": 5.5e-5,
         "is_name_ambiguous": 0,
         "name": "AMP",
-        "observed_error": 5.5e-05,
+        "observed_error": 5.5e-5,
         "observed_name": "Kb",
         "observed_units": "M",
         "observed_value": 0.00055,
@@ -3460,9 +3444,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -3694,10 +3676,10 @@
           }
         ],
         "compound_synonyms": [],
-        "error": 8.4e-05,
+        "error": 8.4e-5,
         "is_name_ambiguous": 0,
         "name": "AMP",
-        "observed_error": 8.4e-05,
+        "observed_error": 8.4e-5,
         "observed_name": "Kb",
         "observed_units": "M",
         "observed_value": 0.00084,
@@ -3727,10 +3709,10 @@
           }
         ],
         "compound_synonyms": [],
-        "error": 5.1e-05,
+        "error": 5.1e-5,
         "is_name_ambiguous": 0,
         "name": "ATP",
-        "observed_error": 5.1e-05,
+        "observed_error": 5.1e-5,
         "observed_name": "Ka",
         "observed_units": "M",
         "observed_value": 0.00051,
@@ -3783,7 +3765,7 @@
         "error": null,
         "is_name_ambiguous": 0,
         "name": "ATP",
-        "observed_error": 1.5e-05,
+        "observed_error": 1.5e-5,
         "observed_name": "Kd",
         "observed_units": "M",
         "observed_value": 0.00015,
@@ -3816,7 +3798,7 @@
         "error": null,
         "is_name_ambiguous": 0,
         "name": "AMP",
-        "observed_error": 2.4e-05,
+        "observed_error": 2.4e-5,
         "observed_name": "Ke",
         "observed_units": "M",
         "observed_value": 0.00024,
@@ -3951,9 +3933,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -4185,10 +4165,10 @@
           }
         ],
         "compound_synonyms": [],
-        "error": 3e-05,
+        "error": 3e-5,
         "is_name_ambiguous": 0,
         "name": "ATP",
-        "observed_error": 3e-05,
+        "observed_error": 3e-5,
         "observed_name": "Ka",
         "observed_units": "M",
         "observed_value": 0.0003,
@@ -4241,7 +4221,7 @@
         "error": null,
         "is_name_ambiguous": 0,
         "name": "ATP",
-        "observed_error": 1.7e-05,
+        "observed_error": 1.7e-5,
         "observed_name": "Kd",
         "observed_units": "M",
         "observed_value": 0.00017,
@@ -4307,7 +4287,7 @@
         "error": null,
         "is_name_ambiguous": 0,
         "name": "AMP",
-        "observed_error": 7.4e-05,
+        "observed_error": 7.4e-5,
         "observed_name": "Ke",
         "observed_units": "M",
         "observed_value": 0.00074,
@@ -4442,9 +4422,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -4699,7 +4677,7 @@
         "error": null,
         "is_name_ambiguous": 0,
         "name": "ATP",
-        "observed_error": 7e-05,
+        "observed_error": 7e-5,
         "observed_name": "Kd",
         "observed_units": "M",
         "observed_value": 0.0007,
@@ -4933,9 +4911,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -5104,10 +5080,10 @@
         "error": null,
         "is_name_ambiguous": 0,
         "name": "ATP",
-        "observed_error": 8.5e-06,
+        "observed_error": 8.5e-6,
         "observed_name": "Kd",
         "observed_units": "M",
-        "observed_value": 8.5e-05,
+        "observed_value": 8.5e-5,
         "sabio_compound_id": 34,
         "sbo_type": 282,
         "type": null,
@@ -5134,10 +5110,10 @@
           }
         ],
         "compound_synonyms": [],
-        "error": 4e-05,
+        "error": 4e-5,
         "is_name_ambiguous": 0,
         "name": "ATP",
-        "observed_error": 4e-05,
+        "observed_error": 4e-5,
         "observed_name": "Ka",
         "observed_units": "M",
         "observed_value": 0.0004,
@@ -5289,7 +5265,7 @@
         "error": null,
         "is_name_ambiguous": 0,
         "name": "AMP",
-        "observed_error": 4.7e-05,
+        "observed_error": 4.7e-5,
         "observed_name": "Ke",
         "observed_units": "M",
         "observed_value": 0.00047,
@@ -5424,9 +5400,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -5592,18 +5566,18 @@
           }
         ],
         "compound_synonyms": [],
-        "error": 5.3e-06,
+        "error": 5.3e-6,
         "is_name_ambiguous": 0,
         "name": "AMP",
-        "observed_error": 5.3e-06,
+        "observed_error": 5.3e-6,
         "observed_name": "Kb",
         "observed_units": "M",
-        "observed_value": 5.3e-05,
+        "observed_value": 5.3e-5,
         "sabio_compound_id": 1273,
         "sbo_type": 27,
         "type": 27,
         "units": "M",
-        "value": 5.3e-05
+        "value": 5.3e-5
       },
       {
         "compartment": null,
@@ -5625,18 +5599,18 @@
           }
         ],
         "compound_synonyms": [],
-        "error": 5.6e-06,
+        "error": 5.6e-6,
         "is_name_ambiguous": 0,
         "name": "ATP",
-        "observed_error": 5.6e-06,
+        "observed_error": 5.6e-6,
         "observed_name": "Ka",
         "observed_units": "M",
-        "observed_value": 5.6e-05,
+        "observed_value": 5.6e-5,
         "sabio_compound_id": 34,
         "sbo_type": 27,
         "type": 27,
         "units": "M",
-        "value": 5.6e-05
+        "value": 5.6e-5
       },
       {
         "compartment": null,
@@ -5661,7 +5635,7 @@
         "error": null,
         "is_name_ambiguous": 0,
         "name": "ATP",
-        "observed_error": 1.8e-05,
+        "observed_error": 1.8e-5,
         "observed_name": "Kd",
         "observed_units": "M",
         "observed_value": 0.00018,
@@ -5727,7 +5701,7 @@
         "error": null,
         "is_name_ambiguous": 0,
         "name": "AMP",
-        "observed_error": 1.7e-05,
+        "observed_error": 1.7e-5,
         "observed_name": "Ke",
         "observed_units": "M",
         "observed_value": 0.00017,
@@ -5915,9 +5889,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -6282,9 +6254,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -6645,9 +6615,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -7008,9 +6976,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -7371,9 +7337,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -7734,9 +7698,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -8097,9 +8059,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -8460,9 +8420,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -8823,9 +8781,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -9186,9 +9142,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -9405,12 +9359,12 @@
         "observed_error": null,
         "observed_name": "Km",
         "observed_units": "M",
-        "observed_value": 2e-05,
+        "observed_value": 2e-5,
         "sabio_compound_id": 34,
         "sbo_type": 27,
         "type": 27,
         "units": "M",
-        "value": 2e-05
+        "value": 2e-5
       }
     ],
     "ph": 7.5,
@@ -9549,9 +9503,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -9912,9 +9864,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -10275,9 +10225,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -10638,9 +10586,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -10837,12 +10783,12 @@
         "observed_error": null,
         "observed_name": "Km",
         "observed_units": "M",
-        "observed_value": 6e-05,
+        "observed_value": 6e-5,
         "sabio_compound_id": 34,
         "sbo_type": 27,
         "type": 27,
         "units": "M",
-        "value": 6e-05
+        "value": 6e-5
       },
       {
         "compartment": null,
@@ -11001,9 +10947,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -11344,9 +11288,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -11379,16 +11321,7 @@
     "tissue": "muscle"
   },
   {
-    "anc_id": [
-      131567,
-      2,
-      1783272,
-      1239,
-      91061,
-      1385,
-      186817,
-      129337
-    ],
+    "anc_id": [131567, 2, 1783272, 1239, 91061, 1385, 186817, 129337],
     "anc_name": [
       "cellular organisms",
       "Bacteria",
@@ -11490,12 +11423,12 @@
         "observed_error": null,
         "observed_name": "Km",
         "observed_units": "M",
-        "observed_value": 3.6e-05,
+        "observed_value": 3.6e-5,
         "sabio_compound_id": 34,
         "sbo_type": 27,
         "type": 27,
         "units": "M",
-        "value": 3.6e-05
+        "value": 3.6e-5
       }
     ],
     "ph": 7.4,
@@ -11622,9 +11555,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -11653,16 +11584,7 @@
     "tissue": null
   },
   {
-    "anc_id": [
-      131567,
-      2,
-      1783272,
-      1239,
-      91061,
-      1385,
-      186817,
-      129337
-    ],
+    "anc_id": [131567, 2, 1783272, 1239, 91061, 1385, 186817, 129337],
     "anc_name": [
       "cellular organisms",
       "Bacteria",
@@ -11764,12 +11686,12 @@
         "observed_error": null,
         "observed_name": "Km",
         "observed_units": "M",
-        "observed_value": 7.6e-05,
+        "observed_value": 7.6e-5,
         "sabio_compound_id": 1273,
         "sbo_type": 27,
         "type": 27,
         "units": "M",
-        "value": 7.6e-05
+        "value": 7.6e-5
       }
     ],
     "ph": 7.4,
@@ -11896,9 +11818,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -11927,15 +11847,7 @@
     "tissue": null
   },
   {
-    "anc_id": [
-      131567,
-      2,
-      1224,
-      1236,
-      91347,
-      543,
-      561
-    ],
+    "anc_id": [131567, 2, 1224, 1236, 91347, 543, 561],
     "anc_name": [
       "cellular organisms",
       "Bacteria",
@@ -12016,12 +11928,12 @@
         "observed_error": null,
         "observed_name": "Km",
         "observed_units": "M",
-        "observed_value": 5.1e-05,
+        "observed_value": 5.1e-5,
         "sabio_compound_id": 34,
         "sbo_type": 27,
         "type": 27,
         "units": "M",
-        "value": 5.1e-05
+        "value": 5.1e-5
       },
       {
         "compartment": null,
@@ -12168,9 +12080,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -12199,15 +12109,7 @@
     "tissue": null
   },
   {
-    "anc_id": [
-      131567,
-      2,
-      1224,
-      1236,
-      91347,
-      543,
-      561
-    ],
+    "anc_id": [131567, 2, 1224, 1236, 91347, 543, 561],
     "anc_name": [
       "cellular organisms",
       "Bacteria",
@@ -12308,12 +12210,12 @@
         "observed_error": null,
         "observed_name": "Km",
         "observed_units": "M",
-        "observed_value": 3.8e-05,
+        "observed_value": 3.8e-5,
         "sabio_compound_id": 1273,
         "sbo_type": 27,
         "type": 27,
         "units": "M",
-        "value": 3.8e-05
+        "value": 3.8e-5
       }
     ],
     "ph": 7.4,
@@ -12440,9 +12342,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -12789,9 +12689,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -13118,9 +13016,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -13153,15 +13049,7 @@
     "tissue": "muscle"
   },
   {
-    "anc_id": [
-      131567,
-      2,
-      1224,
-      1236,
-      91347,
-      543,
-      561
-    ],
+    "anc_id": [131567, 2, 1224, 1236, 91347, 543, 561],
     "anc_name": [
       "cellular organisms",
       "Bacteria",
@@ -13262,12 +13150,12 @@
         "observed_error": null,
         "observed_name": "KmA",
         "observed_units": "M",
-        "observed_value": 3.8e-05,
+        "observed_value": 3.8e-5,
         "sabio_compound_id": 1273,
         "sbo_type": 27,
         "type": 27,
         "units": "M",
-        "value": 3.8e-05
+        "value": 3.8e-5
       },
       {
         "compartment": null,
@@ -13295,12 +13183,12 @@
         "observed_error": null,
         "observed_name": "KmB",
         "observed_units": "M",
-        "observed_value": 4.8e-05,
+        "observed_value": 4.8e-5,
         "sabio_compound_id": 34,
         "sbo_type": 27,
         "type": 27,
         "units": "M",
-        "value": 4.8e-05
+        "value": 4.8e-5
       }
     ],
     "ph": 7.4,
@@ -13427,9 +13315,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -13458,15 +13344,7 @@
     "tissue": null
   },
   {
-    "anc_id": [
-      131567,
-      2,
-      1224,
-      1236,
-      91347,
-      543,
-      561
-    ],
+    "anc_id": [131567, 2, 1224, 1236, 91347, 543, 561],
     "anc_name": [
       "cellular organisms",
       "Bacteria",
@@ -13547,7 +13425,7 @@
         "observed_error": null,
         "observed_name": "Kd",
         "observed_units": "M",
-        "observed_value": 3.7e-05,
+        "observed_value": 3.7e-5,
         "sabio_compound_id": 34,
         "sbo_type": 282,
         "type": null,
@@ -13679,9 +13557,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -13710,15 +13586,7 @@
     "tissue": null
   },
   {
-    "anc_id": [
-      131567,
-      2,
-      1224,
-      1236,
-      91347,
-      543,
-      561
-    ],
+    "anc_id": [131567, 2, 1224, 1236, 91347, 543, 561],
     "anc_name": [
       "cellular organisms",
       "Bacteria",
@@ -13799,12 +13667,12 @@
         "observed_error": null,
         "observed_name": "Ki",
         "observed_units": "M",
-        "observed_value": 9.5e-05,
+        "observed_value": 9.5e-5,
         "sabio_compound_id": 20383,
         "sbo_type": 261,
         "type": 261,
         "units": "M",
-        "value": 9.5e-05
+        "value": 9.5e-5
       }
     ],
     "ph": 7.4,
@@ -13945,9 +13813,7 @@
                 "value": "Nc5ncnc1c5(ncn1C4OC(COP(O)(=O)OP(O)(=O)OP(O)(O)=O)C(OC(=O)c2ccc(cc2)C(=O)c3ccccc3)C4(O))"
               }
             ],
-            "modifier_synonym": [
-              "BzATP"
-            ],
+            "modifier_synonym": ["BzATP"],
             "modifier_type": null,
             "pubchem_compound_id": null,
             "sabio_compound_id": 20383
@@ -13961,9 +13827,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -13992,15 +13856,7 @@
     "tissue": null
   },
   {
-    "anc_id": [
-      131567,
-      2,
-      1224,
-      1236,
-      91347,
-      543,
-      561
-    ],
+    "anc_id": [131567, 2, 1224, 1236, 91347, 543, 561],
     "anc_name": [
       "cellular organisms",
       "Bacteria",
@@ -14081,12 +13937,12 @@
         "observed_error": null,
         "observed_name": "Ki",
         "observed_units": "M",
-        "observed_value": 6e-07,
+        "observed_value": 6e-7,
         "sabio_compound_id": 1785,
         "sbo_type": 261,
         "type": 261,
         "units": "M",
-        "value": 6e-07
+        "value": 6e-7
       }
     ],
     "ph": 7.4,
@@ -14244,9 +14100,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -14275,15 +14129,7 @@
     "tissue": null
   },
   {
-    "anc_id": [
-      131567,
-      2,
-      1224,
-      1236,
-      91347,
-      543,
-      561
-    ],
+    "anc_id": [131567, 2, 1224, 1236, 91347, 543, 561],
     "anc_name": [
       "cellular organisms",
       "Bacteria",
@@ -14364,7 +14210,7 @@
         "observed_error": null,
         "observed_name": "Kd",
         "observed_units": "M",
-        "observed_value": 3e-05,
+        "observed_value": 3e-5,
         "sabio_compound_id": 1273,
         "sbo_type": 282,
         "type": null,
@@ -14496,9 +14342,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -14879,9 +14723,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -15246,9 +15088,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -15416,12 +15256,12 @@
         "observed_error": null,
         "observed_name": "Km",
         "observed_units": "M",
-        "observed_value": 9e-05,
+        "observed_value": 9e-5,
         "sabio_compound_id": 34,
         "sbo_type": 27,
         "type": 27,
         "units": "M",
-        "value": 9e-05
+        "value": 9e-5
       },
       {
         "compartment": null,
@@ -15568,9 +15408,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -15738,12 +15576,12 @@
         "observed_error": null,
         "observed_name": "Km",
         "observed_units": "M",
-        "observed_value": 8e-05,
+        "observed_value": 8e-5,
         "sabio_compound_id": 1273,
         "sbo_type": 27,
         "type": 27,
         "units": "M",
-        "value": 8e-05
+        "value": 8e-5
       },
       {
         "compartment": null,
@@ -15890,9 +15728,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -16220,9 +16056,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -16550,9 +16384,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -16740,7 +16572,7 @@
         "observed_error": null,
         "observed_name": "Kd2",
         "observed_units": "M",
-        "observed_value": 5.6e-07,
+        "observed_value": 5.6e-7,
         "sabio_compound_id": 1273,
         "sbo_type": 282,
         "type": null,
@@ -16793,7 +16625,7 @@
         "observed_error": null,
         "observed_name": "Kd1",
         "observed_units": "M",
-        "observed_value": 1.2e-07,
+        "observed_value": 1.2e-7,
         "sabio_compound_id": 34,
         "sbo_type": 282,
         "type": null,
@@ -16937,9 +16769,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -17252,9 +17082,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -17563,9 +17391,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -17874,9 +17700,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -18185,9 +18009,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -18496,9 +18318,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -18807,9 +18627,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -19118,9 +18936,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -19429,9 +19245,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -19740,9 +19554,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -20051,9 +19863,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -20362,9 +20172,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -20673,9 +20481,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -20984,9 +20790,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -21295,9 +21099,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -21326,17 +21128,7 @@
     "tissue": null
   },
   {
-    "anc_id": [
-      131567,
-      2,
-      1783272,
-      1239,
-      91061,
-      1385,
-      186817,
-      1386,
-      653685
-    ],
+    "anc_id": [131567, 2, 1783272, 1239, 91061, 1385, 186817, 1386, 653685],
     "anc_name": [
       "cellular organisms",
       "Bacteria",
@@ -21453,18 +21245,18 @@
           }
         ],
         "compound_synonyms": [],
-        "error": 1e-06,
+        "error": 1e-6,
         "is_name_ambiguous": 0,
         "name": "AMP",
-        "observed_error": 1e-06,
+        "observed_error": 1e-6,
         "observed_name": "Km",
         "observed_units": "M",
-        "observed_value": 1.1e-05,
+        "observed_value": 1.1e-5,
         "sabio_compound_id": 1273,
         "sbo_type": 27,
         "type": 27,
         "units": "M",
-        "value": 1.1e-05
+        "value": 1.1e-5
       },
       {
         "compartment": null,
@@ -21624,9 +21416,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -21655,17 +21445,7 @@
     "tissue": null
   },
   {
-    "anc_id": [
-      131567,
-      2,
-      1783272,
-      1239,
-      91061,
-      1385,
-      186817,
-      1386,
-      653685
-    ],
+    "anc_id": [131567, 2, 1783272, 1239, 91061, 1385, 186817, 1386, 653685],
     "anc_name": [
       "cellular organisms",
       "Bacteria",
@@ -21775,18 +21555,18 @@
           }
         ],
         "compound_synonyms": [],
-        "error": 1e-06,
+        "error": 1e-6,
         "is_name_ambiguous": 0,
         "name": "AMP",
-        "observed_error": 1e-06,
+        "observed_error": 1e-6,
         "observed_name": "km",
         "observed_units": "M",
-        "observed_value": 1.3e-05,
+        "observed_value": 1.3e-5,
         "sabio_compound_id": 1273,
         "sbo_type": 27,
         "type": 27,
         "units": "M",
-        "value": 1.3e-05
+        "value": 1.3e-5
       },
       {
         "compartment": null,
@@ -21953,9 +21733,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -21984,17 +21762,7 @@
     "tissue": null
   },
   {
-    "anc_id": [
-      131567,
-      2,
-      1783272,
-      1239,
-      91061,
-      1385,
-      186817,
-      1386,
-      653685
-    ],
+    "anc_id": [131567, 2, 1783272, 1239, 91061, 1385, 186817, 1386, 653685],
     "anc_name": [
       "cellular organisms",
       "Bacteria",
@@ -22071,18 +21839,18 @@
           }
         ],
         "compound_synonyms": [],
-        "error": 2e-06,
+        "error": 2e-6,
         "is_name_ambiguous": 0,
         "name": "AMP",
-        "observed_error": 2e-06,
+        "observed_error": 2e-6,
         "observed_name": "km",
         "observed_units": "M",
-        "observed_value": 1.6e-05,
+        "observed_value": 1.6e-5,
         "sabio_compound_id": 1273,
         "sbo_type": 27,
         "type": 27,
         "units": "M",
-        "value": 1.6e-05
+        "value": 1.6e-5
       },
       {
         "compartment": null,
@@ -22282,9 +22050,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -22313,17 +22079,7 @@
     "tissue": null
   },
   {
-    "anc_id": [
-      131567,
-      2,
-      1783272,
-      1239,
-      91061,
-      1385,
-      186817,
-      1386,
-      653685
-    ],
+    "anc_id": [131567, 2, 1783272, 1239, 91061, 1385, 186817, 1386, 653685],
     "anc_name": [
       "cellular organisms",
       "Bacteria",
@@ -22420,18 +22176,18 @@
           }
         ],
         "compound_synonyms": [],
-        "error": 2e-06,
+        "error": 2e-6,
         "is_name_ambiguous": 0,
         "name": "AMP",
-        "observed_error": 2e-06,
+        "observed_error": 2e-6,
         "observed_name": "km",
         "observed_units": "M",
-        "observed_value": 2.4e-05,
+        "observed_value": 2.4e-5,
         "sabio_compound_id": 1273,
         "sbo_type": 27,
         "type": 27,
         "units": "M",
-        "value": 2.4e-05
+        "value": 2.4e-5
       },
       {
         "compartment": null,
@@ -22611,9 +22367,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -22642,17 +22396,7 @@
     "tissue": null
   },
   {
-    "anc_id": [
-      131567,
-      2,
-      1783272,
-      1239,
-      91061,
-      1385,
-      186817,
-      1386,
-      653685
-    ],
+    "anc_id": [131567, 2, 1783272, 1239, 91061, 1385, 186817, 1386, 653685],
     "anc_name": [
       "cellular organisms",
       "Bacteria",
@@ -22762,18 +22506,18 @@
           }
         ],
         "compound_synonyms": [],
-        "error": 4e-06,
+        "error": 4e-6,
         "is_name_ambiguous": 0,
         "name": "AMP",
-        "observed_error": 4e-06,
+        "observed_error": 4e-6,
         "observed_name": "km",
         "observed_units": "M",
-        "observed_value": 4.6e-05,
+        "observed_value": 4.6e-5,
         "sabio_compound_id": 1273,
         "sbo_type": 27,
         "type": 27,
         "units": "M",
-        "value": 4.6e-05
+        "value": 4.6e-5
       },
       {
         "compartment": null,
@@ -22940,9 +22684,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -22971,17 +22713,7 @@
     "tissue": null
   },
   {
-    "anc_id": [
-      131567,
-      2,
-      1783272,
-      1239,
-      91061,
-      1385,
-      186817,
-      1386,
-      653685
-    ],
+    "anc_id": [131567, 2, 1783272, 1239, 91061, 1385, 186817, 1386, 653685],
     "anc_name": [
       "cellular organisms",
       "Bacteria",
@@ -23111,18 +22843,18 @@
           }
         ],
         "compound_synonyms": [],
-        "error": 3e-06,
+        "error": 3e-6,
         "is_name_ambiguous": 0,
         "name": "AMP",
-        "observed_error": 3e-06,
+        "observed_error": 3e-6,
         "observed_name": "km",
         "observed_units": "M",
-        "observed_value": 2.6e-05,
+        "observed_value": 2.6e-5,
         "sabio_compound_id": 1273,
         "sbo_type": 27,
         "type": 27,
         "units": "M",
-        "value": 2.6e-05
+        "value": 2.6e-5
       },
       {
         "compartment": null,
@@ -23269,9 +23001,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -23300,17 +23030,7 @@
     "tissue": null
   },
   {
-    "anc_id": [
-      131567,
-      2,
-      1783272,
-      1239,
-      91061,
-      1385,
-      186817,
-      1386,
-      653685
-    ],
+    "anc_id": [131567, 2, 1783272, 1239, 91061, 1385, 186817, 1386, 653685],
     "anc_name": [
       "cellular organisms",
       "Bacteria",
@@ -23440,18 +23160,18 @@
           }
         ],
         "compound_synonyms": [],
-        "error": 4e-06,
+        "error": 4e-6,
         "is_name_ambiguous": 0,
         "name": "AMP",
-        "observed_error": 4e-06,
+        "observed_error": 4e-6,
         "observed_name": "km",
         "observed_units": "M",
-        "observed_value": 4.8e-05,
+        "observed_value": 4.8e-5,
         "sabio_compound_id": 1273,
         "sbo_type": 27,
         "type": 27,
         "units": "M",
-        "value": 4.8e-05
+        "value": 4.8e-5
       },
       {
         "compartment": null,
@@ -23598,9 +23318,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -23629,17 +23347,7 @@
     "tissue": null
   },
   {
-    "anc_id": [
-      131567,
-      2,
-      1783272,
-      1239,
-      91061,
-      1385,
-      186817,
-      1386,
-      653685
-    ],
+    "anc_id": [131567, 2, 1783272, 1239, 91061, 1385, 186817, 1386, 653685],
     "anc_name": [
       "cellular organisms",
       "Bacteria",
@@ -23789,18 +23497,18 @@
           }
         ],
         "compound_synonyms": [],
-        "error": 3e-06,
+        "error": 3e-6,
         "is_name_ambiguous": 0,
         "name": "AMP",
-        "observed_error": 3e-06,
+        "observed_error": 3e-6,
         "observed_name": "km",
         "observed_units": "M",
-        "observed_value": 9.4e-05,
+        "observed_value": 9.4e-5,
         "sabio_compound_id": 1273,
         "sbo_type": 27,
         "type": 27,
         "units": "M",
-        "value": 9.4e-05
+        "value": 9.4e-5
       }
     ],
     "ph": 7.2,
@@ -23927,9 +23635,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -23958,17 +23664,7 @@
     "tissue": null
   },
   {
-    "anc_id": [
-      131567,
-      2,
-      1783272,
-      1239,
-      91061,
-      1385,
-      186817,
-      1386,
-      653685
-    ],
+    "anc_id": [131567, 2, 1783272, 1239, 91061, 1385, 186817, 1386, 653685],
     "anc_name": [
       "cellular organisms",
       "Bacteria",
@@ -24098,18 +23794,18 @@
           }
         ],
         "compound_synonyms": [],
-        "error": 7e-06,
+        "error": 7e-6,
         "is_name_ambiguous": 0,
         "name": "AMP",
-        "observed_error": 7e-06,
+        "observed_error": 7e-6,
         "observed_name": "km",
         "observed_units": "M",
-        "observed_value": 7e-05,
+        "observed_value": 7e-5,
         "sabio_compound_id": 1273,
         "sbo_type": 27,
         "type": 27,
         "units": "M",
-        "value": 7e-05
+        "value": 7e-5
       },
       {
         "compartment": null,
@@ -24256,9 +23952,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -24287,17 +23981,7 @@
     "tissue": null
   },
   {
-    "anc_id": [
-      131567,
-      2,
-      1783272,
-      1239,
-      91061,
-      1385,
-      186817,
-      1386,
-      653685
-    ],
+    "anc_id": [131567, 2, 1783272, 1239, 91061, 1385, 186817, 1386, 653685],
     "anc_name": [
       "cellular organisms",
       "Bacteria",
@@ -24407,10 +24091,10 @@
           }
         ],
         "compound_synonyms": [],
-        "error": 8e-06,
+        "error": 8e-6,
         "is_name_ambiguous": 0,
         "name": "AMP",
-        "observed_error": 8e-06,
+        "observed_error": 8e-6,
         "observed_name": "km",
         "observed_units": "M",
         "observed_value": 0.00011,
@@ -24585,9 +24269,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -24840,9 +24522,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
@@ -24973,7 +24653,7 @@
         "observed_error": null,
         "observed_name": "spec_act",
         "observed_units": "mol*s^(-1)*g^(-1)",
-        "observed_value": 5.0000000000000004e-08,
+        "observed_value": 5.0000000000000004e-8,
         "sabio_compound_id": null,
         "sbo_type": 558,
         "type": null,
@@ -25117,9 +24797,7 @@
         ]
       },
       {
-        "product_aggregate": [
-          "XTWYTFMLZFPYCI-KQYNXXCUSA-N"
-        ]
+        "product_aggregate": ["XTWYTFMLZFPYCI-KQYNXXCUSA-N"]
       }
     ],
     "resource": [
