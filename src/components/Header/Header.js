@@ -68,7 +68,7 @@ class Header extends Component {
         <div className="page-links">
           <Button
             minimal="true"
-            className="icon-button"
+            className="icon-button page-link-search"
             icon={searchIcon}
             text={searchText}
             onClick={() =>

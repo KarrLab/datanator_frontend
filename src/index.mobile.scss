@@ -1,6 +1,6 @@
 @media only screen and (max-width: 1000px) {
   #root {
-    .bp3-navbar.bp3-fixed-top {
+    .header-component {
       position: static;
     }
 
@@ -38,10 +38,8 @@
 
     /* header */
     .header-component {
-      &.bp3-navbar {
-        padding-left: 0.5rem;
-        padding-right: 0.25rem;
-      }
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
 
       .titles .subtitle {
         display: none;
@@ -52,7 +50,7 @@
       }
 
       .page-links {
-        .navbutton-search {
+        .page-link-search {
           display: none;
         }
 
@@ -63,6 +61,16 @@
 
         .bp3-button > * {
           margin-right: 0.2rem;
+        }
+
+        a:last-child {
+          .bp3-button {
+            padding-right: 0;
+
+            > * {
+              margin-right: 0;
+            }
+          }
         }
       }
     }
