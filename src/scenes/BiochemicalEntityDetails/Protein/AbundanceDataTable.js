@@ -96,7 +96,7 @@ class AbundanceDataTable extends Component {
         field: "abundance",
         cellRenderer: "numericCellRenderer",
         type: "numericColumn",
-        filter: "agNumberColumnFilter",
+        filter: "numberFilter",
         checkboxSelection: true,
         headerCheckboxSelection: true,
         headerCheckboxSelectionFilteredOnly: true

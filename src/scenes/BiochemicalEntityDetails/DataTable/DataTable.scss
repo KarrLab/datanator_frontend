@@ -69,7 +69,6 @@
   }
 
   input {
-    border-radius: 3px;
     margin: 0;
     margin-right: 0.25rem;
   }
@@ -81,6 +80,10 @@
     height: 15px;
     width: 15px;
     background-color: $color-primary;
+  }
+
+  .MuiSlider-thumb:hover,
+  .MuiSlider-thumb.MuiSlider-active {
     box-shadow: none;
   }
 
@@ -186,8 +189,8 @@
 
 /* Number filter */
 .number-slider-filter {
-  margin-left: 1.25rem;
-  margin-right: 1.25rem;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
   margin-top: 10px;
 
   .MuiSlider-thumb:hover,
@@ -200,6 +203,7 @@
   .MuiSlider-valueLabel {
     display: none;
     font-style: 12px;
+    white-space: nowrap;
 
     & * {
       background: transparent;

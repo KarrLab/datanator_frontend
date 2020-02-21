@@ -53,10 +53,6 @@ class TextFilter extends Component {
     }
   }
 
-  onNewRowsLoaded() {
-    this.updateVals();
-  }
-
   updateVals() {
     const unorderedVals = new Set();
     this.props.api.forEachNode(node => {

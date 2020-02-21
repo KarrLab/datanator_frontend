@@ -80,7 +80,7 @@ class HalfLifeDataTable extends Component {
         field: "halfLife",
         cellRenderer: "numericCellRenderer",
         type: "numericColumn",
-        filter: "agNumberColumnFilter",
+        filter: "numberFilter",
         checkboxSelection: true,
         headerCheckboxSelection: true,
         headerCheckboxSelectionFilteredOnly: true

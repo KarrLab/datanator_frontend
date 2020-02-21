@@ -150,8 +150,12 @@ class NumberFilter extends Component {
       this.min = this.loBound;
       this.max = this.hiBound;
     } else {
-      this.min = Math.min(Math.max(this.loBound, range.min), this.hiBound);
-      this.max = Math.min(Math.max(this.loBound, range.max), this.hiBound);
+      const rangeMin = range.min != null ? range.min : this.loBound;
+      const rangeMax = range.max != null ? range.max : this.hiBound;
+
+      this.min = Math.min(Math.max(this.loBound, rangeMin), this.hiBound);
+      this.max = Math.min(Math.max(this.loBound, rangeMax), this.hiBound);
+
       if (this.min > this.max) {
         const tmp = this.min;
         this.min = this.max;
@@ -165,40 +169,59 @@ class NumberFilter extends Component {
     this.props.filterChangedCallback();
   }
 
-  // Method could be used to dynamically set the min/max of the slider to the min/max value of all of the rows
-  // onNewRowsLoaded() {}
+  onChange(event, range) {
+    let min = range[0];
+    let max = range[1];
 
-  onChange(event, min) {
-    if (this.min !== min) {
+    if (min > max) {
+      const temp = min;
+      min = max;
+      max = temp;
+    }
+
+    if (this.min !== min || this.max !== max) {
       this.min = min;
-      this.setState({ min: this.min });
+      this.max = max;
+      this.setState({
+        min: this.min,
+        max: this.max
+      });
       this.props.filterChangedCallback();
     }
   }
 
   render() {
     return (
-      <div className="biochemical-entity-scene-slider-filter biochemical-entity-scene-inverted-slider-filter biochemical-entity-scene-horizontal-slider-filter number-slider-filter">
+      <div className="biochemical-entity-scene-slider-filter biochemical-entity-scene-normal-slider-filter biochemical-entity-scene-horizontal-slider-filter number-slider-filter">
         <Slider
           ref={this.slider}
           min={this.state.marks[0].value}
           max={this.state.marks[1].value}
           step={this.state.step}
           marks={this.state.marks}
-          value={this.state.min}
+          value={[this.state.min, this.state.max]}
           orientation="horizontal"
-          track="inverted"
+          track="normal"
           valueLabelDisplay={"on"}
           onChange={this.onChange}
-          aria-label="Number slider"
+          getAriaLabel={this.getAriaLabel}
+          valueLabelFormat={this.valueText}
           getAriaValueText={this.valueText}
         />
       </div>
     );
   }
 
+  getAriaLabel(index) {
+    if (index === 0) {
+      return "Minimum";
+    } else {
+      return "Maximum";
+    }
+  }
+
   valueText(value) {
-    return `${value}`;
+    return formatScientificNotation(value, 4, 3, 1, 1, 3);
   }
 }
 

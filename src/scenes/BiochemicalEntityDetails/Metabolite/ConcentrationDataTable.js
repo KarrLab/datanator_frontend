@@ -110,7 +110,7 @@ class ConcentrationDataTable extends Component {
         field: "value",
         cellRenderer: "numericCellRenderer",
         type: "numericColumn",
-        filter: "agNumberColumnFilter",
+        filter: "numberFilter",
         checkboxSelection: true,
         headerCheckboxSelection: true,
         headerCheckboxSelectionFilteredOnly: true
@@ -121,7 +121,7 @@ class ConcentrationDataTable extends Component {
         cellRenderer: "numericCellRenderer",
         type: "numericColumn",
         hide: true,
-        filter: "agNumberColumnFilter"
+        filter: "numberFilter"
       },
       {
         headerName: "Metabolite",
@@ -141,7 +141,6 @@ class ConcentrationDataTable extends Component {
         hide: true,
         filter: "numberFilter",
         filterParams: {
-          loBound: 0.6,
           hiBound: 1.0
         },
         valueFormatter: params => {

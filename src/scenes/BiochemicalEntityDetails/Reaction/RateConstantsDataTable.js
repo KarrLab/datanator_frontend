@@ -162,7 +162,7 @@ class RateConstantsDataTable extends Component {
         field: "kcat",
         cellRenderer: "numericCellRenderer",
         type: "numericColumn",
-        filter: "agNumberColumnFilter",
+        filter: "numberFilter",
         checkboxSelection: true,
         headerCheckboxSelection: true,
         headerCheckboxSelectionFilteredOnly: true
@@ -193,7 +193,7 @@ class RateConstantsDataTable extends Component {
         field: "km." + kmMet,
         cellRenderer: "numericCellRenderer",
         type: "numericColumn",
-        filter: "agNumberColumnFilter"
+        filter: "numberFilter"
       });
     }
 
@@ -232,7 +232,7 @@ class RateConstantsDataTable extends Component {
       field: "temperature",
       cellRenderer: "numericCellRenderer",
       type: "numericColumn",
-      filter: "agNumberColumnFilter"
+      filter: "numberFilter"
     });
 
     colDefs.push({
@@ -240,7 +240,7 @@ class RateConstantsDataTable extends Component {
       field: "ph",
       cellRenderer: "numericCellRenderer",
       type: "numericColumn",
-      filter: "agNumberColumnFilter"
+      filter: "numberFilter"
     });
 
     colDefs.push({
