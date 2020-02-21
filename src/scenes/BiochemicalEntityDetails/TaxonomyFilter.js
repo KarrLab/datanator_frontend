@@ -37,7 +37,7 @@ class TaxonomyFilter extends Component {
   }
 
   isFilterActive() {
-    return true;
+    return this.maxDistance < this.markValueToDistance.length - 1;
   }
 
   componentDidMount() {
@@ -124,7 +124,7 @@ class TaxonomyFilter extends Component {
     this.props.filterChangedCallback();
   }
 
-  // Method could be used to dynamically set the min/max of the slider to the min/max Tanimoto similarity of all of the rows
+  // Method could be used to dynamically set the min/max of the slider to the min/max similarity of all of the rows
   // onNewRowsLoaded() {}
 
   onChange(event, selectedMarkValue) {
@@ -149,7 +149,7 @@ class TaxonomyFilter extends Component {
     const max = Math.max(0, marks.length - 1);
     const selectedMarkValue = this.state.selectedMarkValue;
     const sliderContainer = (
-      <div className="tool-panel-slider tool-panel-normal-slider tool-panel-vertical-slider taxonomy-tool-panel-slider">
+      <div className="biochemical-entity-scene-slider-filter biochemical-entity-scene-normal-slider-filter biochemical-entity-scene-vertical-slider-filter biochemical-entity-scene-taxonomy-slider-filter">
         <Slider
           min={0}
           max={max}

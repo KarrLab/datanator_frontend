@@ -44,22 +44,24 @@ describe("TaxonomyFilter", function() {
     });
 
     // change the value of the filter to the maximum
-    cy.get("#" + dataContainerId + " .taxonomy-tool-panel-slider input").should(
-      "not.have.attr",
-      "value",
-      "0"
-    );
     cy.get(
-      "#" + dataContainerId + " .taxonomy-tool-panel-slider .MuiSlider-thumb"
+      "#" +
+        dataContainerId +
+        " .biochemical-entity-scene-taxonomy-slider-filter input"
+    ).should("not.have.attr", "value", "0");
+    cy.get(
+      "#" +
+        dataContainerId +
+        " .biochemical-entity-scene-taxonomy-slider-filter .MuiSlider-thumb"
     )
       .trigger("mousedown", { which: 1 })
       .trigger("mousemove", { clientX: 0, clientY: 1e6 })
       .trigger("mouseup", { force: true });
-    cy.get("#" + dataContainerId + " .taxonomy-tool-panel-slider input").should(
-      "have.attr",
-      "value",
-      "0"
-    );
+    cy.get(
+      "#" +
+        dataContainerId +
+        " .biochemical-entity-scene-taxonomy-slider-filter input"
+    ).should("have.attr", "value", "0");
 
     // check that rows were filtered
     cy.get("#" + dataContainerId + " .ag-center-cols-container")

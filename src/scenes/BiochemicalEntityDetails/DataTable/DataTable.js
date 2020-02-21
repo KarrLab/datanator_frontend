@@ -15,7 +15,7 @@ import { LinkCellRenderer } from "../LinkCellRenderer";
 import { NumericCellRenderer } from "../NumericCellRenderer";
 import { ColumnsToolPanel } from "../ColumnsToolPanel/ColumnsToolPanel";
 import { StatsToolPanel } from "../StatsToolPanel/StatsToolPanel";
-import { TanimotoFilter } from "../TanimotoFilter";
+import { NumberFilter } from "../NumberFilter";
 import { TaxonomyFilter } from "../TaxonomyFilter";
 import { TextFilter } from "../TextFilter";
 
@@ -50,7 +50,7 @@ class DataTable extends Component {
     statsToolPanel: StatsToolPanel,
     textFilter: TextFilter,
     taxonomyFilter: TaxonomyFilter,
-    tanimotoFilter: TanimotoFilter
+    numberFilter: NumberFilter
   };
 
   static defaultColDef = {

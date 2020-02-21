@@ -139,7 +139,11 @@ class ConcentrationDataTable extends Component {
         cellRenderer: "numericCellRenderer",
         type: "numericColumn",
         hide: true,
-        filter: "tanimotoFilter",
+        filter: "numberFilter",
+        filterParams: {
+          loBound: 0.6,
+          hiBound: 1.0
+        },
         valueFormatter: params => {
           return params.value.toFixed(3);
         }

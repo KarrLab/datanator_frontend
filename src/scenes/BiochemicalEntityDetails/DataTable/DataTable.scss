@@ -75,8 +75,8 @@
   }
 }
 
-/* tool panel slider */
-.tool-panel-slider {
+/* filter slider */
+.biochemical-entity-scene-slider-filter {
   .MuiSlider-thumb {
     height: 15px;
     width: 15px;
@@ -97,7 +97,7 @@
   }
 }
 
-.tool-panel-normal-slider {
+.biochemical-entity-scene-normal-slider-filter {
   .MuiSlider-root {
     color: $color-primary;
   }
@@ -107,7 +107,7 @@
   }
 }
 
-.tool-panel-inverted-slider {
+.biochemical-entity-scene-inverted-slider-filter {
   .MuiSlider-root {
     color: $color-border-dark;
   }
@@ -117,7 +117,7 @@
   }
 }
 
-.tool-panel-horizontal-slider {
+.biochemical-entity-scene-horizontal-slider-filter {
   .MuiSlider-root {
     padding: 15px 0;
   }
@@ -150,7 +150,7 @@
   }
 }
 
-.tool-panel-vertical-slider {
+.biochemical-entity-scene-vertical-slider-filter {
   .MuiSlider-root,
   .MuiSlider-track,
   .MuiSlider-trackInverted,
@@ -173,7 +173,7 @@
 }
 
 /* taxonomy filter */
-.taxonomy-tool-panel-slider {
+.biochemical-entity-scene-taxonomy-slider-filter {
   height: 150px;
   width: 100%;
   margin-top: 0.75rem;
@@ -184,8 +184,8 @@
   }
 }
 
-/* Tanimoto filter */
-.tanimoto-tool-panel-slider {
+/* Number filter */
+.number-slider-filter {
   margin-left: 1.25rem;
   margin-right: 1.25rem;
   margin-top: 10px;
