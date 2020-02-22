@@ -1,61 +1,21 @@
 @import 'colors';
 
 .biochemical-entity-scene-filters-tool-panel {
+  width: 100%;
+
   .MuiExpansionPanelSummary-content {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  .MuiExpansionPanel-root {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-  }
-
-  .MuiExpansionPanel-root::before {
-    background: none;
-  }
-
-  .MuiExpansionPanel-root.Mui-expanded {
-    margin-top: 0;
-    margin-bottom: 0;
-
-    &::before {
-      display: none;
-    }
+  .MuiExpansionPanel-root:last-child {
+    border-bottom: none !important;
   }
 
   .MuiExpansionPanelSummary-root {
     padding-left: 0.5rem;
     padding-right: 0.125rem;
-  }
-
-  .MuiExpansionPanelSummary-root,
-  .MuiExpansionPanelSummary-root.Mui-expanded {
-    min-height: 32px;
-  }
-
-  .MuiExpansionPanelSummary-content,
-  .MuiExpansionPanelSummary-content.Mui-expanded {
-    margin-top: 0.25rem;
-    margin-bottom: 0.25rem;
-  }
-
-  .MuiExpansionPanelDetails-root {
-    padding-left: 0.5rem;
-    padding-right: 8px;
-    padding-top: 0;
-    padding-bottom: 8px;
-  }
-
-  .MuiIconButton-root {
-    padding: 0;
-  }
-
-  .MuiIconButton-edgeEnd {
-    margin-right: 0;
-  }
-
-  .MuiPaper-elevation1 {
-    box-shadow: none;
+    background: none !important;
   }
 }

@@ -36,42 +36,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Niall Crosby
 │  ├─ email: niall.crosby@ag-grid.com
 │  └─ licenseFile: @ag-grid-community/react/LICENSE.txt
-├─ @ag-grid-enterprise/column-tool-panel@22.1.2
-│  ├─ licenses: Custom: http://www.ag-grid.com
-│  ├─ repository: https://github.com/ag-grid/ag-grid
-│  ├─ publisher: Sean Landsman
-│  ├─ email: sean@thelandsmans.com
-│  └─ licenseFile: @ag-grid-enterprise/column-tool-panel/LICENSE.html
-├─ @ag-grid-enterprise/core@22.1.1
-│  ├─ licenses: Custom: http://www.ag-grid.com
-│  ├─ repository: https://github.com/ag-grid/ag-grid
-│  ├─ publisher: Sean Landsman
-│  ├─ email: sean@thelandsmans.com
-│  └─ licenseFile: @ag-grid-enterprise/core/LICENSE.html
-├─ @ag-grid-enterprise/filter-tool-panel@22.1.1
-│  ├─ licenses: Custom: http://www.ag-grid.com
-│  ├─ repository: https://github.com/ag-grid/ag-grid
-│  ├─ publisher: Sean Landsman
-│  ├─ email: sean@thelandsmans.com
-│  └─ licenseFile: @ag-grid-enterprise/filter-tool-panel/LICENSE.html
-├─ @ag-grid-enterprise/row-grouping@22.1.1
-│  ├─ licenses: Custom: http://www.ag-grid.com
-│  ├─ repository: https://github.com/ag-grid/ag-grid
-│  ├─ publisher: Sean Landsman
-│  ├─ email: sean@thelandsmans.com
-│  └─ licenseFile: @ag-grid-enterprise/row-grouping/LICENSE.html
-├─ @ag-grid-enterprise/set-filter@22.1.2
-│  ├─ licenses: Custom: http://www.ag-grid.com
-│  ├─ repository: https://github.com/ag-grid/ag-grid
-│  ├─ publisher: Sean Landsman
-│  ├─ email: sean@thelandsmans.com
-│  └─ licenseFile: @ag-grid-enterprise/set-filter/LICENSE.html
-├─ @ag-grid-enterprise/side-bar@22.1.1
-│  ├─ licenses: Custom: http://www.ag-grid.com
-│  ├─ repository: https://github.com/ag-grid/ag-grid
-│  ├─ publisher: Sean Landsman
-│  ├─ email: sean@thelandsmans.com
-│  └─ licenseFile: @ag-grid-enterprise/side-bar/LICENSE.html
 ├─ @babel/code-frame@7.5.5
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-code-frame
@@ -727,6 +691,11 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/mui-org/material-ui
 │  ├─ publisher: Material-UI Team
 │  └─ licenseFile: @material-ui/core/LICENSE
+├─ @material-ui/icons@4.9.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/mui-org/material-ui
+│  ├─ publisher: Material-UI Team
+│  └─ licenseFile: @material-ui/icons/LICENSE
 ├─ @material-ui/styles@4.9.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/mui-org/material-ui

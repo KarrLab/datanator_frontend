@@ -45,7 +45,7 @@ describe("Metabolite scene", function() {
       .should("have.text", "Concentration (µM)");
 
     // open columns tool panel and toggle all columns
-    cy.get("#" + dataContainerId + " .ag-side-button")
+    cy.get("#" + dataContainerId + " .biochemical-entity-data-table-tool-panel")
       .first()
       .click();
     cy.get(
@@ -57,22 +57,20 @@ describe("Metabolite scene", function() {
     });
 
     // open filters tool panel and open all filters
-    cy.get("#" + dataContainerId + " .ag-side-button")
+    cy.get("#" + dataContainerId + " .biochemical-entity-data-table-tool-panel")
       .eq(1)
       .click();
     cy.get(
-      "#" +
-        dataContainerId +
-        " .biochemical-entity-scene-filters-tool-panel .MuiExpansionPanelSummary-root"
+      "#" + dataContainerId + " .biochemical-entity-scene-filter-container"
     ).each($filter => {
       cy.wrap($filter).click();
     });
 
-    // open stats tool panels
-    cy.get("#" + dataContainerId + " .ag-side-button").each(
-      $toolPanelButton => {
-        cy.wrap($toolPanelButton).click();
-      }
-    );
+    // open stats tool panel
+    cy.get(
+      "#" + dataContainerId + " .biochemical-entity-data-table-tool-panel"
+    ).each($toolPanelButton => {
+      cy.wrap($toolPanelButton).click();
+    });
   });
 });

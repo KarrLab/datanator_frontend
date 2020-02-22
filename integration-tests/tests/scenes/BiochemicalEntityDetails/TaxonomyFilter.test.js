@@ -22,7 +22,7 @@ describe("TaxonomyFilter", function() {
     cy.visit(url);
 
     // open all colums including the taxonomic distance column
-    cy.get("#" + dataContainerId + " .ag-side-button")
+    cy.get("#" + dataContainerId + " .biochemical-entity-data-table-tool-panel")
       .eq(0)
       .click();
     cy.get(
@@ -34,13 +34,11 @@ describe("TaxonomyFilter", function() {
     });
 
     // open filters tool panel and open all filters, including the taxonomy distance filter
-    cy.get("#" + dataContainerId + " .ag-side-button")
+    cy.get("#" + dataContainerId + " .biochemical-entity-data-table-tool-panel")
       .eq(1)
       .click();
     cy.get(
-      "#" +
-        dataContainerId +
-        " .biochemical-entity-scene-filters-tool-panel .MuiExpansionPanelSummary-root"
+      "#" + dataContainerId + " .biochemical-entity-scene-filter-container"
     ).each($filter => {
       cy.wrap($filter).click();
     });

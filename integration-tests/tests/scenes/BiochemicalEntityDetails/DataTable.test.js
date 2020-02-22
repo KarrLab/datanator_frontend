@@ -26,7 +26,7 @@ describe("DataTable", function() {
       });
 
     // toggle all columns
-    cy.get("#concentration .ag-side-button")
+    cy.get("#concentration .biochemical-entity-data-table-tool-panel")
       .first()
       .click();
     cy.get(

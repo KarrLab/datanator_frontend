@@ -21,7 +21,7 @@ describe("NumberFilter", function() {
     cy.visit(url);
 
     // open all colums including the chemical similarity column
-    cy.get("#" + dataContainerId + " .ag-side-button")
+    cy.get("#" + dataContainerId + " .biochemical-entity-data-table-tool-panel")
       .eq(0)
       .click();
     cy.get(
@@ -33,13 +33,11 @@ describe("NumberFilter", function() {
     });
 
     // open filters tool panel and open all filters, including the Tanimoto filter
-    cy.get("#" + dataContainerId + " .ag-side-button")
+    cy.get("#" + dataContainerId + " .biochemical-entity-data-table-tool-panel")
       .eq(1)
       .click();
     cy.get(
-      "#" +
-        dataContainerId +
-        " .biochemical-entity-scene-filters-tool-panel .MuiExpansionPanelSummary-root"
+      "#" + dataContainerId + " .biochemical-entity-scene-filter-container"
     ).each($filter => {
       cy.wrap($filter).click();
     });

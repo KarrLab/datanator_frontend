@@ -111,7 +111,7 @@ class ColumnsToolPanel extends Component {
                 checked={col.visible}
                 onChange={this.toggleCol.bind(this, col)}
               />
-              {col.name}
+              <span>{col.name}</span>
             </li>
           );
         })}

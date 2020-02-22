@@ -7,11 +7,10 @@ import { parseHistoryLocationPathname, downloadData } from "~/utils/utils";
 import { AgGridReact } from "@ag-grid-community/react";
 import { ClientSideRowModelModule } from "@ag-grid-community/client-side-row-model";
 import { CsvExportModule } from "@ag-grid-community/csv-export";
-import { LicenseManager } from "@ag-grid-enterprise/core";
-import { SideBarModule } from "@ag-grid-enterprise/side-bar";
 import { HtmlColumnHeader } from "../HtmlColumnHeader";
 import { LinkCellRenderer } from "../LinkCellRenderer";
 import { NumericCellRenderer } from "../NumericCellRenderer";
+import { ToolPanels } from "../ToolPanels";
 import { ColumnsToolPanel } from "../ColumnsToolPanel/ColumnsToolPanel";
 import { FiltersToolPanel } from "../FiltersToolPanel/FiltersToolPanel";
 import { StatsToolPanel } from "../StatsToolPanel/StatsToolPanel";
@@ -221,35 +220,33 @@ class DataTable extends Component {
             </button>
           </div>
         </div>
-        <div className="biochemical-entity-data-table ag-theme-balham">
-          <AgGridReact
-            ref={this.grid}
-            modules={[
-              ClientSideRowModelModule,
-              CsvExportModule,
-              LicenseManager,
-              SideBarModule
-            ]}
-            frameworkComponents={DataTable.frameworkComponents}
-            sideBar={this.state.sideBarDef}
-            defaultColDef={DataTable.defaultColDef}
-            columnDefs={this.state.colDefs}
-            rowData={this.state.data}
-            rowSelection="multiple"
-            groupSelectsChildren={true}
-            suppressMultiSort={true}
-            suppressAutoSize={true}
-            suppressMovableColumns={true}
-            suppressCellSelection={true}
-            suppressRowClickSelection={true}
-            suppressContextMenu={true}
-            domLayout="autoHeight"
-            onGridSizeChanged={this.fitCols}
-            onColumnVisible={this.fitCols}
-            onColumnResized={this.updateHorzScrolling}
-            onToolPanelVisibleChanged={this.fitCols}
-            onFirstDataRendered={this.fitCols}
-          ></AgGridReact>
+        <div className="biochemical-entity-data-table">
+          <ToolPanels agGridReactRef={this.grid} />
+          <div className="ag-theme-balham">
+            <AgGridReact
+              ref={this.grid}
+              modules={[ClientSideRowModelModule, CsvExportModule]}
+              frameworkComponents={DataTable.frameworkComponents}
+              sideBar={this.state.sideBarDef}
+              defaultColDef={DataTable.defaultColDef}
+              columnDefs={this.state.colDefs}
+              rowData={this.state.data}
+              rowSelection="multiple"
+              groupSelectsChildren={true}
+              suppressMultiSort={true}
+              suppressAutoSize={true}
+              suppressMovableColumns={true}
+              suppressCellSelection={true}
+              suppressRowClickSelection={true}
+              suppressContextMenu={true}
+              domLayout="autoHeight"
+              onGridSizeChanged={this.fitCols}
+              onColumnVisible={this.fitCols}
+              onColumnResized={this.updateHorzScrolling}
+              onToolPanelVisibleChanged={this.fitCols}
+              onFirstDataRendered={this.fitCols}
+            />
+          </div>
         </div>
       </div>
     );

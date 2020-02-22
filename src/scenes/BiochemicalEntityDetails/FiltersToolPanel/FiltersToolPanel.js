@@ -125,7 +125,11 @@ class FiltersToolPanel extends Component {
           const FilterType = filterTypes[filter.colDef.filter];
           this.filterRefs[filter.colId] = React.createRef();
           return (
-            <ExpansionPanel key={filter.colId} square={true}>
+            <ExpansionPanel
+              key={filter.colId}
+              square={true}
+              className="biochemical-entity-scene-filter-container"
+            >
               <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                 {filter.name}
               </ExpansionPanelSummary>
