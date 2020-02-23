@@ -1,8 +1,6 @@
 import { ConcentrationDataTable } from "~/scenes/BiochemicalEntityDetails/Metabolite/ConcentrationDataTable";
 import { formatMetadata } from "~/scenes/BiochemicalEntityDetails/Metabolite/MetadataSection";
-import testRawData from "~/__tests__/fixtures/metabolite-concentrations-dTDP-D-Glucose";
-import { createMemoryHistory } from "history";
-import { Router } from "react-router-dom";
+
 /* global describe, it, expect */
 describe("Metabolite data page", () => {
   it("Gets correct concentration data url", () => {
