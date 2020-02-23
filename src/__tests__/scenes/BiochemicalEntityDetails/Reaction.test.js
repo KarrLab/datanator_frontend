@@ -1,5 +1,6 @@
 import { RateConstantsDataTable } from "~/scenes/BiochemicalEntityDetails/Reaction/RateConstantsDataTable";
 import testRawData from "~/__tests__/fixtures/reaction-constants-adenylate-kinase";
+import { formatMetadata } from "~/scenes/BiochemicalEntityDetails/Reaction/MetadataSection";
 
 /* global describe, it, expect */
 describe("Reaction data page", () => {
@@ -42,5 +43,20 @@ describe("Reaction data page", () => {
     //});
     expect(formattedData[5].km).toEqual({ AMP: 0.0014 });
     expect(formattedData[10].km).toEqual({});
+  });
+
+  it("Formats metadata data correctly", async () => {
+
+    // format raw data
+    const formattedMetadata = formatMetadata(testRawData);
+    console.log(formattedMetadata);
+    expect(formattedMetadata).toEqual({
+      reactionId: "82",
+      substrates: ["AMP", "ATP"],
+      products: ["ADP"],
+      ecNumber: "2.7.4.3",
+      name: "Adenylate kinase",
+      equation: "AMP + ATP → ADP"
+    });
   });
 });
