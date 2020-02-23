@@ -9,13 +9,16 @@
     text-overflow: ellipsis;
   }
 
+  .MuiExpansionPanel-root {
+    border-bottom: 1px solid #bdc3c7;
+  }
+
   .MuiExpansionPanel-root:last-child {
-    border-bottom: none !important;
+    border-bottom: none;
   }
 
   .MuiExpansionPanelSummary-root {
     padding-left: 0.5rem;
     padding-right: 0.125rem;
-    background: none !important;
   }
 }

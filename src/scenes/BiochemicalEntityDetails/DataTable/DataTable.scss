@@ -48,7 +48,7 @@
   margin-right: 1rem;
   border: 1px solid #bdc3c7;
 
-  .MuiExpansionPanel-root {
+  .biochemical-entity-data-table-tool-panel.MuiExpansionPanel-root {
     border-bottom: 1px solid #bdc3c7;
   }
 
@@ -66,9 +66,14 @@
   }
 
   .MuiExpansionPanelSummary-root {
-    background: $color-button-hover;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
+  }
+
+  .biochemical-entity-data-table-tool-panel {
+    > .MuiExpansionPanelSummary-root {
+      background: $color-button-hover;
+    }
   }
 
   .MuiExpansionPanelSummary-root,
