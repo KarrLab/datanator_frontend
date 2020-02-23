@@ -78,6 +78,26 @@ We recommend that developers install and run *Datanator-frontend* locally. Below
 ## License
 This package is released under the [MIT license](LICENSE).
 
+## File Organization
+- scenes - this contains the code to render each individual webpage.
+  - Home - the home page.
+  - SearchResults - the page to display the results after a search.
+  - BiochemicalEntityDetails - the main data page, which displays metadata and experimental observations about a biochemical entity.
+  - About - the About page.
+  - Help - page with tutorial on Datanator and FAQ.
+  - Stats - page summarizing the contents of Datanator's database.
+  - Error404 - page to display during an error.
+- components
+  - ErrorDialog
+  - FeedbackForm - form for a user to provide feedback on specific webpages
+  - Footer - the footer on the bottom of each webpage
+  - Header - the header on the top of each webpage
+  - SearchForm - the search bar on the homepage and embedded into the header
+- utils - miscellaneous helper functions (e.g. removeDuplicates, formatScientificNotation, etc.)
+- services
+- tests - unit tests in Jest
+- CSS, images: with associated scene/component
+
 ## Development team
 This package was developed by the [Karr Lab](https://www.karrlab.org) at the Icahn School of Medicine at Mount Sinai in New York.
 
