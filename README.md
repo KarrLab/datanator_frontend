@@ -31,7 +31,9 @@ The *Datanator* toolkit seeks to address these problems for biochemical modeling
 
 This package provides a web-based graphical user interface to *Datanator-db*. A public, hosted version of the package is freely available at [https://datanator.info](https://datanator.info). The package provides investigators tools for browsing and searching *Datanator-db* to find data about biochemical entities of interest (e.g., metabolites, proteins, reactions). This includes tools for finding experimental observations from chemically and genetically similar entities (according to structural and sequence similarity) in phylogenetically similar organism (according to the NCBI Taxonomy tree) under similar enviromental conditions (e.g., temperature, pH). The package is implemented using [React](https://reactjs.org/).
 
-## Packages and Tools
+## Implementation
+### Packages and Tools
+
 - [React](https://reactjs.org/docs/getting-started.html).
 - [AG-grid](https://www.ag-grid.com/documentation-main/documentation.php) is used to generate the data tables.
 - [FontAwesome](https://fontawesome.com/) is used for icons.
@@ -39,6 +41,35 @@ This package provides a web-based graphical user interface to *Datanator-db*. A 
 - [Jest](https://jestjs.io/) is used for unit tests.
 - [Cypress](https://www.cypress.io/) is used for integration tests.
 
+### File Organization
+- scenes - this contains the code to render each individual webpage.
+  - Home - the home page.
+  - SearchResults - the page to display the results after a search.
+  - BiochemicalEntityDetails - the main data page, which displays metadata and experimental observations about a biochemical entity.
+  - About - the About page.
+  - Help - page with tutorial on Datanator and FAQ.
+  - Stats - page summarizing the contents of Datanator's database.
+  - Error404 - page to display during an error.
+- components
+  - ErrorDialog
+  - FeedbackForm - form for a user to provide feedback on specific webpages
+  - Footer - the footer on the bottom of each webpage
+  - Header - the header on the top of each webpage
+  - SearchForm - the search bar on the homepage and embedded into the header
+- utils - miscellaneous helper functions (e.g. removeDuplicates, formatScientificNotation, etc.)
+- services
+- tests - unit tests in Jest
+- CSS, images: with associated scene/component
+
+### Coding style
+- Directory, File, Class names: UpperCamelCase
+- Variable, method name: lowerCamelCase
+- CSS class names: 
+
+## Organization of styles
+ - General styles are in index.scss
+ - Styles for individual scenes, components are isolated via unique CSS classes for each scene/component
+ 
 ## Usage and installation
 
 ### Users: use the public, hosted deployment
@@ -77,26 +108,6 @@ We recommend that developers install and run *Datanator-frontend* locally. Below
 
 ## License
 This package is released under the [MIT license](LICENSE).
-
-## File Organization
-- scenes - this contains the code to render each individual webpage.
-  - Home - the home page.
-  - SearchResults - the page to display the results after a search.
-  - BiochemicalEntityDetails - the main data page, which displays metadata and experimental observations about a biochemical entity.
-  - About - the About page.
-  - Help - page with tutorial on Datanator and FAQ.
-  - Stats - page summarizing the contents of Datanator's database.
-  - Error404 - page to display during an error.
-- components
-  - ErrorDialog
-  - FeedbackForm - form for a user to provide feedback on specific webpages
-  - Footer - the footer on the bottom of each webpage
-  - Header - the header on the top of each webpage
-  - SearchForm - the search bar on the homepage and embedded into the header
-- utils - miscellaneous helper functions (e.g. removeDuplicates, formatScientificNotation, etc.)
-- services
-- tests - unit tests in Jest
-- CSS, images: with associated scene/component
 
 ## Development team
 This package was developed by the [Karr Lab](https://www.karrlab.org) at the Icahn School of Medicine at Mount Sinai in New York.
