@@ -58,7 +58,9 @@ class TextFilter extends Component {
     this.props.api.forEachNode(node => {
       const getter = this.props.filterValueGetter || this.props.valueGetter;
       const value = getter(node);
-      unorderedVals.add(value);
+      if (value != null && value !== undefined && value !== "") {
+        unorderedVals.add(value);
+      }
     });
 
     const orderedValues = Array.from(unorderedVals.values());
