@@ -1,6 +1,8 @@
 import { ConcentrationDataTable } from "~/scenes/BiochemicalEntityDetails/Metabolite/ConcentrationDataTable";
+import { formatMetadata } from "~/scenes/BiochemicalEntityDetails/Metabolite/MetadataSection";
 import testRawData from "~/__tests__/fixtures/metabolite-concentrations-dTDP-D-Glucose";
-
+import { createMemoryHistory } from "history";
+import { Router } from "react-router-dom";
 /* global describe, it, expect */
 describe("Metabolite data page", () => {
   it("Gets correct concentration data url", () => {
@@ -58,5 +60,30 @@ describe("Metabolite data page", () => {
     expect(formattedData[7].growthPhase).toEqual(null);
     expect(formattedData[7].growthMedia).toEqual(null);
     expect(formattedData[7].growthConditions).toEqual(null);
+  });
+
+  it("Formats metadata data correctly", async () => {
+    // instantiate data table
+
+    // format raw data
+    const formattedMetadata = formatMetadata(testRawData);
+    //console.log(formattedMetadata)
+
+    // test formatted data
+    expect(formattedMetadata.cellularLocations).toHaveLength(1);
+    expect(formattedMetadata.cellularLocations[0]).toEqual("Cytosol");
+
+    expect(formattedMetadata.dbLinks.biocyc).toEqual("UDP");
+    expect(formattedMetadata.dbLinks["kegg"]).toEqual("C00015");
+
+    expect(formattedMetadata.description[0]).toEqual(
+      expect.stringContaining("Uridine 5'-diphosphate,")
+    );
+
+    expect(formattedMetadata.synonyms).toEqual(["5'-UDP", "UDP"]);
+
+    //expect(formattedMetadata.pathways).toHaveLength(22)
+
+    //expect(formattedMetadata.pathways[0].description).toEqual(expect.stringContaining("The biosynthesis of a"))
   });
 });
