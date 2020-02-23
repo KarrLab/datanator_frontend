@@ -75,6 +75,8 @@ This package provides a web-based graphical user interface to *Datanator-db*. A 
 ### Users: use the public, hosted deployment
 We recommend that users use the public, hosted version of *Datanator-frontend* at [https://datanator.info](https://datanator.info).
 
+Please see the [About](https://datanator.info/about) page for a general overview and the [Help](https://datanator.info/help) page for a tutorial
+
 ### Developers: install and deploy *Datanator-frontend* locally
 We recommend that developers install and run *Datanator-frontend* locally. Below are instructions for installing and running *Datanator-frontend* locally.
 
@@ -106,6 +108,48 @@ We recommend that developers install and run *Datanator-frontend* locally. Below
 
 6. Navigate your browser to [http://localhost:3000](http://localhost:3000/).
 
+### Developers: test *Datanator-frontend* locally
+1. Run unit tests
+  ```
+  npm run test-unit-coverage
+  ```
+
+2. Run integration tests
+  ```
+  npm run test-integration-run
+  ```
+  
+### Developers: automatically format *Datanator-frontend* using eslint
+1. Lint JavaScript
+  ```
+  npm run lint-js
+  ```
+
+2. Lint CSS
+  ```
+  npm run lint-style
+  ```
+
+3. Lint JSON
+  ```
+  npm run lint-json
+  ```
+
+4. Lint svg
+  ```    
+  npm run lint-svg
+  ```
+  
+### Developers: build *Datanator-frontend* 
+  ```
+  NODE_ENV=production npm run build
+  ```
+## Deployment Workflow
+1. Push to Github
+2. Automatically run tests using [CircleCI](https://circleci.com/)
+3. Deploy if tests pass
+
+
 ## License
 This package is released under the [MIT license](LICENSE).
 
@@ -118,3 +162,9 @@ This package was developed by the [Karr Lab](https://www.karrlab.org) at the Ica
 
 ## Questions and comments
 Please contact the [Karr Lab](info@karrlab.org) with any questions or comments.
+
+## Acknowledgements
+Datanator was developed with support from the [Center for Reproducible Biomedical Modeling](https://reproduciblebiomodels.org) from the National Institute of Bioimaging and Bioengineering and the National Institute of General Medical Sciences of the National Institutes of Health and the National Science Foundation (award P41EB023912).
+
+![Image nih](/src/scenes/About/images/nih.svg) ![Image nibib](/src/scenes/About/images/nibib.svg) ![Image nigms](/src/scenes/About/images/nigms.svg) ![Image nsf](/src/scenes/About/images/nsf.svg)
+
