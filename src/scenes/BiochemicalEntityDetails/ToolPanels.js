@@ -23,14 +23,14 @@ class ToolPanels extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const panels = this.getPanels(this.props);
-    const prevPanels = this.getPanels(prevProps);
+    const panels = this.getPanelDefs(this.props);
+    const prevPanels = this.getPanelDefs(prevProps);
     if (this.props !== prevProps || panels !== prevPanels) {
       this.updatePanels();
     }
   }
 
-  getPanels(props) {
+  getPanelDefs(props) {
     const agGridReact = props.agGridReactRef.current;
     if (agGridReact == null) {
       return null;
@@ -41,20 +41,23 @@ class ToolPanels extends Component {
       return null;
     }
 
-    return sideBar.toolPanels;
+    return sideBar;
   }
 
   updatePanels() {
     const agGridReact = this.props.agGridReactRef.current;
-    const panelDefs = this.getPanels(this.props) || [];
+    const panelDefs = this.getPanelDefs(this.props) || { toolPanels: [] };
 
     const panels = [];
-    for (const panelDef of panelDefs) {
+    for (const panelDef of panelDefs.toolPanels) {
       panels.push({
         id: panelDef.id,
         name: panelDef.labelDefault,
         type: agGridReact.gridOptions.frameworkComponents[panelDef.toolPanel],
-        params: "toolPanelParams" in panelDef ? panelDef.toolPanelParams : {}
+        params: "toolPanelParams" in panelDef ? panelDef.toolPanelParams : {},
+        expanded:
+          panelDefs.defaultToolPanel !== undefined &&
+          panelDef.id === panelDefs.defaultToolPanel
       });
     }
 
@@ -72,6 +75,7 @@ class ToolPanels extends Component {
             <ExpansionPanel
               key={panel.id}
               className="biochemical-entity-data-table-tool-panel"
+              defaultExpanded={panel.expanded}
             >
               <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                 {panel.name}
