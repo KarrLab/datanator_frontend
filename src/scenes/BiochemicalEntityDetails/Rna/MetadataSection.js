@@ -4,6 +4,22 @@ import PropTypes from "prop-types";
 import { upperCaseFirstLetter } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
 
+function formatMetadata(rawData, organism) {
+  const formattedData = {};
+
+  formattedData.geneName = rawData[0].gene_name;
+
+  if (rawData[0].function) {
+    formattedData.proteinName = rawData[0].function;
+  } else if (rawData[0].protein_name) {
+    formattedData.proteinName = rawData[0].protein_name;
+  } else {
+    formattedData.proteinName = "Protein Name not Found";
+  }
+
+  return formattedData;
+}
+
 class MetadataSection extends Component {
   static propTypes = {
     "set-scene-metadata": PropTypes.func.isRequired
@@ -24,18 +40,8 @@ class MetadataSection extends Component {
     );
   }
 
-  formatMetadata(rawData, organism) {
-    const formattedData = {};
-
-    formattedData.geneName = rawData[0].gene_name;
-
-    if (rawData[0].function) {
-      formattedData.proteinName = rawData[0].function;
-    } else if (rawData[0].protein_name) {
-      formattedData.proteinName = rawData[0].protein_name;
-    } else {
-      formattedData.proteinName = "Protein Name not Found";
-    }
+  formatMetadataInner(rawData, organism) {
+    const formattedData = formatMetadata(rawData, organism);
 
     this.setState({ metadata: formattedData });
 
@@ -67,7 +73,7 @@ class MetadataSection extends Component {
         <BaseMetadataSection
           entity-type="RNA"
           get-metadata-url={this.getMetadataUrl}
-          format-metadata={this.formatMetadata.bind(this)}
+          format-metadata={this.formatMetadataInner.bind(this)}
           set-scene-metadata={this.props["set-scene-metadata"]}
         />
 
@@ -100,3 +106,4 @@ class MetadataSection extends Component {
 }
 
 export default withRouter(MetadataSection);
+export { formatMetadata };
