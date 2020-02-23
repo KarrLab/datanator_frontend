@@ -31,6 +31,14 @@ The *Datanator* toolkit seeks to address these problems for biochemical modeling
 
 This package provides a web-based graphical user interface to *Datanator-db*. A public, hosted version of the package is freely available at [https://datanator.info](https://datanator.info). The package provides investigators tools for browsing and searching *Datanator-db* to find data about biochemical entities of interest (e.g., metabolites, proteins, reactions). This includes tools for finding experimental observations from chemically and genetically similar entities (according to structural and sequence similarity) in phylogenetically similar organism (according to the NCBI Taxonomy tree) under similar enviromental conditions (e.g., temperature, pH). The package is implemented using [React](https://reactjs.org/).
 
+## Packages and Tools
+- [React](https://reactjs.org/docs/getting-started.html).
+- [AG-grid](https://www.ag-grid.com/documentation-main/documentation.php) is used to generate the data tables.
+- [FontAwesome](https://fontawesome.com/) is used for icons.
+- [Axios](https://github.com/axios/axios) is used to make HTTP requests.
+- [Jest](https://jestjs.io/) is used for unit tests.
+- [Cypress](https://www.cypress.io/) is used for integration tests.
+
 ## Usage and installation
 
 ### Users: use the public, hosted deployment
