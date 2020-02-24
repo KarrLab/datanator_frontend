@@ -1,5 +1,7 @@
 import { HalfLifeDataTable } from "~/scenes/BiochemicalEntityDetails/Rna/HalfLifeDataTable";
 import testRawData from "~/__tests__/fixtures/rna-abundances-phophofructokinase";
+import testRawDataWithoutGeneName from "~/__tests__/fixtures/rna-abundances-prephenate-dehydrogenase-without-gene-name";
+
 import { formatMetadata } from "~/scenes/BiochemicalEntityDetails/Rna/MetadataSection";
 
 /* global describe, it, expect */
@@ -38,11 +40,18 @@ describe("Reaction data page", () => {
 
   it("Formats metadata data correctly", async () => {
     // format raw data
-    const formattedMetadata = formatMetadata(testRawData);
+    let formattedMetadata = formatMetadata(testRawData);
     console.log(formattedMetadata);
     expect(formattedMetadata).toEqual({
       geneName: "pfk",
       proteinName: "Archaeal ADP-dependent phosphofructokinase/glucokinase"
+    });
+
+
+    const formattedMetadataWithoutProteinName = formatMetadata(testRawDataWithoutGeneName);
+    expect(formattedMetadataWithoutProteinName).toEqual({
+      geneName: null,
+      proteinName: "Protein Name not Found"
     });
   });
 });

@@ -1,0 +1,256 @@
+[
+  {
+    "function": "",
+    "gene_name": null,
+    "halflives": [
+      {
+        "ar_cog": "arCOG00256",
+        "cog": "COG0287",
+        "cog_class": "E",
+        "growth_medium": "MeOH",
+        "halflife": 4218.12324,
+        "ncbi_taxonomy_id": 188937,
+        "ordered_locus_name": "MA4595",
+        "reference": [
+          {
+            "doi": "10.1186/s12864-016-3219-8"
+          }
+        ],
+        "species": "Methanosarcina acetivorans",
+        "std": 1040.83386,
+        "std_over_avg": 0.2467528331,
+        "unit": "s"
+      },
+      {
+        "ar_cog": "arCOG00256",
+        "cog": "COG0287",
+        "cog_class": "E",
+        "growth_medium": "TMA",
+        "halflife": 1873.05888,
+        "ncbi_taxonomy_id": 188937,
+        "ordered_locus_name": "MA4595",
+        "reference": [
+          {
+            "doi": "10.1186/s12864-016-3219-8"
+          }
+        ],
+        "species": "Methanosarcina acetivorans",
+        "std": 456.96618,
+        "std_over_avg": 0.2439678672,
+        "unit": "s"
+      },
+      {
+        "ar_cog": "arCOG00256",
+        "cog": "COG0287",
+        "cog_class": "E",
+        "growth_medium": "Acetate",
+        "halflife": 9960.90432,
+        "ncbi_taxonomy_id": 188937,
+        "ordered_locus_name": "MA4595",
+        "reference": [
+          {
+            "doi": "10.1186/s12864-016-3219-8"
+          }
+        ],
+        "species": "Methanosarcina acetivorans",
+        "std": 3058.72242,
+        "std_over_avg": 0.3070727639,
+        "unit": "s"
+      }
+    ],
+    "modified": "2019-12-03T17:32:45.662000Z",
+    "protein_name": null
+  },
+  {
+    "gene_name": "tyrA",
+    "halflives": [
+      {
+        "growth_medium": "Middlebrook 7H9 with the ADC supplement (Difco) and 0.05% Tween80, at 37 degree celcius.",
+        "halflife": 736.9783665141258,
+        "ncbi_taxonomy_id": 83332,
+        "ordered_locus_name": "Rv3754",
+        "r_sqaured": 0.9329934407780525,
+        "reference": [
+          {
+            "doi": "10.1093/nar/gks1019",
+            "pubmed_id": "23125364"
+          }
+        ],
+        "species": "Mycobacterium tuberculosis H37Rv",
+        "unit": "s"
+      },
+      {
+        "cog": "E",
+        "expression_reads_per_kb_per_mb": 17.24819507,
+        "gene_end": 2805376,
+        "gene_start": 2806512,
+        "growth_medium": "Luria-Bertani (LB) broth (500 ml) at 30 degree celcius, 250 rpm.",
+        "halflife": 430.380138,
+        "ncbi_taxonomy_id": 222523,
+        "operon": ["TU_2804056-2810882_R"],
+        "ordered_locus_name": "BCE_2995",
+        "quantification_method": "Illumina GA-II",
+        "reference": [
+          {
+            "doi": "10.1186/gb-2012-13-4-r30",
+            "pubmed_id": "22537947"
+          }
+        ],
+        "species": "Bacillus cereus ATCC 10987",
+        "strand": "R",
+        "transcriptional_end_sites": "Part of operon",
+        "transcriptional_start_sites": "Part of operon",
+        "unit": "s"
+      },
+      {
+        "doubling_time": {
+          "unit": "h",
+          "value": 6.9
+        },
+        "growth_medium": "M9 minimal medium supplemented with glucose",
+        "halflife": 175.26133859735342,
+        "ncbi_taxonomy_id": 511145,
+        "ordered_locus_name": "b2600",
+        "reference": [
+          {
+            "doi": "10.1093/nar/gkt1150"
+          }
+        ],
+        "species": "Escherichia coli str. K-12 substr. MG1655",
+        "unit": "s",
+        "variation_coefficient": 13.267330027856
+      },
+      {
+        "doubling_time": {
+          "unit": "h",
+          "value": 3.5
+        },
+        "growth_medium": "M9 minimal medium supplemented with glucose",
+        "halflife": 162.9365675822166,
+        "ncbi_taxonomy_id": 511145,
+        "ordered_locus_name": "b2600",
+        "reference": [
+          {
+            "doi": "10.1093/nar/gkt1150"
+          }
+        ],
+        "species": "Escherichia coli str. K-12 substr. MG1655",
+        "unit": "s",
+        "variation_coefficient": 14.6715022187562
+      },
+      {
+        "doubling_time": {
+          "unit": "h",
+          "value": 2.3
+        },
+        "growth_medium": "M9 minimal medium supplemented with glucose",
+        "halflife": 126.47168212576561,
+        "ncbi_taxonomy_id": 511145,
+        "ordered_locus_name": "b2600",
+        "reference": [
+          {
+            "doi": "10.1093/nar/gkt1150"
+          }
+        ],
+        "species": "Escherichia coli str. K-12 substr. MG1655",
+        "unit": "s",
+        "variation_coefficient": 15.8061769465626
+      },
+      {
+        "doubling_time": {
+          "unit": "h",
+          "value": 1.7
+        },
+        "growth_medium": "M9 minimal medium supplemented with glucose",
+        "halflife": 80.5883442724728,
+        "ncbi_taxonomy_id": 511145,
+        "ordered_locus_name": "b2600",
+        "reference": [
+          {
+            "doi": "10.1093/nar/gkt1150"
+          }
+        ],
+        "species": "Escherichia coli str. K-12 substr. MG1655",
+        "unit": "s",
+        "variation_coefficient": 9.69253270174319
+      },
+      {
+        "doubling_time": {
+          "unit": "h",
+          "value": 6.301338005090412
+        },
+        "halflife": 780.6,
+        "ncbi_taxonomy_id": 272623,
+        "reference": [
+          {
+            "doi": "10.1371/journal.pone.0059059"
+          }
+        ],
+        "species": "Lactococcus lactis subsp. lactis Il1403",
+        "unit": "s"
+      },
+      {
+        "doubling_time": {
+          "unit": "h",
+          "value": 1.3591121187449908
+        },
+        "halflife": 712.1999999999999,
+        "ncbi_taxonomy_id": 272623,
+        "reference": [
+          {
+            "doi": "10.1371/journal.pone.0059059"
+          }
+        ],
+        "species": "Lactococcus lactis subsp. lactis Il1403",
+        "unit": "s"
+      },
+      {
+        "doubling_time": {
+          "unit": "h",
+          "value": 0.8664339756999315
+        },
+        "halflife": 331.2,
+        "ncbi_taxonomy_id": 272623,
+        "reference": [
+          {
+            "doi": "10.1371/journal.pone.0059059"
+          }
+        ],
+        "species": "Lactococcus lactis subsp. lactis Il1403",
+        "unit": "s"
+      },
+      {
+        "doubling_time": {
+          "unit": "h",
+          "value": 1.8240715277893296
+        },
+        "halflife": "NaN",
+        "ncbi_taxonomy_id": 272623,
+        "reference": [
+          {
+            "doi": "10.1371/journal.pone.0059059"
+          }
+        ],
+        "species": "Lactococcus lactis subsp. lactis Il1403",
+        "unit": "s"
+      },
+      {
+        "doubling_time": {
+          "unit": "h",
+          "value": 17.328679513998633
+        },
+        "halflife": 534.0,
+        "ncbi_taxonomy_id": 272623,
+        "reference": [
+          {
+            "doi": "10.1371/journal.pone.0059059"
+          }
+        ],
+        "species": "Lactococcus lactis subsp. lactis Il1403",
+        "unit": "s"
+      }
+    ],
+    "modified": "2019-12-06T21:48:36.210000Z",
+    "protein_synonyms": []
+  }
+]
