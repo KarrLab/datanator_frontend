@@ -44,10 +44,6 @@ describe("Protein data page", () => {
     });
 
     expect(formattedData[7].organism).toEqual("Saccharomyces cerevisiae S288C");
-    //expect(formattedData[7].source).toEqual({
-    //  source: "ymdb",
-    //  id: "ymdb_id_xxx"
-    //});
     expect(formattedData[20].geneSymbol).toEqual(null);
   });
 

@@ -66,8 +66,6 @@ describe("Metabolite data page", () => {
 
     // format raw data
     const formattedMetadata = formatMetadata(testRawData);
-    //console.log(formattedMetadata)
-
     // test formatted data
     expect(formattedMetadata.cellularLocations).toHaveLength(1);
     expect(formattedMetadata.cellularLocations[0]).toEqual("Cytosol");
@@ -78,11 +76,7 @@ describe("Metabolite data page", () => {
     expect(formattedMetadata.description[0]).toEqual(
       expect.stringContaining("Uridine 5'-diphosphate,")
     );
-
     expect(formattedMetadata.synonyms).toEqual(["5'-UDP", "UDP"]);
 
-    //expect(formattedMetadata.pathways).toHaveLength(22)
-
-    //expect(formattedMetadata.pathways[0].description).toEqual(expect.stringContaining("The biosynthesis of a"))
   });
 });

@@ -20,7 +20,7 @@ const DB_LINKS = [
   { label: "SABIO-RK", url: "http://sabiork.h-its.org/newSearch?q=ecnumber:" }
 ];
 
-function formatMetadata(rawData, organism) {
+function formatMetadata(rawData) {
   const formattedData = {};
 
   const reactionId = MetadataSection.getReactionId(rawData[0].resource);
@@ -80,7 +80,7 @@ class MetadataSection extends Component {
   }
 
   formatMetadataInner(rawData, organism) {
-    const formattedData = formatMetadata(rawData, organism);
+    const formattedData = formatMetadata(rawData);
 
     this.setState({ metadata: formattedData });
 

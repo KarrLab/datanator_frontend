@@ -37,16 +37,11 @@ describe("Reaction data page", () => {
     });
 
     expect(formattedData[20].organism).toEqual("Homo sapiens");
-    //expect(formattedData[7].source).toEqual({
-    //  source: "ymdb",
-    //  id: "ymdb_id_xxx"
-    //});
     expect(formattedData[5].km).toEqual({ AMP: 0.0014 });
     expect(formattedData[10].km).toEqual({});
   });
 
   it("Formats metadata data correctly", async () => {
-
     // format raw data
     const formattedMetadata = formatMetadata(testRawData);
     console.log(formattedMetadata);
