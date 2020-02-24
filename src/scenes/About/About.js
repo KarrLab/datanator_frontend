@@ -58,6 +58,11 @@ class About extends Component {
                     </HashLink>
                   </li>
                   <li>
+                    <HashLink to="#contribute" scroll={scrollTo}>
+                      Contributing
+                    </HashLink>
+                  </li>
+                  <li>
                     <HashLink to="#acknowledgements" scroll={scrollTo}>
                       Acknowledgements
                     </HashLink>
@@ -323,8 +328,18 @@ class About extends Component {
               </h2>
               <div className="content-block-content">
                 <p className="no-bottom-margin">
-                  <i>Datanator</i> is implemented using the following
-                  technologies:
+                  <i>Datanator</i> is implemented <i>Datanator</i> as a Single
+                  Page Application using the technologies listed below. Please
+                  see the{" "}
+                  <a
+                    href="https://github.com/KarrLab/datanator_frontend/blob/master/README.md"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    README
+                  </a>{" "}
+                  for more information about how <i>Datanator</i> is
+                  implemented, tested, and deployed.
                 </p>
                 <ul className="three-col-list">
                   <li>
@@ -695,6 +710,26 @@ class About extends Component {
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            <div className="content-block section developers" id="contribute">
+              <h2 className="content-block-heading">
+                Contributing to <i>Datanator</i>
+              </h2>
+              <div className="content-block-content">
+                We welcome contributions to <i>Datanator</i> via Git pull
+                requests. Please contact the developers to coordinate potential
+                contributions, and please see the{" "}
+                <a
+                  href="https://github.com/KarrLab/datanator_frontend/blob/master/README.md"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  README
+                </a>{" "}
+                for information about how to install, edit, test, and run{" "}
+                <i>Datanator</i> and submit pull requests.
               </div>
             </div>
 

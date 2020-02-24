@@ -13,11 +13,13 @@ body {
 
 /* paragraphs */
 #root p {
+  margin-block-start: 0;
+  margin-block-end: 0;
   margin-bottom: 0;
 }
 
 #root p:not(:last-child) {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 #root p.no-bottom-margin,
@@ -30,6 +32,8 @@ ul,
 ol {
   margin-left: 18px;
   padding-left: 0;
+  margin-block-start: 0.5rem;
+  margin-block-end: 0.5rem;
 }
 
 ul:last-child,
