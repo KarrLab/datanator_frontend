@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router";
 import PropTypes from "prop-types";
 import { upperCaseFirstLetter } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
@@ -217,4 +216,4 @@ class MetadataSection extends Component {
   }
 }
 
-export default withRouter(MetadataSection);
+export default MetadataSection;
