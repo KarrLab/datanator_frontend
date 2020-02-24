@@ -105,5 +105,4 @@ class MetadataSection extends Component {
   }
 }
 
-export default withRouter(MetadataSection);
-export { formatMetadata };
+export { MetadataSection, formatMetadata };
