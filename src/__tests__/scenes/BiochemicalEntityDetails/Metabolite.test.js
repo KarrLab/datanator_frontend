@@ -77,6 +77,5 @@ describe("Metabolite data page", () => {
       expect.stringContaining("Uridine 5'-diphosphate,")
     );
     expect(formattedMetadata.synonyms).toEqual(["5'-UDP", "UDP"]);
-
   });
 });
