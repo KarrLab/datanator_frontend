@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { upperCaseFirstLetter } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
 
-function formatMetadata(rawData, organism) {
+function formatMetadata(rawData) {
   const formattedData = {};
 
   formattedData.geneName = rawData[0].gene_name;
@@ -41,7 +41,7 @@ class MetadataSection extends Component {
   }
 
   formatMetadataInner(rawData, organism) {
-    const formattedData = formatMetadata(rawData, organism);
+    const formattedData = formatMetadata(rawData);
 
     this.setState({ metadata: formattedData });
 
