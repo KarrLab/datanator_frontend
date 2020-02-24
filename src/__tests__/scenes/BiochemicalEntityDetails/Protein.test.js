@@ -1,7 +1,11 @@
 import { AbundanceDataTable } from "~/scenes/BiochemicalEntityDetails/Protein/AbundanceDataTable";
 import testRawData from "~/__tests__/fixtures/protein-abundances-6-phosphofructo-2-kinase";
 import testRawMetadata from "~/__tests__/fixtures/protein-metadata-6-phosphofructo-2-kinase";
-import { formatMetadata } from "~/scenes/BiochemicalEntityDetails/Protein/MetadataSection";
+import {
+  formatMetadata,
+  MetadataSection
+} from "~/scenes/BiochemicalEntityDetails/Protein/MetadataSection";
+//import MetadataSection from "~/scenes/BiochemicalEntityDetails/Protein/MetadataSection";
 
 /* global describe, it, expect */
 describe("Protein data page", () => {
@@ -19,7 +23,7 @@ describe("Protein data page", () => {
     );
   });
 
-  it("Formats concentration data correct", async () => {
+  it("Formats concentration data correctly", async () => {
     const uniprot_to_taxon = { Q9UTE1: 6, Q8TFH0: 6, Q12471: 6, P40433: 6 };
     // instantiate data table
     const dataTable = new AbundanceDataTable({
@@ -47,8 +51,28 @@ describe("Protein data page", () => {
     expect(formattedData[20].geneSymbol).toEqual(null);
   });
 
+  it("Gets correct metadata url ", async () => {
+    const metadata = new MetadataSection();
+    const query = "K00850";
+    const organism = "Saccharomyces cerevisiae S288C";
+    expect(metadata.getMetadataUrl(query, organism)).toEqual(
+      "proteins/proximity_abundance/proximity_abundance_kegg/" +
+        "?kegg_id=" +
+        query +
+        (organism ? "&anchor=" + organism : "") +
+        "&distance=40" +
+        "&depth=40"
+    );
+  });
+
   it("Formats metadata data correctly", async () => {
     // instantiate data table
+    //const organism = "Saccharomyces cerevisiae S288C";
+
+    //const metadata = new MetadataSection()
+    //metadata.props["set-scene-metadata"] = {(metadata) => this.setState({ metadata: metadata })}
+    //metadata.formatMetadataInner(testRawMetadata, organism)
+    //expect(metadata.state.koNumber).toEqual("K00850")
 
     // format raw data
     const formattedMetadata = formatMetadata(testRawMetadata);

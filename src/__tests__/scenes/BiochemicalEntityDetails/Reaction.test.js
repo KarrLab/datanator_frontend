@@ -1,7 +1,9 @@
 import { RateConstantsDataTable } from "~/scenes/BiochemicalEntityDetails/Reaction/RateConstantsDataTable";
 import testRawData from "~/__tests__/fixtures/reaction-constants-adenylate-kinase";
-import { formatMetadata } from "~/scenes/BiochemicalEntityDetails/Reaction/MetadataSection";
-
+import {
+  formatMetadata,
+  MetadataSection
+} from "~/scenes/BiochemicalEntityDetails/Reaction/MetadataSection";
 /* global describe, it, expect */
 describe("Reaction data page", () => {
   it("Gets correct reaction data url", () => {
@@ -39,6 +41,24 @@ describe("Reaction data page", () => {
     expect(formattedData[20].organism).toEqual("Homo sapiens");
     expect(formattedData[5].km).toEqual({ AMP: 0.0014 });
     expect(formattedData[10].km).toEqual({});
+  });
+
+  it("Gets correct metadata url ", async () => {
+    const metadata = new MetadataSection();
+    const query = "ATP + AMP --> ADP";
+    const organism = "Saccharomyces cerevisiae S288C";
+    const substrates = "ATP + AMP";
+    const products = "ADP";
+    expect(metadata.getMetadataUrl(query, organism)).toEqual(
+      "reactions/kinlaw_by_name/" +
+        "?substrates=" +
+        substrates +
+        "&products=" +
+        products +
+        "&_from=0" +
+        "&size=1000" +
+        "&bound=tight"
+    );
   });
 
   it("Formats metadata data correctly", async () => {
