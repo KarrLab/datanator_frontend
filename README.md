@@ -201,6 +201,9 @@ This repository is organized as follows:
 10. GitHub will automatically trigger [CircleCI](https://circleci.com/gh/KarrLab/datanator_frontend) to run the unit test, integration tests, and other static analyses for the master branch
 11. Once the CircleCI build succeeds, https://datanator.info will automatically be updated to the latest revision of the master branch
 
+## Contributing to *Datanator*
+We welcome contributions to *Datanator* via Git pull requests. Please contact the developers to coordinate potential contributions, and please see above for information about how to submit pull requests.
+
 ## License
 This package is released under the [MIT license](LICENSE). The licenses of the third party dependencies are summarized in [LICENSE-THIRD-PARTY](LICENSE-THIRD-PARTY).
 
