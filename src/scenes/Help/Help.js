@@ -2,6 +2,16 @@ import React, { Component } from "react";
 import { HashLink } from "react-router-hash-link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { scrollTo } from "~/utils/utils";
+import one_home from "./images/1_home.png";
+import two_intermediate from "./images/2_intermediate.png";
+import three_metadata from "./images/3_metadata.png";
+import four_datatable from "./images/4_datatable.png";
+import five_datatable from "./images/5_datatable.png";
+import six_datatable from "./images/6_datatable.png";
+import seven_datatable from "./images/7_datatable.png";
+import eight_excel from "./images/8_excelImage.png";
+
+
 
 import "./Help.scss";
 
@@ -166,7 +176,98 @@ class Help extends Component {
                     year for more information.
                   </div>
                 </div>
+
               </div>
+              <div className="content-block section">
+              <h2 className="content-block-heading">Walkthrough</h2>
+              <div className="content-block-content">
+                <ol className="tutorial">
+                  <li className="tutorial-step">
+                    <div className="tutorial-step-title">
+                      In a seperate window, open up the home page. In the search bar, enter ATP and Bacillus subtilis subs subtilis.
+                    </div>
+                    <object
+                      data={one_home}
+                      className="section-column-icon"
+                      alt="Identify parameters icon"
+                      aria-label="Identify parameters icon"
+                    />
+                    <div className="tutorial-step-text">
+                      Use the search form at the top to search for measurements
+                      of a metabolite, RNA, protein, or reaction relevant to a
+                      specific organism.
+                    </div>
+                  </li>
+
+                  <li className="tutorial-step">
+                    <div className="tutorial-step-title">
+                      Filter for potentially relevant measurements of similar
+                      entities in similar cells and similar environments.
+                    </div>
+                    <object
+                      data={two_intermediate}
+                      className="section-column-icon"
+                      alt="Identify parameters icon"
+                      aria-label="Identify parameters icon"
+                    />
+                    <div className="tutorial-step-text">
+                      Select a metabolite, RNA, protein, or reaction class (e.g,
+                      KEGG ortholog group) to obtain potentially relevant
+                      measurements to the entity of interest. Then filter for
+                      data about similar entities (e.g., by sequence similarity)
+                      measured in similar organisms (by phylogenetic distance)
+                      and environments (e.g., temperature, pH).
+                    </div>
+                  </li>
+
+                  <li className="tutorial-step">
+                    <div className="tutorial-step-title">
+                      Review the potentially relevant measurements to determine
+                      the relevant measurements.
+                    </div>
+                    <object
+                      data={three_metadata}
+                      className="section-column-icon"
+                      alt="Identify parameters icon"
+                      aria-label="Identify parameters icon"
+                    />
+                    <div className="tutorial-step-text">
+                      Inspect each potentially relevant measurement and select
+                      the most relevant measurements to the entity and organism
+                      of interest.
+                    </div>
+                  </li>
+
+                  <li className="tutorial-step">
+                    <div className="tutorial-step-title">
+                      Analyze the distribution of relevant measurements.
+                    </div>
+                    <object
+                      data={four_datatable}
+                      className="section-column-icon"
+                      alt="Identify parameters icon"
+                      aria-label="Identify parameters icon"
+                    />
+                    <div className="tutorial-step-text">
+                      Review box plots and statistical properties of the
+                      selected and potentially relevant measurements.
+                    </div>
+                  </li>
+
+                  <li className="tutorial-step">
+                    <div className="tutorial-step-title">
+                      Export molecular data for model construction and
+                      validation.
+                    </div>
+                    <div className="tutorial-step-text">
+                      Export the selected measurements, or all of the
+                      measurements, in JSON format for further analysis such as
+                      model construction or validation.
+                    </div>
+                  </li>
+                </ol>
+              </div>
+            </div>
             </div>
           </div>
         </div>
