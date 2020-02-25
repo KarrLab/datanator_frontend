@@ -33,7 +33,7 @@ class MetadataSection extends Component {
     } else if (rawData[0].protein_name) {
       processedData.proteinName = rawData[0].protein_name;
     } else {
-      processedData.proteinName = "Protein Name not Found";
+      processedData.proteinName = "Protein name not found";
     }
 
     return processedData;
