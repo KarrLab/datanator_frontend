@@ -4,6 +4,7 @@ import { HtmlColumnHeader } from "../HtmlColumnHeader";
 
 class RateConstantsDataTable extends Component {
   getUrl(query) {
+    console.log(query)
     const substratesProducts = query.split("-->");
     const substrates = substratesProducts[0].trim();
     const products = substratesProducts[1].trim();

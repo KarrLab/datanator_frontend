@@ -16,6 +16,7 @@ const DEFAULT_ERROR_MESSAGE = (
 
 function getDataFromApi(params, options = {}) {
   const url = ROOT_URL + params.join("/");
+  console.log(url)
   return axios.get(url, options);
 }
 
