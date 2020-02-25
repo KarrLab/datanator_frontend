@@ -73,28 +73,14 @@ class ConcentrationDataTable extends Component {
           labelDefault: "Columns",
           labelKey: "columns",
           iconKey: "columns",
-          toolPanel: "agColumnsToolPanel",
-          toolPanelParams: {
-            suppressRowGroups: true,
-            suppressValues: true,
-            suppressPivots: true,
-            suppressPivotMode: true,
-            suppressSideButtons: false,
-            suppressColumnFilter: true,
-            suppressColumnSelectAll: true,
-            suppressColumnExpandAll: true
-          }
+          toolPanel: "columnsToolPanel"
         },
         {
           id: "filters",
           labelDefault: "Filters",
           labelKey: "filters",
           iconKey: "filter",
-          toolPanel: "agFiltersToolPanel",
-          toolPanelParams: {
-            suppressFilterSearch: true,
-            suppressExpandAll: true
-          }
+          toolPanel: "filtersToolPanel"
         },
         {
           id: "stats",
@@ -120,7 +106,7 @@ class ConcentrationDataTable extends Component {
         field: "value",
         cellRenderer: "numericCellRenderer",
         type: "numericColumn",
-        filter: "agNumberColumnFilter",
+        filter: "numberFilter",
         checkboxSelection: true,
         headerCheckboxSelection: true,
         headerCheckboxSelectionFilteredOnly: true
@@ -131,12 +117,12 @@ class ConcentrationDataTable extends Component {
         cellRenderer: "numericCellRenderer",
         type: "numericColumn",
         hide: true,
-        filter: "agNumberColumnFilter"
+        filter: "numberFilter"
       },
       {
         headerName: "Metabolite",
         field: "name",
-        filter: "agSetColumnFilter",
+        filter: "textFilter",
         cellRenderer: "linkCellRenderer",
         cellRendererParams: {
           route: "metabolite",
@@ -149,7 +135,10 @@ class ConcentrationDataTable extends Component {
         cellRenderer: "numericCellRenderer",
         type: "numericColumn",
         hide: true,
-        filter: "tanimotoFilter",
+        filter: "numberFilter",
+        filterParams: {
+          hiBound: 1.0
+        },
         valueFormatter: params => {
           return params.value.toFixed(3);
         }
@@ -157,16 +146,13 @@ class ConcentrationDataTable extends Component {
       {
         headerName: "Organism",
         field: "organism",
-        filter: "agSetColumnFilter"
+        filter: "textFilter"
       },
       {
         headerName: "Taxonomic distance",
         field: "taxonomicProximity",
         hide: true,
         filter: "taxonomyFilter",
-        filterParams: {
-          taxonLineage: []
-        },
         valueFormatter: params => {
           const value = params.value;
           return value;
@@ -175,19 +161,19 @@ class ConcentrationDataTable extends Component {
       {
         headerName: "Growth phase",
         field: "growthPhase",
-        filter: "agSetColumnFilter",
+        filter: "textFilter",
         hide: true
       },
       {
         headerName: "Conditions",
         field: "growthConditions",
-        filter: "agTextColumnFilter",
+        filter: "textFilter",
         hide: true
       },
       {
         headerName: "Media",
         field: "growthMedia",
-        filter: "agTextColumnFilter",
+        filter: "textFilter",
         hide: true
       },
       {
@@ -215,7 +201,7 @@ class ConcentrationDataTable extends Component {
         filterValueGetter: params => {
           return params.data.source.source.toUpperCase();
         },
-        filter: "agSetColumnFilter"
+        filter: "textFilter"
       }
     ];
 

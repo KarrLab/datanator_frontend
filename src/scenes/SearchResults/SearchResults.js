@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router";
 import PropTypes from "prop-types";
 import { HashLink } from "react-router-hash-link";
 import { scrollTo, parseHistoryLocationPathname } from "~/utils/utils";
@@ -100,4 +101,4 @@ class SearchResults extends Component {
   }
 }
 
-export default SearchResults;
+export default withRouter(SearchResults);

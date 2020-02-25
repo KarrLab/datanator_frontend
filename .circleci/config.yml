@@ -4,19 +4,6 @@ workflows:
   React:
     jobs:
       - build
-      - stage:
-          filters:
-            branches:
-              only: master
-          requires:
-            - build
-      - approve deploy:
-          type: approval
-          requires:
-            - stage
-      - deploy:
-          requires:
-            - approve deploy
 
 jobs:
   build:
@@ -111,22 +98,19 @@ jobs:
             if [[ $? -ne 0 ]]; then error=1; fi
 
             # Lint JavaScript
-            eslint .
+            npm run lint-js
             if [[ $? -ne 0 ]]; then error=1; fi
 
             # Lint CSS
-            stylelint .
+            npm run lint-style
             if [[ $? -ne 0 ]]; then error=1; fi
 
             # Lint JSON
-            find . -name "*.json" -not -path "./node_modules/*" -print0 |
-            while IFS= read -r -d '' line; do
-              jsonlint -q "$line"
-              if [[ $? -ne 0 ]]; then error=1; fi
-            done
+            npm run lint-json
+            if [[ $? -ne 0 ]]; then error=1; fi
 
             # Lint svg
-            find src -name "*.svg" | xargs -r svglint --ci
+            npm run lint-svg
             if [[ $? -ne 0 ]]; then error=1; fi
 
             # Build production package
@@ -178,50 +162,3 @@ jobs:
       - store_artifacts:
           path: ~/project/LICENSE-THIRD-PARTY
           destination: LICENSE-THIRD-PARTY
-  stage:
-    docker:
-      - image: buildpack-deps:trusty
-    environment:
-      HEROKU_APP_NAME_STAGE: datanator-frontend-stage
-    steps:
-      - checkout
-      - run:
-          name: "Install Heroku CLI, if necessary"
-          command: |
-            if [[ $(command -v heroku) == "" ]]; then
-              curl https://cli-assets.heroku.com/install.sh | sh
-            else
-              echo "Heroku is already installed. No operation was performed."
-            fi
-      - run:
-          name: Enable Heroku Stage Container
-          command: heroku ps:scale web=1 -a $HEROKU_APP_NAME_STAGE
-      - run:
-          name: Stage Master to Heroku
-          command: |
-            git push --force https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME_STAGE.git master
-  deploy:
-    docker:
-      - image: buildpack-deps:trusty
-    environment:
-      HEROKU_APP_NAME_STAGE: datanator-frontend-stage
-      HEROKU_APP_NAME: datanator-frontend
-    steps:
-      - checkout
-      - run:
-          name: "Install Heroku CLI, if necessary"
-          command: |
-            if [[ $(command -v heroku) == "" ]]; then
-              curl https://cli-assets.heroku.com/install.sh | sh
-            else
-              echo "Heroku is already installed. No operation was performed."
-            fi
-      - run:
-          name: Disable Heroku Stage Container
-          command: |
-            heroku ps:stop -a $HEROKU_APP_NAME_STAGE web
-            heroku ps:scale web=0 -a $HEROKU_APP_NAME_STAGE
-      - run:
-          name: Deploy Master to Heroku
-          command: |
-            git push --force https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master

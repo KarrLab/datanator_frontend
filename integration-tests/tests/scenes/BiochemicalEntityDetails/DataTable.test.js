@@ -26,10 +26,12 @@ describe("DataTable", function() {
       });
 
     // toggle all columns
-    cy.get("#concentration .ag-side-button")
+    cy.get("#concentration .biochemical-entity-data-table-tool-panel")
       .first()
       .click();
-    cy.get("#concentration .ag-column-select-checkbox").each($input => {
+    cy.get(
+      "#concentration .biochemical-entity-scene-columns-tool-panel input"
+    ).each($input => {
       cy.wrap($input).click();
     });
     cy.get("#concentration .ag-root .ag-header-row")

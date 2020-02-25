@@ -1,53 +1,167 @@
 @import 'colors';
 
-.biochemical-entity-data-table.ag-theme-balham {
-  width: 100%;
+.biochemical-entity-data-table {
+  display: flex;
+  justify-content: space-between;
 
-  .ag-row.ag-row-last {
-    border-bottom-width: 0;
-  }
+  .ag-theme-balham {
+    width: 100%;
+    font-family: "Ubuntu", sans-serif;
 
-  // right align numeric cells with check boxes
-  .ag-numeric-cell {
-    .ag-cell-wrapper {
-      justify-content: space-between;
+    .ag-header {
+      background-color: $color-button-hover;
+    }
+
+    .ag-row.ag-row-last {
+      border-bottom-width: 0;
+    }
+
+    // right align numeric cells with check boxes
+    .ag-numeric-cell {
+      .ag-cell-wrapper {
+        justify-content: space-between;
+      }
+    }
+
+    .ag-cell {
+      .ag-react-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    a {
+      color: $color-text;
+    }
+
+    a:hover {
+      color: $color-primary;
     }
   }
+}
 
-  .ag-side-bar {
-    border-right: none;
+/* tool panels */
+.biochemical-entity-data-table-tool-panels {
+  width: 200px;
+  margin-right: 1rem;
+  border: 1px solid #bdc3c7;
+
+  .biochemical-entity-data-table-tool-panel.MuiExpansionPanel-root {
+    border-bottom: 1px solid #bdc3c7;
   }
 
-  .ag-column-tool-panel-column {
-    .ag-column-drag {
+  .MuiExpansionPanel-root::before {
+    background: none;
+  }
+
+  .MuiExpansionPanel-root.Mui-expanded {
+    margin-top: 0;
+    margin-bottom: 0;
+
+    &::before {
       display: none;
     }
   }
 
-  .ag-react-container {
-    width: 100%;
+  .MuiExpansionPanelSummary-root {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 
-  a {
-    color: $color-text;
+  .biochemical-entity-data-table-tool-panel {
+    > .MuiExpansionPanelSummary-root {
+      background: $color-button-hover;
+    }
   }
 
-  a:hover {
-    color: $color-primary;
+  .MuiExpansionPanelSummary-root,
+  .MuiExpansionPanelSummary-root.Mui-expanded {
+    min-height: 32px;
+  }
+
+  .MuiExpansionPanelSummary-content,
+  .MuiExpansionPanelSummary-content.Mui-expanded {
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .MuiExpansionPanelDetails-root {
+    border-top: 1px solid #bdc3c766;
+    padding: 0;
+  }
+
+  .MuiIconButton-root {
+    padding: 0;
+  }
+
+  .MuiIconButton-edgeEnd {
+    margin-right: -6px;
+  }
+
+  .MuiPaper-elevation1 {
+    box-shadow: none;
   }
 }
 
-/* tool panel slider */
-.tool-panel-slider {
+/* filters */
+.biochemical-entity-scene-filter {
+  width: 100%;
+}
+
+/* text filter */
+.biochemical-entity-scene-text-filter {
+  list-style-type: none;
+  margin: 0;
+  padding: 0.5rem;
+  max-height: 200px;
+  overflow-y: auto;
+
+  li {
+    display: flex;
+    align-items: center;
+
+    .label {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  li:not(:first-child) {
+    margin-top: 0.25rem;
+  }
+
+  input {
+    margin: 0;
+    margin-right: 0.25rem;
+  }
+}
+
+/* filter slider */
+.biochemical-entity-scene-slider-filter {
+  padding: 0.5rem;
+
   .MuiSlider-thumb {
     height: 15px;
     width: 15px;
     background-color: $color-primary;
+  }
+
+  .MuiSlider-thumb:hover,
+  .MuiSlider-thumb.MuiSlider-active {
     box-shadow: none;
   }
 
   .MuiSlider-markLabel {
-    font-size: 12px;
+    font-size: 10px;
+    font-family: "Ubuntu", sans-serif;
+
+    .sci-notation {
+      position: relative;
+      top: -2.8px;
+    }
   }
 
   .MuiSlider-mark {
@@ -59,7 +173,7 @@
   }
 }
 
-.tool-panel-normal-slider {
+.biochemical-entity-scene-normal-slider-filter {
   .MuiSlider-root {
     color: $color-primary;
   }
@@ -69,7 +183,7 @@
   }
 }
 
-.tool-panel-inverted-slider {
+.biochemical-entity-scene-inverted-slider-filter {
   .MuiSlider-root {
     color: $color-border-dark;
   }
@@ -79,9 +193,9 @@
   }
 }
 
-.tool-panel-horizontal-slider {
+.biochemical-entity-scene-horizontal-slider-filter {
   .MuiSlider-root {
-    padding: 15px 0;
+    padding: 15px 0 0 0;
   }
 
   .MuiSlider-root,
@@ -112,7 +226,12 @@
   }
 }
 
-.tool-panel-vertical-slider {
+.biochemical-entity-scene-vertical-slider-filter {
+  .MuiSlider-root.MuiSlider-vertical {
+    width: calc(100% - 30px - 0.5rem);
+    padding-right: 0;
+  }
+
   .MuiSlider-root,
   .MuiSlider-track,
   .MuiSlider-trackInverted,
@@ -131,26 +250,33 @@
 
   .MuiSlider-markLabel {
     transform: translateY(40%);
+    font-size: 12px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
 /* taxonomy filter */
-.taxonomy-tool-panel-slider {
-  height: 150px;
-  width: 100%;
-  margin-top: 0.75rem;
-  margin-bottom: 0.75rem;
+.biochemical-entity-scene-taxonomy-slider-filter {
+  height: 120px;
+  width: calc(100% + 8px);
+  margin-top: calc(-3px + 0.5rem);
+  margin-bottom: calc(-3px + 0.5rem);
+  margin-left: calc(-16px + 0.5rem);
 
   .MuiSlider-valueLabel {
     display: none;
   }
 }
 
-/* Tanimoto filter */
-.tanimoto-tool-panel-slider {
-  margin-left: 1.25rem;
-  margin-right: 1.25rem;
-  margin-top: 10px;
+/* Number filter */
+.number-slider-filter {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-top: -8px;
+  margin-bottom: -5px;
 
   .MuiSlider-thumb:hover,
   .MuiSlider-thumb.MuiSlider-active {
@@ -161,11 +287,20 @@
 
   .MuiSlider-valueLabel {
     display: none;
-    font-style: 12px;
+    font-style: 10px;
+    white-space: nowrap;
 
     & * {
       background: transparent;
       color: $color-text;
+    }
+
+    > span {
+      > span {
+        background: #fff;
+        padding: 0.5rem 0.5rem 0 0.5rem;
+        font-size: 10px;
+      }
     }
   }
 }

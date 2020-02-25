@@ -59,28 +59,14 @@ class AbundanceDataTable extends Component {
           labelDefault: "Columns",
           labelKey: "columns",
           iconKey: "columns",
-          toolPanel: "agColumnsToolPanel",
-          toolPanelParams: {
-            suppressRowGroups: true,
-            suppressValues: true,
-            suppressPivots: true,
-            suppressPivotMode: true,
-            suppressSideButtons: false,
-            suppressColumnFilter: true,
-            suppressColumnSelectAll: true,
-            suppressColumnExpandAll: true
-          }
+          toolPanel: "columnsToolPanel"
         },
         {
           id: "filters",
           labelDefault: "Filters",
           labelKey: "filters",
           iconKey: "filter",
-          toolPanel: "agFiltersToolPanel",
-          toolPanelParams: {
-            suppressFilterSearch: true,
-            suppressExpandAll: true
-          }
+          toolPanel: "filtersToolPanel"
         },
         {
           id: "stats",
@@ -106,7 +92,7 @@ class AbundanceDataTable extends Component {
         field: "abundance",
         cellRenderer: "numericCellRenderer",
         type: "numericColumn",
-        filter: "agNumberColumnFilter",
+        filter: "numberFilter",
         checkboxSelection: true,
         headerCheckboxSelection: true,
         headerCheckboxSelectionFilteredOnly: true
@@ -114,7 +100,7 @@ class AbundanceDataTable extends Component {
       {
         headerName: "Protein",
         field: "proteinName",
-        filter: "agSetColumnFilter"
+        filter: "textFilter"
       },
       {
         headerName: "UniProt id",
@@ -132,22 +118,19 @@ class AbundanceDataTable extends Component {
       {
         headerName: "Gene",
         field: "geneSymbol",
-        filter: "agSetColumnFilter",
+        filter: "textFilter",
         hide: true
       },
       {
         headerName: "Organism",
         field: "organism",
-        filter: "agSetColumnFilter"
+        filter: "textFilter"
       },
       {
         headerName: "Taxonomic distance",
         field: "taxonomicProximity",
         hide: true,
         filter: "taxonomyFilter",
-        filterParams: {
-          taxonLineage: []
-        },
         valueFormatter: params => {
           const value = params.value;
           return value;
@@ -156,7 +139,7 @@ class AbundanceDataTable extends Component {
       {
         headerName: "Organ",
         field: "organ",
-        filter: "agSetColumnFilter",
+        filter: "textFilter",
         hide: false
       },
       {
@@ -172,7 +155,7 @@ class AbundanceDataTable extends Component {
           );
         },
         filterValueGetter: () => "PAXdb",
-        filter: "agSetColumnFilter"
+        filter: "textFilter"
       }
     ];
   }

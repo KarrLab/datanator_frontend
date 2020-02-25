@@ -220,5 +220,4 @@ class MetadataSection extends Component {
     );
   }
 }
-
 export { formatMetadata, MetadataSection };

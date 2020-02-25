@@ -4,12 +4,11 @@
   height: 100%;
   min-height: 350px;
   max-height: 500px;
-  width: 100%;
+  width: calc(100% - 1rem);
+  padding: 0.5rem;
   display: flex;
   flex-direction: column;
-  padding-top: 0.3rem;
-  padding-right: 0.2rem;
-  padding-bottom: 0.3rem;
+  font-size: 12px;
 
   .biochemical-entity-scene-stats-tool-panel-plot {
     flex: 1;
@@ -30,6 +29,7 @@
       margin-left: 0.125rem;
       width: 55px;
       border: 1px solid $color-border;
+      border-radius: 3px;
     }
   }
 }

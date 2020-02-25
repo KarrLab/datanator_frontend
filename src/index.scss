@@ -1,17 +1,25 @@
 @import 'colors';
 
+* {
+  font-family: "Ubuntu", sans-serif;
+  line-height: 1.28581;
+}
+
 body {
   margin: 0;
   color: $color-text;
+  font-size: 14px;
 }
 
 /* paragraphs */
 #root p {
+  margin-block-start: 0;
+  margin-block-end: 0;
   margin-bottom: 0;
 }
 
 #root p:not(:last-child) {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 #root p.no-bottom-margin,
@@ -24,6 +32,8 @@ ul,
 ol {
   margin-left: 18px;
   padding-left: 0;
+  margin-block-start: 0.5rem;
+  margin-block-end: 0.5rem;
 }
 
 ul:last-child,
@@ -110,12 +120,13 @@ ol:first-child {
 }
 
 /* links */
+a {
+  cursor: pointer;
+}
+
 a,
 a:hover {
   color: $color-primary;
-}
-
-a:hover {
   text-decoration: none;
 }
 
@@ -258,36 +269,103 @@ a:hover {
   }
 }
 
-/* autocomplete menu */
-.bp3-overlay {
-  .bp3-popover {
-    box-shadow:
-      0 0 0 1px rgba(0, 0, 0, 0.1),
-      0 2px 4px rgba(0, 0, 0, 0.2),
-      0 8px 24px rgba(0, 0, 0, 0.2);
+/* suggest menu */
+.bp3-portal {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
 
-    .bp3-popover-arrow-fill {
-      fill: $color-primary;
-    }
-  }
+  .bp3-overlay {
+    position: static;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 20;
 
-  .bp3-menu {
-    max-height: 200px;
-    overflow-x: hidden;
-    background: $color-primary;
-    color: $color-white;
-
-    .bp3-menu-item.bp3-intent-primary.bp3-active {
-      background: $color-primary-light;
+    .bp3-transition-container {
+      opacity: 1;
+      display: flex;
+      z-index: 20;
     }
 
-    .bp3-menu-item:hover,
-    .bp3-menu-item:active {
-      background-color: $color-primary-light;
+    .bp3-popover {
+      box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.1),
+        0 2px 4px rgba(0, 0, 0, 0.2),
+        0 8px 24px rgba(0, 0, 0, 0.2);
+      transform: scale(1);
+      display: inline-block;
+      z-index: 20;
+      border-radius: 3px;
+
+      .bp3-popover-arrow {
+        position: absolute;
+        width: 30px;
+        height: 30px;
+      }
+
+      .bp3-popover-arrow::before {
+        box-shadow: 1px 1px 6px rgba(16, 22, 26, 0.2);
+        margin: 5px;
+        width: 20px;
+        height: 20px;
+        display: block;
+        position: absolute;
+        transform: rotate(45deg);
+        border-radius: 2px;
+        content: "";
+      }
+
+      .bp3-popover-arrow-border {
+        fill: #000;
+        fill-opacity: 0.1;
+      }
+
+      .bp3-popover-arrow-fill {
+        fill: $color-primary;
+      }
+
+      .bp3-popover-content {
+        position: relative;
+        border-radius: 3px;
+        background: #fff;
+        color: inherit;
+      }
     }
 
-    .bp3-menu-item.bp3-disabled {
-      color: $color-primary-lighter !important; // !important is neeed because blueprint uses !important
+    .bp3-menu {
+      min-width: 180px;
+      max-height: 200px;
+      overflow-x: hidden;
+      background: $color-primary;
+      margin: 0;
+      border-radius: 3px;
+      padding: 0.25rem;
+      list-style: none;
+
+      .bp3-menu-item {
+        color: $color-white;
+        border-radius: 3px;
+        width: 100%;
+        height: 30px;
+        display: flex;
+        align-items: center;
+      }
+
+      .bp3-menu-item.bp3-intent-primary.bp3-active {
+        background: $color-primary-light;
+      }
+
+      .bp3-menu-item:hover,
+      .bp3-menu-item:active {
+        background-color: $color-primary-light;
+      }
+
+      .bp3-menu-item.bp3-disabled {
+        color: $color-primary-lighter !important; // !important is neeed because blueprint uses !important
+      }
     }
   }
 }
@@ -352,6 +430,10 @@ body {
 }
 
 /* buttons */
+button {
+  cursor: pointer;
+}
+
 .text-button {
   background: none;
   border: none;
@@ -362,6 +444,22 @@ body {
 .text-button:active {
   cursor: pointer;
   color: $color-primary;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+
+  .bp3-icon {
+    margin-right: 0.25rem;
+
+    > svg:not([fill]) {
+      fill: currentColor;
+    }
+  }
 }
 
 /* highlight */
