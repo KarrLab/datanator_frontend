@@ -3,35 +3,6 @@ import PropTypes from "prop-types";
 import { upperCaseFirstLetter, removeDuplicates } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
 
-function formatMetadata(rawData) {
-  //console.log(rawData)
-  let koNumber;
-  let koName;
-  const uniprotIdToTaxonDist = {};
-  for (const rawDatum of rawData) {
-    for (const doc of rawDatum.documents) {
-      if ("ko_number" in doc) {
-        koNumber = doc.ko_number;
-      }
-      if ("ko_name" in doc && doc.ko_name.length > 0) {
-        koName = doc.ko_name[0];
-      }
-      if (doc.abundances !== undefined) {
-        uniprotIdToTaxonDist[doc.uniprot_id] = rawDatum.distance;
-      }
-    }
-  }
-
-  const uniprotIds = removeDuplicates(Object.keys(uniprotIdToTaxonDist));
-  uniprotIds.sort();
-  return {
-    koNumber: koNumber,
-    koName: koName,
-    uniprotIdToTaxonDist: uniprotIdToTaxonDist,
-    uniprotIds: uniprotIds
-  };
-}
-
 class MetadataSection extends Component {
   static propTypes = {
     "set-scene-metadata": PropTypes.func.isRequired
@@ -53,88 +24,120 @@ class MetadataSection extends Component {
     );
   }
 
-  formatMetadataInner(rawData, organism) {
-    let metadata = formatMetadata(rawData);
+  processMetadata(rawData) {
+    //console.log(rawData)
+    let koNumber;
+    let koName;
+    const uniprotIdToTaxonDist = {};
+    for (const rawDatum of rawData) {
+      for (const doc of rawDatum.documents) {
+        if ("ko_number" in doc) {
+          koNumber = doc.ko_number;
+        }
+        if ("ko_name" in doc && doc.ko_name.length > 0) {
+          koName = doc.ko_name[0];
+        }
+        if (doc.abundances !== undefined) {
+          uniprotIdToTaxonDist[doc.uniprot_id] = rawDatum.distance;
+        }
+      }
+    }
 
-    this.setState({
-      metadata: metadata
+    const uniprotIds = removeDuplicates(Object.keys(uniprotIdToTaxonDist));
+    uniprotIds.sort();
+
+    return {
+      koNumber: koNumber,
+      koName: koName,
+      uniprotIds: uniprotIds,
+      other: { uniprotIdToTaxonDist: uniprotIdToTaxonDist }
+    };
+  }
+
+  formatTitle(processedData) {
+    return upperCaseFirstLetter(processedData.koName);
+  }
+
+  formatMetadata(processedData) {
+    const sections = [];
+
+    // description
+    const descriptions = [];
+
+    descriptions.push({
+      key: "Name",
+      value: processedData.koName
     });
 
-    const title = upperCaseFirstLetter(metadata.koName);
-
-    const sections = [{ id: "description", title: "Description" }];
-
-    this.props["set-scene-metadata"]({
-      title: title,
-      organism: organism,
-      metadataSections: sections,
-      uniprotIdToTaxonDist: metadata.uniprotIdToTaxonDist
+    descriptions.push({
+      key: "KEGG Orthology id",
+      value: (
+        <a
+          href={
+            "https://www.genome.jp/dbget-bin/www_bget?ko:" +
+            processedData.koNumber
+          }
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {" "}
+          {processedData.koNumber}
+        </a>
+      )
     });
+
+    if (processedData.uniprotIds) {
+      const uniprotLinks = [];
+      for (const uniprotId of processedData.uniprotIds) {
+        uniprotLinks.push(
+          <li key={uniprotId}>
+            <a
+              href={"https://www.uniprot.org/uniprot/" + uniprotId}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {uniprotId}
+            </a>
+          </li>
+        );
+      }
+      descriptions.push({
+        key: "Proteins",
+        value: <ul className="comma-separated-list">{uniprotLinks}</ul>
+      });
+    }
+
+    sections.push({
+      id: "description",
+      title: "Description",
+      content: (
+        <ul className="key-value-list link-list">
+          {descriptions.map(desc => {
+            return (
+              <li key={desc.key}>
+                <b>{desc.key}</b>: {desc.value}
+              </li>
+            );
+          })}
+        </ul>
+      )
+    });
+
+    // return sections
+    return sections;
   }
 
   render() {
-    const metadata = this.state.metadata;
-
-    const uniprotIds = metadata ? metadata.uniprotIds : [];
-
-    const uniprotLinks = [];
-    for (const uniprotId of uniprotIds) {
-      uniprotLinks.push(
-        <li key={uniprotId}>
-          <a
-            href={"https://www.uniprot.org/uniprot/" + uniprotId}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {uniprotId}
-          </a>
-        </li>
-      );
-    }
-
     return (
-      <div>
-        <BaseMetadataSection
-          entity-type="ortholog group"
-          get-metadata-url={this.getMetadataUrl}
-          format-metadata={this.formatMetadataInner.bind(this)}
-          set-scene-metadata={this.props["set-scene-metadata"]}
-        />
-
-        {metadata && (
-          <div>
-            <div className="content-block" id="description">
-              <h2 className="content-block-heading">Description</h2>
-              <div className="content-block-content">
-                <ul className="key-value-list link-list">
-                  <li>
-                    <b>Name:</b> {metadata.koName}
-                  </li>
-                  <li>
-                    <b>KEGG Orthology id:</b>{" "}
-                    <a
-                      href={
-                        "https://www.genome.jp/dbget-bin/www_bget?ko:" +
-                        metadata.koNumber
-                      }
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {" "}
-                      {metadata.koNumber}
-                    </a>
-                  </li>
-                  <li>
-                    <b>Proteins:</b>{" "}
-                    <ul className="comma-separated-list">{uniprotLinks}</ul>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
+      <BaseMetadataSection
+        entity-type="ortholog group"
+        get-metadata-url={this.getMetadataUrl}
+        process-metadata={this.processMetadata}
+        format-title={this.formatTitle}
+        format-metadata={this.formatMetadata}
+        set-scene-metadata={this.props["set-scene-metadata"]}
+      />
     );
   }
 }
-export { MetadataSection, formatMetadata };
+export { MetadataSection };

@@ -19,38 +19,6 @@ const DB_LINKS = [
   { label: "SABIO-RK", url: "http://sabiork.h-its.org/newSearch?q=ecnumber:" }
 ];
 
-function formatMetadata(rawData) {
-  const formattedData = {};
-
-  const reactionId = MetadataSection.getReactionId(rawData[0].resource);
-  const ecNumber = MetadataSection.getEcNum(rawData[0].resource);
-  const name = rawData[0]["enzymes"][0]["enzyme"][0]["enzyme_name"];
-  const substrates = MetadataSection.getSubstrateNames(
-    rawData[0].reaction_participant[0].substrate
-  );
-  const products = MetadataSection.getProductNames(
-    rawData[0].reaction_participant[1].product
-  );
-  formattedData["reactionId"] = reactionId;
-  formattedData["substrates"] = substrates;
-  formattedData["products"] = products;
-  if (ecNumber !== "-.-.-.-") {
-    formattedData["ecNumber"] = ecNumber;
-  }
-
-  if (name) {
-    const start = name[0].toUpperCase();
-    const end = name.substring(1, name.length);
-    formattedData["name"] = start + end;
-  }
-
-  formattedData["equation"] =
-    MetadataSection.formatSide(substrates) +
-    " → " +
-    MetadataSection.formatSide(products);
-  return formattedData;
-}
-
 class MetadataSection extends Component {
   static propTypes = {
     "set-scene-metadata": PropTypes.func.isRequired
@@ -78,29 +46,113 @@ class MetadataSection extends Component {
     );
   }
 
-  formatMetadataInner(rawData, organism) {
-    const formattedData = formatMetadata(rawData);
+  processMetadata(rawData) {
+    const processedData = {};
 
-    this.setState({ metadata: formattedData });
-
-    let title = formattedData.name;
-    if (!title) {
-      title = formattedData.equation;
+    const reactionId = MetadataSection.getReactionId(rawData[0].resource);
+    const ecNumber = MetadataSection.getEcNum(rawData[0].resource);
+    const name = rawData[0]["enzymes"][0]["enzyme"][0]["enzyme_name"];
+    const substrates = MetadataSection.getSubstrateNames(
+      rawData[0].reaction_participant[0].substrate
+    );
+    const products = MetadataSection.getProductNames(
+      rawData[0].reaction_participant[1].product
+    );
+    processedData["reactionId"] = reactionId;
+    processedData["substrates"] = substrates;
+    processedData["products"] = products;
+    if (ecNumber !== "-.-.-.-") {
+      processedData["ecNumber"] = ecNumber;
     }
-    title = upperCaseFirstLetter(title);
 
-    const sections = [
-      {
+    if (name) {
+      const start = name[0].toUpperCase();
+      const end = name.substring(1, name.length);
+      processedData["name"] = start + end;
+    }
+
+    processedData["equation"] =
+      MetadataSection.formatSide(substrates) +
+      " → " +
+      MetadataSection.formatSide(products);
+    return processedData;
+  }
+
+  formatTitle(processedData) {
+    let title = processedData.name;
+    if (!title) {
+      title = processedData.equation;
+    }
+    return upperCaseFirstLetter(title);
+  }
+
+  formatMetadata(processedData) {
+    const sections = [];
+
+    // description
+    const descriptions = [];
+    if (processedData.name) {
+      descriptions.push({ label: "Name", value: processedData.name });
+    }
+    if (processedData.equation) {
+      descriptions.push({ label: "Equation", value: processedData.equation });
+    }
+    if (processedData.ecNumber) {
+      descriptions.push({
+        label: "EC number",
+        value: (
+          <a
+            href={"https://enzyme.expasy.org/EC/" + processedData.ecNumber}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {processedData.ecNumber}
+          </a>
+        )
+      });
+    }
+    if (descriptions) {
+      sections.push({
         id: "description",
-        title: "Description"
-      }
-    ];
+        title: "Description",
+        content: (
+          <ul className="key-value-list link-list">
+            {descriptions.map(el => (
+              <li key={el.label}>
+                <b>{el.label}:</b> {el.value}
+              </li>
+            ))}
+          </ul>
+        )
+      });
+    }
 
-    this.props["set-scene-metadata"]({
-      title: title,
-      organism: organism,
-      metadataSections: sections
-    });
+    // database links
+    if (processedData.ecnumber !== undefined) {
+      const dbLinks = [];
+      for (const dbLink of DB_LINKS) {
+        dbLinks.push(
+          <li key={dbLink.label}>
+            <a
+              href={dbLink.url + processedData.ecnumber}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bulleted-list-item"
+            >
+              {dbLink.label}
+            </a>
+          </li>
+        );
+      }
+      sections.push({
+        id: "links",
+        title: "Database links",
+        content: <ul className="three-col-list link-list">{dbLinks}</ul>
+      });
+    }
+
+    // return sections
+    return sections;
   }
 
   static getReactionId(resources) {
@@ -140,84 +192,16 @@ class MetadataSection extends Component {
   }
 
   render() {
-    const metadata = this.state.metadata;
-
-    const props = [];
-    const dbLinks = [];
-    if (metadata != null) {
-      if (metadata.name) {
-        props.push({ label: "Name", value: metadata.name });
-      }
-      if (metadata.equation) {
-        props.push({ label: "Equation", value: metadata.equation });
-      }
-      if (metadata.ecNumber) {
-        props.push({
-          label: "EC number",
-          value: (
-            <a
-              href={"https://enzyme.expasy.org/EC/" + metadata.ecNumber}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {metadata.ecNumber}
-            </a>
-          )
-        });
-
-        for (const dbLink of DB_LINKS) {
-          dbLinks.push(
-            <li key={dbLink.label}>
-              <a
-                href={dbLink.url + metadata.ecnumber}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bulleted-list-item"
-              >
-                {dbLink.label}
-              </a>
-            </li>
-          );
-        }
-      }
-    }
-
     return (
-      <div>
-        <BaseMetadataSection
-          entity-type="reaction"
-          get-metadata-url={this.getMetadataUrl}
-          format-metadata={this.formatMetadataInner.bind(this)}
-          set-scene-metadata={this.props["set-scene-metadata"]}
-        />
-
-        {metadata && (
-          <div>
-            <div className="content-block" id="description">
-              <h2 className="content-block-heading">Description</h2>
-              <div className="content-block-content">
-                <ul className="key-value-list link-list">
-                  {props.map(el => (
-                    <li key={el.label}>
-                      <b>{el.label}:</b> {el.value}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {dbLinks.length > 0 && (
-              <div className="content-block" id="properties">
-                <h2 className="content-block-heading">Database Links</h2>
-                <div className="content-block-content">
-                  <ul className="three-col-list link-list">{dbLinks}</ul>
-                </div>
-              </div>
-            )}
-          </div>
-        )}
-      </div>
+      <BaseMetadataSection
+        entity-type="reaction"
+        get-metadata-url={this.getMetadataUrl}
+        process-metadata={this.processMetadata}
+        format-title={this.formatTitle}
+        format-metadata={this.formatMetadata}
+        set-scene-metadata={this.props["set-scene-metadata"]}
+      />
     );
   }
 }
-export { formatMetadata, MetadataSection };
+export { MetadataSection };

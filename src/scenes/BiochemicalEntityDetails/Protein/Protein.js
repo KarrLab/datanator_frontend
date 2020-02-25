@@ -79,7 +79,7 @@ class Protein extends Component {
               <AbundanceDataTable
                 uniprot-id-to-taxon-dist={
                   this.state.metadata
-                    ? this.state.metadata.uniprotIdToTaxonDist
+                    ? this.state.metadata.other.uniprotIdToTaxonDist
                     : null
                 }
               />
