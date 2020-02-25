@@ -3,7 +3,7 @@ import { dictOfArraysToArrayOfDicts } from "~/utils/utils";
 import DataTable from "../DataTable/DataTable";
 
 class ConcentrationDataTable extends Component {
-  getUrl(query, organism, abstract = true) {
+  static getUrl(query, organism, abstract = true) {
     return (
       "metabolites/concentration/" +
       "?metabolite=" +
@@ -14,7 +14,7 @@ class ConcentrationDataTable extends Component {
     );
   }
 
-  formatData(rawData) {
+  static formatData(rawData) {
     const formattedData = [];
     for (const rawDatum of rawData) {
       for (const met of rawDatum) {
@@ -65,7 +65,7 @@ class ConcentrationDataTable extends Component {
     return formattedData;
   }
 
-  getSideBarDef() {
+  static getSideBarDef() {
     return {
       toolPanels: [
         {
@@ -99,7 +99,7 @@ class ConcentrationDataTable extends Component {
     };
   }
 
-  getColDefs(organism) {
+  static getColDefs(organism) {
     const colDefs = [
       {
         headerName: "Concentration (µM)",
@@ -218,10 +218,10 @@ class ConcentrationDataTable extends Component {
         title="Concentration"
         entity-type="metabolite"
         data-type="concentration"
-        get-data-url={this.getUrl}
-        format-data={this.formatData}
-        get-side-bar-def={this.getSideBarDef}
-        get-col-defs={this.getColDefs}
+        get-data-url={ConcentrationDataTable.getUrl}
+        format-data={ConcentrationDataTable.formatData}
+        get-side-bar-def={ConcentrationDataTable.getSideBarDef}
+        get-col-defs={ConcentrationDataTable.getColDefs}
       />
     );
   }

@@ -84,7 +84,7 @@ class MetadataSection extends Component {
     this.state = { metadata: null };
   }
 
-  getMetadataUrl(query, organism) {
+  static getMetadataUrl(query, organism) {
     const abstract = true;
 
     return (
@@ -97,7 +97,7 @@ class MetadataSection extends Component {
     );
   }
 
-  processMetadata(rawData) {
+  static processMetadata(rawData) {
     let processedData = null;
     for (const rawDataum of rawData) {
       for (const met of rawDataum) {
@@ -176,11 +176,11 @@ class MetadataSection extends Component {
     return processedData;
   }
 
-  formatTitle(processedData) {
+  static formatTitle(processedData) {
     return upperCaseFirstLetter(processedData.name);
   }
 
-  formatMetadata(processedData) {
+  static formatMetadata(processedData) {
     const sections = [];
     if (processedData.description) {
       let structure;
@@ -369,10 +369,10 @@ class MetadataSection extends Component {
     return (
       <BaseMetadataSection
         entity-type="metabolite"
-        get-metadata-url={this.getMetadataUrl}
-        process-metadata={this.processMetadata}
-        format-title={this.formatTitle}
-        format-metadata={this.formatMetadata}
+        get-metadata-url={MetadataSection.getMetadataUrl}
+        process-metadata={MetadataSection.processMetadata}
+        format-title={MetadataSection.formatTitle}
+        format-metadata={MetadataSection.formatMetadata}
         set-scene-metadata={this.props["set-scene-metadata"]}
       />
     );

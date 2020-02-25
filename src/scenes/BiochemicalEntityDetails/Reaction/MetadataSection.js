@@ -29,7 +29,7 @@ class MetadataSection extends Component {
     this.state = { metadata: null };
   }
 
-  getMetadataUrl(query) {
+  static getMetadataUrl(query) {
     const substratesProducts = query.split("-->");
     const substrates = substratesProducts[0].trim();
     const products = substratesProducts[1].trim();
@@ -46,7 +46,7 @@ class MetadataSection extends Component {
     );
   }
 
-  processMetadata(rawData) {
+  static processMetadata(rawData) {
     const processedData = {};
 
     const reactionId = MetadataSection.getReactionId(rawData[0].resource);
@@ -78,7 +78,7 @@ class MetadataSection extends Component {
     return processedData;
   }
 
-  formatTitle(processedData) {
+  static formatTitle(processedData) {
     let title = processedData.name;
     if (!title) {
       title = processedData.equation;
@@ -86,7 +86,7 @@ class MetadataSection extends Component {
     return upperCaseFirstLetter(title);
   }
 
-  formatMetadata(processedData) {
+  static formatMetadata(processedData) {
     const sections = [];
 
     // description
@@ -195,10 +195,10 @@ class MetadataSection extends Component {
     return (
       <BaseMetadataSection
         entity-type="reaction"
-        get-metadata-url={this.getMetadataUrl}
-        process-metadata={this.processMetadata}
-        format-title={this.formatTitle}
-        format-metadata={this.formatMetadata}
+        get-metadata-url={MetadataSection.getMetadataUrl}
+        process-metadata={MetadataSection.processMetadata}
+        format-title={MetadataSection.formatTitle}
+        format-metadata={MetadataSection.formatMetadata}
         set-scene-metadata={this.props["set-scene-metadata"]}
       />
     );

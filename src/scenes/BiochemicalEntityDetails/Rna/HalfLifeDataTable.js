@@ -3,7 +3,7 @@ import DataTable from "../DataTable/DataTable";
 import { HtmlColumnHeader } from "../HtmlColumnHeader";
 
 class HalfLifeDataTable extends Component {
-  getUrl(query) {
+  static getUrl(query) {
     return (
       "/rna/halflife/get_info_by_protein_name/" +
       "?protein_name=" +
@@ -13,7 +13,7 @@ class HalfLifeDataTable extends Component {
     );
   }
 
-  formatData(rawData) {
+  static formatData(rawData) {
     const measurements = rawData[0].halflives;
     const formattedData = [];
     for (const measurement of measurements) {
@@ -27,7 +27,7 @@ class HalfLifeDataTable extends Component {
     return formattedData;
   }
 
-  getSideBarDef() {
+  static getSideBarDef() {
     return {
       toolPanels: [
         {
@@ -61,7 +61,7 @@ class HalfLifeDataTable extends Component {
     };
   }
 
-  getColDefs() {
+  static getColDefs() {
     return [
       {
         headerName: "Half-life (s^{-1})",
@@ -129,10 +129,10 @@ class HalfLifeDataTable extends Component {
         title="Half-life"
         entity-type="RNA"
         data-type="half-life"
-        get-data-url={this.getUrl}
-        format-data={this.formatData}
-        get-side-bar-def={this.getSideBarDef}
-        get-col-defs={this.getColDefs}
+        get-data-url={HalfLifeDataTable.getUrl}
+        format-data={HalfLifeDataTable.formatData}
+        get-side-bar-def={HalfLifeDataTable.getSideBarDef}
+        get-col-defs={HalfLifeDataTable.getColDefs}
       />
     );
   }

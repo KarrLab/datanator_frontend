@@ -13,7 +13,7 @@ class MetadataSection extends Component {
     this.state = { metadata: null };
   }
 
-  getMetadataUrl(query, organism) {
+  static getMetadataUrl(query, organism) {
     return (
       "proteins/proximity_abundance/proximity_abundance_kegg/" +
       "?kegg_id=" +
@@ -24,7 +24,7 @@ class MetadataSection extends Component {
     );
   }
 
-  processMetadata(rawData) {
+  static processMetadata(rawData) {
     let koNumber;
     let koName;
     const uniprotIdToTaxonDist = {};
@@ -53,11 +53,11 @@ class MetadataSection extends Component {
     };
   }
 
-  formatTitle(processedData) {
+  static formatTitle(processedData) {
     return upperCaseFirstLetter(processedData.koName);
   }
 
-  formatMetadata(processedData) {
+  static formatMetadata(processedData) {
     const sections = [];
 
     // description
@@ -130,10 +130,10 @@ class MetadataSection extends Component {
     return (
       <BaseMetadataSection
         entity-type="ortholog group"
-        get-metadata-url={this.getMetadataUrl}
-        process-metadata={this.processMetadata}
-        format-title={this.formatTitle}
-        format-metadata={this.formatMetadata}
+        get-metadata-url={MetadataSection.getMetadataUrl}
+        process-metadata={MetadataSection.processMetadata}
+        format-title={MetadataSection.formatTitle}
+        format-metadata={MetadataSection.formatMetadata}
         set-scene-metadata={this.props["set-scene-metadata"]}
       />
     );

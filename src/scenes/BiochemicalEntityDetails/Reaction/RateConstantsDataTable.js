@@ -3,7 +3,7 @@ import DataTable from "../DataTable/DataTable";
 import { HtmlColumnHeader } from "../HtmlColumnHeader";
 
 class RateConstantsDataTable extends Component {
-  getUrl(query) {
+  static getUrl(query) {
     const substratesProducts = query.split("-->");
     const substrates = substratesProducts[0].trim();
     const products = substratesProducts[1].trim();
@@ -19,7 +19,7 @@ class RateConstantsDataTable extends Component {
     );
   }
 
-  formatData(rawData) {
+  static formatData(rawData) {
     const formattedData = [];
 
     for (const datum of rawData) {
@@ -72,7 +72,7 @@ class RateConstantsDataTable extends Component {
     return kms;
   }
 
-  getConcBarDef(formattedData) {
+  static getConcBarDef(formattedData) {
     const sideBar = {
       toolPanels: [
         {
@@ -140,7 +140,7 @@ class RateConstantsDataTable extends Component {
     return sideBar;
   }
 
-  getColDefs(organism, formattedData) {
+  static getColDefs(organism, formattedData) {
     const colDefs = [];
 
     // k_cat column
@@ -271,10 +271,10 @@ class RateConstantsDataTable extends Component {
         title="Rate constants"
         entity-type="reaction"
         data-type="rate constants"
-        get-data-url={this.getUrl}
-        format-data={this.formatData}
-        get-side-bar-def={this.getConcBarDef}
-        get-col-defs={this.getColDefs}
+        get-data-url={RateConstantsDataTable.getUrl}
+        format-data={RateConstantsDataTable.formatData}
+        get-side-bar-def={RateConstantsDataTable.getConcBarDef}
+        get-col-defs={RateConstantsDataTable.getColDefs}
       />
     );
   }

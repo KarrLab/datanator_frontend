@@ -9,21 +9,15 @@ describe("Reaction data page", () => {
   it("Gets correct reaction data url", () => {
     const entity =
       "ATP-dependent 6-phosphofructokinase (ATP-PFK) (Phosphofructokinase) (EC 2.7.1.11) (Phosphohexokinase)";
-    // instantiate data table
-    const dataTable = new HalfLifeDataTable();
-
     // assert URL correct
-    expect(dataTable.getUrl(entity)).toEqual(
+    expect(HalfLifeDataTable.getUrl(entity)).toEqual(
       "/rna/halflife/get_info_by_protein_name/?protein_name=ATP-dependent 6-phosphofructokinase (ATP-PFK) (Phosphofructokinase) (EC 2.7.1.11) (Phosphohexokinase)&_from=0&size=1000"
     );
   });
 
   it("Formats concentration data correct", async () => {
-    // instantiate data table
-    const dataTable = new HalfLifeDataTable();
-
     // format raw data
-    const formattedData = dataTable.formatData(testRawData);
+    const formattedData = HalfLifeDataTable.formatData(testRawData);
 
     // test formatted data
     expect(formattedData).toHaveLength(3);
@@ -40,13 +34,13 @@ describe("Reaction data page", () => {
 
   it("Formats metadata data correctly", async () => {
     // format raw data
-    let formattedMetadata = new MetadataSection().processMetadata(testRawData);
+    let formattedMetadata = MetadataSection.processMetadata(testRawData);
     expect(formattedMetadata).toEqual({
       geneName: "pfk",
       proteinName: "Archaeal ADP-dependent phosphofructokinase/glucokinase"
     });
 
-    const formattedMetadataWithoutProteinName = new MetadataSection().processMetadata(
+    const formattedMetadataWithoutProteinName = MetadataSection.processMetadata(
       testRawDataWithoutGeneName
     );
     expect(formattedMetadataWithoutProteinName).toEqual({

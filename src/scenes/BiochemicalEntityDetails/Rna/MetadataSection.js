@@ -13,7 +13,7 @@ class MetadataSection extends Component {
     this.state = { metadata: null };
   }
 
-  getMetadataUrl(query) {
+  static getMetadataUrl(query) {
     return (
       "/rna/halflife/get_info_by_protein_name/" +
       "?protein_name=" +
@@ -23,7 +23,7 @@ class MetadataSection extends Component {
     );
   }
 
-  processMetadata(rawData) {
+  static processMetadata(rawData) {
     const processedData = {};
 
     processedData.geneName = rawData[0].gene_name;
@@ -39,7 +39,7 @@ class MetadataSection extends Component {
     return processedData;
   }
 
-  formatTitle(processedData) {
+  static formatTitle(processedData) {
     let title = processedData.geneName;
     if (!title) {
       title = processedData.proteinName;
@@ -47,7 +47,7 @@ class MetadataSection extends Component {
     return upperCaseFirstLetter(title);
   }
 
-  formatMetadata(processedData) {
+  static formatMetadata(processedData) {
     const sections = [];
 
     if (processedData.geneName || processedData.proteinName) {
@@ -78,10 +78,10 @@ class MetadataSection extends Component {
     return (
       <BaseMetadataSection
         entity-type="RNA"
-        get-metadata-url={this.getMetadataUrl}
-        process-metadata={this.processMetadata}
-        format-title={this.formatTitle}
-        format-metadata={this.formatMetadata}
+        get-metadata-url={MetadataSection.getMetadataUrl}
+        process-metadata={MetadataSection.processMetadata}
+        format-title={MetadataSection.formatTitle}
+        format-metadata={MetadataSection.formatMetadata}
         set-scene-metadata={this.props["set-scene-metadata"]}
       />
     );

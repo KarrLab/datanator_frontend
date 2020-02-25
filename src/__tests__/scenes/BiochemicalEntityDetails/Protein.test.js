@@ -49,10 +49,9 @@ describe("Protein data page", () => {
   });
 
   it("Gets correct metadata url ", async () => {
-    const metadata = new MetadataSection();
     const query = "K00850";
     const organism = "Saccharomyces cerevisiae S288C";
-    expect(metadata.getMetadataUrl(query, organism)).toEqual(
+    expect(MetadataSection.getMetadataUrl(query, organism)).toEqual(
       "proteins/proximity_abundance/proximity_abundance_kegg/" +
         "?kegg_id=" +
         query +
@@ -63,18 +62,8 @@ describe("Protein data page", () => {
   });
 
   it("Formats metadata data correctly", async () => {
-    // instantiate data table
-    //const organism = "Saccharomyces cerevisiae S288C";
-
-    //const metadata = new MetadataSection()
-    //metadata.props["set-scene-metadata"] = {(metadata) => this.setState({ metadata: metadata })}
-    //metadata.formatMetadataInner(testRawMetadata, organism)
-    //expect(metadata.state.koNumber).toEqual("K00850")
-
     // format raw data
-    const processedMetadata = new MetadataSection().processMetadata(
-      testRawMetadata
-    );
+    const processedMetadata = MetadataSection.processMetadata(testRawMetadata);
     //console.log(processedMetadata)
     expect(processedMetadata.koNumber).toEqual("K00850");
     expect(processedMetadata.koName).toEqual("6-phosphofructokinase 1");
