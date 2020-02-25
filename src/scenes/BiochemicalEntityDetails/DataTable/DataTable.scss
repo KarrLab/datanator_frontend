@@ -18,6 +18,7 @@
 
     // right align numeric cells with check boxes
     .ag-numeric-cell {
+      width: 100%;
       .ag-cell-wrapper {
         justify-content: space-between;
       }
