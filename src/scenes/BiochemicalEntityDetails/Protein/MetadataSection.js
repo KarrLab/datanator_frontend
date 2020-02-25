@@ -25,7 +25,6 @@ class MetadataSection extends Component {
   }
 
   processMetadata(rawData) {
-    //console.log(rawData)
     let koNumber;
     let koName;
     const uniprotIdToTaxonDist = {};
