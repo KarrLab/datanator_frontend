@@ -1,10 +1,7 @@
 import { AbundanceDataTable } from "~/scenes/BiochemicalEntityDetails/Protein/AbundanceDataTable";
 import testRawData from "~/__tests__/fixtures/protein-abundances-6-phosphofructo-2-kinase";
 import testRawMetadata from "~/__tests__/fixtures/protein-metadata-6-phosphofructo-2-kinase";
-import {
-  formatMetadata,
-  MetadataSection
-} from "~/scenes/BiochemicalEntityDetails/Protein/MetadataSection";
+import { MetadataSection } from "~/scenes/BiochemicalEntityDetails/Protein/MetadataSection";
 //import MetadataSection from "~/scenes/BiochemicalEntityDetails/Protein/MetadataSection";
 
 /* global describe, it, expect */
@@ -75,13 +72,15 @@ describe("Protein data page", () => {
     //expect(metadata.state.koNumber).toEqual("K00850")
 
     // format raw data
-    const formattedMetadata = formatMetadata(testRawMetadata);
-    //console.log(formattedMetadata)
-    expect(formattedMetadata.koNumber).toEqual("K00850");
-    expect(formattedMetadata.koName).toEqual("6-phosphofructokinase 1");
-    expect(formattedMetadata.uniprotIdToTaxonDist["A1A4J1"]).toEqual(6);
-    expect(formattedMetadata.uniprotIdToTaxonDist["Q8A624"]).toEqual(5);
-    expect(formattedMetadata.uniprotIds).toEqual([
+    const processedMetadata = new MetadataSection().processMetadata(
+      testRawMetadata
+    );
+    //console.log(processedMetadata)
+    expect(processedMetadata.koNumber).toEqual("K00850");
+    expect(processedMetadata.koName).toEqual("6-phosphofructokinase 1");
+    expect(processedMetadata.other.uniprotIdToTaxonDist["A1A4J1"]).toEqual(6);
+    expect(processedMetadata.other.uniprotIdToTaxonDist["Q8A624"]).toEqual(5);
+    expect(processedMetadata.uniprotIds).toEqual([
       "A1A4J1",
       "O34529",
       "O42938",

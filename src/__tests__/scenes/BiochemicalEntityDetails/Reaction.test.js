@@ -1,9 +1,6 @@
 import { RateConstantsDataTable } from "~/scenes/BiochemicalEntityDetails/Reaction/RateConstantsDataTable";
 import testRawData from "~/__tests__/fixtures/reaction-constants-adenylate-kinase";
-import {
-  formatMetadata,
-  MetadataSection
-} from "~/scenes/BiochemicalEntityDetails/Reaction/MetadataSection";
+import { MetadataSection } from "~/scenes/BiochemicalEntityDetails/Reaction/MetadataSection";
 /* global describe, it, expect */
 describe("Reaction data page", () => {
   it("Gets correct reaction data url", () => {
@@ -63,9 +60,10 @@ describe("Reaction data page", () => {
 
   it("Formats metadata data correctly", async () => {
     // format raw data
-    const formattedMetadata = formatMetadata(testRawData);
-    console.log(formattedMetadata);
-    expect(formattedMetadata).toEqual({
+    const processedMetadata = new MetadataSection().processMetadata(
+      testRawData
+    );
+    expect(processedMetadata).toEqual({
       reactionId: "82",
       substrates: ["AMP", "ATP"],
       products: ["ADP"],

@@ -1,8 +1,5 @@
 import { ConcentrationDataTable } from "~/scenes/BiochemicalEntityDetails/Metabolite/ConcentrationDataTable";
-import {
-  formatMetadata,
-  MetadataSection
-} from "~/scenes/BiochemicalEntityDetails/Metabolite/MetadataSection";
+import { MetadataSection } from "~/scenes/BiochemicalEntityDetails/Metabolite/MetadataSection";
 import testRawData from "~/__tests__/fixtures/metabolite-concentrations-dTDP-D-Glucose";
 
 /* global describe, it, expect */
@@ -80,20 +77,20 @@ describe("Metabolite data page", () => {
   });
 
   it("Formats metadata data correctly", async () => {
-    // instantiate data table
-
     // format raw data
-    const formattedMetadata = formatMetadata(testRawData);
+    const processedMetadata = new MetadataSection().processMetadata(
+      testRawData
+    );
     // test formatted data
-    expect(formattedMetadata.cellularLocations).toHaveLength(1);
-    expect(formattedMetadata.cellularLocations[0]).toEqual("Cytosol");
+    expect(processedMetadata.cellularLocations).toHaveLength(1);
+    expect(processedMetadata.cellularLocations[0]).toEqual("Cytosol");
 
-    expect(formattedMetadata.dbLinks.biocyc).toEqual("UDP");
-    expect(formattedMetadata.dbLinks["kegg"]).toEqual("C00015");
+    expect(processedMetadata.dbLinks.biocyc).toEqual("UDP");
+    expect(processedMetadata.dbLinks["kegg"]).toEqual("C00015");
 
-    expect(formattedMetadata.description[0]).toEqual(
+    expect(processedMetadata.description[0]).toEqual(
       expect.stringContaining("Uridine 5'-diphosphate,")
     );
-    expect(formattedMetadata.synonyms).toEqual(["5'-UDP", "UDP"]);
+    expect(processedMetadata.synonyms).toEqual(["5'-UDP", "UDP"]);
   });
 });
