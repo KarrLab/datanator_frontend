@@ -74,6 +74,86 @@ const DATABASES = {
   }
 };
 
+function formatMetadata(rawData) {
+  let formattedData = null;
+  for (const rawDataum of rawData) {
+    for (const met of rawDataum) {
+      formattedData = {};
+
+      formattedData.name = met.name;
+
+      formattedData.synonyms = met.synonyms.synonym;
+      formattedData.synonyms.sort((a, b) => {
+        return strCompare(a, b);
+      });
+
+      formattedData.description = null;
+      if (met.description != null && met.description !== undefined) {
+        formattedData.description = reactStringReplace(
+          met.description,
+          /[([]PMID: *(\d+)[)\]]/gi,
+          pmid => {
+            return (
+              <span key={pmid}>
+                [
+                <a href={"https://www.ncbi.nlm.nih.gov/pubmed/" + pmid}>
+                  PMID: {pmid}
+                </a>
+                ]
+              </span>
+            );
+          }
+        );
+      }
+
+      formattedData.physics = {
+        smiles: met.smiles,
+        inchi: met.inchi,
+        inchiKey: met.inchikey,
+        formula: formatChemicalFormula(met.chemical_formula),
+        molWt: met.average_molecular_weight,
+        charge: met.property.find(el => el.kind === "formal_charge").value,
+        physiologicalCharge: met.property.find(
+          el => el.kind === "physiological_charge"
+        ).value
+      };
+
+      formattedData.pathways = castToArray(met.pathways.pathway);
+
+      formattedData.pathways = removeDuplicates(
+        formattedData.pathways,
+        el => el.name
+      );
+      formattedData.pathways.sort((a, b) => {
+        return strCompare(a.name, b.name);
+      });
+
+      formattedData.cellularLocations = castToArray(
+        met.cellular_locations.cellular_location
+      );
+
+      formattedData.dbLinks = {
+        biocyc: met.biocyc_id,
+        cas: met.cas_registry_number,
+        chebi: met.chebi_id,
+        chemspider: met.chemspider_id,
+        ecmdb: met.m2m_id,
+        foodb: met.foodb_id,
+        hmdb: met.hmdb_id,
+        kegg: met.kegg_id,
+        pubchem: met.pubchem_compound_id,
+        ymdb: met.ymdb_id
+      };
+      break;
+    }
+    if (formattedData != null) {
+      break;
+    }
+  }
+  //console.log(formattedData);
+  return formattedData;
+}
+
 class MetadataSection extends Component {
   static propTypes = {
     "set-scene-metadata": PropTypes.func.isRequired
@@ -97,82 +177,8 @@ class MetadataSection extends Component {
     );
   }
 
-  formatMetadata(rawData, organism) {
-    let formattedData = null;
-    for (const rawDataum of rawData) {
-      for (const met of rawDataum) {
-        formattedData = {};
-
-        formattedData.name = met.name;
-
-        formattedData.synonyms = met.synonyms.synonym;
-        formattedData.synonyms.sort((a, b) => {
-          return strCompare(a, b);
-        });
-
-        formattedData.description = null;
-        if (met.description != null && met.description !== undefined) {
-          formattedData.description = reactStringReplace(
-            met.description,
-            /[([]PMID: *(\d+)[)\]]/gi,
-            pmid => {
-              return (
-                <span key={pmid}>
-                  [
-                  <a href={"https://www.ncbi.nlm.nih.gov/pubmed/" + pmid}>
-                    PMID: {pmid}
-                  </a>
-                  ]
-                </span>
-              );
-            }
-          );
-        }
-
-        formattedData.physics = {
-          smiles: met.smiles,
-          inchi: met.inchi,
-          inchiKey: met.inchikey,
-          formula: formatChemicalFormula(met.chemical_formula),
-          molWt: met.average_molecular_weight,
-          charge: met.property.find(el => el.kind === "formal_charge").value,
-          physiologicalCharge: met.property.find(
-            el => el.kind === "physiological_charge"
-          ).value
-        };
-
-        formattedData.pathways = castToArray(met.pathways.pathway);
-
-        formattedData.pathways = removeDuplicates(
-          formattedData.pathways,
-          el => el.name
-        );
-        formattedData.pathways.sort((a, b) => {
-          return strCompare(a.name, b.name);
-        });
-
-        formattedData.cellularLocations = castToArray(
-          met.cellular_locations.cellular_location
-        );
-
-        formattedData.dbLinks = {
-          biocyc: met.biocyc_id,
-          cas: met.cas_registry_number,
-          chebi: met.chebi_id,
-          chemspider: met.chemspider_id,
-          ecmdb: met.m2m_id,
-          foodb: met.foodb_id,
-          hmdb: met.hmdb_id,
-          kegg: met.kegg_id,
-          pubchem: met.pubchem_compound_id,
-          ymdb: met.ymdb_id
-        };
-        break;
-      }
-      if (formattedData != null) {
-        break;
-      }
-    }
+  formatMetadataInner(rawData, organism) {
+    let formattedData = formatMetadata(rawData, organism);
 
     this.setState({ metadata: formattedData });
 
@@ -279,7 +285,7 @@ class MetadataSection extends Component {
         <BaseMetadataSection
           entity-type="metabolite"
           get-metadata-url={this.getMetadataUrl}
-          format-metadata={this.formatMetadata.bind(this)}
+          format-metadata={this.formatMetadataInner.bind(this)}
           set-scene-metadata={this.props["set-scene-metadata"]}
         />
 
@@ -407,5 +413,4 @@ class MetadataSection extends Component {
     );
   }
 }
-
-export default MetadataSection;
+export { MetadataSection, formatMetadata };

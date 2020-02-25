@@ -19,6 +19,38 @@ const DB_LINKS = [
   { label: "SABIO-RK", url: "http://sabiork.h-its.org/newSearch?q=ecnumber:" }
 ];
 
+function formatMetadata(rawData) {
+  const formattedData = {};
+
+  const reactionId = MetadataSection.getReactionId(rawData[0].resource);
+  const ecNumber = MetadataSection.getEcNum(rawData[0].resource);
+  const name = rawData[0]["enzymes"][0]["enzyme"][0]["enzyme_name"];
+  const substrates = MetadataSection.getSubstrateNames(
+    rawData[0].reaction_participant[0].substrate
+  );
+  const products = MetadataSection.getProductNames(
+    rawData[0].reaction_participant[1].product
+  );
+  formattedData["reactionId"] = reactionId;
+  formattedData["substrates"] = substrates;
+  formattedData["products"] = products;
+  if (ecNumber !== "-.-.-.-") {
+    formattedData["ecNumber"] = ecNumber;
+  }
+
+  if (name) {
+    const start = name[0].toUpperCase();
+    const end = name.substring(1, name.length);
+    formattedData["name"] = start + end;
+  }
+
+  formattedData["equation"] =
+    MetadataSection.formatSide(substrates) +
+    " → " +
+    MetadataSection.formatSide(products);
+  return formattedData;
+}
+
 class MetadataSection extends Component {
   static propTypes = {
     "set-scene-metadata": PropTypes.func.isRequired
@@ -46,35 +78,8 @@ class MetadataSection extends Component {
     );
   }
 
-  formatMetadata(rawData, organism) {
-    const formattedData = {};
-
-    const reactionId = MetadataSection.getReactionId(rawData[0].resource);
-    const ecNumber = MetadataSection.getEcNum(rawData[0].resource);
-    const name = rawData[0]["enzymes"][0]["enzyme"][0]["enzyme_name"];
-    const substrates = MetadataSection.getSubstrateNames(
-      rawData[0].reaction_participant[0].substrate
-    );
-    const products = MetadataSection.getProductNames(
-      rawData[0].reaction_participant[1].product
-    );
-    formattedData["reactionId"] = reactionId;
-    formattedData["substrates"] = substrates;
-    formattedData["products"] = products;
-    if (ecNumber !== "-.-.-.-") {
-      formattedData["ecNumber"] = ecNumber;
-    }
-
-    if (name) {
-      const start = name[0].toUpperCase();
-      const end = name.substring(1, name.length);
-      formattedData["name"] = start + end;
-    }
-
-    formattedData["equation"] =
-      MetadataSection.formatSide(substrates) +
-      " → " +
-      MetadataSection.formatSide(products);
+  formatMetadataInner(rawData, organism) {
+    const formattedData = formatMetadata(rawData);
 
     this.setState({ metadata: formattedData });
 
@@ -182,7 +187,7 @@ class MetadataSection extends Component {
         <BaseMetadataSection
           entity-type="reaction"
           get-metadata-url={this.getMetadataUrl}
-          format-metadata={this.formatMetadata.bind(this)}
+          format-metadata={this.formatMetadataInner.bind(this)}
           set-scene-metadata={this.props["set-scene-metadata"]}
         />
 
@@ -215,5 +220,4 @@ class MetadataSection extends Component {
     );
   }
 }
-
-export default MetadataSection;
+export { formatMetadata, MetadataSection };

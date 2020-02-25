@@ -1,0 +1,206 @@
+[
+  {
+    "abundances": [
+      {
+        "abundance": "2.04",
+        "organ": "WHOLE_ORGANISM"
+      },
+      {
+        "abundance": "4.58",
+        "organ": "WHOLE_ORGANISM"
+      },
+      {
+        "abundance": "69.0",
+        "organ": "WHOLE_ORGANISM"
+      },
+      {
+        "abundance": "164",
+        "organ": "WHOLE_ORGANISM"
+      },
+      {
+        "abundance": "68.3",
+        "organ": "WHOLE_ORGANISM"
+      },
+      {
+        "abundance": "73.2",
+        "organ": "WHOLE_ORGANISM"
+      },
+      {
+        "abundance": "11.9",
+        "organ": "WHOLE_ORGANISM"
+      },
+      {
+        "abundance": "16.7",
+        "organ": "WHOLE_ORGANISM"
+      },
+      {
+        "abundance": "149",
+        "organ": "WHOLE_ORGANISM"
+      },
+      {
+        "abundance": "21.1",
+        "organ": "WHOLE_ORGANISM"
+      },
+      {
+        "abundance": "31.5",
+        "organ": "WHOLE_ORGANISM"
+      },
+      {
+        "abundance": "37.9",
+        "organ": "WHOLE_ORGANISM"
+      },
+      {
+        "abundance": "16.0",
+        "organ": "WHOLE_ORGANISM"
+      }
+    ],
+    "canonical_sequence": "MFKPVDFSETSPVPPDIDLAPTQSPHHVAPSQDSSYDLLSRSSDDKIDAEKGPHDELSKHLPLFQKRPLSDTPISSNWNSPGITEENTPSDSPENSATNLKSLHRLHINDETQLKNAKIPTNDTTDYMPPSDGANEVTRIDLKDIKSPTRHHKRRPTTIDVPGLTKSKTSPDGLISKEDSGSKLVIVMVGLPATGKSFITNKLSRFLNYSLYYCKVFNVGNTRRKFAKEHGLKDQDSKFFEPKNADSTRLRDKWAMDTLDELLDYLLEGSGSVGIFDATNTSRERRKNVLARIRKRSPHLKVLFLESVCSDHALVQKNIRLKLFGPDYKGKDPESSLKDFKSRLANYLKAYEPIEDDENLQYIKMIDVGKKVIAYNIQGFLASQTVYYLLNFNLADRQIWITRSGESEDNVSGRIGGNSHLTPRGLRFAKSLPKFIARQREIFYQNLMQQKKNNENTDGNIYNDFFVWTSMRARTIGTAQYFNEDDYPIKQMKMLDELSAGDYDGMTYPEIKNNFPEEFEKRQKDKLRYRYPGIGGESYMDVINRLRPVITELERIEDNVLIITHRVVARALLGYFMNLSMGIIANLDVPLHCVYCLEPKPYGITWSLWEYDEASDSFSKVPQTDLNTTRVKEVGLVYNERRYSVIPTAPPSARSSFASDFLSRKRSNPTSASSSQSELSEQPKNSVSAQTGSNNTTLIGSNFNIKNENGDSRIPLSAPLMATNTSNNILDGGGTSISIHRPRVVPNQNNVNPLLANNNKAASNVPNVKKSAATPRQIFEIDKVDEKLSMLKNKSFLLHGKDYPNNADNNDNEDIRAKTMNRSQSHV",
+    "ec_number": "2.7.1.105",
+    "entrez_id": "854699",
+    "entry_name": "6P21_YEAST",
+    "gene_name": "PFK26",
+    "gene_name_alt": null,
+    "gene_name_oln": "YIL107C",
+    "gene_name_orf": null,
+    "ko_name": ["6-phosphofructo-2-kinase"],
+    "ko_number": "K00900",
+    "length": 827,
+    "mass": "93417",
+    "ncbi_taxonomy_id": 559292,
+    "protein_name": "6-phosphofructo-2-kinase 1 (6PF-2-K 1) (EC 2.7.1.105) (Phosphofructokinase 2 I)",
+    "species_name": "Saccharomyces cerevisiae S288C",
+    "status": "reviewed",
+    "uniprot_id": "P40433"
+  },
+  {
+    "abundances": [
+      {
+        "abundance": "30.0",
+        "organ": "WHOLE_ORGANISM"
+      },
+      {
+        "abundance": "108",
+        "organ": "WHOLE_ORGANISM"
+      },
+      {
+        "abundance": "3.09",
+        "organ": "WHOLE_ORGANISM"
+      },
+      {
+        "abundance": "154",
+        "organ": "WHOLE_ORGANISM"
+      },
+      {
+        "abundance": "1.2",
+        "organ": "WHOLE_ORGANISM"
+      }
+    ],
+    "canonical_sequence": "MGGSSDSDSHDGYLTSEYNSSNSLFSLNTGNSYSSASLDRATLDCQDSVFFDNHKSSLLSTEVPRFISNDPLHLPITLNYKRDNADPTYTNGKVNKFMIVLIGLPATGKSTISSHLIQCLKNNPLTNSLRCKVFNAGKIRRQISCATISKPLLLSNTSSEDLFNPKNNDKKETYARITLQKLFHEINNDECDVGIFDATNSTIERRRFIFEEVCSFNTDELSSFNLVPIILQVSCFNRSFIKYNIHNKSFNEDYLDKPYELAIKDFAKRLKHYYSQFTPFSLDEFNQIHRYISQHEEIDTSLFFFNVINAGVVEPHSLNQSHYPSTCGKQIRDTIMVIENFINHYSQMFGFEYIEAVKLFFESFGNSSEETLTTLDSVVNDKFFDDLQSLIESNGFA",
+    "ec_number": "2.7.1.105",
+    "entrez_id": "853984",
+    "entry_name": "6P22_YEAST",
+    "gene_name": "PFK27",
+    "gene_name_alt": null,
+    "gene_name_oln": "YOL136C",
+    "gene_name_orf": null,
+    "ko_name": ["6-phosphofructo-2-kinase"],
+    "ko_number": "K00900",
+    "length": 397,
+    "mass": "45318",
+    "ncbi_taxonomy_id": 559292,
+    "protein_name": "6-phosphofructo-2-kinase 2 (6PF-2-K 2) (EC 2.7.1.105) (Phosphofructokinase 2 II)",
+    "species_name": "Saccharomyces cerevisiae S288C",
+    "status": "reviewed",
+    "uniprot_id": "Q12471"
+  },
+  {
+    "abundances": [
+      {
+        "abundance": "252",
+        "organ": "WHOLE_ORGANISM"
+      },
+      {
+        "abundance": "144",
+        "organ": "WHOLE_ORGANISM"
+      },
+      {
+        "abundance": "133",
+        "organ": "WHOLE_ORGANISM"
+      },
+      {
+        "abundance": "24.9",
+        "organ": "WHOLE_ORGANISM"
+      },
+      {
+        "abundance": "59.5",
+        "organ": "WHOLE_ORGANISM"
+      },
+      {
+        "abundance": "241",
+        "organ": "WHOLE_ORGANISM"
+      }
+    ],
+    "canonical_sequence": "MSNNNNKDDSELQSRTHYYNPDRTAIPVKDDVDQLDKFGSPKLSANDHSFTNTDSVTSEDRPFSSPVSTLTSNSANFSDSSLQNSPVHPIPSPALSPTLNLGSRPDVKRVSSGGYFALPKQLTSIRQTHRPMSQQHRVPSFHPASDTAPPSPIPFHHHLRKKGSSMSIPGQTSIVSSNNGSEATNPPEEKLAIIMVGLPARGKSYIVNKLVRYYNWLQYNCKAFNVGNFRRKHASHSHDDASFFDPSNEEASKLRESFAMDTLDALLQWFEEEDGVVGIFDATNSTSKRRKAIVDHLSKVPYVTTLFIESICNDEQLIAANMRMKLVGPDYKDLNPEQSLRDFQERVRMYERKYEPLGKSEEDLNLRYIKVINVGKKVVAFNIRGFLAGQAVFFLLNFNLSPRQIWVTRHGESVDNVRGRIGGNAELTPLGRQFSEDLALFIDEKRDEFQERLYNDYSKESHLLQHGSHSFNGKQFETSFNCLTPSENTVNDPQVLDPEDEERLEKPYSVWTSMMQRSIQTAAYFDEEQYDIKAMRMLNEICSGICDGLTYEEIKSIYPKEYEARKLDKLNYRYPGSGGESYLDVIYRLQSVIVEIERMKHHVLVIGHRVITRIIIAYFLGCRREDIAYLNVPLHTVYCIEPQPYGTDFYQYNYDPNTRKFSRVPFSL",
+    "ec_number": "2.7.1.105",
+    "entrez_id": "3361378",
+    "entry_name": "YIKE_SCHPO",
+    "gene_name": null,
+    "gene_name_alt": null,
+    "gene_name_oln": null,
+    "gene_name_orf": "SPAPB17E12.14c",
+    "ko_name": ["6-phosphofructo-2-kinase"],
+    "ko_number": "K00900",
+    "length": 668,
+    "mass": "76393",
+    "ncbi_taxonomy_id": 284812,
+    "protein_name": "Probable 6-phosphofructo-2-kinase PB17E12.14c (EC 2.7.1.105)",
+    "species_name": "Schizosaccharomyces pombe 972h-",
+    "status": "reviewed",
+    "uniprot_id": "Q8TFH0"
+  },
+  {
+    "abundances": [
+      {
+        "abundance": "14.5",
+        "organ": "WHOLE_ORGANISM"
+      },
+      {
+        "abundance": "9.67",
+        "organ": "WHOLE_ORGANISM"
+      },
+      {
+        "abundance": "11.1",
+        "organ": "WHOLE_ORGANISM"
+      },
+      {
+        "abundance": "24.8",
+        "organ": "WHOLE_ORGANISM"
+      },
+      {
+        "abundance": "23.8",
+        "organ": "WHOLE_ORGANISM"
+      },
+      {
+        "abundance": "8.52",
+        "organ": "WHOLE_ORGANISM"
+      }
+    ],
+    "canonical_sequence": "MSNTGSARTEEFTKGTGYEATKPNNDTDDDAKQNYPSKEPHMKLGDYTEETSFVDDSIFKREELTPDRNSPANDVEKMEVPKPTPQWMKLKDEGKLGKHRKNRLRRPGRFPVRQESTIDIPGLTVSKRTENDSNNASYGIREKLIIILVGIPATGKSYIGSKLSRYYNWLKYNCRFFSVGDKRREEGASTYSMSADFFDIKNEETFKFRENVALETLEDLLHWMIHENGVIGILDATNSTHERRKHLYDRISKEADIGIMFLESLCTDDILFEENIKLKIKGPDYEGYDTESALKDLRERVDLYKKYYEPLDERDEQLPFLQYVKVINVGIKVVTHNIEGFLAGQAVYFMLNLNIQKRQIWLTRPGESLDTVAGRIGGDASLTPIGKQYAQDLANFMDRQRVLWQLRYTNDLASTNKRFSLSEASSFNVWSSVRKRAIETIEFFNPDSYNVKKIRLLNDLNLGSREGLTLREFSEKYPDEFDVIKRKDYAYRFSGQGGESYLDVIHRLQPLIVEIERSSGNILVVSHRIVSNILMTYFLNYHPEDIIDVGLPLHTLFCIESDRYGTTCMAYRYDAANRQFIKDPMFDLRKRT",
+    "ec_number": "2.7.1.105",
+    "entrez_id": "2541948",
+    "entry_name": "YFMD_SCHPO",
+    "gene_name": null,
+    "gene_name_alt": null,
+    "gene_name_oln": null,
+    "gene_name_orf": "SPAC222.13c",
+    "ko_name": ["6-phosphofructo-2-kinase"],
+    "ko_number": "K00900",
+    "length": 592,
+    "mass": "68640",
+    "ncbi_taxonomy_id": 284812,
+    "protein_name": "Probable 6-phosphofructo-2-kinase C222.13c (EC 2.7.1.105)",
+    "species_name": "Schizosaccharomyces pombe 972h-",
+    "status": "reviewed",
+    "uniprot_id": "Q9UTE1"
+  }
+]

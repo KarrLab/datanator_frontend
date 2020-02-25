@@ -1,0 +1,5097 @@
+[
+  {
+    "distance": 0,
+    "documents": [
+      {
+        "abundances": [
+          {
+            "abundance": "1086",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "67.7",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "431",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "1328",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "1769",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "954",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "194",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "537",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "59.1",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "676",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "1230",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "726",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "592",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "1953",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "1332",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "804",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "665",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "970",
+            "organ": "WHOLE_ORGANISM"
+          }
+        ],
+        "ancestor_name": [
+          "cellular organisms",
+          "Bacteria",
+          "Proteobacteria",
+          "Gammaproteobacteria",
+          "Enterobacterales",
+          "Enterobacteriaceae",
+          "Escherichia",
+          "Escherichia coli"
+        ],
+        "ancestor_taxon_id": [
+          131567,
+          2,
+          1224,
+          1236,
+          91347,
+          543,
+          561,
+          562
+        ],
+        "gene_name": "pfkA",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 83333,
+        "protein_name": "ATP-dependent 6-phosphofructokinase isozyme 1 (ATP-PFK 1) (Phosphofructokinase 1) (EC 2.7.1.11) (6-phosphofructokinase isozyme I) (Phosphohexokinase 1)",
+        "species_name": "Escherichia coli K-12",
+        "uniprot_id": "P0A796"
+      },
+      {
+        "ancestor_name": [
+          "cellular organisms",
+          "Bacteria",
+          "Proteobacteria",
+          "Gammaproteobacteria",
+          "Enterobacterales",
+          "Enterobacteriaceae",
+          "Escherichia",
+          "Escherichia coli"
+        ],
+        "ancestor_taxon_id": [
+          131567,
+          2,
+          1224,
+          1236,
+          91347,
+          543,
+          561,
+          562
+        ],
+        "gene_name": "pfkA",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 83333,
+        "protein_name": "ATP-dependent 6-phosphofructokinase isozyme 1 (ATP-PFK 1) (Phosphofructokinase 1) (EC 2.7.1.11) (6-phosphofructokinase isozyme I) (Phosphohexokinase 1)",
+        "species_name": "Escherichia coli K-12",
+        "uniprot_id": "P0A796"
+      },
+      {
+        "ancestor_name": [
+          "cellular organisms",
+          "Bacteria",
+          "Proteobacteria",
+          "Gammaproteobacteria",
+          "Enterobacterales",
+          "Enterobacteriaceae",
+          "Escherichia",
+          "Escherichia coli"
+        ],
+        "ancestor_taxon_id": [
+          131567,
+          2,
+          1224,
+          1236,
+          91347,
+          543,
+          561,
+          562
+        ],
+        "gene_name": "pfkA",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 83334,
+        "protein_name": "ATP-dependent 6-phosphofructokinase isozyme 1 (ATP-PFK 1) (Phosphofructokinase 1) (EC 2.7.1.11) (6-phosphofructokinase isozyme I) (Phosphohexokinase 1)",
+        "species_name": "Escherichia coli O157:H7",
+        "uniprot_id": "P0A797"
+      },
+      {
+        "ancestor_name": [
+          "cellular organisms",
+          "Bacteria",
+          "Proteobacteria",
+          "Gammaproteobacteria",
+          "Enterobacterales",
+          "Enterobacteriaceae",
+          "Escherichia",
+          "Escherichia coli"
+        ],
+        "ancestor_taxon_id": [
+          131567,
+          2,
+          1224,
+          1236,
+          91347,
+          543,
+          561,
+          562
+        ],
+        "gene_name": "pfkA",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 199310,
+        "protein_name": "ATP-dependent 6-phosphofructokinase isozyme 1 (ATP-PFK 1) (Phosphofructokinase 1) (EC 2.7.1.11) (6-phosphofructokinase isozyme I)",
+        "species_name": "Escherichia coli CFT073",
+        "uniprot_id": "Q8FBD0"
+      },
+      {
+        "ancestor_name": [
+          "cellular organisms",
+          "Bacteria",
+          "Proteobacteria",
+          "Gammaproteobacteria",
+          "Enterobacterales",
+          "Enterobacteriaceae",
+          "Escherichia",
+          "Escherichia coli",
+          "Escherichia coli K-12"
+        ],
+        "ancestor_taxon_id": [
+          131567,
+          2,
+          1224,
+          1236,
+          91347,
+          543,
+          561,
+          562,
+          83333
+        ],
+        "gene_name": "pfkA",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 316385,
+        "protein_name": "ATP-dependent 6-phosphofructokinase isozyme 1 (ATP-PFK 1) (Phosphofructokinase 1) (EC 2.7.1.11) (6-phosphofructokinase isozyme I) (Phosphohexokinase 1)",
+        "species_name": "Escherichia coli str. K-12 substr. DH10B",
+        "uniprot_id": "B1XB82"
+      },
+      {
+        "ancestor_name": [
+          "cellular organisms",
+          "Bacteria",
+          "Proteobacteria",
+          "Gammaproteobacteria",
+          "Enterobacterales",
+          "Enterobacteriaceae",
+          "Escherichia",
+          "Escherichia coli",
+          "Escherichia coli O139:H28"
+        ],
+        "ancestor_taxon_id": [
+          131567,
+          2,
+          1224,
+          1236,
+          91347,
+          543,
+          561,
+          562,
+          1603259
+        ],
+        "gene_name": "pfkA",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 331111,
+        "protein_name": "ATP-dependent 6-phosphofructokinase isozyme 1 (ATP-PFK 1) (Phosphofructokinase 1) (EC 2.7.1.11) (6-phosphofructokinase isozyme I) (Phosphohexokinase 1)",
+        "species_name": "Escherichia coli O139:H28 str. E24377A",
+        "uniprot_id": "A7ZUC9"
+      },
+      {
+        "ancestor_name": [
+          "cellular organisms",
+          "Bacteria",
+          "Proteobacteria",
+          "Gammaproteobacteria",
+          "Enterobacterales",
+          "Enterobacteriaceae",
+          "Escherichia",
+          "Escherichia coli"
+        ],
+        "ancestor_taxon_id": [
+          131567,
+          2,
+          1224,
+          1236,
+          91347,
+          543,
+          561,
+          562
+        ],
+        "gene_name": "pfkA",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 331112,
+        "protein_name": "ATP-dependent 6-phosphofructokinase isozyme 1 (ATP-PFK 1) (Phosphofructokinase 1) (EC 2.7.1.11) (6-phosphofructokinase isozyme I) (Phosphohexokinase 1)",
+        "species_name": "Escherichia coli HS",
+        "uniprot_id": "A8A720"
+      },
+      {
+        "ancestor_name": [
+          "cellular organisms",
+          "Bacteria",
+          "Proteobacteria",
+          "Gammaproteobacteria",
+          "Enterobacterales",
+          "Enterobacteriaceae",
+          "Escherichia",
+          "Escherichia coli"
+        ],
+        "ancestor_taxon_id": [
+          131567,
+          2,
+          1224,
+          1236,
+          91347,
+          543,
+          561,
+          562
+        ],
+        "gene_name": "pfkA",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 362663,
+        "protein_name": "ATP-dependent 6-phosphofructokinase isozyme 1 (ATP-PFK 1) (Phosphofructokinase 1) (EC 2.7.1.11) (6-phosphofructokinase isozyme I) (Phosphohexokinase 1)",
+        "species_name": "Escherichia coli 536",
+        "uniprot_id": "Q0TAE8"
+      },
+      {
+        "ancestor_name": [
+          "cellular organisms",
+          "Bacteria",
+          "Proteobacteria",
+          "Gammaproteobacteria",
+          "Enterobacterales",
+          "Enterobacteriaceae",
+          "Escherichia",
+          "Escherichia coli"
+        ],
+        "ancestor_taxon_id": [
+          131567,
+          2,
+          1224,
+          1236,
+          91347,
+          543,
+          561,
+          562
+        ],
+        "gene_name": "pfkA",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 409438,
+        "protein_name": "ATP-dependent 6-phosphofructokinase isozyme 1 (ATP-PFK 1) (Phosphofructokinase 1) (EC 2.7.1.11) (6-phosphofructokinase isozyme I) (Phosphohexokinase 1)",
+        "species_name": "Escherichia coli SE11",
+        "uniprot_id": "B6I4Q8"
+      },
+      {
+        "ancestor_name": [
+          "cellular organisms",
+          "Bacteria",
+          "Proteobacteria",
+          "Gammaproteobacteria",
+          "Enterobacterales",
+          "Enterobacteriaceae",
+          "Escherichia",
+          "Escherichia coli"
+        ],
+        "ancestor_taxon_id": [
+          131567,
+          2,
+          1224,
+          1236,
+          91347,
+          543,
+          561,
+          562
+        ],
+        "gene_name": "pfkA",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 439855,
+        "protein_name": "ATP-dependent 6-phosphofructokinase isozyme 1 (ATP-PFK 1) (Phosphofructokinase 1) (EC 2.7.1.11) (6-phosphofructokinase isozyme I) (Phosphohexokinase 1)",
+        "species_name": "Escherichia coli SMS-3-5",
+        "uniprot_id": "B1LNL9"
+      },
+      {
+        "ancestor_name": [
+          "cellular organisms",
+          "Bacteria",
+          "Proteobacteria",
+          "Gammaproteobacteria",
+          "Enterobacterales",
+          "Enterobacteriaceae",
+          "Escherichia",
+          "Escherichia coli",
+          "Escherichia coli O157:H7"
+        ],
+        "ancestor_taxon_id": [
+          131567,
+          2,
+          1224,
+          1236,
+          91347,
+          543,
+          561,
+          562,
+          83334
+        ],
+        "gene_name": "pfkA",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 444450,
+        "protein_name": "ATP-dependent 6-phosphofructokinase isozyme 1 (ATP-PFK 1) (Phosphofructokinase 1) (EC 2.7.1.11) (6-phosphofructokinase isozyme I) (Phosphohexokinase 1)",
+        "species_name": "Escherichia coli O157:H7 str. EC4115",
+        "uniprot_id": "B5YZ53"
+      },
+      {
+        "ancestor_name": [
+          "cellular organisms",
+          "Bacteria",
+          "Proteobacteria",
+          "Gammaproteobacteria",
+          "Enterobacterales",
+          "Enterobacteriaceae",
+          "Escherichia",
+          "Escherichia coli",
+          "Escherichia coli C"
+        ],
+        "ancestor_taxon_id": [
+          131567,
+          2,
+          1224,
+          1236,
+          91347,
+          543,
+          561,
+          562,
+          498388
+        ],
+        "gene_name": "pfkA",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 481805,
+        "protein_name": "ATP-dependent 6-phosphofructokinase isozyme 1 (ATP-PFK 1) (Phosphofructokinase 1) (EC 2.7.1.11) (6-phosphofructokinase isozyme I) (Phosphohexokinase 1)",
+        "species_name": "Escherichia coli ATCC 8739",
+        "uniprot_id": "B1IVG3"
+      },
+      {
+        "ancestor_name": [
+          "cellular organisms",
+          "Bacteria",
+          "Proteobacteria",
+          "Gammaproteobacteria",
+          "Enterobacterales",
+          "Enterobacteriaceae",
+          "Escherichia",
+          "Escherichia coli",
+          "Escherichia coli O127:H6"
+        ],
+        "ancestor_taxon_id": [
+          131567,
+          2,
+          1224,
+          1236,
+          91347,
+          543,
+          561,
+          562,
+          168807
+        ],
+        "gene_name": "pfkA",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 574521,
+        "protein_name": "ATP-dependent 6-phosphofructokinase isozyme 1 (ATP-PFK 1) (Phosphofructokinase 1) (EC 2.7.1.11) (6-phosphofructokinase isozyme I)",
+        "species_name": "Escherichia coli O127:H6 str. E2348/69",
+        "uniprot_id": "B7UNN6"
+      },
+      {
+        "ancestor_name": [
+          "cellular organisms",
+          "Bacteria",
+          "Proteobacteria",
+          "Gammaproteobacteria",
+          "Enterobacterales",
+          "Enterobacteriaceae",
+          "Escherichia",
+          "Escherichia coli"
+        ],
+        "ancestor_taxon_id": [
+          131567,
+          2,
+          1224,
+          1236,
+          91347,
+          543,
+          561,
+          562
+        ],
+        "gene_name": "pfkA",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 585034,
+        "protein_name": "ATP-dependent 6-phosphofructokinase isozyme 1 (ATP-PFK 1) (Phosphofructokinase 1) (EC 2.7.1.11) (6-phosphofructokinase isozyme I) (Phosphohexokinase 1)",
+        "species_name": "Escherichia coli IAI1",
+        "uniprot_id": "B7M6W7"
+      },
+      {
+        "ancestor_name": [
+          "cellular organisms",
+          "Bacteria",
+          "Proteobacteria",
+          "Gammaproteobacteria",
+          "Enterobacterales",
+          "Enterobacteriaceae",
+          "Escherichia",
+          "Escherichia coli"
+        ],
+        "ancestor_taxon_id": [
+          131567,
+          2,
+          1224,
+          1236,
+          91347,
+          543,
+          561,
+          562
+        ],
+        "gene_name": "pfkA",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 585035,
+        "protein_name": "ATP-dependent 6-phosphofructokinase isozyme 1 (ATP-PFK 1) (Phosphofructokinase 1) (EC 2.7.1.11) (6-phosphofructokinase isozyme I) (Phosphohexokinase 1)",
+        "species_name": "Escherichia coli S88",
+        "uniprot_id": "B7MI48"
+      },
+      {
+        "ancestor_name": [
+          "cellular organisms",
+          "Bacteria",
+          "Proteobacteria",
+          "Gammaproteobacteria",
+          "Enterobacterales",
+          "Enterobacteriaceae",
+          "Escherichia",
+          "Escherichia coli"
+        ],
+        "ancestor_taxon_id": [
+          131567,
+          2,
+          1224,
+          1236,
+          91347,
+          543,
+          561,
+          562
+        ],
+        "gene_name": "pfkA",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 585055,
+        "protein_name": "ATP-dependent 6-phosphofructokinase isozyme 1 (ATP-PFK 1) (Phosphofructokinase 1) (EC 2.7.1.11) (6-phosphofructokinase isozyme I) (Phosphohexokinase 1)",
+        "species_name": "Escherichia coli 55989",
+        "uniprot_id": "B7LA13"
+      },
+      {
+        "ancestor_name": [
+          "cellular organisms",
+          "Bacteria",
+          "Proteobacteria",
+          "Gammaproteobacteria",
+          "Enterobacterales",
+          "Enterobacteriaceae",
+          "Escherichia",
+          "Escherichia coli"
+        ],
+        "ancestor_taxon_id": [
+          131567,
+          2,
+          1224,
+          1236,
+          91347,
+          543,
+          561,
+          562
+        ],
+        "gene_name": "pfkA",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 585056,
+        "protein_name": "ATP-dependent 6-phosphofructokinase isozyme 1 (ATP-PFK 1) (Phosphofructokinase 1) (EC 2.7.1.11) (6-phosphofructokinase isozyme I) (Phosphohexokinase 1)",
+        "species_name": "Escherichia coli UMN026",
+        "uniprot_id": "B7NFL3"
+      },
+      {
+        "ancestor_name": [
+          "cellular organisms",
+          "Bacteria",
+          "Proteobacteria",
+          "Gammaproteobacteria",
+          "Enterobacterales",
+          "Enterobacteriaceae",
+          "Escherichia",
+          "Escherichia coli"
+        ],
+        "ancestor_taxon_id": [
+          131567,
+          2,
+          1224,
+          1236,
+          91347,
+          543,
+          561,
+          562
+        ],
+        "gene_name": "pfkA",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 585057,
+        "protein_name": "ATP-dependent 6-phosphofructokinase isozyme 1 (ATP-PFK 1) (Phosphofructokinase 1) (EC 2.7.1.11) (6-phosphofructokinase isozyme I) (Phosphohexokinase 1)",
+        "species_name": "Escherichia coli IAI39",
+        "uniprot_id": "B7NU91"
+      },
+      {
+        "ancestor_name": [
+          "cellular organisms",
+          "Bacteria",
+          "Proteobacteria",
+          "Gammaproteobacteria",
+          "Enterobacterales",
+          "Enterobacteriaceae",
+          "Escherichia",
+          "Escherichia coli"
+        ],
+        "ancestor_taxon_id": [
+          131567,
+          2,
+          1224,
+          1236,
+          91347,
+          543,
+          561,
+          562
+        ],
+        "gene_name": "pfkA",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 585397,
+        "protein_name": "ATP-dependent 6-phosphofructokinase isozyme 1 (ATP-PFK 1) (Phosphofructokinase 1) (EC 2.7.1.11) (6-phosphofructokinase isozyme I) (Phosphohexokinase 1)",
+        "species_name": "Escherichia coli ED1a",
+        "uniprot_id": "B7N2Q7"
+      },
+      {
+        "ancestor_name": [
+          "cellular organisms",
+          "Bacteria",
+          "Proteobacteria",
+          "Gammaproteobacteria",
+          "Enterobacterales",
+          "Enterobacteriaceae",
+          "Escherichia",
+          "Escherichia coli",
+          "Escherichia coli K-12"
+        ],
+        "ancestor_taxon_id": [
+          131567,
+          2,
+          1224,
+          1236,
+          91347,
+          543,
+          561,
+          562,
+          83333
+        ],
+        "gene_name": "pfkA",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 595496,
+        "protein_name": "ATP-dependent 6-phosphofructokinase isozyme 1 (ATP-PFK 1) (Phosphofructokinase 1) (EC 2.7.1.11) (6-phosphofructokinase isozyme I) (Phosphohexokinase 1)",
+        "species_name": "Escherichia coli BW2952",
+        "uniprot_id": "C5A083"
+      }
+    ]
+  },
+  {
+    "distance": 1,
+    "documents": [
+      {
+        "abundances": [
+          {
+            "abundance": "305",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "496",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "515",
+            "organ": "WHOLE_ORGANISM"
+          }
+        ],
+        "depth": 5,
+        "gene_name": "pfkA",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 99287,
+        "protein_name": "ATP-dependent 6-phosphofructokinase (ATP-PFK) (Phosphofructokinase) (EC 2.7.1.11) (Phosphohexokinase)",
+        "species_name": "Salmonella enterica subsp. enterica serovar Typhimurium str. LT2",
+        "uniprot_id": "P65692"
+      }
+    ]
+  },
+  {
+    "distance": 2,
+    "documents": [
+      {
+        "abundances": [
+          {
+            "abundance": "1340",
+            "organ": "WHOLE_ORGANISM"
+          }
+        ],
+        "depth": 4,
+        "gene_name": "pfkA",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 632,
+        "protein_name": "ATP-dependent 6-phosphofructokinase (ATP-PFK) (Phosphofructokinase) (EC 2.7.1.11) (Phosphohexokinase)",
+        "species_name": "Yersinia pestis",
+        "uniprot_id": "Q8ZJL6"
+      }
+    ]
+  },
+  {
+    "distance": 3,
+    "documents": []
+  },
+  {
+    "distance": 4,
+    "documents": []
+  },
+  {
+    "distance": 5,
+    "documents": [
+      {
+        "abundances": [
+          {
+            "abundance": "596",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "594",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "570",
+            "organ": "WHOLE_ORGANISM"
+          }
+        ],
+        "depth": 10,
+        "gene_name": "pfkA",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 224308,
+        "protein_name": "ATP-dependent 6-phosphofructokinase (ATP-PFK) (Phosphofructokinase) (EC 2.7.1.11) (Phosphohexokinase)",
+        "species_name": "Bacillus subtilis subsp. subtilis str. 168",
+        "uniprot_id": "O34529"
+      },
+      {
+        "abundances": [
+          {
+            "abundance": "7237",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "3674",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "5637",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "4142",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "7237",
+            "organ": "WHOLE_ORGANISM"
+          }
+        ],
+        "depth": 8,
+        "gene_name": "pfkA",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 301447,
+        "protein_name": "ATP-dependent 6-phosphofructokinase (ATP-PFK) (Phosphofructokinase) (EC 2.7.1.11) (Phosphohexokinase)",
+        "species_name": "Streptococcus pyogenes serotype M1",
+        "uniprot_id": "Q99ZD0"
+      },
+      {
+        "abundances": [
+          {
+            "abundance": "1192",
+            "organ": "WHOLE_ORGANISM"
+          }
+        ],
+        "depth": 8,
+        "gene_name": "pfkA",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 169963,
+        "protein_name": "ATP-dependent 6-phosphofructokinase (ATP-PFK) (Phosphofructokinase) (EC 2.7.1.11) (Phosphohexokinase)",
+        "species_name": "Listeria monocytogenes EGD-e",
+        "uniprot_id": "Q8Y6W0"
+      },
+      {
+        "abundances": [
+          {
+            "abundance": "1429",
+            "organ": "WHOLE_ORGANISM"
+          }
+        ],
+        "depth": 9,
+        "gene_name": "pfkA1",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 226186,
+        "protein_name": "ATP-dependent 6-phosphofructokinase 1 (ATP-PFK 1) (Phosphofructokinase 1) (EC 2.7.1.11) (Phosphohexokinase 1)",
+        "species_name": "Bacteroides thetaiotaomicron VPI-5482",
+        "uniprot_id": "Q8A8R5"
+      },
+      {
+        "abundances": [
+          {
+            "abundance": "854",
+            "organ": "WHOLE_ORGANISM"
+          }
+        ],
+        "depth": 9,
+        "gene_name": "pfkA",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 158878,
+        "protein_name": "ATP-dependent 6-phosphofructokinase (ATP-PFK) (Phosphofructokinase) (EC 2.7.1.11) (Phosphohexokinase)",
+        "species_name": "Staphylococcus aureus subsp. aureus Mu50",
+        "uniprot_id": "P65694"
+      },
+      {
+        "abundances": [
+          {
+            "abundance": "620",
+            "organ": "WHOLE_ORGANISM"
+          }
+        ],
+        "depth": 9,
+        "gene_name": "pfkA2",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 226186,
+        "protein_name": "ATP-dependent 6-phosphofructokinase 2 (ATP-PFK 2) (Phosphofructokinase 2) (EC 2.7.1.11) (Phosphohexokinase 2)",
+        "species_name": "Bacteroides thetaiotaomicron VPI-5482",
+        "uniprot_id": "Q8A624"
+      }
+    ]
+  },
+  {
+    "distance": 6,
+    "documents": [
+      {
+        "abundances": [
+          {
+            "abundance": "4.32",
+            "organ": "WHOLE_ORGANISM"
+          }
+        ],
+        "depth": 27,
+        "gene_name": "PFKM",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 9615,
+        "protein_name": "ATP-dependent 6-phosphofructokinase, muscle type (ATP-PFK) (PFK-M) (EC 2.7.1.11) (6-phosphofructokinase type A) (Phosphofructo-1-kinase isozyme A) (PFK-A) (Phosphohexokinase)",
+        "species_name": "Canis lupus familiaris",
+        "uniprot_id": "P52784"
+      },
+      {
+        "abundances": [
+          {
+            "abundance": "27.2",
+            "organ": "SILIQUE"
+          },
+          {
+            "abundance": "73.1",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "55.1",
+            "organ": "ROOT"
+          },
+          {
+            "abundance": "34.8",
+            "organ": "ROOT"
+          },
+          {
+            "abundance": "15.6",
+            "organ": "CARPEL"
+          },
+          {
+            "abundance": "19.0",
+            "organ": "SILIQUE"
+          },
+          {
+            "abundance": "17.8",
+            "organ": "CARPEL"
+          },
+          {
+            "abundance": "19.4",
+            "organ": "SEED"
+          },
+          {
+            "abundance": "20.5",
+            "organ": "SEED"
+          },
+          {
+            "abundance": "21.3",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "16.7",
+            "organ": "CARPEL"
+          },
+          {
+            "abundance": "18.2",
+            "organ": "SEED"
+          },
+          {
+            "abundance": "14.6",
+            "organ": "ROOT"
+          },
+          {
+            "abundance": "10.8",
+            "organ": "SILIQUE"
+          },
+          {
+            "abundance": "10.7",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "33.2",
+            "organ": "WHOLE_ORGANISM"
+          }
+        ],
+        "depth": 20,
+        "gene_name": "PFK6",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 3702,
+        "protein_name": "ATP-dependent 6-phosphofructokinase 6 (ATP-PFK 6) (Phosphofructokinase 6) (EC 2.7.1.11) (Phosphohexokinase 6)",
+        "species_name": "Arabidopsis thaliana",
+        "uniprot_id": "Q9M076"
+      },
+      {
+        "abundances": [
+          {
+            "abundance": "44.5",
+            "organ": "SILIQUE"
+          },
+          {
+            "abundance": "45.3",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "9.19",
+            "organ": "ROOT"
+          },
+          {
+            "abundance": "5.15",
+            "organ": "ROOT"
+          },
+          {
+            "abundance": "13.1",
+            "organ": "POLLEN"
+          },
+          {
+            "abundance": "30.9",
+            "organ": "SILIQUE"
+          },
+          {
+            "abundance": "257",
+            "organ": "SEED"
+          },
+          {
+            "abundance": "264",
+            "organ": "SEED"
+          },
+          {
+            "abundance": "11.2",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "249",
+            "organ": "SEED"
+          },
+          {
+            "abundance": "1.1",
+            "organ": "ROOT"
+          },
+          {
+            "abundance": "6.55",
+            "organ": "POLLEN"
+          },
+          {
+            "abundance": "17.2",
+            "organ": "SILIQUE"
+          },
+          {
+            "abundance": "3.38",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "0.548",
+            "organ": "WHOLE_ORGANISM"
+          }
+        ],
+        "depth": 20,
+        "gene_name": "PFK2",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 3702,
+        "protein_name": "ATP-dependent 6-phosphofructokinase 2 (ATP-PFK 2) (Phosphofructokinase 2) (EC 2.7.1.11) (Phosphohexokinase 2)",
+        "species_name": "Arabidopsis thaliana",
+        "uniprot_id": "Q9FIK0"
+      },
+      {
+        "abundances": [
+          {
+            "abundance": "390",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "332",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "212",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "346",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "434",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "458",
+            "organ": "WHOLE_ORGANISM"
+          }
+        ],
+        "depth": 8,
+        "gene_name": "pfk",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 353153,
+        "protein_name": "ATP-dependent 6-phosphofructokinase (ATP-PFK) (Phosphofructokinase) (EC 2.7.1.11) (Phosphohexokinase)",
+        "species_name": "Trypanosoma cruzi strain CL Brener",
+        "uniprot_id": "Q4E657"
+      },
+      {
+        "abundances": [
+          {
+            "abundance": "575",
+            "organ": "MEDULLA_OBLONGATA"
+          },
+          {
+            "abundance": "86.7",
+            "organ": "KIDNEY"
+          },
+          {
+            "abundance": "45.7",
+            "organ": "DUODENUM"
+          },
+          {
+            "abundance": "49.6",
+            "organ": "COLON"
+          },
+          {
+            "abundance": "176",
+            "organ": "SPLEEN"
+          },
+          {
+            "abundance": "54.8",
+            "organ": "LUNG"
+          },
+          {
+            "abundance": "12.4",
+            "organ": "ILEUM"
+          },
+          {
+            "abundance": "57.1",
+            "organ": "PANCREAS"
+          },
+          {
+            "abundance": "4.55",
+            "organ": "KIDNEY"
+          },
+          {
+            "abundance": "10.2",
+            "organ": "JEJUNUM"
+          },
+          {
+            "abundance": "342",
+            "organ": "KIDNEY"
+          },
+          {
+            "abundance": "48.7",
+            "organ": "CORTEX_OF_KIDNEY"
+          },
+          {
+            "abundance": "41.8",
+            "organ": "THYMUS"
+          },
+          {
+            "abundance": "3.49",
+            "organ": "SALIVA"
+          },
+          {
+            "abundance": "139",
+            "organ": "EMBRYONIC_TISSUE"
+          },
+          {
+            "abundance": "91.0",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "19.1",
+            "organ": "UTERUS"
+          },
+          {
+            "abundance": "880",
+            "organ": "BRAIN"
+          },
+          {
+            "abundance": "113",
+            "organ": "SALIVA_SECRETING_GLAND"
+          },
+          {
+            "abundance": "43.7",
+            "organ": "LIVER"
+          },
+          {
+            "abundance": "2778",
+            "organ": "HEART"
+          },
+          {
+            "abundance": "2995",
+            "organ": "HEART"
+          },
+          {
+            "abundance": "16.5",
+            "organ": "SPLEEN"
+          },
+          {
+            "abundance": "3521",
+            "organ": "HEART"
+          },
+          {
+            "abundance": "98.6",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "159",
+            "organ": "LUNG"
+          },
+          {
+            "abundance": "652",
+            "organ": "MUSCLE"
+          },
+          {
+            "abundance": "4567",
+            "organ": "ERYTHROCYTE"
+          },
+          {
+            "abundance": "2129",
+            "organ": "BRAIN"
+          },
+          {
+            "abundance": "1178",
+            "organ": "BRAIN"
+          },
+          {
+            "abundance": "72.5",
+            "organ": "CEREBRAL_CORTEX"
+          },
+          {
+            "abundance": "445",
+            "organ": "BROWN_ADIPOSE_TISSUE"
+          },
+          {
+            "abundance": "34.3",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "628",
+            "organ": "CEREBELLUM"
+          },
+          {
+            "abundance": "48.1",
+            "organ": "SPLEEN"
+          },
+          {
+            "abundance": "69.9",
+            "organ": "HEART"
+          },
+          {
+            "abundance": "9.43",
+            "organ": "BRAIN"
+          },
+          {
+            "abundance": "56.3",
+            "organ": "WHITE_ADIPOSE_TISSUE"
+          },
+          {
+            "abundance": "51.9",
+            "organ": "LUNG"
+          },
+          {
+            "abundance": "180",
+            "organ": "BRAIN"
+          },
+          {
+            "abundance": "3131",
+            "organ": "HEART"
+          },
+          {
+            "abundance": "67.4",
+            "organ": "FEMALE_GONAD"
+          },
+          {
+            "abundance": "101",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "5.24",
+            "organ": "PANCREAS"
+          },
+          {
+            "abundance": "855",
+            "organ": "DIAPHRAGM"
+          },
+          {
+            "abundance": "52.1",
+            "organ": "ADRENAL_GLAND"
+          },
+          {
+            "abundance": "20.2",
+            "organ": "RENAL_MEDULLA"
+          },
+          {
+            "abundance": "182",
+            "organ": "MIDBRAIN"
+          },
+          {
+            "abundance": "118",
+            "organ": "BROWN_ADIPOSE_TISSUE"
+          },
+          {
+            "abundance": "2.9",
+            "organ": "LIVER"
+          },
+          {
+            "abundance": "18.7",
+            "organ": "PANCREAS"
+          },
+          {
+            "abundance": "49.0",
+            "organ": "LIVER"
+          },
+          {
+            "abundance": "287",
+            "organ": "TESTIS"
+          },
+          {
+            "abundance": "164",
+            "organ": "EYE"
+          },
+          {
+            "abundance": "17.3",
+            "organ": "STOMACH"
+          },
+          {
+            "abundance": "36.1",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "479",
+            "organ": "LUNG"
+          },
+          {
+            "abundance": "256",
+            "organ": "SPERM"
+          },
+          {
+            "abundance": "772",
+            "organ": "BROWN_ADIPOSE_TISSUE"
+          },
+          {
+            "abundance": "787",
+            "organ": "OLFACTORY_BULB"
+          },
+          {
+            "abundance": "8.57",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "78.3",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "24.9",
+            "organ": "PANCREAS"
+          }
+        ],
+        "depth": 30,
+        "gene_name": "Pfkm",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 10090,
+        "protein_name": "ATP-dependent 6-phosphofructokinase, muscle type (ATP-PFK) (PFK-M) (EC 2.7.1.11) (6-phosphofructokinase type A) (Phosphofructo-1-kinase isozyme A) (PFK-A) (Phosphohexokinase)",
+        "species_name": "Mus musculus",
+        "uniprot_id": "P47857"
+      },
+      {
+        "abundances": [
+          {
+            "abundance": "38.2",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "21.3",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "12.6",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "12.6",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "24.8",
+            "organ": "WHOLE_ORGANISM"
+          }
+        ],
+        "depth": 28,
+        "gene_name": "PFKL",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 9913,
+        "protein_name": "ATP-dependent 6-phosphofructokinase, liver type (ATP-PFK) (PFK-L) (EC 2.7.1.11) (6-phosphofructokinase type B) (Phosphofructo-1-kinase isozyme B) (PFK-B) (Phosphohexokinase)",
+        "species_name": "Bos taurus",
+        "uniprot_id": "A1A4J1"
+      },
+      {
+        "abundances": [
+          {
+            "abundance": "43.4",
+            "organ": "LIVER"
+          },
+          {
+            "abundance": "71.7",
+            "organ": "B_CELL"
+          },
+          {
+            "abundance": "256",
+            "organ": "COLON"
+          },
+          {
+            "abundance": "99.4",
+            "organ": "PANCREAS"
+          },
+          {
+            "abundance": "8.55",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "301",
+            "organ": "BRAIN"
+          },
+          {
+            "abundance": "255",
+            "organ": "COLON"
+          },
+          {
+            "abundance": "168",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "278",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "136",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "394",
+            "organ": "UTERUS"
+          },
+          {
+            "abundance": "25.1",
+            "organ": "KIDNEY"
+          },
+          {
+            "abundance": "248",
+            "organ": "TESTIS"
+          },
+          {
+            "abundance": "2.1",
+            "organ": "LIVER"
+          },
+          {
+            "abundance": "17.1",
+            "organ": "GALL_BLADDER"
+          },
+          {
+            "abundance": "67.9",
+            "organ": "LYMPH_NODE"
+          },
+          {
+            "abundance": "46.4",
+            "organ": "LUNG"
+          },
+          {
+            "abundance": "187",
+            "organ": "PROSTATE_GLAND"
+          },
+          {
+            "abundance": "3.6",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "9.7",
+            "organ": "LIVER"
+          },
+          {
+            "abundance": "342",
+            "organ": "URINARY_BLADDER"
+          },
+          {
+            "abundance": "7.75",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "35.1",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "298",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "579",
+            "organ": "SPINAL_CORD"
+          },
+          {
+            "abundance": "146",
+            "organ": "PANCREAS"
+          },
+          {
+            "abundance": "199",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "90.3",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "759",
+            "organ": "SEMINAL_VESICLE"
+          },
+          {
+            "abundance": "139",
+            "organ": "SALIVA_SECRETING_GLAND"
+          },
+          {
+            "abundance": "99.3",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "37.9",
+            "organ": "KIDNEY"
+          },
+          {
+            "abundance": "104",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "33.8",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "236",
+            "organ": "ESOPHAGUS"
+          },
+          {
+            "abundance": "144",
+            "organ": "FEMALE_GONAD"
+          },
+          {
+            "abundance": "968",
+            "organ": "RETINA"
+          },
+          {
+            "abundance": "58.2",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "182",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "323",
+            "organ": "UTERINE_CERVIX"
+          },
+          {
+            "abundance": "151",
+            "organ": "FALLOPIAN_TUBE"
+          },
+          {
+            "abundance": "199",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "8.36",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "26.2",
+            "organ": "PLATELET"
+          },
+          {
+            "abundance": "192",
+            "organ": "ORAL_CAVITY"
+          },
+          {
+            "abundance": "608",
+            "organ": "HEART"
+          },
+          {
+            "abundance": "50.9",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "20.3",
+            "organ": "KIDNEY"
+          },
+          {
+            "abundance": "56.1",
+            "organ": "HEART"
+          },
+          {
+            "abundance": "104",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "150",
+            "organ": "HAIR_FOLLICLE"
+          },
+          {
+            "abundance": "7.65",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "147",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "107",
+            "organ": "PLACENTA"
+          },
+          {
+            "abundance": "17.8",
+            "organ": "LIVER"
+          },
+          {
+            "abundance": "174",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "181",
+            "organ": "PLACENTA"
+          },
+          {
+            "abundance": "52.4",
+            "organ": "PLATELET"
+          },
+          {
+            "abundance": "183",
+            "organ": "BRAIN"
+          },
+          {
+            "abundance": "309",
+            "organ": "BRAIN"
+          },
+          {
+            "abundance": "275",
+            "organ": "FEMALE_GONAD"
+          },
+          {
+            "abundance": "140",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "2.52",
+            "organ": "LIVER"
+          },
+          {
+            "abundance": "107",
+            "organ": "GALL_BLADDER"
+          },
+          {
+            "abundance": "299",
+            "organ": "RECTUM"
+          },
+          {
+            "abundance": "6.57",
+            "organ": "SALIVA"
+          },
+          {
+            "abundance": "167",
+            "organ": "TESTIS"
+          },
+          {
+            "abundance": "36.5",
+            "organ": "VULVA"
+          },
+          {
+            "abundance": "338",
+            "organ": "FEMALE_GONAD"
+          },
+          {
+            "abundance": "121",
+            "organ": "GUT"
+          },
+          {
+            "abundance": "173",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "25.6",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "9.8",
+            "organ": "MILK"
+          },
+          {
+            "abundance": "171",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "8.21",
+            "organ": "LUNG"
+          },
+          {
+            "abundance": "1.45",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "32.4",
+            "organ": "PLACENTA"
+          },
+          {
+            "abundance": "9.71",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "333",
+            "organ": "BRAIN"
+          },
+          {
+            "abundance": "199",
+            "organ": "RECTUM"
+          },
+          {
+            "abundance": "147",
+            "organ": "STOMACH"
+          },
+          {
+            "abundance": "168",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "42.2",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "69.1",
+            "organ": "SPLEEN"
+          },
+          {
+            "abundance": "95.8",
+            "organ": "SKIN"
+          },
+          {
+            "abundance": "133",
+            "organ": "LIVER"
+          },
+          {
+            "abundance": "36.1",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "1438",
+            "organ": "HEART"
+          },
+          {
+            "abundance": "0.067",
+            "organ": "LIVER"
+          },
+          {
+            "abundance": "168",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "38.6",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "8.0",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "25.1",
+            "organ": "MONOCYTE"
+          },
+          {
+            "abundance": "2105",
+            "organ": "HEART"
+          },
+          {
+            "abundance": "18.5",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "795",
+            "organ": "FRONTAL_CORTEX"
+          },
+          {
+            "abundance": "479",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "218",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "645",
+            "organ": "HEART"
+          },
+          {
+            "abundance": "66.0",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "281",
+            "organ": "ADRENAL_GLAND"
+          },
+          {
+            "abundance": "364",
+            "organ": "TESTIS"
+          },
+          {
+            "abundance": "231",
+            "organ": "UTERUS"
+          },
+          {
+            "abundance": "41.0",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "53.3",
+            "organ": "PANCREAS"
+          },
+          {
+            "abundance": "312",
+            "organ": "UTERUS"
+          },
+          {
+            "abundance": "269",
+            "organ": "PROSTATE_GLAND"
+          },
+          {
+            "abundance": "138",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "228",
+            "organ": "PROSTATE_GLAND"
+          },
+          {
+            "abundance": "192",
+            "organ": "SKIN"
+          },
+          {
+            "abundance": "196",
+            "organ": "GALL_BLADDER"
+          },
+          {
+            "abundance": "196",
+            "organ": "GALL_BLADDER"
+          },
+          {
+            "abundance": "294",
+            "organ": "TESTIS"
+          },
+          {
+            "abundance": "321",
+            "organ": "BRAIN"
+          },
+          {
+            "abundance": "268",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "302",
+            "organ": "ESOPHAGUS"
+          },
+          {
+            "abundance": "34.0",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "24.9",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "1192",
+            "organ": "HEART"
+          },
+          {
+            "abundance": "72.8",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "72.8",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "79.9",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "3.28",
+            "organ": "SALIVA"
+          },
+          {
+            "abundance": "249",
+            "organ": "RECTUM"
+          },
+          {
+            "abundance": "178",
+            "organ": "THYROID_GLAND"
+          },
+          {
+            "abundance": "157",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "86.0",
+            "organ": "KIDNEY"
+          },
+          {
+            "abundance": "415",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "9.56",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "176",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "10.2",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "0.201",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "24.8",
+            "organ": "EARWAX"
+          },
+          {
+            "abundance": "934",
+            "organ": "HEART"
+          },
+          {
+            "abundance": "308",
+            "organ": "FEMALE_GONAD"
+          },
+          {
+            "abundance": "74.3",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "7.72",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "369",
+            "organ": "ESOPHAGUS"
+          },
+          {
+            "abundance": "7.87",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "170",
+            "organ": "CARDIA_OF_STOMACH"
+          },
+          {
+            "abundance": "6.84",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "89.5",
+            "organ": "CEREBRAL_CORTEX"
+          },
+          {
+            "abundance": "145",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "1373",
+            "organ": "TONSIL"
+          },
+          {
+            "abundance": "691",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "47.5",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "256",
+            "organ": "COLON"
+          },
+          {
+            "abundance": "44.5",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "194",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "177",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "19.3",
+            "organ": "LUNG"
+          },
+          {
+            "abundance": "75.2",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "36.7",
+            "organ": "CELL_LINE"
+          }
+        ],
+        "depth": 30,
+        "gene_name": "PFKM",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 9606,
+        "protein_name": "ATP-dependent 6-phosphofructokinase, muscle type (ATP-PFK) (PFK-M) (EC 2.7.1.11) (6-phosphofructokinase type A) (Phosphofructo-1-kinase isozyme A) (PFK-A) (Phosphohexokinase)",
+        "species_name": "Homo sapiens",
+        "uniprot_id": "P08237"
+      },
+      {
+        "abundances": [
+          {
+            "abundance": "13.9",
+            "organ": "LEAF"
+          },
+          {
+            "abundance": "12.6",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "15.6",
+            "organ": "ROOT"
+          },
+          {
+            "abundance": "10.9",
+            "organ": "ROOT"
+          },
+          {
+            "abundance": "10.5",
+            "organ": "POLLEN"
+          },
+          {
+            "abundance": "4.93",
+            "organ": "FLOWERBUD"
+          },
+          {
+            "abundance": "22.3",
+            "organ": "JUVENILE_LEAF"
+          },
+          {
+            "abundance": "6.56",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "29.2",
+            "organ": "JUVENILE_LEAF"
+          },
+          {
+            "abundance": "1.74",
+            "organ": "LEAF"
+          },
+          {
+            "abundance": "6.18",
+            "organ": "ROOT"
+          },
+          {
+            "abundance": "5.25",
+            "organ": "POLLEN"
+          },
+          {
+            "abundance": "15.5",
+            "organ": "JUVENILE_LEAF"
+          },
+          {
+            "abundance": "9.85",
+            "organ": "FLOWERBUD"
+          },
+          {
+            "abundance": "9.27",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "4.72",
+            "organ": "WHOLE_ORGANISM"
+          }
+        ],
+        "depth": 20,
+        "gene_name": "PFK1",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 3702,
+        "protein_name": "ATP-dependent 6-phosphofructokinase 1 (ATP-PFK 1) (Phosphofructokinase 1) (EC 2.7.1.11) (Phosphohexokinase 1)",
+        "species_name": "Arabidopsis thaliana",
+        "uniprot_id": "Q9M0F9"
+      },
+      {
+        "abundances": [
+          {
+            "abundance": "52.2",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "23.1",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "9.31",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "9.31",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "6.69",
+            "organ": "WHOLE_ORGANISM"
+          }
+        ],
+        "depth": 28,
+        "gene_name": "PFKM",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 9913,
+        "protein_name": "ATP-dependent 6-phosphofructokinase, muscle type (ATP-PFK) (PFK-M) (EC 2.7.1.11) (6-phosphofructokinase type A) (Phosphofructo-1-kinase isozyme A) (PFK-A) (Phosphohexokinase)",
+        "species_name": "Bos taurus",
+        "uniprot_id": "Q0IIG5"
+      },
+      {
+        "abundances": [
+          {
+            "abundance": "62.9",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "34.7",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "91.9",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "50.5",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "217",
+            "organ": "MICROGLIAL_CELL"
+          }
+        ],
+        "depth": 29,
+        "gene_name": "Pfkl",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 10116,
+        "protein_name": "ATP-dependent 6-phosphofructokinase, liver type (ATP-PFK) (PFK-L) (EC 2.7.1.11) (6-phosphofructokinase type B) (Phosphofructo-1-kinase isozyme B) (PFK-B) (Phosphohexokinase)",
+        "species_name": "Rattus norvegicus",
+        "uniprot_id": "P30835"
+      },
+      {
+        "abundances": [
+          {
+            "abundance": "3.78",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "56.1",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "94.5",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "40.0",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "392",
+            "organ": "MICROGLIAL_CELL"
+          }
+        ],
+        "depth": 29,
+        "gene_name": "Pfkp",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 10116,
+        "protein_name": "ATP-dependent 6-phosphofructokinase, platelet type (ATP-PFK) (PFK-P) (EC 2.7.1.11) (6-phosphofructokinase type C) (Phosphofructo-1-kinase isozyme C) (PFK-C) (Phosphohexokinase)",
+        "species_name": "Rattus norvegicus",
+        "uniprot_id": "P47860"
+      },
+      {
+        "abundances": [
+          {
+            "abundance": "1727",
+            "organ": "WHOLE_ORGANISM"
+          }
+        ],
+        "depth": 26,
+        "gene_name": "PFKM",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 9823,
+        "protein_name": "ATP-dependent 6-phosphofructokinase, muscle type (ATP-PFK) (PFK-M) (EC 2.7.1.11) (6-phosphofructokinase type A) (Phosphofructo-1-kinase isozyme A) (PFK-A) (Phosphohexokinase)",
+        "species_name": "Sus scrofa",
+        "uniprot_id": "Q2HYU2"
+      },
+      {
+        "abundances": [
+          {
+            "abundance": "1562",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "2476",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "1317",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "3328",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "2289",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "879",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "1955",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "4061",
+            "organ": "WHOLE_ORGANISM"
+          }
+        ],
+        "depth": 12,
+        "gene_name": "pfk1",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 284812,
+        "protein_name": "ATP-dependent 6-phosphofructokinase (ATP-PFK) (Phosphofructokinase) (EC 2.7.1.11) (Phosphohexokinase)",
+        "species_name": "Schizosaccharomyces pombe 972h-",
+        "uniprot_id": "O42938"
+      },
+      {
+        "abundances": [
+          {
+            "abundance": "150",
+            "organ": "WHOLE_ORGANISM"
+          }
+        ],
+        "depth": 26,
+        "gene_name": "PFKM",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 9796,
+        "protein_name": "ATP-dependent 6-phosphofructokinase, muscle type (ATP-PFK) (PFK-M) (EC 2.7.1.11) (6-phosphofructokinase type A) (Phosphofructo-1-kinase isozyme A) (PFK-A) (Phosphohexokinase)",
+        "species_name": "Equus caballus",
+        "uniprot_id": "Q867C9"
+      },
+      {
+        "abundances": [
+          {
+            "abundance": "569",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "3124",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "1257",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "953",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "837",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "2827",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "80.3",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "968",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "896",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "1239",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "1600",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "1495",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "606",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "883",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "1994",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "3076",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "1229",
+            "organ": "WHOLE_ORGANISM"
+          }
+        ],
+        "depth": 13,
+        "gene_name": "PFK1",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 559292,
+        "protein_name": "ATP-dependent 6-phosphofructokinase subunit alpha (EC 2.7.1.11) (ATP-dependent 6-phosphofructokinase) (ATP-PFK) (Phosphofructokinase 1) (Phosphohexokinase)",
+        "species_name": "Saccharomyces cerevisiae S288C",
+        "uniprot_id": "P16861"
+      },
+      {
+        "abundances": [
+          {
+            "abundance": "7.94",
+            "organ": "SILIQUE"
+          },
+          {
+            "abundance": "1.82",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "0.392",
+            "organ": "ROOT"
+          },
+          {
+            "abundance": "19.6",
+            "organ": "POLLEN"
+          },
+          {
+            "abundance": "16.3",
+            "organ": "POLLEN"
+          },
+          {
+            "abundance": "5.53",
+            "organ": "SILIQUE"
+          },
+          {
+            "abundance": "4.67",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "0.784",
+            "organ": "ROOT"
+          },
+          {
+            "abundance": "17.9",
+            "organ": "POLLEN"
+          },
+          {
+            "abundance": "3.13",
+            "organ": "SILIQUE"
+          },
+          {
+            "abundance": "10.2",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "6.35",
+            "organ": "WHOLE_ORGANISM"
+          }
+        ],
+        "depth": 20,
+        "gene_name": "PFK3",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 3702,
+        "protein_name": "ATP-dependent 6-phosphofructokinase 3 (ATP-PFK 3) (Phosphofructokinase 3) (EC 2.7.1.11) (Phosphohexokinase 3)",
+        "species_name": "Arabidopsis thaliana",
+        "uniprot_id": "Q94AA4"
+      },
+      {
+        "abundances": [
+          {
+            "abundance": "725",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "3463",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "1154",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "909",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "851",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "3542",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "2861",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "816",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "817",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "1764",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "1697",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "1338",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "733",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "343",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "2002",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "1689",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "355",
+            "organ": "WHOLE_ORGANISM"
+          }
+        ],
+        "depth": 13,
+        "gene_name": "PFK2",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 559292,
+        "protein_name": "ATP-dependent 6-phosphofructokinase subunit beta (EC 2.7.1.11) (ATP-dependent 6-phosphofructokinase) (ATP-PFK) (Phosphofructokinase 2) (Phosphohexokinase)",
+        "species_name": "Saccharomyces cerevisiae S288C",
+        "uniprot_id": "P16862"
+      },
+      {
+        "abundances": [
+          {
+            "abundance": "0.041",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "0.234",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "0.836",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "0.234",
+            "organ": "WHOLE_ORGANISM"
+          }
+        ],
+        "depth": 17,
+        "gene_name": "pfk-1.2",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 6239,
+        "protein_name": "ATP-dependent 6-phosphofructokinase 2 (ATP-PFK 2) (Phosphofructokinase 2) (EC 2.7.1.11) (Phosphohexokinase 2)",
+        "species_name": "Caenorhabditis elegans",
+        "uniprot_id": "Q27483"
+      },
+      {
+        "abundances": [
+          {
+            "abundance": "256",
+            "organ": "LIVER"
+          },
+          {
+            "abundance": "0.14",
+            "organ": "PLASMA"
+          },
+          {
+            "abundance": "535",
+            "organ": "B_CELL"
+          },
+          {
+            "abundance": "266",
+            "organ": "COLON"
+          },
+          {
+            "abundance": "220",
+            "organ": "PANCREAS"
+          },
+          {
+            "abundance": "40.1",
+            "organ": "ASCITIC_FLUID"
+          },
+          {
+            "abundance": "2.61",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "205",
+            "organ": "BRAIN"
+          },
+          {
+            "abundance": "308",
+            "organ": "COLON"
+          },
+          {
+            "abundance": "169",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "154",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "202",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "37.3",
+            "organ": "URINE"
+          },
+          {
+            "abundance": "147",
+            "organ": "UTERUS"
+          },
+          {
+            "abundance": "497",
+            "organ": "KIDNEY"
+          },
+          {
+            "abundance": "316",
+            "organ": "TESTIS"
+          },
+          {
+            "abundance": "140",
+            "organ": "LIVER"
+          },
+          {
+            "abundance": "553",
+            "organ": "GALL_BLADDER"
+          },
+          {
+            "abundance": "288",
+            "organ": "LYMPH_NODE"
+          },
+          {
+            "abundance": "195",
+            "organ": "LUNG"
+          },
+          {
+            "abundance": "125",
+            "organ": "PROSTATE_GLAND"
+          },
+          {
+            "abundance": "153",
+            "organ": "PLASMA"
+          },
+          {
+            "abundance": "24.2",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "83.9",
+            "organ": "LIVER"
+          },
+          {
+            "abundance": "290",
+            "organ": "URINARY_BLADDER"
+          },
+          {
+            "abundance": "2.09",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "132",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "237",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "541",
+            "organ": "SPINAL_CORD"
+          },
+          {
+            "abundance": "275",
+            "organ": "PANCREAS"
+          },
+          {
+            "abundance": "185",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "18.1",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "46.8",
+            "organ": "SEMINAL_VESICLE"
+          },
+          {
+            "abundance": "248",
+            "organ": "SALIVA_SECRETING_GLAND"
+          },
+          {
+            "abundance": "243",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "313",
+            "organ": "KIDNEY"
+          },
+          {
+            "abundance": "212",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "41.1",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "248",
+            "organ": "ESOPHAGUS"
+          },
+          {
+            "abundance": "243",
+            "organ": "FEMALE_GONAD"
+          },
+          {
+            "abundance": "797",
+            "organ": "RETINA"
+          },
+          {
+            "abundance": "23.7",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "240",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "224",
+            "organ": "UTERINE_CERVIX"
+          },
+          {
+            "abundance": "124",
+            "organ": "FALLOPIAN_TUBE"
+          },
+          {
+            "abundance": "209",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "8.92",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "37.7",
+            "organ": "URINE"
+          },
+          {
+            "abundance": "453",
+            "organ": "PLATELET"
+          },
+          {
+            "abundance": "66.1",
+            "organ": "ORAL_CAVITY"
+          },
+          {
+            "abundance": "252",
+            "organ": "HEART"
+          },
+          {
+            "abundance": "49.1",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "118",
+            "organ": "KIDNEY"
+          },
+          {
+            "abundance": "50.8",
+            "organ": "HEART"
+          },
+          {
+            "abundance": "63.3",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "615",
+            "organ": "HAIR_FOLLICLE"
+          },
+          {
+            "abundance": "2.68",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "14.9",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "258",
+            "organ": "PLACENTA"
+          },
+          {
+            "abundance": "358",
+            "organ": "LIVER"
+          },
+          {
+            "abundance": "347",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "312",
+            "organ": "PLACENTA"
+          },
+          {
+            "abundance": "462",
+            "organ": "PLATELET"
+          },
+          {
+            "abundance": "159",
+            "organ": "BRAIN"
+          },
+          {
+            "abundance": "185",
+            "organ": "BRAIN"
+          },
+          {
+            "abundance": "360",
+            "organ": "FEMALE_GONAD"
+          },
+          {
+            "abundance": "137",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "84.4",
+            "organ": "LIVER"
+          },
+          {
+            "abundance": "386",
+            "organ": "GALL_BLADDER"
+          },
+          {
+            "abundance": "236",
+            "organ": "RECTUM"
+          },
+          {
+            "abundance": "125",
+            "organ": "SALIVA"
+          },
+          {
+            "abundance": "133",
+            "organ": "TESTIS"
+          },
+          {
+            "abundance": "282",
+            "organ": "VULVA"
+          },
+          {
+            "abundance": "433",
+            "organ": "FEMALE_GONAD"
+          },
+          {
+            "abundance": "390",
+            "organ": "GUT"
+          },
+          {
+            "abundance": "18.4",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "28.6",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "85.9",
+            "organ": "MILK"
+          },
+          {
+            "abundance": "181",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "76.6",
+            "organ": "PLASMA"
+          },
+          {
+            "abundance": "75.4",
+            "organ": "LUNG"
+          },
+          {
+            "abundance": "25.0",
+            "organ": "NASOPHARYNX"
+          },
+          {
+            "abundance": "153",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "205",
+            "organ": "PLACENTA"
+          },
+          {
+            "abundance": "46.2",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "223",
+            "organ": "BRAIN"
+          },
+          {
+            "abundance": "240",
+            "organ": "RECTUM"
+          },
+          {
+            "abundance": "336",
+            "organ": "STOMACH"
+          },
+          {
+            "abundance": "171",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "152",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "282",
+            "organ": "SPLEEN"
+          },
+          {
+            "abundance": "110",
+            "organ": "SKIN"
+          },
+          {
+            "abundance": "213",
+            "organ": "LIVER"
+          },
+          {
+            "abundance": "345",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "123",
+            "organ": "HEART"
+          },
+          {
+            "abundance": "45.9",
+            "organ": "LIVER"
+          },
+          {
+            "abundance": "175",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "566",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "2.75",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "27.4",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "570",
+            "organ": "MONOCYTE"
+          },
+          {
+            "abundance": "245",
+            "organ": "HEART"
+          },
+          {
+            "abundance": "324",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "555",
+            "organ": "FRONTAL_CORTEX"
+          },
+          {
+            "abundance": "726",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "192",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "203",
+            "organ": "HEART"
+          },
+          {
+            "abundance": "54.8",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "169",
+            "organ": "ADRENAL_GLAND"
+          },
+          {
+            "abundance": "551",
+            "organ": "TESTIS"
+          },
+          {
+            "abundance": "211",
+            "organ": "UTERUS"
+          },
+          {
+            "abundance": "217",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "165",
+            "organ": "PANCREAS"
+          },
+          {
+            "abundance": "179",
+            "organ": "UTERUS"
+          },
+          {
+            "abundance": "241",
+            "organ": "PROSTATE_GLAND"
+          },
+          {
+            "abundance": "4.33",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "93.6",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "183",
+            "organ": "PROSTATE_GLAND"
+          },
+          {
+            "abundance": "220",
+            "organ": "SKIN"
+          },
+          {
+            "abundance": "220",
+            "organ": "GALL_BLADDER"
+          },
+          {
+            "abundance": "220",
+            "organ": "GALL_BLADDER"
+          },
+          {
+            "abundance": "448",
+            "organ": "TESTIS"
+          },
+          {
+            "abundance": "299",
+            "organ": "BRAIN"
+          },
+          {
+            "abundance": "225",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "236",
+            "organ": "ESOPHAGUS"
+          },
+          {
+            "abundance": "26.2",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "108",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "202",
+            "organ": "HEART"
+          },
+          {
+            "abundance": "41.8",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "41.8",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "504",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "62.7",
+            "organ": "SALIVA"
+          },
+          {
+            "abundance": "238",
+            "organ": "RECTUM"
+          },
+          {
+            "abundance": "220",
+            "organ": "THYROID_GLAND"
+          },
+          {
+            "abundance": "206",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "520",
+            "organ": "KIDNEY"
+          },
+          {
+            "abundance": "216",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "33.5",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "2.66",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "173",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "49.9",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "127",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "82.6",
+            "organ": "EARWAX"
+          },
+          {
+            "abundance": "486",
+            "organ": "HEART"
+          },
+          {
+            "abundance": "381",
+            "organ": "FEMALE_GONAD"
+          },
+          {
+            "abundance": "75.0",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "2.82",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "224",
+            "organ": "ESOPHAGUS"
+          },
+          {
+            "abundance": "2.19",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "89.4",
+            "organ": "CARDIA_OF_STOMACH"
+          },
+          {
+            "abundance": "2.11",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "92.5",
+            "organ": "CEREBRAL_CORTEX"
+          },
+          {
+            "abundance": "53.0",
+            "organ": "LIVER"
+          },
+          {
+            "abundance": "79.5",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "252",
+            "organ": "TONSIL"
+          },
+          {
+            "abundance": "235",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "13.0",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "287",
+            "organ": "COLON"
+          },
+          {
+            "abundance": "167",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "190",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "188",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "37.5",
+            "organ": "URINE"
+          },
+          {
+            "abundance": "409",
+            "organ": "LUNG"
+          },
+          {
+            "abundance": "122",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "443",
+            "organ": "PLATELET"
+          },
+          {
+            "abundance": "115",
+            "organ": "CELL_LINE"
+          }
+        ],
+        "depth": 30,
+        "gene_name": "PFKL",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 9606,
+        "protein_name": "ATP-dependent 6-phosphofructokinase, liver type (ATP-PFK) (PFK-L) (EC 2.7.1.11) (6-phosphofructokinase type B) (Phosphofructo-1-kinase isozyme B) (PFK-B) (Phosphohexokinase)",
+        "species_name": "Homo sapiens",
+        "uniprot_id": "P17858"
+      },
+      {
+        "abundances": [
+          {
+            "abundance": "25.9",
+            "organ": "LEAF"
+          },
+          {
+            "abundance": "10.9",
+            "organ": "LEAF"
+          },
+          {
+            "abundance": "6.66",
+            "organ": "SILIQUE"
+          },
+          {
+            "abundance": "34.7",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "82.9",
+            "organ": "ROOT"
+          },
+          {
+            "abundance": "90.1",
+            "organ": "ROOT"
+          },
+          {
+            "abundance": "134",
+            "organ": "POLLEN"
+          },
+          {
+            "abundance": "39.3",
+            "organ": "CARPEL"
+          },
+          {
+            "abundance": "159",
+            "organ": "POLLEN"
+          },
+          {
+            "abundance": "10.6",
+            "organ": "SILIQUE"
+          },
+          {
+            "abundance": "45.8",
+            "organ": "CARPEL"
+          },
+          {
+            "abundance": "16.1",
+            "organ": "FLOWERBUD"
+          },
+          {
+            "abundance": "19.8",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "3.58",
+            "organ": "LEAF"
+          },
+          {
+            "abundance": "42.5",
+            "organ": "CARPEL"
+          },
+          {
+            "abundance": "6.1",
+            "organ": "FLOWER"
+          },
+          {
+            "abundance": "97.2",
+            "organ": "ROOT"
+          },
+          {
+            "abundance": "147",
+            "organ": "POLLEN"
+          },
+          {
+            "abundance": "21.0",
+            "organ": "FLOWERBUD"
+          },
+          {
+            "abundance": "12.2",
+            "organ": "FLOWER"
+          },
+          {
+            "abundance": "9.93",
+            "organ": "SHOOT"
+          },
+          {
+            "abundance": "0",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "11.1",
+            "organ": "FLOWERBUD"
+          },
+          {
+            "abundance": "14.6",
+            "organ": "SILIQUE"
+          },
+          {
+            "abundance": "19.9",
+            "organ": "SHOOT"
+          },
+          {
+            "abundance": "23.4",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "77.5",
+            "organ": "WHOLE_ORGANISM"
+          }
+        ],
+        "depth": 20,
+        "gene_name": "PFK7",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 3702,
+        "protein_name": "ATP-dependent 6-phosphofructokinase 7 (ATP-PFK 7) (Phosphofructokinase 7) (EC 2.7.1.11) (Phosphohexokinase 7)",
+        "species_name": "Arabidopsis thaliana",
+        "uniprot_id": "Q9C5J7"
+      },
+      {
+        "abundances": [
+          {
+            "abundance": "1071",
+            "organ": "MEDULLA_OBLONGATA"
+          },
+          {
+            "abundance": "112",
+            "organ": "KIDNEY"
+          },
+          {
+            "abundance": "228",
+            "organ": "DUODENUM"
+          },
+          {
+            "abundance": "553",
+            "organ": "COLON"
+          },
+          {
+            "abundance": "360",
+            "organ": "SPLEEN"
+          },
+          {
+            "abundance": "184",
+            "organ": "LUNG"
+          },
+          {
+            "abundance": "795",
+            "organ": "ILEUM"
+          },
+          {
+            "abundance": "260",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "1265",
+            "organ": "JEJUNUM"
+          },
+          {
+            "abundance": "330",
+            "organ": "KIDNEY"
+          },
+          {
+            "abundance": "156",
+            "organ": "CORTEX_OF_KIDNEY"
+          },
+          {
+            "abundance": "201",
+            "organ": "THYMUS"
+          },
+          {
+            "abundance": "96.4",
+            "organ": "PLACENTA"
+          },
+          {
+            "abundance": "92.1",
+            "organ": "EMBRYONIC_TISSUE"
+          },
+          {
+            "abundance": "83.7",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "91.4",
+            "organ": "UTERUS"
+          },
+          {
+            "abundance": "823",
+            "organ": "BRAIN"
+          },
+          {
+            "abundance": "240",
+            "organ": "SALIVA_SECRETING_GLAND"
+          },
+          {
+            "abundance": "0.535",
+            "organ": "LIVER"
+          },
+          {
+            "abundance": "285",
+            "organ": "HEART"
+          },
+          {
+            "abundance": "250",
+            "organ": "HEART"
+          },
+          {
+            "abundance": "214",
+            "organ": "SPLEEN"
+          },
+          {
+            "abundance": "57.7",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "154",
+            "organ": "LUNG"
+          },
+          {
+            "abundance": "42.4",
+            "organ": "MUSCLE"
+          },
+          {
+            "abundance": "1521",
+            "organ": "BRAIN"
+          },
+          {
+            "abundance": "1244",
+            "organ": "BRAIN"
+          },
+          {
+            "abundance": "99.3",
+            "organ": "CEREBRAL_CORTEX"
+          },
+          {
+            "abundance": "387",
+            "organ": "BROWN_ADIPOSE_TISSUE"
+          },
+          {
+            "abundance": "280",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "728",
+            "organ": "CEREBELLUM"
+          },
+          {
+            "abundance": "143",
+            "organ": "SPLEEN"
+          },
+          {
+            "abundance": "122",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "23.1",
+            "organ": "HEART"
+          },
+          {
+            "abundance": "268",
+            "organ": "WHITE_ADIPOSE_TISSUE"
+          },
+          {
+            "abundance": "90.8",
+            "organ": "LUNG"
+          },
+          {
+            "abundance": "92.3",
+            "organ": "BRAIN"
+          },
+          {
+            "abundance": "1257",
+            "organ": "HEART"
+          },
+          {
+            "abundance": "154",
+            "organ": "FEMALE_GONAD"
+          },
+          {
+            "abundance": "59.4",
+            "organ": "KIDNEY"
+          },
+          {
+            "abundance": "74.4",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "0.218",
+            "organ": "PANCREAS"
+          },
+          {
+            "abundance": "13.7",
+            "organ": "DIAPHRAGM"
+          },
+          {
+            "abundance": "97.1",
+            "organ": "ADRENAL_GLAND"
+          },
+          {
+            "abundance": "98.8",
+            "organ": "RENAL_MEDULLA"
+          },
+          {
+            "abundance": "359",
+            "organ": "MIDBRAIN"
+          },
+          {
+            "abundance": "226",
+            "organ": "BROWN_ADIPOSE_TISSUE"
+          },
+          {
+            "abundance": "0.417",
+            "organ": "LIVER"
+          },
+          {
+            "abundance": "397",
+            "organ": "PANCREAS"
+          },
+          {
+            "abundance": "4.98",
+            "organ": "LIVER"
+          },
+          {
+            "abundance": "634",
+            "organ": "TESTIS"
+          },
+          {
+            "abundance": "212",
+            "organ": "EYE"
+          },
+          {
+            "abundance": "158",
+            "organ": "STOMACH"
+          },
+          {
+            "abundance": "151",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "249",
+            "organ": "LUNG"
+          },
+          {
+            "abundance": "3358",
+            "organ": "GUT_EPITHELIUM"
+          },
+          {
+            "abundance": "765",
+            "organ": "SPERM"
+          },
+          {
+            "abundance": "548",
+            "organ": "BROWN_ADIPOSE_TISSUE"
+          },
+          {
+            "abundance": "1253",
+            "organ": "OLFACTORY_BULB"
+          },
+          {
+            "abundance": "3.91",
+            "organ": "LIVER"
+          },
+          {
+            "abundance": "231",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "90.8",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "199",
+            "organ": "PANCREAS"
+          }
+        ],
+        "depth": 30,
+        "gene_name": "Pfkp",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 10090,
+        "protein_name": "ATP-dependent 6-phosphofructokinase, platelet type (ATP-PFK) (PFK-P) (EC 2.7.1.11) (6-phosphofructokinase type C) (Phosphofructo-1-kinase isozyme C) (PFK-C) (Phosphohexokinase)",
+        "species_name": "Mus musculus",
+        "uniprot_id": "Q9WUA3"
+      },
+      {
+        "abundances": [
+          {
+            "abundance": "1153",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "131",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "144",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "71.8",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "211",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "208",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "224",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "246",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "597",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "147",
+            "organ": "WHOLE_ORGANISM"
+          }
+        ],
+        "depth": 33,
+        "gene_name": "Pfk",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 7227,
+        "protein_name": "ATP-dependent 6-phosphofructokinase (ATP-PFK) (Phosphofructokinase) (EC 2.7.1.11) (Phosphohexokinase)",
+        "species_name": "Drosophila melanogaster",
+        "uniprot_id": "P52034"
+      },
+      {
+        "abundances": [
+          {
+            "abundance": "24.6",
+            "organ": "LIVER"
+          },
+          {
+            "abundance": "156",
+            "organ": "B_CELL"
+          },
+          {
+            "abundance": "481",
+            "organ": "COLON"
+          },
+          {
+            "abundance": "158",
+            "organ": "PANCREAS"
+          },
+          {
+            "abundance": "26.6",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "520",
+            "organ": "BRAIN"
+          },
+          {
+            "abundance": "388",
+            "organ": "COLON"
+          },
+          {
+            "abundance": "217",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "676",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "329",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "2.96",
+            "organ": "URINE"
+          },
+          {
+            "abundance": "297",
+            "organ": "UTERUS"
+          },
+          {
+            "abundance": "27.0",
+            "organ": "KIDNEY"
+          },
+          {
+            "abundance": "112",
+            "organ": "TESTIS"
+          },
+          {
+            "abundance": "12.4",
+            "organ": "LIVER"
+          },
+          {
+            "abundance": "18.0",
+            "organ": "GALL_BLADDER"
+          },
+          {
+            "abundance": "290",
+            "organ": "LYMPH_NODE"
+          },
+          {
+            "abundance": "80.2",
+            "organ": "LUNG"
+          },
+          {
+            "abundance": "527",
+            "organ": "PROSTATE_GLAND"
+          },
+          {
+            "abundance": "30.1",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "26.3",
+            "organ": "LIVER"
+          },
+          {
+            "abundance": "794",
+            "organ": "URINARY_BLADDER"
+          },
+          {
+            "abundance": "27.4",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "598",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "534",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "663",
+            "organ": "SPINAL_CORD"
+          },
+          {
+            "abundance": "162",
+            "organ": "PANCREAS"
+          },
+          {
+            "abundance": "207",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "365",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "337",
+            "organ": "SEMINAL_VESICLE"
+          },
+          {
+            "abundance": "141",
+            "organ": "SALIVA_SECRETING_GLAND"
+          },
+          {
+            "abundance": "924",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "27.2",
+            "organ": "KIDNEY"
+          },
+          {
+            "abundance": "178",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "180",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "597",
+            "organ": "ESOPHAGUS"
+          },
+          {
+            "abundance": "42.5",
+            "organ": "FEMALE_GONAD"
+          },
+          {
+            "abundance": "838",
+            "organ": "RETINA"
+          },
+          {
+            "abundance": "217",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "1281",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "383",
+            "organ": "UTERINE_CERVIX"
+          },
+          {
+            "abundance": "303",
+            "organ": "FALLOPIAN_TUBE"
+          },
+          {
+            "abundance": "208",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "302",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "16.3",
+            "organ": "URINE"
+          },
+          {
+            "abundance": "729",
+            "organ": "PLATELET"
+          },
+          {
+            "abundance": "62.9",
+            "organ": "ORAL_CAVITY"
+          },
+          {
+            "abundance": "1317",
+            "organ": "HEART"
+          },
+          {
+            "abundance": "324",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "7.33",
+            "organ": "KIDNEY"
+          },
+          {
+            "abundance": "356",
+            "organ": "HEART"
+          },
+          {
+            "abundance": "167",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "20.4",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "607",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "239",
+            "organ": "PLACENTA"
+          },
+          {
+            "abundance": "21.8",
+            "organ": "LIVER"
+          },
+          {
+            "abundance": "1197",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "391",
+            "organ": "PLACENTA"
+          },
+          {
+            "abundance": "1014",
+            "organ": "PLATELET"
+          },
+          {
+            "abundance": "195",
+            "organ": "BRAIN"
+          },
+          {
+            "abundance": "656",
+            "organ": "BRAIN"
+          },
+          {
+            "abundance": "133",
+            "organ": "FEMALE_GONAD"
+          },
+          {
+            "abundance": "151",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "4.28",
+            "organ": "LIVER"
+          },
+          {
+            "abundance": "52.6",
+            "organ": "GALL_BLADDER"
+          },
+          {
+            "abundance": "286",
+            "organ": "RECTUM"
+          },
+          {
+            "abundance": "74.7",
+            "organ": "SALIVA"
+          },
+          {
+            "abundance": "39.1",
+            "organ": "TESTIS"
+          },
+          {
+            "abundance": "159",
+            "organ": "VULVA"
+          },
+          {
+            "abundance": "224",
+            "organ": "FEMALE_GONAD"
+          },
+          {
+            "abundance": "83.0",
+            "organ": "GUT"
+          },
+          {
+            "abundance": "95.6",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "52.0",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "201",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "13.2",
+            "organ": "LUNG"
+          },
+          {
+            "abundance": "87.6",
+            "organ": "PLACENTA"
+          },
+          {
+            "abundance": "13.5",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "583",
+            "organ": "BRAIN"
+          },
+          {
+            "abundance": "222",
+            "organ": "RECTUM"
+          },
+          {
+            "abundance": "393",
+            "organ": "STOMACH"
+          },
+          {
+            "abundance": "177",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "900",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "303",
+            "organ": "SPLEEN"
+          },
+          {
+            "abundance": "59.2",
+            "organ": "SKIN"
+          },
+          {
+            "abundance": "374",
+            "organ": "LIVER"
+          },
+          {
+            "abundance": "204",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "463",
+            "organ": "HEART"
+          },
+          {
+            "abundance": "0.88",
+            "organ": "LIVER"
+          },
+          {
+            "abundance": "226",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "258",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "22.8",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "197",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "106",
+            "organ": "MONOCYTE"
+          },
+          {
+            "abundance": "799",
+            "organ": "HEART"
+          },
+          {
+            "abundance": "227",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "911",
+            "organ": "FRONTAL_CORTEX"
+          },
+          {
+            "abundance": "1014",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "218",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "610",
+            "organ": "HEART"
+          },
+          {
+            "abundance": "59.5",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "91.1",
+            "organ": "ADRENAL_GLAND"
+          },
+          {
+            "abundance": "159",
+            "organ": "TESTIS"
+          },
+          {
+            "abundance": "417",
+            "organ": "UTERUS"
+          },
+          {
+            "abundance": "740",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "154",
+            "organ": "PANCREAS"
+          },
+          {
+            "abundance": "357",
+            "organ": "UTERUS"
+          },
+          {
+            "abundance": "567",
+            "organ": "PROSTATE_GLAND"
+          },
+          {
+            "abundance": "215",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "547",
+            "organ": "PROSTATE_GLAND"
+          },
+          {
+            "abundance": "118",
+            "organ": "SKIN"
+          },
+          {
+            "abundance": "87.2",
+            "organ": "GALL_BLADDER"
+          },
+          {
+            "abundance": "209",
+            "organ": "TESTIS"
+          },
+          {
+            "abundance": "87.2",
+            "organ": "GALL_BLADDER"
+          },
+          {
+            "abundance": "209",
+            "organ": "TESTIS"
+          },
+          {
+            "abundance": "173",
+            "organ": "BRAIN"
+          },
+          {
+            "abundance": "695",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "406",
+            "organ": "ESOPHAGUS"
+          },
+          {
+            "abundance": "115",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "561",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "1021",
+            "organ": "HEART"
+          },
+          {
+            "abundance": "103",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "103",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "594",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "37.3",
+            "organ": "SALIVA"
+          },
+          {
+            "abundance": "254",
+            "organ": "RECTUM"
+          },
+          {
+            "abundance": "290",
+            "organ": "THYROID_GLAND"
+          },
+          {
+            "abundance": "225",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "67.1",
+            "organ": "KIDNEY"
+          },
+          {
+            "abundance": "502",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "152",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "22.6",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "184",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "72.2",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "245",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "25.7",
+            "organ": "EARWAX"
+          },
+          {
+            "abundance": "814",
+            "organ": "HEART"
+          },
+          {
+            "abundance": "132",
+            "organ": "FEMALE_GONAD"
+          },
+          {
+            "abundance": "150",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "22.4",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "216",
+            "organ": "ESOPHAGUS"
+          },
+          {
+            "abundance": "26.5",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "141",
+            "organ": "CARDIA_OF_STOMACH"
+          },
+          {
+            "abundance": "23.5",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "120",
+            "organ": "CEREBRAL_CORTEX"
+          },
+          {
+            "abundance": "144",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "216",
+            "organ": "TONSIL"
+          },
+          {
+            "abundance": "1075",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "434",
+            "organ": "COLON"
+          },
+          {
+            "abundance": "1076",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "198",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "205",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "9.62",
+            "organ": "URINE"
+          },
+          {
+            "abundance": "25.1",
+            "organ": "LUNG"
+          },
+          {
+            "abundance": "187",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "443",
+            "organ": "PLATELET"
+          },
+          {
+            "abundance": "39.0",
+            "organ": "CELL_LINE"
+          }
+        ],
+        "depth": 30,
+        "gene_name": "PFKP",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 9606,
+        "protein_name": "ATP-dependent 6-phosphofructokinase, platelet type (ATP-PFK) (PFK-P) (EC 2.7.1.11) (6-phosphofructokinase type C) (Phosphofructo-1-kinase isozyme C) (PFK-C) (Phosphohexokinase)",
+        "species_name": "Homo sapiens",
+        "uniprot_id": "Q01813"
+      },
+      {
+        "abundances": [
+          {
+            "abundance": "79.4",
+            "organ": "MEDULLA_OBLONGATA"
+          },
+          {
+            "abundance": "121",
+            "organ": "KIDNEY"
+          },
+          {
+            "abundance": "51.1",
+            "organ": "DUODENUM"
+          },
+          {
+            "abundance": "343",
+            "organ": "COLON"
+          },
+          {
+            "abundance": "464",
+            "organ": "SPLEEN"
+          },
+          {
+            "abundance": "91.8",
+            "organ": "LUNG"
+          },
+          {
+            "abundance": "50.3",
+            "organ": "ILEUM"
+          },
+          {
+            "abundance": "82.7",
+            "organ": "JEJUNUM"
+          },
+          {
+            "abundance": "285",
+            "organ": "KIDNEY"
+          },
+          {
+            "abundance": "60.9",
+            "organ": "CORTEX_OF_KIDNEY"
+          },
+          {
+            "abundance": "95.8",
+            "organ": "THYMUS"
+          },
+          {
+            "abundance": "72.3",
+            "organ": "SALIVA"
+          },
+          {
+            "abundance": "24.1",
+            "organ": "PLACENTA"
+          },
+          {
+            "abundance": "64.0",
+            "organ": "EMBRYONIC_TISSUE"
+          },
+          {
+            "abundance": "103",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "21.2",
+            "organ": "UTERUS"
+          },
+          {
+            "abundance": "387",
+            "organ": "BRAIN"
+          },
+          {
+            "abundance": "47.5",
+            "organ": "SALIVA_SECRETING_GLAND"
+          },
+          {
+            "abundance": "157",
+            "organ": "LIVER"
+          },
+          {
+            "abundance": "644",
+            "organ": "HEART"
+          },
+          {
+            "abundance": "455",
+            "organ": "HEART"
+          },
+          {
+            "abundance": "88.6",
+            "organ": "SPLEEN"
+          },
+          {
+            "abundance": "1477",
+            "organ": "HEART"
+          },
+          {
+            "abundance": "34.4",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "181",
+            "organ": "LUNG"
+          },
+          {
+            "abundance": "5.04",
+            "organ": "MUSCLE"
+          },
+          {
+            "abundance": "1230",
+            "organ": "ERYTHROCYTE"
+          },
+          {
+            "abundance": "625",
+            "organ": "BRAIN"
+          },
+          {
+            "abundance": "589",
+            "organ": "BRAIN"
+          },
+          {
+            "abundance": "34.1",
+            "organ": "CEREBRAL_CORTEX"
+          },
+          {
+            "abundance": "1060",
+            "organ": "BROWN_ADIPOSE_TISSUE"
+          },
+          {
+            "abundance": "52.3",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "147",
+            "organ": "CEREBELLUM"
+          },
+          {
+            "abundance": "138",
+            "organ": "SPLEEN"
+          },
+          {
+            "abundance": "8.97",
+            "organ": "HEART"
+          },
+          {
+            "abundance": "34.1",
+            "organ": "BRAIN"
+          },
+          {
+            "abundance": "185",
+            "organ": "WHITE_ADIPOSE_TISSUE"
+          },
+          {
+            "abundance": "143",
+            "organ": "LUNG"
+          },
+          {
+            "abundance": "49.1",
+            "organ": "BRAIN"
+          },
+          {
+            "abundance": "365",
+            "organ": "HEART"
+          },
+          {
+            "abundance": "94.6",
+            "organ": "FEMALE_GONAD"
+          },
+          {
+            "abundance": "99.0",
+            "organ": "KIDNEY"
+          },
+          {
+            "abundance": "47.6",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "22.0",
+            "organ": "PANCREAS"
+          },
+          {
+            "abundance": "3.8",
+            "organ": "DIAPHRAGM"
+          },
+          {
+            "abundance": "125",
+            "organ": "ADRENAL_GLAND"
+          },
+          {
+            "abundance": "36.7",
+            "organ": "RENAL_MEDULLA"
+          },
+          {
+            "abundance": "153",
+            "organ": "MIDBRAIN"
+          },
+          {
+            "abundance": "577",
+            "organ": "BROWN_ADIPOSE_TISSUE"
+          },
+          {
+            "abundance": "7.33",
+            "organ": "LIVER"
+          },
+          {
+            "abundance": "5.48",
+            "organ": "PANCREAS"
+          },
+          {
+            "abundance": "54.1",
+            "organ": "LIVER"
+          },
+          {
+            "abundance": "284",
+            "organ": "TESTIS"
+          },
+          {
+            "abundance": "395",
+            "organ": "EYE"
+          },
+          {
+            "abundance": "11.2",
+            "organ": "STOMACH"
+          },
+          {
+            "abundance": "24.3",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "346",
+            "organ": "LUNG"
+          },
+          {
+            "abundance": "283",
+            "organ": "GUT_EPITHELIUM"
+          },
+          {
+            "abundance": "129",
+            "organ": "SPERM"
+          },
+          {
+            "abundance": "1543",
+            "organ": "BROWN_ADIPOSE_TISSUE"
+          },
+          {
+            "abundance": "198",
+            "organ": "OLFACTORY_BULB"
+          },
+          {
+            "abundance": "11.6",
+            "organ": "LIVER"
+          },
+          {
+            "abundance": "13.1",
+            "organ": "CELL_LINE"
+          },
+          {
+            "abundance": "47.6",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "8.25",
+            "organ": "PANCREAS"
+          }
+        ],
+        "depth": 30,
+        "gene_name": "Pfkl",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 10090,
+        "protein_name": "ATP-dependent 6-phosphofructokinase, liver type (ATP-PFK) (PFK-L) (EC 2.7.1.11) (6-phosphofructokinase type B) (Phosphofructo-1-kinase isozyme B) (PFK-B) (Phosphohexokinase)",
+        "species_name": "Mus musculus",
+        "uniprot_id": "P12382"
+      },
+      {
+        "abundances": [
+          {
+            "abundance": "9.42",
+            "organ": "LEAF"
+          },
+          {
+            "abundance": "61.3",
+            "organ": "LEAF"
+          },
+          {
+            "abundance": "16.0",
+            "organ": "ROSETTE"
+          },
+          {
+            "abundance": "62.6",
+            "organ": "SILIQUE"
+          },
+          {
+            "abundance": "308",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "126",
+            "organ": "ROOT"
+          },
+          {
+            "abundance": "94.5",
+            "organ": "ROOT"
+          },
+          {
+            "abundance": "40.6",
+            "organ": "FLOWER"
+          },
+          {
+            "abundance": "30.0",
+            "organ": "COTYLEDON"
+          },
+          {
+            "abundance": "12.5",
+            "organ": "POLLEN"
+          },
+          {
+            "abundance": "12.5",
+            "organ": "CARPEL"
+          },
+          {
+            "abundance": "10.9",
+            "organ": "POLLEN"
+          },
+          {
+            "abundance": "25.6",
+            "organ": "COTYLEDON"
+          },
+          {
+            "abundance": "29.5",
+            "organ": "LEAF"
+          },
+          {
+            "abundance": "41.4",
+            "organ": "SILIQUE"
+          },
+          {
+            "abundance": "14.4",
+            "organ": "CARPEL"
+          },
+          {
+            "abundance": "32.5",
+            "organ": "FLOWERBUD"
+          },
+          {
+            "abundance": "18.2",
+            "organ": "JUVENILE_LEAF"
+          },
+          {
+            "abundance": "80.5",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "7.98",
+            "organ": "ROSETTE"
+          },
+          {
+            "abundance": "25.2",
+            "organ": "JUVENILE_LEAF"
+          },
+          {
+            "abundance": "4.93",
+            "organ": "LEAF"
+          },
+          {
+            "abundance": "13.4",
+            "organ": "CARPEL"
+          },
+          {
+            "abundance": "24.4",
+            "organ": "FLOWER"
+          },
+          {
+            "abundance": "63.4",
+            "organ": "ROOT"
+          },
+          {
+            "abundance": "11.7",
+            "organ": "POLLEN"
+          },
+          {
+            "abundance": "27.8",
+            "organ": "COTYLEDON"
+          },
+          {
+            "abundance": "11.3",
+            "organ": "JUVENILE_LEAF"
+          },
+          {
+            "abundance": "42.6",
+            "organ": "FLOWERBUD"
+          },
+          {
+            "abundance": "8.12",
+            "organ": "FLOWER"
+          },
+          {
+            "abundance": "19.9",
+            "organ": "SHOOT"
+          },
+          {
+            "abundance": "0",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "22.4",
+            "organ": "FLOWERBUD"
+          },
+          {
+            "abundance": "20.2",
+            "organ": "SILIQUE"
+          },
+          {
+            "abundance": "5.16",
+            "organ": "SHOOT"
+          },
+          {
+            "abundance": "30.8",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "42.8",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "34.6",
+            "organ": "SHOOT"
+          }
+        ],
+        "depth": 20,
+        "gene_name": "PFK5",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 3702,
+        "protein_name": "ATP-dependent 6-phosphofructokinase 5, chloroplastic (ATP-PFK 5) (Phosphofructokinase 5) (EC 2.7.1.11) (Phosphohexokinase 5)",
+        "species_name": "Arabidopsis thaliana",
+        "uniprot_id": "Q8VYN6"
+      },
+      {
+        "abundances": [
+          {
+            "abundance": "1.11",
+            "organ": "LEAF"
+          },
+          {
+            "abundance": "5.67",
+            "organ": "SILIQUE"
+          },
+          {
+            "abundance": "5.92",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "5.33",
+            "organ": "ROOT"
+          },
+          {
+            "abundance": "4.14",
+            "organ": "ROOT"
+          },
+          {
+            "abundance": "12.9",
+            "organ": "FLOWER"
+          },
+          {
+            "abundance": "14.3",
+            "organ": "CARPEL"
+          },
+          {
+            "abundance": "6.1",
+            "organ": "COTYLEDON"
+          },
+          {
+            "abundance": "3.89",
+            "organ": "SILIQUE"
+          },
+          {
+            "abundance": "16.6",
+            "organ": "CARPEL"
+          },
+          {
+            "abundance": "10.2",
+            "organ": "FLOWERBUD"
+          },
+          {
+            "abundance": "5.83",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "0.138",
+            "organ": "LEAF"
+          },
+          {
+            "abundance": "15.4",
+            "organ": "CARPEL"
+          },
+          {
+            "abundance": "7.27",
+            "organ": "FLOWER"
+          },
+          {
+            "abundance": "2.95",
+            "organ": "ROOT"
+          },
+          {
+            "abundance": "3.05",
+            "organ": "COTYLEDON"
+          },
+          {
+            "abundance": "13.5",
+            "organ": "FLOWERBUD"
+          },
+          {
+            "abundance": "1.6",
+            "organ": "FLOWER"
+          },
+          {
+            "abundance": "0",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "6.99",
+            "organ": "FLOWERBUD"
+          },
+          {
+            "abundance": "2.11",
+            "organ": "SILIQUE"
+          },
+          {
+            "abundance": "11.3",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "2.62",
+            "organ": "WHOLE_ORGANISM"
+          }
+        ],
+        "depth": 20,
+        "gene_name": "PFK4",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 3702,
+        "protein_name": "ATP-dependent 6-phosphofructokinase 4, chloroplastic (ATP-PFK 4) (Phosphofructokinase 4) (EC 2.7.1.11) (Phosphohexokinase 4)",
+        "species_name": "Arabidopsis thaliana",
+        "uniprot_id": "Q9FKG3"
+      },
+      {
+        "abundances": [
+          {
+            "abundance": "201",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "75.2",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "502",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "200",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "315",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "144",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "325",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "315",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "263",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "76.5",
+            "organ": "WHOLE_ORGANISM"
+          }
+        ],
+        "depth": 17,
+        "gene_name": "pfk-1.1",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 6239,
+        "protein_name": "ATP-dependent 6-phosphofructokinase 1 (ATP-PFK 1) (Phosphofructokinase 1) (EC 2.7.1.11) (Phosphohexokinase 1)",
+        "species_name": "Caenorhabditis elegans",
+        "uniprot_id": "Q9TZL8"
+      },
+      {
+        "abundances": [
+          {
+            "abundance": "9.44",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "66.2",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "124",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "50.2",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "32.8",
+            "organ": "MICROGLIAL_CELL"
+          }
+        ],
+        "depth": 29,
+        "gene_name": "Pfkm",
+        "ko_name": [
+          "6-phosphofructokinase 1"
+        ],
+        "ko_number": "K00850",
+        "ncbi_taxonomy_id": 10116,
+        "protein_name": "ATP-dependent 6-phosphofructokinase, muscle type (ATP-PFK) (PFK-M) (EC 2.7.1.11) (6-phosphofructokinase type A) (Phosphofructo-1-kinase isozyme A) (PFK-A) (Phosphohexokinase)",
+        "species_name": "Rattus norvegicus",
+        "uniprot_id": "P47858"
+      }
+    ]
+  },
+  {
+    "distance": 7,
+    "documents": []
+  },
+  {
+    "distance": 8,
+    "documents": []
+  },
+  {
+    "distance": 9,
+    "documents": []
+  },
+  {
+    "distance": 10,
+    "documents": []
+  },
+  {
+    "distance": 11,
+    "documents": []
+  },
+  {
+    "distance": 12,
+    "documents": []
+  },
+  {
+    "distance": 13,
+    "documents": []
+  },
+  {
+    "distance": 14,
+    "documents": []
+  },
+  {
+    "distance": 15,
+    "documents": []
+  },
+  {
+    "distance": 16,
+    "documents": []
+  },
+  {
+    "distance": 17,
+    "documents": []
+  },
+  {
+    "distance": 18,
+    "documents": []
+  },
+  {
+    "distance": 19,
+    "documents": []
+  },
+  {
+    "distance": 20,
+    "documents": []
+  },
+  {
+    "distance": 21,
+    "documents": []
+  },
+  {
+    "distance": 22,
+    "documents": []
+  },
+  {
+    "distance": 23,
+    "documents": []
+  },
+  {
+    "distance": 24,
+    "documents": []
+  },
+  {
+    "distance": 25,
+    "documents": []
+  },
+  {
+    "distance": 26,
+    "documents": []
+  },
+  {
+    "distance": 27,
+    "documents": []
+  },
+  {
+    "distance": 28,
+    "documents": []
+  },
+  {
+    "distance": 29,
+    "documents": []
+  },
+  {
+    "distance": 30,
+    "documents": []
+  },
+  {
+    "distance": 31,
+    "documents": []
+  },
+  {
+    "distance": 32,
+    "documents": []
+  },
+  {
+    "distance": 33,
+    "documents": []
+  },
+  {
+    "distance": 34,
+    "documents": []
+  },
+  {
+    "distance": 35,
+    "documents": []
+  },
+  {
+    "distance": 36,
+    "documents": []
+  },
+  {
+    "distance": 37,
+    "documents": []
+  },
+  {
+    "distance": 38,
+    "documents": []
+  },
+  {
+    "distance": 39,
+    "documents": []
+  }
+]

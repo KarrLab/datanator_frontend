@@ -1,0 +1,207 @@
+[
+  {
+    "function": "Archaeal ADP-dependent phosphofructokinase/glucokinase",
+    "gene_name": "pfk",
+    "halflives": [
+      {
+        "ar_cog": "arCOG03369",
+        "cog": "COG4809",
+        "cog_class": "G",
+        "growth_medium": "MeOH",
+        "halflife": 4256.48322,
+        "ncbi_taxonomy_id": 188937,
+        "ordered_locus_name": "MA3563",
+        "reference": [
+          {
+            "doi": "10.1186/s12864-016-3219-8"
+          }
+        ],
+        "species": "Methanosarcina acetivorans",
+        "std": 372.4017,
+        "std_over_avg": 0.0874904659,
+        "unit": "s"
+      },
+      {
+        "ar_cog": "arCOG03369",
+        "cog": "COG4809",
+        "cog_class": "G",
+        "growth_medium": "TMA",
+        "halflife": 4215.43254,
+        "ncbi_taxonomy_id": 188937,
+        "ordered_locus_name": "MA3563",
+        "reference": [
+          {
+            "doi": "10.1186/s12864-016-3219-8"
+          }
+        ],
+        "species": "Methanosarcina acetivorans",
+        "std": 787.69428,
+        "std_over_avg": 0.1868596573,
+        "unit": "s"
+      },
+      {
+        "ar_cog": "arCOG03369",
+        "cog": "COG4809",
+        "cog_class": "G",
+        "growth_medium": "Acetate",
+        "halflife": 4890.65604,
+        "ncbi_taxonomy_id": 188937,
+        "ordered_locus_name": "MA3563",
+        "reference": [
+          {
+            "doi": "10.1186/s12864-016-3219-8"
+          }
+        ],
+        "species": "Methanosarcina acetivorans",
+        "std": 319.26558,
+        "std_over_avg": 0.0652807266,
+        "unit": "s"
+      }
+    ],
+    "modified": "2019-12-03T17:32:36.941000Z",
+    "protein_name": "ATP-dependent 6-phosphofructokinase (ATP-PFK) (Phosphofructokinase) (EC 2.7.1.11) (Phosphohexokinase)"
+  },
+  {
+    "gene_name": "pfkA",
+    "halflives": [
+      {
+        "growth_medium": "Middlebrook 7H9 with the ADC supplement (Difco) and 0.05% Tween80, at 37 degree celcius.",
+        "halflife": 598.3239216828467,
+        "ncbi_taxonomy_id": 83332,
+        "ordered_locus_name": "Rv3010c",
+        "r_sqaured": 0.9349553703238542,
+        "reference": [
+          {
+            "doi": "10.1093/nar/gks1019",
+            "pubmed_id": "23125364"
+          }
+        ],
+        "species": "Mycobacterium tuberculosis H37Rv",
+        "unit": "s"
+      },
+      {
+        "cog": "G",
+        "expression_reads_per_kb_per_mb": 1498.152856,
+        "gene_end": 4385113,
+        "gene_start": 4386072,
+        "growth_medium": "Luria-Bertani (LB) broth (500 ml) at 30 degree celcius, 250 rpm.",
+        "halflife": 357.68710104,
+        "ncbi_taxonomy_id": 222523,
+        "operon": ["TU_4382701-4393581_R"],
+        "ordered_locus_name": "BCE_4730",
+        "quantification_method": "Illumina GA-II",
+        "reference": [
+          {
+            "doi": "10.1186/gb-2012-13-4-r30",
+            "pubmed_id": "22537947"
+          }
+        ],
+        "species": "Bacillus cereus ATCC 10987",
+        "strand": "R",
+        "transcriptional_end_sites": "Part of operon",
+        "transcriptional_start_sites": "Part of operon",
+        "unit": "s"
+      },
+      {
+        "cog": "G",
+        "gene_end": 4385113,
+        "gene_start": 4386072,
+        "growth_medium": "Luria-Bertani (LB) broth (500 ml) at 30 degree celcius, 250 rpm.",
+        "halflife": 333.85169568,
+        "ncbi_taxonomy_id": 222523,
+        "operon": ["TU_4382701-4393581_R"],
+        "ordered_locus_name": "BCE_4730",
+        "quantification_method": "Roche 454",
+        "reference": [
+          {
+            "doi": "10.1186/gb-2012-13-4-r30",
+            "pubmed_id": "22537947"
+          }
+        ],
+        "species": "Bacillus cereus ATCC 10987",
+        "strand": "R",
+        "transcriptional_end_sites": "Part of operon",
+        "transcriptional_start_sites": "Part of operon",
+        "unit": "s"
+      },
+      {
+        "doubling_time": {
+          "unit": "h",
+          "value": 6.9
+        },
+        "growth_medium": "M9 minimal medium supplemented with glucose",
+        "halflife": 130.6992585034086,
+        "ncbi_taxonomy_id": 511145,
+        "ordered_locus_name": "b3916",
+        "reference": [
+          {
+            "doi": "10.1093/nar/gkt1150"
+          }
+        ],
+        "species": "Escherichia coli str. K-12 substr. MG1655",
+        "unit": "s",
+        "variation_coefficient": 6.19884269810915
+      },
+      {
+        "doubling_time": {
+          "unit": "h",
+          "value": 3.5
+        },
+        "growth_medium": "M9 minimal medium supplemented with glucose",
+        "halflife": 112.0167451807182,
+        "ncbi_taxonomy_id": 511145,
+        "ordered_locus_name": "b3916",
+        "reference": [
+          {
+            "doi": "10.1093/nar/gkt1150"
+          }
+        ],
+        "species": "Escherichia coli str. K-12 substr. MG1655",
+        "unit": "s",
+        "variation_coefficient": 6.31944668051824
+      },
+      {
+        "doubling_time": {
+          "unit": "h",
+          "value": 2.3
+        },
+        "growth_medium": "M9 minimal medium supplemented with glucose",
+        "halflife": 101.5809381587826,
+        "ncbi_taxonomy_id": 511145,
+        "ordered_locus_name": "b3916",
+        "reference": [
+          {
+            "doi": "10.1093/nar/gkt1150"
+          }
+        ],
+        "species": "Escherichia coli str. K-12 substr. MG1655",
+        "unit": "s",
+        "variation_coefficient": 7.95400478854539
+      },
+      {
+        "doubling_time": {
+          "unit": "h",
+          "value": 1.7
+        },
+        "growth_medium": "M9 minimal medium supplemented with glucose",
+        "halflife": 103.48826338329,
+        "ncbi_taxonomy_id": 511145,
+        "ordered_locus_name": "b3916",
+        "reference": [
+          {
+            "doi": "10.1093/nar/gkt1150"
+          }
+        ],
+        "species": "Escherichia coli str. K-12 substr. MG1655",
+        "unit": "s",
+        "variation_coefficient": 7.79823332337189
+      }
+    ],
+    "modified": "2019-12-06T21:49:18.513000Z",
+    "protein_synonyms": [
+      "ATP-dependent 6-phosphofructokinase (ATP-PFK) (Phosphofructokinase) (EC 2.7.1.11) (Phosphohexokinase)",
+      "6-phosphofructokinase",
+      "ATP-dependent 6-phosphofructokinase isozyme 1 (ATP-PFK 1) (Phosphofructokinase 1) (EC 2.7.1.11) (6-phosphofructokinase isozyme I) (Phosphohexokinase 1)"
+    ]
+  }
+]

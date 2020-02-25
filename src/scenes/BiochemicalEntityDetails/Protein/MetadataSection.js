@@ -3,6 +3,35 @@ import PropTypes from "prop-types";
 import { upperCaseFirstLetter, removeDuplicates } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
 
+function formatMetadata(rawData) {
+  //console.log(rawData)
+  let koNumber;
+  let koName;
+  const uniprotIdToTaxonDist = {};
+  for (const rawDatum of rawData) {
+    for (const doc of rawDatum.documents) {
+      if ("ko_number" in doc) {
+        koNumber = doc.ko_number;
+      }
+      if ("ko_name" in doc && doc.ko_name.length > 0) {
+        koName = doc.ko_name[0];
+      }
+      if (doc.abundances !== undefined) {
+        uniprotIdToTaxonDist[doc.uniprot_id] = rawDatum.distance;
+      }
+    }
+  }
+
+  const uniprotIds = removeDuplicates(Object.keys(uniprotIdToTaxonDist));
+  uniprotIds.sort();
+  return {
+    koNumber: koNumber,
+    koName: koName,
+    uniprotIdToTaxonDist: uniprotIdToTaxonDist,
+    uniprotIds: uniprotIds
+  };
+}
+
 class MetadataSection extends Component {
   static propTypes = {
     "set-scene-metadata": PropTypes.func.isRequired
@@ -24,37 +53,14 @@ class MetadataSection extends Component {
     );
   }
 
-  formatMetadata(rawData, organism) {
-    let koNumber;
-    let koName;
-    const uniprotIdToTaxonDist = {};
-    for (const rawDatum of rawData) {
-      for (const doc of rawDatum.documents) {
-        if ("ko_number" in doc) {
-          koNumber = doc.ko_number;
-        }
-        if ("ko_name" in doc && doc.ko_name.length > 0) {
-          koName = doc.ko_name[0];
-        }
-        if (doc.abundances !== undefined) {
-          uniprotIdToTaxonDist[doc.uniprot_id] = rawDatum.distance;
-        }
-      }
-    }
-
-    const uniprotIds = removeDuplicates(Object.keys(uniprotIdToTaxonDist));
-    uniprotIds.sort();
+  formatMetadataInner(rawData, organism) {
+    let metadata = formatMetadata(rawData);
 
     this.setState({
-      metadata: {
-        koNumber: koNumber,
-        koName: koName,
-        uniprotIdToTaxonDist: uniprotIdToTaxonDist,
-        uniprotIds: uniprotIds
-      }
+      metadata: metadata
     });
 
-    const title = upperCaseFirstLetter(koName);
+    const title = upperCaseFirstLetter(metadata.koName);
 
     const sections = [{ id: "description", title: "Description" }];
 
@@ -62,7 +68,7 @@ class MetadataSection extends Component {
       title: title,
       organism: organism,
       metadataSections: sections,
-      uniprotIdToTaxonDist: uniprotIdToTaxonDist
+      uniprotIdToTaxonDist: metadata.uniprotIdToTaxonDist
     });
   }
 
@@ -91,7 +97,7 @@ class MetadataSection extends Component {
         <BaseMetadataSection
           entity-type="ortholog group"
           get-metadata-url={this.getMetadataUrl}
-          format-metadata={this.formatMetadata.bind(this)}
+          format-metadata={this.formatMetadataInner.bind(this)}
           set-scene-metadata={this.props["set-scene-metadata"]}
         />
 
@@ -131,5 +137,4 @@ class MetadataSection extends Component {
     );
   }
 }
-
-export default MetadataSection;
+export { MetadataSection, formatMetadata };

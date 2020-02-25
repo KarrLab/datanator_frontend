@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { HashLink } from "react-router-hash-link";
 import { scrollTo } from "~/utils/utils";
-import MetadataSection from "./MetadataSection";
+import { MetadataSection } from "./MetadataSection";
 import { HalfLifeDataTable } from "./HalfLifeDataTable";
 
 import "../BiochemicalEntityDetails.scss";
