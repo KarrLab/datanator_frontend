@@ -87,8 +87,10 @@ class NumberFilter extends Component {
       let hiBound = -Infinity;
       this.props.api.forEachNode(node => {
         const value = this.props.valueGetter(node);
-        loBound = Math.min(loBound, value);
-        hiBound = Math.max(hiBound, value);
+        if (value != null && value !== undefined && !isNaN(value)) {
+          loBound = Math.min(loBound, value);
+          hiBound = Math.max(hiBound, value);
+        }
       });
 
       if (this.loBound == null) {
