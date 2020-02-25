@@ -47,8 +47,9 @@ describe("Reaction data page", () => {
       proteinName: "Archaeal ADP-dependent phosphofructokinase/glucokinase"
     });
 
-
-    const formattedMetadataWithoutProteinName = formatMetadata(testRawDataWithoutGeneName);
+    const formattedMetadataWithoutProteinName = formatMetadata(
+      testRawDataWithoutGeneName
+    );
     expect(formattedMetadataWithoutProteinName).toEqual({
       geneName: null,
       proteinName: "Protein Name not Found"
