@@ -35,28 +35,14 @@ class HalfLifeDataTable extends Component {
           labelDefault: "Columns",
           labelKey: "columns",
           iconKey: "columns",
-          toolPanel: "agColumnsToolPanel",
-          toolPanelParams: {
-            suppressRowGroups: true,
-            suppressValues: true,
-            suppressPivots: true,
-            suppressPivotMode: true,
-            suppressSideButtons: false,
-            suppressColumnFilter: true,
-            suppressColumnSelectAll: true,
-            suppressColumnExpandAll: true
-          }
+          toolPanel: "columnsToolPanel"
         },
         {
           id: "filters",
           labelDefault: "Filters",
           labelKey: "filters",
           iconKey: "filter",
-          toolPanel: "agFiltersToolPanel",
-          toolPanelParams: {
-            suppressFilterSearch: true,
-            suppressExpandAll: true
-          }
+          toolPanel: "filtersToolPanel"
         },
         {
           id: "stats",
@@ -90,7 +76,7 @@ class HalfLifeDataTable extends Component {
         field: "halfLife",
         cellRenderer: "numericCellRenderer",
         type: "numericColumn",
-        filter: "agNumberColumnFilter",
+        filter: "numberFilter",
         checkboxSelection: true,
         headerCheckboxSelection: true,
         headerCheckboxSelectionFilteredOnly: true
@@ -98,7 +84,7 @@ class HalfLifeDataTable extends Component {
       {
         headerName: "Organism",
         field: "organism",
-        filter: "agSetColumnFilter"
+        filter: "textFilter"
       },
       /*
       {
@@ -106,9 +92,6 @@ class HalfLifeDataTable extends Component {
         field: "taxonomicProximity",
         hide: true,
         filter: "taxonomyFilter",
-        filterParams: {
-          taxonLineage: []
-        },
         valueFormatter: params => {
           const value = params.value;
           return value;
@@ -118,7 +101,7 @@ class HalfLifeDataTable extends Component {
       {
         headerName: "Media",
         field: "growthMedium",
-        filter: "agTextColumnFilter",
+        filter: "textFilter",
         hide: false
       },
       {
@@ -134,31 +117,9 @@ class HalfLifeDataTable extends Component {
           );
         },
         filterValueGetter: () => "DOI",
-        filter: "agSetColumnFilter"
+        filter: "textFilter"
       }
     ];
-  }
-
-  formatColHeadings(event) {
-    const gridApi = event.api;
-    const panelLabelClasses = {
-      columns: "ag-column-tool-panel-column-label",
-      filters: "ag-group-component-title"
-    };
-    for (const panelId in panelLabelClasses) {
-      const panel = gridApi.getToolPanelInstance(panelId);
-      const labels = panel.eGui.getElementsByClassName(
-        panelLabelClasses[panelId]
-      );
-      for (const label of labels) {
-        if (!label.innerHTML.startsWith("<span>")) {
-          label.innerHTML =
-            "<span>" +
-            label.innerHTML.replace("s^{-1}", "s<sup>-1</sup>") +
-            "</span>";
-        }
-      }
-    }
   }
 
   render() {
@@ -172,7 +133,6 @@ class HalfLifeDataTable extends Component {
         format-data={this.formatData}
         get-side-bar-def={this.getSideBarDef}
         get-col-defs={this.getColDefs}
-        format-col-headings={this.formatColHeadings}
       />
     );
   }

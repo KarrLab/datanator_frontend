@@ -35,7 +35,11 @@ function genApiErrorHandler(params, errorMessage = null) {
       );
 
       if (IS_DEVELOPMENT || IS_TEST) {
-        if ("isAxiosError" in error && error.isAxiosError) {
+        if (
+          "isAxiosError" in error &&
+          error.isAxiosError &&
+          error.response !== undefined
+        ) {
           const errorInfo = error.response.data;
           console.error(
             "Server error " + errorInfo.status + ": " + errorInfo.detail

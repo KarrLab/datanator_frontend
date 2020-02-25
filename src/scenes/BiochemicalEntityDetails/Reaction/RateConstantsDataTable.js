@@ -81,28 +81,14 @@ class RateConstantsDataTable extends Component {
           labelDefault: "Columns",
           labelKey: "columns",
           iconKey: "columns",
-          toolPanel: "agColumnsToolPanel",
-          toolPanelParams: {
-            suppressRowGroups: true,
-            suppressValues: true,
-            suppressPivots: true,
-            suppressPivotMode: true,
-            suppressSideButtons: false,
-            suppressColumnFilter: true,
-            suppressColumnSelectAll: true,
-            suppressColumnExpandAll: true
-          }
+          toolPanel: "columnsToolPanel"
         },
         {
           id: "filters",
           labelDefault: "Filters",
           labelKey: "filters",
           iconKey: "filter",
-          toolPanel: "agFiltersToolPanel",
-          toolPanelParams: {
-            suppressFilterSearch: true,
-            suppressExpandAll: true
-          }
+          toolPanel: "filtersToolPanel"
         },
         {
           id: "stats-kcat",
@@ -173,7 +159,7 @@ class RateConstantsDataTable extends Component {
         field: "kcat",
         cellRenderer: "numericCellRenderer",
         type: "numericColumn",
-        filter: "agNumberColumnFilter",
+        filter: "numberFilter",
         checkboxSelection: true,
         headerCheckboxSelection: true,
         headerCheckboxSelectionFilteredOnly: true
@@ -204,7 +190,7 @@ class RateConstantsDataTable extends Component {
         field: "km." + kmMet,
         cellRenderer: "numericCellRenderer",
         type: "numericColumn",
-        filter: "agNumberColumnFilter"
+        filter: "numberFilter"
       });
     }
 
@@ -212,14 +198,14 @@ class RateConstantsDataTable extends Component {
     colDefs.push({
       headerName: "Organism",
       field: "organism",
-      filter: "agSetColumnFilter"
+      filter: "textFilter"
     });
 
     colDefs.push({
       headerName: "Variant",
       field: "wildtypeMutant",
       hide: true,
-      filter: "agSetColumnFilter"
+      filter: "textFilter"
     });
 
     /*
@@ -228,9 +214,6 @@ class RateConstantsDataTable extends Component {
       field: "taxonomicProximity",
       hide: true,
       filter: "taxonomyFilter",
-      filterParams: {
-        taxonLineage: []
-      },
       valueFormatter: params => {
         const value = params.value;
         return value;
@@ -243,7 +226,7 @@ class RateConstantsDataTable extends Component {
       field: "temperature",
       cellRenderer: "numericCellRenderer",
       type: "numericColumn",
-      filter: "agNumberColumnFilter"
+      filter: "numberFilter"
     });
 
     colDefs.push({
@@ -251,7 +234,7 @@ class RateConstantsDataTable extends Component {
       field: "ph",
       cellRenderer: "numericCellRenderer",
       type: "numericColumn",
-      filter: "agNumberColumnFilter"
+      filter: "numberFilter"
     });
 
     colDefs.push({
@@ -267,36 +250,11 @@ class RateConstantsDataTable extends Component {
         );
       },
       filterValueGetter: () => "SABIO-RK",
-      filter: "agSetColumnFilter"
+      filter: "textFilter"
     });
 
     // return column definitions
     return colDefs;
-  }
-
-  formatColHeadings(event) {
-    const gridApi = event.api;
-    const panelLabelClasses = {
-      columns: "ag-column-tool-panel-column-label",
-      filters: "ag-group-component-title"
-    };
-    for (const panelId in panelLabelClasses) {
-      const panel = gridApi.getToolPanelInstance(panelId);
-      const labels = panel.eGui.getElementsByClassName(
-        panelLabelClasses[panelId]
-      );
-      for (const label of labels) {
-        if (!label.innerHTML.startsWith("<span>")) {
-          label.innerHTML =
-            "<span>" +
-            label.innerHTML
-              .replace("k_{cat}", "k<sub>cat</sub>")
-              .replace("K_M", "K<sub>M</sub>")
-              .replace("s^{-1}", "s<sup>-1</sup>") +
-            "</span>";
-        }
-      }
-    }
   }
 
   render() {
@@ -310,7 +268,6 @@ class RateConstantsDataTable extends Component {
         format-data={this.formatData}
         get-side-bar-def={this.getConcBarDef}
         get-col-defs={this.getColDefs}
-        format-col-headings={this.formatColHeadings}
       />
     );
   }

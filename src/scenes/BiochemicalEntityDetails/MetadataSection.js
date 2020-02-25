@@ -19,7 +19,7 @@ class MetadataSection extends Component {
 
     this.locationPathname = null;
     this.unlistenToHistory = null;
-    this.cancelDataTokenSource = null;
+    this.cancelTokenSource = null;
 
     this.state = { metadata: null };
   }
@@ -38,8 +38,8 @@ class MetadataSection extends Component {
   componentWillUnmount() {
     this.unlistenToHistory();
     this.unlistenToHistory = null;
-    if (this.cancelDataTokenSource) {
-      this.cancelDataTokenSource.cancel();
+    if (this.cancelTokenSource) {
+      this.cancelTokenSource.cancel();
     }
   }
 
@@ -56,13 +56,13 @@ class MetadataSection extends Component {
     const query = route.query;
     const organism = route.organism;
 
-    if (this.cancelDataTokenSource) {
-      this.cancelDataTokenSource.cancel();
+    if (this.cancelTokenSource) {
+      this.cancelTokenSource.cancel();
     }
 
-    this.cancelDataTokenSource = axios.CancelToken.source();
+    this.cancelTokenSource = axios.CancelToken.source();
     const url = this.props["get-metadata-url"](query, organism);
-    getDataFromApi([url], { cancelToken: this.cancelDataTokenSource.token })
+    getDataFromApi([url], { cancelToken: this.cancelTokenSource.token })
       .then(response => {
         this.props["format-metadata"](response.data, organism);
       })
@@ -77,7 +77,7 @@ class MetadataSection extends Component {
         )
       )
       .finally(() => {
-        this.cancelDataTokenSource = null;
+        this.cancelTokenSource = null;
       });
   }
 

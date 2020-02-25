@@ -7,17 +7,16 @@ import { parseHistoryLocationPathname, downloadData } from "~/utils/utils";
 import { AgGridReact } from "@ag-grid-community/react";
 import { ClientSideRowModelModule } from "@ag-grid-community/client-side-row-model";
 import { CsvExportModule } from "@ag-grid-community/csv-export";
-import { LicenseManager } from "@ag-grid-enterprise/core";
-import { ColumnsToolPanelModule } from "@ag-grid-enterprise/column-tool-panel";
-import { FiltersToolPanelModule } from "@ag-grid-enterprise/filter-tool-panel";
-import { SetFilterModule } from "@ag-grid-enterprise/set-filter";
-import { SideBarModule } from "@ag-grid-enterprise/side-bar";
 import { HtmlColumnHeader } from "../HtmlColumnHeader";
 import { LinkCellRenderer } from "../LinkCellRenderer";
 import { NumericCellRenderer } from "../NumericCellRenderer";
+import { ToolPanels } from "../ToolPanels";
+import { ColumnsToolPanel } from "../ColumnsToolPanel/ColumnsToolPanel";
+import { FiltersToolPanel } from "../FiltersToolPanel/FiltersToolPanel";
 import { StatsToolPanel } from "../StatsToolPanel/StatsToolPanel";
+import { NumberFilter } from "../NumberFilter";
 import { TaxonomyFilter } from "../TaxonomyFilter";
-import { TanimotoFilter } from "../TanimotoFilter";
+import { TextFilter } from "../TextFilter";
 
 import "@ag-grid-community/all-modules/dist/styles/ag-grid.scss";
 import "@ag-grid-community/all-modules/dist/styles/ag-theme-balham/sass/ag-theme-balham.scss";
@@ -34,26 +33,24 @@ class DataTable extends Component {
     "get-data-url": PropTypes.func.isRequired,
     "format-data": PropTypes.func.isRequired,
     "get-side-bar-def": PropTypes.func.isRequired,
-    "get-col-defs": PropTypes.func.isRequired,
-    "format-col-headings": PropTypes.func
-  };
-
-  static defaultProps = {
-    "format-col-headings": null
+    "get-col-defs": PropTypes.func.isRequired
   };
 
   static frameworkComponents = {
     htmlColumnHeader: HtmlColumnHeader,
     linkCellRenderer: LinkCellRenderer,
     numericCellRenderer: NumericCellRenderer,
+    columnsToolPanel: ColumnsToolPanel,
+    filtersToolPanel: FiltersToolPanel,
     statsToolPanel: StatsToolPanel,
+    textFilter: TextFilter,
     taxonomyFilter: TaxonomyFilter,
-    tanimotoFilter: TanimotoFilter
+    numberFilter: NumberFilter
   };
 
   static defaultColDef = {
     minWidth: 100,
-    filter: "agTextColumnFilter",
+    filter: "textFilter",
     sortable: true,
     resizable: true,
     suppressMenu: true
@@ -71,16 +68,13 @@ class DataTable extends Component {
 
     this.locationPathname = null;
     this.unlistenToHistory = null;
-    this.cancelDataTokenSource = null;
-    this.cancelTaxonInfoTokenSource = null;
+    this.cancelTokenSource = null;
 
     this.sideBarDef = null;
     this.colDefs = null;
-    this.taxonLineage = [];
     this.state = {
       sideBarDef: this.sideBarDef,
       colDefs: this.colDefs,
-      taxonLineage: this.taxonLineage,
       data: null
     };
 
@@ -104,11 +98,8 @@ class DataTable extends Component {
   componentWillUnmount() {
     this.unlistenToHistory();
     this.unlistenToHistory = null;
-    if (this.cancelDataTokenSource) {
-      this.cancelDataTokenSource.cancel();
-    }
-    if (this.cancelTaxonInfoTokenSource) {
-      this.cancelTaxonInfoTokenSource.cancel();
+    if (this.cancelTokenSource) {
+      this.cancelTokenSource.cancel();
     }
   }
 
@@ -116,11 +107,9 @@ class DataTable extends Component {
     if (this.unlistenToHistory) {
       this.sideBarDef = null;
       this.colDefs = null;
-      this.taxonLineage = [];
       this.setState({
         sideBarDef: this.sideBarDef,
         colDefs: this.colDefs,
-        taxonLineage: this.taxonLineage,
         data: null
       });
       this.getDataFromApi();
@@ -133,13 +122,13 @@ class DataTable extends Component {
     const organism = route.organism;
 
     // cancel earlier query
-    if (this.cancelDataTokenSource) {
-      this.cancelDataTokenSource.cancel();
+    if (this.cancelTokenSource) {
+      this.cancelTokenSource.cancel();
     }
 
     const url = this.props["get-data-url"](query, organism);
-    this.cancelDataTokenSource = axios.CancelToken.source();
-    getDataFromApi([url], { cancelToken: this.cancelDataTokenSource.token })
+    this.cancelTokenSource = axios.CancelToken.source();
+    getDataFromApi([url], { cancelToken: this.cancelTokenSource.token })
       .then(response => {
         this.formatData(response.data);
       })
@@ -156,52 +145,8 @@ class DataTable extends Component {
         )
       )
       .finally(() => {
-        this.cancelDataTokenSource = null;
+        this.cancelTokenSource = null;
       });
-
-    if (organism) {
-      // cancel earlier query
-      if (this.cancelTaxonInfoTokenSource) {
-        this.cancelTaxonInfoTokenSource.cancel();
-      }
-
-      this.cancelTaxonInfoTokenSource = axios.CancelToken.source();
-      getDataFromApi(
-        ["taxon", "canon_rank_distance_by_name/?name=" + organism],
-        { cancelToken: this.cancelTaxonInfoTokenSource.token }
-      )
-        .then(response => {
-          this.taxonLineage = response.data;
-          if (this.colDefs != null) {
-            this.colDefs = this.colDefs.slice();
-            for (const colDef of this.colDefs) {
-              if (colDef.filter === "taxonomyFilter") {
-                colDef["filterParams"] = {
-                  taxonLineage: this.taxonLineage
-                };
-                break;
-              }
-            }
-            this.setState({
-              colDefs: this.colDefs,
-              taxonLineage: this.taxonLineage
-            });
-          } else {
-            this.setState({
-              taxonLineage: this.taxonLineage
-            });
-          }
-        })
-        .catch(
-          genApiErrorHandler(
-            ["taxon", "canon_rank_distance_by_name/?name=" + organism],
-            "Unable to obtain taxonomic information about '" + organism + "'."
-          )
-        )
-        .finally(() => {
-          this.cancelTaxonInfoTokenSource = null;
-        });
-    }
   }
 
   formatData(rawData) {
@@ -211,15 +156,6 @@ class DataTable extends Component {
     const formattedData = this.props["format-data"](rawData);
     this.sideBarDef = this.props["get-side-bar-def"](formattedData);
     this.colDefs = this.props["get-col-defs"](organism, formattedData);
-
-    for (const colDef of this.colDefs) {
-      if (colDef.filter === "taxonomyFilter") {
-        colDef["filterParams"] = {
-          taxonLineage: this.taxonLineage
-        };
-        break;
-      }
-    }
 
     this.setState({
       sideBarDef: this.sideBarDef,
@@ -284,39 +220,33 @@ class DataTable extends Component {
             </button>
           </div>
         </div>
-        <div className="biochemical-entity-data-table ag-theme-balham">
-          <AgGridReact
-            ref={this.grid}
-            modules={[
-              ClientSideRowModelModule,
-              CsvExportModule,
-              LicenseManager,
-              ColumnsToolPanelModule,
-              FiltersToolPanelModule,
-              SetFilterModule,
-              SideBarModule
-            ]}
-            frameworkComponents={DataTable.frameworkComponents}
-            sideBar={this.state.sideBarDef}
-            defaultColDef={DataTable.defaultColDef}
-            columnDefs={this.state.colDefs}
-            rowData={this.state.data}
-            rowSelection="multiple"
-            groupSelectsChildren={true}
-            suppressMultiSort={true}
-            suppressAutoSize={true}
-            suppressMovableColumns={true}
-            suppressCellSelection={true}
-            suppressRowClickSelection={true}
-            suppressContextMenu={true}
-            domLayout="autoHeight"
-            onGridColumnsChanged={this.props["format-col-headings"]}
-            onGridSizeChanged={this.fitCols}
-            onColumnVisible={this.fitCols}
-            onColumnResized={this.updateHorzScrolling}
-            onToolPanelVisibleChanged={this.fitCols}
-            onFirstDataRendered={this.fitCols}
-          ></AgGridReact>
+        <div className="biochemical-entity-data-table">
+          <ToolPanels agGridReactRef={this.grid} />
+          <div className="ag-theme-balham">
+            <AgGridReact
+              ref={this.grid}
+              modules={[ClientSideRowModelModule, CsvExportModule]}
+              frameworkComponents={DataTable.frameworkComponents}
+              sideBar={this.state.sideBarDef}
+              defaultColDef={DataTable.defaultColDef}
+              columnDefs={this.state.colDefs}
+              rowData={this.state.data}
+              rowSelection="multiple"
+              groupSelectsChildren={true}
+              suppressMultiSort={true}
+              suppressAutoSize={true}
+              suppressMovableColumns={true}
+              suppressCellSelection={true}
+              suppressRowClickSelection={true}
+              suppressContextMenu={true}
+              domLayout="autoHeight"
+              onGridSizeChanged={this.fitCols}
+              onColumnVisible={this.fitCols}
+              onColumnResized={this.updateHorzScrolling}
+              onToolPanelVisibleChanged={this.fitCols}
+              onFirstDataRendered={this.fitCols}
+            />
+          </div>
         </div>
       </div>
     );

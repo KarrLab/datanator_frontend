@@ -204,7 +204,7 @@ class SearchForm extends Component {
 
         <Button
           type="submit"
-          className="search-submit"
+          className="icon-button search-submit"
           icon="search"
           disabled={!this.state.queryValid || !this.state.organismValid}
           title="Search"

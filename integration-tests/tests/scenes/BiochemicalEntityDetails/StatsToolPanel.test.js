@@ -10,7 +10,7 @@ describe("StatsToolPanel", function() {
     cy.visit(url);
 
     // open stats tool panel
-    cy.get("#" + dataContainerId + " .ag-side-button")
+    cy.get("#" + dataContainerId + " .biochemical-entity-data-table-tool-panel")
       .eq(2)
       .click();
 

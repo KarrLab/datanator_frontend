@@ -47,30 +47,32 @@ describe("Reaction scene", function() {
       .should("have.text", "kcat (s-1)");
 
     // open columns tool panel and toggle all columns
-    cy.get("#" + dataContainerId + " .ag-side-button")
+    cy.get("#" + dataContainerId + " .biochemical-entity-data-table-tool-panel")
       .first()
       .click();
-    cy.get("#" + dataContainerId + " .ag-column-select-checkbox").each(
-      $input => {
-        cy.wrap($input).click();
-      }
-    );
+    cy.get(
+      "#" +
+        dataContainerId +
+        " .biochemical-entity-scene-columns-tool-panel input"
+    ).each($input => {
+      cy.wrap($input).click();
+    });
 
     // open filters tool panel and open all filters
-    cy.get("#" + dataContainerId + " .ag-side-button")
+    cy.get("#" + dataContainerId + " .biochemical-entity-data-table-tool-panel")
       .eq(1)
       .click();
     cy.get(
-      "#" + dataContainerId + " .ag-filter-panel .ag-group-component"
+      "#" + dataContainerId + " .biochemical-entity-scene-filter-container"
     ).each($filter => {
       cy.wrap($filter).click();
     });
 
     // open stats tool panels
-    cy.get("#" + dataContainerId + " .ag-side-button").each(
-      $toolPanelButton => {
-        cy.wrap($toolPanelButton).click();
-      }
-    );
+    cy.get(
+      "#" + dataContainerId + " .biochemical-entity-data-table-tool-panel"
+    ).each($toolPanelButton => {
+      cy.wrap($toolPanelButton).click();
+    });
   });
 });

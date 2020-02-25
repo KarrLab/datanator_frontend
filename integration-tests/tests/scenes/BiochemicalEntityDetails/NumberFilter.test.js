@@ -1,6 +1,6 @@
 /* global cy, describe, it, expect */
 
-describe("TanimotoFilter", function() {
+describe("NumberFilter", function() {
   it("Correctly filters rows", function() {
     const route = "metabolite";
     const entity = "dTDP-D-Glucose";
@@ -21,37 +21,39 @@ describe("TanimotoFilter", function() {
     cy.visit(url);
 
     // open all colums including the chemical similarity column
-    cy.get("#" + dataContainerId + " .ag-side-button")
+    cy.get("#" + dataContainerId + " .biochemical-entity-data-table-tool-panel")
       .eq(0)
       .click();
-    cy.get("#" + dataContainerId + " .ag-column-tool-panel-column input").each(
-      $input => {
-        cy.wrap($input).check({ force: true });
-      }
-    );
+    cy.get(
+      "#" +
+        dataContainerId +
+        " .biochemical-entity-scene-columns-tool-panel input"
+    ).each($input => {
+      cy.wrap($input).check({ force: true });
+    });
 
     // open filters tool panel and open all filters, including the Tanimoto filter
-    cy.get("#" + dataContainerId + " .ag-side-button")
+    cy.get("#" + dataContainerId + " .biochemical-entity-data-table-tool-panel")
       .eq(1)
       .click();
     cy.get(
-      "#" + dataContainerId + " .ag-filter-panel .ag-group-component"
+      "#" + dataContainerId + " .biochemical-entity-scene-filter-container"
     ).each($filter => {
       cy.wrap($filter).click();
     });
 
     // change the value of the filter to the maximum
-    cy.get(
-      "#" + dataContainerId + " .tanimoto-tool-panel-slider .MuiSlider-thumb"
-    )
+    cy.get("#" + dataContainerId + " .number-slider-filter")
+      .eq(2)
+      .find(".MuiSlider-thumb")
+      .first()
       .trigger("mousedown", { which: 1 })
       .trigger("mousemove", { clientX: 1e4, clientY: 0 })
       .trigger("mouseup", { force: true });
-    cy.get("#" + dataContainerId + " .tanimoto-tool-panel-slider input").should(
-      "have.attr",
-      "value",
-      "1"
-    );
+    cy.get("#" + dataContainerId + " .number-slider-filter")
+      .eq(2)
+      .find("input")
+      .should("have.attr", "value", "1,1");
 
     // check that rows were filtered
     cy.get("#" + dataContainerId + " .ag-center-cols-container")
@@ -59,7 +61,7 @@ describe("TanimotoFilter", function() {
       .should("have.length", 0);
     cy.get("#" + dataContainerId + " .ag-root-wrapper").then($grid => {
       expect(
-        $grid[0].__agComponent.gridApi.getFilterModel().tanimotoSimilarity
+        $grid[0].__agComponent.gridApi.getFilterModel().tanimotoSimilarity.min
       ).to.equal(1);
     });
 
@@ -76,7 +78,10 @@ describe("TanimotoFilter", function() {
     // programmatically set filter so no rows are displayed
     cy.get("#" + dataContainerId + " .ag-root-wrapper").then($grid => {
       $grid[0].__agComponent.gridApi.setFilterModel({
-        tanimotoSimilarity: 1
+        tanimotoSimilarity: {
+          min: 1,
+          max: 1
+        }
       });
     });
     cy.get("#" + dataContainerId + " .ag-center-cols-container")
