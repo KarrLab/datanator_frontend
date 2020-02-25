@@ -91,7 +91,7 @@ class RateConstantsDataTable extends Component {
         },
         {
           id: "stats-kcat",
-          labelDefault: "Stats: k<sub>cat</sub> (s<sup>-1</sup>)",
+          labelDefault: (<span>Stats: k<sub>cat</sub> (s<sup>-1</sup>)</span>),
           labelKey: "chart",
           iconKey: "chart",
           toolPanel: "statsToolPanel",
@@ -118,7 +118,7 @@ class RateConstantsDataTable extends Component {
     for (const kmMet of kmMets) {
       sideBar["toolPanels"].push({
         id: "stats-km-" + kmMet,
-        labelDefault: "Stats: K<sub>M</sub> " + kmMet + " (M)",
+        labelDefault: (<span>Stats: K<sub>M</sub> {kmMet} (M)</span>),
         labelKey: "chart",
         iconKey: "chart",
         toolPanel: "statsToolPanel",
