@@ -186,23 +186,25 @@ class Help extends Component {
                     <div className="tutorial-step-title">
                       In a seperate window, open up the home page. In the search bar, enter ATP and Bacillus subtilis subs subtilis.
                     </div>
+                    <div className="tutorial-step-text">
+                      Use the search form at the top to search for measurements
+                      of a metabolite, RNA, protein, or reaction relevant to a
+                      specific organism.
+                    </div>
                     <object
                       data={one_home}
                       className="section-column-icon"
                       alt="Identify parameters icon"
                       aria-label="Identify parameters icon"
                     />
-                    <div className="tutorial-step-text">
-                      Use the search form at the top to search for measurements
-                      of a metabolite, RNA, protein, or reaction relevant to a
-                      specific organism.
-                    </div>
                   </li>
 
                   <li className="tutorial-step">
                     <div className="tutorial-step-title">
-                      Filter for potentially relevant measurements of similar
-                      entities in similar cells and similar environments.
+                      Click on Adenosine triphosphate in the Metabolites section
+                    </div>
+                    <div className="tutorial-step-text">
+                      The search results page displays....
                     </div>
                     <object
                       data={two_intermediate}
@@ -210,20 +212,15 @@ class Help extends Component {
                       alt="Identify parameters icon"
                       aria-label="Identify parameters icon"
                     />
-                    <div className="tutorial-step-text">
-                      Select a metabolite, RNA, protein, or reaction class (e.g,
-                      KEGG ortholog group) to obtain potentially relevant
-                      measurements to the entity of interest. Then filter for
-                      data about similar entities (e.g., by sequence similarity)
-                      measured in similar organisms (by phylogenetic distance)
-                      and environments (e.g., temperature, pH).
-                    </div>
+
                   </li>
 
                   <li className="tutorial-step">
                     <div className="tutorial-step-title">
-                      Review the potentially relevant measurements to determine
-                      the relevant measurements.
+                      Browse through the metadata and click on "Concdentration" or scroll down
+                    </div>
+                    <div className="tutorial-step-text">
+                      The top of the page has metadata about ATP. For now, let’s look at concentrations data. So click on “concentration” in the table of contents.
                     </div>
                     <object
                       data={three_metadata}
@@ -231,16 +228,20 @@ class Help extends Component {
                       alt="Identify parameters icon"
                       aria-label="Identify parameters icon"
                     />
-                    <div className="tutorial-step-text">
-                      Inspect each potentially relevant measurement and select
-                      the most relevant measurements to the entity and organism
-                      of interest.
-                    </div>
                   </li>
 
                   <li className="tutorial-step">
                     <div className="tutorial-step-title">
-                      Analyze the distribution of relevant measurements.
+                      Overview of the Data Table
+                    </div>
+                    <div className="tutorial-step-text">
+                      The table has data about ATP concentrations. Each row in this table corresponds to an experimental observation of ATP. The source column contains links to the data’s original data location. Note that the table includes observations about structurally similar metabolites as well. 
+                    <ol>
+                      <li>Columns - choose which columns to display</li>
+                      <li>Filters - filter data on the table</li>
+                      <li>Stats - see summary statistics of the data</li>
+                      <li>Export - export the data to CSV or JSON</li>
+                    </ol> 
                     </div>
                     <object
                       data={four_datatable}
@@ -248,12 +249,41 @@ class Help extends Component {
                       alt="Identify parameters icon"
                       aria-label="Identify parameters icon"
                     />
-                    <div className="tutorial-step-text">
-                      Review box plots and statistical properties of the
-                      selected and potentially relevant measurements.
-                    </div>
                   </li>
 
+                  <li className="tutorial-step">
+                    <div className="tutorial-step-title">
+                      Filter the data
+                    </div>
+                    <div className="tutorial-step-text">
+                      There are a number of possible filters. Let's say we used three filters:
+                      <ol>
+                        <li>Chemical similarity - you can filter by the structural similarity of the molecules to ATP. 1 would be structurally identical (only ATP), and 6.5 would include many structurally similar molecules. The score corresponds to a tanimoto similarity score.</li>
+                        <li>Taxonomic distance - the initial search was for Bacillus subtilis subsp. subtilis. This filter lets you filter the data for taxonomic distance. Each node on the slider corresponds to a classification. Right now, the slider is set to include all data from the kingdom Bacteria.</li>
+                        <li>Media - you can filter by media type. Try "gutnick" for example</li>
+                      </ol>
+                    </div>
+                    <object
+                      data={five_datatable}
+                      className="section-column-icon"
+                      alt="Identify parameters icon"
+                      aria-label="Identify parameters icon"
+                    />
+                  </li>
+                  <li className="tutorial-step">
+                    <div className="tutorial-step-title">
+                      Select Specific Data Points and Analyze
+                    </div>
+                    <div className="tutorial-step-text">
+                      Click on "Stats" in the left-hand toolbar. This will...
+                    </div>
+                    <object
+                      data={six_datatable}
+                      className="section-column-icon"
+                      alt="Identify parameters icon"
+                      aria-label="Identify parameters icon"
+                    />
+                  </li>
                   <li className="tutorial-step">
                     <div className="tutorial-step-title">
                       Export molecular data for model construction and
@@ -264,6 +294,29 @@ class Help extends Component {
                       measurements, in JSON format for further analysis such as
                       model construction or validation.
                     </div>
+                    <object
+                      data={seven_datatable}
+                      className="section-column-icon"
+                      alt="Identify parameters icon"
+                      aria-label="Identify parameters icon"
+                    />
+                  </li>
+                  <li className="tutorial-step">
+                    <div className="tutorial-step-title">
+                      Export molecular data for model construction and
+                      validation.
+                    </div>
+                    <div className="tutorial-step-text">
+                      Export the selected measurements, or all of the
+                      measurements, in JSON format for further analysis such as
+                      model construction or validation.
+                    </div>
+                    <object
+                      data={eight_excel}
+                      className="section-column-icon"
+                      alt="Identify parameters icon"
+                      aria-label="Identify parameters icon"
+                    />
                   </li>
                 </ol>
               </div>
