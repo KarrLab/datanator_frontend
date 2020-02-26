@@ -11,8 +11,6 @@ import six_datatable from "./images/6_datatable.png";
 import seven_datatable from "./images/7_datatable.png";
 import eight_excel from "./images/8_excelImage.png";
 
-
-
 import "./Help.scss";
 
 class Help extends Component {
@@ -34,6 +32,11 @@ class Help extends Component {
                   <li>
                     <HashLink to="#faq" scroll={scrollTo}>
                       FAQ
+                    </HashLink>
+                  </li>
+                  <li>
+                    <HashLink to="#walkthrough" scroll={scrollTo}>
+                      Walkthrough
                     </HashLink>
                   </li>
                 </ul>
@@ -176,20 +179,20 @@ class Help extends Component {
                     year for more information.
                   </div>
                 </div>
-
               </div>
-              <div className="content-block section">
+            </div>
+
+            <div className="content-block section" id="walkthrough">
               <h2 className="content-block-heading">Walkthrough</h2>
               <div className="content-block-content">
                 <ol className="tutorial">
                   <li className="tutorial-step">
                     <div className="tutorial-step-title">
-                      In a seperate window, open up the home page. In the search bar, enter ATP and Bacillus subtilis subs subtilis.
+                      In a seperate window, open up the home page. In the search
+                      bar, enter ATP and Bacillus subtilis subs subtilis.
                     </div>
                     <div className="tutorial-step-text">
-                      Use the search form at the top to search for measurements
-                      of a metabolite, RNA, protein, or reaction relevant to a
-                      specific organism.
+                       This will lead to a search results page in step 2. In this tutorial, we will be using ATP in Bacillus subtilis subs subtilis as an example. This process can be replicated with your biomolecule of interest.
                     </div>
                     <object
                       data={one_home}
@@ -204,7 +207,8 @@ class Help extends Component {
                       Click on Adenosine triphosphate in the Metabolites section
                     </div>
                     <div className="tutorial-step-text">
-                      The search results page displays....
+                      The search results page organizes the results by biomolecule type. Currently, you can browse through metabolites, RNAs, proteins, and reactions. 
+                      Clicking on Adenosine triphosphate will bring you to the data page in step 3.
                     </div>
                     <object
                       data={two_intermediate}
@@ -212,15 +216,17 @@ class Help extends Component {
                       alt="Identify parameters icon"
                       aria-label="Identify parameters icon"
                     />
-
                   </li>
 
                   <li className="tutorial-step">
                     <div className="tutorial-step-title">
-                      Browse through the metadata and click on "Concdentration" or scroll down
+                      Browse through the metadata and click on "Concdentration"
+                      or scroll down
                     </div>
                     <div className="tutorial-step-text">
-                      The top of the page has metadata about ATP. For now, let’s look at concentrations data. So click on “concentration” in the table of contents.
+                      The top of the page has metadata about ATP. For now, let’s
+                      look at concentrations data. Either click on “concentration” link
+                      in the table of contents or scroll down.
                     </div>
                     <object
                       data={three_metadata}
@@ -232,16 +238,21 @@ class Help extends Component {
 
                   <li className="tutorial-step">
                     <div className="tutorial-step-title">
-                      Overview of the Data Table
+                      Browse the Data Table
                     </div>
                     <div className="tutorial-step-text">
-                      The table has data about ATP concentrations. Each row in this table corresponds to an experimental observation of ATP. The source column contains links to the data’s original data location. Note that the table includes observations about structurally similar metabolites as well. 
-                    <ol>
-                      <li>Columns - choose which columns to display</li>
-                      <li>Filters - filter data on the table</li>
-                      <li>Stats - see summary statistics of the data</li>
-                      <li>Export - export the data to CSV or JSON</li>
-                    </ol> 
+                      The table has data about ATP concentrations. Each row in
+                      this table corresponds to an experimental observation of
+                      ATP. The source column contains links to the data’s
+                      original data location. Note that the table includes
+                      observations about structurally similar metabolites as
+                      well.
+                      <ol>
+                        <li>Columns - choose which columns to display</li>
+                        <li>Filters - filter data on the table</li>
+                        <li>Stats - see summary statistics of the data</li>
+                        <li>Export - export the data to CSV or JSON</li>
+                      </ol>
                     </div>
                     <object
                       data={four_datatable}
@@ -252,15 +263,38 @@ class Help extends Component {
                   </li>
 
                   <li className="tutorial-step">
-                    <div className="tutorial-step-title">
-                      Filter the data
-                    </div>
+                    <div className="tutorial-step-title">Filter the data</div>
                     <div className="tutorial-step-text">
-                      There are a number of possible filters. Let's say we used three filters:
+                      There are a number of possible filters. Let's say we used
+                      three filters:
                       <ol>
-                        <li>Chemical similarity - you can filter by the structural similarity of the molecules to ATP. 1 would be structurally identical (only ATP), and 6.5 would include many structurally similar molecules. The score corresponds to a tanimoto similarity score.</li>
-                        <li>Taxonomic distance - the initial search was for Bacillus subtilis subsp. subtilis. This filter lets you filter the data for taxonomic distance. Each node on the slider corresponds to a classification. Right now, the slider is set to include all data from the kingdom Bacteria.</li>
-                        <li>Media - you can filter by media type. Try "gutnick" for example</li>
+                        <li>
+                          Chemical similarity - you can filter by the structural
+                          similarity of the molecules to ATP. 1 would be
+                          structurally identical (only ATP), and 6.5 would
+                          include many structurally similar molecules. The score
+                          corresponds to a <a
+                      href={
+                        "http://openbabel.org/docs/dev/Features/Fingerprints.html"
+                      }
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      tanimoto similarity score
+                    </a>.
+                        </li>
+                        <li>
+                          Taxonomic distance - the initial search was for
+                          Bacillus subtilis subsp. subtilis. This filter lets
+                          you filter the data for taxonomic distance. Each node
+                          on the slider corresponds to a classification. Right
+                          now, the slider is set to include all data from the
+                          kingdom Bacteria.
+                        </li>
+                        <li>
+                          Media - you can filter by media type. Try "gutnick"
+                          for example.
+                        </li>
                       </ol>
                     </div>
                     <object
@@ -275,7 +309,9 @@ class Help extends Component {
                       Select Specific Data Points and Analyze
                     </div>
                     <div className="tutorial-step-text">
-                      Click on "Stats" in the left-hand toolbar. This will...
+                      Click on "Stats" in the left-hand toolbar. This will show summary statistics of the total data. 
+                      You can also select specific data points by checking the boxes on the table, and the stats toolbar
+                      will display stats specific to the selected data. 
                     </div>
                     <object
                       data={six_datatable}
@@ -290,9 +326,7 @@ class Help extends Component {
                       validation.
                     </div>
                     <div className="tutorial-step-text">
-                      Export the selected measurements, or all of the
-                      measurements, in JSON format for further analysis such as
-                      model construction or validation.
+                      Click "CSV" in the upper right corner of the table. The data can also be exported as a JSON.
                     </div>
                     <object
                       data={seven_datatable}
@@ -303,13 +337,10 @@ class Help extends Component {
                   </li>
                   <li className="tutorial-step">
                     <div className="tutorial-step-title">
-                      Export molecular data for model construction and
-                      validation.
+                      View the data in excel. 
                     </div>
                     <div className="tutorial-step-text">
-                      Export the selected measurements, or all of the
-                      measurements, in JSON format for further analysis such as
-                      model construction or validation.
+                      The data can now be saved.
                     </div>
                     <object
                       data={eight_excel}
@@ -320,7 +351,6 @@ class Help extends Component {
                   </li>
                 </ol>
               </div>
-            </div>
             </div>
           </div>
         </div>
