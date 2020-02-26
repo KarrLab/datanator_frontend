@@ -31,6 +31,8 @@ class NumberFilter extends Component {
     this.min = this.loBound;
     this.max = this.hiBound;
     this.state = {
+      loBound: this.loBound,
+      hiBound: this.hiBound,
       min: this.min,
       max: this.max,
       marks: [
@@ -43,7 +45,8 @@ class NumberFilter extends Component {
           label: formatScientificNotation(this.hiBound, 4, 3, 1, 1, 3)
         }
       ],
-      step: 0.01
+      step: 0.01,
+      disabled: false
     };
 
     this.slider = React.createRef();
@@ -104,9 +107,17 @@ class NumberFilter extends Component {
     this.min = this.loBound;
     this.max = this.hiBound;
 
+    let marks = [this.loBound, this.hiBound];
+
     let step;
     if (this.props.step != null) {
       step = this.props.step;
+    } else if (this.hiBound === this.loBound) {
+      if (this.hiBound === 0) {
+        step = 1e2;
+      } else {
+        step = Math.pow(10, Math.floor(Math.log10(this.hiBound)) - 2);
+      }
     } else {
       step = Math.pow(
         10,
@@ -114,20 +125,31 @@ class NumberFilter extends Component {
       );
     }
 
+    let disabled = false;
+    if (!isFinite(this.loBound)) {
+      marks = [];
+      disabled = true;
+    } else if (this.loBound === this.hiBound) {
+      marks = [this.min];
+      this.min -= step;
+      this.max += step;
+      this.loBound -= step;
+      this.hiBound += step;
+    }
+
     this.setState({
+      loBound: this.loBound,
+      hiBound: this.hiBound,
       min: this.min,
       max: this.max,
-      marks: [
-        {
-          value: this.loBound,
-          label: formatScientificNotation(this.loBound, 4, 3, 1, 1, 3)
-        },
-        {
-          value: this.hiBound,
-          label: formatScientificNotation(this.hiBound, 4, 3, 1, 1, 3)
-        }
-      ],
-      step: step
+      marks: marks.map(mark => {
+        return {
+          value: mark,
+          label: formatScientificNotation(mark, 4, 3, 1, 1, 3)
+        };
+      }),
+      step: step,
+      disabled: disabled
     });
   }
 
@@ -197,8 +219,8 @@ class NumberFilter extends Component {
       <div className="biochemical-entity-scene-filter biochemical-entity-scene-slider-filter biochemical-entity-scene-normal-slider-filter biochemical-entity-scene-horizontal-slider-filter number-slider-filter">
         <Slider
           ref={this.slider}
-          min={this.state.marks[0].value}
-          max={this.state.marks[1].value}
+          min={this.state.loBound}
+          max={this.state.hiBound}
           step={this.state.step}
           marks={this.state.marks}
           value={[this.state.min, this.state.max]}
@@ -209,6 +231,7 @@ class NumberFilter extends Component {
           getAriaLabel={this.getAriaLabel}
           valueLabelFormat={this.valueText}
           getAriaValueText={this.valueText}
+          disabled={this.state.disabled}
         />
       </div>
     );
