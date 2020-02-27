@@ -51,7 +51,7 @@ class AbundanceDataTable extends Component {
     return formattedData;
   }
 
-  getSideBarDef() {
+  static getSideBarDef() {
     return {
       toolPanels: [
         {
@@ -85,7 +85,7 @@ class AbundanceDataTable extends Component {
     };
   }
 
-  getColDefs() {
+  static getColDefs() {
     return [
       {
         headerName: "Abundance",
@@ -172,8 +172,8 @@ class AbundanceDataTable extends Component {
           data-type="abundance"
           get-data-url={this.getUrl.bind(this)}
           format-data={this.formatData.bind(this)}
-          get-side-bar-def={this.getSideBarDef}
-          get-col-defs={this.getColDefs}
+          get-side-bar-def={AbundanceDataTable.getSideBarDef}
+          get-col-defs={AbundanceDataTable.getColDefs}
         />
       );
     }

@@ -74,86 +74,6 @@ const DATABASES = {
   }
 };
 
-function formatMetadata(rawData) {
-  let formattedData = null;
-  for (const rawDataum of rawData) {
-    for (const met of rawDataum) {
-      formattedData = {};
-
-      formattedData.name = met.name;
-
-      formattedData.synonyms = met.synonyms.synonym;
-      formattedData.synonyms.sort((a, b) => {
-        return strCompare(a, b);
-      });
-
-      formattedData.description = null;
-      if (met.description != null && met.description !== undefined) {
-        formattedData.description = reactStringReplace(
-          met.description,
-          /[([]PMID: *(\d+)[)\]]/gi,
-          pmid => {
-            return (
-              <span key={pmid}>
-                [
-                <a href={"https://www.ncbi.nlm.nih.gov/pubmed/" + pmid}>
-                  PMID: {pmid}
-                </a>
-                ]
-              </span>
-            );
-          }
-        );
-      }
-
-      formattedData.physics = {
-        smiles: met.smiles,
-        inchi: met.inchi,
-        inchiKey: met.inchikey,
-        formula: formatChemicalFormula(met.chemical_formula),
-        molWt: met.average_molecular_weight,
-        charge: met.property.find(el => el.kind === "formal_charge").value,
-        physiologicalCharge: met.property.find(
-          el => el.kind === "physiological_charge"
-        ).value
-      };
-
-      formattedData.pathways = castToArray(met.pathways.pathway);
-
-      formattedData.pathways = removeDuplicates(
-        formattedData.pathways,
-        el => el.name
-      );
-      formattedData.pathways.sort((a, b) => {
-        return strCompare(a.name, b.name);
-      });
-
-      formattedData.cellularLocations = castToArray(
-        met.cellular_locations.cellular_location
-      );
-
-      formattedData.dbLinks = {
-        biocyc: met.biocyc_id,
-        cas: met.cas_registry_number,
-        chebi: met.chebi_id,
-        chemspider: met.chemspider_id,
-        ecmdb: met.m2m_id,
-        foodb: met.foodb_id,
-        hmdb: met.hmdb_id,
-        kegg: met.kegg_id,
-        pubchem: met.pubchem_compound_id,
-        ymdb: met.ymdb_id
-      };
-      break;
-    }
-    if (formattedData != null) {
-      break;
-    }
-  }
-  //console.log(formattedData);
-  return formattedData;
-}
-
 class MetadataSection extends Component {
   static propTypes = {
     "set-scene-metadata": PropTypes.func.isRequired
@@ -164,7 +84,7 @@ class MetadataSection extends Component {
     this.state = { metadata: null };
   }
 
-  getMetadataUrl(query, organism) {
+  static getMetadataUrl(query, organism) {
     const abstract = true;
 
     return (
@@ -177,88 +97,154 @@ class MetadataSection extends Component {
     );
   }
 
-  formatMetadataInner(rawData, organism) {
-    let formattedData = formatMetadata(rawData, organism);
+  static processMetadata(rawData) {
+    let processedData = null;
+    for (const rawDataum of rawData) {
+      for (const met of rawDataum) {
+        processedData = {};
 
-    this.setState({ metadata: formattedData });
+        processedData.name = met.name;
 
-    const title = upperCaseFirstLetter(formattedData.name);
-
-    const sections = [];
-    if (formattedData.description)
-      sections.push({ id: "description", title: "Description" });
-    if (formattedData.synonyms.length > 0)
-      sections.push({ id: "synonyms", title: "Synonyms" });
-    if (Object.keys(formattedData.dbLinks).length > 0)
-      sections.push({ id: "links", title: "Database links" });
-    if (Object.values(formattedData.physics).some(val => val !== undefined))
-      sections.push({ id: "physics", title: "Physics" });
-    if (formattedData.cellularLocations.length > 0)
-      sections.push({ id: "localizations", title: "Localizations" });
-    if (formattedData.pathways.length > 0)
-      sections.push({ id: "pathways", title: "Pathways" });
-
-    this.props["set-scene-metadata"]({
-      title: title,
-      organism: organism,
-      metadataSections: sections
-    });
-  }
-
-  render() {
-    const metadata = this.state.metadata;
-
-    let physicalProps = [];
-    let structure = null;
-    const synonyms = [];
-    const dbLinks = [];
-    let cellularLocations = [];
-
-    if (metadata) {
-      // physical properties
-      physicalProps = [
-        { name: "SMILES", value: metadata.physics.smiles },
-        { name: "InChI", value: metadata.physics.inchi },
-        { name: "Formula", value: metadata.physics.formula },
-        { name: "Molecular weight", value: metadata.physics.molWt },
-        { name: "Charge", value: metadata.physics.charge },
-        {
-          name: "Physiological charge",
-          value: metadata.physics.physiologicalCharge
-        }
-      ]
-        .filter(prop => {
-          return prop.value !== undefined;
-        })
-        .map(prop => {
-          return (
-            <li key={prop.name}>
-              <b>{prop.name}:</b> {prop.value}
-            </li>
-          );
+        processedData.synonyms = met.synonyms.synonym;
+        processedData.synonyms.sort((a, b) => {
+          return strCompare(a, b);
         });
 
-      // structure
-      if (metadata.physics.smiles) {
-        structure = { type: "", value: metadata.physics.smiles };
-      } else if (metadata.physics.inchi) {
-        structure = { type: "InChI=", value: metadata.physics.inchi };
-      } else if (metadata.physics.inchiKey) {
-        structure = { type: "InChIKey=", value: metadata.physics.inchiKey };
-      }
+        processedData.description = null;
+        if (met.description != null && met.description !== undefined) {
+          processedData.description = reactStringReplace(
+            met.description,
+            /[([]PMID: *(\d+)[)\]]/gi,
+            pmid => {
+              return (
+                <span key={pmid}>
+                  [
+                  <a href={"https://www.ncbi.nlm.nih.gov/pubmed/" + pmid}>
+                    PMID: {pmid}
+                  </a>
+                  ]
+                </span>
+              );
+            }
+          );
+        }
 
-      // synonyms
-      for (var i = metadata.synonyms.length - 1; i >= 0; i--) {
-        synonyms.push(
-          <li key={metadata.synonyms[i]}>
-            <div className="bulleted-list-item">{metadata.synonyms[i]}</div>
-          </li>
+        processedData.physics = {
+          smiles: met.smiles,
+          inchi: met.inchi,
+          inchiKey: met.inchikey,
+          formula: formatChemicalFormula(met.chemical_formula),
+          molWt: met.average_molecular_weight,
+          charge: met.property.find(el => el.kind === "formal_charge").value,
+          physiologicalCharge: met.property.find(
+            el => el.kind === "physiological_charge"
+          ).value
+        };
+
+        processedData.pathways = castToArray(met.pathways.pathway);
+
+        processedData.pathways = removeDuplicates(
+          processedData.pathways,
+          el => el.name
         );
+        processedData.pathways.sort((a, b) => {
+          return strCompare(a.name, b.name);
+        });
+
+        processedData.cellularLocations = castToArray(
+          met.cellular_locations.cellular_location
+        );
+
+        processedData.dbLinks = {
+          biocyc: met.biocyc_id,
+          cas: met.cas_registry_number,
+          chebi: met.chebi_id,
+          chemspider: met.chemspider_id,
+          ecmdb: met.m2m_id,
+          foodb: met.foodb_id,
+          hmdb: met.hmdb_id,
+          kegg: met.kegg_id,
+          pubchem: met.pubchem_compound_id,
+          ymdb: met.ymdb_id
+        };
+        break;
+      }
+      if (processedData != null) {
+        break;
+      }
+    }
+    return processedData;
+  }
+
+  static formatTitle(processedData) {
+    return upperCaseFirstLetter(processedData.name);
+  }
+
+  static formatMetadata(processedData) {
+    const sections = [];
+    if (processedData.description) {
+      let structure;
+      if (processedData.physics.smiles) {
+        structure = { type: "", value: processedData.physics.smiles };
+      } else if (processedData.physics.inchi) {
+        structure = { type: "InChI=", value: processedData.physics.inchi };
+      } else if (processedData.physics.inchiKey) {
+        structure = {
+          type: "InChIKey=",
+          value: processedData.physics.inchiKey
+        };
       }
 
-      // database links
-      for (const dbKey in metadata.dbLinks) {
-        const dbId = metadata.dbLinks[dbKey];
+      sections.push({
+        id: "description",
+        title: "Description",
+        content: (
+          <div className="icon-description">
+            {structure && (
+              <div className="entity-scene-icon-container">
+                <LazyLoad>
+                  <img
+                    src={sprintf(
+                      STRUCTURE_IMG_URL,
+                      structure.type,
+                      structure.value
+                    )}
+                    className="entity-scene-icon hover-zoom"
+                    alt="Chemical structure"
+                    aria-label="Chemical structure"
+                    crossOrigin=""
+                  />
+                </LazyLoad>
+              </div>
+            )}
+            <div>{processedData.description}</div>
+          </div>
+        )
+      });
+    }
+
+    if (processedData.synonyms.length > 0) {
+      sections.push({
+        id: "synonyms",
+        title: "Synonyms",
+        content: (
+          <ul className="three-col-list">
+            {processedData.synonyms.map(syn => {
+              return (
+                <li key={syn}>
+                  <div className="bulleted-list-item">{syn}</div>
+                </li>
+              );
+            })}
+          </ul>
+        )
+      });
+    }
+
+    if (Object.keys(processedData.dbLinks).length > 0) {
+      const dbLinks = [];
+      for (const dbKey in processedData.dbLinks) {
+        const dbId = processedData.dbLinks[dbKey];
         if (dbId != null && dbId !== undefined && dbKey in DATABASES) {
           const db = DATABASES[dbKey];
           dbLinks.push(
@@ -276,141 +262,120 @@ class MetadataSection extends Component {
         }
       }
 
-      cellularLocations = metadata.cellularLocations;
+      sections.push({
+        id: "links",
+        title: "Database links",
+        content: (
+          <ul className="key-value-list three-col-list link-list">{dbLinks}</ul>
+        )
+      });
     }
 
-    // render
-    return (
-      <div>
-        <BaseMetadataSection
-          entity-type="metabolite"
-          get-metadata-url={this.getMetadataUrl}
-          format-metadata={this.formatMetadataInner.bind(this)}
-          set-scene-metadata={this.props["set-scene-metadata"]}
-        />
+    if (Object.values(processedData.physics).some(val => val !== undefined)) {
+      let physicalProps = [
+        { name: "SMILES", value: processedData.physics.smiles },
+        { name: "InChI", value: processedData.physics.inchi },
+        { name: "Formula", value: processedData.physics.formula },
+        { name: "Molecular weight", value: processedData.physics.molWt },
+        { name: "Charge", value: processedData.physics.charge },
+        {
+          name: "Physiological charge",
+          value: processedData.physics.physiologicalCharge
+        }
+      ]
+        .filter(prop => {
+          return prop.value !== undefined;
+        })
+        .map(prop => {
+          return (
+            <li key={prop.name}>
+              <b>{prop.name}:</b> {prop.value}
+            </li>
+          );
+        });
 
-        {metadata && (
-          <div>
-            {metadata.description && (
-              <div className="content-block" id="description">
-                <h2 className="content-block-heading">Description</h2>
-                <div className="content-block-content icon-description">
-                  {structure && (
-                    <div className="entity-scene-icon-container">
-                      <LazyLoad>
-                        <img
-                          src={sprintf(
-                            STRUCTURE_IMG_URL,
-                            structure.type,
-                            structure.value
-                          )}
-                          className="entity-scene-icon hover-zoom"
-                          alt="Chemical structure"
-                          aria-label="Chemical structure"
-                          crossOrigin=""
-                        />
-                      </LazyLoad>
-                    </div>
-                  )}
-                  <div>{metadata.description}</div>
-                </div>
-              </div>
-            )}
+      sections.push({
+        id: "physics",
+        title: "Physics",
+        content: <ul className="key-value-list">{physicalProps}</ul>
+      });
+    }
 
-            {synonyms.length > 0 && (
-              <div className="content-block" id="synonyms">
-                <h2 className="content-block-heading">Synonyms</h2>
-                <div className="content-block-content">
-                  <ul className="three-col-list">{synonyms}</ul>
-                </div>
-              </div>
-            )}
+    if (processedData.cellularLocations.length > 0) {
+      sections.push({
+        id: "localizations",
+        title: "Localizations",
+        content: (
+          <ul className="two-col-list">
+            {processedData.cellularLocations.map(el => (
+              <li key={el}>
+                <div className="bulleted-list-item">{el}</div>
+              </li>
+            ))}
+          </ul>
+        )
+      });
+    }
 
-            {dbLinks.length > 0 && (
-              <div className="content-block" id="links">
-                <h2 className="content-block-heading">Database links</h2>
-                <div className="content-block-content">
-                  <ul className="key-value-list three-col-list link-list">
-                    {dbLinks}
-                  </ul>
-                </div>
-              </div>
-            )}
-
-            {physicalProps.length > 0 && (
-              <div className="content-block" id="physics">
-                <h2 className="content-block-heading">Physical properties</h2>
-                <div className="content-block-content">
-                  <ul className="key-value-list">{physicalProps}</ul>
-                </div>
-              </div>
-            )}
-
-            {metadata.cellularLocations.length > 0 && (
-              <div className="content-block" id="localizations">
-                <h2 className="content-block-heading">
-                  Cellular localizations
-                </h2>
-                <div className="content-block-content">
-                  <ul className="two-col-list">
-                    {cellularLocations.map(el => (
-                      <li key={el}>
-                        <div className="bulleted-list-item">{el}</div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            )}
-
-            {metadata.pathways.length > 0 && (
-              <div className="content-block" id="pathways">
-                <h2 className="content-block-heading">Pathways</h2>
-                <div className="content-block-content">
-                  <ul className="two-col-list link-list">
-                    {metadata.pathways.map(el => {
-                      if (el.kegg_map_id) {
-                        const map_id = el.kegg_map_id.substring(
-                          2,
-                          el.kegg_map_id.length
-                        );
-                        return (
-                          <li key={el.name}>
-                            <a
-                              href={
-                                "https://www.genome.jp/dbget-bin/www_bget?map" +
-                                map_id
-                              }
-                              className="bulleted-list-item"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              dangerouslySetInnerHTML={{
-                                __html: upperCaseFirstLetter(el.name)
-                              }}
-                            ></a>
-                          </li>
-                        );
-                      } else {
-                        return (
-                          <li key={el.name}>
-                            <div
-                              className="bulleted-list-item"
-                              dangerouslySetInnerHTML={{
-                                __html: upperCaseFirstLetter(el.name)
-                              }}
-                            ></div>
-                          </li>
-                        );
+    if (processedData.pathways.length > 0) {
+      sections.push({
+        id: "pathways",
+        title: "Pathways",
+        content: (
+          <ul className="two-col-list link-list">
+            {processedData.pathways.map(el => {
+              if (el.kegg_map_id) {
+                const map_id = el.kegg_map_id.substring(
+                  2,
+                  el.kegg_map_id.length
+                );
+                return (
+                  <li key={el.name}>
+                    <a
+                      href={
+                        "https://www.genome.jp/dbget-bin/www_bget?map" + map_id
                       }
-                    })}
-                  </ul>
-                </div>
-              </div>
-            )}
-          </div>
-        )}
-      </div>
+                      className="bulleted-list-item"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      dangerouslySetInnerHTML={{
+                        __html: upperCaseFirstLetter(el.name)
+                      }}
+                    ></a>
+                  </li>
+                );
+              } else {
+                return (
+                  <li key={el.name}>
+                    <div
+                      className="bulleted-list-item"
+                      dangerouslySetInnerHTML={{
+                        __html: upperCaseFirstLetter(el.name)
+                      }}
+                    ></div>
+                  </li>
+                );
+              }
+            })}
+          </ul>
+        )
+      });
+    }
+
+    return sections;
+  }
+
+  render() {
+    return (
+      <BaseMetadataSection
+        entity-type="metabolite"
+        get-metadata-url={MetadataSection.getMetadataUrl}
+        process-metadata={MetadataSection.processMetadata}
+        format-title={MetadataSection.formatTitle}
+        format-metadata={MetadataSection.formatMetadata}
+        set-scene-metadata={this.props["set-scene-metadata"]}
+      />
     );
   }
 }
-export { MetadataSection, formatMetadata };
+export { MetadataSection };

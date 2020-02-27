@@ -1,28 +1,20 @@
 import { RateConstantsDataTable } from "~/scenes/BiochemicalEntityDetails/Reaction/RateConstantsDataTable";
 import testRawData from "~/__tests__/fixtures/reaction-constants-adenylate-kinase";
-import {
-  formatMetadata,
-  MetadataSection
-} from "~/scenes/BiochemicalEntityDetails/Reaction/MetadataSection";
+import { MetadataSection } from "~/scenes/BiochemicalEntityDetails/Reaction/MetadataSection";
 /* global describe, it, expect */
 describe("Reaction data page", () => {
   it("Gets correct reaction data url", () => {
     const entity = "ATP,AMP --> ADP";
-    // instantiate data table
-    const dataTable = new RateConstantsDataTable();
 
     // assert URL correct
-    expect(dataTable.getUrl(entity)).toEqual(
+    expect(RateConstantsDataTable.getUrl(entity)).toEqual(
       "reactions/kinlaw_by_name/?substrates=ATP,AMP&products=ADP&_from=0&size=1000&bound=tight"
     );
   });
 
   it("Formats concentration data correct", async () => {
-    // instantiate data table
-    const dataTable = new RateConstantsDataTable();
-
     // format raw data
-    const formattedData = dataTable.formatData(testRawData);
+    const formattedData = RateConstantsDataTable.formatData(testRawData);
 
     // test formatted data
     expect(formattedData).toHaveLength(62);
@@ -44,12 +36,11 @@ describe("Reaction data page", () => {
   });
 
   it("Gets correct metadata url ", async () => {
-    const metadata = new MetadataSection();
     const query = "ATP + AMP --> ADP";
     const organism = "Saccharomyces cerevisiae S288C";
     const substrates = "ATP + AMP";
     const products = "ADP";
-    expect(metadata.getMetadataUrl(query, organism)).toEqual(
+    expect(MetadataSection.getMetadataUrl(query, organism)).toEqual(
       "reactions/kinlaw_by_name/" +
         "?substrates=" +
         substrates +
@@ -63,9 +54,8 @@ describe("Reaction data page", () => {
 
   it("Formats metadata data correctly", async () => {
     // format raw data
-    const formattedMetadata = formatMetadata(testRawData);
-    console.log(formattedMetadata);
-    expect(formattedMetadata).toEqual({
+    const processedMetadata = MetadataSection.processMetadata(testRawData);
+    expect(processedMetadata).toEqual({
       reactionId: "82",
       substrates: ["AMP", "ATP"],
       products: ["ADP"],

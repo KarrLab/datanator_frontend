@@ -1,10 +1,7 @@
 import { AbundanceDataTable } from "~/scenes/BiochemicalEntityDetails/Protein/AbundanceDataTable";
 import testRawData from "~/__tests__/fixtures/protein-abundances-6-phosphofructo-2-kinase";
 import testRawMetadata from "~/__tests__/fixtures/protein-metadata-6-phosphofructo-2-kinase";
-import {
-  formatMetadata,
-  MetadataSection
-} from "~/scenes/BiochemicalEntityDetails/Protein/MetadataSection";
+import { MetadataSection } from "~/scenes/BiochemicalEntityDetails/Protein/MetadataSection";
 //import MetadataSection from "~/scenes/BiochemicalEntityDetails/Protein/MetadataSection";
 
 /* global describe, it, expect */
@@ -52,10 +49,9 @@ describe("Protein data page", () => {
   });
 
   it("Gets correct metadata url ", async () => {
-    const metadata = new MetadataSection();
     const query = "K00850";
     const organism = "Saccharomyces cerevisiae S288C";
-    expect(metadata.getMetadataUrl(query, organism)).toEqual(
+    expect(MetadataSection.getMetadataUrl(query, organism)).toEqual(
       "proteins/proximity_abundance/proximity_abundance_kegg/" +
         "?kegg_id=" +
         query +
@@ -66,22 +62,14 @@ describe("Protein data page", () => {
   });
 
   it("Formats metadata data correctly", async () => {
-    // instantiate data table
-    //const organism = "Saccharomyces cerevisiae S288C";
-
-    //const metadata = new MetadataSection()
-    //metadata.props["set-scene-metadata"] = {(metadata) => this.setState({ metadata: metadata })}
-    //metadata.formatMetadataInner(testRawMetadata, organism)
-    //expect(metadata.state.koNumber).toEqual("K00850")
-
     // format raw data
-    const formattedMetadata = formatMetadata(testRawMetadata);
-    //console.log(formattedMetadata)
-    expect(formattedMetadata.koNumber).toEqual("K00850");
-    expect(formattedMetadata.koName).toEqual("6-phosphofructokinase 1");
-    expect(formattedMetadata.uniprotIdToTaxonDist["A1A4J1"]).toEqual(6);
-    expect(formattedMetadata.uniprotIdToTaxonDist["Q8A624"]).toEqual(5);
-    expect(formattedMetadata.uniprotIds).toEqual([
+    const processedMetadata = MetadataSection.processMetadata(testRawMetadata);
+    //console.log(processedMetadata)
+    expect(processedMetadata.koNumber).toEqual("K00850");
+    expect(processedMetadata.koName).toEqual("6-phosphofructokinase 1");
+    expect(processedMetadata.other.uniprotIdToTaxonDist["A1A4J1"]).toEqual(6);
+    expect(processedMetadata.other.uniprotIdToTaxonDist["Q8A624"]).toEqual(5);
+    expect(processedMetadata.uniprotIds).toEqual([
       "A1A4J1",
       "O34529",
       "O42938",

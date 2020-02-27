@@ -3,22 +3,6 @@ import PropTypes from "prop-types";
 import { upperCaseFirstLetter } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
 
-function formatMetadata(rawData) {
-  const formattedData = {};
-
-  formattedData.geneName = rawData[0].gene_name;
-
-  if (rawData[0].function) {
-    formattedData.proteinName = rawData[0].function;
-  } else if (rawData[0].protein_name) {
-    formattedData.proteinName = rawData[0].protein_name;
-  } else {
-    formattedData.proteinName = "Protein Name not Found";
-  }
-
-  return formattedData;
-}
-
 class MetadataSection extends Component {
   static propTypes = {
     "set-scene-metadata": PropTypes.func.isRequired
@@ -29,7 +13,7 @@ class MetadataSection extends Component {
     this.state = { metadata: null };
   }
 
-  getMetadataUrl(query) {
+  static getMetadataUrl(query) {
     return (
       "/rna/halflife/get_info_by_protein_name/" +
       "?protein_name=" +
@@ -39,68 +23,69 @@ class MetadataSection extends Component {
     );
   }
 
-  formatMetadataInner(rawData, organism) {
-    const formattedData = formatMetadata(rawData);
+  static processMetadata(rawData) {
+    const processedData = {};
 
-    this.setState({ metadata: formattedData });
+    processedData.geneName = rawData[0].gene_name;
 
-    let title = formattedData.geneName;
-    if (!title) {
-      title = formattedData.proteinName;
+    if (rawData[0].function) {
+      processedData.proteinName = rawData[0].function;
+    } else if (rawData[0].protein_name) {
+      processedData.proteinName = rawData[0].protein_name;
+    } else {
+      processedData.proteinName = "Protein name not found";
     }
-    title = upperCaseFirstLetter(title);
 
-    const sections = [
-      {
+    return processedData;
+  }
+
+  static formatTitle(processedData) {
+    let title = processedData.geneName;
+    if (!title) {
+      title = processedData.proteinName;
+    }
+    return upperCaseFirstLetter(title);
+  }
+
+  static formatMetadata(processedData) {
+    const sections = [];
+
+    if (processedData.geneName || processedData.proteinName) {
+      sections.push({
         id: "description",
-        title: "Description"
-      }
-    ];
+        title: "Description",
+        content: (
+          <ul className="key-value-list">
+            {processedData.geneName && (
+              <li>
+                <b>Gene:</b> {processedData.geneName}
+              </li>
+            )}
+            {processedData.proteinName && (
+              <li>
+                <b>Protein:</b> {processedData.proteinName}
+              </li>
+            )}
+          </ul>
+        )
+      });
+    }
 
-    this.props["set-scene-metadata"]({
-      title: title,
-      organism: organism,
-      metadataSections: sections
-    });
+    return sections;
   }
 
   render() {
-    const metadata = this.state.metadata;
-
     return (
-      <div>
-        <BaseMetadataSection
-          entity-type="RNA"
-          get-metadata-url={this.getMetadataUrl}
-          format-metadata={this.formatMetadataInner.bind(this)}
-          set-scene-metadata={this.props["set-scene-metadata"]}
-        />
-
-        {metadata && (
-          <div>
-            <div className="content-block" id="description">
-              <h2 className="content-block-heading">Description</h2>
-              <div className="content-block-content">
-                {(metadata.geneName || metadata.proteinName) && (
-                  <ul className="key-value-list">
-                    {metadata.geneName && (
-                      <li>
-                        <b>Gene:</b> {metadata.geneName}
-                      </li>
-                    )}
-                    {metadata.proteinName && (
-                      <li>
-                        <b>Protein:</b> {metadata.proteinName}
-                      </li>
-                    )}
-                  </ul>
-                )}
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
+      <BaseMetadataSection
+        entity-type="RNA"
+        get-metadata-url={MetadataSection.getMetadataUrl}
+        process-metadata={MetadataSection.processMetadata}
+        format-title={MetadataSection.formatTitle}
+        format-metadata={MetadataSection.formatMetadata}
+        set-scene-metadata={this.props["set-scene-metadata"]}
+      />
     );
   }
 }
-export { MetadataSection, formatMetadata };
+
+export { MetadataSection };

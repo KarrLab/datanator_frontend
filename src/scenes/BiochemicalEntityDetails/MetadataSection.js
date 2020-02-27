@@ -10,6 +10,8 @@ class MetadataSection extends Component {
     history: PropTypes.object.isRequired,
     "entity-type": PropTypes.string.isRequired,
     "get-metadata-url": PropTypes.func.isRequired,
+    "process-metadata": PropTypes.func.isRequired,
+    "format-title": PropTypes.func.isRequired,
     "format-metadata": PropTypes.func.isRequired,
     "set-scene-metadata": PropTypes.func.isRequired
   };
@@ -21,7 +23,7 @@ class MetadataSection extends Component {
     this.unlistenToHistory = null;
     this.cancelTokenSource = null;
 
-    this.state = { metadata: null };
+    this.state = { sections: [] };
   }
 
   componentDidMount() {
@@ -64,7 +66,17 @@ class MetadataSection extends Component {
     const url = this.props["get-metadata-url"](query, organism);
     getDataFromApi([url], { cancelToken: this.cancelTokenSource.token })
       .then(response => {
-        this.props["format-metadata"](response.data, organism);
+        const processedMetadata = this.props["process-metadata"](response.data);
+        const formattedMetadataSections = this.props["format-metadata"](
+          processedMetadata
+        );
+        this.props["set-scene-metadata"]({
+          title: this.props["format-title"](processedMetadata),
+          organism: organism,
+          metadataSections: formattedMetadataSections,
+          other: processedMetadata.other
+        });
+        this.setState({ sections: formattedMetadataSections });
       })
       .catch(
         genApiErrorHandler(
@@ -82,7 +94,18 @@ class MetadataSection extends Component {
   }
 
   render() {
-    return <div></div>;
+    return (
+      <div>
+        {this.state.sections.map(section => {
+          return (
+            <div className="content-block" id={section.id} key={section.id}>
+              <h2 className="content-block-heading">{section.title}</h2>
+              <div className="content-block-content">{section.content}</div>
+            </div>
+          );
+        })}
+      </div>
+    );
   }
 }
 
