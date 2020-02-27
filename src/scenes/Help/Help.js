@@ -190,15 +190,18 @@ class Help extends Component {
                   <div className="overview">
                     Datanator can be used to systematically discover data for
                     modeling a specific cell in a specific environment. In this
-                    walkthrough, we will be looking up data for ATP in Bacillus subtilis subs subtilis 
-                    The steps used in this tutorial can be replicated with any biomolecule
-                    of interest in any other organism or environment.
+                    walkthrough, we will be looking up data for ATP in Bacillus
+                    subtilis subs subtilis The steps used in this tutorial can
+                    be replicated with any biomolecule of interest in any other
+                    organism or environment.
                   </div>
                   <ol className="tutorial">
                     <li className="tutorial-step">
                       <div className="tutorial-step-title">
-                        In a seperate window, open up the home page. Type "ATP" in the first search bar and type 
-                        Bacillus subtilis subs in the second search bar. Enter the search 
+                        In a seperate window, open up the home page. Type{" "}
+                        <q>ATP</q> in the first search bar and type{" "}
+                        <q>Bacillus subtilis subs. subtilis</q> in the second
+                        search bar. Enter the search
                       </div>
                       <div className="tutorial-step-text">
                         This will lead to a search results page in step 2.
@@ -234,11 +237,14 @@ class Help extends Component {
                     <li className="tutorial-step">
                       <div className="tutorial-step-title">
                         Read the metadata. To view concentration data, click on
-                        "Concdentration" in the table of contents or scroll down
+                        <q>Concentration</q> in the table of contents or scroll
+                        down
                       </div>
                       <div className="tutorial-step-text">
-                        The top of the page has metadata about ATP. You can browse the description, 
-                        synonyms, external database links, and related pathways. Scroll to the bottom of the page to get to step 4.
+                        The top of the page has metadata about ATP. You can
+                        browse the description, synonyms, external database
+                        links, and related pathways. Scroll to the bottom of the
+                        page to get to step 4.
                       </div>
                       <object
                         data={three_metadata}
@@ -255,10 +261,13 @@ class Help extends Component {
                       <div className="tutorial-step-text">
                         The table has data about ATP concentrations. Each row in
                         this table corresponds to an experimental observation of
-                        ATP. The source column contains links to the data's online location. 
-                        Note that although this page is for ATP, the table contains data about structurally similar 
-                        molecules as well (e.g. Adenosine monophosphate). This is allow the user to filter to include/exlude
-                        structurally similar molecules. The filters will be explained in step 5.
+                        ATP. The source column contains links to the data
+                        <span>&#39;</span>s online location. Note that although
+                        this page is for ATP, the table contains data about
+                        structurally similar molecules as well (e.g. Adenosine
+                        monophosphate). This is allow the user to filter to
+                        include/exlude structurally similar molecules. The
+                        filters will be explained in step 5.
                         <ol>
                           <li>Columns - choose which columns to display</li>
                           <li>Filters - filter data on the table</li>
@@ -277,9 +286,11 @@ class Help extends Component {
                     <li className="tutorial-step">
                       <div className="tutorial-step-title">Filter the data</div>
                       <div className="tutorial-step-text">
-                        The data can be filtered by similar entities (e.g., by structural similarity) relatedness of the organisms 
-                         (by phylogenetic distance) and by similar environments 
-                        (e.g., temperature, pH). In this walkthrough, we will use three filters:
+                        The data can be filtered by similar entities (e.g., by
+                        structural similarity) relatedness of the organisms (by
+                        phylogenetic distance) and by similar environments
+                        (e.g., temperature, pH). In this walkthrough, we will
+                        use three filters:
                         <ol>
                           <li>
                             Chemical similarity - you can filter by the
@@ -307,7 +318,8 @@ class Help extends Component {
                             from the kingdom Bacteria.
                           </li>
                           <li>
-                            Media - you can filter by media type. Try "gutnick"
+                            Media - you can filter by media type. Try{" "}
+                            <q>gutnick</q>
                             for example.
                           </li>
                         </ol>
@@ -324,11 +336,15 @@ class Help extends Component {
                         Select Specific Data Points and Analyze
                       </div>
                       <div className="tutorial-step-text">
-                        Click on "Stats" in the left-hand toolbar. This will
-                        show summary statistics of the total data, including the data that was filtered out in the previous step.
-                        Then click on the boxes on the table to select them. As the boxes are selected, the stats toolbar will display
-                        summary statistics of the selected data. This allows you to filter and then select specific data points, and then compare
-                        its distribution to the total data.
+                        Click on <q>Stats</q> in the left-hand toolbar. This
+                        will show summary statistics of the total data,
+                        including the data that was filtered out in the previous
+                        step. Then click on the boxes on the table to select
+                        them. As the boxes are selected, the stats toolbar will
+                        display summary statistics of the selected data. This
+                        allows you to filter and then select specific data
+                        points, and then compare its distribution to the total
+                        data.
                       </div>
                       <object
                         data={six_datatable}
@@ -343,8 +359,8 @@ class Help extends Component {
                         validation.
                       </div>
                       <div className="tutorial-step-text">
-                        Click "CSV" in the upper right corner of the table. The
-                        data can also be exported as a JSON.
+                        Click <q>CSV</q> in the upper right corner of the table.
+                        The data can also be exported as a JSON.
                       </div>
                       <object
                         data={seven_datatable}
