@@ -88,7 +88,7 @@ class HalfLifeDataTable extends Component {
       },
       /*
       {
-        headerName: "Taxonomic distance",
+        headerName: "Taxonomic similarity",
         field: "taxonomicProximity",
         hide: true,
         filter: "taxonomyFilter",

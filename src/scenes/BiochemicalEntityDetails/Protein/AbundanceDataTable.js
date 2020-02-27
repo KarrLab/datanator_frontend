@@ -127,7 +127,7 @@ class AbundanceDataTable extends Component {
         filter: "textFilter"
       },
       {
-        headerName: "Taxonomic distance",
+        headerName: "Taxonomic similarity",
         field: "taxonomicProximity",
         hide: true,
         filter: "taxonomyFilter",
