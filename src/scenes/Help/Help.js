@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { HashLink } from "react-router-hash-link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { scrollTo } from "~/utils/utils";
+import LazyLoad from "react-lazyload";
 import one_home from "./images/1_home.png";
 import two_intermediate from "./images/2_intermediate.png";
 import three_metadata from "./images/3_metadata.png";
@@ -34,11 +35,6 @@ class Help extends Component {
                       FAQ
                     </HashLink>
                   </li>
-                  <li>
-                    <HashLink to="#walkthrough" scroll={scrollTo}>
-                      Walkthrough
-                    </HashLink>
-                  </li>
                 </ul>
               </div>
             </div>
@@ -68,72 +64,246 @@ class Help extends Component {
             </div>
           </div>
 
-          <div className="content-column" id="tutorial">
-            <div className="content-block section">
+          <div className="content-column">
+            <div className="content-block section" id="tutorial">
               <h2 className="content-block-heading">Tutorial</h2>
               <div className="content-block-content">
-                <ol className="tutorial">
-                  <li className="tutorial-step">
-                    <div className="tutorial-step-title">
-                      Search for a biochemical entity (metabolite, RNA, protein,
-                      or reaction)
-                    </div>
-                    <div className="tutorial-step-text">
-                      Use the search form at the top to search for measurements
-                      of a metabolite, RNA, protein, or reaction relevant to a
-                      specific organism.
-                    </div>
-                  </li>
+                <div className="tutorial">
+                  <div className="tutorial-overview">
+                    <i>Datanator</i> can be used to systematically discover data
+                    for modeling a specific cell in a specific environment. In
+                    this tutorial, we will demonstrate how <i>Datanator</i> can
+                    help find data for modeling ATP in{" "}
+                    <i>Bacillus subtilis subsp. subtilis</i>. The steps
+                    illustrated below can be used to find data to model any
+                    molecule in any other organism in any environment.
+                  </div>
+                  <ol className="tutorial-steps">
+                    <li className="tutorial-step">
+                      <div className="tutorial-step-title">
+                        In a seperate window, open the home page,{" "}
+                        <a href="https://datanator.info">
+                          https://datanator.info
+                        </a>
+                        . Type <q>ATP</q> in the first input box below the logo
+                        and type <q>Bacillus subtilis subs. subtilis</q> in the
+                        second input box. Then type <q>Enter</q> to execute the
+                        search.
+                      </div>
+                      <div className="tutorial-step-text">
+                        Typing enter will take you to the search results such as
+                        shown in the next step.
+                      </div>
+                      <LazyLoad>
+                        <img
+                          src={one_home}
+                          className="tutorial-screenshot"
+                          alt="Identify parameters icon"
+                          aria-label="Identify parameters icon"
+                        />
+                      </LazyLoad>
+                    </li>
 
-                  <li className="tutorial-step">
-                    <div className="tutorial-step-title">
-                      Filter for potentially relevant measurements of similar
-                      entities in similar cells and similar environments.
-                    </div>
-                    <div className="tutorial-step-text">
-                      Select a metabolite, RNA, protein, or reaction class (e.g,
-                      KEGG ortholog group) to obtain potentially relevant
-                      measurements to the entity of interest. Then filter for
-                      data about similar entities (e.g., by sequence similarity)
-                      measured in similar organisms (by phylogenetic distance)
-                      and environments (e.g., temperature, pH).
-                    </div>
-                  </li>
+                    <li className="tutorial-step">
+                      <div className="tutorial-step-title">
+                        Click on <q>Adenosine triphosphate</q> in the{" "}
+                        <q>Metabolites</q>
+                        section.
+                      </div>
+                      <div className="tutorial-step-text">
+                        The search results are organized by biomolecule type
+                        (e.g., metabolites, RNAs, proteins, and reactions).
+                        Click on <q>Adenosine triphosphate</q> to view the data
+                        that <i>Datanator</i> has aggregated about ATP. This
+                        will take you to a page with data relevant to ATP as
+                        shown in the next step.
+                      </div>
+                      <LazyLoad>
+                        <img
+                          src={two_intermediate}
+                          className="tutorial-screenshot"
+                          alt="Identify parameters icon"
+                          aria-label="Identify parameters icon"
+                        />
+                      </LazyLoad>
+                    </li>
 
-                  <li className="tutorial-step">
-                    <div className="tutorial-step-title">
-                      Review the potentially relevant measurements to determine
-                      the relevant measurements.
-                    </div>
-                    <div className="tutorial-step-text">
-                      Inspect each potentially relevant measurement and select
-                      the most relevant measurements to the entity and organism
-                      of interest.
-                    </div>
-                  </li>
+                    <li className="tutorial-step">
+                      <div className="tutorial-step-title">
+                        Read metadata about ATP at the top of the ATP page.
+                      </div>
+                      <div className="tutorial-step-text">
+                        The top of the ATP page shows metadata about ATP such as
+                        a description of ATP, synonyms for ATP, links to entries
+                        about ATP in several other databases, and links to
+                        pathways that ATP participates in.
+                      </div>
+                      <LazyLoad>
+                        <img
+                          src={three_metadata}
+                          className="tutorial-screenshot"
+                          alt="Identify parameters icon"
+                          aria-label="Identify parameters icon"
+                        />
+                      </LazyLoad>
+                    </li>
 
-                  <li className="tutorial-step">
-                    <div className="tutorial-step-title">
-                      Analyze the distribution of relevant measurements.
-                    </div>
-                    <div className="tutorial-step-text">
-                      Review box plots and statistical properties of the
-                      selected and potentially relevant measurements.
-                    </div>
-                  </li>
+                    <li className="tutorial-step">
+                      <div className="tutorial-step-title">
+                        Click on the <q>Concentration</q> button in the table of
+                        contents to view a table of concentration measurements
+                        that may be relevant to ATP.
+                      </div>
+                      <div className="tutorial-step-text">
+                        Each row in the concentration table represents an
+                        experimental observation of the concentration of ATP or
+                        a similar metabolite. The <q>Organism</q> column
+                        indicates the organism in which the concentration was
+                        measured. The <q>Source</q> column contains links to the
+                        resources from which <i>Datanator</i> aggregated the
+                        measured concentrations.
+                      </div>
+                      <LazyLoad>
+                        <img
+                          src={four_datatable}
+                          className="tutorial-screenshot"
+                          alt="Identify parameters icon"
+                          aria-label="Identify parameters icon"
+                        />
+                      </LazyLoad>
+                    </li>
 
-                  <li className="tutorial-step">
-                    <div className="tutorial-step-title">
-                      Export molecular data for model construction and
-                      validation.
-                    </div>
-                    <div className="tutorial-step-text">
-                      Export the selected measurements, or all of the
-                      measurements, in JSON format for further analysis such as
-                      model construction or validation.
-                    </div>
-                  </li>
-                </ol>
+                    <li className="tutorial-step">
+                      <div className="tutorial-step-title">
+                        Filter for concentrations relevant to ATP in{" "}
+                        <i>Bacillus subtilis subsp. subtilis</i>.
+                      </div>
+                      <div className="tutorial-step-text">
+                        <p>
+                          Because we do not have concentration measurements for
+                          every metabolite in every organism in every
+                          environment, <i>Datanator</i> displays data about ATP
+                          in <i>Bacillus subtilis subsp. subtilis</i>, as well
+                          as data about similar metabolites in similar
+                          organisms. To help users find relevant for their
+                          research, <i>Datanator</i> provides filters to narrow
+                          the displayed measurements by their chemical
+                          similarity to ATP and taxonomic similarity to{" "}
+                          <i>Bacillus subtilis subsp. subtilis</i>.{" "}
+                          <i>Datanator</i> also provides filters to find data
+                          measured under specific environmental conditions
+                          (e.g., temperature, pH, growth media). Below, we
+                          illustrate three of these filters.
+                        </p>
+                        <ul>
+                          <li>
+                            <b>Chemical similarity:</b> First, open the
+                            <q>Filters</q> tab to the left of the table. Second,
+                            open the <q>Chemical similarity</q> sub-tab. Next,
+                            use the slider to filter for concentrations measured
+                            for highly similar molecules. <i>Datanator</i> uses
+                            the{" "}
+                            <a
+                              href={
+                                "http://openbabel.org/docs/dev/Features/Fingerprints.html"
+                              }
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              Tanimoto coefficient
+                            </a>{" "}
+                            to determine the similarity between the structures
+                            of two metabolites. A score of 1 corresponds to two
+                            identical structures.
+                          </li>
+                          <li>
+                            <b>Taxonomic similarity:</b> Open the{" "}
+                            <q>Taxonomic similarity</q> sub-tab and use the
+                            slider to filter for concentrations observed in
+                            similar organisms. By default, <i>Datanator</i>{" "}
+                            displays data observed in any organism. The slider
+                            can be used to find data only observed in{" "}
+                            <i>Bacillus subtilis subsp. subtilis</i>.
+                          </li>
+                          <li>
+                            <b>Media:</b> Open the <q>Media</q> sub-tab. The
+                            checkboxes can be used to filter for concentrations
+                            measured in specific media. For example, click on
+                            the checkbox next to <q>Gutnick</q> to display only
+                            data observed in Gutnick media.
+                          </li>
+                        </ul>
+                      </div>
+                      <LazyLoad>
+                        <img
+                          src={five_datatable}
+                          className="tutorial-screenshot"
+                          alt="Identify parameters icon"
+                          aria-label="Identify parameters icon"
+                        />
+                      </LazyLoad>
+                    </li>
+                    <li className="tutorial-step">
+                      <div className="tutorial-step-title">
+                        Visualize the distribution of all of the measurements or
+                        a selected subset of the mesurements.
+                      </div>
+                      <div className="tutorial-step-text">
+                        Click on the <q>Stats</q> tab to the left of the
+                        concentration table to display a box plot of the
+                        distribution of the measurements listed in the table.
+                        Next, use the checkboxes in the table to select specific
+                        measurements that you believe may be relevant to your
+                        project. Once one or more measurements are selected,{" "}
+                        <i>Datanator</i> will display a second box plot of the
+                        distribution of the selected measurements.
+                      </div>
+                      <LazyLoad>
+                        <img
+                          src={six_datatable}
+                          className="tutorial-screenshot"
+                          alt="Identify parameters icon"
+                          aria-label="Identify parameters icon"
+                        />
+                      </LazyLoad>
+                    </li>
+                    <li className="tutorial-step">
+                      <div className="tutorial-step-title">
+                        Export the data for model construction, calibration,
+                        and/or validation.
+                      </div>
+                      <div className="tutorial-step-text">
+                        Click the <q>CSV</q> or <q>JSON</q> buttons above the
+                        table to export the data in CSV or JSON format.
+                      </div>
+                      <LazyLoad>
+                        <img
+                          src={seven_datatable}
+                          className="tutorial-screenshot"
+                          alt="Identify parameters icon"
+                          aria-label="Identify parameters icon"
+                        />
+                      </LazyLoad>
+                    </li>
+                    <li className="tutorial-step">
+                      <div className="tutorial-step-title">
+                        Use the exported data for model construction,
+                        calibration, and/or validation.
+                      </div>
+                      <div className="tutorial-step-text">
+                        For example, the exported data can be viewed in Excel.
+                      </div>
+                      <LazyLoad>
+                        <img
+                          src={eight_excel}
+                          className="tutorial-screenshot"
+                          alt="Identify parameters icon"
+                          aria-label="Identify parameters icon"
+                        />
+                      </LazyLoad>
+                    </li>
+                  </ol>
+                </div>
               </div>
             </div>
 
@@ -178,212 +348,6 @@ class Help extends Component {
                     pre-printer server in 2020. Please check back later this
                     year for more information.
                   </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="content-block section" id="walkthrough">
-              <h2 className="content-block-heading">Walkthrough</h2>
-              <div className="content-block-content">
-                <div className="walkthrough">
-                  <div className="overview-heading">Walkthrough overview</div>
-                  <div className="overview">
-                    Datanator can be used to systematically discover data for
-                    modeling a specific cell in a specific environment. In this
-                    walkthrough, we will be looking up data for ATP in Bacillus
-                    subtilis subs subtilis The steps used in this tutorial can
-                    be replicated with any biomolecule of interest in any other
-                    organism or environment.
-                  </div>
-                  <ol className="tutorial">
-                    <li className="tutorial-step">
-                      <div className="tutorial-step-title">
-                        In a seperate window, open up the home page. Type{" "}
-                        <q>ATP</q> in the first search bar and type{" "}
-                        <q>Bacillus subtilis subs. subtilis</q> in the second
-                        search bar. Enter the search
-                      </div>
-                      <div className="tutorial-step-text">
-                        This will lead to a search results page in step 2.
-                      </div>
-                      <object
-                        data={one_home}
-                        className="section-column-icon"
-                        alt="Identify parameters icon"
-                        aria-label="Identify parameters icon"
-                      />
-                    </li>
-
-                    <li className="tutorial-step">
-                      <div className="tutorial-step-title">
-                        Click on Adenosine triphosphate in the Metabolites
-                        section
-                      </div>
-                      <div className="tutorial-step-text">
-                        The search results page organizes the results by
-                        biomolecule type. Currently, you can browse through
-                        metabolites, RNAs, proteins, and reactions. Clicking on
-                        Adenosine triphosphate will bring you to the data page
-                        in step 3.
-                      </div>
-                      <object
-                        data={two_intermediate}
-                        className="section-column-icon"
-                        alt="Identify parameters icon"
-                        aria-label="Identify parameters icon"
-                      />
-                    </li>
-
-                    <li className="tutorial-step">
-                      <div className="tutorial-step-title">
-                        Read the metadata. To view concentration data, click on
-                        <q>Concentration</q> in the table of contents or scroll
-                        down
-                      </div>
-                      <div className="tutorial-step-text">
-                        The top of the page has metadata about ATP. You can
-                        browse the description, synonyms, external database
-                        links, and related pathways. Scroll to the bottom of the
-                        page to get to step 4.
-                      </div>
-                      <object
-                        data={three_metadata}
-                        className="section-column-icon"
-                        alt="Identify parameters icon"
-                        aria-label="Identify parameters icon"
-                      />
-                    </li>
-
-                    <li className="tutorial-step">
-                      <div className="tutorial-step-title">
-                        Read the Data Table
-                      </div>
-                      <div className="tutorial-step-text">
-                        The table has data about ATP concentrations. Each row in
-                        this table corresponds to an experimental observation of
-                        ATP. The source column contains links to the data
-                        <span>&#39;</span>s online location. Note that although
-                        this page is for ATP, the table contains data about
-                        structurally similar molecules as well (e.g. Adenosine
-                        monophosphate). This is allow the user to filter to
-                        include/exlude structurally similar molecules. The
-                        filters will be explained in step 5.
-                        <ol>
-                          <li>Columns - choose which columns to display</li>
-                          <li>Filters - filter data on the table</li>
-                          <li>Stats - see summary statistics of the data</li>
-                          <li>Export - export the data to CSV or JSON</li>
-                        </ol>
-                      </div>
-                      <object
-                        data={four_datatable}
-                        className="section-column-icon"
-                        alt="Identify parameters icon"
-                        aria-label="Identify parameters icon"
-                      />
-                    </li>
-
-                    <li className="tutorial-step">
-                      <div className="tutorial-step-title">Filter the data</div>
-                      <div className="tutorial-step-text">
-                        The data can be filtered by similar entities (e.g., by
-                        structural similarity) relatedness of the organisms (by
-                        phylogenetic distance) and by similar environments
-                        (e.g., temperature, pH). In this walkthrough, we will
-                        use three filters:
-                        <ol>
-                          <li>
-                            Chemical similarity - you can filter by the
-                            structural similarity of the molecules to ATP. 1
-                            would be structurally identical (only ATP), and 6.5
-                            would include many structurally similar molecules.
-                            The score corresponds to a{" "}
-                            <a
-                              href={
-                                "http://openbabel.org/docs/dev/Features/Fingerprints.html"
-                              }
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              tanimoto similarity score
-                            </a>
-                            .
-                          </li>
-                          <li>
-                            Taxonomic distance - the initial search was for
-                            Bacillus subtilis subsp. subtilis. This filter lets
-                            you filter the data for taxonomic distance. Each
-                            node on the slider corresponds to a classification.
-                            Right now, the slider is set to include all data
-                            from the kingdom Bacteria.
-                          </li>
-                          <li>
-                            Media - you can filter by media type. Try{" "}
-                            <q>gutnick</q>
-                            for example.
-                          </li>
-                        </ol>
-                      </div>
-                      <object
-                        data={five_datatable}
-                        className="section-column-icon"
-                        alt="Identify parameters icon"
-                        aria-label="Identify parameters icon"
-                      />
-                    </li>
-                    <li className="tutorial-step">
-                      <div className="tutorial-step-title">
-                        Select Specific Data Points and Analyze
-                      </div>
-                      <div className="tutorial-step-text">
-                        Click on <q>Stats</q> in the left-hand toolbar. This
-                        will show summary statistics of the total data,
-                        including the data that was filtered out in the previous
-                        step. Then click on the boxes on the table to select
-                        them. As the boxes are selected, the stats toolbar will
-                        display summary statistics of the selected data. This
-                        allows you to filter and then select specific data
-                        points, and then compare its distribution to the total
-                        data.
-                      </div>
-                      <object
-                        data={six_datatable}
-                        className="section-column-icon"
-                        alt="Identify parameters icon"
-                        aria-label="Identify parameters icon"
-                      />
-                    </li>
-                    <li className="tutorial-step">
-                      <div className="tutorial-step-title">
-                        Export molecular data for model construction and
-                        validation.
-                      </div>
-                      <div className="tutorial-step-text">
-                        Click <q>CSV</q> in the upper right corner of the table.
-                        The data can also be exported as a JSON.
-                      </div>
-                      <object
-                        data={seven_datatable}
-                        className="section-column-icon"
-                        alt="Identify parameters icon"
-                        aria-label="Identify parameters icon"
-                      />
-                    </li>
-                    <li className="tutorial-step">
-                      <div className="tutorial-step-title">
-                        View the data in Excel.
-                      </div>
-                      <div className="tutorial-step-text">
-                        The data can now be saved.
-                      </div>
-                      <object
-                        data={eight_excel}
-                        className="section-column-icon"
-                        alt="Identify parameters icon"
-                        aria-label="Identify parameters icon"
-                      />
-                    </li>
-                  </ol>
                 </div>
               </div>
             </div>
