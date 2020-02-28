@@ -175,9 +175,6 @@ workflows:
 jobs:
   build:
     executor: node-executor
-    environment:
-      NETLIFY_SITE_ID: XXXX
-      NETLIFY_ACCESS_TOKEN: XXXX
     working_directory: ~/project
     steps:
       - netlify-build
@@ -185,10 +182,7 @@ jobs:
           name: Netlify Deploy
           command: ./node_modules/.bin/netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --dir=public
   release:
-    executor: node-executor
-    environment:
-      NETLIFY_SITE_ID: XXXX
-      NETLIFY_ACCESS_TOKEN: XXXX    
+    executor: node-executor   
     working_directory: ~/project
     steps:
       - netlify-build
