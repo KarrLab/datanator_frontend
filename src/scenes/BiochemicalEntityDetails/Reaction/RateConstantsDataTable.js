@@ -217,7 +217,7 @@ class RateConstantsDataTable extends Component {
 
     /*
     colDefs.push({
-      headerName: "Taxonomic distance",
+      headerName: "Taxonomic similarity",
       field: "taxonomicProximity",
       hide: true,
       filter: "taxonomyFilter",
