@@ -176,13 +176,16 @@ class Help extends Component {
 
                     <li className="tutorial-step">
                       <div className="tutorial-step-title">
-                        Specify which columns the table should display.
+                        Use the <q>Columns</q> tab to display additional columns
+                        with additional metadata about each measurement.
                       </div>
                       <div className="tutorial-step-text">
                         Click on the <q>Columns</q> tab to the left of the
-                        concentration table to add/remove columns. For
-                        example,the user can add the column for growth media by
-                        clicking the checkbox next to <q>Media</q>.
+                        concentration table to open controls for adding and
+                        removing columns. For example, click the checkbox next
+                        to <q>Media</q> to display an additional column with
+                        information about the growth media in which each
+                        concentration was measured.
                       </div>
                       <LazyLoad>
                         <img
