@@ -111,8 +111,8 @@ commands:
             if [[ $? -ne 0 ]]; then error=1; fi
 
             # Build production package
-            NODE_ENV=production npm run build
-            if [[ $? -ne 0 ]]; then error=1; fi
+            # NODE_ENV=production npm run build
+            # if [[ $? -ne 0 ]]; then error=1; fi
 
             # Generate report of licenses of dependencies
             npm run build-third-party-license-report
@@ -183,7 +183,7 @@ jobs:
       - netlify-build
       - run:
           name: Netlify Deploy Non-master Branch
-          command: sudo /usr/local/bin/netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --dir=public
+          command: sudo /usr/local/bin/netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --dir=project
   release:
     executor: node-executor   
     working_directory: ~/project
@@ -191,4 +191,4 @@ jobs:
       - netlify-build
       - run:
           name: Netlify Deploy Master
-          command: sudo /usr/local/bin/netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir=public
+          command: sudo /usr/local/bin/netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir=project
