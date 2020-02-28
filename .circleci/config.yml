@@ -110,10 +110,6 @@ commands:
             npm run lint-svg
             if [[ $? -ne 0 ]]; then error=1; fi
 
-            # Build production package
-            # NODE_ENV=production npm run build
-            # if [[ $? -ne 0 ]]; then error=1; fi
-
             # Generate report of licenses of dependencies
             npm run build-third-party-license-report
 
