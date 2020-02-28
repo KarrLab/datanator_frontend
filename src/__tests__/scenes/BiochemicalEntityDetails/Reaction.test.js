@@ -1,6 +1,8 @@
 import { RateConstantsDataTable } from "~/scenes/BiochemicalEntityDetails/Reaction/RateConstantsDataTable";
 import testRawData from "~/__tests__/fixtures/reaction-constants-adenylate-kinase";
 import { MetadataSection } from "~/scenes/BiochemicalEntityDetails/Reaction/MetadataSection";
+import ReactDOMServer from "react-dom/server";
+
 /* global describe, it, expect */
 describe("Reaction data page", () => {
   it("Gets correct reaction data url", () => {
@@ -52,7 +54,7 @@ describe("Reaction data page", () => {
     );
   });
 
-  it("Formats metadata data correctly", async () => {
+  it("Processes metadata data correctly", async () => {
     // format raw data
     const processedMetadata = MetadataSection.processMetadata(testRawData);
     expect(processedMetadata).toEqual({
@@ -63,5 +65,17 @@ describe("Reaction data page", () => {
       name: "Adenylate kinase",
       equation: "AMP + ATP → ADP"
     });
+  });
+  it("Formats metadata data correctly", async () => {
+    // format raw data
+    const processedMetadata = MetadataSection.processMetadata(testRawData);
+    const formattedMetadata = MetadataSection.formatMetadata(processedMetadata);
+    expect(formattedMetadata[0].id).toEqual("description");
+    expect(formattedMetadata[0].title).toEqual("Description");
+    expect(
+      ReactDOMServer.renderToStaticMarkup(formattedMetadata[0].content)
+    ).toEqual(
+      '<ul class="key-value-list link-list"><li><b>Name:</b> Adenylate kinase</li><li><b>Equation:</b> AMP + ATP → ADP</li><li><b>EC number:</b> <a href="https://enzyme.expasy.org/EC/2.7.4.3" target="_blank" rel="noopener noreferrer">2.7.4.3</a></li></ul>'
+    );
   });
 });
