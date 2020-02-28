@@ -112,9 +112,9 @@ class FiltersToolPanel extends Component {
   }
 
   applyFilter(colId) {
-    this.props.api.setFilterModel({
-      [colId]: this.filterRefs[colId].current.getModel()
-    });
+    const model = this.props.api.getFilterModel();
+    model[colId] = this.filterRefs[colId].current.getModel();
+    this.props.api.setFilterModel(model);
   }
 
   render() {
