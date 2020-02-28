@@ -10,7 +10,8 @@ import four_datatable from "./images/4_datatable.png";
 import five_datatable from "./images/5_datatable.png";
 import six_datatable from "./images/6_datatable.png";
 import seven_datatable from "./images/7_datatable.png";
-import eight_excel from "./images/8_excelImage.png";
+import eight_datatable from "./images/8_datatable.png";
+import nine_excel from "./images/9_excelImage.png";
 
 import "./Help.scss";
 
@@ -175,6 +176,26 @@ class Help extends Component {
 
                     <li className="tutorial-step">
                       <div className="tutorial-step-title">
+                        Specify which columns the table should display.
+                      </div>
+                      <div className="tutorial-step-text">
+                        Click on the <q>Columns</q> tab to the left of the
+                        concentration table to add/remove columns. For
+                        example,the user can add the column for growth media by
+                        clicking the checkbox next to <q>Media</q>.
+                      </div>
+                      <LazyLoad>
+                        <img
+                          src={five_datatable}
+                          className="tutorial-screenshot"
+                          alt="Identify parameters icon"
+                          aria-label="Identify parameters icon"
+                        />
+                      </LazyLoad>
+                    </li>
+
+                    <li className="tutorial-step">
+                      <div className="tutorial-step-title">
                         Filter for concentrations relevant to ATP in{" "}
                         <i>Bacillus subtilis subsp. subtilis</i>.
                       </div>
@@ -229,14 +250,14 @@ class Help extends Component {
                             <b>Media:</b> Open the <q>Media</q> sub-tab. The
                             checkboxes can be used to filter for concentrations
                             measured in specific media. For example, click on
-                            the checkbox next to <q>Gutnick</q> to display only
-                            data observed in Gutnick media.
+                            the checkboxes next to <q>Gutnick</q> to display
+                            only data observed in Gutnick media.
                           </li>
                         </ul>
                       </div>
                       <LazyLoad>
                         <img
-                          src={five_datatable}
+                          src={six_datatable}
                           className="tutorial-screenshot"
                           alt="Identify parameters icon"
                           aria-label="Identify parameters icon"
@@ -260,7 +281,7 @@ class Help extends Component {
                       </div>
                       <LazyLoad>
                         <img
-                          src={six_datatable}
+                          src={seven_datatable}
                           className="tutorial-screenshot"
                           alt="Identify parameters icon"
                           aria-label="Identify parameters icon"
@@ -278,7 +299,7 @@ class Help extends Component {
                       </div>
                       <LazyLoad>
                         <img
-                          src={seven_datatable}
+                          src={eight_datatable}
                           className="tutorial-screenshot"
                           alt="Identify parameters icon"
                           aria-label="Identify parameters icon"
@@ -295,7 +316,7 @@ class Help extends Component {
                       </div>
                       <LazyLoad>
                         <img
-                          src={eight_excel}
+                          src={nine_excel}
                           className="tutorial-screenshot"
                           alt="Identify parameters icon"
                           aria-label="Identify parameters icon"
