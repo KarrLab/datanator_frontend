@@ -1,19 +1,13 @@
 # CircleCI 2.1 configuration file
 version: 2.1
-workflows:
-  React:
-    jobs:
-      - build
 
-jobs:
-  build:
+executors:
+  node-executor:
     docker:
       - image: circleci/node:12.6
-        environment:
-          TERM: xterm # this enables colors in the Cypress output
 
-    working_directory: ~/project
-
+commands:
+  netlify-build:
     steps:
       # Clone repo
       - checkout
@@ -162,3 +156,43 @@ jobs:
       - store_artifacts:
           path: ~/project/LICENSE-THIRD-PARTY
           destination: LICENSE-THIRD-PARTY
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build: # anything that's not master branch
+          filters:
+            branches:
+              ignore:
+                - master
+      - release: # only master branch
+          filters:
+            branches:
+              only:
+                - master
+
+jobs:
+  build:
+    docker:
+      executor: node-executor
+      environment:
+        NETLIFY_SITE_ID: XXXX
+        NETLIFY_ACCESS_TOKEN: XXXX
+      working_directory: ~/project
+      steps:
+        - netlify-build
+        - run:
+            name: Netlify Deploy
+            command: ./node_modules/.bin/netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --dir=public
+  release:
+    executor: node-executor
+    environment:
+      NETLIFY_SITE_ID: XXXX
+      NETLIFY_ACCESS_TOKEN: XXXX    
+    working_directory: ~/project
+    steps:
+      - netlify-build
+      - run:
+          name: Netlify Deploy
+          command: ./node_modules/.bin/netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir=public
