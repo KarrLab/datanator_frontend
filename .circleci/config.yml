@@ -182,13 +182,13 @@ jobs:
     steps:
       - netlify-build
       - run:
-          name: Netlify Deploy
-          command: netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --dir=public
+          name: Netlify Deploy Non-master Branch
+          command: sudo /usr/local/bin/netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --dir=public
   release:
     executor: node-executor   
     working_directory: ~/project
     steps:
       - netlify-build
       - run:
-          name: Netlify Deploy
-          command: netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir=public
+          name: Netlify Deploy Master
+          command: sudo /usr/local/bin/netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir=public
