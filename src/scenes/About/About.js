@@ -87,7 +87,11 @@ class About extends Component {
                   </a>
                 </div>
                 <div>
-                  <a href="https://github.com/karrlab/datanator_frontend/issues">
+                  <a
+                    href="https://github.com/karrlab/datanator_frontend/issues"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <FontAwesomeIcon icon="exclamation-circle" /> Submit an
                     issue
                   </a>
