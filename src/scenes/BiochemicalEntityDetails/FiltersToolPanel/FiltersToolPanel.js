@@ -13,6 +13,7 @@ class FiltersToolPanel extends Component {
     api: PropTypes.shape({
       addEventListener: PropTypes.func.isRequired,
       removeEventListener: PropTypes.func.isRequired,
+      getFilterModel: PropTypes.func.isRequired,
       setFilterModel: PropTypes.func.isRequired
     }).isRequired,
     agGridReact: PropTypes.shape({
