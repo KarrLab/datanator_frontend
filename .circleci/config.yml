@@ -28,12 +28,15 @@ commands:
               libasound2 \
               libxtst6 \
               xauth \
-              xvfb
+              xvfb 
 
             # Code Climate test reporter
             curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > cc-test-reporter
             chmod +x cc-test-reporter
             sudo mv cc-test-reporter /usr/local/bin/cc-test-reporter
+
+            # install netlify-cli 
+            npm install netlify-cli -g
 
       # Restore dependencies from cache
       - restore_cache:
@@ -180,7 +183,7 @@ jobs:
       - netlify-build
       - run:
           name: Netlify Deploy
-          command: ./node_modules/.bin/netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --dir=public
+          command: netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --dir=public
   release:
     executor: node-executor   
     working_directory: ~/project
@@ -188,4 +191,4 @@ jobs:
       - netlify-build
       - run:
           name: Netlify Deploy
-          command: ./node_modules/.bin/netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir=public
+          command: netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir=public
