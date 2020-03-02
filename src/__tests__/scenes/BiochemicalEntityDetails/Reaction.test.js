@@ -1,7 +1,8 @@
 import { RateConstantsDataTable } from "~/scenes/BiochemicalEntityDetails/Reaction/RateConstantsDataTable";
 import testRawData from "~/__tests__/fixtures/reaction-constants-adenylate-kinase";
 import { MetadataSection } from "~/scenes/BiochemicalEntityDetails/Reaction/MetadataSection";
-import ReactDOMServer from "react-dom/server";
+import { shallow } from "enzyme";
+import React from "react";
 
 /* global describe, it, expect */
 describe("Reaction data page", () => {
@@ -66,16 +67,37 @@ describe("Reaction data page", () => {
       equation: "AMP + ATP → ADP"
     });
   });
+
   it("Formats metadata data correctly", async () => {
     // format raw data
     const processedMetadata = MetadataSection.processMetadata(testRawData);
     const formattedMetadata = MetadataSection.formatMetadata(processedMetadata);
+
     expect(formattedMetadata[0].id).toEqual("description");
     expect(formattedMetadata[0].title).toEqual("Description");
-    expect(
-      ReactDOMServer.renderToStaticMarkup(formattedMetadata[0].content)
-    ).toEqual(
-      '<ul class="key-value-list link-list"><li><b>Name:</b> Adenylate kinase</li><li><b>Equation:</b> AMP + ATP → ADP</li><li><b>EC number:</b> <a href="https://enzyme.expasy.org/EC/2.7.4.3" target="_blank" rel="noopener noreferrer">2.7.4.3</a></li></ul>'
+
+    const formattedMetadataWrapper = shallow(
+      <div>{formattedMetadata[0].content}</div>
     );
+
+    // test the formatted JSX
+    expect(
+      formattedMetadataWrapper
+        .find(".key-value-list li")
+        .at(0)
+        .text()
+    ).toEqual("Name: Adenylate kinase");
+    expect(
+      formattedMetadataWrapper
+        .find(".key-value-list li")
+        .at(1)
+        .text()
+    ).toEqual("Equation: AMP + ATP → ADP");
+    expect(
+      formattedMetadataWrapper
+        .find(".key-value-list li")
+        .at(2)
+        .text()
+    ).toEqual("EC number: 2.7.4.3");
   });
 });
