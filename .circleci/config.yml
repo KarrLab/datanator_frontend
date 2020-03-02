@@ -5,6 +5,8 @@ executors:
   node-executor:
     docker:
       - image: circleci/node:12.6
+        environment:
+          TERM: xterm # this enables colors in the Cypress output
 
 commands:
   netlify-build:
