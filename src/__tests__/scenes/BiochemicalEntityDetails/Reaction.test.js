@@ -100,4 +100,34 @@ describe("Reaction data page", () => {
         .text()
     ).toEqual("EC number: 2.7.4.3");
   });
+
+  it("Test processing functions", async () => {
+    // format raw data
+    const resources = [
+      { id: "82", namespace: "sabiork.reaction" },
+      { id: "2.7.4.3", namespace: "ec-code" }
+    ];
+    expect(MetadataSection.getEcNum(resources)).toEqual("2.7.4.3");
+    expect(MetadataSection.getReactionId(resources)).toEqual("82");
+
+    const substrates = [
+      {
+        substrate_name: "AMP"
+      },
+      { substrate_name: "ATP" }
+    ];
+
+    const products = [
+      {
+        product_name: "ADP"
+      }
+    ];
+    expect(MetadataSection.getSubstrateNames(substrates)).toEqual([
+      "AMP",
+      "ATP"
+    ]);
+    expect(MetadataSection.getProductNames(products)).toEqual(["ADP"]);
+
+    expect(MetadataSection.formatSide(["AMP", "ATP"])).toEqual("AMP + ATP");
+  });
 });
