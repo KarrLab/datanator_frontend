@@ -2,7 +2,8 @@ import { AbundanceDataTable } from "~/scenes/BiochemicalEntityDetails/Protein/Ab
 import testRawData from "~/__tests__/fixtures/protein-abundances-6-phosphofructo-2-kinase";
 import testRawMetadata from "~/__tests__/fixtures/protein-metadata-6-phosphofructo-2-kinase";
 import { MetadataSection } from "~/scenes/BiochemicalEntityDetails/Protein/MetadataSection";
-//import MetadataSection from "~/scenes/BiochemicalEntityDetails/Protein/MetadataSection";
+import { shallow } from "enzyme";
+import React from "react";
 
 /* global describe, it, expect */
 describe("Protein data page", () => {
@@ -61,7 +62,7 @@ describe("Protein data page", () => {
     );
   });
 
-  it("Formats metadata data correctly", async () => {
+  it("Processes metadata data correctly", async () => {
     // format raw data
     const processedMetadata = MetadataSection.processMetadata(testRawMetadata);
     //console.log(processedMetadata)
@@ -108,5 +109,40 @@ describe("Protein data page", () => {
       "Q9TZL8",
       "Q9WUA3"
     ]);
+  });
+
+  it("Formats metadata data correctly", async () => {
+    // format raw data
+    const processedMetadata = MetadataSection.processMetadata(testRawMetadata);
+    const formattedMetadata = MetadataSection.formatMetadata(processedMetadata);
+
+    expect(formattedMetadata[0].id).toEqual("description");
+    expect(formattedMetadata[0].title).toEqual("Description");
+
+    const formattedMetadataWrapper = shallow(
+      <div>{formattedMetadata[0].content}</div>
+    );
+
+    // test the formatted JSX
+    expect(
+      formattedMetadataWrapper
+        .find(".key-value-list li")
+        .at(0)
+        .text()
+    ).toEqual("Name: 6-phosphofructokinase 1");
+    expect(
+      formattedMetadataWrapper
+        .find(".key-value-list li")
+        .at(1)
+        .text()
+    ).toEqual("KEGG Orthology id:  K00850");
+    expect(
+      formattedMetadataWrapper
+        .find(".key-value-list li")
+        .at(2)
+        .text()
+    ).toEqual(
+      "Proteins: A1A4J1O34529O42938P08237P0A796P12382P16861P16862P17858P30835P47857P47858P47860P52034P52784P65692P65694Q01813Q0IIG5Q27483Q2HYU2Q4E657Q867C9Q8A624Q8A8R5Q8VYN6Q8Y6W0Q8ZJL6Q94AA4Q99ZD0Q9C5J7Q9FIK0Q9FKG3Q9M076Q9M0F9Q9TZL8Q9WUA3"
+    );
   });
 });
