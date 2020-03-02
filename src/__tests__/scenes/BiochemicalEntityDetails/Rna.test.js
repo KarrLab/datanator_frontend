@@ -3,6 +3,8 @@ import testRawData from "~/__tests__/fixtures/rna-abundances-phophofructokinase"
 import testRawDataWithoutGeneName from "~/__tests__/fixtures/rna-abundances-prephenate-dehydrogenase-without-gene-name";
 
 import { MetadataSection } from "~/scenes/BiochemicalEntityDetails/Rna/MetadataSection";
+import { shallow } from "enzyme";
+import React from "react";
 
 /* global describe, it, expect */
 describe("Reaction data page", () => {
@@ -32,7 +34,7 @@ describe("Reaction data page", () => {
     expect(formattedData[1].organism).toEqual("Methanosarcina acetivorans");
   });
 
-  it("Formats metadata data correctly", async () => {
+  it("Processes metadata data correctly", async () => {
     // format raw data
     let formattedMetadata = MetadataSection.processMetadata(testRawData);
     expect(formattedMetadata).toEqual({
@@ -47,5 +49,34 @@ describe("Reaction data page", () => {
       geneName: null,
       proteinName: "Protein name not found"
     });
+  });
+
+  it("Formats metadata data correctly", async () => {
+    // format raw data
+    const processedMetadata = MetadataSection.processMetadata(testRawData);
+    const formattedMetadata = MetadataSection.formatMetadata(processedMetadata);
+
+    expect(formattedMetadata[0].id).toEqual("description");
+    expect(formattedMetadata[0].title).toEqual("Description");
+
+    const formattedMetadataWrapper = shallow(
+      <div>{formattedMetadata[0].content}</div>
+    );
+
+    // test the formatted JSX
+    expect(
+      formattedMetadataWrapper
+        .find(".key-value-list li")
+        .at(0)
+        .text()
+    ).toEqual("Gene: pfk");
+    expect(
+      formattedMetadataWrapper
+        .find(".key-value-list li")
+        .at(1)
+        .text()
+    ).toEqual(
+      "Protein: Archaeal ADP-dependent phosphofructokinase/glucokinase"
+    );
   });
 });
