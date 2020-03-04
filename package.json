@@ -83,6 +83,7 @@
     "customize-cra": "^0.9.1",
     "history": "^4.10.1",
     "mathjs": "^6.6.0",
+    "package.json": "^2.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-app-rewired": "^2.1.5",
