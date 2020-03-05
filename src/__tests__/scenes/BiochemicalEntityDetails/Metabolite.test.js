@@ -95,22 +95,20 @@ describe("Metabolite data page", () => {
     expect(formattedMetadata[0].id).toEqual("description");
     expect(formattedMetadata[0].title).toEqual("Description");
 
-    const descriptionsWrapper = shallow(
-      <div>{formattedMetadata[0].content}</div>
-    );
+    const descriptionsWrapper = shallow(formattedMetadata[0].content);
     expect(descriptionsWrapper.text().substring(1, 30)).toEqual(
       "LazyLoad />Uridine 5'-diphosp"
     );
 
     expect(formattedMetadata[1].id).toEqual("synonyms");
     expect(formattedMetadata[1].title).toEqual("Synonyms");
-    const synonymsWrapper = shallow(<div>{formattedMetadata[1].content}</div>);
+    const synonymsWrapper = shallow(formattedMetadata[1].content);
 
     expect(synonymsWrapper.text()).toEqual("5'-UDPUDP");
 
     expect(formattedMetadata[2].id).toEqual("links");
     expect(formattedMetadata[2].title).toEqual("Database links");
-    const linksWrapper = shallow(<div>{formattedMetadata[2].content}</div>);
+    const linksWrapper = shallow(formattedMetadata[2].content);
 
     expect(
       linksWrapper
@@ -179,7 +177,7 @@ describe("Metabolite data page", () => {
 
     expect(formattedMetadata[3].id).toEqual("physics");
     expect(formattedMetadata[3].title).toEqual("Physics");
-    const physicsWrapper = shallow(<div>{formattedMetadata[3].content}</div>);
+    const physicsWrapper = shallow(formattedMetadata[3].content);
 
     expect(
       physicsWrapper
@@ -227,16 +225,16 @@ describe("Metabolite data page", () => {
     expect(formattedMetadata[4].id).toEqual("localizations");
     expect(formattedMetadata[4].title).toEqual("Localizations");
     const localizationsWrapper = shallow(
-      <div>{formattedMetadata[4].content}</div>
+      formattedMetadata[4].content
     );
 
     expect(localizationsWrapper.html()).toEqual(
-      '<div><ul class="two-col-list"><li><div class="bulleted-list-item">Cytosol</div></li></ul></div>'
+      '<ul class="two-col-list"><li><div class="bulleted-list-item">Cytosol</div></li></ul>'
     );
 
     expect(formattedMetadata[5].id).toEqual("pathways");
     expect(formattedMetadata[5].title).toEqual("Pathways");
-    const pathwaysWrapper = shallow(<div>{formattedMetadata[5].content}</div>);
+    const pathwaysWrapper = shallow(formattedMetadata[5].content);
 
     expect(
       pathwaysWrapper
