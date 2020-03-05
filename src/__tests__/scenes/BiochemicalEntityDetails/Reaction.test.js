@@ -40,18 +40,9 @@ describe("Reaction data page", () => {
 
   it("Gets correct metadata url ", async () => {
     const query = "ATP + AMP --> ADP";
-    const organism = "Saccharomyces cerevisiae S288C";
-    const substrates = "ATP + AMP";
-    const products = "ADP";
-    expect(MetadataSection.getMetadataUrl(query, organism)).toEqual(
-      "reactions/kinlaw_by_name/" +
-        "?substrates=" +
-        substrates +
-        "&products=" +
-        products +
-        "&_from=0" +
-        "&size=1000" +
-        "&bound=tight"
+    //const organism = "Saccharomyces cerevisiae S288C";
+    expect(MetadataSection.getMetadataUrl(query)).toEqual(
+      "reactions/kinlaw_by_name/?substrates=ATP + AMP&products=ADP&_from=0&size=1000&bound=tight"
     );
   });
 

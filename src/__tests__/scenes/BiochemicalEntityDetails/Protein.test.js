@@ -51,14 +51,12 @@ describe("Protein data page", () => {
 
   it("Gets correct metadata url ", async () => {
     const query = "K00850";
+    expect(MetadataSection.getMetadataUrl(query)).toEqual(
+      "proteins/proximity_abundance/proximity_abundance_kegg/?kegg_id=K00850&distance=40&depth=40"
+    );
     const organism = "Saccharomyces cerevisiae S288C";
     expect(MetadataSection.getMetadataUrl(query, organism)).toEqual(
-      "proteins/proximity_abundance/proximity_abundance_kegg/" +
-        "?kegg_id=" +
-        query +
-        (organism ? "&anchor=" + organism : "") +
-        "&distance=40" +
-        "&depth=40"
+      "proteins/proximity_abundance/proximity_abundance_kegg/?kegg_id=K00850&anchor=Saccharomyces cerevisiae S288C&distance=40&depth=40"
     );
   });
 

@@ -12,15 +12,10 @@ describe("Metabolite data page", () => {
 
     // assert URL correct
     expect(ConcentrationDataTable.getUrl(entity)).toEqual(
-      "metabolites/concentration/" + "?metabolite=" + entity + "&abstract=true"
+      "metabolites/concentration/?metabolite=dTDP-D-Glucose&abstract=true"
     );
     expect(ConcentrationDataTable.getUrl(entity, organism)).toEqual(
-      "metabolites/concentration/" +
-        "?metabolite=" +
-        entity +
-        "&abstract=true" +
-        "&species=" +
-        organism
+      "metabolites/concentration/?metabolite=dTDP-D-Glucose&abstract=true&species=Escherichia coli"
     );
   });
 
@@ -60,14 +55,8 @@ describe("Metabolite data page", () => {
   it("Gets correct metadata url ", async () => {
     const query = "dTDP-D-Glucose";
     const organism = "Escherichia coli";
-    const abstract = "true";
     expect(MetadataSection.getMetadataUrl(query, organism)).toEqual(
-      "metabolites/concentration/" +
-        "?metabolite=" +
-        query +
-        "&abstract=" +
-        abstract +
-        (organism ? "&species=" + organism : "")
+      "metabolites/concentration/?metabolite=dTDP-D-Glucose&abstract=true&species=Escherichia coli"
     );
   });
 
