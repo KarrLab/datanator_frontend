@@ -78,7 +78,8 @@ describe("Metabolite data page", () => {
 
   it("Formats metadata data correctly", () => {
     // format raw data
-    const processedMetadata = MetadataSection.processMetadata(testRawData);
+    let processedMetadata = MetadataSection.processMetadata(testRawData);
+    console.log(processedMetadata);
     const formattedMetadata = MetadataSection.formatMetadata(processedMetadata);
 
     expect(formattedMetadata[0].id).toEqual("description");
@@ -161,21 +162,53 @@ describe("Metabolite data page", () => {
       expect.arrayContaining(correct_list_of_pathways)
     );
 
-    expect(
-      pathwaysWrapper
-        .find("li")
-        .at(0)
-        .html()
-    ).toEqual(
-      '<li><a href="https://www.genome.jp/dbget-bin/www_bget?map00240" class="bulleted-list-item" target="_blank" rel="noopener noreferrer">Pyrimidine metabolism</a></li>'
+    //let processedMetadataWithInchi = Object.assign({}, processedMetadata)
+    let structure =
+      formattedMetadata[0].content.props.children[0].props.children.props
+        .children.props.src;
+    structure = structure.substring(0, structure.indexOf("image"));
+    expect(structure).toEqual(
+      "https://cactus.nci.nih.gov/chemical/structure/O[C@H]1[C@@H](O)[C@@H](O[C@@H]1COP(O)(=O)OP(O)(O)=O)N1C=CC(=O)NC1=O/"
     );
-    expect(
-      pathwaysWrapper
-        .find("li")
-        .at(1)
-        .html()
-    ).toEqual(
-      '<li><div class="bulleted-list-item">Superpathway of (KDO)<SUB>2</SUB>-lipid A biosynthesis</div></li>'
+
+    processedMetadata.physics = {
+      inchi: "InChI=1S",
+      inchiKey: "XCC"
+    };
+
+    const formattedMetadataWithInchi = MetadataSection.formatMetadata(
+      processedMetadata
+    );
+
+    let structureWithInchi =
+      formattedMetadataWithInchi[0].content.props.children[0].props.children
+        .props.children.props.src;
+    structureWithInchi = structureWithInchi.substring(
+      0,
+      structureWithInchi.indexOf("image")
+    );
+
+    expect(structureWithInchi).toEqual(
+      "https://cactus.nci.nih.gov/chemical/structure/InChI=InChI=1S/"
+    );
+
+    processedMetadata.physics = {
+      inchiKey: "XCC"
+    };
+
+    const formattedMetadataWithInchiKey = MetadataSection.formatMetadata(
+      processedMetadata
+    );
+    let structureWithInchiKey =
+      formattedMetadataWithInchiKey[0].content.props.children[0].props.children
+        .props.children.props.src;
+    structureWithInchiKey = structureWithInchiKey.substring(
+      0,
+      structureWithInchiKey.indexOf("image")
+    );
+
+    expect(structureWithInchiKey).toEqual(
+      "https://cactus.nci.nih.gov/chemical/structure/InChIKey=XCC/"
     );
   });
 });
