@@ -19,7 +19,7 @@ describe("Metabolite data page", () => {
     );
   });
 
-  it("Formats concentration data correct", async () => {
+  it("Formats concentration data correct", () => {
     // format raw data
     const formattedData = ConcentrationDataTable.formatData(testRawData);
 
@@ -52,7 +52,7 @@ describe("Metabolite data page", () => {
     expect(formattedData[7].growthConditions).toEqual(null);
   });
 
-  it("Gets correct metadata url ", async () => {
+  it("Gets correct metadata url ", () => {
     const query = "dTDP-D-Glucose";
     const organism = "Escherichia coli";
     expect(MetadataSection.getMetadataUrl(query, organism)).toEqual(
@@ -60,7 +60,7 @@ describe("Metabolite data page", () => {
     );
   });
 
-  it("Processes metadata data correctly", async () => {
+  it("Processes metadata data correctly", () => {
     // format raw data
     const processedMetadata = MetadataSection.processMetadata(testRawData);
     // test processed data
@@ -76,7 +76,7 @@ describe("Metabolite data page", () => {
     expect(processedMetadata.synonyms).toEqual(["5'-UDP", "UDP"]);
   });
 
-  it("Formats metadata data correctly", async () => {
+  it("Formats metadata data correctly", () => {
     // format raw data
     const processedMetadata = MetadataSection.processMetadata(testRawData);
     const formattedMetadata = MetadataSection.formatMetadata(processedMetadata);

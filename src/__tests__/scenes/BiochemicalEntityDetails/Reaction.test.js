@@ -15,7 +15,7 @@ describe("Reaction data page", () => {
     );
   });
 
-  it("Formats concentration data correct", async () => {
+  it("Formats concentration data correct", () => {
     // format raw data
     const formattedData = RateConstantsDataTable.formatData(testRawData);
 
@@ -38,7 +38,7 @@ describe("Reaction data page", () => {
     expect(formattedData[10].km).toEqual({});
   });
 
-  it("Gets correct metadata url ", async () => {
+  it("Gets correct metadata url ", () => {
     const query = "ATP + AMP --> ADP";
     //const organism = "Saccharomyces cerevisiae S288C";
     expect(MetadataSection.getMetadataUrl(query)).toEqual(
@@ -46,7 +46,7 @@ describe("Reaction data page", () => {
     );
   });
 
-  it("Processes metadata data correctly", async () => {
+  it("Processes metadata data correctly", () => {
     // format raw data
     const processedMetadata = MetadataSection.processMetadata(testRawData);
     expect(processedMetadata).toEqual({
@@ -59,7 +59,7 @@ describe("Reaction data page", () => {
     });
   });
 
-  it("Formats metadata data correctly", async () => {
+  it("Formats metadata data correctly", () => {
     // format raw data
     const processedMetadata = MetadataSection.processMetadata(testRawData);
     const formattedMetadata = MetadataSection.formatMetadata(processedMetadata);
@@ -86,7 +86,7 @@ describe("Reaction data page", () => {
     );
   });
 
-  it("Test processing functions", async () => {
+  it("Test processing functions", () => {
     // format raw data
     const resources = [
       { id: "82", namespace: "sabiork.reaction" },

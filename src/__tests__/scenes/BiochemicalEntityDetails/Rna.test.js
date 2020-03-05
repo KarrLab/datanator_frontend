@@ -16,7 +16,7 @@ describe("Reaction data page", () => {
     );
   });
 
-  it("Formats concentration data correct", async () => {
+  it("Formats concentration data correct", () => {
     // format raw data
     const formattedData = HalfLifeDataTable.formatData(testRawData);
 
@@ -33,7 +33,7 @@ describe("Reaction data page", () => {
     expect(formattedData[1].organism).toEqual("Methanosarcina acetivorans");
   });
 
-  it("Processes metadata data correctly", async () => {
+  it("Processes metadata data correctly", () => {
     // format raw data
     let formattedMetadata = MetadataSection.processMetadata(testRawData);
     expect(formattedMetadata).toEqual({
@@ -50,7 +50,7 @@ describe("Reaction data page", () => {
     });
   });
 
-  it("Formats metadata data correctly", async () => {
+  it("Formats metadata data correctly", () => {
     // format raw data
     const processedMetadata = MetadataSection.processMetadata(testRawData);
     const formattedMetadata = MetadataSection.formatMetadata(processedMetadata);

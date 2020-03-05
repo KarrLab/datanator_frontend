@@ -21,7 +21,7 @@ describe("Protein data page", () => {
     );
   });
 
-  it("Formats concentration data correctly", async () => {
+  it("Formats concentration data correctly", () => {
     const uniprot_to_taxon = { Q9UTE1: 6, Q8TFH0: 6, Q12471: 6, P40433: 6 };
     // instantiate data table
     const dataTable = new AbundanceDataTable({
@@ -49,7 +49,7 @@ describe("Protein data page", () => {
     expect(formattedData[20].geneSymbol).toEqual(null);
   });
 
-  it("Gets correct metadata url ", async () => {
+  it("Gets correct metadata url ", () => {
     const query = "K00850";
     expect(MetadataSection.getMetadataUrl(query)).toEqual(
       "proteins/proximity_abundance/proximity_abundance_kegg/?kegg_id=K00850&distance=40&depth=40"
@@ -60,7 +60,7 @@ describe("Protein data page", () => {
     );
   });
 
-  it("Processes metadata data correctly", async () => {
+  it("Processes metadata data correctly", () => {
     // format raw data
     const processedMetadata = MetadataSection.processMetadata(testRawMetadata);
     //console.log(processedMetadata)
@@ -109,7 +109,7 @@ describe("Protein data page", () => {
     ]);
   });
 
-  it("Formats metadata data correctly", async () => {
+  it("Formats metadata data correctly", () => {
     // format raw data
     const processedMetadata = MetadataSection.processMetadata(testRawMetadata);
     const formattedMetadata = MetadataSection.formatMetadata(processedMetadata);
