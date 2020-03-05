@@ -60,7 +60,7 @@ describe("Reaction data page", () => {
     expect(formattedMetadata[0].title).toEqual("Description");
 
     const formattedMetadataWrapper = shallow(
-      <div>{formattedMetadata[0].content}</div>
+      formattedMetadata[0].content
     );
 
     // test the formatted JSX

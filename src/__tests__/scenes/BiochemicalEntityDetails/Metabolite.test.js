@@ -224,9 +224,7 @@ describe("Metabolite data page", () => {
 
     expect(formattedMetadata[4].id).toEqual("localizations");
     expect(formattedMetadata[4].title).toEqual("Localizations");
-    const localizationsWrapper = shallow(
-      formattedMetadata[4].content
-    );
+    const localizationsWrapper = shallow(formattedMetadata[4].content);
 
     expect(localizationsWrapper.html()).toEqual(
       '<ul class="two-col-list"><li><div class="bulleted-list-item">Cytosol</div></li></ul>'
