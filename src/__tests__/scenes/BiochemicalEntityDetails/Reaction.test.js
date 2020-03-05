@@ -2,7 +2,7 @@ import { RateConstantsDataTable } from "~/scenes/BiochemicalEntityDetails/Reacti
 import testRawData from "~/__tests__/fixtures/reaction-constants-adenylate-kinase";
 import { MetadataSection } from "~/scenes/BiochemicalEntityDetails/Reaction/MetadataSection";
 import { shallow } from "enzyme";
-import React from "react";
+import { get_list_DOM_elements } from "./testing_utils";
 
 /* global describe, it, expect */
 describe("Reaction data page", () => {
@@ -76,29 +76,23 @@ describe("Reaction data page", () => {
     expect(formattedMetadata[0].id).toEqual("description");
     expect(formattedMetadata[0].title).toEqual("Description");
 
-    const formattedMetadataWrapper = shallow(
-      formattedMetadata[0].content
+    const formattedMetadataWrapper = shallow(formattedMetadata[0].content);
+
+    const correct_list_of_metadata = [
+      "Name: Adenylate kinase",
+      "Equation: AMP + ATP → ADP",
+      "EC number: 2.7.4.3"
+    ];
+
+    const actual_list_of_metadata = get_list_DOM_elements(
+      formattedMetadataWrapper,
+      ".key-value-list li",
+      "text"
     );
 
-    // test the formatted JSX
-    expect(
-      formattedMetadataWrapper
-        .find(".key-value-list li")
-        .at(0)
-        .text()
-    ).toEqual("Name: Adenylate kinase");
-    expect(
-      formattedMetadataWrapper
-        .find(".key-value-list li")
-        .at(1)
-        .text()
-    ).toEqual("Equation: AMP + ATP → ADP");
-    expect(
-      formattedMetadataWrapper
-        .find(".key-value-list li")
-        .at(2)
-        .text()
-    ).toEqual("EC number: 2.7.4.3");
+    expect(actual_list_of_metadata).toEqual(
+      expect.arrayContaining(correct_list_of_metadata)
+    );
   });
 
   it("Test processing functions", async () => {

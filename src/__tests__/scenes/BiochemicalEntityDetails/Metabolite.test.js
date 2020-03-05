@@ -2,7 +2,7 @@ import { ConcentrationDataTable } from "~/scenes/BiochemicalEntityDetails/Metabo
 import { MetadataSection } from "~/scenes/BiochemicalEntityDetails/Metabolite/MetadataSection";
 import testRawData from "~/__tests__/fixtures/metabolite-concentrations-dTDP-D-Glucose";
 import { shallow } from "enzyme";
-import React from "react";
+import { get_list_DOM_elements } from "./testing_utils";
 
 /* global describe, it, expect */
 describe("Metabolite data page", () => {
@@ -110,117 +110,41 @@ describe("Metabolite data page", () => {
     expect(formattedMetadata[2].title).toEqual("Database links");
     const linksWrapper = shallow(formattedMetadata[2].content);
 
-    expect(
-      linksWrapper
-        .find("a")
-        .at(0)
-        .html()
-    ).toEqual(
-      '<a href="https://biocyc.org/compound?id=UDP" target="_blank" rel="noopener noreferrer">UDP</a>'
-    );
-    expect(
-      linksWrapper
-        .find("a")
-        .at(1)
-        .html()
-    ).toEqual(
-      '<a href="https://webbook.nist.gov/cgi/cbook.cgi?ID=58-98-0" target="_blank" rel="noopener noreferrer">58-98-0</a>'
-    );
-    expect(
-      linksWrapper
-        .find("a")
-        .at(2)
-        .html()
-    ).toEqual(
-      '<a href="https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17659" target="_blank" rel="noopener noreferrer">17659</a>'
-    );
-    expect(
-      linksWrapper
-        .find("a")
-        .at(3)
-        .html()
-    ).toEqual(
-      '<a href="https://www.chemspider.com/Chemical-Structure.5809.html" target="_blank" rel="noopener noreferrer">5809</a>'
-    );
-    expect(
-      linksWrapper
-        .find("a")
-        .at(4)
-        .html()
-    ).toEqual(
-      '<a href="http://ecmdb.ca/compounds/M2MDB000123" target="_blank" rel="noopener noreferrer">M2MDB000123</a>'
-    );
-    expect(
-      linksWrapper
-        .find("a")
-        .at(5)
-        .html()
-    ).toEqual(
-      '<a href="http://www.hmdb.ca/metabolites/HMDB00295" target="_blank" rel="noopener noreferrer">HMDB00295</a>'
-    );
-    expect(
-      linksWrapper
-        .find("a")
-        .at(6)
-        .html()
-    ).toEqual(
-      '<a href="https://www.genome.jp/dbget-bin/www_bget?cpd:C00015" target="_blank" rel="noopener noreferrer">C00015</a>'
-    );
-    expect(
-      linksWrapper
-        .find("a")
-        .at(7)
-        .html()
-    ).toEqual(
+    const correct_list_of_links = [
+      '<a href="https://biocyc.org/compound?id=UDP" target="_blank" rel="noopener noreferrer">UDP</a>',
+      '<a href="https://webbook.nist.gov/cgi/cbook.cgi?ID=58-98-0" target="_blank" rel="noopener noreferrer">58-98-0</a>',
+      '<a href="https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17659" target="_blank" rel="noopener noreferrer">17659</a>',
+      '<a href="https://www.chemspider.com/Chemical-Structure.5809.html" target="_blank" rel="noopener noreferrer">5809</a>',
+      '<a href="http://ecmdb.ca/compounds/M2MDB000123" target="_blank" rel="noopener noreferrer">M2MDB000123</a>',
+      '<a href="http://www.hmdb.ca/metabolites/HMDB00295" target="_blank" rel="noopener noreferrer">HMDB00295</a>',
+      '<a href="https://www.genome.jp/dbget-bin/www_bget?cpd:C00015" target="_blank" rel="noopener noreferrer">C00015</a>',
       '<a href="https://pubchem.ncbi.nlm.nih.gov/compound/6031" target="_blank" rel="noopener noreferrer">6031</a>'
+    ];
+
+    const actual_list_of_links = get_list_DOM_elements(linksWrapper, "a");
+
+    expect(actual_list_of_links).toEqual(
+      expect.arrayContaining(correct_list_of_links)
     );
 
     expect(formattedMetadata[3].id).toEqual("physics");
     expect(formattedMetadata[3].title).toEqual("Physics");
     const physicsWrapper = shallow(formattedMetadata[3].content);
 
-    expect(
-      physicsWrapper
-        .find("li")
-        .at(0)
-        .html()
-    ).toEqual(
-      "<li><b>SMILES:</b> O[C@H]1[C@@H](O)[C@@H](O[C@@H]1COP(O)(=O)OP(O)(O)=O)N1C=CC(=O)NC1=O</li>"
+    const correct_list_of_physics = [
+      "<li><b>SMILES:</b> O[C@H]1[C@@H](O)[C@@H](O[C@@H]1COP(O)(=O)OP(O)(O)=O)N1C=CC(=O)NC1=O</li>",
+      "<li><b>InChI:</b> InChI=1S/C9H14N2O12P2/c12-5-1-2-11(9(15)10-5)8-7(14)6(13)4(22-8)3-21-25(19,20)23-24(16,17)18/h1-2,4,6-8,13-14H,3H2,(H,19,20)(H,10,12,15)(H2,16,17,18)/t4-,6-,7-,8-/m1/s1</li>",
+      "<li><b>Formula:</b> <span>C<sub>9</sub></span><span>H<sub>14</sub></span><span>N<sub>2</sub></span><span>O<sub>12</sub></span><span>P<sub>2</sub></span></li>",
+      "<li><b>Molecular weight:</b> 404.1612</li>",
+      "<li><b>Charge:</b> 0</li>",
+      "<li><b>Physiological charge:</b> -2</li>"
+    ];
+
+    const actual_list_of_physics = get_list_DOM_elements(physicsWrapper, "li");
+
+    expect(actual_list_of_physics).toEqual(
+      expect.arrayContaining(correct_list_of_physics)
     );
-    expect(
-      physicsWrapper
-        .find("li")
-        .at(1)
-        .html()
-    ).toEqual(
-      "<li><b>InChI:</b> InChI=1S/C9H14N2O12P2/c12-5-1-2-11(9(15)10-5)8-7(14)6(13)4(22-8)3-21-25(19,20)23-24(16,17)18/h1-2,4,6-8,13-14H,3H2,(H,19,20)(H,10,12,15)(H2,16,17,18)/t4-,6-,7-,8-/m1/s1</li>"
-    );
-    expect(
-      physicsWrapper
-        .find("li")
-        .at(2)
-        .html()
-    ).toEqual(
-      "<li><b>Formula:</b> <span>C<sub>9</sub></span><span>H<sub>14</sub></span><span>N<sub>2</sub></span><span>O<sub>12</sub></span><span>P<sub>2</sub></span></li>"
-    );
-    expect(
-      physicsWrapper
-        .find("li")
-        .at(3)
-        .html()
-    ).toEqual("<li><b>Molecular weight:</b> 404.1612</li>");
-    expect(
-      physicsWrapper
-        .find("li")
-        .at(4)
-        .html()
-    ).toEqual("<li><b>Charge:</b> 0</li>");
-    expect(
-      physicsWrapper
-        .find("li")
-        .at(5)
-        .html()
-    ).toEqual("<li><b>Physiological charge:</b> -2</li>");
 
     expect(formattedMetadata[4].id).toEqual("localizations");
     expect(formattedMetadata[4].title).toEqual("Localizations");
@@ -233,6 +157,20 @@ describe("Metabolite data page", () => {
     expect(formattedMetadata[5].id).toEqual("pathways");
     expect(formattedMetadata[5].title).toEqual("Pathways");
     const pathwaysWrapper = shallow(formattedMetadata[5].content);
+
+    const correct_list_of_pathways = [
+      '<li><a href="https://www.genome.jp/dbget-bin/www_bget?map00240" class="bulleted-list-item" target="_blank" rel="noopener noreferrer">Pyrimidine metabolism</a></li>',
+      '<li><div class="bulleted-list-item">Superpathway of (KDO)<SUB>2</SUB>-lipid A biosynthesis</div></li>'
+    ];
+
+    const actual_list_of_pathways = get_list_DOM_elements(
+      pathwaysWrapper,
+      "li"
+    );
+
+    expect(actual_list_of_pathways).toEqual(
+      expect.arrayContaining(correct_list_of_pathways)
+    );
 
     expect(
       pathwaysWrapper
