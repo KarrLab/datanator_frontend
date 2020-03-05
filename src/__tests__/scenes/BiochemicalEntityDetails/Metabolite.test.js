@@ -79,7 +79,6 @@ describe("Metabolite data page", () => {
   it("Formats metadata data correctly", () => {
     // format raw data
     let processedMetadata = MetadataSection.processMetadata(testRawData);
-    console.log(processedMetadata);
     const formattedMetadata = MetadataSection.formatMetadata(processedMetadata);
 
     expect(formattedMetadata[0].id).toEqual("description");

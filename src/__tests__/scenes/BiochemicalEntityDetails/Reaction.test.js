@@ -15,23 +15,36 @@ describe("Reaction data page", () => {
     );
   });
 
-  it("Formats concentration data correct", () => {
+  it("Formats concentration data correctly", () => {
     // format raw data
     const formattedData = RateConstantsDataTable.formatData(testRawData);
+    //console.log(formattedData)
 
     // test formatted data
     expect(formattedData).toHaveLength(62);
 
-    let formatedDatum = formattedData[0];
-    expect(formatedDatum).toEqual({
-      kcat: 650,
-      km: {},
-      organism: "Gallus gallus",
-      ph: 8,
-      source: 6051,
-      temperature: 30,
-      wildtypeMutant: null
-    });
+    expect(formattedData).toEqual(
+      expect.arrayContaining([
+        {
+          kcat: 650,
+          km: {},
+          organism: "Gallus gallus",
+          ph: 8,
+          source: 6051,
+          temperature: 30,
+          wildtypeMutant: "wildtype"
+        },
+        {
+          kcat: 680,
+          km: {},
+          organism: "Gallus gallus",
+          wildtypeMutant: "mutant",
+          temperature: 30,
+          ph: 8,
+          source: 6052
+        }
+      ])
+    );
 
     expect(formattedData[20].organism).toEqual("Homo sapiens");
     expect(formattedData[5].km).toEqual({ AMP: 0.0014 });

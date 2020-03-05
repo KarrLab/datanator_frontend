@@ -24,9 +24,9 @@ class RateConstantsDataTable extends Component {
 
     for (const datum of rawData) {
       let wildtypeMutant = null;
-      if (datum["taxon_wildtype"] === "1") {
+      if (datum["taxon_wildtype"] == "1") {
         wildtypeMutant = "wildtype";
-      } else if (datum["taxon_wildtype"] === "0") {
+      } else if (datum["taxon_wildtype"] == "0") {
         wildtypeMutant = "mutant";
       }
 
