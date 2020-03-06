@@ -4,6 +4,13 @@ import testRawData from "~/__tests__/fixtures/metabolite-concentrations-dTDP-D-G
 import { shallow } from "enzyme";
 import { get_list_DOM_elements } from "~/utils/testing_utils";
 
+function getFormattedSection(formattedMetadata, id) {
+  for (let i = 0; i < formattedMetadata.length; i++) {
+    if (formattedMetadata[i].id === id) {
+      return formattedMetadata[i];
+    }
+  }
+}
 /* global describe, it, expect */
 describe("Metabolite data page", () => {
   it("Gets correct concentration data url", () => {
@@ -84,22 +91,28 @@ describe("Metabolite data page", () => {
     );
     const formattedMetadata = MetadataSection.formatMetadata(processedMetadata);
 
-    expect(formattedMetadata[0].id).toEqual("description");
-    expect(formattedMetadata[0].title).toEqual("Description");
+    const formattedDescription = getFormattedSection(
+      formattedMetadata,
+      "description"
+    );
+    expect(formattedDescription.title).toEqual("Description");
 
-    const descriptionsWrapper = shallow(formattedMetadata[0].content);
+    const descriptionsWrapper = shallow(formattedDescription.content);
     expect(descriptionsWrapper.text().substring(1, 30)).toEqual(
       "LazyLoad />Uridine 5'-diphosp"
     );
 
-    expect(formattedMetadata[1].id).toEqual("synonyms");
-    expect(formattedMetadata[1].title).toEqual("Synonyms");
-    const synonymsWrapper = shallow(formattedMetadata[1].content);
+    const formattedSynonyms = getFormattedSection(
+      formattedMetadata,
+      "synonyms"
+    );
+    expect(formattedSynonyms.title).toEqual("Synonyms");
+    const synonymsWrapper = shallow(formattedSynonyms.content);
     expect(synonymsWrapper.text()).toEqual("5'-UDPUDP");
 
-    expect(formattedMetadata[2].id).toEqual("links");
-    expect(formattedMetadata[2].title).toEqual("Database links");
-    const linksWrapper = shallow(formattedMetadata[2].content);
+    const formattedLinks = getFormattedSection(formattedMetadata, "links");
+    expect(formattedLinks.title).toEqual("Database links");
+    const linksWrapper = shallow(formattedLinks.content);
 
     const correct_list_of_links = [
       '<a href="https://biocyc.org/compound?id=UDP" target="_blank" rel="noopener noreferrer">UDP</a>',
@@ -117,9 +130,9 @@ describe("Metabolite data page", () => {
       expect.arrayContaining(correct_list_of_links)
     );
 
-    expect(formattedMetadata[3].id).toEqual("physics");
-    expect(formattedMetadata[3].title).toEqual("Physics");
-    const physicsWrapper = shallow(formattedMetadata[3].content);
+    const formattedPhysics = getFormattedSection(formattedMetadata, "physics");
+    expect(formattedPhysics.title).toEqual("Physics");
+    const physicsWrapper = shallow(formattedPhysics.content);
 
     const correct_list_of_physics = [
       "<li><b>SMILES:</b> O[C@H]1[C@@H](O)[C@@H](O[C@@H]1COP(O)(=O)OP(O)(O)=O)N1C=CC(=O)NC1=O</li>",
@@ -135,16 +148,24 @@ describe("Metabolite data page", () => {
       expect.arrayContaining(correct_list_of_physics)
     );
 
-    expect(formattedMetadata[4].id).toEqual("localizations");
-    expect(formattedMetadata[4].title).toEqual("Localizations");
-    const localizationsWrapper = shallow(formattedMetadata[4].content);
+    const formattedLocalizations = getFormattedSection(
+      formattedMetadata,
+      "localizations"
+    );
+    expect(formattedLocalizations.id).toEqual("localizations");
+    expect(formattedLocalizations.title).toEqual("Localizations");
+    const localizationsWrapper = shallow(formattedLocalizations.content);
     expect(localizationsWrapper.html()).toEqual(
       '<ul class="two-col-list"><li><div class="bulleted-list-item">Cytosol</div></li></ul>'
     );
 
-    expect(formattedMetadata[5].id).toEqual("pathways");
-    expect(formattedMetadata[5].title).toEqual("Pathways");
-    const pathwaysWrapper = shallow(formattedMetadata[5].content);
+    const formattedPathways = getFormattedSection(
+      formattedMetadata,
+      "pathways"
+    );
+    expect(formattedPathways.id).toEqual("pathways");
+    expect(formattedPathways.title).toEqual("Pathways");
+    const pathwaysWrapper = shallow(formattedPathways.content);
 
     const correct_list_of_pathways = [
       '<li><a href="https://www.genome.jp/dbget-bin/www_bget?map00240" class="bulleted-list-item" target="_blank" rel="noopener noreferrer">Pyrimidine metabolism</a></li>',
@@ -159,7 +180,6 @@ describe("Metabolite data page", () => {
       expect.arrayContaining(correct_list_of_pathways)
     );
 
-    //let processedMetadataWithInchi = Object.assign({}, processedMetadata)
     let structure =
       formattedMetadata[0].content.props.children[0].props.children.props
         .children.props.src;
