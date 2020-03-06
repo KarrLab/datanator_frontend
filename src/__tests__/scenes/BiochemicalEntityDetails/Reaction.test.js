@@ -2,7 +2,7 @@ import { RateConstantsDataTable } from "~/scenes/BiochemicalEntityDetails/Reacti
 import testRawData from "~/__tests__/fixtures/reaction-constants-adenylate-kinase";
 import { MetadataSection } from "~/scenes/BiochemicalEntityDetails/Reaction/MetadataSection";
 import { shallow } from "enzyme";
-import { get_list_DOM_elements } from "./testing_utils";
+import { get_list_DOM_elements } from "~/utils/testing_utils";
 
 /* global describe, it, expect */
 describe("Reaction data page", () => {
@@ -73,8 +73,11 @@ describe("Reaction data page", () => {
   });
 
   it("Formats metadata data correctly", () => {
-    // format raw data
+    // format processed data
     const processedMetadata = MetadataSection.processMetadata(testRawData);
+    expect(MetadataSection.formatTitle(processedMetadata)).toEqual(
+      "Adenylate kinase"
+    );
     const formattedMetadata = MetadataSection.formatMetadata(processedMetadata);
 
     expect(formattedMetadata[0].id).toEqual("description");

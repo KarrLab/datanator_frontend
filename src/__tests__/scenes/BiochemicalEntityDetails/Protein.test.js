@@ -3,7 +3,7 @@ import testRawData from "~/__tests__/fixtures/protein-abundances-6-phosphofructo
 import testRawMetadata from "~/__tests__/fixtures/protein-metadata-6-phosphofructo-2-kinase";
 import { MetadataSection } from "~/scenes/BiochemicalEntityDetails/Protein/MetadataSection";
 import { shallow } from "enzyme";
-import { get_list_DOM_elements } from "./testing_utils";
+import { get_list_DOM_elements } from "~/utils/testing_utils";
 
 /* global describe, it, expect */
 describe("Protein data page", () => {
@@ -110,8 +110,13 @@ describe("Protein data page", () => {
   });
 
   it("Formats metadata data correctly", () => {
-    // format raw data
+    // format processed data
     const processedMetadata = MetadataSection.processMetadata(testRawMetadata);
+
+    expect(MetadataSection.formatTitle(processedMetadata)).toEqual(
+      "6-phosphofructokinase 1"
+    );
+
     const formattedMetadata = MetadataSection.formatMetadata(processedMetadata);
 
     expect(formattedMetadata[0].id).toEqual("description");

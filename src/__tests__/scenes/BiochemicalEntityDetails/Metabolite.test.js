@@ -2,7 +2,7 @@ import { ConcentrationDataTable } from "~/scenes/BiochemicalEntityDetails/Metabo
 import { MetadataSection } from "~/scenes/BiochemicalEntityDetails/Metabolite/MetadataSection";
 import testRawData from "~/__tests__/fixtures/metabolite-concentrations-dTDP-D-Glucose";
 import { shallow } from "enzyme";
-import { get_list_DOM_elements } from "./testing_utils";
+import { get_list_DOM_elements } from "~/utils/testing_utils";
 
 /* global describe, it, expect */
 describe("Metabolite data page", () => {
@@ -77,8 +77,11 @@ describe("Metabolite data page", () => {
   });
 
   it("Formats metadata data correctly", () => {
-    // format raw data
+    // format processed data
     let processedMetadata = MetadataSection.processMetadata(testRawData);
+    expect(MetadataSection.formatTitle(processedMetadata)).toEqual(
+      "Uridine 5'-diphosphate"
+    );
     const formattedMetadata = MetadataSection.formatMetadata(processedMetadata);
 
     expect(formattedMetadata[0].id).toEqual("description");
@@ -92,7 +95,6 @@ describe("Metabolite data page", () => {
     expect(formattedMetadata[1].id).toEqual("synonyms");
     expect(formattedMetadata[1].title).toEqual("Synonyms");
     const synonymsWrapper = shallow(formattedMetadata[1].content);
-
     expect(synonymsWrapper.text()).toEqual("5'-UDPUDP");
 
     expect(formattedMetadata[2].id).toEqual("links");
@@ -111,7 +113,6 @@ describe("Metabolite data page", () => {
     ];
 
     const actual_list_of_links = get_list_DOM_elements(linksWrapper, "a");
-
     expect(actual_list_of_links).toEqual(
       expect.arrayContaining(correct_list_of_links)
     );
@@ -130,7 +131,6 @@ describe("Metabolite data page", () => {
     ];
 
     const actual_list_of_physics = get_list_DOM_elements(physicsWrapper, "li");
-
     expect(actual_list_of_physics).toEqual(
       expect.arrayContaining(correct_list_of_physics)
     );
@@ -138,7 +138,6 @@ describe("Metabolite data page", () => {
     expect(formattedMetadata[4].id).toEqual("localizations");
     expect(formattedMetadata[4].title).toEqual("Localizations");
     const localizationsWrapper = shallow(formattedMetadata[4].content);
-
     expect(localizationsWrapper.html()).toEqual(
       '<ul class="two-col-list"><li><div class="bulleted-list-item">Cytosol</div></li></ul>'
     );
@@ -156,7 +155,6 @@ describe("Metabolite data page", () => {
       pathwaysWrapper,
       "li"
     );
-
     expect(actual_list_of_pathways).toEqual(
       expect.arrayContaining(correct_list_of_pathways)
     );

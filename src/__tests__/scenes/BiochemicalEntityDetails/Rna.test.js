@@ -1,7 +1,8 @@
 import { HalfLifeDataTable } from "~/scenes/BiochemicalEntityDetails/Rna/HalfLifeDataTable";
 import testRawData from "~/__tests__/fixtures/rna-abundances-phophofructokinase";
 import testRawDataWithoutGeneName from "~/__tests__/fixtures/rna-abundances-prephenate-dehydrogenase-without-gene-name";
-import { get_list_DOM_elements } from "./testing_utils";
+import testRawDataWithoutGeneNameWithProteinName from "~/__tests__/fixtures/rna-abundances-prephenate-dehydrogenase-without-gene-name-with-protein-name";
+import { get_list_DOM_elements } from "~/utils/testing_utils";
 import { MetadataSection } from "~/scenes/BiochemicalEntityDetails/Rna/MetadataSection";
 import { shallow } from "enzyme";
 
@@ -33,26 +34,54 @@ describe("Reaction data page", () => {
     expect(formattedData[1].organism).toEqual("Methanosarcina acetivorans");
   });
 
+  it("Gets correct metadata url ", () => {
+    const query = "ATP-PFK";
+    expect(MetadataSection.getMetadataUrl(query)).toEqual(
+      "/rna/halflife/get_info_by_protein_name/?protein_name=ATP-PFK&_from=0&size=1000"
+    );
+  });
+
   it("Processes metadata data correctly", () => {
     // format raw data
-    let formattedMetadata = MetadataSection.processMetadata(testRawData);
-    expect(formattedMetadata).toEqual({
+    let processedMetadata = MetadataSection.processMetadata(testRawData);
+    expect(processedMetadata).toEqual({
       geneName: "pfk",
       proteinName: "Archaeal ADP-dependent phosphofructokinase/glucokinase"
     });
 
-    const formattedMetadataWithoutProteinName = MetadataSection.processMetadata(
+    const processedMetadataWithoutAnyName = MetadataSection.processMetadata(
       testRawDataWithoutGeneName
     );
-    expect(formattedMetadataWithoutProteinName).toEqual({
+    expect(processedMetadataWithoutAnyName).toEqual({
       geneName: null,
       proteinName: "Protein name not found"
+    });
+
+    const processedMetadataWithOnlyProteinName = MetadataSection.processMetadata(
+      testRawDataWithoutGeneNameWithProteinName
+    );
+
+    expect(processedMetadataWithOnlyProteinName).toEqual({
+      geneName: null,
+      proteinName:
+        "ATP-dependent 6-phosphofructokinase (ATP-PFK) (Phosphofructokinase) (EC 2.7.1.11) (Phosphohexokinase)"
     });
   });
 
   it("Formats metadata data correctly", () => {
-    // format raw data
+    // format processed data
+    const processedMetadataWithOnlyProteinName = MetadataSection.processMetadata(
+      testRawDataWithoutGeneNameWithProteinName
+    );
+    expect(
+      MetadataSection.formatTitle(processedMetadataWithOnlyProteinName)
+    ).toEqual(
+      "ATP-dependent 6-phosphofructokinase (ATP-PFK) (Phosphofructokinase) (EC 2.7.1.11) (Phosphohexokinase)"
+    );
+
     const processedMetadata = MetadataSection.processMetadata(testRawData);
+    expect(MetadataSection.formatTitle(processedMetadata)).toEqual("Pfk");
+
     const formattedMetadata = MetadataSection.formatMetadata(processedMetadata);
 
     expect(formattedMetadata[0].id).toEqual("description");
