@@ -73,7 +73,10 @@ commands:
 
             # Run unit tests
             npm run test-unit-coverage
-            if [[ $? -ne 0 ]]; then error=1; fi
+            if [[ $? -ne 0 ]]; then 
+              error=1;
+              >&2 echo "Unit tests failed"
+            fi
 
             # Run integration tests
             cp package.json package.json.default
@@ -81,43 +84,74 @@ commands:
             npm start &
             wait-on http://localhost:3000
             npm run test-integration-run
-            if [[ $? -ne 0 ]]; then error=1; fi
+            if [[ $? -ne 0 ]]; then 
+              error=1;
+              >&2 echo "Integration tests failed"
+            fi
             npm stop
             mv package.json.default package.json
 
             npm run test-integration-results-report
-            if [[ $? -ne 0 ]]; then error=1; fi
+            if [[ $? -ne 0 ]]; then 
+              error=1;
+              >&2 echo "Generation of integration test report failed"
+            fi
             rm -rf test-results/integration-tests/specs
 
             npm run test-integration-coverage-report
-            if [[ $? -ne 0 ]]; then error=1; fi
+            if [[ $? -ne 0 ]]; then 
+              error=1;
+              >&2 echo "Generation of integration test coverage report failed"
+            fi
 
             # check for missing and unused dependencies
             depcheck .
-            if [[ $? -ne 0 ]]; then error=1; fi
+            if [[ $? -ne 0 ]]; then 
+              error=1;
+              >&2 echo "Test for missing and unused dependencies failed"
+            fi
 
             # Lint JavaScript
             npm run lint-js
-            if [[ $? -ne 0 ]]; then error=1; fi
+            if [[ $? -ne 0 ]]; then 
+              error=1;
+              >&2 echo "JavaScript linting failed"
+            fi
 
             # Lint CSS
             npm run lint-style
-            if [[ $? -ne 0 ]]; then error=1; fi
+            if [[ $? -ne 0 ]]; then 
+              error=1;
+              >&2 echo "CSS linting failed"
+            fi
 
             # Lint JSON
             npm run lint-json
-            if [[ $? -ne 0 ]]; then error=1; fi
+            if [[ $? -ne 0 ]]; then 
+              error=1;
+              >&2 echo "JSON linting failed"
+            fi
 
-            # Lint svg
+            # Lint SVG
             npm run lint-svg
-            if [[ $? -ne 0 ]]; then error=1; fi
+            if [[ $? -ne 0 ]]; then 
+              error=1;
+              >&2 echo "SVG linting failed"
+            fi
 
             # Build production package
             NODE_ENV=production npm run build
-            if [[ $? -ne 0 ]]; then error=1; fi
+            if [[ $? -ne 0 ]]; then 
+              error=1;
+              >&2 echo "Production build failed"
+            fi
 
             # Generate report of licenses of dependencies
             npm run build-third-party-license-report
+            if [[ $? -ne 0 ]]; then 
+              error=1;
+              >&2 echo "Generation of license report failed"
+            fi
 
             # Return error status
             if [[ $error -eq 0 ]]; then
