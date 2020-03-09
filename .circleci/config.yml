@@ -30,14 +30,14 @@ commands:
               libasound2 \
               libxtst6 \
               xauth \
-              xvfb 
+              xvfb
 
             # Code Climate test reporter
             curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > cc-test-reporter
             chmod +x cc-test-reporter
             sudo mv cc-test-reporter /usr/local/bin/cc-test-reporter
 
-            # install netlify-cli 
+            # install netlify-cli
             sudo npm install netlify-cli -g
 
       # Restore dependencies from cache
@@ -67,15 +67,16 @@ commands:
           command: |
             set +e
             error=0
+            error_msgs=()
 
             # Add node programs to path
             export PATH=$PATH:node_modules/.bin
 
             # Run unit tests
             npm run test-unit-coverage
-            if [[ $? -ne 0 ]]; then 
+            if [[ $? -ne 0 ]]; then
               error=1;
-              >&2 echo "Unit tests failed"
+              error_msgs+=("Unit tests failed")
             fi
 
             # Run integration tests
@@ -84,79 +85,84 @@ commands:
             npm start &
             wait-on http://localhost:3000
             npm run test-integration-run
-            if [[ $? -ne 0 ]]; then 
+            if [[ $? -ne 0 ]]; then
               error=1;
-              >&2 echo "Integration tests failed"
+              error_msgs+=("Integration tests failed")
             fi
             npm stop
             mv package.json.default package.json
 
             npm run test-integration-results-report
-            if [[ $? -ne 0 ]]; then 
+            if [[ $? -ne 0 ]]; then
               error=1;
-              >&2 echo "Generation of integration test report failed"
+              error_msgs+=("Generation of integration test report failed")
             fi
             rm -rf test-results/integration-tests/specs
 
             npm run test-integration-coverage-report
-            if [[ $? -ne 0 ]]; then 
+            if [[ $? -ne 0 ]]; then
               error=1;
-              >&2 echo "Generation of integration test coverage report failed"
+              error_msgs+=("Generation of integration test coverage report failed")
             fi
 
             # check for missing and unused dependencies
             depcheck .
-            if [[ $? -ne 0 ]]; then 
+            if [[ $? -ne 0 ]]; then
               error=1;
-              >&2 echo "Test for missing and unused dependencies failed"
+              error_msgs+=("Test for missing and unused dependencies failed")
             fi
 
             # Lint JavaScript
             npm run lint-js
-            if [[ $? -ne 0 ]]; then 
+            if [[ $? -ne 0 ]]; then
               error=1;
-              >&2 echo "JavaScript linting failed"
+              error_msgs+=("JavaScript linting failed")
             fi
 
             # Lint CSS
             npm run lint-style
-            if [[ $? -ne 0 ]]; then 
+            if [[ $? -ne 0 ]]; then
               error=1;
-              >&2 echo "CSS linting failed"
+              error_msgs+=("CSS linting failed")
             fi
 
             # Lint JSON
             npm run lint-json
-            if [[ $? -ne 0 ]]; then 
+            if [[ $? -ne 0 ]]; then
               error=1;
-              >&2 echo "JSON linting failed"
+              error_msgs+=("JSON linting failed")
             fi
 
             # Lint SVG
             npm run lint-svg
-            if [[ $? -ne 0 ]]; then 
+            if [[ $? -ne 0 ]]; then
               error=1;
-              >&2 echo "SVG linting failed"
+              error_msgs+=("SVG linting failed")
             fi
 
             # Build production package
             NODE_ENV=production npm run build
-            if [[ $? -ne 0 ]]; then 
+            if [[ $? -ne 0 ]]; then
               error=1;
-              >&2 echo "Production build failed"
+              error_msgs+=("Production build failed")
             fi
 
             # Generate report of licenses of dependencies
             npm run build-third-party-license-report
-            if [[ $? -ne 0 ]]; then 
+            if [[ $? -ne 0 ]]; then
               error=1;
-              >&2 echo "Generation of license report failed"
+              error_msgs+=("Generation of license report failed")
             fi
 
             # Return error status
             if [[ $error -eq 0 ]]; then
               exit 0;
             else
+              NEWLINE=$'\n'
+              error_msg=$(printf "${NEWLINE}- %s" "${error_msgs[@]}")
+              error_msg=${error_msg:1}
+              >&2 echo "Build failed:"
+              >&2 echo "${error_msg}"
               exit 1;
             fi
 
@@ -225,7 +231,7 @@ jobs:
             # deploy
             netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --dir=build
   release:
-    executor: node-executor   
+    executor: node-executor
     working_directory: ~/project
     steps:
       - netlify-build
