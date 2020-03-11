@@ -47,7 +47,7 @@ class MetadataSection extends Component {
     uniprotIds.sort();
 
     processedData.koName = rawData[0].definition.name[0]
-    processedData.koNumber = "blue"
+    processedData.koNumber = "Kegg ID"
     processedData.other = { uniprotIdToTaxonDist: uniprotIdToTaxonDist }
     processedData.description = null;
     processedData.ec_code = rawData[0].definition.ec_code[0]
@@ -162,14 +162,14 @@ class MetadataSection extends Component {
           */}
 
             <div>{
-              "processedData.processedData.description[0].comments[0].text[0].value"}</div>
+              "Description from Uniprot"}</div>
           </div>
         )
       });
 
     sections.push({
       id: "description2",
-      title: "Description",
+      title: "Names",
       content: (
         <ul className="key-value-list link-list">
           {descriptions.map(desc => {

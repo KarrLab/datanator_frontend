@@ -3,6 +3,7 @@ import { HashLink } from "react-router-hash-link";
 import { scrollTo } from "~/utils/utils";
 import { MetadataSection } from "./MetadataSection";
 import { AbundanceDataTable } from "./AbundanceDataTable";
+import { parseHistoryLocationPathname } from "~/utils/utils";
 
 import "../BiochemicalEntityDetails.scss";
 
@@ -77,6 +78,7 @@ class Protein extends Component {
                 set-scene-metadata={this.setMetadata.bind(this)}
               />
               <AbundanceDataTable
+                kegg_id = {parseHistoryLocationPathname(this.props.history).query}
                 uniprot-id-to-taxon-dist={
                   this.state.metadata
                     ? this.state.metadata.other.uniprotIdToTaxonDist
