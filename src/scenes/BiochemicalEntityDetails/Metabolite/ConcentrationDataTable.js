@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { dictOfArraysToArrayOfDicts } from "~/utils/utils";
 import DataTable from "../DataTable/DataTable";
+import Tooltip from "@material-ui/core/Tooltip";
+import { HtmlColumnHeader } from "../HtmlColumnHeader";
+import {TAXONOMIC_PROXIMITY_TOOLTIP, CHEMICAL_SIMILARITY_TOOLTIP} from '../ColumnsToolPanel/TooltipDescriptions';
 
 class ConcentrationDataTable extends Component {
   static getUrl(query, organism, abstract = true) {
@@ -131,6 +134,14 @@ class ConcentrationDataTable extends Component {
       },
       {
         headerName: "Chemical similarity",
+        headerComponentFramework: HtmlColumnHeader,
+        headerComponentParams: {
+          name: (
+            <Tooltip title={CHEMICAL_SIMILARITY_TOOLTIP} arrow>
+              <span>Chemical similarity</span>
+            </Tooltip>
+          )
+        },
         field: "tanimotoSimilarity",
         cellRenderer: "numericCellRenderer",
         type: "numericColumn",
@@ -150,6 +161,14 @@ class ConcentrationDataTable extends Component {
       },
       {
         headerName: "Taxonomic similarity",
+        headerComponentFramework: HtmlColumnHeader,
+        headerComponentParams: {
+          name: (
+            <Tooltip title={TAXONOMIC_PROXIMITY_TOOLTIP} arrow>
+              <span>Taxonomic similarity</span>
+            </Tooltip>
+          )
+        },
         field: "taxonomicProximity",
         hide: true,
         filter: "taxonomyFilter",
