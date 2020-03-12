@@ -32,7 +32,8 @@ describe("Reaction data page", () => {
           ph: 8,
           source: 6051,
           temperature: 30,
-          wildtypeMutant: "wildtype"
+          wildtypeMutant: "wildtype",
+          taxonomicProximity: ""
         },
         {
           kcat: 680,
@@ -41,7 +42,8 @@ describe("Reaction data page", () => {
           wildtypeMutant: "mutant",
           temperature: 30,
           ph: 8,
-          source: 6052
+          source: 6052,
+          taxonomicProximity: ""
         }
       ])
     );
