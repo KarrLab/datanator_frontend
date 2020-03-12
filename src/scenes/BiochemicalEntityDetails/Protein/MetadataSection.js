@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { upperCaseFirstLetter, removeDuplicates } from "~/utils/utils";
+import { upperCaseFirstLetter } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
 import { LoadData } from "../LoadExternalData";
-import axios from "axios";
-import { getDataFromExternalApi, genApiErrorHandler } from "~/services/RestApi";
 import LazyLoad from "react-lazyload";
 
 class MetadataSection extends Component {
@@ -21,7 +19,7 @@ class MetadataSection extends Component {
     return uniprot_data[0].comments[0].text[0].value;
   }
 
-  static getMetadataUrl(query, organism) {
+  static getMetadataUrl(query) {
     return "kegg/get_meta/?kegg_ids=" + query;
   }
 

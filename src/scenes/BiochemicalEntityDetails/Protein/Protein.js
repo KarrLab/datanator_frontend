@@ -3,7 +3,6 @@ import { HashLink } from "react-router-hash-link";
 import { scrollTo } from "~/utils/utils";
 import { MetadataSection } from "./MetadataSection";
 import { AbundanceDataTable } from "./AbundanceDataTable";
-import { parseHistoryLocationPathname } from "~/utils/utils";
 
 import "../BiochemicalEntityDetails.scss";
 
