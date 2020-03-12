@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { upperCaseFirstLetter, removeDuplicates } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
-//import axios from "axios";
-//import { getDataFromExternalApi, genApiErrorHandler } from "~/services/RestApi";
+import { LoadData } from "../LoadExternalData";
+import axios from "axios";
+import { getDataFromExternalApi, genApiErrorHandler } from "~/services/RestApi";
+import LazyLoad from "react-lazyload";
 
 class MetadataSection extends Component {
   static propTypes = {
@@ -15,67 +17,27 @@ class MetadataSection extends Component {
     this.state = { metadata: null };
   }
 
+  static processUniprotAPI(uniprot_data) {
+    return uniprot_data[0].comments[0].text[0].value;
+  }
+
   static getMetadataUrl(query, organism) {
-    return (
-      "kegg/get_meta/?kegg_ids=" + query
-    );
+    return "kegg/get_meta/?kegg_ids=" + query;
   }
 
   static processMetadata(rawData) {
     let processedData = {};
-    let koNumber;
-    let koName;
-    const uniprotIdToTaxonDist = {};
 
-    /*
-    for (const rawDatum of rawData) {
-      for (const doc of rawDatum.documents) {
-        if ("ko_number" in doc) {
-          koNumber = doc.ko_number;
-        }
-        if ("ko_name" in doc && doc.ko_name.length > 0) {
-          koName = doc.ko_name[0];
-        }
-        if (doc.abundances !== undefined) {
-          uniprotIdToTaxonDist[doc.uniprot_id] = rawDatum.distance;
-        }
-      }
-    }
-    */
-
-    const uniprotIds = removeDuplicates(Object.keys(uniprotIdToTaxonDist));
-    uniprotIds.sort();
-
-    processedData.koName = rawData[0].definition.name[0]
-    processedData.koNumber = "Kegg ID"
-    processedData.other = { uniprotIdToTaxonDist: uniprotIdToTaxonDist }
+    processedData.koName = rawData[0].definition.name[0];
+    processedData.koNumber = rawData[0].kegg_orthology_id;
     processedData.description = null;
-    processedData.ec_code = rawData[0].definition.ec_code[0]
-    processedData.pathways = rawData[0].kegg_pathway
+    processedData.ec_code = rawData[0].definition.ec_code[0];
+    processedData.pathways = rawData[0].kegg_pathway;
+    processedData.description_url =
+      "https://www.ebi.ac.uk/proteins/api/proteins?offset=0&size=1&gene=" +
+      rawData[0].gene_name[0];
 
-    const url = "https://www.ebi.ac.uk/proteins/api/proteins?offset=0&size=1&gene=pfkA"
-    let description = ""
-    //let description_woo = getDataFromExternalApi([url], { headers: { 'Content-Type': 'application/json' }})
-    //  .then(response => {
-    //    processedData.description = response.data
-    //    console.log(response.data)
-    //  })
-
-    //let the_data = axios.get(url, { headers: { 'Content-Type': 'application/json' }}).then(response => {
-    //    return(response.data)})
-    //console.log(processedData.description )
-
-
-    //console.log(axios.get("https://www.ebi.ac.uk/proteins/api/proteins?offset=0&size=1&gene=pfkA", { headers: { 'Content-Type': 'application/json' }}))
-
-
-    return processedData
-      //processedData: processedData,
-      //koNumber: processedData.koNumber,
-      //koName: processedData.koName,
-      //uniprotIds: uniprotIds,
-      //other: { uniprotIdToTaxonDist: uniprotIdToTaxonDist }
-
+    return processedData;
   }
 
   static formatTitle(processedData) {
@@ -85,9 +47,7 @@ class MetadataSection extends Component {
   static formatMetadata(processedData) {
     const sections = [];
 
-    // description
     const descriptions = [];
-    //console.log(processedData.processedData.description)
 
     descriptions.push({
       key: "Name",
@@ -115,60 +75,23 @@ class MetadataSection extends Component {
       value: processedData.ec_code
     });
 
-    if (processedData.uniprotIds) {
-      const uniprotLinks = [];
-      for (const uniprotId of processedData.uniprotIds) {
-        uniprotLinks.push(
-          <li key={uniprotId}>
-            <a
-              href={"https://www.uniprot.org/uniprot/" + uniprotId}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {uniprotId}
-            </a>
-          </li>
-        );
-      }
-      descriptions.push({
-        key: "Proteins",
-        value: <ul className="comma-separated-list">{uniprotLinks}</ul>
-      });
-    }
+    sections.push({
+      id: "description",
+      title: "Description",
+      content: (
+        <div>
+          <LazyLoad>
+            <LoadData
+              url={processedData.description_url}
+              processor={MetadataSection.processUniprotAPI}
+            />
+          </LazyLoad>
+        </div>
+      )
+    });
 
     sections.push({
-        id: "description",
-        title: "Description",
-        content: (
-          <div className="icon-description">
-          {/*
-            {structure && (
-              <div className="entity-scene-icon-container">
-                <LazyLoad>
-                  <img
-                    src={sprintf(
-                      STRUCTURE_IMG_URL,
-                      structure.type,
-                      structure.value
-                    )}
-                    className="entity-scene-icon hover-zoom"
-                    alt="Chemical structure"
-                    aria-label="Chemical structure"
-                    crossOrigin=""
-                  />
-                </LazyLoad>
-              </div>
-            )}
-          */}
-
-            <div>{
-              "Description from Uniprot"}</div>
-          </div>
-        )
-      });
-
-    sections.push({
-      id: "description2",
+      id: "names",
       title: "Names",
       content: (
         <ul className="key-value-list link-list">
@@ -227,8 +150,6 @@ class MetadataSection extends Component {
         )
       });
     }
-
-    // return sections
     return sections;
   }
 

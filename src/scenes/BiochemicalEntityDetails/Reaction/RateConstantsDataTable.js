@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import DataTable from "../DataTable/DataTable";
 import { HtmlColumnHeader } from "../HtmlColumnHeader";
+import Tooltip from "@material-ui/core/Tooltip";
+import { TAXONOMIC_PROXIMITY_TOOLTIP } from "../ColumnsToolPanel/TooltipDescriptions";
 
 class RateConstantsDataTable extends Component {
-  static getUrl(query) {
+  static getUrl(query, organism) {
     const substratesProducts = query.split("-->");
     const substrates = substratesProducts[0].trim();
     const products = substratesProducts[1].trim();
@@ -15,7 +17,8 @@ class RateConstantsDataTable extends Component {
       products +
       "&_from=0" +
       "&size=1000" +
-      "&bound=tight"
+      "&bound=tight" +
+      (organism ? "&taxon_distance=true&species=" + organism : "")
     );
   }
 
@@ -30,10 +33,22 @@ class RateConstantsDataTable extends Component {
         wildtypeMutant = "mutant";
       }
 
+      let rank = "";
+      for (var key in datum.taxon_distance) {
+        if (!Array.isArray(datum.taxon_distance[key])) {
+          rank = "";
+        }
+      }
+      //if (datum.taxon_distance !== null){
+      //  rank = datum.taxon_distance[1][0]
+      //}
+      //rank = datum.taxon_distance[1][0]
+
       const formattedDatum = {
         kcat: RateConstantsDataTable.getKcatValues(datum.parameter),
         km: RateConstantsDataTable.getKmValues(datum.parameter),
         organism: datum.taxon_name,
+        taxonomicProximity: rank,
         wildtypeMutant: wildtypeMutant,
         temperature: datum.temperature,
         ph: datum.ph,
@@ -215,9 +230,16 @@ class RateConstantsDataTable extends Component {
       filter: "textFilter"
     });
 
-    /*
     colDefs.push({
       headerName: "Taxonomic similarity",
+      headerComponentFramework: HtmlColumnHeader,
+      headerComponentParams: {
+        name: (
+          <Tooltip title={TAXONOMIC_PROXIMITY_TOOLTIP} arrow>
+            <span>Taxonomic similarity</span>
+          </Tooltip>
+        )
+      },
       field: "taxonomicProximity",
       hide: true,
       filter: "taxonomyFilter",
@@ -225,8 +247,7 @@ class RateConstantsDataTable extends Component {
         const value = params.value;
         return value;
       }
-    })
-    */
+    });
 
     colDefs.push({
       headerName: "Temperature (C)",
@@ -259,6 +280,10 @@ class RateConstantsDataTable extends Component {
       filterValueGetter: () => "SABIO-RK",
       filter: "textFilter"
     });
+
+    if (!organism) {
+      colDefs.splice(-4, 1);
+    }
 
     // return column definitions
     return colDefs;

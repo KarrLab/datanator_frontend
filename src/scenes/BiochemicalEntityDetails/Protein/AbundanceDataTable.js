@@ -4,8 +4,7 @@ import { getNumProperties } from "~/utils/utils";
 import DataTable from "../DataTable/DataTable";
 import { HtmlColumnHeader } from "../HtmlColumnHeader";
 import Tooltip from "@material-ui/core/Tooltip";
-
-import {TAXONOMIC_PROXIMITY_TOOLTIP, CHEMICAL_SIMILARITY_TOOLTIP} from '../ColumnsToolPanel/TooltipDescriptions';
+import { TAXONOMIC_PROXIMITY_TOOLTIP } from "../ColumnsToolPanel/TooltipDescriptions";
 
 class AbundanceDataTable extends Component {
   static propTypes = {
@@ -17,25 +16,23 @@ class AbundanceDataTable extends Component {
   };
 
   getUrl(query, organism) {
-    const queryArgs = Object.keys(this.props["uniprot-id-to-taxon-dist"])
-      .map(el => "uniprot_id=" + el)
-      .join("&");
-    return "proteins/proximity_abundance/proximity_abundance_kegg/?kegg_id=" + this.props["kegg_id"] + "&distance=100&depth=100" + "&anchor="
-    + organism
+    return (
+      "proteins/proximity_abundance/proximity_abundance_kegg/?kegg_id=" +
+      query +
+      "&distance=100&depth=100" +
+      (organism ? "&anchor=" + organism : "")
+    );
   }
 
   formatData(rawData) {
-    console.log(rawData)
     let start = 0;
     if (getNumProperties(rawData[0]) === 1) {
       start = 1;
     }
 
     const formattedData = [];
-    for (let i = 0; i < rawData.slice(start).length; i++){
-      const docs = rawData.slice(start)[i]
-      console.log(docs.documents)
-
+    for (let i = 0; i < rawData.slice(start).length; i++) {
+      const docs = rawData.slice(start)[i];
       for (const rawDatum of docs.documents) {
         if (rawDatum.abundances !== undefined) {
           for (const measurement of rawDatum.abundances) {
@@ -57,7 +54,6 @@ class AbundanceDataTable extends Component {
         }
       }
     }
-    console.log(formattedData)
     return formattedData;
   }
 
@@ -95,8 +91,8 @@ class AbundanceDataTable extends Component {
     };
   }
 
-  static getColDefs() {
-    return [
+  static getColDefs(organism) {
+    const colDefs = [
       {
         headerName: "Abundance",
         field: "abundance",
@@ -176,25 +172,27 @@ class AbundanceDataTable extends Component {
         filter: "textFilter"
       }
     ];
+
+    if (!organism) {
+      colDefs.splice(-3, 1);
+    }
+
+    return colDefs;
   }
 
   render() {
-    if (this.props["uniprot-id-to-taxon-dist"] == null) {
-      return <div></div>;
-    } else {
-      return (
-        <DataTable
-          id="abundance"
-          title="Abundance"
-          entity-type="ortholog group"
-          data-type="abundance"
-          get-data-url={this.getUrl.bind(this)}
-          format-data={this.formatData.bind(this)}
-          get-side-bar-def={AbundanceDataTable.getSideBarDef}
-          get-col-defs={AbundanceDataTable.getColDefs}
-        />
-      );
-    }
+    return (
+      <DataTable
+        id="abundance"
+        title="Abundance"
+        entity-type="ortholog group"
+        data-type="abundance"
+        get-data-url={this.getUrl.bind(this)}
+        format-data={this.formatData.bind(this)}
+        get-side-bar-def={AbundanceDataTable.getSideBarDef}
+        get-col-defs={AbundanceDataTable.getColDefs}
+      />
+    );
   }
 }
 export { AbundanceDataTable };
