@@ -19,7 +19,7 @@ class AbundanceDataTable extends Component {
     return (
       "proteins/proximity_abundance/proximity_abundance_kegg/?kegg_id=" +
       query +
-      "&distance=100&depth=100" +
+      "&distance=40&depth=40" +
       (organism ? "&anchor=" + organism : "")
     );
   }
