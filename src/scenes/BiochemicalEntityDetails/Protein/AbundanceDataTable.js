@@ -19,12 +19,12 @@ class AbundanceDataTable extends Component {
     return (
       "proteins/proximity_abundance/proximity_abundance_kegg/?kegg_id=" +
       query +
-      "&distance=40&depth=40" +
+      "&distance=40" +
       (organism ? "&anchor=" + organism : "")
     );
   }
 
-  formatData(rawData) {
+  formatData(rawData, rankings) {
     let start = 0;
     if (getNumProperties(rawData[0]) === 1) {
       start = 1;
@@ -41,15 +41,18 @@ class AbundanceDataTable extends Component {
               proteinName = proteinName.substring(0, proteinName.indexOf("("));
             }
 
-            formattedData.push({
+            const row = {
               abundance: parseFloat(measurement.abundance),
               proteinName: proteinName,
               uniprotId: rawDatum.uniprot_id,
               geneSymbol: rawDatum.gene_name,
               organism: rawDatum.species_name,
-              taxonomicProximity: i,
               organ: measurement.organ.replace("_", " ").toLowerCase()
-            });
+            };
+            if (rankings !== null) {
+              row["taxonomicProximity"] = rankings[i];
+            }
+            formattedData.push(row);
           }
         }
       }
