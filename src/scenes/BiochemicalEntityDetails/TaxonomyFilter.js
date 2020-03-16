@@ -146,15 +146,6 @@ class TaxonomyFilter extends Component {
     return distance <= maxDistance;
   }
 
-  doesFilterPass2(params) {
-    const maxDistance = this.maxDistance;
-    const distance = this.props.valueGetter(params.node);
-    const list_ranks = [];
-    for (const entry in this.taxonLineage.slice(0, maxDistance + 1)) {
-      list_ranks.push(Object.keys(this.taxonLineage[entry])[0]);
-    }
-    return list_ranks.includes(distance); // <= maxDistance;
-  }
 
   getModel() {
     return {

@@ -22,7 +22,7 @@ class RateConstantsDataTable extends Component {
     );
   }
 
-  static formatData(rawData) {
+  static formatData(rawData, rankings, organism) {
     const formattedData = [];
 
     for (const datum of rawData) {
@@ -34,15 +34,14 @@ class RateConstantsDataTable extends Component {
       }
 
       let rank = "";
-      for (var key in datum.taxon_distance) {
-        if (!Array.isArray(datum.taxon_distance[key])) {
-          rank = "";
-        }
+      console.log(Object.keys(datum.taxon_distance));
+      const keys = Object.keys(datum.taxon_distance);
+      if (keys.length === 4) {
+        const distance = datum.taxon_distance[organism];
+        rank = rankings[distance];
+      } else {
+        rank = "cellular life";
       }
-      //if (datum.taxon_distance !== null){
-      //  rank = datum.taxon_distance[1][0]
-      //}
-      //rank = datum.taxon_distance[1][0]
 
       const formattedDatum = {
         kcat: RateConstantsDataTable.getKcatValues(datum.parameter),

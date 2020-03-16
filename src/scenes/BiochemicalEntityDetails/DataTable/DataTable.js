@@ -176,6 +176,7 @@ class DataTable extends Component {
       rankings.push(rank);
     }
     rankings.push("cellular life");
+    console.log(rankings);
     return rankings;
   }
 
@@ -187,7 +188,11 @@ class DataTable extends Component {
     const route = parseHistoryLocationPathname(this.props.history);
     const organism = route.organism;
 
-    const formattedData = this.props["format-data"](rawData, rankings);
+    const formattedData = this.props["format-data"](
+      rawData,
+      rankings,
+      organism
+    );
     this.sideBarDef = this.props["get-side-bar-def"](formattedData);
     this.colDefs = this.props["get-col-defs"](organism, formattedData);
 
