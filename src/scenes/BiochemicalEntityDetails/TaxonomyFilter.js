@@ -34,6 +34,7 @@ class TaxonomyFilter extends Component {
     };
 
     this.markValueToDistance = null;
+    this.rankNameToDistance = null;
 
     this.onChange = this.onChange.bind(this);
   }
@@ -110,9 +111,25 @@ class TaxonomyFilter extends Component {
       markValueToDistance.push(distance);
     }
 
+    const rankNameToDistance = {};
+    if (lineage[1]["rank"] === "species") {
+      rankNameToDistance["strain"] = 0;
+    } else if (lineage[1]["rank"] === "genus") {
+      rankNameToDistance["species"] = 0;
+    }
+    for (let iLineage = 1; iLineage < lineage.length - 1; iLineage++) {
+      const rank = lineage[iLineage]["rank"];
+      rankNameToDistance[rank] = iLineage;
+    }
+    rankNameToDistance["cellular life"] = Object.keys(
+      rankNameToDistance
+    ).length;
+    console.log(rankNameToDistance);
+
     this.selectedMarkValue = Math.max(marks.length - 1);
     this.maxDistance = markValueToDistance[this.selectedMarkValue];
     this.markValueToDistance = markValueToDistance;
+    this.rankNameToDistance = rankNameToDistance;
 
     this.setState({
       marks: marks,
@@ -123,13 +140,26 @@ class TaxonomyFilter extends Component {
 
   doesFilterPass(params) {
     const maxDistance = this.maxDistance;
-    const distance = this.props.valueGetter(params.node);
+    const distance = this.rankNameToDistance[
+      this.props.valueGetter(params.node)
+    ];
     return distance <= maxDistance;
+  }
+
+  doesFilterPass2(params) {
+    const maxDistance = this.maxDistance;
+    const distance = this.props.valueGetter(params.node);
+    const list_ranks = [];
+    for (const entry in this.taxonLineage.slice(0, maxDistance + 1)) {
+      list_ranks.push(Object.keys(this.taxonLineage[entry])[0]);
+    }
+    return list_ranks.includes(distance); // <= maxDistance;
   }
 
   getModel() {
     return {
       markValueToDistance: this.markValueToDistance,
+      rankNameToDistance: this.rankNameToDistance,
       selectedMarkValue: this.selectedMarkValue
     };
   }
@@ -137,6 +167,7 @@ class TaxonomyFilter extends Component {
   setModel(model) {
     if (model && "markValueToDistance" in model) {
       this.markValueToDistance = model.markValueToDistance;
+      this.rankNameToDistance = model.rankNameToDistance;
     }
 
     let selectedMarkValue;
