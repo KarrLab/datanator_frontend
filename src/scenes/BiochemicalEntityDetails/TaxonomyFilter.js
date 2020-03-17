@@ -124,7 +124,6 @@ class TaxonomyFilter extends Component {
     rankNameToDistance["cellular life"] = Object.keys(
       rankNameToDistance
     ).length;
-    console.log(rankNameToDistance);
 
     this.selectedMarkValue = Math.max(marks.length - 1);
     this.maxDistance = markValueToDistance[this.selectedMarkValue];
@@ -145,7 +144,6 @@ class TaxonomyFilter extends Component {
     ];
     return distance <= maxDistance;
   }
-
 
   getModel() {
     return {

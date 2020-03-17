@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { upperCaseFirstLetter } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
-import { LoadData } from "../LoadExternalData";
+import { LoadExternalData } from "../LoadExternalData";
 import LazyLoad from "react-lazyload";
 
 class MetadataSection extends Component {
@@ -15,8 +15,14 @@ class MetadataSection extends Component {
     this.state = { metadata: null };
   }
 
-  static processUniprotAPI(uniprot_data) {
-    return uniprot_data[0].comments[0].text[0].value;
+  static processUniprotApi(uniprot_data) {
+    let response = "";
+    if (uniprot_data.length > 0) {
+      response = uniprot_data[0].comments[0].text[0].value;
+    } else {
+      response = "No description found";
+    }
+    return response;
   }
 
   static getMetadataUrl(query) {
@@ -29,7 +35,7 @@ class MetadataSection extends Component {
     processedData.koName = rawData[0].definition.name[0];
     processedData.koNumber = rawData[0].kegg_orthology_id;
     processedData.description = null;
-    processedData.ec_code = rawData[0].definition.ec_code[0];
+    processedData.ecCode = rawData[0].definition.ec_code[0];
     processedData.pathways = rawData[0].kegg_pathway;
     processedData.description_url =
       "https://www.ebi.ac.uk/proteins/api/proteins?offset=0&size=1&gene=" +
@@ -48,12 +54,7 @@ class MetadataSection extends Component {
     const descriptions = [];
 
     descriptions.push({
-      key: "Name",
-      value: processedData.koName
-    });
-
-    descriptions.push({
-      key: "KEGG Orthology ID",
+      key: "KEGG",
       value: (
         <a
           href={
@@ -69,8 +70,17 @@ class MetadataSection extends Component {
       )
     });
     descriptions.push({
-      key: "EC Code",
-      value: processedData.ec_code
+      key: "EC code",
+      value: (
+        <a
+          href={"https://enzyme.expasy.org/EC/" + processedData.ecCode}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {" "}
+          {processedData.ecCode}
+        </a>
+      )
     });
 
     sections.push({
@@ -79,9 +89,9 @@ class MetadataSection extends Component {
       content: (
         <div>
           <LazyLoad>
-            <LoadData
+            <LoadExternalData
               url={processedData.description_url}
-              processor={MetadataSection.processUniprotAPI}
+              processor={MetadataSection.processUniprotApi}
             />
           </LazyLoad>
         </div>
@@ -89,8 +99,8 @@ class MetadataSection extends Component {
     });
 
     sections.push({
-      id: "names",
-      title: "Names",
+      id: "cross_references",
+      title: "Cross references",
       content: (
         <ul className="key-value-list link-list">
           {descriptions.map(desc => {

@@ -33,26 +33,27 @@ class RateConstantsDataTable extends Component {
         wildtypeMutant = "mutant";
       }
 
-      let rank = "";
-      console.log(Object.keys(datum.taxon_distance));
-      const keys = Object.keys(datum.taxon_distance);
-      if (keys.length === 4) {
-        const distance = datum.taxon_distance[organism];
-        rank = rankings[distance];
-      } else {
-        rank = "cellular life";
-      }
-
       const formattedDatum = {
         kcat: RateConstantsDataTable.getKcatValues(datum.parameter),
         km: RateConstantsDataTable.getKmValues(datum.parameter),
         organism: datum.taxon_name,
-        taxonomicProximity: rank,
         wildtypeMutant: wildtypeMutant,
         temperature: datum.temperature,
         ph: datum.ph,
         source: datum["kinlaw_id"]
       };
+
+      if (rankings !== null) {
+        let rank = "";
+        const keys = Object.keys(datum.taxon_distance);
+        if (keys.length === 4) {
+          const distance = datum.taxon_distance[organism];
+          rank = rankings[distance];
+        } else {
+          rank = "cellular life";
+        }
+        formattedDatum["taxonomicProximity"] = rank;
+      }
 
       if (
         formattedDatum.kcat != null ||

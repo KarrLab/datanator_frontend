@@ -176,7 +176,6 @@ class DataTable extends Component {
       rankings.push(rank);
     }
     rankings.push("cellular life");
-    console.log(rankings);
     return rankings;
   }
 

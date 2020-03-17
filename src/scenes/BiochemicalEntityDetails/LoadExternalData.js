@@ -1,23 +1,43 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
+import { genApiErrorHandler } from "~/services/RestApi";
 
-class LoadData extends Component {
+class LoadExternalData extends Component {
   static propTypes = {
     url: PropTypes.string.isRequired,
     processor: PropTypes.func.isRequired
   };
+
   constructor(props) {
     super(props);
     this.state = { text: "" };
+    this.cancelTokenSource = null;
   }
+
+  componentWillUnmount() {
+    if (this.cancelTokenSource) {
+      this.cancelTokenSource.cancel();
+    }
+  }
+
   componentDidMount() {
+    if (this.cancelTokenSource) {
+      this.cancelTokenSource.cancel();
+    }
+    this.cancelTokenSource = axios.CancelToken.source();
     axios
-      .get(this.props.url, { headers: { "Content-Type": "application/json" } })
+      .get(this.props.url, {
+        headers: { "Content-Type": "application/json" },
+        cancelToken: this.cancelTokenSource.token
+      })
       .then(response => {
-        console.log(response.data);
         const processed_data = this.props.processor(response.data);
         this.setState({ text: processed_data });
+      })
+      .catch(genApiErrorHandler([this.props.url], "Unable to load metadata."))
+      .finally(() => {
+        this.cancelTokenSource = null;
       });
   }
 
@@ -26,4 +46,4 @@ class LoadData extends Component {
   }
 }
 
-export { LoadData };
+export { LoadExternalData };

@@ -15,10 +15,10 @@ describe("Protein data page", () => {
 
     // assert URL correct
     expect(dataTable.getUrl(entity)).toEqual(
-      "proteins/proximity_abundance/proximity_abundance_kegg/?kegg_id=K00850&distance=40&depth=40"
+      "proteins/proximity_abundance/proximity_abundance_kegg/?kegg_id=K00850&distance=40"
     );
     expect(dataTable.getUrl(entity, organism)).toEqual(
-      "proteins/proximity_abundance/proximity_abundance_kegg/?kegg_id=K00850&distance=40&depth=40&anchor=Escherichia coli"
+      "proteins/proximity_abundance/proximity_abundance_kegg/?kegg_id=K00850&distance=40&anchor=Escherichia coli"
     );
   });
 
@@ -27,7 +27,17 @@ describe("Protein data page", () => {
     const dataTable = new AbundanceDataTable();
 
     // format raw data
-    const formattedData = dataTable.formatData(testRawData);
+    const rankings = [
+      "species",
+      "genus",
+      "family",
+      "order",
+      "class",
+      "phylum",
+      "superkingdom",
+      "cellular life"
+    ];
+    const formattedData = dataTable.formatData(testRawData, rankings);
 
     // test formatted data
     expect(formattedData).toHaveLength(30);
@@ -39,7 +49,7 @@ describe("Protein data page", () => {
       uniprotId: "P40433",
       geneSymbol: "PFK26",
       organism: "Saccharomyces cerevisiae S288C",
-      taxonomicProximity: 6,
+      taxonomicProximity: "cellular life",
       organ: "whole organism"
     });
 
@@ -47,6 +57,22 @@ describe("Protein data page", () => {
       "Schizosaccharomyces pombe 972h-"
     );
     expect(formattedData[8].geneSymbol).toEqual(null);
+
+    const formattedDataWithoutTaxonomicData = dataTable.formatData(
+      testRawData,
+      null
+    );
+
+    let formatedDatumWithoutTaxonomicData =
+      formattedDataWithoutTaxonomicData[17];
+    expect(formatedDatumWithoutTaxonomicData).toEqual({
+      abundance: 2.04,
+      proteinName: "6-phosphofructo-2-kinase 1 ",
+      uniprotId: "P40433",
+      geneSymbol: "PFK26",
+      organism: "Saccharomyces cerevisiae S288C",
+      organ: "whole organism"
+    });
   });
 
   it("Gets correct metadata url ", () => {
@@ -78,7 +104,6 @@ describe("Protein data page", () => {
     expect(formattedMetadata[0].title).toEqual("Description");
 
     const descriptionMetadataWrapper = shallow(formattedMetadata[0].content);
-    console.log("hi");
 
     const description = get_list_DOM_elements(
       descriptionMetadataWrapper,
@@ -90,17 +115,12 @@ describe("Protein data page", () => {
       '<div><div class="lazyload-placeholder"></div></div>'
     ]);
 
-    expect(formattedMetadata[1].id).toEqual("names");
-    expect(formattedMetadata[1].title).toEqual("Names");
+    expect(formattedMetadata[1].id).toEqual("cross_references");
+    expect(formattedMetadata[1].title).toEqual("Cross references");
 
     const namesMetadataWrapper = shallow(formattedMetadata[1].content);
-    console.log("hi");
 
-    const correct_list_of_names = [
-      "Name: 6-phosphofructokinase 1",
-      "KEGG Orthology ID:  K00850",
-      "EC Code: 2.7.1.11"
-    ];
+    const correct_list_of_names = ["KEGG:  K00850", "EC code:  2.7.1.11"];
 
     const actual_list_of_names = get_list_DOM_elements(
       namesMetadataWrapper,

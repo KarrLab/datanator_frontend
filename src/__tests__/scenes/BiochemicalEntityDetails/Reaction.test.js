@@ -17,7 +17,7 @@ describe("Reaction data page", () => {
 
   it("Formats concentration data correctly", () => {
     // format raw data
-    const formattedData = RateConstantsDataTable.formatData(testRawData);
+    const formattedData = RateConstantsDataTable.formatData(testRawData, null);
     //console.log(formattedData)
 
     // test formatted data
@@ -32,8 +32,7 @@ describe("Reaction data page", () => {
           ph: 8,
           source: 6051,
           temperature: 30,
-          wildtypeMutant: "wildtype",
-          taxonomicProximity: ""
+          wildtypeMutant: "wildtype"
         },
         {
           kcat: 680,
@@ -42,8 +41,7 @@ describe("Reaction data page", () => {
           wildtypeMutant: "mutant",
           temperature: 30,
           ph: 8,
-          source: 6052,
-          taxonomicProximity: ""
+          source: 6052
         }
       ])
     );
