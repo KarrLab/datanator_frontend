@@ -1,9 +1,5 @@
 [
   {
-    "distance": 0,
-    "documents": []
-  },
-  {
     "distance": 1,
     "documents": []
   },
@@ -25,6 +21,14 @@
   },
   {
     "distance": 6,
+    "documents": []
+  },
+  {
+    "distance": 7,
+    "documents": []
+  },
+  {
+    "distance": 8,
     "documents": [
       {
         "abundances": [
@@ -53,7 +57,44 @@
             "organ": "WHOLE_ORGANISM"
           }
         ],
-        "depth": 12,
+        "ancestor_name": [
+          "cellular organisms",
+          "Eukaryota",
+          "Opisthokonta",
+          "Fungi",
+          "Dikarya",
+          "Ascomycota",
+          "Taphrinomycotina",
+          "Schizosaccharomycetes",
+          "Schizosaccharomycetales",
+          "Schizosaccharomycetaceae",
+          "Schizosaccharomyces",
+          "Schizosaccharomyces pombe"
+        ],
+        "ancestor_taxon_id": [
+          131567,
+          2759,
+          33154,
+          4751,
+          451864,
+          4890,
+          451866,
+          147554,
+          34346,
+          4894,
+          4895,
+          4896
+        ],
+        "canon_ancestors": [
+          "Eukaryota",
+          "Fungi",
+          "Ascomycota",
+          "Schizosaccharomycetes",
+          "Schizosaccharomycetales",
+          "Schizosaccharomycetaceae",
+          "Schizosaccharomyces",
+          "Schizosaccharomyces pombe"
+        ],
         "gene_name": null,
         "ko_name": [
           "6-phosphofructo-2-kinase"
@@ -91,7 +132,44 @@
             "organ": "WHOLE_ORGANISM"
           }
         ],
-        "depth": 12,
+        "ancestor_name": [
+          "cellular organisms",
+          "Eukaryota",
+          "Opisthokonta",
+          "Fungi",
+          "Dikarya",
+          "Ascomycota",
+          "Taphrinomycotina",
+          "Schizosaccharomycetes",
+          "Schizosaccharomycetales",
+          "Schizosaccharomycetaceae",
+          "Schizosaccharomyces",
+          "Schizosaccharomyces pombe"
+        ],
+        "ancestor_taxon_id": [
+          131567,
+          2759,
+          33154,
+          4751,
+          451864,
+          4890,
+          451866,
+          147554,
+          34346,
+          4894,
+          4895,
+          4896
+        ],
+        "canon_ancestors": [
+          "Eukaryota",
+          "Fungi",
+          "Ascomycota",
+          "Schizosaccharomycetes",
+          "Schizosaccharomycetales",
+          "Schizosaccharomycetaceae",
+          "Schizosaccharomyces",
+          "Schizosaccharomyces pombe"
+        ],
         "gene_name": null,
         "ko_name": [
           "6-phosphofructo-2-kinase"
@@ -125,7 +203,46 @@
             "organ": "WHOLE_ORGANISM"
           }
         ],
-        "depth": 13,
+        "ancestor_name": [
+          "cellular organisms",
+          "Eukaryota",
+          "Opisthokonta",
+          "Fungi",
+          "Dikarya",
+          "Ascomycota",
+          "saccharomyceta",
+          "Saccharomycotina",
+          "Saccharomycetes",
+          "Saccharomycetales",
+          "Saccharomycetaceae",
+          "Saccharomyces",
+          "Saccharomyces cerevisiae"
+        ],
+        "ancestor_taxon_id": [
+          131567,
+          2759,
+          33154,
+          4751,
+          451864,
+          4890,
+          716545,
+          147537,
+          4891,
+          4892,
+          4893,
+          4930,
+          4932
+        ],
+        "canon_ancestors": [
+          "Eukaryota",
+          "Fungi",
+          "Ascomycota",
+          "Saccharomycetes",
+          "Saccharomycetales",
+          "Saccharomycetaceae",
+          "Saccharomyces",
+          "Saccharomyces cerevisiae"
+        ],
         "gene_name": "PFK27",
         "ko_name": [
           "6-phosphofructo-2-kinase"
@@ -191,7 +308,46 @@
             "organ": "WHOLE_ORGANISM"
           }
         ],
-        "depth": 13,
+        "ancestor_name": [
+          "cellular organisms",
+          "Eukaryota",
+          "Opisthokonta",
+          "Fungi",
+          "Dikarya",
+          "Ascomycota",
+          "saccharomyceta",
+          "Saccharomycotina",
+          "Saccharomycetes",
+          "Saccharomycetales",
+          "Saccharomycetaceae",
+          "Saccharomyces",
+          "Saccharomyces cerevisiae"
+        ],
+        "ancestor_taxon_id": [
+          131567,
+          2759,
+          33154,
+          4751,
+          451864,
+          4890,
+          716545,
+          147537,
+          4891,
+          4892,
+          4893,
+          4930,
+          4932
+        ],
+        "canon_ancestors": [
+          "Eukaryota",
+          "Fungi",
+          "Ascomycota",
+          "Saccharomycetes",
+          "Saccharomycetales",
+          "Saccharomycetaceae",
+          "Saccharomyces",
+          "Saccharomyces cerevisiae"
+        ],
         "gene_name": "PFK26",
         "ko_name": [
           "6-phosphofructo-2-kinase"
@@ -203,10 +359,6 @@
         "uniprot_id": "P40433"
       }
     ]
-  },
-  {
-    "distance": 7,
-    "documents": []
   },
   {
     "distance": 8,
@@ -334,6 +486,10 @@
   },
   {
     "distance": 39,
+    "documents": []
+  },
+  {
+    "distance": 40,
     "documents": []
   }
 ]
