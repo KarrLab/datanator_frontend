@@ -20,7 +20,7 @@ class MetadataSection extends Component {
     if (uniprot_data.length > 0) {
       response = uniprot_data[0].comments[0].text[0].value;
     } else {
-      response = "No description found";
+      response = "No description available.";
     }
     return response;
   }

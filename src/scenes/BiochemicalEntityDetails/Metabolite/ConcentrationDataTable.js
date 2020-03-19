@@ -56,8 +56,8 @@ class ConcentrationDataTable extends Component {
                 : { source: "ymdb", id: met.ymdb_id }
           };
           if (rankings !== null) {
-              conc["taxonomicProximity"] = rankings[met.taxon_distance];
-            }
+            conc["taxonomicProximity"] = rankings[met.taxon_distance];
+          }
           if (conc.growthPhase && conc.growthPhase.indexOf(" phase") >= 0) {
             conc.growthPhase = conc.growthPhase.split(" phase")[0];
           }
