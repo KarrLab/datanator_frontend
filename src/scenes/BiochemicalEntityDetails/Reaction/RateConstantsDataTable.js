@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { upperCaseFirstLetter } from "~/utils/utils";
 import DataTable from "../DataTable/DataTable";
 import { HtmlColumnHeader } from "../HtmlColumnHeader";
 import Tooltip from "@material-ui/core/Tooltip";
@@ -245,7 +246,7 @@ class RateConstantsDataTable extends Component {
       filter: "taxonomyFilter",
       valueFormatter: params => {
         const value = params.value;
-        return value;
+        return upperCaseFirstLetter(value);
       }
     });
 

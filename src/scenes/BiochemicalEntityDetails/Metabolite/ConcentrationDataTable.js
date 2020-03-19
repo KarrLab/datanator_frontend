@@ -1,5 +1,8 @@
 import React, { Component } from "react";
-import { dictOfArraysToArrayOfDicts } from "~/utils/utils";
+import {
+  dictOfArraysToArrayOfDicts,
+  upperCaseFirstLetter
+} from "~/utils/utils";
 import DataTable from "../DataTable/DataTable";
 import Tooltip from "@material-ui/core/Tooltip";
 import { HtmlColumnHeader } from "../HtmlColumnHeader";
@@ -179,7 +182,7 @@ class ConcentrationDataTable extends Component {
         filter: "taxonomyFilter",
         valueFormatter: params => {
           const value = params.value;
-          return value;
+          return upperCaseFirstLetter(value);
         }
       },
       {
