@@ -28,7 +28,20 @@ describe("Metabolite data page", () => {
 
   it("Formats concentration data correct", () => {
     // format raw data
-    const formattedData = ConcentrationDataTable.formatData(testRawData);
+    const rankings = [
+      "species",
+      "genus",
+      "family",
+      "order",
+      "class",
+      "phylum",
+      "superkingdom",
+      "cellular life"
+    ];
+    const formattedData = ConcentrationDataTable.formatData(
+      testRawData,
+      rankings
+    );
 
     // test formatted data
     expect(formattedData).toHaveLength(10);
@@ -41,7 +54,7 @@ describe("Metabolite data page", () => {
       uncertainty: null,
       units: "uM",
       organism: "Escherichia coli K12 NCM3722",
-      taxonomicProximity: 1,
+      taxonomicProximity: "genus",
       growthPhase: "Mid-Log",
       growthMedia:
         "Gutnick minimal complete medium (4.7 g/L KH2PO4; 13.5 g/L K2HPO4; 1 g/L K2SO4; 0.1 g/L MgSO4-7H2O; 10 mM NH4Cl) with 4 g/L glucose",
