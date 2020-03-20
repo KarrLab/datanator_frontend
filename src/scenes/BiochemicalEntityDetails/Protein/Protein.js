@@ -76,13 +76,7 @@ class Protein extends Component {
               <MetadataSection
                 set-scene-metadata={this.setMetadata.bind(this)}
               />
-              <AbundanceDataTable
-                uniprot-id-to-taxon-dist={
-                  this.state.metadata
-                    ? this.state.metadata.other.uniprotIdToTaxonDist
-                    : null
-                }
-              />
+              <AbundanceDataTable />
             </div>
           </div>
         </div>

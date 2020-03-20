@@ -91,7 +91,17 @@ describe("TaxonomyFilter", function() {
           selectedMarkValue: 0,
           markValueToDistance: Array(7)
             .fill()
-            .map((x, i) => i)
+            .map((x, i) => i),
+          rankNameToDistance: {
+            species: 0,
+            genus: 1,
+            family: 2,
+            order: 3,
+            class: 4,
+            phylum: 5,
+            superkingdom: 6,
+            "cellular life": 7
+          }
         }
       });
     });

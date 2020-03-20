@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { upperCaseFirstLetter, removeDuplicates } from "~/utils/utils";
+import { upperCaseFirstLetter } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
+import { LoadExternalData } from "../LoadExternalData";
+import LazyLoad from "react-lazyload";
 
 class MetadataSection extends Component {
   static propTypes = {
@@ -13,44 +15,33 @@ class MetadataSection extends Component {
     this.state = { metadata: null };
   }
 
-  static getMetadataUrl(query, organism) {
-    return (
-      "proteins/proximity_abundance/proximity_abundance_kegg/" +
-      "?kegg_id=" +
-      query +
-      (organism ? "&anchor=" + organism : "") +
-      "&distance=40" +
-      "&depth=40"
-    );
+  static processUniprotApi(uniprot_data) {
+    let response = "";
+    if (uniprot_data.length > 0) {
+      response = uniprot_data[0].comments[0].text[0].value;
+    } else {
+      response = "No description available.";
+    }
+    return response;
+  }
+
+  static getMetadataUrl(query) {
+    return "kegg/get_meta/?kegg_ids=" + query;
   }
 
   static processMetadata(rawData) {
-    let koNumber;
-    let koName;
-    const uniprotIdToTaxonDist = {};
-    for (const rawDatum of rawData) {
-      for (const doc of rawDatum.documents) {
-        if ("ko_number" in doc) {
-          koNumber = doc.ko_number;
-        }
-        if ("ko_name" in doc && doc.ko_name.length > 0) {
-          koName = doc.ko_name[0];
-        }
-        if (doc.abundances !== undefined) {
-          uniprotIdToTaxonDist[doc.uniprot_id] = rawDatum.distance;
-        }
-      }
-    }
+    let processedData = {};
 
-    const uniprotIds = removeDuplicates(Object.keys(uniprotIdToTaxonDist));
-    uniprotIds.sort();
+    processedData.koName = rawData[0].definition.name[0];
+    processedData.koNumber = rawData[0].kegg_orthology_id;
+    processedData.description = null;
+    processedData.ecCode = rawData[0].definition.ec_code[0];
+    processedData.pathways = rawData[0].kegg_pathway;
+    processedData.description_url =
+      "https://www.ebi.ac.uk/proteins/api/proteins?offset=0&size=1&gene=" +
+      rawData[0].gene_name[0];
 
-    return {
-      koNumber: koNumber,
-      koName: koName,
-      uniprotIds: uniprotIds,
-      other: { uniprotIdToTaxonDist: uniprotIdToTaxonDist }
-    };
+    return processedData;
   }
 
   static formatTitle(processedData) {
@@ -60,16 +51,10 @@ class MetadataSection extends Component {
   static formatMetadata(processedData) {
     const sections = [];
 
-    // description
     const descriptions = [];
 
     descriptions.push({
-      key: "Name",
-      value: processedData.koName
-    });
-
-    descriptions.push({
-      key: "KEGG Orthology id",
+      key: "KEGG",
       value: (
         <a
           href={
@@ -84,31 +69,38 @@ class MetadataSection extends Component {
         </a>
       )
     });
-
-    if (processedData.uniprotIds) {
-      const uniprotLinks = [];
-      for (const uniprotId of processedData.uniprotIds) {
-        uniprotLinks.push(
-          <li key={uniprotId}>
-            <a
-              href={"https://www.uniprot.org/uniprot/" + uniprotId}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {uniprotId}
-            </a>
-          </li>
-        );
-      }
-      descriptions.push({
-        key: "Proteins",
-        value: <ul className="comma-separated-list">{uniprotLinks}</ul>
-      });
-    }
+    descriptions.push({
+      key: "EC code",
+      value: (
+        <a
+          href={"https://enzyme.expasy.org/EC/" + processedData.ecCode}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {" "}
+          {processedData.ecCode}
+        </a>
+      )
+    });
 
     sections.push({
       id: "description",
       title: "Description",
+      content: (
+        <div>
+          <LazyLoad>
+            <LoadExternalData
+              url={processedData.description_url}
+              processor={MetadataSection.processUniprotApi}
+            />
+          </LazyLoad>
+        </div>
+      )
+    });
+
+    sections.push({
+      id: "cross_references",
+      title: "Cross references",
       content: (
         <ul className="key-value-list link-list">
           {descriptions.map(desc => {
@@ -122,7 +114,50 @@ class MetadataSection extends Component {
       )
     });
 
-    // return sections
+    if (processedData.pathways.length > 0) {
+      sections.push({
+        id: "pathways",
+        title: "Pathways",
+        content: (
+          <ul className="two-col-list link-list">
+            {processedData.pathways.map(el => {
+              if (el.kegg_pathway_code) {
+                const map_id = el.kegg_pathway_code.substring(
+                  2,
+                  el.kegg_pathway_code.length
+                );
+                return (
+                  <li key={el.pathway_description}>
+                    <a
+                      href={
+                        "https://www.genome.jp/dbget-bin/www_bget?map" + map_id
+                      }
+                      className="bulleted-list-item"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      dangerouslySetInnerHTML={{
+                        __html: upperCaseFirstLetter(el.pathway_description)
+                      }}
+                    ></a>
+                  </li>
+                );
+              } else {
+                return (
+                  <li key={el.pathway_description}>
+                    <div
+                      className="bulleted-list-item"
+                      dangerouslySetInnerHTML={{
+                        __html: upperCaseFirstLetter(el.pathway_description)
+                      }}
+                    ></div>
+                  </li>
+                );
+              }
+            })}
+          </ul>
+        )
+      });
+    }
     return sections;
   }
 

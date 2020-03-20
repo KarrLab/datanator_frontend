@@ -75,7 +75,9 @@ class DataTable extends Component {
     this.state = {
       sideBarDef: this.sideBarDef,
       colDefs: this.colDefs,
-      data: null
+      data: null,
+      taxonLineage: null,
+      taxonRankings: null
     };
 
     this.fitCols = this.fitCols.bind(this);
@@ -121,17 +123,30 @@ class DataTable extends Component {
     const query = route.query;
     const organism = route.organism;
 
-    // cancel earlier query
     if (this.cancelTokenSource) {
       this.cancelTokenSource.cancel();
     }
 
     const url = this.props["get-data-url"](query, organism);
     this.cancelTokenSource = axios.CancelToken.source();
-    getDataFromApi([url], { cancelToken: this.cancelTokenSource.token })
-      .then(response => {
-        this.formatData(response.data);
-      })
+    axios
+      .all([
+        getDataFromApi([url], { cancelToken: this.cancelTokenSource.token }),
+        organism
+          ? getDataFromApi(
+              ["taxon", "canon_rank_distance_by_name/?name=" + organism],
+              { cancelToken: this.cancelTokenSource.token }
+            )
+          : null
+      ])
+      .then(
+        axios.spread((...responses) => {
+          this.formatData(
+            responses[0].data,
+            organism ? responses[1].data : null
+          );
+        })
+      )
       .catch(
         genApiErrorHandler(
           [url],
@@ -149,11 +164,34 @@ class DataTable extends Component {
       });
   }
 
-  formatData(rawData) {
+  static setRankings(organismData) {
+    const rankings = [];
+    if (organismData[1]["rank"] === "species") {
+      rankings.push("strain");
+    } else if (organismData[1]["rank"] === "genus") {
+      rankings.push("species");
+    }
+    for (let iLineage = 1; iLineage < organismData.length - 1; iLineage++) {
+      const rank = organismData[iLineage]["rank"];
+      rankings.push(rank);
+    }
+    rankings.push("cellular life");
+    return rankings;
+  }
+
+  formatData(rawData, organismData) {
+    let rankings = null;
+    if (organismData) {
+      rankings = DataTable.setRankings(organismData);
+    }
     const route = parseHistoryLocationPathname(this.props.history);
     const organism = route.organism;
 
-    const formattedData = this.props["format-data"](rawData);
+    const formattedData = this.props["format-data"](
+      rawData,
+      rankings,
+      organism
+    );
     this.sideBarDef = this.props["get-side-bar-def"](formattedData);
     this.colDefs = this.props["get-col-defs"](organism, formattedData);
 

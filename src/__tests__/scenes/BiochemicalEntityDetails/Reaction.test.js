@@ -17,7 +17,7 @@ describe("Reaction data page", () => {
 
   it("Formats concentration data correctly", () => {
     // format raw data
-    const formattedData = RateConstantsDataTable.formatData(testRawData);
+    const formattedData = RateConstantsDataTable.formatData(testRawData, null);
     //console.log(formattedData)
 
     // test formatted data

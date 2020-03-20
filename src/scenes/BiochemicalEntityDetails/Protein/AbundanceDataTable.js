@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { getNumProperties } from "~/utils/utils";
+import { getNumProperties, upperCaseFirstLetter } from "~/utils/utils";
 import DataTable from "../DataTable/DataTable";
+import { HtmlColumnHeader } from "../HtmlColumnHeader";
+import Tooltip from "@material-ui/core/Tooltip";
+import { TAXONOMIC_PROXIMITY_TOOLTIP } from "../ColumnsToolPanel/TooltipDescriptions";
 
 class AbundanceDataTable extends Component {
   static propTypes = {
@@ -12,39 +15,45 @@ class AbundanceDataTable extends Component {
     "uniprot-id-to-taxon-dist": null
   };
 
-  getUrl() {
-    const queryArgs = Object.keys(this.props["uniprot-id-to-taxon-dist"])
-      .map(el => "uniprot_id=" + el)
-      .join("&");
-    return "proteins/meta/meta_combo/?" + queryArgs;
+  getUrl(query, organism) {
+    return (
+      "proteins/proximity_abundance/proximity_abundance_kegg/?kegg_id=" +
+      query +
+      "&distance=40" +
+      (organism ? "&anchor=" + organism : "")
+    );
   }
 
-  formatData(rawData) {
+  formatData(rawData, rankings) {
     let start = 0;
     if (getNumProperties(rawData[0]) === 1) {
       start = 1;
     }
 
     const formattedData = [];
-    for (const rawDatum of rawData.slice(start)) {
-      if (rawDatum.abundances !== undefined) {
-        for (const measurement of rawDatum.abundances) {
-          let proteinName = rawDatum.protein_name;
-          if (proteinName.includes("(")) {
-            proteinName = proteinName.substring(0, proteinName.indexOf("("));
-          }
+    for (let i = 0; i < rawData.slice(start).length; i++) {
+      const docs = rawData.slice(start)[i];
+      for (const rawDatum of docs.documents) {
+        if (rawDatum.abundances !== undefined) {
+          for (const measurement of rawDatum.abundances) {
+            let proteinName = rawDatum.protein_name;
+            if (proteinName.includes("(")) {
+              proteinName = proteinName.substring(0, proteinName.indexOf("("));
+            }
 
-          formattedData.push({
-            abundance: parseFloat(measurement.abundance),
-            proteinName: proteinName,
-            uniprotId: rawDatum.uniprot_id,
-            geneSymbol: rawDatum.gene_name,
-            organism: rawDatum.species_name,
-            taxonomicProximity: this.props["uniprot-id-to-taxon-dist"][
-              rawDatum.uniprot_id
-            ],
-            organ: measurement.organ.replace("_", " ").toLowerCase()
-          });
+            const row = {
+              abundance: parseFloat(measurement.abundance),
+              proteinName: proteinName,
+              uniprotId: rawDatum.uniprot_id,
+              geneSymbol: rawDatum.gene_name,
+              organism: rawDatum.species_name,
+              organ: measurement.organ.replace("_", " ").toLowerCase()
+            };
+            if (rankings !== null) {
+              row["taxonomicProximity"] = rankings[i];
+            }
+            formattedData.push(row);
+          }
         }
       }
     }
@@ -85,8 +94,8 @@ class AbundanceDataTable extends Component {
     };
   }
 
-  static getColDefs() {
-    return [
+  static getColDefs(organism) {
+    const colDefs = [
       {
         headerName: "Abundance",
         field: "abundance",
@@ -128,12 +137,20 @@ class AbundanceDataTable extends Component {
       },
       {
         headerName: "Taxonomic similarity",
+        headerComponentFramework: HtmlColumnHeader,
+        headerComponentParams: {
+          name: (
+            <Tooltip title={TAXONOMIC_PROXIMITY_TOOLTIP} arrow>
+              <span>Taxonomic similarity</span>
+            </Tooltip>
+          )
+        },
         field: "taxonomicProximity",
         hide: true,
         filter: "taxonomyFilter",
         valueFormatter: params => {
           const value = params.value;
-          return value;
+          return upperCaseFirstLetter(value);
         }
       },
       {
@@ -158,25 +175,27 @@ class AbundanceDataTable extends Component {
         filter: "textFilter"
       }
     ];
+
+    if (!organism) {
+      colDefs.splice(-3, 1);
+    }
+
+    return colDefs;
   }
 
   render() {
-    if (this.props["uniprot-id-to-taxon-dist"] == null) {
-      return <div></div>;
-    } else {
-      return (
-        <DataTable
-          id="abundance"
-          title="Abundance"
-          entity-type="ortholog group"
-          data-type="abundance"
-          get-data-url={this.getUrl.bind(this)}
-          format-data={this.formatData.bind(this)}
-          get-side-bar-def={AbundanceDataTable.getSideBarDef}
-          get-col-defs={AbundanceDataTable.getColDefs}
-        />
-      );
-    }
+    return (
+      <DataTable
+        id="abundance"
+        title="Abundance"
+        entity-type="ortholog group"
+        data-type="abundance"
+        get-data-url={this.getUrl.bind(this)}
+        format-data={this.formatData.bind(this)}
+        get-side-bar-def={AbundanceDataTable.getSideBarDef}
+        get-col-defs={AbundanceDataTable.getColDefs}
+      />
+    );
   }
 }
 export { AbundanceDataTable };

@@ -1,6 +1,15 @@
 import React, { Component } from "react";
-import { dictOfArraysToArrayOfDicts } from "~/utils/utils";
+import {
+  dictOfArraysToArrayOfDicts,
+  upperCaseFirstLetter
+} from "~/utils/utils";
 import DataTable from "../DataTable/DataTable";
+import Tooltip from "@material-ui/core/Tooltip";
+import { HtmlColumnHeader } from "../HtmlColumnHeader";
+import {
+  TAXONOMIC_PROXIMITY_TOOLTIP,
+  CHEMICAL_SIMILARITY_TOOLTIP
+} from "../ColumnsToolPanel/TooltipDescriptions";
 
 class ConcentrationDataTable extends Component {
   static getUrl(query, organism, abstract = true) {
@@ -14,7 +23,7 @@ class ConcentrationDataTable extends Component {
     );
   }
 
-  static formatData(rawData) {
+  static formatData(rawData, rankings) {
     const formattedData = [];
     for (const rawDatum of rawData) {
       for (const met of rawDatum) {
@@ -38,7 +47,6 @@ class ConcentrationDataTable extends Component {
               metConc.strain
                 ? species + " " + metConc.strain
                 : species,
-            taxonomicProximity: met.taxon_distance,
             growthPhase:
               "growth_status" in metConc ? metConc.growth_status : null,
             growthMedia:
@@ -50,6 +58,9 @@ class ConcentrationDataTable extends Component {
                 ? { source: "ecmdb", id: met.m2m_id }
                 : { source: "ymdb", id: met.ymdb_id }
           };
+          if (rankings !== null) {
+            conc["taxonomicProximity"] = rankings[met.taxon_distance];
+          }
           if (conc.growthPhase && conc.growthPhase.indexOf(" phase") >= 0) {
             conc.growthPhase = conc.growthPhase.split(" phase")[0];
           }
@@ -131,6 +142,14 @@ class ConcentrationDataTable extends Component {
       },
       {
         headerName: "Chemical similarity",
+        headerComponentFramework: HtmlColumnHeader,
+        headerComponentParams: {
+          name: (
+            <Tooltip title={CHEMICAL_SIMILARITY_TOOLTIP} arrow>
+              <span>Chemical similarity</span>
+            </Tooltip>
+          )
+        },
         field: "tanimotoSimilarity",
         cellRenderer: "numericCellRenderer",
         type: "numericColumn",
@@ -150,12 +169,20 @@ class ConcentrationDataTable extends Component {
       },
       {
         headerName: "Taxonomic similarity",
+        headerComponentFramework: HtmlColumnHeader,
+        headerComponentParams: {
+          name: (
+            <Tooltip title={TAXONOMIC_PROXIMITY_TOOLTIP} arrow>
+              <span>Taxonomic similarity</span>
+            </Tooltip>
+          )
+        },
         field: "taxonomicProximity",
         hide: true,
         filter: "taxonomyFilter",
         valueFormatter: params => {
           const value = params.value;
-          return value;
+          return upperCaseFirstLetter(value);
         }
       },
       {
