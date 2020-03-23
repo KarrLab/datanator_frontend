@@ -4,6 +4,7 @@ import { upperCaseFirstLetter } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
 import { LoadExternalData } from "../LoadExternalData";
 import LazyLoad from "react-lazyload";
+import SearchResultsList from "~/scenes/SearchResults/SearchResultsList_Links.js";
 
 class MetadataSection extends Component {
   static propTypes = {
@@ -25,6 +26,76 @@ class MetadataSection extends Component {
     return response;
   }
 
+  static processRelatedLinks(results_data) {
+    const formattedResults = {};
+
+    for (const result of results_data) {
+      const id = result.kinlaw_id;
+      console.log(id);
+      console.log(results_data);
+      let formattedResult = formattedResults[id];
+      if (!formattedResult) {
+        formattedResult = {};
+        formattedResults[id] = formattedResult;
+      }
+
+      //const name = result.ec_meta.ec_name;
+      const substrates = [];
+      const products = [];
+      for (const substrate of result.substrates[0]) {
+        substrates.push(substrate.substrate_name);
+      }
+      for (const product of result.products[0]) {
+        products.push(product.product_name);
+      }
+      //const substrates = getParticipant(result["substrate_names"]);
+      //const products = getParticipant(result["product_names"]);
+      console.log(substrates);
+      const equation = formatSide(substrates) + " → " + formatSide(products);
+      const name = equation;
+      const ecCode = result.ec_meta.ec_number;
+
+      console.log("here");
+
+      if (name) {
+        formattedResult["title"] =
+          name[0].toUpperCase() + name.substring(1, name.length);
+      } else {
+        formattedResult["title"] = equation;
+      }
+      console.log("this far");
+      formattedResult["description"] = <div>{equation}</div>;
+      if (!ecCode.startsWith("-")) {
+        formattedResult["description"] = (
+          <div>
+            <div>{equation}</div>
+            <div>
+              EC:{" "}
+              <a
+                href={"https://enzyme.expasy.org/EC/" + ecCode}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {ecCode}
+              </a>
+            </div>
+          </div>
+        );
+      }
+
+      // route
+      formattedResult["route"] = "/reaction/" + substrates + "-->" + products;
+      //if (organism) {
+      //  formattedResult["route"] += "/" + organism;
+      //}
+    }
+    console.log(formattedResults);
+    return {
+      results: Object.values(formattedResults),
+      numResults: formattedResults.length
+    };
+  }
+
   static getMetadataUrl(query) {
     return "kegg/get_meta/?kegg_ids=" + query;
   }
@@ -40,6 +111,9 @@ class MetadataSection extends Component {
     processedData.description_url =
       "https://www.ebi.ac.uk/proteins/api/proteins?offset=0&size=1&gene=" +
       rawData[0].gene_name[0];
+
+    processedData.related_links_url =
+      "proteins/related/related_reactions/?ko=" + rawData[0].kegg_orthology_id;
 
     return processedData;
   }
@@ -94,6 +168,20 @@ class MetadataSection extends Component {
               processor={MetadataSection.processUniprotApi}
             />
           </LazyLoad>
+        </div>
+      )
+    });
+
+    sections.push({
+      id: "related_links",
+      title: "Related Reactions",
+      content: (
+        <div>
+          <SearchResultsList
+            url={processedData.related_links_url}
+            title="Reaction classes"
+            format-results={MetadataSection.processRelatedLinks}
+          />
         </div>
       )
     });
@@ -174,4 +262,17 @@ class MetadataSection extends Component {
     );
   }
 }
+
+function getParticipant(participants) {
+  const partNames = [];
+  for (const participant of participants) {
+    partNames.push(participant[participant.length - 1]);
+  }
+  return partNames;
+}
+
+function formatSide(parts) {
+  return parts.join(" + ");
+}
+
 export { MetadataSection };
