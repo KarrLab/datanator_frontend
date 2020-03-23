@@ -5,6 +5,7 @@ import BaseMetadataSection from "../MetadataSection";
 import { LoadExternalData } from "../LoadExternalData";
 import LazyLoad from "react-lazyload";
 import SearchResultsList from "~/scenes/SearchResults/SearchResultsList_Links.js";
+import { parseHistoryLocationPathname } from "~/utils/utils";
 
 class MetadataSection extends Component {
   static propTypes = {
@@ -26,7 +27,10 @@ class MetadataSection extends Component {
     return response;
   }
 
-  static processRelatedLinks(results_data) {
+
+
+
+  static processRelatedReactions(results_data, organism) {
     const formattedResults = {};
 
     for (const result of results_data) {
@@ -37,7 +41,6 @@ class MetadataSection extends Component {
         formattedResults[id] = formattedResult;
       }
 
-      //const name = result.ec_meta.ec_name;
       const substrates = [];
       const products = [];
       for (const substrate of result.substrates[0]) {
@@ -46,76 +49,13 @@ class MetadataSection extends Component {
       for (const product of result.products[0]) {
         products.push(product.product_name);
       }
-      //const substrates = getParticipant(result["substrate_names"]);
-      //const products = getParticipant(result["product_names"]);
+
       const equation = formatSide(substrates) + " → " + formatSide(products);
-      const name = equation;
-      const ecCode = result.ec_meta.ec_number;
-
-
-      if (name) {
-        formattedResult["title"] =
-          name[0].toUpperCase() + name.substring(1, name.length);
-      } else {
-        formattedResult["title"] = equation;
-      }
-      formattedResult["description"] = <div>{equation}</div>;
-      if (!ecCode.startsWith("-")) {
-        formattedResult["description"] = (
-          <div>
-            <div>{equation}</div>
-            <div>
-              EC:{" "}
-              <a
-                href={"https://enzyme.expasy.org/EC/" + ecCode}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {ecCode}
-              </a>
-            </div>
-          </div>
-        );
-      }
-
-      // route
-      formattedResult["route"] = "/reaction/" + substrates + "-->" + products;
-      //if (organism) {
-      //  formattedResult["route"] += "/" + organism;
-      //}
-    }
-    return Object.values(formattedResults)
-
-  }
-
-
-  static processRelatedReactions(results_data) {
-    const formattedResults = {};
-
-    for (const result of results_data) {
-      const id = result.kinlaw_id;
-      let formattedResult = formattedResults[id];
-      if (!formattedResult) {
-        formattedResult = {};
-        formattedResults[id] = formattedResult;
-      }
-
-      //const name = result.ec_meta.ec_name;
-      const substrates = [];
-      const products = [];
-      for (const substrate of result.substrates[0]) {
-        substrates.push(substrate.substrate_name);
-      }
-      for (const product of result.products[0]) {
-        products.push(product.product_name);
-      }
-      //const substrates = getParticipant(result["substrate_names"]);
-      //const products = getParticipant(result["product_names"]);
-      const equation = formatSide(substrates) + " → " + formatSide(products);
-      const name = equation;
-      const ecCode = result.ec_meta.ec_number;
       formattedResult["name"] = equation
       formattedResult["route"] = "/reaction/" + substrates + "-->" + products;
+      if (organism) {
+        formattedResult["route"] += "/" + organism;
+      }
 
     }
     return Object.values(formattedResults)
@@ -147,7 +87,7 @@ class MetadataSection extends Component {
     return upperCaseFirstLetter(processedData.koName);
   }
 
-  static formatMetadata(processedData) {
+  static formatMetadata(processedData, organism) {
     const sections = [];
 
     const descriptions = [];
@@ -206,6 +146,7 @@ class MetadataSection extends Component {
             url={processedData.related_links_url}
             title="Reaction classes"
             format-results={MetadataSection.processRelatedReactions}
+            organism={organism}
           />
         </div>
       )
