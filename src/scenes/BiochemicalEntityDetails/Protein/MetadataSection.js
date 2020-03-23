@@ -31,8 +31,6 @@ class MetadataSection extends Component {
 
     for (const result of results_data) {
       const id = result.kinlaw_id;
-      console.log(id);
-      console.log(results_data);
       let formattedResult = formattedResults[id];
       if (!formattedResult) {
         formattedResult = {};
@@ -50,12 +48,10 @@ class MetadataSection extends Component {
       }
       //const substrates = getParticipant(result["substrate_names"]);
       //const products = getParticipant(result["product_names"]);
-      console.log(substrates);
       const equation = formatSide(substrates) + " → " + formatSide(products);
       const name = equation;
       const ecCode = result.ec_meta.ec_number;
 
-      console.log("here");
 
       if (name) {
         formattedResult["title"] =
@@ -63,7 +59,6 @@ class MetadataSection extends Component {
       } else {
         formattedResult["title"] = equation;
       }
-      console.log("this far");
       formattedResult["description"] = <div>{equation}</div>;
       if (!ecCode.startsWith("-")) {
         formattedResult["description"] = (
@@ -89,7 +84,42 @@ class MetadataSection extends Component {
       //  formattedResult["route"] += "/" + organism;
       //}
     }
-    console.log(formattedResults);
+    return {
+      results: Object.values(formattedResults),
+      numResults: formattedResults.length
+    };
+  }
+
+
+  static processRelatedReactions(results_data) {
+    const formattedResults = {};
+
+    for (const result of results_data) {
+      const id = result.kinlaw_id;
+      let formattedResult = formattedResults[id];
+      if (!formattedResult) {
+        formattedResult = {};
+        formattedResults[id] = formattedResult;
+      }
+
+      //const name = result.ec_meta.ec_name;
+      const substrates = [];
+      const products = [];
+      for (const substrate of result.substrates[0]) {
+        substrates.push(substrate.substrate_name);
+      }
+      for (const product of result.products[0]) {
+        products.push(product.product_name);
+      }
+      //const substrates = getParticipant(result["substrate_names"]);
+      //const products = getParticipant(result["product_names"]);
+      const equation = formatSide(substrates) + " → " + formatSide(products);
+      const name = equation;
+      const ecCode = result.ec_meta.ec_number;
+      formattedResult["name"] = equation
+      formattedResult["route"] = "/reaction/" + substrates + "-->" + products;
+
+    }
     return {
       results: Object.values(formattedResults),
       numResults: formattedResults.length
@@ -180,7 +210,7 @@ class MetadataSection extends Component {
           <SearchResultsList
             url={processedData.related_links_url}
             title="Reaction classes"
-            format-results={MetadataSection.processRelatedLinks}
+            format-results={MetadataSection.processRelatedReactions}
           />
         </div>
       )
@@ -203,6 +233,7 @@ class MetadataSection extends Component {
     });
 
     if (processedData.pathways.length > 0) {
+      console.log(processedData.pathways)
       sections.push({
         id: "pathways",
         title: "Pathways",

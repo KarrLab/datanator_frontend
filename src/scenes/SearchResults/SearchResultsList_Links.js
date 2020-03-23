@@ -94,7 +94,7 @@ class SearchResultsList extends Component {
   }
 
   updateResults(newUnformattedResults) {
-    const newResults = newUnformattedResults.results.map(this.formatResult);
+    const newResults = newUnformattedResults.results;
     let results;
     if (this.results == null) {
       results = newResults;
@@ -121,6 +121,7 @@ class SearchResultsList extends Component {
 
   render() {
     const results = this.state.results;
+    console.log(results)
     const numResults = this.state.numResults;
     const pageSize = this.props["page-size"];
     const numMore = Math.min(pageSize, numResults - pageSize * this.pageCount);
@@ -130,25 +131,16 @@ class SearchResultsList extends Component {
     } else {
       return (
         <div>
-          {results.length > 0 && (
-            <ul className="search-results-list">{results}</ul>
-          )}
+          <ul className="two-col-list link-list">
+            {results.map(el => {
 
-          {results.length === 0 && (
-            <p className="no-search-results">No results found</p>
-          )}
-
-          {results.length > 0 && numMore > 0 && (
-            <button
-              className="more-search-results-button"
-              type="button"
-              onClick={() => {
-                this.fetchResults();
-              }}
-            >
-              Load {numMore} more of {numResults}
-            </button>
-          )}
+              return (
+                  <li key={el.name}>
+                  <Link to={el.route}>{el.name}</Link>
+                  </li>
+                );
+            })}
+          </ul>
         </div>
       );
     }
