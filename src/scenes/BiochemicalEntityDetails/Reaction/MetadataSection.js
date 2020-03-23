@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { upperCaseFirstLetter } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
+import { Link } from "react-router-dom";
 
 const DB_LINKS = [
   { label: "Brenda", url: "https://www.brenda-enzymes.org/enzyme.php?ecno=" },
@@ -41,7 +42,7 @@ class MetadataSection extends Component {
       "&products=" +
       products +
       "&_from=0" +
-      "&size=1000" +
+      "&size=10" +
       "&bound=tight"
     );
   }
@@ -68,13 +69,35 @@ class MetadataSection extends Component {
     if (name) {
       const start = name[0].toUpperCase();
       const end = name.substring(1, name.length);
-      processedData["name"] = start + end;
+      const enzyme_name = start + end
+      if ("kegg_meta" in  rawData[0]){
+        const route = "/protein/" + rawData[0]["kegg_meta"]["kegg_orthology_id"]
+        processedData["enzyme"] = <Link to={route}>{enzyme_name}</Link>
+      }
+      else{
+        processedData["enzyme"] = enzyme_name;
+      }
+
+
+
     }
 
     processedData["equation"] =
       MetadataSection.formatSide(substrates) +
       " → " +
       MetadataSection.formatSide(products);
+
+    const sub_links = null
+    for (const sub in substrates){
+      const route = "/metabolite/" + sub
+      sub_links = <Link to={route}>{sub}</Link>
+    }
+
+    processedData["equation_with_links"] = ""
+    if ("kegg_meta" in  rawData[0]){
+      processedData["pathways"] =  rawData[0].kegg_meta.kegg_pathway
+
+    }
     return processedData;
   }
 
@@ -91,8 +114,8 @@ class MetadataSection extends Component {
 
     // description
     const descriptions = [];
-    if (processedData.name) {
-      descriptions.push({ label: "Name", value: processedData.name });
+    if (processedData.enzyme) {
+      descriptions.push({ label: "Enzyme", value: processedData.enzyme });
     }
     if (processedData.equation) {
       descriptions.push({ label: "Equation", value: processedData.equation });
@@ -128,13 +151,13 @@ class MetadataSection extends Component {
     }
 
     // database links
-    if (processedData.ecnumber !== undefined) {
+    if (processedData.ecNumber !== undefined) {
       const dbLinks = [];
       for (const dbLink of DB_LINKS) {
         dbLinks.push(
           <li key={dbLink.label}>
             <a
-              href={dbLink.url + processedData.ecnumber}
+              href={dbLink.url + processedData.ecNumber}
               target="_blank"
               rel="noopener noreferrer"
               className="bulleted-list-item"
@@ -148,6 +171,52 @@ class MetadataSection extends Component {
         id: "links",
         title: "Database links",
         content: <ul className="three-col-list link-list">{dbLinks}</ul>
+      });
+    }
+
+    if (processedData.pathways.length > 0) {
+      console.log(processedData.pathways)
+      sections.push({
+        id: "pathways",
+        title: "Pathways",
+        content: (
+          <ul className="two-col-list link-list">
+            {processedData.pathways.map(el => {
+              if (el.kegg_pathway_code) {
+                const map_id = el.kegg_pathway_code.substring(
+                  2,
+                  el.kegg_pathway_code.length
+                );
+                return (
+                  <li key={el.pathway_description}>
+                    <a
+                      href={
+                        "https://www.genome.jp/dbget-bin/www_bget?map" + map_id
+                      }
+                      className="bulleted-list-item"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      dangerouslySetInnerHTML={{
+                        __html: upperCaseFirstLetter(el.pathway_description)
+                      }}
+                    ></a>
+                  </li>
+                );
+              } else {
+                return (
+                  <li key={el.pathway_description}>
+                    <div
+                      className="bulleted-list-item"
+                      dangerouslySetInnerHTML={{
+                        __html: upperCaseFirstLetter(el.pathway_description)
+                      }}
+                    ></div>
+                  </li>
+                );
+              }
+            })}
+          </ul>
+        )
       });
     }
 
