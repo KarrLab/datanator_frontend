@@ -1,0 +1,86 @@
+@import 'colors';
+
+.header-component {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $color-primary;
+  box-shadow: 0 2px 2px $color-shadow;
+  padding-left: 0.5rem;
+  padding-right: 0.25rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+
+  /* logo and title */
+  .logo-title-container {
+    height: 40px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    order: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  .titles {
+    color: $color-white;
+    margin-left: 5px;
+
+    .title {
+      font-weight: bold;
+      font-size: 20px;
+      line-height: 20px;
+      margin-bottom: 2px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      line-height: 14px;
+      font-style: italic;
+      white-space: nowrap;
+    }
+  }
+
+  /* search form */
+  .search-container {
+    order: 2;
+    flex: 1;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  .search-container.hide {
+    display: none;
+  }
+
+  /* links to page */
+  .page-links {
+    order: 3;
+    display: inline-flex;
+
+    .icon-button,
+    .icon-button .bp3-icon {
+      color: $color-white;
+    }
+
+    .icon-button:hover,
+    .icon-button:active,
+    .icon-button:hover .bp3-icon,
+    .icon-button:active .bp3-icon {
+      color: $color-accent;
+    }
+  }
+
+  .icon-button {
+    font-weight: bold;
+  }
+
+  /* selection */
+  ::selection {
+    background: rgba($color-accent, 0.75);
+  }
+}

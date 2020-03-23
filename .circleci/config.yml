@@ -1,0 +1,252 @@
+# CircleCI 2.1 configuration file
+version: 2.1
+
+parameters:
+  upstream_repo_name:
+    type: string
+    default: ""
+  upstream_build_num:
+    type: integer
+    default: 0
+
+executors:
+  node-executor:
+    docker:
+      - image: circleci/node:12.6
+        environment:
+          TERM: xterm # this enables colors in the Cypress output
+
+commands:
+  netlify-build:
+    steps:
+      # Clone repo
+      - checkout
+
+      # Install dependencies
+      - run:
+          name: Install dependencies
+          command: |
+            # for Cypress
+            sudo apt-get update
+            sudo apt-get install -y --no-install-recommends \
+              libgtk2.0-0 \
+              libgtk-3-0 \
+              libnotify-dev \
+              libgconf-2-4 \
+              libnss3 \
+              libxss1 \
+              libasound2 \
+              libxtst6 \
+              xauth \
+              xvfb
+
+            # Code Climate test reporter
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > cc-test-reporter
+            chmod +x cc-test-reporter
+            sudo mv cc-test-reporter /usr/local/bin/cc-test-reporter
+
+            # install netlify-cli
+            sudo npm install netlify-cli -g
+
+      # Restore dependencies from cache
+      - restore_cache:
+          keys:
+            - v2-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v2-
+
+      # Install package
+      - run:
+          name: Install package
+          environment:
+            NODE_ENV: development
+          command: npm install
+
+      # Save dependencies to cache
+      - save_cache:
+          paths:
+            - node_modules
+            - ~/.cache
+          key: v2-{{ checksum "package.json" }}
+
+      # Run tests, linting, building
+      - run:
+          name: Run tests, lint code, and build production package
+          command: |
+            set +e
+            error=0
+            error_msgs=()
+
+            # Add node programs to path
+            export PATH=$PATH:node_modules/.bin
+
+            # Run unit tests
+            npm run test-unit-coverage
+            if [[ $? -ne 0 ]]; then
+              error=1;
+              error_msgs+=("Unit tests failed")
+            fi
+
+            # Run integration tests
+            cp package.json package.json.default
+            cp package.json.cypress package.json
+            npm start &
+            wait-on http://localhost:3000
+            npm run test-integration-run
+            if [[ $? -ne 0 ]]; then
+              error=1;
+              error_msgs+=("Integration tests failed")
+            fi
+            npm stop
+            mv package.json.default package.json
+
+            npm run test-integration-results-report
+            if [[ $? -ne 0 ]]; then
+              error=1;
+              error_msgs+=("Generation of integration test report failed")
+            fi
+            rm -rf test-results/integration-tests/specs
+
+            npm run test-integration-coverage-report
+            if [[ $? -ne 0 ]]; then
+              error=1;
+              error_msgs+=("Generation of integration test coverage report failed")
+            fi
+
+            # check for missing and unused dependencies
+            depcheck .
+            if [[ $? -ne 0 ]]; then
+              error=1;
+              error_msgs+=("Test for missing and unused dependencies failed")
+            fi
+
+            # Lint JavaScript
+            npm run lint-js
+            if [[ $? -ne 0 ]]; then
+              error=1;
+              error_msgs+=("JavaScript linting failed")
+            fi
+
+            # Lint CSS
+            npm run lint-style
+            if [[ $? -ne 0 ]]; then
+              error=1;
+              error_msgs+=("CSS linting failed")
+            fi
+
+            # Lint JSON
+            npm run lint-json
+            if [[ $? -ne 0 ]]; then
+              error=1;
+              error_msgs+=("JSON linting failed")
+            fi
+
+            # Lint SVG
+            npm run lint-svg
+            if [[ $? -ne 0 ]]; then
+              error=1;
+              error_msgs+=("SVG linting failed")
+            fi
+
+            # Build production package
+            NODE_ENV=production npm run build
+            if [[ $? -ne 0 ]]; then
+              error=1;
+              error_msgs+=("Production build failed")
+            fi
+
+            # Generate report of licenses of dependencies
+            npm run build-third-party-license-report
+            if [[ $? -ne 0 ]]; then
+              error=1;
+              error_msgs+=("Generation of license report failed")
+            fi
+
+            # Return error status
+            if [[ $error -eq 0 ]]; then
+              exit 0;
+            else
+              NEWLINE=$'\n'
+              error_msg=$(printf "${NEWLINE}- %s" "${error_msgs[@]}")
+              error_msg=${error_msg:1}
+              >&2 echo "Build failed:"
+              >&2 echo "${error_msg}"
+              exit 1;
+            fi
+
+      # Save coverage reports
+      - run:
+          name: Save coverage reports
+          when: always
+          command: |
+            # Add node programs to path
+            export PATH=$PATH:node_modules/.bin
+
+            # merge coverage results
+            lcov-result-merger \
+              "./coverage/**/lcov.info" \
+              "./coverage/lcov.info"
+
+            # submit to Coveralls
+            cat ./coverage/lcov.info | coveralls
+
+            cc-test-reporter format-coverage \
+              coverage/lcov.info \
+              --input-type lcov \
+              --output coverage/codeclimate.json
+            cc-test-reporter upload-coverage \
+              --input coverage/codeclimate.json \
+              --id ${CODECLIMATE_REPO_TOKEN}
+
+      - store_test_results:
+          path: ~/project/test-results
+      - store_artifacts:
+          path: ~/project/test-results/integration-tests/screenshots
+          destination: test-results/integration-tests/screenshots
+      - store_artifacts:
+          path: ~/project/coverage
+          destination: coverage
+      - store_artifacts:
+          path: ~/project/LICENSE-THIRD-PARTY
+          destination: LICENSE-THIRD-PARTY
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build: # anything that's not master branch
+          filters:
+            branches:
+              ignore:
+                - master
+      - release: # only master branch
+          filters:
+            branches:
+              only:
+                - master
+
+jobs:
+  build:
+    executor: node-executor
+    working_directory: ~/project
+    steps:
+      - netlify-build
+      - run:
+          name: Netlify Deploy Non-master Branch
+          command: |
+            export PATH=$PATH:node_modules/.bin
+
+            # deploy
+            netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --dir=build
+  release:
+    executor: node-executor
+    working_directory: ~/project
+    steps:
+      - netlify-build
+      - run:
+          name: Netlify Deploy Master
+          command: |
+            export PATH=$PATH:node_modules/.bin
+
+            # deploy
+            netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir=build

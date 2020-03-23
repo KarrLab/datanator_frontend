@@ -1,0 +1,33 @@
+.fill-none { fill: none; }
+.fill-primary { fill: #1890ff; }
+.fill-primary-light { fill: #51abff; }
+
+/* .fill-primary-lighter { fill: #8bc7fe; } */
+
+/* .fill-primary-lightest { fill: #c5e3ff; } */
+.fill-accent { fill: #ffc306; }
+.fill-accent-light { fill: #ffd144; }
+.fill-accent-lighter { fill: #ffe182; }
+.fill-accent-lightest { fill: #fff0c0; }
+.fill-white { fill: #fff; }
+
+/* .stroke-none { stroke: none; } */
+.stroke-primary { stroke: #1890ff; }
+
+/* .stroke-primary-light { fill: #51abff; } */
+
+/* .stroke-primary-lighter { fill: #8bc7fe; } */
+
+/* .stroke-primary-lightest { fill: #c5e3ff; } */
+.stroke-accent { stroke: #ffc306; }
+
+/* .stroke-accent-light { stroke: #ffd144; } */
+
+/* .stroke-accent-lighter { stroke: #ffe182; } */
+
+/* .stroke-accent-lightest { stroke: #fff0c0; } */
+
+/* .stroke-white { fill: #fff; } */
+
+/* Home page icons */
+.home-scene-feature-icon { stroke-width: 14px; }

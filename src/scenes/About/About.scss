@@ -1,0 +1,71 @@
+@import 'colors';
+
+.content-container-about-scene {
+  /* searching and filtering */
+  .search-filtering {
+    li {
+      margin-top: 0.5rem;
+    }
+  }
+
+  /* developers */
+  .developers-group {
+    margin-top: 1rem;
+
+    h3 {
+      font-weight: bold;
+      margin-bottom: 0.25rem;
+    }
+  }
+
+  .main-developers-group-list::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+  .main-developer {
+    float: left;
+
+    .developer-name {
+      margin-top: 0.25rem;
+      text-align: center;
+    }
+
+    .main-developer-headshot-container,
+    img {
+      height: 138px;
+      width: 138px;
+    }
+  }
+
+  .main-developer:not(:first-child) {
+    margin-left: 1rem;
+  }
+
+  .developer-name {
+    .social-icon {
+      margin-left: 0.25rem;
+      position: relative;
+      top: -1px;
+      height: 15px !important; // !important is needed because the style is set inline
+      width: 15px !important; // !important is needed because the style is set inline
+
+      .social-svg-mask {
+        fill: $color-primary !important; // !important is needed because the style is set inline
+      }
+    }
+  }
+
+  /* funding */
+  .funding-icons {
+    a:not(:first-child) {
+      margin-left: 1rem;
+    }
+
+    a,
+    img {
+      height: 64px;
+    }
+  }
+}

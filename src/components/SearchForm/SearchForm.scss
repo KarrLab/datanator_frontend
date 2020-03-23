@@ -1,0 +1,81 @@
+@import 'colors';
+
+.search-form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  .search-form-el {
+    flex-basis: 95%;
+    white-space: nowrap;
+  }
+
+  .search-input .bp3-input {
+    background: $color-primary-light;
+    border: 1px solid $color-primary-lighter;
+    border-radius: 3px;
+    color: $color-white;
+    height: 24px;
+    position: relative;
+    left: -20px;
+    width: calc(100% - 24px - 5px - 2 * 1px);
+  }
+
+  .bp3-input-group .bp3-input:not(:first-child) {
+    padding-left: 24px;
+    padding-right: 5px !important; // because blueprint sets this inline
+  }
+
+  .search-input .svg-inline--fa {
+    position: relative;
+    top: 2px;
+    z-index: 1;
+    height: 16px;
+    width: auto;
+    color: $color-white-transparent;
+    margin-left: 6px;
+  }
+
+  .search-input.bp3-input-group > .bp3-icon,
+  .search-input.bp3-input-group input::placeholder {
+    color: $color-white-transparent;
+  }
+
+  .search-input.bp3-input-group input::placeholder {
+    font-size: 14px;
+  }
+
+  .search-label {
+    color: $color-white;
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+
+  .search-label-find {
+    margin-right: 5px;
+  }
+
+  .search-label-in {
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+
+  .bp3-popover-target {
+    width: 100%;
+    display: inline-block;
+  }
+
+  .search-submit .bp3-icon {
+    color: $color-white;
+  }
+
+  .search-submit:hover .bp3-icon {
+    color: $color-accent;
+  }
+
+  .search-submit.bp3-disabled .bp3-icon {
+    color: $color-white-transparent;
+    cursor: auto;
+  }
+}

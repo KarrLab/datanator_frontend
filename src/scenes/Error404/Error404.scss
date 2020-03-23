@@ -1,0 +1,26 @@
+@import 'colors';
+
+.content-container-error-404-scene {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 600px;
+  text-align: center;
+
+  .title {
+    font-size: 64px;
+  }
+
+  .subtitle {
+    color: $color-primary;
+    font-size: 36px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .message {
+    font-size: 18px;
+    line-height: 150%;
+  }
+}

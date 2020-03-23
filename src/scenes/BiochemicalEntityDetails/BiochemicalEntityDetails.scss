@@ -1,0 +1,31 @@
+@import 'colors';
+
+.biochemical-entity-scene {
+  /* entity metadata */
+  .icon-description {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  .entity-scene-icon-container,
+  .entity-scene-icon {
+    max-height: 150px;
+    max-width: 150px;
+  }
+
+  .entity-scene-icon-container {
+    margin-right: 1rem;
+  }
+
+  .link-list {
+    a {
+      color: $color-text;
+    }
+
+    a:hover {
+      color: $color-primary;
+    }
+  }
+}

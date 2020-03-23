@@ -1,0 +1,15 @@
+build/
+coverage/
+node_modules/
+test-results/
+LICENSE
+LICENSE*
+*.ai
+*.ico
+*.json
+*.json.cypress
+*.png
+*.sh
+*.svg
+*.txt
+*.xcf

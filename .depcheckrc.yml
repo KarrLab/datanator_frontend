@@ -1,0 +1,26 @@
+ignore-dirs:
+  - config
+  - scripts
+ignores: 
+  - "~"
+  - "@testing-library/jest-dom"
+  - babel-jest
+  - babel-plugin-istanbul
+  - core-js
+  - coveralls
+  - depcheck
+  - http
+  - jsonlint
+  - lcov-result-merger
+  - license-checker
+  - mocha-junit-reporter
+  - node-sass
+  - regenerator-runtime
+  - socket.io
+  - socket.io-client
+  - stylelint
+  - stylelint-config-standard
+  - svglint
+  - svgo
+  - tldrlegal
+  - wait-on

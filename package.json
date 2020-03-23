@@ -1,0 +1,307 @@
+{
+  "name": "datanator_frontend",
+  "version": "0.1.0",
+  "description": "Frontend of the Datanator web application for discovering data for modeling cells",
+  "keywords": [
+    "molecular",
+    "cell",
+    "biology",
+    "computational biology",
+    "systems biology",
+    "modeling",
+    "simulation",
+    "database",
+    "search engine"
+  ],
+  "homepage": "https://datanator.info",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KarrLab/datanator_frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/KarrLab/datanator_frontend/issues",
+    "email": "project@hostname.com"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Karr Lab",
+    "email": "info@karrlab.org",
+    "url": "https://www.karrlab.org"
+  },
+  "contributors": [
+    {
+      "name": "Yosef Roth",
+      "email": "yosef.roth@icahn.mssm.edu",
+      "url": "https://www.linkedin.com/in/yosef-roth-a80a378a"
+    },
+    {
+      "name": "Zhouyang Lian",
+      "email": "zhouyang.lian@familian.life",
+      "url": "https://www.linkedin.com/in/zlian/"
+    },
+    {
+      "name": "Bilal Shaikh",
+      "email": "bilalshaikh42@gmail.com",
+      "url": "https://www.bshaikh.com/"
+    },
+    {
+      "name": "Saahith Pochiraju",
+      "email": "saahith116@gmail.com",
+      "url": "https://www.saahith.com/"
+    },
+    {
+      "name": "Jonathan Karr",
+      "email": "karr@mssm.edu",
+      "url": "https://www.linkedin.com/in/jonrkarr/"
+    }
+  ],
+  "files": [
+    "*"
+  ],
+  "dependencies": {
+    "@ag-grid-community/all-modules": "^22.1.1",
+    "@ag-grid-community/client-side-row-model": "^22.1.1",
+    "@ag-grid-community/core": "^22.1.1",
+    "@ag-grid-community/csv-export": "^22.1.1",
+    "@ag-grid-community/react": "^22.1.2",
+    "@blueprintjs/core": "^3.23.1",
+    "@blueprintjs/select": "^3.11.2",
+    "@bruit/component": "^1.3.13",
+    "@fortawesome/fontawesome-svg-core": "^1.2.27",
+    "@fortawesome/free-solid-svg-icons": "^5.12.1",
+    "@fortawesome/react-fontawesome": "^0.1.8",
+    "@material-ui/core": "^4.9.2",
+    "@material-ui/icons": "^4.9.1",
+    "axios": "^0.19.2",
+    "babel-plugin-root-import": "^6.4.1",
+    "chart.js": "^2.9.3",
+    "chartjs-chart-box-and-violin-plot": "^2.2.0",
+    "customize-cra": "^0.9.1",
+    "history": "^4.10.1",
+    "mathjs": "^6.6.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
+    "react-app-rewired": "^2.1.5",
+    "react-dom": "^16.12.0",
+    "react-lazyload": "^2.6.5",
+    "react-router": "^5.1.2",
+    "react-router-dom": "^5.1.2",
+    "react-router-hash-link": "^1.2.2",
+    "react-scripts": "^3.3.1",
+    "react-social-icons": "^4.1.0",
+    "react-string-replace": "^0.4.4",
+    "sprintf-js": "^1.1.2"
+  },
+  "devDependencies": {
+    "@cypress/code-coverage": "^1.11.1",
+    "@testing-library/jest-dom": "^5.1.1",
+    "@testing-library/react": "^9.4.0",
+    "babel-eslint": "^10.0.3",
+    "babel-jest": "^24.9.0",
+    "babel-plugin-istanbul": "^6.0.0",
+    "core-js": "^3.6.4",
+    "coveralls": "^3.0.9",
+    "cypress": "^4.0.2",
+    "depcheck": "^0.9.2",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "eslint": "^6.8.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.18.3",
+    "http": "0.0.0",
+    "istanbul-lib-coverage": "^3.0.0",
+    "jest": "^24.9.0",
+    "jest-junit": "^10.0.0",
+    "jsonlint": "^1.6.3",
+    "junit-merge": "^2.0.0",
+    "lcov-result-merger": "^3.1.0",
+    "license-checker": "^25.0.1",
+    "mocha-junit-reporter": "^1.23.3",
+    "node-sass": "^4.13.1",
+    "nyc": "^15.0.0",
+    "prettier": "^1.19.1",
+    "regenerator-runtime": "^0.13.3",
+    "socket.io": "^2.3.0",
+    "socket.io-client": "^2.3.0",
+    "stylelint": "^13.1.0",
+    "stylelint-config-standard": "^20.0.0",
+    "svglint": "^1.0.5",
+    "svgo": "^1.3.2",
+    "tldrlegal": "^1.0.11",
+    "wait-on": "^4.0.0"
+  },
+  "scripts": {
+    "start": "node scripts/start.js",
+    "stop": "node scripts/stop.js",
+    "build": "react-app-rewired build",
+    "lint-js": "eslint --fix .",
+    "lint-style": "stylelint --fix .",
+    "lint-json": "scripts/lint-json.sh",
+    "lint-svg": "find src -name '*.svg' | xargs -r svglint --ci",
+    "test-unit": "jest",
+    "test-unit-coverage": "jest --coverage",
+    "test-integration-run": "NODE_ENV=test-cypress cypress run",
+    "test-integration-open": "NODE_ENV=test-cypress cypress open",
+    "test-integration-results-report": "junit-merge --dir test-results/integration-tests/specs --recursive --out test-results/integration-tests/results.xml",
+    "test-integration-coverage-report": "nyc report --reporter=text-summary --reporter=html",
+    "eject": "react-scripts eject",
+    "build-third-party-license-report": "scripts/build-third-party-license-report.sh",
+    "clean-heroku": "scripts/clean-heroku.sh"
+  },
+  "eslintConfig": {
+    "ignorePatterns": [
+      "build/",
+      "coverage/",
+      "node_modules/",
+      "scripts/",
+      "test-results",
+      "config-overrides.js"
+    ],
+    "plugins": [
+      "react",
+      "prettier"
+    ],
+    "parser": "babel-eslint",
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended"
+    ],
+    "rules": {
+      "prettier/prettier": "error"
+    },
+    "settings": {
+      "react": {
+        "createClass": "createReactClass",
+        "pragma": "React",
+        "version": "detect",
+        "flowVersion": "0.53"
+      },
+      "propWrapperFunctions": [
+        "forbidExtraProps",
+        {
+          "property": "freeze",
+          "object": "Object"
+        },
+        {
+          "property": "myFavoriteWrapper"
+        }
+      ],
+      "linkComponents": [
+        "Hyperlink",
+        {
+          "name": "Link",
+          "linkAttribute": "to"
+        }
+      ]
+    },
+    "env": {
+      "browser": true,
+      "node": true,
+      "es6": true
+    }
+  },
+  "stylelint": {
+    "extends": "stylelint-config-standard",
+    "rules": {
+      "no-descending-specificity": null,
+      "font-family-no-missing-generic-family-keyword": null,
+      "no-duplicate-selectors": null
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "react-app"
+    ],
+    "plugins": [
+      [
+        "babel-plugin-root-import",
+        {
+          "rootPathSuffix": "./src",
+          "rootPathPrefix": "~"
+        }
+      ],
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "legacy": true
+        }
+      ]
+    ]
+  },
+  "jest": {
+    "rootDir": ".",
+    "modulePaths": [
+      "<rootDir>/src"
+    ],
+    "roots": [
+      "<rootDir>/src/__tests__"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/src/__tests__/__mocks__/",
+      "<rootDir>/src/__tests__/fixtures/"
+    ],
+    "setupFiles": [
+      "dotenv/config"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/setupTests.js"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|less|sass|scss)$": "<rootDir>/src/__tests__/__mocks__/styleMock.js",
+      "\\.(gif|png|jpeg|jpg|svg|webp)$": "<rootDir>/src/__tests__/__mocks__/fileMock.js"
+    },
+    "testEnvironment": "jsdom",
+    "reporters": [
+      "default",
+      "jest-junit"
+    ],
+    "collectCoverage": false,
+    "collectCoverageFrom": [
+      "**/*.js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/build/",
+      "<rootDir>/coverage/",
+      "<rootDir>/integration-tests/",
+      "<rootDir>/node_modules/",
+      "<rootDir>/scripts/",
+      "<rootDir>/src/__tests__",
+      "<rootDir>/test-results/"
+    ],
+    "coverageDirectory": "coverage/unit-tests",
+    "coverageReporters": [
+      "json",
+      "lcov",
+      "text",
+      "clover"
+    ]
+  },
+  "jest-junit": {
+    "outputDirectory": "test-results/unit-tests/",
+    "outputName": "results.xml"
+  },
+  "nyc": {
+    "report-dir": "coverage/integration-tests",
+    "exclude": [
+      "build/**",
+      "coverage/**",
+      "integration-tests/**",
+      "node_modules/**",
+      "scripts/**",
+      "src/__tests__/**",
+      "test-results/**"
+    ]
+  }
+}

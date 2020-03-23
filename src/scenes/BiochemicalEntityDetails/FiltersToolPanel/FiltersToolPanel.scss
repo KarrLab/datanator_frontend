@@ -1,0 +1,24 @@
+@import 'colors';
+
+.biochemical-entity-scene-filters-tool-panel {
+  width: 100%;
+
+  .MuiExpansionPanelSummary-content {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .MuiExpansionPanel-root {
+    border-bottom: 1px solid #bdc3c7;
+  }
+
+  .MuiExpansionPanel-root:last-child {
+    border-bottom: none;
+  }
+
+  .MuiExpansionPanelSummary-root {
+    padding-left: 0.5rem;
+    padding-right: 0.125rem;
+  }
+}

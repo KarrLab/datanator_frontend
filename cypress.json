@@ -1,0 +1,20 @@
+{
+  "pluginsFile": "integration-tests/plugins",
+  "supportFile": "integration-tests/support/index.js",
+  "integrationFolder": "integration-tests/tests",
+  "testFiles": "**/*.test.js",
+  "ignoreTestFiles": "*.skipTest.js",
+  "fixturesFolder": "integration-tests/fixtures",
+  "baseUrl": "http://localhost:3000",
+  "defaultCommandTimeout": 30000,
+  "viewportWidth": 1920,
+  "viewportHeight": 1080,
+  "screenshotsFolder": "test-results/integration-tests/screenshots",
+  "video": false,
+  "videosFolder": "test-results/integration-tests/videos",
+  "reporter": "junit",
+  "reporterOptions": {
+    "mochaFile": "test-results/integration-tests/specs/results-[hash].xml",
+    "toConsole": false
+  }
+}

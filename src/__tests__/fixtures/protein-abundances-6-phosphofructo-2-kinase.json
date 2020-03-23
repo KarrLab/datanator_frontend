@@ -1,0 +1,495 @@
+[
+  {
+    "distance": 1,
+    "documents": []
+  },
+  {
+    "distance": 2,
+    "documents": []
+  },
+  {
+    "distance": 3,
+    "documents": []
+  },
+  {
+    "distance": 4,
+    "documents": []
+  },
+  {
+    "distance": 5,
+    "documents": []
+  },
+  {
+    "distance": 6,
+    "documents": []
+  },
+  {
+    "distance": 7,
+    "documents": []
+  },
+  {
+    "distance": 8,
+    "documents": [
+      {
+        "abundances": [
+          {
+            "abundance": "14.5",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "9.67",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "11.1",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "24.8",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "23.8",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "8.52",
+            "organ": "WHOLE_ORGANISM"
+          }
+        ],
+        "ancestor_name": [
+          "cellular organisms",
+          "Eukaryota",
+          "Opisthokonta",
+          "Fungi",
+          "Dikarya",
+          "Ascomycota",
+          "Taphrinomycotina",
+          "Schizosaccharomycetes",
+          "Schizosaccharomycetales",
+          "Schizosaccharomycetaceae",
+          "Schizosaccharomyces",
+          "Schizosaccharomyces pombe"
+        ],
+        "ancestor_taxon_id": [
+          131567,
+          2759,
+          33154,
+          4751,
+          451864,
+          4890,
+          451866,
+          147554,
+          34346,
+          4894,
+          4895,
+          4896
+        ],
+        "canon_ancestors": [
+          "Eukaryota",
+          "Fungi",
+          "Ascomycota",
+          "Schizosaccharomycetes",
+          "Schizosaccharomycetales",
+          "Schizosaccharomycetaceae",
+          "Schizosaccharomyces",
+          "Schizosaccharomyces pombe"
+        ],
+        "gene_name": null,
+        "ko_name": [
+          "6-phosphofructo-2-kinase"
+        ],
+        "ko_number": "K00900",
+        "ncbi_taxonomy_id": 284812,
+        "protein_name": "Probable 6-phosphofructo-2-kinase C222.13c (EC 2.7.1.105)",
+        "species_name": "Schizosaccharomyces pombe 972h-",
+        "uniprot_id": "Q9UTE1"
+      },
+      {
+        "abundances": [
+          {
+            "abundance": "252",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "144",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "133",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "24.9",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "59.5",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "241",
+            "organ": "WHOLE_ORGANISM"
+          }
+        ],
+        "ancestor_name": [
+          "cellular organisms",
+          "Eukaryota",
+          "Opisthokonta",
+          "Fungi",
+          "Dikarya",
+          "Ascomycota",
+          "Taphrinomycotina",
+          "Schizosaccharomycetes",
+          "Schizosaccharomycetales",
+          "Schizosaccharomycetaceae",
+          "Schizosaccharomyces",
+          "Schizosaccharomyces pombe"
+        ],
+        "ancestor_taxon_id": [
+          131567,
+          2759,
+          33154,
+          4751,
+          451864,
+          4890,
+          451866,
+          147554,
+          34346,
+          4894,
+          4895,
+          4896
+        ],
+        "canon_ancestors": [
+          "Eukaryota",
+          "Fungi",
+          "Ascomycota",
+          "Schizosaccharomycetes",
+          "Schizosaccharomycetales",
+          "Schizosaccharomycetaceae",
+          "Schizosaccharomyces",
+          "Schizosaccharomyces pombe"
+        ],
+        "gene_name": null,
+        "ko_name": [
+          "6-phosphofructo-2-kinase"
+        ],
+        "ko_number": "K00900",
+        "ncbi_taxonomy_id": 284812,
+        "protein_name": "Probable 6-phosphofructo-2-kinase PB17E12.14c (EC 2.7.1.105)",
+        "species_name": "Schizosaccharomyces pombe 972h-",
+        "uniprot_id": "Q8TFH0"
+      },
+      {
+        "abundances": [
+          {
+            "abundance": "30.0",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "108",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "3.09",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "154",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "1.2",
+            "organ": "WHOLE_ORGANISM"
+          }
+        ],
+        "ancestor_name": [
+          "cellular organisms",
+          "Eukaryota",
+          "Opisthokonta",
+          "Fungi",
+          "Dikarya",
+          "Ascomycota",
+          "saccharomyceta",
+          "Saccharomycotina",
+          "Saccharomycetes",
+          "Saccharomycetales",
+          "Saccharomycetaceae",
+          "Saccharomyces",
+          "Saccharomyces cerevisiae"
+        ],
+        "ancestor_taxon_id": [
+          131567,
+          2759,
+          33154,
+          4751,
+          451864,
+          4890,
+          716545,
+          147537,
+          4891,
+          4892,
+          4893,
+          4930,
+          4932
+        ],
+        "canon_ancestors": [
+          "Eukaryota",
+          "Fungi",
+          "Ascomycota",
+          "Saccharomycetes",
+          "Saccharomycetales",
+          "Saccharomycetaceae",
+          "Saccharomyces",
+          "Saccharomyces cerevisiae"
+        ],
+        "gene_name": "PFK27",
+        "ko_name": [
+          "6-phosphofructo-2-kinase"
+        ],
+        "ko_number": "K00900",
+        "ncbi_taxonomy_id": 559292,
+        "protein_name": "6-phosphofructo-2-kinase 2 (6PF-2-K 2) (EC 2.7.1.105) (Phosphofructokinase 2 II)",
+        "species_name": "Saccharomyces cerevisiae S288C",
+        "uniprot_id": "Q12471"
+      },
+      {
+        "abundances": [
+          {
+            "abundance": "2.04",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "4.58",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "69.0",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "164",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "68.3",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "73.2",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "11.9",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "16.7",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "149",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "21.1",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "31.5",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "37.9",
+            "organ": "WHOLE_ORGANISM"
+          },
+          {
+            "abundance": "16.0",
+            "organ": "WHOLE_ORGANISM"
+          }
+        ],
+        "ancestor_name": [
+          "cellular organisms",
+          "Eukaryota",
+          "Opisthokonta",
+          "Fungi",
+          "Dikarya",
+          "Ascomycota",
+          "saccharomyceta",
+          "Saccharomycotina",
+          "Saccharomycetes",
+          "Saccharomycetales",
+          "Saccharomycetaceae",
+          "Saccharomyces",
+          "Saccharomyces cerevisiae"
+        ],
+        "ancestor_taxon_id": [
+          131567,
+          2759,
+          33154,
+          4751,
+          451864,
+          4890,
+          716545,
+          147537,
+          4891,
+          4892,
+          4893,
+          4930,
+          4932
+        ],
+        "canon_ancestors": [
+          "Eukaryota",
+          "Fungi",
+          "Ascomycota",
+          "Saccharomycetes",
+          "Saccharomycetales",
+          "Saccharomycetaceae",
+          "Saccharomyces",
+          "Saccharomyces cerevisiae"
+        ],
+        "gene_name": "PFK26",
+        "ko_name": [
+          "6-phosphofructo-2-kinase"
+        ],
+        "ko_number": "K00900",
+        "ncbi_taxonomy_id": 559292,
+        "protein_name": "6-phosphofructo-2-kinase 1 (6PF-2-K 1) (EC 2.7.1.105) (Phosphofructokinase 2 I)",
+        "species_name": "Saccharomyces cerevisiae S288C",
+        "uniprot_id": "P40433"
+      }
+    ]
+  },
+  {
+    "distance": 8,
+    "documents": []
+  },
+  {
+    "distance": 9,
+    "documents": []
+  },
+  {
+    "distance": 10,
+    "documents": []
+  },
+  {
+    "distance": 11,
+    "documents": []
+  },
+  {
+    "distance": 12,
+    "documents": []
+  },
+  {
+    "distance": 13,
+    "documents": []
+  },
+  {
+    "distance": 14,
+    "documents": []
+  },
+  {
+    "distance": 15,
+    "documents": []
+  },
+  {
+    "distance": 16,
+    "documents": []
+  },
+  {
+    "distance": 17,
+    "documents": []
+  },
+  {
+    "distance": 18,
+    "documents": []
+  },
+  {
+    "distance": 19,
+    "documents": []
+  },
+  {
+    "distance": 20,
+    "documents": []
+  },
+  {
+    "distance": 21,
+    "documents": []
+  },
+  {
+    "distance": 22,
+    "documents": []
+  },
+  {
+    "distance": 23,
+    "documents": []
+  },
+  {
+    "distance": 24,
+    "documents": []
+  },
+  {
+    "distance": 25,
+    "documents": []
+  },
+  {
+    "distance": 26,
+    "documents": []
+  },
+  {
+    "distance": 27,
+    "documents": []
+  },
+  {
+    "distance": 28,
+    "documents": []
+  },
+  {
+    "distance": 29,
+    "documents": []
+  },
+  {
+    "distance": 30,
+    "documents": []
+  },
+  {
+    "distance": 31,
+    "documents": []
+  },
+  {
+    "distance": 32,
+    "documents": []
+  },
+  {
+    "distance": 33,
+    "documents": []
+  },
+  {
+    "distance": 34,
+    "documents": []
+  },
+  {
+    "distance": 35,
+    "documents": []
+  },
+  {
+    "distance": 36,
+    "documents": []
+  },
+  {
+    "distance": 37,
+    "documents": []
+  },
+  {
+    "distance": 38,
+    "documents": []
+  },
+  {
+    "distance": 39,
+    "documents": []
+  },
+  {
+    "distance": 40,
+    "documents": []
+  }
+]

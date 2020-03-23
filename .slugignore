@@ -1,0 +1,14 @@
+# Source image files
+*.ai
+
+# source files for favicon
+public/favicon.png
+public/favicon.svg
+public/favicon-chrome.png
+public/favicon-chrome.svg
+
+# test files
+src/setupTests.js
+src/__tests__/
+integration-tests/
+*.test.js

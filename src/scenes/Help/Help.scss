@@ -1,0 +1,45 @@
+@import 'colors';
+
+.content-container-help-scene {
+  /* Tutorial */
+  .tutorial {
+    .tutorial-steps {
+      margin-right: 1.25rem;
+    }
+
+    .tutorial-step:not(:first-child) {
+      margin-top: 0.5rem;
+    }
+
+    .tutorial-step-title {
+      font-weight: bold;
+    }
+
+    .tutorial-step-text {
+      font-weight: normal;
+    }
+
+    .tutorial-screenshot {
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+      width: 100%;
+      border: 1px solid $color-border;
+      border-radius: 3px;
+    }
+
+    ul li {
+      margin-top: 0.5rem;
+    }
+  }
+
+  /* FAQ */
+  .faq {
+    .faq-q {
+      font-weight: bold;
+    }
+  }
+
+  .faq:not(:first-child) {
+    margin-top: 0.5rem;
+  }
+}

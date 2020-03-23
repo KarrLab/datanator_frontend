@@ -1,0 +1,37 @@
+# code repository
+.git
+.gitignore
+
+# Source image files
+*.ai
+
+# source files for favicon
+public/favicon.png
+public/favicon.svg
+public/favicon-chrome.png
+public/favicon-chrome.svg
+
+# dependency checking
+.depcheckrc.yml
+
+# linting
+.stylelintignore
+.svglintrc.js
+
+# unit tests (jest)
+src/setupTests.js
+src/__tests__/
+
+# integration tests (Cypress)
+integration-tests/
+cypress.json
+package.json.cypress
+
+# continuous integration
+.circleci/
+
+# deployment (Heroku)
+.slugignore
+
+# packageing (NPM)
+.npmignore
