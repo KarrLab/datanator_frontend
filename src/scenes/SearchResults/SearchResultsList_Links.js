@@ -19,16 +19,13 @@ class SearchResultsList extends Component {
 
     this.unlistenToHistory = null;
     this.cancelTokenSource = null;
-    this.pageCount = 0;
     this.results = null;
 
     this.state = {
       results: null,
-      numResults: null,
       locationPathname: ""
     };
 
-    this.formatResult = this.formatResult.bind(this);
   }
 
   componentDidMount() {
@@ -55,11 +52,9 @@ class SearchResultsList extends Component {
       const route = parseHistoryLocationPathname(this.props.history);
       this.query = route.query;
       this.organism = route.organism;
-      this.pageCount = 0;
       this.results = null;
       this.setState({
         results: null,
-        numResults: null
       });
       this.fetchResults();
     }
@@ -76,11 +71,14 @@ class SearchResultsList extends Component {
     this.cancelTokenSource = axios.CancelToken.source();
     getDataFromApi([url], { cancelToken: this.cancelTokenSource.token })
       .then(response => {
-        this.pageCount++;
 
-        this.updateResults(
-          this.props["format-results"](response.data, this.organism)
-        );
+        let results =  this.props["format-results"](response.data, this.organism)
+        this.results = results;
+
+        this.setState({
+          results: results,
+        });
+
       })
       .catch(
         genApiErrorHandler(
@@ -93,41 +91,15 @@ class SearchResultsList extends Component {
       });
   }
 
-  updateResults(newUnformattedResults) {
-    const newResults = newUnformattedResults.results;
-    let results;
-    if (this.results == null) {
-      results = newResults;
-    } else {
-      results = this.results.concat(newResults);
-    }
-    this.results = results;
 
-    this.setState({
-      results: results,
-      numResults: newUnformattedResults.numResults
-    });
-  }
 
-  formatResult(result, iResult) {
-    return (
-      <li key={this.pageCount * this.props["page-size"] + iResult}>
-        <div className="search-result-title">
-          <Link to={result.route}>{result.title}</Link>
-        </div>
-      </li>
-    );
-  }
 
   render() {
     const results = this.state.results;
     console.log(results)
-    const numResults = this.state.numResults;
-    const pageSize = this.props["page-size"];
-    const numMore = Math.min(pageSize, numResults - pageSize * this.pageCount);
 
     if (results == null) {
-      return <div></div>;
+      return <div className="loader"></div>;
     } else {
       return (
         <div>

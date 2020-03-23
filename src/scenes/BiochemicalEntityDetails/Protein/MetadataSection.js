@@ -84,10 +84,8 @@ class MetadataSection extends Component {
       //  formattedResult["route"] += "/" + organism;
       //}
     }
-    return {
-      results: Object.values(formattedResults),
-      numResults: formattedResults.length
-    };
+    return Object.values(formattedResults)
+
   }
 
 
@@ -120,10 +118,7 @@ class MetadataSection extends Component {
       formattedResult["route"] = "/reaction/" + substrates + "-->" + products;
 
     }
-    return {
-      results: Object.values(formattedResults),
-      numResults: formattedResults.length
-    };
+    return Object.values(formattedResults)
   }
 
   static getMetadataUrl(query) {
