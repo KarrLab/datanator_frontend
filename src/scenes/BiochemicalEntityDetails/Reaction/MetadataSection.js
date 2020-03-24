@@ -69,17 +69,13 @@ class MetadataSection extends Component {
     if (name) {
       const start = name[0].toUpperCase();
       const end = name.substring(1, name.length);
-      const enzyme_name = start + end
-      if ("kegg_meta" in  rawData[0]){
-        const route = "/protein/" + rawData[0]["kegg_meta"]["kegg_orthology_id"]
-        processedData["enzyme"] = <Link to={route}>{enzyme_name}</Link>
-      }
-      else{
-        processedData["enzyme"] = enzyme_name;
-      }
-
-
-
+      processedData["enzyme"] = start + end;
+    }
+    if ("kegg_meta" in rawData[0]) {
+      processedData["kegg_orthology_id"] =
+        rawData[0]["kegg_meta"]["kegg_orthology_id"];
+      const route = "/protein/" + rawData[0]["kegg_meta"]["kegg_orthology_id"];
+      //processedData["enzyme"] = <Link to={route}>{enzyme_name}</Link>;
     }
 
     processedData["equation"] =
@@ -87,16 +83,27 @@ class MetadataSection extends Component {
       " → " +
       MetadataSection.formatSide(products);
 
-    const sub_links = null
-    for (const sub in substrates){
-      const route = "/metabolite/" + sub
-      sub_links = <Link to={route}>{sub}</Link>
+    const part_links = [];
+    for (const sub of substrates) {
+      console.log(sub);
+      const route = "/metabolite/" + sub;
+      part_links.push(<Link to={route}>{sub}</Link>);
+      part_links.push(" + ");
     }
+    part_links.pop();
+    part_links.push(" → ");
+    for (const prod of products) {
+      const route = "/metabolite/" + prod;
+      part_links.push(<Link to={route}>{prod}</Link>);
+      part_links.push(" + ");
+    }
+    part_links.pop();
 
-    processedData["equation_with_links"] = ""
-    if ("kegg_meta" in  rawData[0]){
-      processedData["pathways"] =  rawData[0].kegg_meta.kegg_pathway
+    processedData["part_links"] = part_links;
 
+    processedData["equation_with_links"] = "";
+    if ("kegg_meta" in rawData[0]) {
+      processedData["pathways"] = rawData[0].kegg_meta.kegg_pathway;
     }
     return processedData;
   }
@@ -112,13 +119,35 @@ class MetadataSection extends Component {
   static formatMetadata(processedData) {
     const sections = [];
 
+    const part_links = [];
+    for (const sub of processedData.substrates) {
+      const route = "/metabolite/" + sub;
+      part_links.push(<Link to={route}>{sub}</Link>);
+      part_links.push(" + ");
+    }
+    part_links.pop();
+    part_links.push(" → ");
+    for (const prod of processedData.products) {
+      const route = "/metabolite/" + prod;
+      part_links.push(<Link to={route}>{prod}</Link>);
+      part_links.push(" + ");
+    }
+    part_links.pop();
+
     // description
     const descriptions = [];
     if (processedData.enzyme) {
-      descriptions.push({ label: "Enzyme", value: processedData.enzyme });
+      console.log(processedData.enzyme)
+      if (processedData.kegg_orthology_id) {
+        console.log(processedData.enzyme)
+        const route = "/protein/" + processedData.kegg_orthology_id;
+        descriptions.push({ label: "Enzyme", value: <Link to={route}>{processedData.enzyme}</Link>});
+      } else {
+        descriptions.push({ label: "Enzyme", value: processedData.enzyme });
+      }
     }
     if (processedData.equation) {
-      descriptions.push({ label: "Equation", value: processedData.equation });
+      descriptions.push({ label: "Equation", value: part_links });
     }
     if (processedData.ecNumber) {
       descriptions.push({
@@ -175,7 +204,7 @@ class MetadataSection extends Component {
     }
 
     if (processedData.pathways.length > 0) {
-      console.log(processedData.pathways)
+      console.log(processedData.pathways);
       sections.push({
         id: "pathways",
         title: "Pathways",
