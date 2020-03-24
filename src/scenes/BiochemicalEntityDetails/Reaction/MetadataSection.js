@@ -66,6 +66,12 @@ class MetadataSection extends Component {
       processedData["ecNumber"] = ecNumber;
     }
 
+    if (rawData[0]["ec_meta"]) {
+      if (rawData[0]["ec_meta"]["cofactor"]) {
+        processedData["cofactor"] = rawData[0]["ec_meta"]["cofactor"];
+      }
+    }
+
     if (name) {
       const start = name[0].toUpperCase();
       const end = name.substring(1, name.length);
@@ -152,6 +158,9 @@ class MetadataSection extends Component {
           </a>
         )
       });
+    }
+    if (processedData.cofactor) {
+      descriptions.push({ label: "Cofactor", value: processedData.cofactor });
     }
     if (descriptions) {
       sections.push({

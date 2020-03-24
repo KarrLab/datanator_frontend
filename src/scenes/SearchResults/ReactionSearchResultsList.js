@@ -62,9 +62,14 @@ export default class ReactionSearchResultsList extends Component {
           </div>
         );
       }
+      console.log(formatParticipantForUrl(substrates));
 
       // route
-      formattedResult["route"] = "/reaction/" + substrates + "-->" + products;
+      formattedResult["route"] =
+        "/reaction/" +
+        formatParticipantForUrl(substrates) +
+        "-->" +
+        formatParticipantForUrl(products);
       if (organism) {
         formattedResult["route"] += "/" + organism;
       }
@@ -94,6 +99,13 @@ function formatSide(parts) {
   return parts.join(" + ");
 }
 
+function formatParticipantForUrl(participants) {
+  const partNames = [];
+  for (const participant of participants) {
+    partNames.push(participant.replace(",", "%2"));
+  }
+  return partNames;
+}
 function getParticipant(participants) {
   const partNames = [];
   for (const participant of participants) {
