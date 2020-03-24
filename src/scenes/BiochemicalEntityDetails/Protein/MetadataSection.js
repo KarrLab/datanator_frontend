@@ -2,10 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { upperCaseFirstLetter } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
-import { LoadExternalData } from "../LoadExternalData";
-import LazyLoad from "react-lazyload";
-import SearchResultsList from "~/scenes/SearchResults/SearchResultsList_Links.js";
-import { parseHistoryLocationPathname } from "~/utils/utils";
+import { LoadText, LoadRelatedLinksList } from "../LoadExternalData";
 
 class MetadataSection extends Component {
   static propTypes = {
@@ -18,17 +15,15 @@ class MetadataSection extends Component {
   }
 
   static processUniprotApi(uniprot_data) {
-    let response = "";
+    let response = "No description available.";
     if (uniprot_data.length > 0) {
-      response = uniprot_data[0].comments[0].text[0].value;
-    } else {
-      response = "No description available.";
+      if (uniprot_data[0].comments) {
+        response = uniprot_data[0].comments[0].text[0].value;
+      }
     }
+
     return response;
   }
-
-
-
 
   static processRelatedReactions(results_data, organism) {
     const formattedResults = {};
@@ -51,14 +46,13 @@ class MetadataSection extends Component {
       }
 
       const equation = formatSide(substrates) + " → " + formatSide(products);
-      formattedResult["name"] = equation
+      formattedResult["name"] = equation;
       formattedResult["route"] = "/reaction/" + substrates + "-->" + products;
       if (organism) {
         formattedResult["route"] += "/" + organism;
       }
-
     }
-    return Object.values(formattedResults)
+    return Object.values(formattedResults);
   }
 
   static getMetadataUrl(query) {
@@ -127,12 +121,10 @@ class MetadataSection extends Component {
       title: "Description",
       content: (
         <div>
-          <LazyLoad>
-            <LoadExternalData
-              url={processedData.description_url}
-              processor={MetadataSection.processUniprotApi}
-            />
-          </LazyLoad>
+          <LoadText
+            url={processedData.description_url}
+            processor={MetadataSection.processUniprotApi}
+          />
         </div>
       )
     });
@@ -142,7 +134,7 @@ class MetadataSection extends Component {
       title: "Related Reactions",
       content: (
         <div>
-          <SearchResultsList
+          <LoadRelatedLinksList
             url={processedData.related_links_url}
             title="Reaction classes"
             format-results={MetadataSection.processRelatedReactions}
@@ -169,7 +161,7 @@ class MetadataSection extends Component {
     });
 
     if (processedData.pathways.length > 0) {
-      console.log(processedData.pathways)
+      console.log(processedData.pathways);
       sections.push({
         id: "pathways",
         title: "Pathways",
@@ -228,14 +220,6 @@ class MetadataSection extends Component {
       />
     );
   }
-}
-
-function getParticipant(participants) {
-  const partNames = [];
-  for (const participant of participants) {
-    partNames.push(participant[participant.length - 1]);
-  }
-  return partNames;
 }
 
 function formatSide(parts) {

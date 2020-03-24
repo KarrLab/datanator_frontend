@@ -42,7 +42,7 @@ class MetadataSection extends Component {
       "&products=" +
       products +
       "&_from=0" +
-      "&size=10" +
+      "&size=1000" +
       "&bound=tight"
     );
   }
@@ -88,7 +88,7 @@ class MetadataSection extends Component {
   }
 
   static formatTitle(processedData) {
-    let title = processedData.name;
+    let title = processedData.enzyme;
     if (!title) {
       title = processedData.equation;
     }
@@ -102,7 +102,7 @@ class MetadataSection extends Component {
     for (const sub of processedData.substrates) {
       let route = "/metabolite/" + sub;
       if (organism) {
-          route += "/" + organism;
+        route += "/" + organism;
       }
       part_links.push(<Link to={route}>{sub}</Link>);
       part_links.push(" + ");
@@ -112,7 +112,7 @@ class MetadataSection extends Component {
     for (const prod of processedData.products) {
       let route = "/metabolite/" + prod;
       if (organism) {
-          route += "/" + organism;
+        route += "/" + organism;
       }
       part_links.push(<Link to={route}>{prod}</Link>);
       part_links.push(" + ");
@@ -122,13 +122,16 @@ class MetadataSection extends Component {
     // description
     const descriptions = [];
     if (processedData.enzyme) {
-      console.log(processedData.enzyme)
+      console.log(processedData.enzyme);
       if (processedData.kegg_orthology_id) {
         let route = "/protein/" + processedData.kegg_orthology_id;
         if (organism) {
           route += "/" + organism;
         }
-        descriptions.push({ label: "Enzyme", value: <Link to={route}>{processedData.enzyme}</Link>});
+        descriptions.push({
+          label: "Enzyme",
+          value: <Link to={route}>{processedData.enzyme}</Link>
+        });
       } else {
         descriptions.push({ label: "Enzyme", value: processedData.enzyme });
       }
@@ -190,7 +193,7 @@ class MetadataSection extends Component {
       });
     }
 
-    if (processedData.pathways.length > 0) {
+    if (processedData.pathways) {
       console.log(processedData.pathways);
       sections.push({
         id: "pathways",

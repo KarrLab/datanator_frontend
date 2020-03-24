@@ -67,7 +67,7 @@ describe("Reaction data page", () => {
       substrates: ["AMP", "ATP"],
       products: ["ADP"],
       ecNumber: "2.7.4.3",
-      name: "Adenylate kinase",
+      enzyme: "Adenylate kinase",
       equation: "AMP + ATP → ADP"
     });
   });
@@ -86,7 +86,7 @@ describe("Reaction data page", () => {
     const formattedMetadataWrapper = shallow(formattedMetadata[0].content);
 
     const correct_list_of_metadata = [
-      "Name: Adenylate kinase",
+      "Enzyme: Adenylate kinase",
       "Equation: AMP + ATP → ADP",
       "EC number: 2.7.4.3"
     ];

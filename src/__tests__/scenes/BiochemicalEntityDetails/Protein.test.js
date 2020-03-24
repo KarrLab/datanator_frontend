@@ -5,6 +5,14 @@ import { MetadataSection } from "~/scenes/BiochemicalEntityDetails/Protein/Metad
 import { shallow } from "enzyme";
 import { get_list_DOM_elements } from "~/utils/testing_utils";
 
+function getFormattedSection(formattedMetadata, id) {
+  for (let i = 0; i < formattedMetadata.length; i++) {
+    if (formattedMetadata[i].id === id) {
+      return formattedMetadata[i];
+    }
+  }
+}
+
 /* global describe, it, expect */
 describe("Protein data page", () => {
   it("Gets correct concentration data url", () => {
@@ -112,13 +120,16 @@ describe("Protein data page", () => {
     );
 
     expect(description).toEqual([
-      '<div><div class="lazyload-placeholder"></div></div>'
+      '<div><div class="loader"></div></div>'
     ]);
 
-    expect(formattedMetadata[1].id).toEqual("cross_references");
-    expect(formattedMetadata[1].title).toEqual("Cross references");
+    const formattedCrossReferences = getFormattedSection(
+      formattedMetadata,
+      "cross_references"
+    );
+    expect(formattedCrossReferences.title).toEqual("Cross references");
 
-    const namesMetadataWrapper = shallow(formattedMetadata[1].content);
+    const namesMetadataWrapper = shallow(formattedCrossReferences.content);
 
     const correct_list_of_names = ["KEGG:  K00850", "EC code:  2.7.1.11"];
 
