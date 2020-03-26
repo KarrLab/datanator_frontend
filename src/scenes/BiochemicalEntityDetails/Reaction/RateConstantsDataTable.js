@@ -49,9 +49,9 @@ class RateConstantsDataTable extends Component {
         const keys = Object.keys(datum.taxon_distance);
         if (keys.length === 4) {
           const distance = datum.taxon_distance[organism];
-          rank = rankings[distance];
+          rank = distance;
         } else {
-          rank = "cellular life";
+          rank = rankings.length + 1;
         }
         formattedDatum["taxonomicProximity"] = rank;
       }
@@ -156,7 +156,7 @@ class RateConstantsDataTable extends Component {
     return sideBar;
   }
 
-  static getColDefs(organism, formattedData) {
+  static getColDefs(organism, formattedData, rankings) {
     const colDefs = [];
 
     // k_cat column
@@ -245,7 +245,7 @@ class RateConstantsDataTable extends Component {
       hide: true,
       filter: "taxonomyFilter",
       valueFormatter: params => {
-        const value = params.value;
+        const value = rankings[params.value];
         return upperCaseFirstLetter(value);
       }
     });

@@ -59,7 +59,9 @@ class ConcentrationDataTable extends Component {
                 : { source: "ymdb", id: met.ymdb_id }
           };
           if (rankings !== null) {
-            conc["taxonomicProximity"] = rankings[met.taxon_distance];
+            conc["taxonomicProximity"] = met.taxon_distance;
+            //conc["rank"] = rankings[met.taxon_distance]
+            //rankings[met.taxon_distance];
           }
           if (conc.growthPhase && conc.growthPhase.indexOf(" phase") >= 0) {
             conc.growthPhase = conc.growthPhase.split(" phase")[0];
@@ -110,7 +112,7 @@ class ConcentrationDataTable extends Component {
     };
   }
 
-  static getColDefs(organism) {
+  static getColDefs(organism, formattedData, rankings) {
     const colDefs = [
       {
         headerName: "Concentration (µM)",
@@ -181,7 +183,7 @@ class ConcentrationDataTable extends Component {
         hide: true,
         filter: "taxonomyFilter",
         valueFormatter: params => {
-          const value = params.value;
+          const value = rankings[params.value];
           return upperCaseFirstLetter(value);
         }
       },
