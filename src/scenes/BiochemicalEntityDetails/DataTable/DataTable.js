@@ -175,7 +175,7 @@ class DataTable extends Component {
       const rank = organismData[iLineage]["rank"];
       rankings.push(rank);
     }
-    rankings.push("cellular life");
+    rankings.push("cellular organisms");
     return rankings;
   }
 
@@ -193,7 +193,7 @@ class DataTable extends Component {
       organism
     );
     this.sideBarDef = this.props["get-side-bar-def"](formattedData);
-    this.colDefs = this.props["get-col-defs"](organism, formattedData);
+    this.colDefs = this.props["get-col-defs"](organism, formattedData, rankings);
 
     this.setState({
       sideBarDef: this.sideBarDef,
