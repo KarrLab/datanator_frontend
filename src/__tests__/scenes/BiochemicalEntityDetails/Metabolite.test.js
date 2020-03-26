@@ -54,7 +54,7 @@ describe("Metabolite data page", () => {
       uncertainty: null,
       units: "uM",
       organism: "Escherichia coli K12 NCM3722",
-      taxonomicProximity: "genus",
+      taxonomicProximity: 1,
       growthPhase: "Mid-Log",
       growthMedia:
         "Gutnick minimal complete medium (4.7 g/L KH2PO4; 13.5 g/L K2HPO4; 1 g/L K2SO4; 0.1 g/L MgSO4-7H2O; 10 mM NH4Cl) with 4 g/L glucose",

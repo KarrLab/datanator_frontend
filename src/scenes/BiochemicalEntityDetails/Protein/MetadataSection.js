@@ -161,7 +161,6 @@ class MetadataSection extends Component {
     });
 
     if (processedData.pathways.length > 0) {
-      console.log(processedData.pathways);
       sections.push({
         id: "pathways",
         title: "Pathways",

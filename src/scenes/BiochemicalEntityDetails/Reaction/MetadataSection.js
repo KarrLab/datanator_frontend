@@ -128,7 +128,6 @@ class MetadataSection extends Component {
     // description
     const descriptions = [];
     if (processedData.enzyme) {
-      console.log(processedData.enzyme);
       if (processedData.kegg_orthology_id) {
         let route = "/protein/" + processedData.kegg_orthology_id;
         if (organism) {
@@ -203,7 +202,6 @@ class MetadataSection extends Component {
     }
 
     if (processedData.pathways) {
-      console.log(processedData.pathways);
       sections.push({
         id: "pathways",
         title: "Pathways",

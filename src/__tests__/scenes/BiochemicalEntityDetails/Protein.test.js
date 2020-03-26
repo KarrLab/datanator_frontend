@@ -57,7 +57,7 @@ describe("Protein data page", () => {
       uniprotId: "P40433",
       geneSymbol: "PFK26",
       organism: "Saccharomyces cerevisiae S288C",
-      taxonomicProximity: "cellular life",
+      taxonomicProximity: 7,
       organ: "whole organism"
     });
 
@@ -119,9 +119,7 @@ describe("Protein data page", () => {
       "html"
     );
 
-    expect(description).toEqual([
-      '<div><div class="loader"></div></div>'
-    ]);
+    expect(description).toEqual(['<div><div class="loader"></div></div>']);
 
     const formattedCrossReferences = getFormattedSection(
       formattedMetadata,

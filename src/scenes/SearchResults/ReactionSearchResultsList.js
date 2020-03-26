@@ -62,7 +62,6 @@ export default class ReactionSearchResultsList extends Component {
           </div>
         );
       }
-      console.log(formatParticipantForUrl(substrates));
 
       // route
       formattedResult["route"] =

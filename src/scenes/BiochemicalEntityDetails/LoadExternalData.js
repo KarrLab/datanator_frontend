@@ -54,8 +54,7 @@ class LoadText extends Component {
 
 class LoadRelatedLinksList extends Component {
   static propTypes = {
-    history: PropTypes.object.isRequired,
-    url: PropTypes.func.isRequired,
+    url: PropTypes.string.isRequired,
     "format-results": PropTypes.func.isRequired,
     organism: PropTypes.string
   };
@@ -63,7 +62,6 @@ class LoadRelatedLinksList extends Component {
   constructor(props) {
     super(props);
 
-    this.unlistenToHistory = null;
     this.cancelTokenSource = null;
     this.results = null;
 
@@ -114,8 +112,6 @@ class LoadRelatedLinksList extends Component {
 
   render() {
     const results = this.state.results;
-    console.log(results);
-
     if (results == null) {
       return <div className="loader"></div>;
     } else {
