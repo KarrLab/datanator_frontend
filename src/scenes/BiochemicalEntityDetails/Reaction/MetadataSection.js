@@ -5,7 +5,7 @@ import BaseMetadataSection from "../MetadataSection";
 import { Link } from "react-router-dom";
 
 const DB_LINKS = [
-  { label: "Brenda", url: "https://www.brenda-enzymes.org/enzyme.php?ecno=" },
+  { label: "BRENDA", url: "https://www.brenda-enzymes.org/enzyme.php?ecno=" },
   { label: "ENZYME", url: "https://enzyme.expasy.org/EC/" },
   { label: "ExplorEnz", url: "https://www.enzyme-database.org/query.php?ec=" },
   {
