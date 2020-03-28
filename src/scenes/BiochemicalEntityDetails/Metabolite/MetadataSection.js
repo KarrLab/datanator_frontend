@@ -264,7 +264,7 @@ class MetadataSection extends Component {
 
       sections.push({
         id: "links",
-        title: "Database links",
+        title: "Cross references",
         content: (
           <ul className="key-value-list three-col-list link-list">{dbLinks}</ul>
         )
