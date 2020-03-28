@@ -31,20 +31,15 @@ class MetadataSection extends Component {
   }
 
   static getMetadataUrl(query) {
-    const substratesProducts = query.split("-->");
-    const substrates = substratesProducts[0].trim();
-    const products = substratesProducts[1].trim();
+    const args = ["_from=0", "size=1000", "bound=tight"];
 
-    return (
-      "reactions/kinlaw_by_name/" +
-      "?substrates=" +
-      substrates +
-      "&products=" +
-      products +
-      "&_from=0" +
-      "&size=1000" +
-      "&bound=tight"
-    );
+    const substratesProducts = query.split("-->");
+    args.push("substrates=" + substratesProducts[0].trim());
+    if (substratesProducts.length >= 2) {
+      args.push("products=" + substratesProducts[1].trim());
+    }
+
+    return "reactions/kinlaw_by_name/?" + args.join("&");
   }
 
   static processMetadata(rawData) {
