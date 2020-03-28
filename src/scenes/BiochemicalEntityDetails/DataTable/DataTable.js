@@ -193,7 +193,11 @@ class DataTable extends Component {
       organism
     );
     this.sideBarDef = this.props["get-side-bar-def"](formattedData);
-    this.colDefs = this.props["get-col-defs"](organism, formattedData, rankings);
+    this.colDefs = this.props["get-col-defs"](
+      organism,
+      formattedData,
+      rankings
+    );
 
     this.setState({
       sideBarDef: this.sideBarDef,
