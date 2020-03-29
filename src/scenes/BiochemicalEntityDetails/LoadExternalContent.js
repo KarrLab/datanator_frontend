@@ -5,7 +5,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { getDataFromApi, genApiErrorHandler } from "~/services/RestApi";
 
-class LoadText extends Component {
+class LoadExternalText extends Component {
   static propTypes = {
     url: PropTypes.string.isRequired,
     processor: PropTypes.func.isRequired
@@ -52,7 +52,7 @@ class LoadText extends Component {
   }
 }
 
-class LoadRelatedLinksList extends Component {
+class LoadExternalRelatedLinksList extends Component {
   static propTypes = {
     url: PropTypes.string.isRequired,
     "format-results": PropTypes.func.isRequired,
@@ -132,4 +132,4 @@ class LoadRelatedLinksList extends Component {
   }
 }
 
-export { LoadText, LoadRelatedLinksList };
+export { LoadExternalText, LoadExternalRelatedLinksList };

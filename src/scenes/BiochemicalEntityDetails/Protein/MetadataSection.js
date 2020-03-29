@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { upperCaseFirstLetter } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
-import { LoadText, LoadRelatedLinksList } from "../LoadExternalData";
+import { LoadExternalText, LoadExternalRelatedLinksList } from "../LoadExternalContent";
 
 class MetadataSection extends Component {
   static propTypes = {
@@ -121,7 +121,7 @@ class MetadataSection extends Component {
       title: "Description",
       content: (
         <div>
-          <LoadText
+          <LoadExternalText
             url={processedData.description_url}
             processor={MetadataSection.processUniprotApi}
           />
@@ -134,7 +134,7 @@ class MetadataSection extends Component {
       title: "Related Reactions",
       content: (
         <div>
-          <LoadRelatedLinksList
+          <LoadExternalRelatedLinksList
             url={processedData.related_links_url}
             title="Reaction classes"
             format-results={MetadataSection.processRelatedReactions}
