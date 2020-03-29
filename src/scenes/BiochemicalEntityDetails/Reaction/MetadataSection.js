@@ -151,6 +151,23 @@ class MetadataSection extends Component {
     if (processedData.equation) {
       descriptions.push({ label: "Equation", value: part_links });
     }
+    if (processedData.cofactor) {
+      descriptions.push({
+        label: "Cofactor",
+        value: (
+          <Link
+            to={
+              "/metabolite/" +
+              processedData.cofactor +
+              "/" +
+              (organism ? organism : "")
+            }
+          >
+            {processedData.cofactor}
+          </Link>
+        )
+      });
+    }
     if (processedData.ecNumber) {
       descriptions.push({
         label: "EC number",
@@ -164,9 +181,6 @@ class MetadataSection extends Component {
           </a>
         )
       });
-    }
-    if (processedData.cofactor) {
-      descriptions.push({ label: "Cofactor", value: processedData.cofactor });
     }
     if (descriptions) {
       sections.push({
