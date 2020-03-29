@@ -114,7 +114,7 @@ describe("Protein data page", () => {
 
     const formattedCrossReferences = getFormattedSection(
       formattedMetadata,
-      "cross_references"
+      "cross-references"
     );
     expect(formattedCrossReferences.title).toEqual("Cross references");
 
