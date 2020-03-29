@@ -10,6 +10,7 @@ import {
 import BaseMetadataSection from "../MetadataSection";
 import LazyLoad from "react-lazyload";
 
+const htmlEntityDecoder = require("html-entity-decoder");
 const reactStringReplace = require("react-string-replace");
 const sprintf = require("sprintf-js").sprintf;
 
@@ -105,7 +106,9 @@ class MetadataSection extends Component {
 
         processedData.name = met.name;
 
-        processedData.synonyms = met.synonyms.synonym;
+        processedData.synonyms = met.synonyms.synonym.map(syn => {
+          return htmlEntityDecoder.feed(syn);
+        });
         processedData.synonyms.sort((a, b) => {
           return strCompare(a, b);
         });
@@ -232,7 +235,10 @@ class MetadataSection extends Component {
             {processedData.synonyms.map(syn => {
               return (
                 <li key={syn}>
-                  <div className="bulleted-list-item">{syn}</div>
+                  <div
+                    className="bulleted-list-item"
+                    dangerouslySetInnerHTML={{ __html: syn }}
+                  ></div>
                 </li>
               );
             })}
