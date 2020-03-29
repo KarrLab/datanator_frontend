@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { upperCaseFirstLetter } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
-import { LoadExternalText, LoadExternalRelatedLinksList } from "../LoadExternalContent";
+import {
+  LoadExternalText,
+  LoadExternalRelatedLinksList
+} from "../LoadExternalContent";
 
 class MetadataSection extends Component {
   static propTypes = {
