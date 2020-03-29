@@ -151,7 +151,7 @@ class SearchResultsList extends Component {
               )}
 
               {results.length === 0 && (
-                <p className="no-search-results">No results found</p>
+                <p className="no-search-results">No results found.</p>
               )}
 
               {results.length > 0 && numMore > 0 && (
