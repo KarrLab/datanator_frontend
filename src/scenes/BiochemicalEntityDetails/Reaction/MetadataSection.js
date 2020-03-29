@@ -31,6 +31,10 @@ class MetadataSection extends Component {
   }
 
   static getMetadataUrl(query) {
+    if (query == null) {
+      return;
+    }
+
     const args = ["_from=0", "size=1000", "bound=tight"];
 
     const substratesProducts = query.split("-->");
@@ -170,7 +174,7 @@ class MetadataSection extends Component {
     }
     if (processedData.ecNumber) {
       descriptions.push({
-        label: "EC number",
+        label: "EC code",
         value: (
           <a
             href={"https://enzyme.expasy.org/EC/" + processedData.ecNumber}

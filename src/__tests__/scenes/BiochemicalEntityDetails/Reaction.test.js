@@ -92,7 +92,7 @@ describe("Reaction data page", () => {
     const correct_list_of_metadata = [
       "Enzyme: Adenylate kinase",
       "Equation: AMP + ATP → ADP",
-      "EC number: 2.7.4.3"
+      "EC code: 2.7.4.3"
     ];
 
     const actual_list_of_metadata = get_list_DOM_elements(
