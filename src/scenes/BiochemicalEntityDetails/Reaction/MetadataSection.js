@@ -105,20 +105,32 @@ class MetadataSection extends Component {
       if (organism) {
         route += "/" + organism;
       }
-      part_links.push(<Link to={route}>{sub}</Link>);
+      part_links.push(
+        <Link key={"substrate-" + sub} to={route}>
+          {sub}
+        </Link>
+      );
       part_links.push(" + ");
     }
-    part_links.pop();
+    if (processedData.substrates.length) {
+      part_links.pop();
+    }
     part_links.push(" → ");
     for (const prod of processedData.products) {
       let route = "/metabolite/" + prod;
       if (organism) {
         route += "/" + organism;
       }
-      part_links.push(<Link to={route}>{prod}</Link>);
+      part_links.push(
+        <Link key={"product-" + prod} to={route}>
+          {prod}
+        </Link>
+      );
       part_links.push(" + ");
     }
-    part_links.pop();
+    if (processedData.products.length) {
+      part_links.pop();
+    }
 
     // description
     const descriptions = [];

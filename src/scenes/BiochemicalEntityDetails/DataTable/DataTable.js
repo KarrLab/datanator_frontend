@@ -75,9 +75,7 @@ class DataTable extends Component {
     this.state = {
       sideBarDef: this.sideBarDef,
       colDefs: this.colDefs,
-      data: null,
-      taxonLineage: null,
-      taxonRankings: null
+      data: null
     };
 
     this.fitCols = this.fitCols.bind(this);
@@ -164,39 +162,39 @@ class DataTable extends Component {
       });
   }
 
-  static setRankings(organismData) {
-    const rankings = [];
+  static calcTaxonomicRanks(organismData) {
+    const ranks = [];
     if (organismData[1]["rank"] === "species") {
-      rankings.push("strain");
+      ranks.push("strain");
     } else if (organismData[1]["rank"] === "genus") {
-      rankings.push("species");
+      ranks.push("species");
     }
     for (let iLineage = 1; iLineage < organismData.length - 1; iLineage++) {
       const rank = organismData[iLineage]["rank"];
-      rankings.push(rank);
+      ranks.push(rank);
     }
-    rankings.push("cellular organisms");
-    return rankings;
+    ranks.push("cellular organisms");
+    return ranks;
   }
 
   formatData(rawData, organismData) {
-    let rankings = null;
+    let taxonomicRanks = null;
     if (organismData) {
-      rankings = DataTable.setRankings(organismData);
+      taxonomicRanks = DataTable.calcTaxonomicRanks(organismData);
     }
     const route = parseHistoryLocationPathname(this.props.history);
     const organism = route.organism;
 
     const formattedData = this.props["format-data"](
       rawData,
-      rankings,
-      organism
+      organism,
+      taxonomicRanks
     );
     this.sideBarDef = this.props["get-side-bar-def"](formattedData);
     this.colDefs = this.props["get-col-defs"](
       organism,
       formattedData,
-      rankings
+      taxonomicRanks
     );
 
     this.setState({

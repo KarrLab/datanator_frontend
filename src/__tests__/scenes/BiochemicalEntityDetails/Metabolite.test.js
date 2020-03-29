@@ -1,7 +1,7 @@
 import { ConcentrationDataTable } from "~/scenes/BiochemicalEntityDetails/Metabolite/ConcentrationDataTable";
 import { MetadataSection } from "~/scenes/BiochemicalEntityDetails/Metabolite/MetadataSection";
 import testRawData from "~/__tests__/fixtures/metabolite-concentrations-dTDP-D-Glucose";
-import { shallow } from "enzyme";
+import { mount, shallow } from "enzyme";
 import { get_list_DOM_elements } from "~/utils/testing_utils";
 
 function getFormattedSection(formattedMetadata, id) {
@@ -28,19 +28,10 @@ describe("Metabolite data page", () => {
 
   it("Formats concentration data correct", () => {
     // format raw data
-    const rankings = [
-      "species",
-      "genus",
-      "family",
-      "order",
-      "class",
-      "phylum",
-      "superkingdom",
-      "cellular life"
-    ];
+    const organism = "Escherichia coli";
     const formattedData = ConcentrationDataTable.formatData(
       testRawData,
-      rankings
+      organism
     );
 
     // test formatted data
@@ -120,7 +111,7 @@ describe("Metabolite data page", () => {
       "synonyms"
     );
     expect(formattedSynonyms.title).toEqual("Synonyms");
-    const synonymsWrapper = shallow(formattedSynonyms.content);
+    const synonymsWrapper = mount(formattedSynonyms.content);
     expect(synonymsWrapper.text()).toEqual("5'-UDPUDP");
 
     const formattedLinks = getFormattedSection(formattedMetadata, "links");

@@ -11,13 +11,17 @@ describe("Reaction data page", () => {
 
     // assert URL correct
     expect(RateConstantsDataTable.getUrl(entity)).toEqual(
-      "reactions/kinlaw_by_name/?substrates=ATP,AMP&products=ADP&_from=0&size=1000&bound=tight"
+      "reactions/kinlaw_by_name/?_from=0&size=1000&bound=tight&substrates=ATP,AMP&products=ADP"
     );
   });
 
   it("Formats concentration data correctly", () => {
     // format raw data
-    const formattedData = RateConstantsDataTable.formatData(testRawData, null);
+    const formattedData = RateConstantsDataTable.formatData(
+      testRawData,
+      null,
+      null
+    );
     //console.log(formattedData)
 
     // test formatted data
@@ -55,7 +59,7 @@ describe("Reaction data page", () => {
     const query = "ATP + AMP --> ADP";
     //const organism = "Saccharomyces cerevisiae S288C";
     expect(MetadataSection.getMetadataUrl(query)).toEqual(
-      "reactions/kinlaw_by_name/?substrates=ATP + AMP&products=ADP&_from=0&size=1000&bound=tight"
+      "reactions/kinlaw_by_name/?_from=0&size=1000&bound=tight&substrates=ATP + AMP&products=ADP"
     );
   });
 
