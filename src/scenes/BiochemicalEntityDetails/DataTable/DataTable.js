@@ -194,7 +194,7 @@ class DataTable extends Component {
     this.colDefs = this.props["get-col-defs"](
       organism,
       formattedData,
-      taxonomicRanks
+      taxonomicRanks.length
     );
 
     this.setState({
