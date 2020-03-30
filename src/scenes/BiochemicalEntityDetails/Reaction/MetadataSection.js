@@ -5,7 +5,7 @@ import BaseMetadataSection from "../MetadataSection";
 import { Link } from "react-router-dom";
 
 const DB_LINKS = [
-  { label: "Brenda", url: "https://www.brenda-enzymes.org/enzyme.php?ecno=" },
+  { label: "BRENDA", url: "https://www.brenda-enzymes.org/enzyme.php?ecno=" },
   { label: "ENZYME", url: "https://enzyme.expasy.org/EC/" },
   { label: "ExplorEnz", url: "https://www.enzyme-database.org/query.php?ec=" },
   {
@@ -31,20 +31,19 @@ class MetadataSection extends Component {
   }
 
   static getMetadataUrl(query) {
-    const substratesProducts = query.split("-->");
-    const substrates = substratesProducts[0].trim();
-    const products = substratesProducts[1].trim();
+    if (query == null) {
+      return;
+    }
 
-    return (
-      "reactions/kinlaw_by_name/" +
-      "?substrates=" +
-      substrates +
-      "&products=" +
-      products +
-      "&_from=0" +
-      "&size=1000" +
-      "&bound=tight"
-    );
+    const args = ["_from=0", "size=1000", "bound=tight"];
+
+    const substratesProducts = query.split("-->");
+    args.push("substrates=" + substratesProducts[0].trim());
+    if (substratesProducts.length >= 2) {
+      args.push("products=" + substratesProducts[1].trim());
+    }
+
+    return "reactions/kinlaw_by_name/?" + args.join("&");
   }
 
   static processMetadata(rawData) {
@@ -110,20 +109,32 @@ class MetadataSection extends Component {
       if (organism) {
         route += "/" + organism;
       }
-      part_links.push(<Link to={route}>{sub}</Link>);
+      part_links.push(
+        <Link key={"substrate-" + sub} to={route}>
+          {sub}
+        </Link>
+      );
       part_links.push(" + ");
     }
-    part_links.pop();
+    if (processedData.substrates.length) {
+      part_links.pop();
+    }
     part_links.push(" → ");
     for (const prod of processedData.products) {
       let route = "/metabolite/" + prod;
       if (organism) {
         route += "/" + organism;
       }
-      part_links.push(<Link to={route}>{prod}</Link>);
+      part_links.push(
+        <Link key={"product-" + prod} to={route}>
+          {prod}
+        </Link>
+      );
       part_links.push(" + ");
     }
-    part_links.pop();
+    if (processedData.products.length) {
+      part_links.pop();
+    }
 
     // description
     const descriptions = [];
@@ -144,9 +155,26 @@ class MetadataSection extends Component {
     if (processedData.equation) {
       descriptions.push({ label: "Equation", value: part_links });
     }
+    if (processedData.cofactor) {
+      descriptions.push({
+        label: "Cofactor",
+        value: (
+          <Link
+            to={
+              "/metabolite/" +
+              processedData.cofactor +
+              "/" +
+              (organism ? organism : "")
+            }
+          >
+            {processedData.cofactor}
+          </Link>
+        )
+      });
+    }
     if (processedData.ecNumber) {
       descriptions.push({
-        label: "EC number",
+        label: "EC code",
         value: (
           <a
             href={"https://enzyme.expasy.org/EC/" + processedData.ecNumber}
@@ -157,9 +185,6 @@ class MetadataSection extends Component {
           </a>
         )
       });
-    }
-    if (processedData.cofactor) {
-      descriptions.push({ label: "Cofactor", value: processedData.cofactor });
     }
     if (descriptions) {
       sections.push({
@@ -196,7 +221,7 @@ class MetadataSection extends Component {
       }
       sections.push({
         id: "links",
-        title: "Database links",
+        title: "Cross references",
         content: <ul className="three-col-list link-list">{dbLinks}</ul>
       });
     }

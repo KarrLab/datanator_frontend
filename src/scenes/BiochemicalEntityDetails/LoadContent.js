@@ -2,13 +2,12 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 
-import { Link } from "react-router-dom";
 import { getDataFromApi, genApiErrorHandler } from "~/services/RestApi";
 
-class LoadText extends Component {
+class LoadExternalContent extends Component {
   static propTypes = {
     url: PropTypes.string.isRequired,
-    processor: PropTypes.func.isRequired
+    "format-results": PropTypes.func.isRequired
   };
 
   constructor(props) {
@@ -34,7 +33,7 @@ class LoadText extends Component {
         cancelToken: this.cancelTokenSource.token
       })
       .then(response => {
-        const processed_data = this.props.processor(response.data);
+        const processed_data = this.props["format-results"](response.data);
         this.setState({ text: processed_data });
       })
       .catch(genApiErrorHandler([this.props.url], "Unable to load metadata."))
@@ -52,11 +51,10 @@ class LoadText extends Component {
   }
 }
 
-class LoadRelatedLinksList extends Component {
+class LoadContent extends Component {
   static propTypes = {
     url: PropTypes.string.isRequired,
-    "format-results": PropTypes.func.isRequired,
-    organism: PropTypes.string
+    "format-results": PropTypes.func.isRequired
   };
 
   constructor(props) {
@@ -89,10 +87,7 @@ class LoadRelatedLinksList extends Component {
     this.cancelTokenSource = axios.CancelToken.source();
     getDataFromApi([url], { cancelToken: this.cancelTokenSource.token })
       .then(response => {
-        let results = this.props["format-results"](
-          response.data,
-          this.props.organism
-        );
+        let results = this.props["format-results"](response.data);
         this.results = results;
 
         this.setState({
@@ -115,21 +110,9 @@ class LoadRelatedLinksList extends Component {
     if (results == null) {
       return <div className="loader"></div>;
     } else {
-      return (
-        <div>
-          <ul className="two-col-list link-list">
-            {results.map(el => {
-              return (
-                <li key={el.name}>
-                  <Link to={el.route}>{el.name}</Link>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      );
+      return <div>{this.state.results}</div>;
     }
   }
 }
 
-export { LoadText, LoadRelatedLinksList };
+export { LoadExternalContent, LoadContent };

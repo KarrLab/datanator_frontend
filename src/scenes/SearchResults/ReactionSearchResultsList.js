@@ -105,6 +105,7 @@ function formatParticipantForUrl(participants) {
   }
   return partNames;
 }
+
 function getParticipant(participants) {
   const partNames = [];
   for (const participant of participants) {

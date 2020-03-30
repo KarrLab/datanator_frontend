@@ -27,13 +27,6 @@ function genApiErrorHandler(params, errorMessage = null) {
         console.info("Request '" + params.join("/") + "' cancelled");
       }
     } else {
-      errorDialogRef.current.open(
-        <span className="dialog-message-container">
-          {errorMessage && <span>{errorMessage}</span>}
-          {DEFAULT_ERROR_MESSAGE}
-        </span>
-      );
-
       if (IS_DEVELOPMENT || IS_TEST) {
         if (
           "isAxiosError" in error &&
@@ -48,6 +41,13 @@ function genApiErrorHandler(params, errorMessage = null) {
           console.error(error);
         }
       }
+
+      errorDialogRef.current.open(
+        <span className="dialog-message-container">
+          {errorMessage && <span>{errorMessage}</span>}
+          {DEFAULT_ERROR_MESSAGE}
+        </span>
+      );
     }
   };
 }

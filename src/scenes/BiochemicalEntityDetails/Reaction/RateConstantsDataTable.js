@@ -7,23 +7,23 @@ import { TAXONOMIC_PROXIMITY_TOOLTIP } from "../ColumnsToolPanel/TooltipDescript
 
 class RateConstantsDataTable extends Component {
   static getUrl(query, organism) {
+    const args = ["_from=0", "size=1000", "bound=tight"];
+
     const substratesProducts = query.split("-->");
-    const substrates = substratesProducts[0].trim();
-    const products = substratesProducts[1].trim();
-    return (
-      "reactions/kinlaw_by_name/" +
-      "?substrates=" +
-      substrates +
-      "&products=" +
-      products +
-      "&_from=0" +
-      "&size=1000" +
-      "&bound=tight" +
-      (organism ? "&taxon_distance=true&species=" + organism : "")
-    );
+    args.push("substrates=" + substratesProducts[0].trim());
+    if (substratesProducts.length >= 2) {
+      args.push("products=" + substratesProducts[1].trim());
+    }
+
+    if (organism) {
+      args.push("taxon_distance=true");
+      args.push("species=" + organism);
+    }
+
+    return "reactions/kinlaw_by_name/?" + args.join("&");
   }
 
-  static formatData(rawData, rankings, organism) {
+  static formatData(rawData, organism, taxonomicRanks) {
     const formattedData = [];
 
     for (const datum of rawData) {
@@ -44,14 +44,14 @@ class RateConstantsDataTable extends Component {
         source: datum["kinlaw_id"]
       };
 
-      if (rankings !== null) {
+      if (organism != null) {
         let rank = "";
         const keys = Object.keys(datum.taxon_distance);
         if (keys.length === 4) {
           const distance = datum.taxon_distance[organism];
           rank = distance;
         } else {
-          rank = rankings.length + 1;
+          rank = taxonomicRanks.length + 1;
         }
         formattedDatum["taxonomicProximity"] = rank;
       }
@@ -156,7 +156,7 @@ class RateConstantsDataTable extends Component {
     return sideBar;
   }
 
-  static getColDefs(organism, formattedData, rankings) {
+  static getColDefs(organism, formattedData, taxonomicRanks) {
     const colDefs = [];
 
     // k_cat column
@@ -245,7 +245,7 @@ class RateConstantsDataTable extends Component {
       hide: true,
       filter: "taxonomyFilter",
       valueFormatter: params => {
-        const value = rankings[params.value];
+        const value = taxonomicRanks[params.value];
         return upperCaseFirstLetter(value);
       }
     });

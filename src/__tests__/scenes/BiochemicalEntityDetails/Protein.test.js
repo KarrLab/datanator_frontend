@@ -35,17 +35,8 @@ describe("Protein data page", () => {
     const dataTable = new AbundanceDataTable();
 
     // format raw data
-    const rankings = [
-      "species",
-      "genus",
-      "family",
-      "order",
-      "class",
-      "phylum",
-      "superkingdom",
-      "cellular life"
-    ];
-    const formattedData = dataTable.formatData(testRawData, rankings);
+    const organism = "Escherichia coli";
+    const formattedData = dataTable.formatData(testRawData, organism);
 
     // test formatted data
     expect(formattedData).toHaveLength(30);
@@ -123,7 +114,7 @@ describe("Protein data page", () => {
 
     const formattedCrossReferences = getFormattedSection(
       formattedMetadata,
-      "cross_references"
+      "cross-references"
     );
     expect(formattedCrossReferences.title).toEqual("Cross references");
 
