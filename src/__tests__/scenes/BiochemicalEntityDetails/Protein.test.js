@@ -5,12 +5,13 @@ import { MetadataSection } from "~/scenes/BiochemicalEntityDetails/Protein/Metad
 import { shallow } from "enzyme";
 import { get_list_DOM_elements } from "~/utils/testing_utils";
 
-function getFormattedSection(formattedMetadata, id) {
-  for (let i = 0; i < formattedMetadata.length; i++) {
-    if (formattedMetadata[i].id === id) {
-      return formattedMetadata[i];
+function getSectionFromList(list, field_name, name) {
+  for (let i = 0; i < list.length; i++) {
+    if (list[i][field_name] === name) {
+      return list[i];
     }
   }
+  return null;
 }
 
 /* global describe, it, expect */
@@ -30,7 +31,7 @@ describe("Protein data page", () => {
     );
   });
 
-  it("Formats concentration data correctly", () => {
+  it("Formats abundance data correctly", () => {
     // instantiate data table
     const dataTable = new AbundanceDataTable();
 
@@ -74,6 +75,42 @@ describe("Protein data page", () => {
     });
   });
 
+  it.only("test getColDefs", () => {
+    const dummy_data = null;
+    const colDefs = AbundanceDataTable.getColDefs(null, dummy_data, null);
+
+    const uniprotCol = getSectionFromList(colDefs, "headerName", "UniProt id");
+    expect(uniprotCol.cellRenderer({ value: "P26396" })).toEqual(
+      '<a href="https://www.uniprot.org/uniprot/P26396" target="_blank" rel="noopener noreferrer">P26396</a>'
+    );
+
+    const sourceCol = getSectionFromList(colDefs, "headerName", "Source");
+    expect(sourceCol.cellRenderer({ value: "P26396" })).toEqual(
+      '<a href="https://pax-db.org/search?q=P26396" target="_blank" rel="noopener noreferrer">PAXdb</a>'
+    );
+
+    const nullTaxonSimCol = getSectionFromList(
+      colDefs,
+      "headerName",
+      "Taxonomic similarity"
+    );
+    expect(nullTaxonSimCol).toEqual(null);
+
+    const organism = "Escherichia coli";
+    const rankings = ["species", "genus", "family"];
+    const colDefsWithOrganism = AbundanceDataTable.getColDefs(
+      organism,
+      dummy_data,
+      rankings
+    );
+    const taxonSimCol = getSectionFromList(
+      colDefsWithOrganism,
+      "field",
+      "taxonomicProximity"
+    );
+    expect(taxonSimCol.valueFormatter({ value: 2 })).toEqual("Family");
+  });
+
   it("Gets correct metadata url ", () => {
     const query = "K00850";
     expect(MetadataSection.getMetadataUrl(query)).toEqual(
@@ -112,8 +149,9 @@ describe("Protein data page", () => {
 
     expect(description).toEqual(['<div><div class="loader"></div></div>']);
 
-    const formattedCrossReferences = getFormattedSection(
+    const formattedCrossReferences = getSectionFromList(
       formattedMetadata,
+      "id",
       "cross-references"
     );
     expect(formattedCrossReferences.title).toEqual("Cross references");
