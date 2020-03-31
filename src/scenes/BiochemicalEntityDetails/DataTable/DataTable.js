@@ -188,13 +188,13 @@ class DataTable extends Component {
     const formattedData = this.props["format-data"](
       rawData,
       organism,
-      taxonomicRanks
+      taxonomicRanks.length
     );
     this.sideBarDef = this.props["get-side-bar-def"](formattedData);
     this.colDefs = this.props["get-col-defs"](
       organism,
       formattedData,
-      taxonomicRanks.length
+      taxonomicRanks
     );
 
     this.setState({
