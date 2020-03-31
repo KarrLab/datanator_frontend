@@ -16,19 +16,23 @@ describe("Reaction data page", () => {
     expect(RateConstantsDataTable.getUrl(entity)).toEqual(
       "reactions/kinlaw_by_name/?_from=0&size=1000&bound=tight&substrates=ATP,AMP&products=ADP"
     );
+
+    expect(RateConstantsDataTable.getUrl(entity, "Escherichia coli")).toEqual(
+      "reactions/kinlaw_by_name/?_from=0&size=1000&bound=tight&substrates=ATP,AMP&products=ADP&taxon_distance=true&species=Escherichia coli"
+    );
   });
 
-  it("Formats concentration data correctly", () => {
+  it("Formats data correctly", () => {
     // format raw data
     const formattedData = RateConstantsDataTable.formatData(
       testRawData,
-      null,
-      null
+      "escherichia coli",
+      9
     );
     //console.log(formattedData)
 
     // test formatted data
-    expect(formattedData).toHaveLength(62);
+    expect(formattedData).toHaveLength(10);
 
     expect(formattedData).toEqual(
       expect.arrayContaining([
@@ -39,7 +43,8 @@ describe("Reaction data page", () => {
           ph: 8,
           source: 6051,
           temperature: 30,
-          wildtypeMutant: "wildtype"
+          wildtypeMutant: "wildtype",
+          taxonomicProximity: 7
         },
         {
           kcat: 680,
@@ -48,14 +53,15 @@ describe("Reaction data page", () => {
           wildtypeMutant: "mutant",
           temperature: 30,
           ph: 8,
-          source: 6052
+          source: 6052,
+          taxonomicProximity: 7
         }
       ])
     );
 
-    expect(formattedData[20].organism).toEqual("Homo sapiens");
+    expect(formattedData[5].organism).toEqual("Gallus gallus");
     expect(formattedData[5].km).toEqual({ AMP: 0.0014 });
-    expect(formattedData[10].km).toEqual({});
+    expect(formattedData[9].km).toEqual({});
   });
 
   it("Properly format columns", () => {
@@ -72,7 +78,6 @@ describe("Reaction data page", () => {
 
     expect(getSectionFromList(colDefs, "field", "kcat")).not.toEqual(null);
     expect(getSectionFromList(colDefs, "field", "km.AMP")).not.toEqual(null);
-    expect(getSectionFromList(colDefs, "field", "km.ATP")).not.toEqual(null);
 
     const sourceCol = getSectionFromList(colDefs, "field", "source");
     expect(sourceCol.cellRenderer({ value: "11554" })).toEqual(
@@ -112,14 +117,21 @@ describe("Reaction data page", () => {
   it("Processes metadata data correctly", () => {
     // format raw data
     const processedMetadata = MetadataSection.processMetadata(testRawData);
-    expect(processedMetadata).toEqual({
-      reactionId: "82",
-      substrates: ["AMP", "ATP"],
-      products: ["ADP"],
-      ecNumber: "2.7.4.3",
-      enzyme: "Adenylate kinase",
-      equation: "AMP + ATP → ADP"
-    });
+    expect(processedMetadata.reactionId).toEqual("82");
+    expect(processedMetadata.substrates).toEqual(["AMP", "ATP"]);
+    expect(processedMetadata.products).toEqual(["ADP"]);
+    expect(processedMetadata.ecNumber).toEqual("2.7.4.3");
+    expect(processedMetadata.enzyme).toEqual("Adenylate kinase");
+    expect(processedMetadata.equation).toEqual("AMP + ATP → ADP");
+
+    expect(processedMetadata.pathways).toEqual(
+      expect.arrayContaining([
+        {
+          kegg_pathway_code: "ko00230",
+          pathway_description: "Purine metabolism"
+        }
+      ])
+    );
   });
 
   it("Formats metadata data correctly", () => {
