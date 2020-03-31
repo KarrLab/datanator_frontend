@@ -3,16 +3,10 @@ import testRawData from "~/__tests__/fixtures/protein-abundances-6-phosphofructo
 import testRawMetadata from "~/__tests__/fixtures/protein-metadata-6-phosphofructo-2-kinase";
 import { MetadataSection } from "~/scenes/BiochemicalEntityDetails/Protein/MetadataSection";
 import { shallow } from "enzyme";
-import { get_list_DOM_elements } from "~/utils/testing_utils";
-
-function getSectionFromList(list, field_name, name) {
-  for (let i = 0; i < list.length; i++) {
-    if (list[i][field_name] === name) {
-      return list[i];
-    }
-  }
-  return null;
-}
+import {
+  get_list_DOM_elements,
+  getSectionFromList
+} from "~/utils/testing_utils";
 
 /* global describe, it, expect */
 describe("Protein data page", () => {
@@ -75,7 +69,7 @@ describe("Protein data page", () => {
     });
   });
 
-  it.only("test getColDefs", () => {
+  it("test getColDefs", () => {
     const dummy_data = null;
     const colDefs = AbundanceDataTable.getColDefs(null, dummy_data, null);
 

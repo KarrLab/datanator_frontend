@@ -20,4 +20,13 @@ function get_list_DOM_elements(wrapper, element_id, return_format = "html") {
   return testing_list_of_links;
 }
 
-export { get_list_DOM_elements };
+function getSectionFromList(list, field_name, name) {
+  for (let i = 0; i < list.length; i++) {
+    if (list[i][field_name] === name) {
+      return list[i];
+    }
+  }
+  return null;
+}
+
+export { get_list_DOM_elements, getSectionFromList };
