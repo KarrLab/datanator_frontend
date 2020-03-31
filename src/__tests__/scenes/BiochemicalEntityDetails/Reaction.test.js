@@ -2,7 +2,10 @@ import { RateConstantsDataTable } from "~/scenes/BiochemicalEntityDetails/Reacti
 import testRawData from "~/__tests__/fixtures/reaction-constants-adenylate-kinase";
 import { MetadataSection } from "~/scenes/BiochemicalEntityDetails/Reaction/MetadataSection";
 import { shallow } from "enzyme";
-import { get_list_DOM_elements } from "~/utils/testing_utils";
+import {
+  get_list_DOM_elements,
+  getSectionFromList
+} from "~/utils/testing_utils";
 
 /* global describe, it, expect */
 describe("Reaction data page", () => {
@@ -53,6 +56,49 @@ describe("Reaction data page", () => {
     expect(formattedData[20].organism).toEqual("Homo sapiens");
     expect(formattedData[5].km).toEqual({ AMP: 0.0014 });
     expect(formattedData[10].km).toEqual({});
+  });
+
+  it("Properly format columns", () => {
+    const formattedData = RateConstantsDataTable.formatData(
+      testRawData,
+      null,
+      null
+    );
+    const colDefs = RateConstantsDataTable.getColDefs(
+      null,
+      formattedData,
+      null
+    );
+
+    expect(getSectionFromList(colDefs, "field", "kcat")).not.toEqual(null);
+    expect(getSectionFromList(colDefs, "field", "km.AMP")).not.toEqual(null);
+    expect(getSectionFromList(colDefs, "field", "km.ATP")).not.toEqual(null);
+
+    const sourceCol = getSectionFromList(colDefs, "field", "source");
+    expect(sourceCol.cellRenderer({ value: "11554" })).toEqual(
+      '<a href="http://sabiork.h-its.org/newSearch/index?q=EntryID:11554" target="_blank" rel="noopener noreferrer">SABIO-RK</a>'
+    );
+
+    const nullTaxonSimCol = getSectionFromList(
+      colDefs,
+      "headerName",
+      "Taxonomic similarity"
+    );
+    expect(nullTaxonSimCol).toEqual(null);
+
+    const organism = "Escherichia coli";
+    const rankings = ["species", "genus", "family"];
+    const colDefsWithOrganism = RateConstantsDataTable.getColDefs(
+      organism,
+      formattedData,
+      rankings
+    );
+    const taxonSimCol = getSectionFromList(
+      colDefsWithOrganism,
+      "field",
+      "taxonomicProximity"
+    );
+    expect(taxonSimCol.valueFormatter({ value: 2 })).toEqual("Family");
   });
 
   it("Gets correct metadata url ", () => {
