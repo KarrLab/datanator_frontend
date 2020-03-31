@@ -2,15 +2,11 @@ import { ConcentrationDataTable } from "~/scenes/BiochemicalEntityDetails/Metabo
 import { MetadataSection } from "~/scenes/BiochemicalEntityDetails/Metabolite/MetadataSection";
 import testRawData from "~/__tests__/fixtures/metabolite-concentrations-dTDP-D-Glucose";
 import { mount, shallow } from "enzyme";
-import { get_list_DOM_elements } from "~/utils/testing_utils";
+import {
+  get_list_DOM_elements,
+  getSectionFromList
+} from "~/utils/testing_utils";
 
-function getFormattedSection(formattedMetadata, id) {
-  for (let i = 0; i < formattedMetadata.length; i++) {
-    if (formattedMetadata[i].id === id) {
-      return formattedMetadata[i];
-    }
-  }
-}
 /* global describe, it, expect */
 describe("Metabolite data page", () => {
   it("Gets correct concentration data url", () => {
@@ -63,6 +59,50 @@ describe("Metabolite data page", () => {
     expect(formattedData[7].growthConditions).toEqual(null);
   });
 
+  it("test getColDefs", () => {
+    const colDefs = ConcentrationDataTable.getColDefs(null, null, null);
+
+    const tanimotoCol = getSectionFromList(
+      colDefs,
+      "field",
+      "tanimotoSimilarity"
+    );
+    expect(tanimotoCol.valueFormatter({ value: 0.89345 })).toEqual("0.893");
+
+    const sourceCol = getSectionFromList(colDefs, "headerName", "Source");
+    expect(
+      sourceCol.cellRenderer({ value: { source: "ecmdb", id: "M2MDB000319" } })
+    ).toEqual(
+      '<a href="http://ecmdb.ca/compounds/M2MDB000319" target="_blank" rel="noopener noreferrer">ECMDB</a>'
+    );
+    expect(
+      sourceCol.cellRenderer({ value: { source: "ymdb", id: "YMDB00097" } })
+    ).toEqual(
+      '<a href="http://www.ymdb.ca/compounds/YMDB00097" target="_blank" rel="noopener noreferrer">YMDB</a>'
+    );
+
+    const nullTaxonSimCol = getSectionFromList(
+      colDefs,
+      "headerName",
+      "Taxonomic similarity"
+    );
+    expect(nullTaxonSimCol).toEqual(null);
+
+    const organism = "Escherichia coli";
+    const rankings = ["species", "genus", "family"];
+    const colDefsWithOrganism = ConcentrationDataTable.getColDefs(
+      organism,
+      null,
+      rankings
+    );
+    const taxonSimCol = getSectionFromList(
+      colDefsWithOrganism,
+      "field",
+      "taxonomicProximity"
+    );
+    expect(taxonSimCol.valueFormatter({ value: 2 })).toEqual("Family");
+  });
+
   it("Gets correct metadata url ", () => {
     const query = "dTDP-D-Glucose";
     const organism = "Escherichia coli";
@@ -95,8 +135,9 @@ describe("Metabolite data page", () => {
     );
     const formattedMetadata = MetadataSection.formatMetadata(processedMetadata);
 
-    const formattedDescription = getFormattedSection(
+    const formattedDescription = getSectionFromList(
       formattedMetadata,
+      "id",
       "description"
     );
     expect(formattedDescription.title).toEqual("Description");
@@ -106,15 +147,16 @@ describe("Metabolite data page", () => {
       "LazyLoad />Uridine 5'-diphosp"
     );
 
-    const formattedSynonyms = getFormattedSection(
+    const formattedSynonyms = getSectionFromList(
       formattedMetadata,
+      "id",
       "synonyms"
     );
     expect(formattedSynonyms.title).toEqual("Synonyms");
     const synonymsWrapper = mount(formattedSynonyms.content);
     expect(synonymsWrapper.text()).toEqual("5'-UDPUDP");
 
-    const formattedLinks = getFormattedSection(formattedMetadata, "links");
+    const formattedLinks = getSectionFromList(formattedMetadata, "id", "links");
     expect(formattedLinks.title).toEqual("Cross references");
     const linksWrapper = shallow(formattedLinks.content);
 
@@ -134,7 +176,11 @@ describe("Metabolite data page", () => {
       expect.arrayContaining(correct_list_of_links)
     );
 
-    const formattedPhysics = getFormattedSection(formattedMetadata, "physics");
+    const formattedPhysics = getSectionFromList(
+      formattedMetadata,
+      "id",
+      "physics"
+    );
     expect(formattedPhysics.title).toEqual("Physics");
     const physicsWrapper = shallow(formattedPhysics.content);
 
@@ -152,8 +198,9 @@ describe("Metabolite data page", () => {
       expect.arrayContaining(correct_list_of_physics)
     );
 
-    const formattedLocalizations = getFormattedSection(
+    const formattedLocalizations = getSectionFromList(
       formattedMetadata,
+      "id",
       "localizations"
     );
     expect(formattedLocalizations.id).toEqual("localizations");
@@ -163,8 +210,9 @@ describe("Metabolite data page", () => {
       '<ul class="two-col-list"><li><div class="bulleted-list-item">Cytosol</div></li></ul>'
     );
 
-    const formattedPathways = getFormattedSection(
+    const formattedPathways = getSectionFromList(
       formattedMetadata,
+      "id",
       "pathways"
     );
     expect(formattedPathways.id).toEqual("pathways");
