@@ -178,7 +178,7 @@ class DataTable extends Component {
   }
 
   formatData(rawData, organismData) {
-    let taxonomicRanks = null;
+    let taxonomicRanks = [];
     if (organismData) {
       taxonomicRanks = DataTable.calcTaxonomicRanks(organismData);
     }
