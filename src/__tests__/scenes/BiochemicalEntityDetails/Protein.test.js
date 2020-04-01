@@ -3,10 +3,7 @@ import testRawData from "~/__tests__/fixtures/protein-abundances-6-phosphofructo
 import testRawMetadata from "~/__tests__/fixtures/protein-metadata-6-phosphofructo-2-kinase";
 import { MetadataSection } from "~/scenes/BiochemicalEntityDetails/Protein/MetadataSection";
 import { shallow } from "enzyme";
-import {
-  get_list_DOM_elements,
-  getSectionFromList
-} from "~/utils/testing_utils";
+import { getListDomElements, getSectionFromList } from "~/utils/testing_utils";
 
 /* global describe, it, expect */
 describe("Protein data page", () => {
@@ -135,7 +132,7 @@ describe("Protein data page", () => {
 
     const descriptionMetadataWrapper = shallow(formattedMetadata[0].content);
 
-    const description = get_list_DOM_elements(
+    const description = getListDomElements(
       descriptionMetadataWrapper,
       "div",
       "html"
@@ -154,7 +151,7 @@ describe("Protein data page", () => {
 
     const correct_list_of_names = ["KEGG:  K00850", "EC code:  2.7.1.11"];
 
-    const actual_list_of_names = get_list_DOM_elements(
+    const actual_list_of_names = getListDomElements(
       namesMetadataWrapper,
       ".key-value-list li",
       "text"

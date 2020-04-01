@@ -2,10 +2,7 @@ import { RateConstantsDataTable } from "~/scenes/BiochemicalEntityDetails/Reacti
 import testRawData from "~/__tests__/fixtures/reaction-constants-adenylate-kinase";
 import { MetadataSection } from "~/scenes/BiochemicalEntityDetails/Reaction/MetadataSection";
 import { shallow } from "enzyme";
-import {
-  get_list_DOM_elements,
-  getSectionFromList
-} from "~/utils/testing_utils";
+import { getListDomElements, getSectionFromList } from "~/utils/testing_utils";
 
 /* global describe, it, expect */
 describe("Reaction data page", () => {
@@ -147,20 +144,20 @@ describe("Reaction data page", () => {
 
     const formattedMetadataWrapper = shallow(formattedMetadata[0].content);
 
-    const correct_list_of_metadata = [
+    const correctListOfMetadata = [
       "Enzyme: Adenylate kinase",
       "Equation: AMP + ATP → ADP",
       "EC code: 2.7.4.3"
     ];
 
-    const actual_list_of_metadata = get_list_DOM_elements(
+    const actualListOfMetadata = getListDomElements(
       formattedMetadataWrapper,
       ".key-value-list li",
       "text"
     );
 
-    expect(actual_list_of_metadata).toEqual(
-      expect.arrayContaining(correct_list_of_metadata)
+    expect(actualListOfMetadata).toEqual(
+      expect.arrayContaining(correctListOfMetadata)
     );
   });
 
