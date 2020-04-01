@@ -209,7 +209,7 @@ describe("Search results scene with no results", function() {
     // metabolites
     cy.get("#metabolites .no-search-results").should($el => {
       const text = $el.text();
-      expect(text).to.equal("No results found");
+      expect(text).to.equal("No results found.");
     });
   });
 });

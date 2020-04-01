@@ -68,7 +68,8 @@ class MetadataSection extends Component {
       .then(response => {
         const processedMetadata = this.props["process-metadata"](response.data);
         const formattedMetadataSections = this.props["format-metadata"](
-          processedMetadata
+          processedMetadata,
+          organism
         );
         this.props["set-scene-metadata"]({
           title: this.props["format-title"](processedMetadata),

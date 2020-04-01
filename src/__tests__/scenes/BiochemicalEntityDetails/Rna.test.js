@@ -2,7 +2,7 @@ import { HalfLifeDataTable } from "~/scenes/BiochemicalEntityDetails/Rna/HalfLif
 import testRawData from "~/__tests__/fixtures/rna-abundances-phophofructokinase";
 import testRawDataWithoutGeneName from "~/__tests__/fixtures/rna-abundances-prephenate-dehydrogenase-without-gene-name";
 import testRawDataWithoutGeneNameWithProteinName from "~/__tests__/fixtures/rna-abundances-prephenate-dehydrogenase-without-gene-name-with-protein-name";
-import { get_list_DOM_elements } from "~/utils/testing_utils";
+import { getListDomElements } from "~/utils/testing_utils";
 import { MetadataSection } from "~/scenes/BiochemicalEntityDetails/Rna/MetadataSection";
 import { shallow } from "enzyme";
 
@@ -89,19 +89,19 @@ describe("Reaction data page", () => {
 
     const formattedMetadataWrapper = shallow(formattedMetadata[0].content);
 
-    const correct_list_of_metadata = [
+    const correctListOfMetadata = [
       "Gene: pfk",
       "Protein: Archaeal ADP-dependent phosphofructokinase/glucokinase"
     ];
 
-    const actual_list_of_metadata = get_list_DOM_elements(
+    const actualListOfMetadata = getListDomElements(
       formattedMetadataWrapper,
       ".key-value-list li",
       "text"
     );
 
-    expect(actual_list_of_metadata).toEqual(
-      expect.arrayContaining(correct_list_of_metadata)
+    expect(actualListOfMetadata).toEqual(
+      expect.arrayContaining(correctListOfMetadata)
     );
   });
 });

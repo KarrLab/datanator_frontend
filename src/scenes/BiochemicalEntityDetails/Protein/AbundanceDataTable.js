@@ -24,7 +24,7 @@ class AbundanceDataTable extends Component {
     );
   }
 
-  formatData(rawData, rankings) {
+  formatData(rawData, organism) {
     let start = 0;
     if (getNumProperties(rawData[0]) === 1) {
       start = 1;
@@ -49,8 +49,8 @@ class AbundanceDataTable extends Component {
               organism: rawDatum.species_name,
               organ: measurement.organ.replace("_", " ").toLowerCase()
             };
-            if (rankings !== null) {
-              row["taxonomicProximity"] = rankings[i];
+            if (organism != null) {
+              row["taxonomicProximity"] = i;
             }
             formattedData.push(row);
           }
@@ -94,7 +94,7 @@ class AbundanceDataTable extends Component {
     };
   }
 
-  static getColDefs(organism) {
+  static getColDefs(organism, formattedData, taxonomicRanks) {
     const colDefs = [
       {
         headerName: "Abundance",
@@ -149,7 +149,7 @@ class AbundanceDataTable extends Component {
         hide: true,
         filter: "taxonomyFilter",
         valueFormatter: params => {
-          const value = params.value;
+          const value = taxonomicRanks[params.value];
           return upperCaseFirstLetter(value);
         }
       },

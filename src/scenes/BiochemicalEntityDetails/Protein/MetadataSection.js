@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { upperCaseFirstLetter } from "~/utils/utils";
+import { Link } from "react-router-dom";
+import { upperCaseFirstLetter, strCompare } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
-import { LoadExternalData } from "../LoadExternalData";
-import LazyLoad from "react-lazyload";
+import { LoadExternalContent, LoadContent } from "../LoadContent";
 
 class MetadataSection extends Component {
   static propTypes = {
@@ -15,14 +15,77 @@ class MetadataSection extends Component {
     this.state = { metadata: null };
   }
 
-  static processUniprotApi(uniprot_data) {
-    let response = "";
-    if (uniprot_data.length > 0) {
-      response = uniprot_data[0].comments[0].text[0].value;
-    } else {
-      response = "No description available.";
+  static processDescriptionFromUniprot(uniprotData) {
+    let response = "No description available.";
+    if (
+      uniprotData &&
+      uniprotData.length &&
+      uniprotData[0] &&
+      uniprotData[0].comments &&
+      uniprotData[0].comments.length &&
+      uniprotData[0].comments[0] &&
+      uniprotData[0].comments[0].text &&
+      uniprotData[0].comments[0].text.length
+    ) {
+      response = uniprotData[0].comments[0].text[0].value;
     }
+
     return response;
+  }
+
+  static processRelatedReactions(organism, relatedReactions) {
+    const formattedResults = {};
+
+    for (const reaction of relatedReactions) {
+      const id = reaction.kinlaw_id;
+      let formattedResult = formattedResults[id];
+      if (!formattedResult) {
+        formattedResult = {};
+        formattedResults[id] = formattedResult;
+      }
+
+      const substrates = [];
+      const products = [];
+      for (const substrate of reaction.substrates[0]) {
+        substrates.push(substrate.substrate_name);
+      }
+      for (const product of reaction.products[0]) {
+        products.push(product.product_name);
+      }
+
+      const equation = formatSide(substrates) + " → " + formatSide(products);
+      const ecMeta = reaction["ec_meta"];
+      let route = "/reaction/" + substrates + "-->" + products;
+      if (organism) {
+        route += "/" + organism;
+      }
+
+      formattedResult["title"] = ecMeta["ec_name"];
+      formattedResult["content"] = (
+        <div key={id} className="subsection">
+          <div className="subsection-title">
+            <Link to={route}>{ecMeta["ec_name"]}</Link>
+          </div>
+          <div className="subsection-description">
+            <div>{equation}</div>
+            <div>
+              EC:{" "}
+              <a href={"https://enzyme.expasy.org/EC/" + ecMeta["ec_number"]}>
+                {ecMeta["ec_number"]}
+              </a>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    const sortedResults = Object.values(formattedResults);
+    sortedResults.sort((a, b) => {
+      return strCompare(a.title, b.title);
+    });
+    return sortedResults.map(result => {
+      return result.content;
+    });
   }
 
   static getMetadataUrl(query) {
@@ -37,9 +100,12 @@ class MetadataSection extends Component {
     processedData.description = null;
     processedData.ecCode = rawData[0].definition.ec_code[0];
     processedData.pathways = rawData[0].kegg_pathway;
-    processedData.description_url =
+    processedData.descriptionUrl =
       "https://www.ebi.ac.uk/proteins/api/proteins?offset=0&size=1&gene=" +
       rawData[0].gene_name[0];
+
+    processedData.relatedLinksUrl =
+      "proteins/related/related_reactions/?ko=" + rawData[0].kegg_orthology_id;
 
     return processedData;
   }
@@ -48,7 +114,7 @@ class MetadataSection extends Component {
     return upperCaseFirstLetter(processedData.koName);
   }
 
-  static formatMetadata(processedData) {
+  static formatMetadata(processedData, organism) {
     const sections = [];
 
     const descriptions = [];
@@ -88,18 +154,16 @@ class MetadataSection extends Component {
       title: "Description",
       content: (
         <div>
-          <LazyLoad>
-            <LoadExternalData
-              url={processedData.description_url}
-              processor={MetadataSection.processUniprotApi}
-            />
-          </LazyLoad>
+          <LoadExternalContent
+            url={processedData.descriptionUrl}
+            format-results={MetadataSection.processDescriptionFromUniprot}
+          />
         </div>
       )
     });
 
     sections.push({
-      id: "cross_references",
+      id: "cross-references",
       title: "Cross references",
       content: (
         <ul className="key-value-list link-list">
@@ -114,7 +178,26 @@ class MetadataSection extends Component {
       )
     });
 
+    sections.push({
+      id: "reactions",
+      title: "Reactions",
+      content: (
+        <div>
+          <LoadContent
+            url={processedData.relatedLinksUrl}
+            format-results={MetadataSection.processRelatedReactions.bind(
+              null,
+              organism
+            )}
+          />
+        </div>
+      )
+    });
+
     if (processedData.pathways.length > 0) {
+      processedData.pathways.sort((a, b) => {
+        return strCompare(a.pathway_description, b.pathway_description);
+      });
       sections.push({
         id: "pathways",
         title: "Pathways",
@@ -174,4 +257,9 @@ class MetadataSection extends Component {
     );
   }
 }
+
+function formatSide(parts) {
+  return parts.join(" + ");
+}
+
 export { MetadataSection };

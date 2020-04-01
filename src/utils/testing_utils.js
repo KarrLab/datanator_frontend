@@ -1,23 +1,32 @@
-function get_list_DOM_elements(wrapper, element_id, return_format = "html") {
-  let testing_list_of_links = [];
-  for (let i = 0; i < wrapper.find(element_id).length; i++) {
+function getListDomElements(wrapper, elementId, return_format = "html") {
+  let testingListOfLinks = [];
+  for (let i = 0; i < wrapper.find(elementId).length; i++) {
     if (return_format == "text") {
-      testing_list_of_links.push(
+      testingListOfLinks.push(
         wrapper
-          .find(element_id)
+          .find(elementId)
           .at(i)
           .text()
       );
     } else {
-      testing_list_of_links.push(
+      testingListOfLinks.push(
         wrapper
-          .find(element_id)
+          .find(elementId)
           .at(i)
           .html()
       );
     }
   }
-  return testing_list_of_links;
+  return testingListOfLinks;
 }
 
-export { get_list_DOM_elements };
+function getSectionFromList(list, fieldName, name) {
+  for (let i = 0; i < list.length; i++) {
+    if (list[i][fieldName] === name) {
+      return list[i];
+    }
+  }
+  return null;
+}
+
+export { getListDomElements, getSectionFromList };

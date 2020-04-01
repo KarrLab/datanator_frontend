@@ -23,7 +23,7 @@ class ConcentrationDataTable extends Component {
     );
   }
 
-  static formatData(rawData, rankings) {
+  static formatData(rawData, organism) {
     const formattedData = [];
     for (const rawDatum of rawData) {
       for (const met of rawDatum) {
@@ -58,8 +58,8 @@ class ConcentrationDataTable extends Component {
                 ? { source: "ecmdb", id: met.m2m_id }
                 : { source: "ymdb", id: met.ymdb_id }
           };
-          if (rankings !== null) {
-            conc["taxonomicProximity"] = rankings[met.taxon_distance];
+          if (organism != null) {
+            conc["taxonomicProximity"] = met.taxon_distance;
           }
           if (conc.growthPhase && conc.growthPhase.indexOf(" phase") >= 0) {
             conc.growthPhase = conc.growthPhase.split(" phase")[0];
@@ -110,7 +110,7 @@ class ConcentrationDataTable extends Component {
     };
   }
 
-  static getColDefs(organism) {
+  static getColDefs(organism, formattedData, taxonomicRanks) {
     const colDefs = [
       {
         headerName: "Concentration (µM)",
@@ -181,7 +181,7 @@ class ConcentrationDataTable extends Component {
         hide: true,
         filter: "taxonomyFilter",
         valueFormatter: params => {
-          const value = params.value;
+          const value = taxonomicRanks[params.value];
           return upperCaseFirstLetter(value);
         }
       },

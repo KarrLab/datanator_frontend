@@ -87,7 +87,9 @@
         "growth_medium": "Luria-Bertani (LB) broth (500 ml) at 30 degree celcius, 250 rpm.",
         "halflife": 357.68710104,
         "ncbi_taxonomy_id": 222523,
-        "operon": ["TU_4382701-4393581_R"],
+        "operon": [
+          "TU_4382701-4393581_R"
+        ],
         "ordered_locus_name": "BCE_4730",
         "quantification_method": "Illumina GA-II",
         "reference": [
@@ -109,7 +111,9 @@
         "growth_medium": "Luria-Bertani (LB) broth (500 ml) at 30 degree celcius, 250 rpm.",
         "halflife": 333.85169568,
         "ncbi_taxonomy_id": 222523,
-        "operon": ["TU_4382701-4393581_R"],
+        "operon": [
+          "TU_4382701-4393581_R"
+        ],
         "ordered_locus_name": "BCE_4730",
         "quantification_method": "Roche 454",
         "reference": [
