@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { upperCaseFirstLetter } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
+import { Link } from "react-router-dom";
 
 const DB_LINKS = [
-  { label: "Brenda", url: "https://www.brenda-enzymes.org/enzyme.php?ecno=" },
+  { label: "BRENDA", url: "https://www.brenda-enzymes.org/enzyme.php?ecno=" },
   { label: "ENZYME", url: "https://enzyme.expasy.org/EC/" },
   { label: "ExplorEnz", url: "https://www.enzyme-database.org/query.php?ec=" },
   {
@@ -30,20 +31,19 @@ class MetadataSection extends Component {
   }
 
   static getMetadataUrl(query) {
-    const substratesProducts = query.split("-->");
-    const substrates = substratesProducts[0].trim();
-    const products = substratesProducts[1].trim();
+    if (query == null) {
+      return;
+    }
 
-    return (
-      "reactions/kinlaw_by_name/" +
-      "?substrates=" +
-      substrates +
-      "&products=" +
-      products +
-      "&_from=0" +
-      "&size=1000" +
-      "&bound=tight"
-    );
+    const args = ["_from=0", "size=1000", "bound=tight"];
+
+    const substratesProducts = query.split("-->");
+    args.push("substrates=" + substratesProducts[0].trim());
+    if (substratesProducts.length >= 2) {
+      args.push("products=" + substratesProducts[1].trim());
+    }
+
+    return "reactions/kinlaw_by_name/?" + args.join("&");
   }
 
   static processMetadata(rawData) {
@@ -65,41 +65,116 @@ class MetadataSection extends Component {
       processedData["ecNumber"] = ecNumber;
     }
 
+    if (rawData[0]["ec_meta"]) {
+      if (rawData[0]["ec_meta"]["cofactor"]) {
+        processedData["cofactor"] = rawData[0]["ec_meta"]["cofactor"];
+      }
+    }
+
     if (name) {
       const start = name[0].toUpperCase();
       const end = name.substring(1, name.length);
-      processedData["name"] = start + end;
+      processedData["enzyme"] = start + end;
+    }
+    if ("kegg_meta" in rawData[0]) {
+      processedData["kegg_orthology_id"] =
+        rawData[0]["kegg_meta"]["kegg_orthology_id"];
     }
 
     processedData["equation"] =
       MetadataSection.formatSide(substrates) +
       " → " +
       MetadataSection.formatSide(products);
+
+    if ("kegg_meta" in rawData[0]) {
+      processedData["pathways"] = rawData[0].kegg_meta.kegg_pathway;
+    }
     return processedData;
   }
 
   static formatTitle(processedData) {
-    let title = processedData.name;
+    let title = processedData.enzyme;
     if (!title) {
       title = processedData.equation;
     }
     return upperCaseFirstLetter(title);
   }
 
-  static formatMetadata(processedData) {
+  static formatMetadata(processedData, organism) {
     const sections = [];
+
+    const part_links = [];
+    for (const sub of processedData.substrates) {
+      let route = "/metabolite/" + sub;
+      if (organism) {
+        route += "/" + organism;
+      }
+      part_links.push(
+        <Link key={"substrate-" + sub} to={route}>
+          {sub}
+        </Link>
+      );
+      part_links.push(" + ");
+    }
+    if (processedData.substrates.length) {
+      part_links.pop();
+    }
+    part_links.push(" → ");
+    for (const prod of processedData.products) {
+      let route = "/metabolite/" + prod;
+      if (organism) {
+        route += "/" + organism;
+      }
+      part_links.push(
+        <Link key={"product-" + prod} to={route}>
+          {prod}
+        </Link>
+      );
+      part_links.push(" + ");
+    }
+    if (processedData.products.length) {
+      part_links.pop();
+    }
 
     // description
     const descriptions = [];
-    if (processedData.name) {
-      descriptions.push({ label: "Name", value: processedData.name });
+    if (processedData.enzyme) {
+      if (processedData.kegg_orthology_id) {
+        let route = "/protein/" + processedData.kegg_orthology_id;
+        if (organism) {
+          route += "/" + organism;
+        }
+        descriptions.push({
+          label: "Enzyme",
+          value: <Link to={route}>{processedData.enzyme}</Link>
+        });
+      } else {
+        descriptions.push({ label: "Enzyme", value: processedData.enzyme });
+      }
     }
     if (processedData.equation) {
-      descriptions.push({ label: "Equation", value: processedData.equation });
+      descriptions.push({ label: "Equation", value: part_links });
+    }
+    if (processedData.cofactor) {
+      descriptions.push({
+        label: "Cofactor",
+        value: (
+          <Link
+            to={
+              "/metabolite/" +
+              processedData.cofactor +
+              "/" +
+              (organism ? organism : "")
+            }
+          >
+            {processedData.cofactor}
+          </Link>
+        )
+      });
     }
     if (processedData.ecNumber) {
       descriptions.push({
-        label: "EC number",
+        label: "EC code",
         value: (
           <a
             href={"https://enzyme.expasy.org/EC/" + processedData.ecNumber}
@@ -128,13 +203,13 @@ class MetadataSection extends Component {
     }
 
     // database links
-    if (processedData.ecnumber !== undefined) {
+    if (processedData.ecNumber !== undefined) {
       const dbLinks = [];
       for (const dbLink of DB_LINKS) {
         dbLinks.push(
           <li key={dbLink.label}>
             <a
-              href={dbLink.url + processedData.ecnumber}
+              href={dbLink.url + processedData.ecNumber}
               target="_blank"
               rel="noopener noreferrer"
               className="bulleted-list-item"
@@ -148,6 +223,51 @@ class MetadataSection extends Component {
         id: "cross-refs",
         title: "Cross references",
         content: <ul className="three-col-list link-list">{dbLinks}</ul>
+      });
+    }
+
+    if (processedData.pathways) {
+      sections.push({
+        id: "pathways",
+        title: "Pathways",
+        content: (
+          <ul className="two-col-list link-list">
+            {processedData.pathways.map(el => {
+              if (el.kegg_pathway_code) {
+                const map_id = el.kegg_pathway_code.substring(
+                  2,
+                  el.kegg_pathway_code.length
+                );
+                return (
+                  <li key={el.pathway_description}>
+                    <a
+                      href={
+                        "https://www.genome.jp/dbget-bin/www_bget?map" + map_id
+                      }
+                      className="bulleted-list-item"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      dangerouslySetInnerHTML={{
+                        __html: upperCaseFirstLetter(el.pathway_description)
+                      }}
+                    ></a>
+                  </li>
+                );
+              } else {
+                return (
+                  <li key={el.pathway_description}>
+                    <div
+                      className="bulleted-list-item"
+                      dangerouslySetInnerHTML={{
+                        __html: upperCaseFirstLetter(el.pathway_description)
+                      }}
+                    ></div>
+                  </li>
+                );
+              }
+            })}
+          </ul>
+        )
       });
     }
 

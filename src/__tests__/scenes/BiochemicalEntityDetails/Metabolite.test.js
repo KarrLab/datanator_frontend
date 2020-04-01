@@ -1,16 +1,10 @@
 import { ConcentrationDataTable } from "~/scenes/BiochemicalEntityDetails/Metabolite/ConcentrationDataTable";
 import { MetadataSection } from "~/scenes/BiochemicalEntityDetails/Metabolite/MetadataSection";
 import testRawData from "~/__tests__/fixtures/metabolite-concentrations-dTDP-D-Glucose";
-import { shallow } from "enzyme";
-import { get_list_DOM_elements } from "~/utils/testing_utils";
+import testRawMetadata from "~/__tests__/fixtures/metabolite-metadata-udp.json";
+import { mount, shallow } from "enzyme";
+import { getListDomElements, getSectionFromList } from "~/utils/testing_utils";
 
-function getFormattedSection(formattedMetadata, id) {
-  for (let i = 0; i < formattedMetadata.length; i++) {
-    if (formattedMetadata[i].id === id) {
-      return formattedMetadata[i];
-    }
-  }
-}
 /* global describe, it, expect */
 describe("Metabolite data page", () => {
   it("Gets correct concentration data url", () => {
@@ -28,19 +22,10 @@ describe("Metabolite data page", () => {
 
   it("Formats concentration data correct", () => {
     // format raw data
-    const rankings = [
-      "species",
-      "genus",
-      "family",
-      "order",
-      "class",
-      "phylum",
-      "superkingdom",
-      "cellular life"
-    ];
+    const organism = "Escherichia coli";
     const formattedData = ConcentrationDataTable.formatData(
       testRawData,
-      rankings
+      organism
     );
 
     // test formatted data
@@ -54,7 +39,7 @@ describe("Metabolite data page", () => {
       uncertainty: null,
       units: "uM",
       organism: "Escherichia coli K12 NCM3722",
-      taxonomicProximity: "genus",
+      taxonomicProximity: 1,
       growthPhase: "Mid-Log",
       growthMedia:
         "Gutnick minimal complete medium (4.7 g/L KH2PO4; 13.5 g/L K2HPO4; 1 g/L K2SO4; 0.1 g/L MgSO4-7H2O; 10 mM NH4Cl) with 4 g/L glucose",
@@ -72,17 +57,61 @@ describe("Metabolite data page", () => {
     expect(formattedData[7].growthConditions).toEqual(null);
   });
 
+  it("test getColDefs", () => {
+    const colDefs = ConcentrationDataTable.getColDefs(null, null, null);
+
+    const tanimotoCol = getSectionFromList(
+      colDefs,
+      "field",
+      "tanimotoSimilarity"
+    );
+    expect(tanimotoCol.valueFormatter({ value: 0.89345 })).toEqual("0.893");
+
+    const sourceCol = getSectionFromList(colDefs, "headerName", "Source");
+    expect(
+      sourceCol.cellRenderer({ value: { source: "ecmdb", id: "M2MDB000319" } })
+    ).toEqual(
+      '<a href="http://ecmdb.ca/compounds/M2MDB000319" target="_blank" rel="noopener noreferrer">ECMDB</a>'
+    );
+    expect(
+      sourceCol.cellRenderer({ value: { source: "ymdb", id: "YMDB00097" } })
+    ).toEqual(
+      '<a href="http://www.ymdb.ca/compounds/YMDB00097" target="_blank" rel="noopener noreferrer">YMDB</a>'
+    );
+
+    const nullTaxonSimCol = getSectionFromList(
+      colDefs,
+      "headerName",
+      "Taxonomic similarity"
+    );
+    expect(nullTaxonSimCol).toEqual(null);
+
+    const organism = "Escherichia coli";
+    const rankings = ["species", "genus", "family"];
+    const colDefsWithOrganism = ConcentrationDataTable.getColDefs(
+      organism,
+      null,
+      rankings
+    );
+    const taxonSimCol = getSectionFromList(
+      colDefsWithOrganism,
+      "field",
+      "taxonomicProximity"
+    );
+    expect(taxonSimCol.valueFormatter({ value: 2 })).toEqual("Family");
+  });
+
   it("Gets correct metadata url ", () => {
     const query = "dTDP-D-Glucose";
     const organism = "Escherichia coli";
     expect(MetadataSection.getMetadataUrl(query, organism)).toEqual(
-      "metabolites/concentration/?metabolite=dTDP-D-Glucose&abstract=true&species=Escherichia coli"
+      "/metabolites/meta/?_input=dTDP-D-Glucose"
     );
   });
 
   it("Processes metadata data correctly", () => {
     // format raw data
-    const processedMetadata = MetadataSection.processMetadata(testRawData);
+    const processedMetadata = MetadataSection.processMetadata(testRawMetadata);
     // test processed data
     expect(processedMetadata.cellularLocations).toHaveLength(1);
     expect(processedMetadata.cellularLocations[0]).toEqual("Cytosol");
@@ -98,14 +127,15 @@ describe("Metabolite data page", () => {
 
   it("Formats metadata data correctly", () => {
     // format processed data
-    let processedMetadata = MetadataSection.processMetadata(testRawData);
+    let processedMetadata = MetadataSection.processMetadata(testRawMetadata);
     expect(MetadataSection.formatTitle(processedMetadata)).toEqual(
       "Uridine 5'-diphosphate"
     );
     const formattedMetadata = MetadataSection.formatMetadata(processedMetadata);
 
-    const formattedDescription = getFormattedSection(
+    const formattedDescription = getSectionFromList(
       formattedMetadata,
+      "id",
       "description"
     );
     expect(formattedDescription.title).toEqual("Description");
@@ -115,19 +145,20 @@ describe("Metabolite data page", () => {
       "LazyLoad />Uridine 5'-diphosp"
     );
 
-    const formattedSynonyms = getFormattedSection(
+    const formattedSynonyms = getSectionFromList(
       formattedMetadata,
+      "id",
       "synonyms"
     );
     expect(formattedSynonyms.title).toEqual("Synonyms");
-    const synonymsWrapper = shallow(formattedSynonyms.content);
+    const synonymsWrapper = mount(formattedSynonyms.content);
     expect(synonymsWrapper.text()).toEqual("5'-UDPUDP");
 
-    const formattedLinks = getFormattedSection(formattedMetadata, "cross-refs");
+    const formattedLinks = getSectionFromList(formattedMetadata, "id", "cross-refs");
     expect(formattedLinks.title).toEqual("Cross references");
     const linksWrapper = shallow(formattedLinks.content);
 
-    const correct_list_of_links = [
+    const correctListOfLinks = [
       '<a href="https://biocyc.org/compound?id=UDP" target="_blank" rel="noopener noreferrer">UDP</a>',
       '<a href="https://webbook.nist.gov/cgi/cbook.cgi?ID=58-98-0" target="_blank" rel="noopener noreferrer">58-98-0</a>',
       '<a href="https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17659" target="_blank" rel="noopener noreferrer">17659</a>',
@@ -138,16 +169,20 @@ describe("Metabolite data page", () => {
       '<a href="https://pubchem.ncbi.nlm.nih.gov/compound/6031" target="_blank" rel="noopener noreferrer">6031</a>'
     ];
 
-    const actual_list_of_links = get_list_DOM_elements(linksWrapper, "a");
-    expect(actual_list_of_links).toEqual(
-      expect.arrayContaining(correct_list_of_links)
+    const actualListOfLinks = getListDomElements(linksWrapper, "a");
+    expect(actualListOfLinks).toEqual(
+      expect.arrayContaining(correctListOfLinks)
     );
 
-    const formattedPhysics = getFormattedSection(formattedMetadata, "physics");
+    const formattedPhysics = getSectionFromList(
+      formattedMetadata,
+      "id",
+      "physics"
+    );
     expect(formattedPhysics.title).toEqual("Physics");
     const physicsWrapper = shallow(formattedPhysics.content);
 
-    const correct_list_of_physics = [
+    const correctListOfPhysics = [
       "<li><b>SMILES:</b> O[C@H]1[C@@H](O)[C@@H](O[C@@H]1COP(O)(=O)OP(O)(O)=O)N1C=CC(=O)NC1=O</li>",
       "<li><b>InChI:</b> InChI=1S/C9H14N2O12P2/c12-5-1-2-11(9(15)10-5)8-7(14)6(13)4(22-8)3-21-25(19,20)23-24(16,17)18/h1-2,4,6-8,13-14H,3H2,(H,19,20)(H,10,12,15)(H2,16,17,18)/t4-,6-,7-,8-/m1/s1</li>",
       "<li><b>Formula:</b> <span>C<sub>9</sub></span><span>H<sub>14</sub></span><span>N<sub>2</sub></span><span>O<sub>12</sub></span><span>P<sub>2</sub></span></li>",
@@ -156,13 +191,14 @@ describe("Metabolite data page", () => {
       "<li><b>Physiological charge:</b> -2</li>"
     ];
 
-    const actual_list_of_physics = get_list_DOM_elements(physicsWrapper, "li");
-    expect(actual_list_of_physics).toEqual(
-      expect.arrayContaining(correct_list_of_physics)
+    const actualListOfPhysics = getListDomElements(physicsWrapper, "li");
+    expect(actualListOfPhysics).toEqual(
+      expect.arrayContaining(correctListOfPhysics)
     );
 
-    const formattedLocalizations = getFormattedSection(
+    const formattedLocalizations = getSectionFromList(
       formattedMetadata,
+      "id",
       "localizations"
     );
     expect(formattedLocalizations.id).toEqual("localizations");
@@ -172,25 +208,23 @@ describe("Metabolite data page", () => {
       '<ul class="two-col-list"><li><div class="bulleted-list-item">Cytosol</div></li></ul>'
     );
 
-    const formattedPathways = getFormattedSection(
+    const formattedPathways = getSectionFromList(
       formattedMetadata,
+      "id",
       "pathways"
     );
     expect(formattedPathways.id).toEqual("pathways");
     expect(formattedPathways.title).toEqual("Pathways");
     const pathwaysWrapper = shallow(formattedPathways.content);
 
-    const correct_list_of_pathways = [
+    const correctListOfPathways = [
       '<li><a href="https://www.genome.jp/dbget-bin/www_bget?map00240" class="bulleted-list-item" target="_blank" rel="noopener noreferrer">Pyrimidine metabolism</a></li>',
       '<li><div class="bulleted-list-item">Superpathway of (KDO)<SUB>2</SUB>-lipid A biosynthesis</div></li>'
     ];
 
-    const actual_list_of_pathways = get_list_DOM_elements(
-      pathwaysWrapper,
-      "li"
-    );
-    expect(actual_list_of_pathways).toEqual(
-      expect.arrayContaining(correct_list_of_pathways)
+    const actualListOfPathways = getListDomElements(pathwaysWrapper, "li");
+    expect(actualListOfPathways).toEqual(
+      expect.arrayContaining(correctListOfPathways)
     );
 
     let structure =

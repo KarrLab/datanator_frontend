@@ -2,7 +2,7 @@ import { RateConstantsDataTable } from "~/scenes/BiochemicalEntityDetails/Reacti
 import testRawData from "~/__tests__/fixtures/reaction-constants-adenylate-kinase";
 import { MetadataSection } from "~/scenes/BiochemicalEntityDetails/Reaction/MetadataSection";
 import { shallow } from "enzyme";
-import { get_list_DOM_elements } from "~/utils/testing_utils";
+import { getListDomElements, getSectionFromList } from "~/utils/testing_utils";
 
 /* global describe, it, expect */
 describe("Reaction data page", () => {
@@ -11,17 +11,25 @@ describe("Reaction data page", () => {
 
     // assert URL correct
     expect(RateConstantsDataTable.getUrl(entity)).toEqual(
-      "reactions/kinlaw_by_name/?substrates=ATP,AMP&products=ADP&_from=0&size=1000&bound=tight"
+      "reactions/kinlaw_by_name/?_from=0&size=1000&bound=tight&substrates=ATP,AMP&products=ADP"
+    );
+
+    expect(RateConstantsDataTable.getUrl(entity, "Escherichia coli")).toEqual(
+      "reactions/kinlaw_by_name/?_from=0&size=1000&bound=tight&substrates=ATP,AMP&products=ADP&taxon_distance=true&species=Escherichia coli"
     );
   });
 
-  it("Formats concentration data correctly", () => {
+  it("Formats data correctly", () => {
     // format raw data
-    const formattedData = RateConstantsDataTable.formatData(testRawData, null);
+    const formattedData = RateConstantsDataTable.formatData(
+      testRawData,
+      "escherichia coli",
+      9
+    );
     //console.log(formattedData)
 
     // test formatted data
-    expect(formattedData).toHaveLength(62);
+    expect(formattedData).toHaveLength(10);
 
     expect(formattedData).toEqual(
       expect.arrayContaining([
@@ -32,7 +40,8 @@ describe("Reaction data page", () => {
           ph: 8,
           source: 6051,
           temperature: 30,
-          wildtypeMutant: "wildtype"
+          wildtypeMutant: "wildtype",
+          taxonomicProximity: 7
         },
         {
           kcat: 680,
@@ -41,35 +50,85 @@ describe("Reaction data page", () => {
           wildtypeMutant: "mutant",
           temperature: 30,
           ph: 8,
-          source: 6052
+          source: 6052,
+          taxonomicProximity: 7
         }
       ])
     );
 
-    expect(formattedData[20].organism).toEqual("Homo sapiens");
+    expect(formattedData[5].organism).toEqual("Gallus gallus");
     expect(formattedData[5].km).toEqual({ AMP: 0.0014 });
-    expect(formattedData[10].km).toEqual({});
+    expect(formattedData[9].km).toEqual({});
+  });
+
+  it("Properly format columns", () => {
+    const formattedData = RateConstantsDataTable.formatData(
+      testRawData,
+      null,
+      null
+    );
+    const colDefs = RateConstantsDataTable.getColDefs(
+      null,
+      formattedData,
+      null
+    );
+
+    expect(getSectionFromList(colDefs, "field", "kcat")).not.toEqual(null);
+    expect(getSectionFromList(colDefs, "field", "km.AMP")).not.toEqual(null);
+
+    const sourceCol = getSectionFromList(colDefs, "field", "source");
+    expect(sourceCol.cellRenderer({ value: "11554" })).toEqual(
+      '<a href="http://sabiork.h-its.org/newSearch/index?q=EntryID:11554" target="_blank" rel="noopener noreferrer">SABIO-RK</a>'
+    );
+
+    const nullTaxonSimCol = getSectionFromList(
+      colDefs,
+      "headerName",
+      "Taxonomic similarity"
+    );
+    expect(nullTaxonSimCol).toEqual(null);
+
+    const organism = "Escherichia coli";
+    const rankings = ["species", "genus", "family"];
+    const colDefsWithOrganism = RateConstantsDataTable.getColDefs(
+      organism,
+      formattedData,
+      rankings
+    );
+    const taxonSimCol = getSectionFromList(
+      colDefsWithOrganism,
+      "field",
+      "taxonomicProximity"
+    );
+    expect(taxonSimCol.valueFormatter({ value: 2 })).toEqual("Family");
   });
 
   it("Gets correct metadata url ", () => {
     const query = "ATP + AMP --> ADP";
     //const organism = "Saccharomyces cerevisiae S288C";
     expect(MetadataSection.getMetadataUrl(query)).toEqual(
-      "reactions/kinlaw_by_name/?substrates=ATP + AMP&products=ADP&_from=0&size=1000&bound=tight"
+      "reactions/kinlaw_by_name/?_from=0&size=1000&bound=tight&substrates=ATP + AMP&products=ADP"
     );
   });
 
   it("Processes metadata data correctly", () => {
     // format raw data
     const processedMetadata = MetadataSection.processMetadata(testRawData);
-    expect(processedMetadata).toEqual({
-      reactionId: "82",
-      substrates: ["AMP", "ATP"],
-      products: ["ADP"],
-      ecNumber: "2.7.4.3",
-      name: "Adenylate kinase",
-      equation: "AMP + ATP → ADP"
-    });
+    expect(processedMetadata.reactionId).toEqual("82");
+    expect(processedMetadata.substrates).toEqual(["AMP", "ATP"]);
+    expect(processedMetadata.products).toEqual(["ADP"]);
+    expect(processedMetadata.ecNumber).toEqual("2.7.4.3");
+    expect(processedMetadata.enzyme).toEqual("Adenylate kinase");
+    expect(processedMetadata.equation).toEqual("AMP + ATP → ADP");
+
+    expect(processedMetadata.pathways).toEqual(
+      expect.arrayContaining([
+        {
+          kegg_pathway_code: "ko00230",
+          pathway_description: "Purine metabolism"
+        }
+      ])
+    );
   });
 
   it("Formats metadata data correctly", () => {
@@ -85,20 +144,20 @@ describe("Reaction data page", () => {
 
     const formattedMetadataWrapper = shallow(formattedMetadata[0].content);
 
-    const correct_list_of_metadata = [
-      "Name: Adenylate kinase",
+    const correctListOfMetadata = [
+      "Enzyme: Adenylate kinase",
       "Equation: AMP + ATP → ADP",
-      "EC number: 2.7.4.3"
+      "EC code: 2.7.4.3"
     ];
 
-    const actual_list_of_metadata = get_list_DOM_elements(
+    const actualListOfMetadata = getListDomElements(
       formattedMetadataWrapper,
       ".key-value-list li",
       "text"
     );
 
-    expect(actual_list_of_metadata).toEqual(
-      expect.arrayContaining(correct_list_of_metadata)
+    expect(actualListOfMetadata).toEqual(
+      expect.arrayContaining(correctListOfMetadata)
     );
   });
 

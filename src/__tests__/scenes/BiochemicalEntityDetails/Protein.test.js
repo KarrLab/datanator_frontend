@@ -3,7 +3,7 @@ import testRawData from "~/__tests__/fixtures/protein-abundances-6-phosphofructo
 import testRawMetadata from "~/__tests__/fixtures/protein-metadata-6-phosphofructo-2-kinase";
 import { MetadataSection } from "~/scenes/BiochemicalEntityDetails/Protein/MetadataSection";
 import { shallow } from "enzyme";
-import { get_list_DOM_elements } from "~/utils/testing_utils";
+import { getListDomElements, getSectionFromList } from "~/utils/testing_utils";
 
 /* global describe, it, expect */
 describe("Protein data page", () => {
@@ -22,22 +22,13 @@ describe("Protein data page", () => {
     );
   });
 
-  it("Formats concentration data correctly", () => {
+  it("Formats abundance data correctly", () => {
     // instantiate data table
     const dataTable = new AbundanceDataTable();
 
     // format raw data
-    const rankings = [
-      "species",
-      "genus",
-      "family",
-      "order",
-      "class",
-      "phylum",
-      "superkingdom",
-      "cellular life"
-    ];
-    const formattedData = dataTable.formatData(testRawData, rankings);
+    const organism = "Escherichia coli";
+    const formattedData = dataTable.formatData(testRawData, organism);
 
     // test formatted data
     expect(formattedData).toHaveLength(30);
@@ -49,7 +40,7 @@ describe("Protein data page", () => {
       uniprotId: "P40433",
       geneSymbol: "PFK26",
       organism: "Saccharomyces cerevisiae S288C",
-      taxonomicProximity: "cellular life",
+      taxonomicProximity: 7,
       organ: "whole organism"
     });
 
@@ -73,6 +64,42 @@ describe("Protein data page", () => {
       organism: "Saccharomyces cerevisiae S288C",
       organ: "whole organism"
     });
+  });
+
+  it("test getColDefs", () => {
+    const dummy_data = null;
+    const colDefs = AbundanceDataTable.getColDefs(null, dummy_data, null);
+
+    const uniprotCol = getSectionFromList(colDefs, "headerName", "UniProt id");
+    expect(uniprotCol.cellRenderer({ value: "P26396" })).toEqual(
+      '<a href="https://www.uniprot.org/uniprot/P26396" target="_blank" rel="noopener noreferrer">P26396</a>'
+    );
+
+    const sourceCol = getSectionFromList(colDefs, "headerName", "Source");
+    expect(sourceCol.cellRenderer({ value: "P26396" })).toEqual(
+      '<a href="https://pax-db.org/search?q=P26396" target="_blank" rel="noopener noreferrer">PAXdb</a>'
+    );
+
+    const nullTaxonSimCol = getSectionFromList(
+      colDefs,
+      "headerName",
+      "Taxonomic similarity"
+    );
+    expect(nullTaxonSimCol).toEqual(null);
+
+    const organism = "Escherichia coli";
+    const rankings = ["species", "genus", "family"];
+    const colDefsWithOrganism = AbundanceDataTable.getColDefs(
+      organism,
+      dummy_data,
+      rankings
+    );
+    const taxonSimCol = getSectionFromList(
+      colDefsWithOrganism,
+      "field",
+      "taxonomicProximity"
+    );
+    expect(taxonSimCol.valueFormatter({ value: 2 })).toEqual("Family");
   });
 
   it("Gets correct metadata url ", () => {
@@ -105,24 +132,26 @@ describe("Protein data page", () => {
 
     const descriptionMetadataWrapper = shallow(formattedMetadata[0].content);
 
-    const description = get_list_DOM_elements(
+    const description = getListDomElements(
       descriptionMetadataWrapper,
       "div",
       "html"
     );
 
-    expect(description).toEqual([
-      '<div><div class="lazyload-placeholder"></div></div>'
-    ]);
+    expect(description).toEqual(['<div><div class="loader"></div></div>']);
 
-    expect(formattedMetadata[1].id).toEqual("cross-refs");
-    expect(formattedMetadata[1].title).toEqual("Cross references");
+    const formattedCrossReferences = getSectionFromList(
+      formattedMetadata,
+      "id",
+      "cross-refs"
+    );
+    expect(formattedCrossReferences.title).toEqual("Cross references");
 
-    const namesMetadataWrapper = shallow(formattedMetadata[1].content);
+    const namesMetadataWrapper = shallow(formattedCrossReferences.content);
 
     const correct_list_of_names = ["KEGG:  K00850", "EC code:  2.7.1.11"];
 
-    const actual_list_of_names = get_list_DOM_elements(
+    const actual_list_of_names = getListDomElements(
       namesMetadataWrapper,
       ".key-value-list li",
       "text"

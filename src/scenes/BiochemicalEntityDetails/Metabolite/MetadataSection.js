@@ -10,6 +10,7 @@ import {
 import BaseMetadataSection from "../MetadataSection";
 import LazyLoad from "react-lazyload";
 
+const htmlEntityDecoder = require("html-entity-decoder");
 const reactStringReplace = require("react-string-replace");
 const sprintf = require("sprintf-js").sprintf;
 
@@ -84,95 +85,81 @@ class MetadataSection extends Component {
     this.state = { metadata: null };
   }
 
-  static getMetadataUrl(query, organism) {
-    const abstract = true;
-
-    return (
-      "metabolites/concentration/" +
-      "?metabolite=" +
-      query +
-      "&abstract=" +
-      abstract +
-      (organism ? "&species=" + organism : "")
-    );
+  static getMetadataUrl(query) {
+    return "/metabolites/meta/" + "?_input=" + query;
   }
 
   static processMetadata(rawData) {
-    let processedData = null;
-    for (const rawDataum of rawData) {
-      for (const met of rawDataum) {
-        processedData = {};
+    let processedData = {};
+    const met = rawData;
+    processedData = {};
 
-        processedData.name = met.name;
+    processedData.name = met.name;
 
-        processedData.synonyms = met.synonyms.synonym;
-        processedData.synonyms.sort((a, b) => {
-          return strCompare(a, b);
-        });
+    processedData.synonyms = met.synonyms.synonym.map(syn => {
+      return htmlEntityDecoder.feed(syn);
+    });
+    processedData.synonyms.sort((a, b) => {
+      return strCompare(a, b);
+    });
 
-        processedData.description = null;
-        if (met.description != null && met.description !== undefined) {
-          processedData.description = reactStringReplace(
-            met.description,
-            /[([]PMID: *(\d+)[)\]]/gi,
-            pmid => {
-              return (
-                <span key={pmid}>
-                  [
-                  <a href={"https://www.ncbi.nlm.nih.gov/pubmed/" + pmid}>
-                    PMID: {pmid}
-                  </a>
-                  ]
-                </span>
-              );
-            }
+    processedData.description = null;
+    if (met.description != null && met.description !== undefined) {
+      processedData.description = reactStringReplace(
+        met.description,
+        /[([]PMID:? *(\d+)[)\]]/gi,
+        pmid => {
+          return (
+            <span key={pmid}>
+              [
+              <a href={"https://www.ncbi.nlm.nih.gov/pubmed/" + pmid}>
+                PubMed: {pmid}
+              </a>
+              ]
+            </span>
           );
         }
-
-        processedData.physics = {
-          smiles: met.smiles,
-          inchi: met.inchi,
-          inchiKey: met.inchikey,
-          formula: formatChemicalFormula(met.chemical_formula),
-          molWt: met.average_molecular_weight,
-          charge: met.property.find(el => el.kind === "formal_charge").value,
-          physiologicalCharge: met.property.find(
-            el => el.kind === "physiological_charge"
-          ).value
-        };
-
-        processedData.pathways = castToArray(met.pathways.pathway);
-
-        processedData.pathways = removeDuplicates(
-          processedData.pathways,
-          el => el.name
-        );
-        processedData.pathways.sort((a, b) => {
-          return strCompare(a.name, b.name);
-        });
-
-        processedData.cellularLocations = castToArray(
-          met.cellular_locations.cellular_location
-        );
-
-        processedData.dbLinks = {
-          biocyc: met.biocyc_id,
-          cas: met.cas_registry_number,
-          chebi: met.chebi_id,
-          chemspider: met.chemspider_id,
-          ecmdb: met.m2m_id,
-          foodb: met.foodb_id,
-          hmdb: met.hmdb_id,
-          kegg: met.kegg_id,
-          pubchem: met.pubchem_compound_id,
-          ymdb: met.ymdb_id
-        };
-        break;
-      }
-      if (processedData != null) {
-        break;
-      }
+      );
     }
+
+    processedData.physics = {
+      smiles: met.smiles,
+      inchi: met.inchi,
+      inchiKey: met.inchikey,
+      formula: formatChemicalFormula(met.chemical_formula),
+      molWt: met.average_molecular_weight,
+      charge: met.property.find(el => el.kind === "formal_charge").value,
+      physiologicalCharge: met.property.find(
+        el => el.kind === "physiological_charge"
+      ).value
+    };
+
+    processedData.pathways = castToArray(met.pathways.pathway);
+
+    processedData.pathways = removeDuplicates(
+      processedData.pathways,
+      el => el.name
+    );
+    processedData.pathways.sort((a, b) => {
+      return strCompare(a.name, b.name);
+    });
+
+    processedData.cellularLocations = castToArray(
+      met.cellular_locations.cellular_location
+    );
+
+    processedData.dbLinks = {
+      biocyc: met.biocyc_id,
+      cas: met.cas_registry_number,
+      chebi: met.chebi_id,
+      chemspider: met.chemspider_id,
+      ecmdb: met.m2m_id,
+      foodb: met.foodb_id,
+      hmdb: met.hmdb_id,
+      kegg: met.kegg_id,
+      pubchem: met.pubchem_compound_id,
+      ymdb: met.ymdb_id
+    };
     return processedData;
   }
 
@@ -232,7 +219,10 @@ class MetadataSection extends Component {
             {processedData.synonyms.map(syn => {
               return (
                 <li key={syn}>
-                  <div className="bulleted-list-item">{syn}</div>
+                  <div
+                    className="bulleted-list-item"
+                    dangerouslySetInnerHTML={{ __html: syn }}
+                  ></div>
                 </li>
               );
             })}
