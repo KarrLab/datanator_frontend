@@ -31,13 +31,17 @@ body {
 .subsection:not(:last-child) {
   margin-bottom: 0.5rem;
 }
+
 .subsection-title {
   font-weight: bold;
 }
+
 .subsection-title a {
   color: $color-text;
-}  
-.subsection-description, .subsection-description a {
+}
+
+.subsection-description,
+.subsection-description a {
   color: $color-text-light;
 }
 
