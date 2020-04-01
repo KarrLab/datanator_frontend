@@ -123,8 +123,8 @@ describe("Metabolite data page", () => {
     const synonymsWrapper = shallow(formattedSynonyms.content);
     expect(synonymsWrapper.text()).toEqual("5'-UDPUDP");
 
-    const formattedLinks = getFormattedSection(formattedMetadata, "links");
-    expect(formattedLinks.title).toEqual("Database links");
+    const formattedLinks = getFormattedSection(formattedMetadata, "cross-refs");
+    expect(formattedLinks.title).toEqual("Cross references");
     const linksWrapper = shallow(formattedLinks.content);
 
     const correct_list_of_links = [

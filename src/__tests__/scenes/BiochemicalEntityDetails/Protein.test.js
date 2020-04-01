@@ -115,7 +115,7 @@ describe("Protein data page", () => {
       '<div><div class="lazyload-placeholder"></div></div>'
     ]);
 
-    expect(formattedMetadata[1].id).toEqual("cross_references");
+    expect(formattedMetadata[1].id).toEqual("cross-refs");
     expect(formattedMetadata[1].title).toEqual("Cross references");
 
     const namesMetadataWrapper = shallow(formattedMetadata[1].content);
