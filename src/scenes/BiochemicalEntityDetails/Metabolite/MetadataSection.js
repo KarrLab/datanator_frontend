@@ -107,13 +107,13 @@ class MetadataSection extends Component {
     if (met.description != null && met.description !== undefined) {
       processedData.description = reactStringReplace(
         met.description,
-        /[([]PMID: *(\d+)[)\]]/gi,
+        /[([]PMID:? *(\d+)[)\]]/gi,
         pmid => {
           return (
             <span key={pmid}>
               [
               <a href={"https://www.ncbi.nlm.nih.gov/pubmed/" + pmid}>
-                PMID: {pmid}
+                PubMed: {pmid}
               </a>
               ]
             </span>
