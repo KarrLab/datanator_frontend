@@ -2,10 +2,10 @@
 
 describe("HtmlColumnHeader", function() {
   it("HTML column headings display and sort correctly", function() {
-    const route = "rna";
-    const entity = "Dolichol-P-glucose synthetase";
+    const route = "reaction";
+    const entity = "D-Glucose 1-phosphate-->D-Glucose 6-phosphate";
     const url = "/" + route + "/" + entity;
-    const dataContainerId = "half-life";
+    const dataContainerId = "rate-constants";
 
     cy.visit(url);
 
@@ -15,7 +15,7 @@ describe("HtmlColumnHeader", function() {
       .first()
       .find(".ag-header-cell-text")
       .find("span")
-      .should("have.html", "Half-life (s<sup>-1</sup>)");
+      .should("have.html", "k<sub>cat</sub> (s<sup>-1</sup>)");
 
     // check sorts
     function getHeaderCellLabelContainer() {
