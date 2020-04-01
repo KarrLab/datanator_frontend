@@ -1,6 +1,7 @@
 import { ConcentrationDataTable } from "~/scenes/BiochemicalEntityDetails/Metabolite/ConcentrationDataTable";
 import { MetadataSection } from "~/scenes/BiochemicalEntityDetails/Metabolite/MetadataSection";
 import testRawData from "~/__tests__/fixtures/metabolite-concentrations-dTDP-D-Glucose";
+import testRawMetadata from "~/__tests__/fixtures/metabolite-metadata-udp.json";
 import { mount, shallow } from "enzyme";
 import {
   get_list_DOM_elements,
@@ -107,13 +108,13 @@ describe("Metabolite data page", () => {
     const query = "dTDP-D-Glucose";
     const organism = "Escherichia coli";
     expect(MetadataSection.getMetadataUrl(query, organism)).toEqual(
-      "metabolites/concentration/?metabolite=dTDP-D-Glucose&abstract=true&species=Escherichia coli"
+      "/metabolites/meta/?_input=dTDP-D-Glucose"
     );
   });
 
   it("Processes metadata data correctly", () => {
     // format raw data
-    const processedMetadata = MetadataSection.processMetadata(testRawData);
+    const processedMetadata = MetadataSection.processMetadata(testRawMetadata);
     // test processed data
     expect(processedMetadata.cellularLocations).toHaveLength(1);
     expect(processedMetadata.cellularLocations[0]).toEqual("Cytosol");
@@ -129,7 +130,7 @@ describe("Metabolite data page", () => {
 
   it("Formats metadata data correctly", () => {
     // format processed data
-    let processedMetadata = MetadataSection.processMetadata(testRawData);
+    let processedMetadata = MetadataSection.processMetadata(testRawMetadata);
     expect(MetadataSection.formatTitle(processedMetadata)).toEqual(
       "Uridine 5'-diphosphate"
     );
