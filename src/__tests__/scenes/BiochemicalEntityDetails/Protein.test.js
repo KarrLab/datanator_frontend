@@ -69,7 +69,7 @@ describe("Protein data page", () => {
     });
   });
 
-  it("test getColDefs", () => {
+  it("Properly format columns", () => {
     const dummy_data = null;
     const colDefs = AbundanceDataTable.getColDefs(null, dummy_data, null);
 
