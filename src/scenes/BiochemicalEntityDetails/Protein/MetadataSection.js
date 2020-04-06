@@ -163,7 +163,7 @@ class MetadataSection extends Component {
     });
 
     sections.push({
-      id: "cross-references",
+      id: "cross-refs",
       title: "Cross references",
       content: (
         <ul className="key-value-list link-list">

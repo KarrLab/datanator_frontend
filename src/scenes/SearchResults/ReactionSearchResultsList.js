@@ -101,7 +101,7 @@ function formatSide(parts) {
 function formatParticipantForUrl(participants) {
   const partNames = [];
   for (const participant of participants) {
-    partNames.push(encodeURIComponent(participant))
+    partNames.push(encodeURIComponent(participant));
   }
   return partNames;
 }

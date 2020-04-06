@@ -205,12 +205,12 @@
         "observed_error": null,
         "observed_name": "kcat",
         "observed_units": "s^(-1)",
-        "observed_value": 650.0,
+        "observed_value": 650,
         "sabio_compound_id": null,
         "sbo_type": 25,
         "type": 25,
         "units": "s^(-1)",
-        "value": 650.0
+        "value": 650
       },
       {
         "compartment": null,
@@ -238,12 +238,12 @@
         "observed_error": null,
         "observed_name": "Ka",
         "observed_units": "M",
-        "observed_value": 3.5e-05,
+        "observed_value": 0.000035,
         "sabio_compound_id": 34,
         "sbo_type": 27,
         "type": 27,
         "units": "M",
-        "value": 3.5e-05
+        "value": 0.000035
       },
       {
         "compartment": null,
@@ -271,15 +271,15 @@
         "observed_error": null,
         "observed_name": "Kb",
         "observed_units": "M",
-        "observed_value": 9.2e-05,
+        "observed_value": 0.000092,
         "sabio_compound_id": 1273,
         "sbo_type": 27,
         "type": 27,
         "units": "M",
-        "value": 9.2e-05
+        "value": 0.000092
       }
     ],
-    "ph": 8.0,
+    "ph": 8,
     "reaction_participant": [
       {
         "substrate": [
@@ -292,7 +292,7 @@
             "pubchem_compound_id": null,
             "pubchem_substance_id": "3322",
             "sabio_compound_id": 1273,
-            "substrate_coefficient": 1.0,
+            "substrate_coefficient": 1,
             "substrate_compartment": {},
             "substrate_name": "AMP",
             "substrate_structure": [
@@ -330,7 +330,7 @@
             "pubchem_compound_id": null,
             "pubchem_substance_id": "3304",
             "sabio_compound_id": 34,
-            "substrate_coefficient": 1.0,
+            "substrate_coefficient": 1,
             "substrate_compartment": {},
             "substrate_name": "ATP",
             "substrate_structure": [
@@ -364,7 +364,7 @@
             "created": "2018-11-13 15:34:45.639403",
             "kegg_id": "C00008",
             "modified": "2018-11-13 18:04:08.260317",
-            "product_coefficient": 2.0,
+            "product_coefficient": 2,
             "product_compartment": {},
             "product_name": "ADP",
             "product_structure": [
@@ -457,7 +457,7 @@
     "taxon_name": "Gallus gallus",
     "taxon_variant": "",
     "taxon_wildtype": 1,
-    "temperature": 30.0,
+    "temperature": 30,
     "tissue": "muscle"
   },
   {
@@ -666,12 +666,12 @@
         "observed_error": null,
         "observed_name": "kcat",
         "observed_units": "s^(-1)",
-        "observed_value": 680.0,
+        "observed_value": 680,
         "sabio_compound_id": null,
         "sbo_type": 25,
         "type": 25,
         "units": "s^(-1)",
-        "value": 680.0
+        "value": 680
       },
       {
         "compartment": null,
@@ -740,7 +740,7 @@
         "value": 0.00021
       }
     ],
-    "ph": 8.0,
+    "ph": 8,
     "reaction_participant": [
       {
         "substrate": [
@@ -753,7 +753,7 @@
             "pubchem_compound_id": null,
             "pubchem_substance_id": "3322",
             "sabio_compound_id": 1273,
-            "substrate_coefficient": 1.0,
+            "substrate_coefficient": 1,
             "substrate_compartment": {},
             "substrate_name": "AMP",
             "substrate_structure": [
@@ -791,7 +791,7 @@
             "pubchem_compound_id": null,
             "pubchem_substance_id": "3304",
             "sabio_compound_id": 34,
-            "substrate_coefficient": 1.0,
+            "substrate_coefficient": 1,
             "substrate_compartment": {},
             "substrate_name": "ATP",
             "substrate_structure": [
@@ -825,7 +825,7 @@
             "created": "2018-11-13 15:34:45.639403",
             "kegg_id": "C00008",
             "modified": "2018-11-13 18:04:08.260317",
-            "product_coefficient": 2.0,
+            "product_coefficient": 2,
             "product_compartment": {},
             "product_name": "ADP",
             "product_structure": [
@@ -918,7 +918,7 @@
     "taxon_name": "Gallus gallus",
     "taxon_variant": "H36Q",
     "taxon_wildtype": 0,
-    "temperature": 30.0,
+    "temperature": 30,
     "tissue": "muscle"
   },
   {
@@ -1127,12 +1127,12 @@
         "observed_error": null,
         "observed_name": "kcat",
         "observed_units": "s^(-1)",
-        "observed_value": 595.0,
+        "observed_value": 595,
         "sabio_compound_id": null,
         "sbo_type": 25,
         "type": 25,
         "units": "s^(-1)",
-        "value": 595.0
+        "value": 595
       },
       {
         "compartment": null,
@@ -1160,12 +1160,12 @@
         "observed_error": null,
         "observed_name": "Ka",
         "observed_units": "M",
-        "observed_value": 7.8e-05,
+        "observed_value": 0.000078,
         "sabio_compound_id": 34,
         "sbo_type": 27,
         "type": 27,
         "units": "M",
-        "value": 7.8e-05
+        "value": 0.000078
       },
       {
         "compartment": null,
@@ -1201,7 +1201,7 @@
         "value": 0.00041
       }
     ],
-    "ph": 8.0,
+    "ph": 8,
     "reaction_participant": [
       {
         "substrate": [
@@ -1214,7 +1214,7 @@
             "pubchem_compound_id": null,
             "pubchem_substance_id": "3322",
             "sabio_compound_id": 1273,
-            "substrate_coefficient": 1.0,
+            "substrate_coefficient": 1,
             "substrate_compartment": {},
             "substrate_name": "AMP",
             "substrate_structure": [
@@ -1252,7 +1252,7 @@
             "pubchem_compound_id": null,
             "pubchem_substance_id": "3304",
             "sabio_compound_id": 34,
-            "substrate_coefficient": 1.0,
+            "substrate_coefficient": 1,
             "substrate_compartment": {},
             "substrate_name": "ATP",
             "substrate_structure": [
@@ -1286,7 +1286,7 @@
             "created": "2018-11-13 15:34:45.639403",
             "kegg_id": "C00008",
             "modified": "2018-11-13 18:04:08.260317",
-            "product_coefficient": 2.0,
+            "product_coefficient": 2,
             "product_compartment": {},
             "product_name": "ADP",
             "product_structure": [
@@ -1379,7 +1379,7 @@
     "taxon_name": "Gallus gallus",
     "taxon_variant": "H36N",
     "taxon_wildtype": 0,
-    "temperature": 30.0,
+    "temperature": 30,
     "tissue": "muscle"
   },
   {
@@ -1621,12 +1621,12 @@
         "observed_error": null,
         "observed_name": "kcat",
         "observed_units": "s^(-1)",
-        "observed_value": 81.0,
+        "observed_value": 81,
         "sabio_compound_id": null,
         "sbo_type": 25,
         "type": 25,
         "units": "s^(-1)",
-        "value": 81.0
+        "value": 81
       },
       {
         "compartment": null,
@@ -1654,15 +1654,15 @@
         "observed_error": null,
         "observed_name": "Ka",
         "observed_units": "M",
-        "observed_value": 9.1e-05,
+        "observed_value": 0.000091,
         "sabio_compound_id": 34,
         "sbo_type": 27,
         "type": 27,
         "units": "M",
-        "value": 9.1e-05
+        "value": 0.000091
       }
     ],
-    "ph": 8.0,
+    "ph": 8,
     "reaction_participant": [
       {
         "substrate": [
@@ -1675,7 +1675,7 @@
             "pubchem_compound_id": null,
             "pubchem_substance_id": "3304",
             "sabio_compound_id": 34,
-            "substrate_coefficient": 1.0,
+            "substrate_coefficient": 1,
             "substrate_compartment": {},
             "substrate_name": "ATP",
             "substrate_structure": [
@@ -1708,7 +1708,7 @@
             "pubchem_compound_id": null,
             "pubchem_substance_id": "3322",
             "sabio_compound_id": 1273,
-            "substrate_coefficient": 1.0,
+            "substrate_coefficient": 1,
             "substrate_compartment": {},
             "substrate_name": "AMP",
             "substrate_structure": [
@@ -1747,7 +1747,7 @@
             "created": "2018-11-13 15:34:45.639403",
             "kegg_id": "C00008",
             "modified": "2018-11-13 18:04:08.260317",
-            "product_coefficient": 2.0,
+            "product_coefficient": 2,
             "product_compartment": {},
             "product_name": "ADP",
             "product_structure": [
@@ -1840,7 +1840,7 @@
     "taxon_name": "Gallus gallus",
     "taxon_variant": "H36G",
     "taxon_wildtype": 0,
-    "temperature": 30.0,
+    "temperature": 30,
     "tissue": "muscle"
   },
   {
@@ -2056,10 +2056,10 @@
           }
         ],
         "compound_synonyms": [],
-        "error": 1.5e-05,
+        "error": 0.000015,
         "is_name_ambiguous": 0,
         "name": "AMP",
-        "observed_error": 1.5e-05,
+        "observed_error": 0.000015,
         "observed_name": "Km",
         "observed_units": "M",
         "observed_value": 0.00015,
@@ -2095,7 +2095,7 @@
         "observed_error": null,
         "observed_name": "Kcat_Km",
         "observed_units": "M^(-1)*s^(-1)",
-        "observed_value": 3300000.0,
+        "observed_value": 3300000,
         "sabio_compound_id": 1273,
         "sbo_type": 302,
         "type": null,
@@ -2109,18 +2109,18 @@
         "compound_name": "k_cat",
         "compound_structure": [],
         "compound_synonyms": [],
-        "error": 25.0,
+        "error": 25,
         "is_name_ambiguous": null,
         "name": "k_cat",
-        "observed_error": 25.0,
+        "observed_error": 25,
         "observed_name": "kcat",
         "observed_units": "s^(-1)",
-        "observed_value": 500.0,
+        "observed_value": 500,
         "sabio_compound_id": null,
         "sbo_type": 25,
         "type": 25,
         "units": "s^(-1)",
-        "value": 500.0
+        "value": 500
       }
     ],
     "ph": null,
@@ -2136,7 +2136,7 @@
             "pubchem_compound_id": null,
             "pubchem_substance_id": "3322",
             "sabio_compound_id": 1273,
-            "substrate_coefficient": 1.0,
+            "substrate_coefficient": 1,
             "substrate_compartment": {},
             "substrate_name": "AMP",
             "substrate_structure": [
@@ -2174,7 +2174,7 @@
             "pubchem_compound_id": null,
             "pubchem_substance_id": "3304",
             "sabio_compound_id": 34,
-            "substrate_coefficient": 1.0,
+            "substrate_coefficient": 1,
             "substrate_compartment": {},
             "substrate_name": "ATP",
             "substrate_structure": [
@@ -2208,7 +2208,7 @@
             "created": "2018-11-13 15:34:45.639403",
             "kegg_id": "C00008",
             "modified": "2018-11-13 18:04:08.260317",
-            "product_coefficient": 2.0,
+            "product_coefficient": 2,
             "product_compartment": {},
             "product_name": "ADP",
             "product_structure": [
@@ -2523,7 +2523,7 @@
         "observed_error": null,
         "observed_name": "Kcat_Km",
         "observed_units": "M^(-1)*s^(-1)",
-        "observed_value": 4300.0,
+        "observed_value": 4300,
         "sabio_compound_id": 1273,
         "sbo_type": 302,
         "type": null,
@@ -2576,12 +2576,12 @@
         "observed_error": 0.3,
         "observed_name": "kcat",
         "observed_units": "s^(-1)",
-        "observed_value": 6.0,
+        "observed_value": 6,
         "sabio_compound_id": null,
         "sbo_type": 25,
         "type": 25,
         "units": "s^(-1)",
-        "value": 6.0
+        "value": 6
       }
     ],
     "ph": null,
@@ -2597,7 +2597,7 @@
             "pubchem_compound_id": null,
             "pubchem_substance_id": "3322",
             "sabio_compound_id": 1273,
-            "substrate_coefficient": 1.0,
+            "substrate_coefficient": 1,
             "substrate_compartment": {},
             "substrate_name": "AMP",
             "substrate_structure": [
@@ -2635,7 +2635,7 @@
             "pubchem_compound_id": null,
             "pubchem_substance_id": "3304",
             "sabio_compound_id": 34,
-            "substrate_coefficient": 1.0,
+            "substrate_coefficient": 1,
             "substrate_compartment": {},
             "substrate_name": "ATP",
             "substrate_structure": [
@@ -2669,7 +2669,7 @@
             "created": "2018-11-13 15:34:45.639403",
             "kegg_id": "C00008",
             "modified": "2018-11-13 18:04:08.260317",
-            "product_coefficient": 2.0,
+            "product_coefficient": 2,
             "product_compartment": {},
             "product_name": "ADP",
             "product_structure": [
@@ -2984,7 +2984,7 @@
         "observed_error": null,
         "observed_name": "Kcat_Km",
         "observed_units": "M^(-1)*s^(-1)",
-        "observed_value": 12000.0,
+        "observed_value": 12000,
         "sabio_compound_id": 1273,
         "sbo_type": 302,
         "type": null,
@@ -3004,12 +3004,12 @@
         "observed_error": 1.1,
         "observed_name": "kcat",
         "observed_units": "s^(-1)",
-        "observed_value": 22.0,
+        "observed_value": 22,
         "sabio_compound_id": null,
         "sbo_type": 25,
         "type": 25,
         "units": "s^(-1)",
-        "value": 22.0
+        "value": 22
       },
       {
         "compartment": null,
@@ -3058,7 +3058,7 @@
             "pubchem_compound_id": null,
             "pubchem_substance_id": "3322",
             "sabio_compound_id": 1273,
-            "substrate_coefficient": 1.0,
+            "substrate_coefficient": 1,
             "substrate_compartment": {},
             "substrate_name": "AMP",
             "substrate_structure": [
@@ -3096,7 +3096,7 @@
             "pubchem_compound_id": null,
             "pubchem_substance_id": "3304",
             "sabio_compound_id": 34,
-            "substrate_coefficient": 1.0,
+            "substrate_coefficient": 1,
             "substrate_compartment": {},
             "substrate_name": "ATP",
             "substrate_structure": [
@@ -3130,7 +3130,7 @@
             "created": "2018-11-13 15:34:45.639403",
             "kegg_id": "C00008",
             "modified": "2018-11-13 18:04:08.260317",
-            "product_coefficient": 2.0,
+            "product_coefficient": 2,
             "product_compartment": {},
             "product_name": "ADP",
             "product_structure": [
@@ -3445,7 +3445,7 @@
         "observed_error": null,
         "observed_name": "Kcat_Ka",
         "observed_units": "M^(-1)*s^(-1)",
-        "observed_value": 15500000.0,
+        "observed_value": 15500000,
         "sabio_compound_id": 34,
         "sbo_type": 302,
         "type": null,
@@ -3475,7 +3475,7 @@
         "error": null,
         "is_name_ambiguous": 0,
         "name": "AMP",
-        "observed_error": 3.7e-05,
+        "observed_error": 0.000037,
         "observed_name": "Ke",
         "observed_units": "M",
         "observed_value": 0.00037,
@@ -3505,18 +3505,18 @@
           }
         ],
         "compound_synonyms": [],
-        "error": 9.8e-06,
+        "error": 0.0000098,
         "is_name_ambiguous": 0,
         "name": "AMP",
-        "observed_error": 9.8e-06,
+        "observed_error": 0.0000098,
         "observed_name": "Kb",
         "observed_units": "M",
-        "observed_value": 9.8e-05,
+        "observed_value": 0.000098,
         "sabio_compound_id": 1273,
         "sbo_type": 27,
         "type": 27,
         "units": "M",
-        "value": 9.8e-05
+        "value": 0.000098
       },
       {
         "compartment": null,
@@ -3541,7 +3541,7 @@
         "error": null,
         "is_name_ambiguous": 0,
         "name": "ATP",
-        "observed_error": 1.6e-05,
+        "observed_error": 0.000016,
         "observed_name": "Kd",
         "observed_units": "M",
         "observed_value": 0.00016,
@@ -3564,12 +3564,12 @@
         "observed_error": 32.5,
         "observed_name": "kcat",
         "observed_units": "s^(-1)",
-        "observed_value": 650.0,
+        "observed_value": 650,
         "sabio_compound_id": null,
         "sbo_type": 25,
         "type": 25,
         "units": "s^(-1)",
-        "value": 650.0
+        "value": 650
       },
       {
         "compartment": null,
@@ -3591,18 +3591,18 @@
           }
         ],
         "compound_synonyms": [],
-        "error": 4.2e-06,
+        "error": 0.0000042,
         "is_name_ambiguous": 0,
         "name": "ATP",
-        "observed_error": 4.2e-06,
+        "observed_error": 0.0000042,
         "observed_name": "Ka",
         "observed_units": "M",
-        "observed_value": 4.2e-05,
+        "observed_value": 0.000042,
         "sabio_compound_id": 34,
         "sbo_type": 27,
         "type": 27,
         "units": "M",
-        "value": 4.2e-05
+        "value": 0.000042
       },
       {
         "compartment": null,
@@ -3630,7 +3630,7 @@
         "observed_error": null,
         "observed_name": "Kcat_Kb",
         "observed_units": "M^(-1)*s^(-1)",
-        "observed_value": 6600000.0,
+        "observed_value": 6600000,
         "sabio_compound_id": 1273,
         "sbo_type": 302,
         "type": null,
@@ -3638,7 +3638,7 @@
         "value": null
       }
     ],
-    "ph": 8.0,
+    "ph": 8,
     "reaction_participant": [
       {
         "substrate": [
@@ -3651,7 +3651,7 @@
             "pubchem_compound_id": null,
             "pubchem_substance_id": "3304",
             "sabio_compound_id": 34,
-            "substrate_coefficient": 1.0,
+            "substrate_coefficient": 1,
             "substrate_compartment": {},
             "substrate_name": "ATP",
             "substrate_structure": [
@@ -3684,7 +3684,7 @@
             "pubchem_compound_id": null,
             "pubchem_substance_id": "3322",
             "sabio_compound_id": 1273,
-            "substrate_coefficient": 1.0,
+            "substrate_coefficient": 1,
             "substrate_compartment": {},
             "substrate_name": "AMP",
             "substrate_structure": [
@@ -3723,7 +3723,7 @@
             "created": "2018-11-13 15:34:45.639403",
             "kegg_id": "C00008",
             "modified": "2018-11-13 18:04:08.260317",
-            "product_coefficient": 2.0,
+            "product_coefficient": 2,
             "product_compartment": {},
             "product_name": "ADP",
             "product_structure": [
@@ -3816,7 +3816,7 @@
     "taxon_name": "Gallus gallus",
     "taxon_variant": "",
     "taxon_wildtype": 1,
-    "temperature": 30.0,
+    "temperature": 30,
     "tissue": "muscle"
   },
   {
@@ -4035,7 +4035,7 @@
         "error": null,
         "is_name_ambiguous": 0,
         "name": "AMP",
-        "observed_error": 1.5e-05,
+        "observed_error": 0.000015,
         "observed_name": "Ke",
         "observed_units": "M",
         "observed_value": 0.00015,
@@ -4065,10 +4065,10 @@
           }
         ],
         "compound_synonyms": [],
-        "error": 2.5e-05,
+        "error": 0.000025,
         "is_name_ambiguous": 0,
         "name": "ATP",
-        "observed_error": 2.5e-05,
+        "observed_error": 0.000025,
         "observed_name": "Ka",
         "observed_units": "M",
         "observed_value": 0.00025,
@@ -4104,7 +4104,7 @@
         "observed_error": null,
         "observed_name": "Kcat_Kb",
         "observed_units": "M^(-1)*s^(-1)",
-        "observed_value": 15000.0,
+        "observed_value": 15000,
         "sabio_compound_id": 1273,
         "sbo_type": 302,
         "type": null,
@@ -4134,7 +4134,7 @@
         "error": null,
         "is_name_ambiguous": 0,
         "name": "ATP",
-        "observed_error": 1.7e-05,
+        "observed_error": 0.000017,
         "observed_name": "Kd",
         "observed_units": "M",
         "observed_value": 0.00017,
@@ -4190,7 +4190,7 @@
         "observed_error": null,
         "observed_name": "Kcat_Ka",
         "observed_units": "M^(-1)*s^(-1)",
-        "observed_value": 33000.0,
+        "observed_value": 33000,
         "sabio_compound_id": 34,
         "sbo_type": 302,
         "type": null,
@@ -4217,10 +4217,10 @@
           }
         ],
         "compound_synonyms": [],
-        "error": 5.5e-05,
+        "error": 0.000055,
         "is_name_ambiguous": 0,
         "name": "AMP",
-        "observed_error": 5.5e-05,
+        "observed_error": 0.000055,
         "observed_name": "Kb",
         "observed_units": "M",
         "observed_value": 0.00055,
@@ -4231,7 +4231,7 @@
         "value": 0.00055
       }
     ],
-    "ph": 8.0,
+    "ph": 8,
     "reaction_participant": [
       {
         "substrate": [
@@ -4244,7 +4244,7 @@
             "pubchem_compound_id": null,
             "pubchem_substance_id": "3304",
             "sabio_compound_id": 34,
-            "substrate_coefficient": 1.0,
+            "substrate_coefficient": 1,
             "substrate_compartment": {},
             "substrate_name": "ATP",
             "substrate_structure": [
@@ -4277,7 +4277,7 @@
             "pubchem_compound_id": null,
             "pubchem_substance_id": "3322",
             "sabio_compound_id": 1273,
-            "substrate_coefficient": 1.0,
+            "substrate_coefficient": 1,
             "substrate_compartment": {},
             "substrate_name": "AMP",
             "substrate_structure": [
@@ -4316,7 +4316,7 @@
             "created": "2018-11-13 15:34:45.639403",
             "kegg_id": "C00008",
             "modified": "2018-11-13 18:04:08.260317",
-            "product_coefficient": 2.0,
+            "product_coefficient": 2,
             "product_compartment": {},
             "product_name": "ADP",
             "product_structure": [
@@ -4409,7 +4409,7 @@
     "taxon_name": "Gallus gallus",
     "taxon_variant": "D140A",
     "taxon_wildtype": 0,
-    "temperature": 30.0,
+    "temperature": 30,
     "tissue": "muscle"
   },
   {
@@ -4631,7 +4631,7 @@
         "observed_error": null,
         "observed_name": "Kcat_Kb",
         "observed_units": "M^(-1)*s^(-1)",
-        "observed_value": 45000.0,
+        "observed_value": 45000,
         "sabio_compound_id": 1273,
         "sbo_type": 302,
         "type": null,
@@ -4664,7 +4664,7 @@
         "observed_error": null,
         "observed_name": "Kcat_Ka",
         "observed_units": "M^(-1)*s^(-1)",
-        "observed_value": 74000.0,
+        "observed_value": 74000,
         "sabio_compound_id": 34,
         "sbo_type": 302,
         "type": null,
@@ -4691,10 +4691,10 @@
           }
         ],
         "compound_synonyms": [],
-        "error": 8.4e-05,
+        "error": 0.000084,
         "is_name_ambiguous": 0,
         "name": "AMP",
-        "observed_error": 8.4e-05,
+        "observed_error": 0.000084,
         "observed_name": "Kb",
         "observed_units": "M",
         "observed_value": 0.00084,
@@ -4724,10 +4724,10 @@
           }
         ],
         "compound_synonyms": [],
-        "error": 5.1e-05,
+        "error": 0.000051,
         "is_name_ambiguous": 0,
         "name": "ATP",
-        "observed_error": 5.1e-05,
+        "observed_error": 0.000051,
         "observed_name": "Ka",
         "observed_units": "M",
         "observed_value": 0.00051,
@@ -4750,12 +4750,12 @@
         "observed_error": 1.9,
         "observed_name": "kcat",
         "observed_units": "s^(-1)",
-        "observed_value": 38.0,
+        "observed_value": 38,
         "sabio_compound_id": null,
         "sbo_type": 25,
         "type": 25,
         "units": "s^(-1)",
-        "value": 38.0
+        "value": 38
       },
       {
         "compartment": null,
@@ -4780,7 +4780,7 @@
         "error": null,
         "is_name_ambiguous": 0,
         "name": "ATP",
-        "observed_error": 1.5e-05,
+        "observed_error": 0.000015,
         "observed_name": "Kd",
         "observed_units": "M",
         "observed_value": 0.00015,
@@ -4813,7 +4813,7 @@
         "error": null,
         "is_name_ambiguous": 0,
         "name": "AMP",
-        "observed_error": 2.4e-05,
+        "observed_error": 0.000024,
         "observed_name": "Ke",
         "observed_units": "M",
         "observed_value": 0.00024,
@@ -4824,7 +4824,7 @@
         "value": null
       }
     ],
-    "ph": 8.0,
+    "ph": 8,
     "reaction_participant": [
       {
         "substrate": [
@@ -4837,7 +4837,7 @@
             "pubchem_compound_id": null,
             "pubchem_substance_id": "3304",
             "sabio_compound_id": 34,
-            "substrate_coefficient": 1.0,
+            "substrate_coefficient": 1,
             "substrate_compartment": {},
             "substrate_name": "ATP",
             "substrate_structure": [
@@ -4870,7 +4870,7 @@
             "pubchem_compound_id": null,
             "pubchem_substance_id": "3322",
             "sabio_compound_id": 1273,
-            "substrate_coefficient": 1.0,
+            "substrate_coefficient": 1,
             "substrate_compartment": {},
             "substrate_name": "AMP",
             "substrate_structure": [
@@ -4909,7 +4909,7 @@
             "created": "2018-11-13 15:34:45.639403",
             "kegg_id": "C00008",
             "modified": "2018-11-13 18:04:08.260317",
-            "product_coefficient": 2.0,
+            "product_coefficient": 2,
             "product_compartment": {},
             "product_name": "ADP",
             "product_structure": [
@@ -5002,7 +5002,7 @@
     "taxon_name": "Gallus gallus",
     "taxon_variant": "D141A",
     "taxon_wildtype": 0,
-    "temperature": 30.0,
+    "temperature": 30,
     "tissue": "muscle"
   }
 ]

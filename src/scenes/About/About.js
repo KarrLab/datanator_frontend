@@ -43,8 +43,18 @@ class About extends Component {
                     </HashLink>
                   </li>
                   <li>
-                    <HashLink to="#source" scroll={scrollTo}>
+                    <HashLink to="#download" scroll={scrollTo}>
+                      Data download
+                    </HashLink>
+                  </li>
+                  <li>
+                    <HashLink to="#code" scroll={scrollTo}>
                       Source code
+                    </HashLink>
+                  </li>
+                  <li>
+                    <HashLink to="#license" scroll={scrollTo}>
+                      License
                     </HashLink>
                   </li>
                   <li>
@@ -266,24 +276,33 @@ class About extends Component {
               </div>
             </div>
 
-            <div className="content-block section" id="source">
-              <h2 className="content-block-heading">Source code and license</h2>
+            <div className="content-block section" id="download">
+              <h2 className="content-block-heading">
+                Downloading the <i>Datanator</i> data
+              </h2>
 
               <div className="content-block-content">
                 <p className="no-bottom-margin">
-                  <i>Datanator</i> is available open-source from GitHub and is
-                  released under the{" "}
+                  The <i>Datanator</i> data is available as the{" "}
                   <a
-                    href={
-                      "https://github.com/KarrLab/datanator/blob/master/LICENSE"
-                    }
+                    href="https://open.quiltdata.com/b/karrlab/packages/karrlab/datanator"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    MIT license
-                  </a>
-                  . The source code <i>Datanator</i> is composed of the
-                  following packages:
+                    datanator
+                  </a>{" "}
+                  Quilt data package.
+                </p>
+              </div>
+            </div>
+
+            <div className="content-block section" id="code">
+              <h2 className="content-block-heading">Source code</h2>
+
+              <div className="content-block-content">
+                <p className="no-bottom-margin">
+                  The <i>Datanator</i> source code is composed of the following
+                  packages. Each package is available from GitHub.
                 </p>
                 <ul className="no-top-margin">
                   <li>
@@ -323,6 +342,42 @@ class About extends Component {
                     </a>
                   </li>
                 </ul>
+              </div>
+            </div>
+
+            <div className="content-block section" id="code">
+              <h2 className="content-block-heading">License</h2>
+
+              <div className="content-block-content">
+                <p>
+                  The <i>Datanator</i> data is released under the Creative
+                  Commons Attribution-NonCommercial-NoDerivatives 4.0 (CC
+                  BY-NC-ND 4.0){" "}
+                  <a
+                    href={
+                      "https://open.quiltdata.com/b/karrlab/packages/karrlab/datanator/tree/latest/LICENSE"
+                    }
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    license
+                  </a>
+                  .
+                </p>
+
+                <p className="no-bottom-margin">
+                  The <i>Datanator</i> source code is released under the MIT{" "}
+                  <a
+                    href={
+                      "https://github.com/KarrLab/datanator/blob/master/LICENSE"
+                    }
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    license
+                  </a>
+                  .
+                </p>
               </div>
             </div>
 

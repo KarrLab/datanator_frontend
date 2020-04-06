@@ -220,7 +220,7 @@ class MetadataSection extends Component {
         );
       }
       sections.push({
-        id: "links",
+        id: "cross-refs",
         title: "Cross references",
         content: <ul className="three-col-list link-list">{dbLinks}</ul>
       });

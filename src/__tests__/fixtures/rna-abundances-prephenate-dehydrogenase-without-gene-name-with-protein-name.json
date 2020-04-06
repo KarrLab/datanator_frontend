@@ -60,7 +60,6 @@
     ],
     "modified": "2019-12-03T17:32:45.662000Z",
     "protein_name": "ATP-dependent 6-phosphofructokinase (ATP-PFK) (Phosphofructokinase) (EC 2.7.1.11) (Phosphohexokinase)"
-
   },
   {
     "gene_name": "tyrA",
@@ -88,7 +87,9 @@
         "growth_medium": "Luria-Bertani (LB) broth (500 ml) at 30 degree celcius, 250 rpm.",
         "halflife": 430.380138,
         "ncbi_taxonomy_id": 222523,
-        "operon": ["TU_2804056-2810882_R"],
+        "operon": [
+          "TU_2804056-2810882_R"
+        ],
         "ordered_locus_name": "BCE_2995",
         "quantification_method": "Illumina GA-II",
         "reference": [
@@ -240,7 +241,7 @@
           "unit": "h",
           "value": 17.328679513998633
         },
-        "halflife": 534.0,
+        "halflife": 534,
         "ncbi_taxonomy_id": 272623,
         "reference": [
           {
