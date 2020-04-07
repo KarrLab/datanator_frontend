@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { HashLink } from "react-router-hash-link";
 import { scrollTo } from "~/utils/utils";
 import { MetadataSection } from "./MetadataSection";
+import { HalfLifeDataTable } from "./HalfLifeDataTable";
 import { AbundanceDataTable } from "./AbundanceDataTable";
 
 import "../BiochemicalEntityDetails.scss";
@@ -76,6 +77,7 @@ class Protein extends Component {
               <MetadataSection
                 set-scene-metadata={this.setMetadata.bind(this)}
               />
+              <HalfLifeDataTable />
               <AbundanceDataTable />
             </div>
           </div>
