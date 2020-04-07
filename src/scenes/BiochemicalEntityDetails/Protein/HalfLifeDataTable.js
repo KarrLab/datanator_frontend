@@ -179,7 +179,7 @@ class HalfLifeDataTable extends Component {
     ];
 
     if (!organism) {
-      colDefs.splice(-2, 1);
+      colDefs.splice(-3, 1);
     }
     return colDefs;
   }
