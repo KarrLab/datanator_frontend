@@ -19,15 +19,22 @@ class HalfLifeDataTable extends Component {
   }
 
   static formatData(rawData) {
-    const measurements = rawData[0].halflives;
     const formattedData = [];
-    for (const measurement of measurements) {
-      formattedData.push({
-        halfLife: parseFloat(measurement.halflife),
-        organism: measurement.species,
-        growthMedium: measurement.growth_medium,
-        source: measurement.reference[0].doi
-      });
+    for (const rawDatum of rawData) {
+      if (rawDatum.halflives) {
+        const measurements = rawDatum.halflives;
+        for (const measurement of measurements) {
+          formattedData.push({
+            halfLife: parseFloat(measurement.halflife),
+            proteinName: rawDatum.protein_names[0],
+            geneName: measurement.gene_name,
+            uniprotId: rawDatum.uniprot_id,
+            organism: measurement.species,
+            growthMedium: measurement.growth_medium,
+            source: measurement.reference[0].doi
+          });
+        }
+      }
     }
     return formattedData;
   }
@@ -85,6 +92,30 @@ class HalfLifeDataTable extends Component {
         checkboxSelection: true,
         headerCheckboxSelection: true,
         headerCheckboxSelectionFilteredOnly: true
+      },
+      {
+        headerName: "Protein",
+        field: "proteinName",
+        filter: "textFilter"
+      },
+      {
+        headerName: "UniProt id",
+        field: "uniprotId",
+        cellRenderer: function(params) {
+          return (
+            '<a href="https://www.uniprot.org/uniprot/' +
+            params.value +
+            '" target="_blank" rel="noopener noreferrer">' +
+            params.value +
+            "</a>"
+          );
+        }
+      },
+      {
+        headerName: "Gene",
+        field: "geneName",
+        filter: "textFilter",
+        hide: true
       },
       {
         headerName: "Organism",
