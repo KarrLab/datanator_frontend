@@ -204,6 +204,13 @@ class DataTable extends Component {
       organism,
       taxonomicRanks.length
     );
+    if (this.props["data-arrived"]) {
+      if (formattedData.length > 0) {
+        this.props["data-arrived"](this.props["data-type"], true);
+      } else {
+        this.props["data-arrived"](this.props["data-type"], false);
+      }
+    }
     this.sideBarDef = this.props["get-side-bar-def"](formattedData);
     this.colDefs = this.props["get-col-defs"](
       organism,

@@ -51,6 +51,7 @@ class HalfLifeDataTable extends Component {
         }
       }
     }
+
     return formattedData;
   }
 
@@ -195,6 +196,7 @@ class HalfLifeDataTable extends Component {
         format-data={HalfLifeDataTable.formatData}
         get-side-bar-def={HalfLifeDataTable.getSideBarDef}
         get-col-defs={HalfLifeDataTable.getColDefs}
+        data-arrived = {this.props["data-arrived"]}
       />
     );
   }

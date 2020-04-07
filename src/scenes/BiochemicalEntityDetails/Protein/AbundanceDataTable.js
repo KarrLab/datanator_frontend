@@ -194,6 +194,7 @@ class AbundanceDataTable extends Component {
         format-data={this.formatData.bind(this)}
         get-side-bar-def={AbundanceDataTable.getSideBarDef}
         get-col-defs={AbundanceDataTable.getColDefs}
+        data-arrived = {this.props["data-arrived"]}
       />
     );
   }

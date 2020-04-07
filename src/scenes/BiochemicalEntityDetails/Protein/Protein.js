@@ -10,11 +10,17 @@ import "../BiochemicalEntityDetails.scss";
 class Protein extends Component {
   constructor() {
     super();
-    this.state = { metadata: null };
+    this.state = { metadata: null, dataArrived:{"half-life":true, "abundance":true} };
   }
 
   setMetadata(metadata) {
     this.setState({ metadata: metadata });
+  }
+
+  dataArrived(dataType, hasArrived) {
+    let dataArrived = this.state.dataArrived
+    dataArrived[dataType] = hasArrived
+    this.setState({ dataArrived: dataArrived });
   }
 
   render() {
@@ -36,7 +42,7 @@ class Protein extends Component {
           }
         >
           <h1 className="page-title">
-            Protein:{" "}
+            Gene:{" "}
             <span className="highlight-accent">
               {this.state.metadata ? this.state.metadata.title : ""}
             </span>
@@ -63,16 +69,20 @@ class Protein extends Component {
                           </HashLink>
                         </li>
                       ))}
+                    {this.state.dataArrived["half-life"] &&
                     <li key="half-life">
                       <HashLink to="#half-life" scroll={scrollTo}>
                         RNA Half-life
                       </HashLink>
                     </li>
+                  }
+                    {this.state.dataArrived.abundance &&
                     <li key="abundance">
                       <HashLink to="#abundance" scroll={scrollTo}>
                         Abundance
                       </HashLink>
                     </li>
+                  }
                   </ul>
                 </div>
               </div>
@@ -82,8 +92,12 @@ class Protein extends Component {
               <MetadataSection
                 set-scene-metadata={this.setMetadata.bind(this)}
               />
-              <HalfLifeDataTable />
-              <AbundanceDataTable />
+              <HalfLifeDataTable 
+                data-arrived={this.dataArrived.bind(this)}
+              />
+              <AbundanceDataTable
+                data-arrived={this.dataArrived.bind(this)} 
+              />
             </div>
           </div>
         </div>
