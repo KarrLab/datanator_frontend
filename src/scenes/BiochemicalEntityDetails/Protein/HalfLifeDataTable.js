@@ -162,7 +162,7 @@ class HalfLifeDataTable extends Component {
     return (
       <DataTable
         id="half-life"
-        title="Half-life"
+        title="RNA Half-life"
         entity-type="RNA"
         data-type="half-life"
         get-data-url={HalfLifeDataTable.getUrl}

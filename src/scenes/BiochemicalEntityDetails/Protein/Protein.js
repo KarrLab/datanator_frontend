@@ -63,6 +63,11 @@ class Protein extends Component {
                           </HashLink>
                         </li>
                       ))}
+                    <li key="half-life">
+                      <HashLink to="#half-life" scroll={scrollTo}>
+                        RNA Half-life
+                      </HashLink>
+                    </li>
                     <li key="abundance">
                       <HashLink to="#abundance" scroll={scrollTo}>
                         Abundance
