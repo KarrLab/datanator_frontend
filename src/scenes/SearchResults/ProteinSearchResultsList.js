@@ -72,7 +72,7 @@ export default class ProteinSearchResultsList extends Component {
         get-num-results={this.getNumResults}
         format-results={this.formatResults}
         html-anchor-id="proteins"
-        title="Protein ortholog groups"
+        title="Genes"
       />
     );
   }

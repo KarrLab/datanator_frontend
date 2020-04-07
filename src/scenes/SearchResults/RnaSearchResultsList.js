@@ -11,10 +11,12 @@ export default class RnaSearchResultsList extends Component {
       from_: pageCount * pageSize,
       size: pageSize,
       fields: [
-        "protein_name",
+        "protein_names",
+        "halflives.accession_id",
         "synonyms",
-        "gene_name",
+        //"gene_name",
         "name",
+        "identifier",
         "enzymes.enzyme.enzyme_name"
       ]
     };
@@ -85,12 +87,12 @@ export default class RnaSearchResultsList extends Component {
       }
 
       formattedResults.push({
-        title: result["protein_name"],
+        title: result["protein_names"][0],
         description: description,
         route:
           "/rna" +
           "/" +
-          result["protein_name"] +
+          result["protein_names"] +
           (organism ? "/" + organism : "")
       });
     }
