@@ -4,8 +4,13 @@ import DataTable from "../DataTable/DataTable";
 import { HtmlColumnHeader } from "../HtmlColumnHeader";
 import Tooltip from "@material-ui/core/Tooltip";
 import { TAXONOMIC_PROXIMITY_TOOLTIP } from "../ColumnsToolPanel/TooltipDescriptions";
+import PropTypes from "prop-types";
 
 class HalfLifeDataTable extends Component {
+  static propTypes = {
+    "data-arrived": PropTypes.func
+  };
+
   static getUrl(query, organism) {
     let url =
       "rna/halflife/get_info_by_ko/" +
@@ -196,7 +201,7 @@ class HalfLifeDataTable extends Component {
         format-data={HalfLifeDataTable.formatData}
         get-side-bar-def={HalfLifeDataTable.getSideBarDef}
         get-col-defs={HalfLifeDataTable.getColDefs}
-        data-arrived = {this.props["data-arrived"]}
+        data-arrived={this.props["data-arrived"]}
       />
     );
   }

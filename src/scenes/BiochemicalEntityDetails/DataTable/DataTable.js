@@ -33,7 +33,8 @@ class DataTable extends Component {
     "get-data-url": PropTypes.func.isRequired,
     "format-data": PropTypes.func.isRequired,
     "get-side-bar-def": PropTypes.func.isRequired,
-    "get-col-defs": PropTypes.func.isRequired
+    "get-col-defs": PropTypes.func.isRequired,
+    "data-arrived": PropTypes.func
   };
 
   static frameworkComponents = {
