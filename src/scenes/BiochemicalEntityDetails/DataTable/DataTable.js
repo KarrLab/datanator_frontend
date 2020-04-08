@@ -33,8 +33,7 @@ class DataTable extends Component {
     "get-data-url": PropTypes.func.isRequired,
     "format-data": PropTypes.func.isRequired,
     "get-side-bar-def": PropTypes.func.isRequired,
-    "get-col-defs": PropTypes.func.isRequired,
-    "data-arrived": PropTypes.func
+    "get-col-defs": PropTypes.func.isRequired
   };
 
   static frameworkComponents = {
@@ -205,13 +204,6 @@ class DataTable extends Component {
       organism,
       taxonomicRanks.length
     );
-    if (this.props["data-arrived"]) {
-      if (formattedData.length > 0) {
-        this.props["data-arrived"](this.props["data-type"], true);
-      } else {
-        this.props["data-arrived"](this.props["data-type"], false);
-      }
-    }
     this.sideBarDef = this.props["get-side-bar-def"](formattedData);
     this.colDefs = this.props["get-col-defs"](
       organism,
@@ -267,7 +259,6 @@ class DataTable extends Component {
   }
 
   render() {
-    console.log(this.state.data);
     if (DataTable.shouldTableRender(this.state.data)) {
       return (
         <div className="content-block" id={this.props.id}>
@@ -315,7 +306,14 @@ class DataTable extends Component {
         </div>
       );
     } else {
-      return <div></div>;
+      return (
+        <div className="content-block" id={this.props.id}>
+          <div className="content-block-heading-container">
+            <h2 className="content-block-heading">{this.props.title}</h2>
+          </div>
+          <div className="content-block-content">No data found</div>
+        </div>
+      );
     }
   }
 }

@@ -8,8 +8,7 @@ import { TAXONOMIC_PROXIMITY_TOOLTIP } from "../ColumnsToolPanel/TooltipDescript
 
 class AbundanceDataTable extends Component {
   static propTypes = {
-    "uniprot-id-to-taxon-dist": PropTypes.object,
-    "data-arrived": PropTypes.func
+    "uniprot-id-to-taxon-dist": PropTypes.object
   };
 
   static defaultProps = {
@@ -188,14 +187,13 @@ class AbundanceDataTable extends Component {
     return (
       <DataTable
         id="abundance"
-        title="Abundance"
+        title="Protein Abundance"
         entity-type="ortholog group"
         data-type="abundance"
         get-data-url={this.getUrl.bind(this)}
         format-data={this.formatData.bind(this)}
         get-side-bar-def={AbundanceDataTable.getSideBarDef}
         get-col-defs={AbundanceDataTable.getColDefs}
-        data-arrived={this.props["data-arrived"]}
       />
     );
   }
