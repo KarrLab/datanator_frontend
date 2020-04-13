@@ -37,22 +37,6 @@ describe("Search results scene with entity", function() {
         expect(text).to.match(/^(ChEBI: \d+|KEGG: C\d+)$/);
       });
 
-    // RNA
-    cy.get("#rnas .search-results-list > li")
-      .first()
-      .find(".search-result-title a")
-      .should($el => {
-        expect($el.attr("href")).to.match(/^\/rna\//i);
-        expect($el.attr("href")).to.not.match(/\/Escherichia coli$/i);
-      });
-    cy.get("#rnas .search-results-list > li")
-      .first()
-      .find(".search-result-description")
-      .should($el => {
-        const text = $el.text();
-        expect(text).to.match(/^Gene: [a-zA-Z0-9]+/);
-      });
-
     // Proteins
     cy.get("#proteins .search-results-list > li")
       .first()
@@ -115,15 +99,6 @@ describe("Search results scene with entity and organism", function() {
       .find(".search-result-title a")
       .should($el => {
         expect($el.attr("href")).to.match(/^\/metabolite\//i);
-        expect($el.attr("href")).to.match(/\/Escherichia coli$/i);
-      });
-
-    // RNA
-    cy.get("#rnas .search-results-list > li")
-      .first()
-      .find(".search-result-title a")
-      .should($el => {
-        expect($el.attr("href")).to.match(/^\/rna\//i);
         expect($el.attr("href")).to.match(/\/Escherichia coli$/i);
       });
 
