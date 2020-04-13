@@ -15,7 +15,7 @@ class HalfLifeDataTable extends Component {
       "&size=1000";
 
     if (organism) {
-      url = url + "&taxon_distance=true" + "&species=" + organism;
+      url = url + "&taxon_distance=true&species=" + organism;
     }
     return url;
   }
