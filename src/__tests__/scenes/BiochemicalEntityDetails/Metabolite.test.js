@@ -154,7 +154,11 @@ describe("Metabolite data page", () => {
     const synonymsWrapper = mount(formattedSynonyms.content);
     expect(synonymsWrapper.text()).toEqual("5'-UDPUDP");
 
-    const formattedLinks = getSectionFromList(formattedMetadata, "id", "cross-refs");
+    const formattedLinks = getSectionFromList(
+      formattedMetadata,
+      "id",
+      "cross-refs"
+    );
     expect(formattedLinks.title).toEqual("Cross references");
     const linksWrapper = shallow(formattedLinks.content);
 

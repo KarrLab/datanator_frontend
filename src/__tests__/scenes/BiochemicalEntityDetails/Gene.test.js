@@ -68,7 +68,11 @@ describe("Gene data page", () => {
 
   it("Properly format columns", () => {
     const dummy_data = null;
-    const colDefs = ProteinAbundanceDataTable.getColDefs(null, dummy_data, null);
+    const colDefs = ProteinAbundanceDataTable.getColDefs(
+      null,
+      dummy_data,
+      null
+    );
 
     const uniprotCol = getSectionFromList(colDefs, "headerName", "UniProt id");
     expect(uniprotCol.cellRenderer({ value: "P26396" })).toEqual(
