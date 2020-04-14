@@ -16,7 +16,7 @@ class Faq extends Component {
             </div>
             <div className="faq-a">
               Please{" "}
-              <HashLink to="#contact-info" scroll={scrollTo}>
+              <HashLink to="#contact" scroll={scrollTo}>
                 contact us
               </HashLink>{" "}
               to discuss how to integrate your data into <i>Datanator</i>. We
@@ -34,7 +34,7 @@ class Faq extends Component {
             <div className="faq-a">
               We would love to work together to aggregate for biomodeling.
               Please{" "}
-              <HashLink to="#contact-info" scroll={scrollTo}>
+              <HashLink to="#contact" scroll={scrollTo}>
                 contact us
               </HashLink>{" "}
               to discuss how to get involved.

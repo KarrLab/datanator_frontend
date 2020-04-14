@@ -33,7 +33,7 @@ class Help extends Component {
             </div>
 
             <div className="content-block table-of-contents">
-              <h2 className="content-block-heading">Citing us</h2>
+              <h2 className="content-block-heading">Citing <i>Datanator</i></h2>
               <div className="content-block-content">
                 Please check back soon for citation information.
               </div>
@@ -42,7 +42,7 @@ class Help extends Component {
             <div className="content-block table-of-contents">
               <h2 className="content-block-heading">Need more help?</h2>
               <div className="content-block-content">
-                <div>
+                <div id="contact">
                   <a href="mailto:info@karrlab.org">
                     <FontAwesomeIcon icon="envelope" /> Contact us
                   </a>
