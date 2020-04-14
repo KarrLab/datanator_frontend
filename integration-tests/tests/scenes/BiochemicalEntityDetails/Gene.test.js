@@ -13,7 +13,7 @@ describe("Gene scene", function() {
     cy.get(".page-title").should("have.text", "Gene: Glucose-1-phosphate thymidylyltransferase");
 
     // data table
-    const dataContainerId = "abundance";
+    const dataContainerId = "protein-abundance";
     cy.get("#" + dataContainerId + " .ag-root .ag-header-row")
       .find(".ag-header-cell")
       .first()
@@ -37,7 +37,7 @@ describe("Gene scene", function() {
     );
 
     // data table
-    const dataContainerId = "abundance";
+    const dataContainerId = "protein-abundance";
     cy.get("#" + dataContainerId + " .ag-root .ag-header-row")
       .find(".ag-header-cell")
       .first()
@@ -83,7 +83,7 @@ describe("Gene scene", function() {
     cy.visit(url);
 
     // data table
-    const dataContainerId = "half-life";
+    const dataContainerId = "rna-half-life";
     cy.get("#" + dataContainerId + " .ag-root .ag-header-row")
       .find(".ag-header-cell")
       .first()

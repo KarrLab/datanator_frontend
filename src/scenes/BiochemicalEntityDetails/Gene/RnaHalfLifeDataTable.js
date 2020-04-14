@@ -190,8 +190,8 @@ class RnaHalfLifeDataTable extends Component {
       <DataTable
         id="rna-half-life"
         title="RNA half-life"
-        entity-type="RNA"
-        data-type="half-life"
+        entity-type="ortholog group"
+        data-type="RNA half-life"
         get-data-url={RnaHalfLifeDataTable.getUrl}
         format-data={RnaHalfLifeDataTable.formatData}
         get-side-bar-def={RnaHalfLifeDataTable.getSideBarDef}

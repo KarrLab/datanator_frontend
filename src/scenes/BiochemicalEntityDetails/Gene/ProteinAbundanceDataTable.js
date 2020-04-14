@@ -189,7 +189,7 @@ class ProteinAbundanceDataTable extends Component {
         id="protein-abundance"
         title="Protein abundance"
         entity-type="ortholog group"
-        data-type="abundance"
+        data-type="protein abundance"
         get-data-url={this.getUrl.bind(this)}
         format-data={this.formatData.bind(this)}
         get-side-bar-def={ProteinAbundanceDataTable.getSideBarDef}
