@@ -33,7 +33,9 @@ class Help extends Component {
             </div>
 
             <div className="content-block table-of-contents">
-              <h2 className="content-block-heading">Citing <i>Datanator</i></h2>
+              <h2 className="content-block-heading">
+                Citing <i>Datanator</i>
+              </h2>
               <div className="content-block-content">
                 Please check back soon for citation information.
               </div>
