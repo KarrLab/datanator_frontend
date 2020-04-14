@@ -1,28 +1,7 @@
 /* global cy, describe, it */
 
 describe("Gene scene", function() {
-  /*
-  it("Gene scene without organism successfully loads", function() {
-    const route = "gene";
-    const entity = "K00973";
-    const url = "/" + route + "/" + entity;
-
-    cy.visit(url);
-
-    // page title
-    cy.get(".page-title").should("have.text", "Gene: Glucose-1-phosphate thymidylyltransferase");
-
-    // data table
-    const dataContainerId = "protein-abundance";
-    cy.get("#" + dataContainerId + " .ag-root .ag-header-row")
-      .find(".ag-header-cell")
-      .first()
-      .find(".ag-header-cell-text")
-      .should("have.text", "Abundance");
-  });
-  */
-
-  it("Gene scene with organism successfully loads: 1", function() {
+  it("Gene scene with organism successfully loads with protein abundances", function() {
     const route = "gene";
     const entity = "K00973";
     const organism = "Escherichia coli";
@@ -74,7 +53,7 @@ describe("Gene scene", function() {
     });
   });
 
-  it("Gene scene with organism successfully loads: 2", function() {
+  it("Gene scene with organism successfully loads with RNA half-lives", function() {
     const route = "gene";
     const entity = "K16370";
     const organism = "Escherichia coli";
