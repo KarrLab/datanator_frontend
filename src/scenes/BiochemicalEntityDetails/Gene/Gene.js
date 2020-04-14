@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { HashLink } from "react-router-hash-link";
 import { scrollTo } from "~/utils/utils";
 import { MetadataSection } from "./MetadataSection";
-import { HalfLifeDataTable } from "./HalfLifeDataTable";
-import { AbundanceDataTable } from "./AbundanceDataTable";
+import { RnaHalfLifeDataTable } from "./RnaHalfLifeDataTable";
+import { ProteinAbundanceDataTable } from "./ProteinAbundanceDataTable";
 
 import "../BiochemicalEntityDetails.scss";
 
-class Protein extends Component {
+class Gene extends Component {
   constructor() {
     super();
     this.state = {
@@ -33,7 +33,7 @@ class Protein extends Component {
 
         <div
           className={
-            "content-container biochemical-entity-scene biochemical-entity-protein-scene" +
+            "content-container biochemical-entity-scene biochemical-entity-gene-scene" +
             (this.state.metadata ? "" : " hide")
           }
         >
@@ -65,14 +65,14 @@ class Protein extends Component {
                           </HashLink>
                         </li>
                       ))}
-                    <li key="half-life">
-                      <HashLink to="#half-life" scroll={scrollTo}>
-                        RNA Half-life
+                    <li key="rna-half-life">
+                      <HashLink to="#rna-half-life" scroll={scrollTo}>
+                        RNA half-life
                       </HashLink>
                     </li>
-                    <li key="abundance">
-                      <HashLink to="#abundance" scroll={scrollTo}>
-                        Abundance
+                    <li key="protein-abundance">
+                      <HashLink to="#protein-abundance" scroll={scrollTo}>
+                        Protein abundance
                       </HashLink>
                     </li>
                   </ul>
@@ -84,8 +84,8 @@ class Protein extends Component {
               <MetadataSection
                 set-scene-metadata={this.setMetadata.bind(this)}
               />
-              <HalfLifeDataTable />
-              <AbundanceDataTable />
+              <RnaHalfLifeDataTable />
+              <ProteinAbundanceDataTable />
             </div>
           </div>
         </div>
@@ -94,4 +94,4 @@ class Protein extends Component {
   }
 }
 
-export default Protein;
+export default Gene;

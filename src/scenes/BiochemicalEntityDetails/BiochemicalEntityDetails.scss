@@ -28,4 +28,13 @@
       color: $color-primary;
     }
   }
+
+  &.biochemical-entity-gene-scene {
+    .biochemical-entity-data-table {
+      .ag-theme-balham {
+        min-height: 200px;
+        max-height: 1000px;
+      }
+    }
+  }
 }

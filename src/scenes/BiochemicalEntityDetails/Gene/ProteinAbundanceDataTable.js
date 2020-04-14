@@ -6,7 +6,7 @@ import { HtmlColumnHeader } from "../HtmlColumnHeader";
 import Tooltip from "@material-ui/core/Tooltip";
 import { TAXONOMIC_PROXIMITY_TOOLTIP } from "../ColumnsToolPanel/TooltipDescriptions";
 
-class AbundanceDataTable extends Component {
+class ProteinAbundanceDataTable extends Component {
   static propTypes = {
     "uniprot-id-to-taxon-dist": PropTypes.object
   };
@@ -186,16 +186,17 @@ class AbundanceDataTable extends Component {
   render() {
     return (
       <DataTable
-        id="abundance"
-        title="Protein Abundance"
+        id="protein-abundance"
+        title="Protein abundance"
         entity-type="ortholog group"
         data-type="abundance"
         get-data-url={this.getUrl.bind(this)}
         format-data={this.formatData.bind(this)}
-        get-side-bar-def={AbundanceDataTable.getSideBarDef}
-        get-col-defs={AbundanceDataTable.getColDefs}
+        get-side-bar-def={ProteinAbundanceDataTable.getSideBarDef}
+        get-col-defs={ProteinAbundanceDataTable.getColDefs}
+        dom-layout="normal"
       />
     );
   }
 }
-export { AbundanceDataTable };
+export { ProteinAbundanceDataTable };

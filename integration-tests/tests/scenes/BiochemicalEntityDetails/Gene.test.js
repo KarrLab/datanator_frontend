@@ -1,16 +1,16 @@
 /* global cy, describe, it */
 
-describe("Protein scene", function() {
+describe("Gene scene", function() {
   /*
-  it("Protein scene without organism successfully loads", function() {
-    const route = "protein";
+  it("Gene scene without organism successfully loads", function() {
+    const route = "gene";
     const entity = "K00973";
     const url = "/" + route + "/" + entity;
 
     cy.visit(url);
 
     // page title
-    cy.get(".page-title").should("have.text", "Protein: Glucose-1-phosphate thymidylyltransferase");
+    cy.get(".page-title").should("have.text", "Gene: Glucose-1-phosphate thymidylyltransferase");
 
     // data table
     const dataContainerId = "abundance";
@@ -22,8 +22,8 @@ describe("Protein scene", function() {
   });
   */
 
-  it("Protein scene with organism successfully loads", function() {
-    const route = "protein";
+  it("Gene scene with organism successfully loads: 1", function() {
+    const route = "gene";
     const entity = "K00973";
     const organism = "Escherichia coli";
     const url = "/" + route + "/" + entity + "/" + organism;
@@ -74,8 +74,8 @@ describe("Protein scene", function() {
     });
   });
 
-  it("RNA scene with organism successfully loads", function() {
-    const route = "protein";
+  it("Gene scene with organism successfully loads: 2", function() {
+    const route = "gene";
     const entity = "K16370";
     const organism = "Escherichia coli";
     const url = "/" + route + "/" + entity + "/" + organism;

@@ -5,7 +5,7 @@ import { HtmlColumnHeader } from "../HtmlColumnHeader";
 import Tooltip from "@material-ui/core/Tooltip";
 import { TAXONOMIC_PROXIMITY_TOOLTIP } from "../ColumnsToolPanel/TooltipDescriptions";
 
-class HalfLifeDataTable extends Component {
+class RnaHalfLifeDataTable extends Component {
   static getUrl(query, organism) {
     let url =
       "rna/halflife/get_info_by_ko/" +
@@ -188,16 +188,17 @@ class HalfLifeDataTable extends Component {
   render() {
     return (
       <DataTable
-        id="half-life"
-        title="RNA Half-life"
+        id="rna-half-life"
+        title="RNA half-life"
         entity-type="RNA"
         data-type="half-life"
-        get-data-url={HalfLifeDataTable.getUrl}
-        format-data={HalfLifeDataTable.formatData}
-        get-side-bar-def={HalfLifeDataTable.getSideBarDef}
-        get-col-defs={HalfLifeDataTable.getColDefs}
+        get-data-url={RnaHalfLifeDataTable.getUrl}
+        format-data={RnaHalfLifeDataTable.formatData}
+        get-side-bar-def={RnaHalfLifeDataTable.getSideBarDef}
+        get-col-defs={RnaHalfLifeDataTable.getColDefs}
+        dom-layout="normal"
       />
     );
   }
 }
-export { HalfLifeDataTable };
+export { RnaHalfLifeDataTable };

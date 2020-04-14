@@ -33,7 +33,12 @@ class DataTable extends Component {
     "get-data-url": PropTypes.func.isRequired,
     "format-data": PropTypes.func.isRequired,
     "get-side-bar-def": PropTypes.func.isRequired,
-    "get-col-defs": PropTypes.func.isRequired
+    "get-col-defs": PropTypes.func.isRequired,
+    "dom-layout": PropTypes.string
+  };
+
+  static defaultProps = {
+    "dom-layout": "autoHeight"
   };
 
   static frameworkComponents = {
@@ -178,17 +183,17 @@ class DataTable extends Component {
   }
 
   static shouldTableRender(data) {
-    let rowDataPresent = null;
+    let render = null;
     if (data) {
       if (data.length) {
-        rowDataPresent = true;
+        render = true;
       } else {
-        rowDataPresent = false;
+        render = false;
       }
     } else {
-      rowDataPresent = true;
+      render = true;
     }
-    return rowDataPresent;
+    return render;
   }
 
   formatData(rawData, organismData) {
@@ -294,7 +299,7 @@ class DataTable extends Component {
                 suppressCellSelection={true}
                 suppressRowClickSelection={true}
                 suppressContextMenu={true}
-                domLayout="autoHeight"
+                domLayout={this.props["dom-layout"]}
                 onGridSizeChanged={this.fitCols}
                 onColumnVisible={this.fitCols}
                 onColumnResized={this.updateHorzScrolling}
@@ -311,7 +316,7 @@ class DataTable extends Component {
           <div className="content-block-heading-container">
             <h2 className="content-block-heading">{this.props.title}</h2>
           </div>
-          <div className="content-block-content">No data found</div>
+          <div className="content-block-content">No data is available.</div>
         </div>
       );
     }
