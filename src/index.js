@@ -34,8 +34,7 @@ import { errorDialog } from "~/components/ErrorDialog/ErrorDialog";
 import Home from "~/scenes/Home/Home";
 import SearchResults from "~/scenes/SearchResults/SearchResults";
 import Metabolite from "~/scenes/BiochemicalEntityDetails/Metabolite/Metabolite";
-import Rna from "~/scenes/BiochemicalEntityDetails/Rna/Rna";
-import Protein from "~/scenes/BiochemicalEntityDetails/Protein/Protein";
+import Gene from "~/scenes/BiochemicalEntityDetails/Gene/Gene";
 import Reaction from "~/scenes/BiochemicalEntityDetails/Reaction/Reaction";
 import Stats from "~/scenes/Stats/Stats";
 import Help from "~/scenes/Help/Help";
@@ -62,8 +61,7 @@ const SiteRouter = () => {
           exact
           component={Metabolite}
         />
-        <Route path="/rna/:rna/:organism?/" exact component={Rna} />
-        <Route path="/protein/:protein/:organism?/" exact component={Protein} />
+        <Route path="/gene/:gene/:organism?/" exact component={Gene} />
         <Route
           path="/reaction/:substrates-->:products/:organism?/"
           exact

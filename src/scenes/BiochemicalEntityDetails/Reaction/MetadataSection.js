@@ -38,9 +38,15 @@ class MetadataSection extends Component {
     const args = ["_from=0", "size=1000", "bound=tight"];
 
     const substratesProducts = query.split("-->");
-    args.push("substrates=" + substratesProducts[0].trim());
+    args.push(
+      "substrates=" +
+        encodeURIComponent(substratesProducts[0].split(",").join("|"))
+    );
     if (substratesProducts.length >= 2) {
-      args.push("products=" + substratesProducts[1].trim());
+      args.push(
+        "products=" +
+          encodeURIComponent(substratesProducts[1].split(",").join("|"))
+      );
     }
 
     return "reactions/kinlaw_by_name/?" + args.join("&");
@@ -140,7 +146,7 @@ class MetadataSection extends Component {
     const descriptions = [];
     if (processedData.enzyme) {
       if (processedData.kegg_orthology_id) {
-        let route = "/protein/" + processedData.kegg_orthology_id;
+        let route = "/gene/" + processedData.kegg_orthology_id;
         if (organism) {
           route += "/" + organism;
         }

@@ -260,7 +260,7 @@ class Home extends Component {
                     />
                   </LazyLoad>
                 </div>
-                <div className="section-column-subtitle">Coming soon</div>
+                <div className="section-column-subtitle">Available</div>
                 <div className="section-column-title">RNA half-lives</div>
                 <div className="section-column-description">
                   Measurements of the half-lives of mRNA aggregated from more

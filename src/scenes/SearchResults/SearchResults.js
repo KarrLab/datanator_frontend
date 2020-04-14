@@ -3,10 +3,8 @@ import { withRouter } from "react-router";
 import PropTypes from "prop-types";
 import { HashLink } from "react-router-hash-link";
 import { scrollTo, parseHistoryLocationPathname } from "~/utils/utils";
-
 import MetaboliteSearchResultsList from "./MetaboliteSearchResultsList";
-import RnaSearchResultsList from "./RnaSearchResultsList";
-import ProteinSearchResultsList from "./ProteinSearchResultsList";
+import GeneSearchResultsList from "./GeneSearchResultsList";
 import ReactionSearchResultsList from "./ReactionSearchResultsList";
 
 import "./SearchResults.scss";
@@ -70,13 +68,8 @@ class SearchResults extends Component {
                     </HashLink>
                   </li>
                   <li>
-                    <HashLink to="#rnas" scroll={scrollTo}>
-                      {"RNAs"}
-                    </HashLink>
-                  </li>
-                  <li>
-                    <HashLink to="#proteins" scroll={scrollTo}>
-                      {"Proteins"}
+                    <HashLink to="#genes" scroll={scrollTo}>
+                      {"Genes"}
                     </HashLink>
                   </li>
                   <li>
@@ -91,8 +84,7 @@ class SearchResults extends Component {
 
           <div className="content-column">
             <MetaboliteSearchResultsList />
-            <RnaSearchResultsList />
-            <ProteinSearchResultsList />
+            <GeneSearchResultsList />
             <ReactionSearchResultsList />
           </div>
         </div>
