@@ -41,12 +41,14 @@ function genApiErrorHandler(params, errorMessage = null) {
         }
       }
 
-      errorDialogRef.current.open(
-        <span className="dialog-message-container">
-          {errorMessage && <span>{errorMessage}</span>}
-          {DEFAULT_ERROR_MESSAGE}
-        </span>
-      );
+      if (errorDialogRef.current) {
+        errorDialogRef.current.open(
+          <span className="dialog-message-container">
+            {errorMessage && <span>{errorMessage}</span>}
+            {DEFAULT_ERROR_MESSAGE}
+          </span>
+        );
+      }
     }
   };
 }
