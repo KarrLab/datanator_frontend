@@ -230,10 +230,9 @@ class DataTable extends Component {
   }
 
   updateHorzScrolling(event) {
-    const grid = this.grid.current;
-    const columnApi = event.columnApi;
+    const columnApi = event.columnApi;    
 
-    const gridRoot = grid.eGridDiv.getElementsByClassName("ag-root")[0];
+    const gridRoot = event.api.gridPanel.eGui;
     const gridWidth: number = gridRoot.offsetWidth;
 
     const displayedCols = columnApi.getAllDisplayedColumns();
@@ -243,10 +242,11 @@ class DataTable extends Component {
       totDisplayedColMinWidth += col.getActualWidth();
     }
 
+    const gridOptions = event.api.gridOptionsWrapper.gridOptions;
     if (totDisplayedColMinWidth + 2 * (numDisplayedCols + 1) > gridWidth) {
-      grid.gridOptions.suppressHorizontalScroll = false;
+      gridOptions.suppressHorizontalScroll = false;
     } else {
-      grid.gridOptions.suppressHorizontalScroll = true;
+      gridOptions.suppressHorizontalScroll = true;
     }
   }
 
