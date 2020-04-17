@@ -11,68 +11,16 @@ class Stats extends Component {
   constructor() {
     super();
     this.state = {
-      dataTypeData: {
-        concentrations: null,
-        abuncances: null,
-        halfLives: null,
-        kcat: null,
-        km: null
-      },
       dataType: {
         labels: [],
         values: []
       }
     };
 
-    //this.setValueFromURL = this.setValueFromURL.bind(this);
-
     this.setBarChart = this.setBarChart.bind(this);
   }
-  /*
-  componentDidMount() {
-    if (this.cancelTokenSource) {
-      this.cancelTokenSource.cancel();
-    }
-    this.cancelTokenSource = axios.CancelToken.source();
-
-    let url = "metabolites/summary/concentration_count/"
-    getDataFromApi([url], { cancelToken: this.cancelTokenSource.token }).then(response => {
-        let dataTypeData = this.state.dataTypeData
-        dataTypeData['concentrations'] = response.data
-        this.setState({ data: response.data });
-    })
-
-
-    //this.setState({dataTypeData:[1,4,5]})
-  }
-  */
 
   componentDidMount() {
-
-    /*
-    this.setValueFromURL(
-      "dataTypeData",
-      "concentrations",
-      "metabolites/summary/concentration_count/"
-    );
-    this.setValueFromURL(
-      "dataTypeData",
-      "halfLives",
-      "rna/summary/get_total_docs/"
-    );
-    this.setValueFromURL(
-      "dataTypeData",
-      "kcat",
-      "reactions/summary/num_parameter_kcat/"
-    );
-    this.setValueFromURL(
-      "dataTypeData",
-      "km",
-      "reactions/summary/num_parameter_km/"
-    );
-
-    */
-
     const dataTypeInfo = [];
     dataTypeInfo.push({
       label: "Metabolite concentrations",
@@ -93,47 +41,27 @@ class Stats extends Component {
     this.setBarChart("dataType", dataTypeInfo);
   }
 
-  /*
-  setValueFromURL(dictName, keyName, url) {
-    console.log(keyName);
-
-    getDataFromApi([url]).then(response => {
-      let dict = this.state[dictName];
-      //console.log(response.data);
-      //this.state[dictName][keyName] = response.data
-      dict[keyName] = response.data;
-      this.setState({ dictName: response.data });
-    });
-  }
-
-  */
-
   setBarChart(barChartName, chartInfo) {
-    console.log(chartInfo)
+    console.log(chartInfo);
     const requests = [];
-    const labels = []
-    const values = []
-    //for (var i = chartInfo.length - 1; i >= 0; i--) {
+    const labels = [];
+    const values = [];
 
     for (const info of chartInfo) {
       requests.push(getDataFromApi([info.url]));
     }
-    
 
     axios.all(requests).then(
       axios.spread((...responses) => {
-      console.log(responses)
-      for (var n = 0; n < responses.length; n++) {
-        console.log(responses[n].data)
-        values.push(responses[n].data)
-        labels.push(chartInfo[n].label + " (" + responses[n].data + ")")
-      }
-      this.setState({dataType:{labels:labels, values:values}})
-
-
-    }));
-
-    //this.setState({dataType:{labels:labels, values:values}})
+        console.log(responses);
+        for (var n = 0; n < responses.length; n++) {
+          console.log(responses[n].data);
+          values.push(responses[n].data);
+          labels.push(chartInfo[n].label + " (" + responses[n].data + ")");
+        }
+        this.setState({ dataType: { labels: labels, values: values } });
+      })
+    );
   }
 
   render() {
