@@ -18,6 +18,10 @@ class Stats extends Component {
       dataSource: {
         labels: [],
         values: []
+      },
+      journalByDataType: {
+        labels: [],
+        values: []
       }
     };
 
@@ -64,6 +68,21 @@ class Stats extends Component {
       url: "rna/summary/get_distinct/?_input=halflives.reference.doi"
     });
     this.setBarChart("dataSource", dataSourceInfo);
+
+    const journalByDataTypeInfo = [];
+    journalByDataTypeInfo.push({
+      label: "Metabolite Concentrations",
+      url: "metabolites/summary/get_ref_count/"
+    });
+    journalByDataTypeInfo.push({
+      label: "RNA Half-Life",
+      url: "rna/summary/get_distinct/?_input=halflives.reference.doi"
+    });
+    journalByDataTypeInfo.push({
+      label: "Protein Abundances",
+      url: "proteins/summary/num_publications/"
+    });
+    this.setBarChart("journalByDataType", journalByDataTypeInfo);
   }
 
   setBarChart(barChartName, chartInfo) {
@@ -142,8 +161,13 @@ class Stats extends Component {
             </div>
 
             <div className="content-block section" id="section-3">
-              <h2 className="content-block-heading">Section 3</h2>
-              <div className="content-block-content">Coming soon</div>
+              <h2 className="content-block-heading">Referenced Journal Articles by Data Type</h2>
+              <div className="content-block-content">
+              <BarPlot
+                  labels={this.state.journalByDataType.labels}
+                  data={this.state.journalByDataType.values}
+                />
+                </div>
             </div>
           </div>
         </div>
