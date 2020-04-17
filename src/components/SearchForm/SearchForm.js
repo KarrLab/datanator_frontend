@@ -163,11 +163,11 @@ class SearchForm extends Component {
         <div className="search-label search-label-find">Find data about</div>
 
         <InputGroup
-          aria-label="Biochemical entity (e.g., metabolite, RNA, protein, or reaction)"
+          aria-label="Biochemical entity (e.g., metabolite, gene, or reaction)"
           type="text"
           className="search-form-el search-form-el-entity search-input"
           leftIcon=<FontAwesomeIcon icon="atom" />
-          placeholder="metabolite, RNA, protein, or reaction (e.g., glucose)"
+          placeholder="metabolite, gene, or reaction (e.g., glucose)"
           value={this.state.query}
           onChange={event => {
             this.setState({

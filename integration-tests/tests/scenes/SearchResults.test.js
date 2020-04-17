@@ -37,22 +37,22 @@ describe("Search results scene with entity", function() {
         expect(text).to.match(/^(ChEBI: \d+|KEGG: C\d+)$/);
       });
 
-    // Proteins
-    cy.get("#proteins .search-results-list > li")
+    // Genes
+    cy.get("#genes .search-results-list > li")
       .first()
       .find(".search-result-title")
       .should($el => {
         const text = $el.text();
         expect(text).to.match(/glucose/i);
       });
-    cy.get("#proteins .search-results-list > li")
+    cy.get("#genes .search-results-list > li")
       .first()
       .find(".search-result-title a")
       .should($el => {
-        expect($el.attr("href")).to.match(/^\/protein\//i);
+        expect($el.attr("href")).to.match(/^\/gene\//i);
         expect($el.attr("href")).to.not.match(/\/Escherichia coli$/i);
       });
-    cy.get("#proteins .search-results-list > li")
+    cy.get("#genes .search-results-list > li")
       .first()
       .find(".search-result-description")
       .should($el => {
@@ -102,19 +102,19 @@ describe("Search results scene with entity and organism", function() {
         expect($el.attr("href")).to.match(/\/Escherichia coli$/i);
       });
 
-    // proteins
-    cy.get("#proteins .search-results-list > li")
+    // genes
+    cy.get("#genes .search-results-list > li")
       .first()
       .find(".search-result-title")
       .should($el => {
         const text = $el.text();
         expect(text).to.match(/glucose/i);
       });
-    cy.get("#proteins .search-results-list > li")
+    cy.get("#genes .search-results-list > li")
       .first()
       .find(".search-result-title a")
       .should($el => {
-        expect($el.attr("href")).to.match(/^\/protein\//i);
+        expect($el.attr("href")).to.match(/^\/gene\//i);
         expect($el.attr("href")).to.match(/\/Escherichia coli$/i);
       });
 
@@ -149,31 +149,31 @@ describe("Search results scene with more results", function() {
     // appended metabolite results
     cy.get("#metabolites .search-results-list > li").should("have.length", 20);
 
-    // request more proteins
-    cy.get("#proteins .more-search-results-button")
+    // request more genes
+    cy.get("#genes .more-search-results-button")
       .first()
       .click();
-    cy.get("#proteins .search-results-list > li").should("have.length", 20);
-    cy.get("#proteins .more-search-results-button")
+    cy.get("#genes .search-results-list > li").should("have.length", 20);
+    cy.get("#genes .more-search-results-button")
       .first()
       .click();
-    cy.get("#proteins .search-results-list > li").should("have.length", 30);
-    cy.get("#proteins .more-search-results-button")
+    cy.get("#genes .search-results-list > li").should("have.length", 30);
+    cy.get("#genes .more-search-results-button")
       .first()
       .click();
-    cy.get("#proteins .search-results-list > li").should("have.length", 40);
-    cy.get("#proteins .more-search-results-button")
+    cy.get("#genes .search-results-list > li").should("have.length", 40);
+    cy.get("#genes .more-search-results-button")
       .first()
       .click();
-    cy.get("#proteins .search-results-list > li").should("have.length", 50);
-    cy.get("#proteins .more-search-results-button")
+    cy.get("#genes .search-results-list > li").should("have.length", 50);
+    cy.get("#genes .more-search-results-button")
       .first()
       .click();
-    cy.get("#proteins .search-results-list > li").should("have.length", 60);
-    cy.get("#proteins .more-search-results-button")
+    cy.get("#genes .search-results-list > li").should("have.length", 60);
+    cy.get("#genes .more-search-results-button")
       .first()
       .click();
-    cy.get("#proteins .search-results-list > li").should("have.length", 70);
+    cy.get("#genes .search-results-list > li").should("have.length", 70);
   });
 });
 

@@ -146,7 +146,7 @@ class MetadataSection extends Component {
     const descriptions = [];
     if (processedData.enzyme) {
       if (processedData.kegg_orthology_id) {
-        let route = "/protein/" + processedData.kegg_orthology_id;
+        let route = "/gene/" + processedData.kegg_orthology_id;
         if (organism) {
           route += "/" + organism;
         }

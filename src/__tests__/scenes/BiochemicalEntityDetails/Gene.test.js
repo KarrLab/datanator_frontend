@@ -1,17 +1,17 @@
-import { AbundanceDataTable } from "~/scenes/BiochemicalEntityDetails/Protein/AbundanceDataTable";
+import { ProteinAbundanceDataTable } from "~/scenes/BiochemicalEntityDetails/Gene/ProteinAbundanceDataTable";
 import testRawData from "~/__tests__/fixtures/protein-abundances-6-phosphofructo-2-kinase";
 import testRawMetadata from "~/__tests__/fixtures/protein-metadata-6-phosphofructo-2-kinase";
-import { MetadataSection } from "~/scenes/BiochemicalEntityDetails/Protein/MetadataSection";
+import { MetadataSection } from "~/scenes/BiochemicalEntityDetails/Gene/MetadataSection";
 import { shallow } from "enzyme";
 import { getListDomElements, getSectionFromList } from "~/utils/testing_utils";
 
 /* global describe, it, expect */
-describe("Protein data page", () => {
+describe("Gene data page", () => {
   it("Gets correct concentration data url", () => {
     const entity = "K00850";
     const organism = "Escherichia coli";
     // instantiate data table
-    const dataTable = new AbundanceDataTable();
+    const dataTable = new ProteinAbundanceDataTable();
 
     // assert URL correct
     expect(dataTable.getUrl(entity)).toEqual(
@@ -24,7 +24,7 @@ describe("Protein data page", () => {
 
   it("Formats abundance data correctly", () => {
     // instantiate data table
-    const dataTable = new AbundanceDataTable();
+    const dataTable = new ProteinAbundanceDataTable();
 
     // format raw data
     const organism = "Escherichia coli";
@@ -68,7 +68,11 @@ describe("Protein data page", () => {
 
   it("Properly format columns", () => {
     const dummy_data = null;
-    const colDefs = AbundanceDataTable.getColDefs(null, dummy_data, null);
+    const colDefs = ProteinAbundanceDataTable.getColDefs(
+      null,
+      dummy_data,
+      null
+    );
 
     const uniprotCol = getSectionFromList(colDefs, "headerName", "UniProt id");
     expect(uniprotCol.cellRenderer({ value: "P26396" })).toEqual(
@@ -89,7 +93,7 @@ describe("Protein data page", () => {
 
     const organism = "Escherichia coli";
     const rankings = ["species", "genus", "family"];
-    const colDefsWithOrganism = AbundanceDataTable.getColDefs(
+    const colDefsWithOrganism = ProteinAbundanceDataTable.getColDefs(
       organism,
       dummy_data,
       rankings

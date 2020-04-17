@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import SearchResultsList from "./SearchResultsList.js";
 import { upperCaseFirstLetter } from "~/utils/utils";
 
-export default class ProteinSearchResultsList extends Component {
+export default class GeneSearchResultsList extends Component {
   getResultsUrl(query, pageCount, pageSize) {
     return (
       "ftx/text_search/protein_ranked_by_ko/" +
@@ -51,7 +51,7 @@ export default class ProteinSearchResultsList extends Component {
         );
 
         //route
-        formattedResult["route"] = "/protein/" + koNumber;
+        formattedResult["route"] = "/gene/" + koNumber;
         if (organism) {
           formattedResult["route"] += "/" + organism;
         }
@@ -71,7 +71,7 @@ export default class ProteinSearchResultsList extends Component {
         get-results={this.getResults}
         get-num-results={this.getNumResults}
         format-results={this.formatResults}
-        html-anchor-id="proteins"
+        html-anchor-id="genes"
         title="Genes"
       />
     );

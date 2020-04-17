@@ -1,62 +1,57 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { getNumProperties, upperCaseFirstLetter } from "~/utils/utils";
+import { upperCaseFirstLetter } from "~/utils/utils";
 import DataTable from "../DataTable/DataTable";
 import { HtmlColumnHeader } from "../HtmlColumnHeader";
 import Tooltip from "@material-ui/core/Tooltip";
 import { TAXONOMIC_PROXIMITY_TOOLTIP } from "../ColumnsToolPanel/TooltipDescriptions";
 
-class AbundanceDataTable extends Component {
-  static propTypes = {
-    "uniprot-id-to-taxon-dist": PropTypes.object
-  };
-
-  static defaultProps = {
-    "uniprot-id-to-taxon-dist": null
-  };
-
-  getUrl(query, organism) {
-    return (
-      "proteins/proximity_abundance/proximity_abundance_kegg/?kegg_id=" +
+class RnaHalfLifeDataTable extends Component {
+  static getUrl(query, organism) {
+    let url =
+      "rna/halflife/get_info_by_ko/" +
+      "?ko_number=" +
       query +
-      "&distance=40" +
-      (organism ? "&anchor=" + organism : "")
-    );
+      "&_from=0" +
+      "&size=1000";
+
+    if (organism) {
+      url = url + "&taxon_distance=true&species=" + organism;
+    }
+    return url;
   }
 
-  formatData(rawData, organism) {
-    let start = 0;
-    if (getNumProperties(rawData[0]) === 1) {
-      start = 1;
-    }
-
+  static formatData(rawData, organism, lengthOfTaxonomicRanks) {
     const formattedData = [];
-    for (let i = 0; i < rawData.slice(start).length; i++) {
-      const docs = rawData.slice(start)[i];
-      for (const rawDatum of docs.documents) {
-        if (rawDatum.abundances !== undefined) {
-          for (const measurement of rawDatum.abundances) {
-            let proteinName = rawDatum.protein_name;
-            if (proteinName.includes("(")) {
-              proteinName = proteinName.substring(0, proteinName.indexOf("("));
-            }
+    for (const rawDatum of rawData) {
+      if (rawDatum.halflives) {
+        const measurements = rawDatum.halflives;
+        for (const measurement of measurements) {
+          let formattedDatum = {
+            halfLife: parseFloat(measurement.halflife),
+            proteinName: rawDatum.protein_names[0],
+            geneName: measurement.gene_name,
+            uniprotId: rawDatum.uniprot_id,
+            organism: measurement.species,
+            growthMedium: measurement.growth_medium,
+            source: measurement.reference[0].doi
+          };
 
-            const row = {
-              abundance: parseFloat(measurement.abundance),
-              proteinName: proteinName,
-              uniprotId: rawDatum.uniprot_id,
-              geneSymbol: rawDatum.gene_name,
-              organism: rawDatum.species_name,
-              organ: measurement.organ.replace("_", " ").toLowerCase()
-            };
-            if (organism != null) {
-              row["taxonomicProximity"] = i;
+          if (organism != null) {
+            let distance = "";
+            const keys = Object.keys(measurement.taxon_distance);
+            if (keys.length === 4) {
+              distance = measurement.taxon_distance[organism];
+            } else {
+              distance = lengthOfTaxonomicRanks + 1;
             }
-            formattedData.push(row);
+            formattedDatum["taxonomicProximity"] = distance;
           }
+
+          formattedData.push(formattedDatum);
         }
       }
     }
+
     return formattedData;
   }
 
@@ -84,7 +79,7 @@ class AbundanceDataTable extends Component {
           iconKey: "chart",
           toolPanel: "statsToolPanel",
           toolPanelParams: {
-            col: ["abundance"]
+            col: ["halfLife"]
           }
         }
       ],
@@ -97,8 +92,16 @@ class AbundanceDataTable extends Component {
   static getColDefs(organism, formattedData, taxonomicRanks) {
     const colDefs = [
       {
-        headerName: "Abundance",
-        field: "abundance",
+        headerName: "Half-life (s^{-1})",
+        headerComponentFramework: HtmlColumnHeader,
+        headerComponentParams: {
+          name: (
+            <span>
+              Half-life (s<sup>-1</sup>)
+            </span>
+          )
+        },
+        field: "halfLife",
         cellRenderer: "numericCellRenderer",
         type: "numericColumn",
         filter: "numberFilter",
@@ -126,7 +129,7 @@ class AbundanceDataTable extends Component {
       },
       {
         headerName: "Gene",
-        field: "geneSymbol",
+        field: "geneName",
         filter: "textFilter",
         hide: true
       },
@@ -154,24 +157,24 @@ class AbundanceDataTable extends Component {
         }
       },
       {
-        headerName: "Organ",
-        field: "organ",
+        headerName: "Media",
+        field: "growthMedium",
         filter: "textFilter",
         hide: false
       },
       {
         headerName: "Source",
-        field: "uniprotId",
+        field: "source",
         cellRenderer: function(params) {
           return (
-            '<a href="https://pax-db.org/search?q=' +
+            '<a href="https://dx.doi.org/' +
             params.value +
             '" target="_blank" rel="noopener noreferrer">' +
-            "PAXdb" +
+            "DOI" +
             "</a>"
           );
         },
-        filterValueGetter: () => "PAXdb",
+        filterValueGetter: () => "DOI",
         filter: "textFilter"
       }
     ];
@@ -179,23 +182,23 @@ class AbundanceDataTable extends Component {
     if (!organism) {
       colDefs.splice(-3, 1);
     }
-
     return colDefs;
   }
 
   render() {
     return (
       <DataTable
-        id="abundance"
-        title="Protein Abundance"
+        id="rna-half-life"
+        title="RNA half-life"
         entity-type="ortholog group"
-        data-type="abundance"
-        get-data-url={this.getUrl.bind(this)}
-        format-data={this.formatData.bind(this)}
-        get-side-bar-def={AbundanceDataTable.getSideBarDef}
-        get-col-defs={AbundanceDataTable.getColDefs}
+        data-type="RNA half-life"
+        get-data-url={RnaHalfLifeDataTable.getUrl}
+        format-data={RnaHalfLifeDataTable.formatData}
+        get-side-bar-def={RnaHalfLifeDataTable.getSideBarDef}
+        get-col-defs={RnaHalfLifeDataTable.getColDefs}
+        dom-layout="normal"
       />
     );
   }
 }
-export { AbundanceDataTable };
+export { RnaHalfLifeDataTable };

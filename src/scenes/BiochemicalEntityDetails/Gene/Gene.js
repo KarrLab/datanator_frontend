@@ -2,14 +2,17 @@ import React, { Component } from "react";
 import { HashLink } from "react-router-hash-link";
 import { scrollTo } from "~/utils/utils";
 import { MetadataSection } from "./MetadataSection";
-import { HalfLifeDataTable } from "./HalfLifeDataTable";
+import { RnaHalfLifeDataTable } from "./RnaHalfLifeDataTable";
+import { ProteinAbundanceDataTable } from "./ProteinAbundanceDataTable";
 
 import "../BiochemicalEntityDetails.scss";
 
-class Rna extends Component {
+class Gene extends Component {
   constructor() {
     super();
-    this.state = { metadata: null };
+    this.state = {
+      metadata: null
+    };
   }
 
   setMetadata(metadata) {
@@ -30,12 +33,12 @@ class Rna extends Component {
 
         <div
           className={
-            "content-container biochemical-entity-scene biochemical-entity-rna-scene" +
+            "content-container biochemical-entity-scene biochemical-entity-gene-scene" +
             (this.state.metadata ? "" : " hide")
           }
         >
           <h1 className="page-title">
-            RNA:{" "}
+            Gene:{" "}
             <span className="highlight-accent">
               {this.state.metadata ? this.state.metadata.title : ""}
             </span>
@@ -62,9 +65,14 @@ class Rna extends Component {
                           </HashLink>
                         </li>
                       ))}
-                    <li key="half-life">
-                      <HashLink to="#half-life" scroll={scrollTo}>
-                        Half-life
+                    <li key="rna-half-life">
+                      <HashLink to="#rna-half-life" scroll={scrollTo}>
+                        RNA half-life
+                      </HashLink>
+                    </li>
+                    <li key="protein-abundance">
+                      <HashLink to="#protein-abundance" scroll={scrollTo}>
+                        Protein abundance
                       </HashLink>
                     </li>
                   </ul>
@@ -76,7 +84,8 @@ class Rna extends Component {
               <MetadataSection
                 set-scene-metadata={this.setMetadata.bind(this)}
               />
-              <HalfLifeDataTable />
+              <RnaHalfLifeDataTable />
+              <ProteinAbundanceDataTable />
             </div>
           </div>
         </div>
@@ -85,4 +94,4 @@ class Rna extends Component {
   }
 }
 
-export default Rna;
+export default Gene;
