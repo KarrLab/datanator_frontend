@@ -194,52 +194,55 @@ class MetadataSection extends Component {
       )
     });
 
-    if (processedData.pathways.length > 0) {
-      processedData.pathways.sort((a, b) => {
-        return strCompare(a.pathway_description, b.pathway_description);
-      });
-      sections.push({
-        id: "pathways",
-        title: "Pathways",
-        content: (
-          <ul className="two-col-list link-list">
-            {processedData.pathways.map(el => {
-              if (el.kegg_pathway_code) {
-                const map_id = el.kegg_pathway_code.substring(
-                  2,
-                  el.kegg_pathway_code.length
-                );
-                return (
-                  <li key={el.pathway_description}>
-                    <a
-                      href={
-                        "https://www.genome.jp/dbget-bin/www_bget?map" + map_id
-                      }
-                      className="bulleted-list-item"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      dangerouslySetInnerHTML={{
-                        __html: upperCaseFirstLetter(el.pathway_description)
-                      }}
-                    ></a>
-                  </li>
-                );
-              } else {
-                return (
-                  <li key={el.pathway_description}>
-                    <div
-                      className="bulleted-list-item"
-                      dangerouslySetInnerHTML={{
-                        __html: upperCaseFirstLetter(el.pathway_description)
-                      }}
-                    ></div>
-                  </li>
-                );
-              }
-            })}
-          </ul>
-        )
-      });
+    if (processedData.pathways) {
+      if (processedData.pathways.length > 0) {
+        processedData.pathways.sort((a, b) => {
+          return strCompare(a.pathway_description, b.pathway_description);
+        });
+        sections.push({
+          id: "pathways",
+          title: "Pathways",
+          content: (
+            <ul className="two-col-list link-list">
+              {processedData.pathways.map(el => {
+                if (el.kegg_pathway_code) {
+                  const map_id = el.kegg_pathway_code.substring(
+                    2,
+                    el.kegg_pathway_code.length
+                  );
+                  return (
+                    <li key={el.pathway_description}>
+                      <a
+                        href={
+                          "https://www.genome.jp/dbget-bin/www_bget?map" +
+                          map_id
+                        }
+                        className="bulleted-list-item"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        dangerouslySetInnerHTML={{
+                          __html: upperCaseFirstLetter(el.pathway_description)
+                        }}
+                      ></a>
+                    </li>
+                  );
+                } else {
+                  return (
+                    <li key={el.pathway_description}>
+                      <div
+                        className="bulleted-list-item"
+                        dangerouslySetInnerHTML={{
+                          __html: upperCaseFirstLetter(el.pathway_description)
+                        }}
+                      ></div>
+                    </li>
+                  );
+                }
+              })}
+            </ul>
+          )
+        });
+      }
     }
     return sections;
   }
