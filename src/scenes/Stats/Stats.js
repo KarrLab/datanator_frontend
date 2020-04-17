@@ -118,18 +118,18 @@ class Stats extends Component {
               <div className="content-block-content">
                 <ul>
                   <li>
-                    <HashLink to="#section-1" scroll={scrollTo}>
-                      Section 1
+                    <HashLink to="#data-type" scroll={scrollTo}>
+                      Data Type
                     </HashLink>
                   </li>
                   <li>
-                    <HashLink to="#section-2" scroll={scrollTo}>
-                      Section 2
+                    <HashLink to="#data-source" scroll={scrollTo}>
+                      Data Source
                     </HashLink>
                   </li>
                   <li>
-                    <HashLink to="#section-3" scroll={scrollTo}>
-                      Section 3
+                    <HashLink to="#journal-number" scroll={scrollTo}>
+                      Journal Numbers
                     </HashLink>
                   </li>
                 </ul>
@@ -138,7 +138,7 @@ class Stats extends Component {
           </div>
 
           <div className="content-column">
-            <div className="content-block section" id="section-1">
+            <div className="content-block section" id="data-type">
               <h2 className="content-block-heading">
                 Number of Observations By Data Type
               </h2>
@@ -150,7 +150,7 @@ class Stats extends Component {
               </div>
             </div>
 
-            <div className="content-block section" id="section-2">
+            <div className="content-block section" id="data-source">
               <h2 className="content-block-heading">
                 Number of Observations By Data Source
               </h2>
@@ -162,7 +162,7 @@ class Stats extends Component {
               </div>
             </div>
 
-            <div className="content-block section" id="section-3">
+            <div className="content-block section" id="journal-number">
               <h2 className="content-block-heading">
                 Referenced Journal Articles by Data Type
               </h2>
