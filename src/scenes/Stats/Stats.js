@@ -14,6 +14,10 @@ class Stats extends Component {
       dataType: {
         labels: [],
         values: []
+      },
+      dataSource: {
+        labels: [],
+        values: []
       }
     };
 
@@ -39,6 +43,27 @@ class Stats extends Component {
       url: "reactions/summary/num_parameter_km/"
     });
     this.setBarChart("dataType", dataTypeInfo);
+
+
+
+    const dataSourceInfo = [];
+    dataSourceInfo.push({
+      label: "ECMDB",
+      url: "metabolites/summary/ecmdb_doc_count/"
+    });
+    dataSourceInfo.push({
+      label: "YMDB",
+      url: "metabolites/summary/ymdb_doc_count/"
+    });
+    dataSourceInfo.push({
+      label: "Sabio-RK",
+      url: "reactions/summary/num_entries/"
+    });
+    dataSourceInfo.push({
+      label: "Direct from Publicatons",
+      url: "rna/summary/get_distinct/?_input=halflives.reference.doi"
+    });
+    this.setBarChart("dataSource", dataSourceInfo);
   }
 
   setBarChart(barChartName, chartInfo) {
@@ -59,7 +84,7 @@ class Stats extends Component {
           values.push(responses[n].data);
           labels.push(chartInfo[n].label + " (" + responses[n].data + ")");
         }
-        this.setState({ dataType: { labels: labels, values: values } });
+        this.setState({[barChartName]: { labels: labels, values: values } });
       })
     );
   }
@@ -97,7 +122,7 @@ class Stats extends Component {
 
           <div className="content-column">
             <div className="content-block section" id="section-1">
-              <h2 className="content-block-heading">Section 1</h2>
+              <h2 className="content-block-heading">Number of Observations By Data Type</h2>
               <div className="content-block-content">
                 <BarPlot
                   labels={this.state.dataType.labels}
@@ -107,8 +132,13 @@ class Stats extends Component {
             </div>
 
             <div className="content-block section" id="section-2">
-              <h2 className="content-block-heading">Section 2</h2>
-              <div className="content-block-content">Coming soon</div>
+              <h2 className="content-block-heading">Number of Observations By Data Source</h2>
+              <div className="content-block-content">
+              <BarPlot
+                  labels={this.state.dataSource.labels}
+                  data={this.state.dataSource.values}
+                />
+              </div>
             </div>
 
             <div className="content-block section" id="section-3">
