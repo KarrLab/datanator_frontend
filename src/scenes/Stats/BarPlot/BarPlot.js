@@ -27,12 +27,12 @@ export default class BarPlot extends Component {
 
   configChart() {
     let chartConfig = {
-      type: 'bar',
+      type: "bar",
       data: {
         labels: this.props.labels,
         datasets: [
           {
-            backgroundColor:colorPalette["primary-light"],
+            backgroundColor: colorPalette["primary-light"],
             data: this.props.data
           }
         ]
@@ -52,7 +52,6 @@ export default class BarPlot extends Component {
     };
 
     // all measurements
-   
 
     // build chart
     let canvasContext = this.canvas.current.getContext("2d");

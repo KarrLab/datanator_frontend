@@ -48,8 +48,6 @@ class Stats extends Component {
     });
     this.setBarChart("dataType", dataTypeInfo);
 
-
-
     const dataSourceInfo = [];
     dataSourceInfo.push({
       label: "ECMDB",
@@ -103,7 +101,7 @@ class Stats extends Component {
           values.push(responses[n].data);
           labels.push(chartInfo[n].label + " (" + responses[n].data + ")");
         }
-        this.setState({[barChartName]: { labels: labels, values: values } });
+        this.setState({ [barChartName]: { labels: labels, values: values } });
       })
     );
   }
@@ -141,7 +139,9 @@ class Stats extends Component {
 
           <div className="content-column">
             <div className="content-block section" id="section-1">
-              <h2 className="content-block-heading">Number of Observations By Data Type</h2>
+              <h2 className="content-block-heading">
+                Number of Observations By Data Type
+              </h2>
               <div className="content-block-content">
                 <BarPlot
                   labels={this.state.dataType.labels}
@@ -151,9 +151,11 @@ class Stats extends Component {
             </div>
 
             <div className="content-block section" id="section-2">
-              <h2 className="content-block-heading">Number of Observations By Data Source</h2>
+              <h2 className="content-block-heading">
+                Number of Observations By Data Source
+              </h2>
               <div className="content-block-content">
-              <BarPlot
+                <BarPlot
                   labels={this.state.dataSource.labels}
                   data={this.state.dataSource.values}
                 />
@@ -161,13 +163,15 @@ class Stats extends Component {
             </div>
 
             <div className="content-block section" id="section-3">
-              <h2 className="content-block-heading">Referenced Journal Articles by Data Type</h2>
+              <h2 className="content-block-heading">
+                Referenced Journal Articles by Data Type
+              </h2>
               <div className="content-block-content">
-              <BarPlot
+                <BarPlot
                   labels={this.state.journalByDataType.labels}
                   data={this.state.journalByDataType.values}
                 />
-                </div>
+              </div>
             </div>
           </div>
         </div>
