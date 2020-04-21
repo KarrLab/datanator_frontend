@@ -27,6 +27,10 @@ class Stats extends Component {
       temperatureFrequency: {
         labels: [],
         values: []
+      },
+      phFrequency: {
+        labels: [],
+        values: []
       }
     };
 
@@ -90,6 +94,11 @@ class Stats extends Component {
     this.setFrequencyChart(
       "temperatureFrequency",
       "reactions/summary/get_frequency/?field=temperature"
+    );
+
+    this.setFrequencyChart(
+      "phFrequency",
+      "reactions/summary/get_frequency/?field=ph"
     );
   }
 
@@ -215,6 +224,17 @@ class Stats extends Component {
                 />
               </div>
             </div>
+
+            <div className="content-block section" id="journal-number">
+              <h2 className="content-block-heading">pH Frequency</h2>
+              <div className="content-block-content">
+                <FrequencyPlot
+                  labels={this.state.phFrequency.labels}
+                  data={this.state.phFrequency.values}
+                />
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
