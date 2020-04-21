@@ -6,9 +6,10 @@ import * as colorPalette from "~/colors.scss";
 var kernel = require("kernel-smooth");
 export default class FrequencyPlot extends Component {
   static propTypes = {
-    data: PropTypes.array,
-    labels: PropTypes.array,
-    selected: PropTypes.array
+    data: PropTypes.array.isRequired,
+    labels: PropTypes.array.isRequired,
+    selected: PropTypes.array.isRequired,
+    xAxisLabel: PropTypes.string.isRequired
   };
 
   static defaultProps = {
@@ -55,11 +56,6 @@ export default class FrequencyPlot extends Component {
         title: {
           display: false
         },
-        title: {
-          display: false,
-          text: "Custom Chart Title"
-        },
-
         scales: {
           yAxes: [
             {

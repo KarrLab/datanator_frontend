@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { HashLink } from "react-router-hash-link";
 import { scrollTo } from "~/utils/utils";
-import BarPlot from "./BarPlot/BarPlot";
-import FrequencyPlot from "./BarPlot/FrequencyPlot";
+import BarPlot from "./Plot/BarPlot";
+import FrequencyPlot from "./Plot/FrequencyPlot";
 import axios from "axios";
 import { getDataFromApi } from "~/services/RestApi";
 
