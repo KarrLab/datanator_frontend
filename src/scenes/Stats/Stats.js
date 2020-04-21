@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { HashLink } from "react-router-hash-link";
 import { scrollTo } from "~/utils/utils";
 import BarPlot from "./BarPlot/BarPlot";
-import FrequencyPlot from "./BarPlot/FrequencyPlot2";
+import FrequencyPlot from "./BarPlot/FrequencyPlot";
 import axios from "axios";
 import { getDataFromApi } from "~/services/RestApi";
 
-// import "./Stats.scss";
+import "./Stats.scss";
 
 class Stats extends Component {
   constructor() {
@@ -179,27 +179,29 @@ class Stats extends Component {
           </div>
 
           <div className="content-column">
-            <div className="content-block section" id="data-type">
-              <h2 className="content-block-heading">
-                Number of Observations By Data Type
-              </h2>
-              <div className="content-block-content">
-                <FrequencyPlot
-                  labels={this.state.dataType.labels}
-                  data={this.state.dataType.values}
-                />
+            <div className="chart-row">
+              <div className="chart-column" id="data-type">
+                <h2 className="content-block-heading">
+                  Number of Observations By Data Type
+                </h2>
+                <div className="content-block-content">
+                  <BarPlot
+                    labels={this.state.dataType.labels}
+                    data={this.state.dataType.values}
+                  />
+                </div>
               </div>
-            </div>
 
-            <div className="content-block section" id="data-source">
-              <h2 className="content-block-heading">
-                Number of Observations By Data Source
-              </h2>
-              <div className="content-block-content">
-                <BarPlot
-                  labels={this.state.dataSource.labels}
-                  data={this.state.dataSource.values}
-                />
+              <div className="chart-column" id="data-source">
+                <h2 className="content-block-heading">
+                  Number of Observations By Data Source
+                </h2>
+                <div className="content-block-content">
+                  <BarPlot
+                    labels={this.state.dataSource.labels}
+                    data={this.state.dataSource.values}
+                  />
+                </div>
               </div>
             </div>
 
@@ -215,26 +217,29 @@ class Stats extends Component {
               </div>
             </div>
 
-            <div className="content-block section" id="journal-number">
-              <h2 className="content-block-heading">Temperature Frequency</h2>
-              <div className="content-block-content">
-                <FrequencyPlot
-                  labels={this.state.temperatureFrequency.labels}
-                  data={this.state.temperatureFrequency.values}
-                />
+            <div className="chart-row">
+              <div className="chart-column" id="journal-number">
+                <h2 className="content-block-heading">Temperature Frequency</h2>
+                <div className="content-block-content">
+                  <FrequencyPlot
+                    labels={this.state.temperatureFrequency.labels}
+                    data={this.state.temperatureFrequency.values}
+                    xAxisLabel={"˚C"}
+                  />
+                </div>
+              </div>
+
+              <div className="chart-column" id="journal-number">
+                <h2 className="content-block-heading">pH Frequency</h2>
+                <div className="content-block-content">
+                  <FrequencyPlot
+                    labels={this.state.phFrequency.labels}
+                    data={this.state.phFrequency.values}
+                    xAxisLabel={"pH"}
+                  />
+                </div>
               </div>
             </div>
-
-            <div className="content-block section" id="journal-number">
-              <h2 className="content-block-heading">pH Frequency</h2>
-              <div className="content-block-content">
-                <FrequencyPlot
-                  labels={this.state.phFrequency.labels}
-                  data={this.state.phFrequency.values}
-                />
-              </div>
-            </div>
-
           </div>
         </div>
       </div>

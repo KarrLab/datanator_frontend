@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Chart from "chart.js";
 
 import * as colorPalette from "~/colors.scss";
-
+var kernel = require("kernel-smooth");
 export default class FrequencyPlot extends Component {
   static propTypes = {
     data: PropTypes.array,
@@ -26,16 +26,21 @@ export default class FrequencyPlot extends Component {
   }
 
   configChart() {
+    var f_hat = kernel.regression(
+      this.props.labels,
+      this.props.data,
+      kernel.fun.gaussian,
+      0.5
+    );
     let chartConfig = {
-      type: "bar",
+      type: "line",
       data: {
         labels: this.props.labels,
         datasets: [
           {
             backgroundColor: colorPalette["primary-light"],
-            data: this.props.data,
-            barPercentage: 1,
-            categoryPercentage: 1
+            data: f_hat(this.props.labels),
+            pointRadius: 0
           }
         ]
       },
@@ -49,11 +54,37 @@ export default class FrequencyPlot extends Component {
         animation: null,
         title: {
           display: false
+        },
+        title: {
+          display: false,
+          text: "Custom Chart Title"
+        },
+
+        scales: {
+          yAxes: [
+            {
+              scaleLabel: {
+                display: true,
+                labelString: "# Observations"
+              }
+            }
+          ],
+          xAxes: [
+            {
+              scaleLabel: {
+                display: true,
+                labelString: this.props.xAxisLabel
+              }
+            }
+          ]
         }
       }
     };
 
     // all measurements
+
+    //var f_hat = kernel.regression( this.props.labels, this.props.data, kernel.fun.gaussian, 0.5 );
+    console.log(f_hat(this.props.labels));
 
     // build chart
     let canvasContext = this.canvas.current.getContext("2d");
