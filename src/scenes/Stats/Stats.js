@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { HashLink } from "react-router-hash-link";
 import { scrollTo } from "~/utils/utils";
 import BarPlot from "./BarPlot/BarPlot";
+import FrequencyPlot from "./BarPlot/FrequencyPlot";
 import axios from "axios";
 import { getDataFromApi } from "~/services/RestApi";
 
@@ -20,6 +21,10 @@ class Stats extends Component {
         values: []
       },
       journalByDataType: {
+        labels: [],
+        values: []
+      },
+      temperatureFrequency: {
         labels: [],
         values: []
       }
@@ -81,10 +86,15 @@ class Stats extends Component {
       url: "proteins/summary/num_publications/"
     });
     this.setBarChart("journalByDataType", journalByDataTypeInfo);
+
+    this.setFrequencyChart(
+      "temperatureFrequency",
+      "reactions/summary/get_frequency/?field=temperature"
+    );
   }
 
   setBarChart(barChartName, chartInfo) {
-    console.log(chartInfo);
+    //console.log(chartInfo);
     const requests = [];
     const labels = [];
     const values = [];
@@ -95,9 +105,9 @@ class Stats extends Component {
 
     axios.all(requests).then(
       axios.spread((...responses) => {
-        console.log(responses);
+        //console.log(responses);
         for (var n = 0; n < responses.length; n++) {
-          console.log(responses[n].data);
+          //console.log(responses[n].data);
           values.push(responses[n].data);
           labels.push(chartInfo[n].label + " (" + responses[n].data + ")");
         }
@@ -106,8 +116,30 @@ class Stats extends Component {
     );
   }
 
+  setFrequencyChart(frequencyChartName, url) {
+    const labels = [];
+    const values = [];
+    getDataFromApi([url]).then(response => {
+      let data = response.data.sort(function(a, b) {
+        return a["_id"] - b["_id"];
+      });
+      console.log(data);
+      for (var n = 0; n < data.length; n++) {
+        if (data[n]["_id"]) {
+          labels.push(data[n]["_id"]);
+          values.push(data[n]["count"]);
+        }
+      }
+      console.log(labels);
+      console.log(values);
+      this.setState({
+        [frequencyChartName]: { labels: labels, values: values }
+      });
+    });
+  }
+
   render() {
-    console.log(this.state.dataType);
+    //console.log(this.state.dataType);
     return (
       <div className="content-container content-container-stats-scene">
         <h1 className="page-title">Statistics</h1>
@@ -143,7 +175,7 @@ class Stats extends Component {
                 Number of Observations By Data Type
               </h2>
               <div className="content-block-content">
-                <BarPlot
+                <FrequencyPlot
                   labels={this.state.dataType.labels}
                   data={this.state.dataType.values}
                 />
@@ -170,6 +202,16 @@ class Stats extends Component {
                 <BarPlot
                   labels={this.state.journalByDataType.labels}
                   data={this.state.journalByDataType.values}
+                />
+              </div>
+            </div>
+
+            <div className="content-block section" id="journal-number">
+              <h2 className="content-block-heading">Temperature Frequency</h2>
+              <div className="content-block-content">
+                <FrequencyPlot
+                  labels={this.state.temperatureFrequency.labels}
+                  data={this.state.temperatureFrequency.values}
                 />
               </div>
             </div>
