@@ -9,6 +9,7 @@ import {
 } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
 import LazyLoad from "react-lazyload";
+import ReactionSearchResultsList from "./ReactionSearchResultsList";
 
 const htmlEntityDecoder = require("html-entity-decoder");
 const reactStringReplace = require("react-string-replace");
@@ -306,6 +307,12 @@ class MetadataSection extends Component {
         )
       });
     }
+
+    sections.push({
+      id: "reactions",
+      title: "Related Reactions",
+      content: <ReactionSearchResultsList />
+    });
 
     if (processedData.pathways.length > 0) {
       sections.push({
