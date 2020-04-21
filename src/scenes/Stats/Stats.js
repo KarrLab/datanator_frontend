@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { HashLink } from "react-router-hash-link";
 import { scrollTo } from "~/utils/utils";
 import BarPlot from "./BarPlot/BarPlot";
-import FrequencyPlot from "./BarPlot/FrequencyPlot";
+import FrequencyPlot from "./BarPlot/FrequencyPlot2";
 import axios from "axios";
 import { getDataFromApi } from "~/services/RestApi";
 
