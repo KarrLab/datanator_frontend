@@ -103,7 +103,6 @@ class Stats extends Component {
   }
 
   setBarChart(barChartName, chartInfo) {
-    //console.log(chartInfo);
     const requests = [];
     const labels = [];
     const values = [];
@@ -114,9 +113,7 @@ class Stats extends Component {
 
     axios.all(requests).then(
       axios.spread((...responses) => {
-        //console.log(responses);
         for (var n = 0; n < responses.length; n++) {
-          //console.log(responses[n].data);
           values.push(responses[n].data);
           labels.push(chartInfo[n].label + " (" + responses[n].data + ")");
         }
@@ -132,15 +129,12 @@ class Stats extends Component {
       let data = response.data.sort(function(a, b) {
         return a["_id"] - b["_id"];
       });
-      console.log(data);
       for (var n = 0; n < data.length; n++) {
         if (data[n]["_id"]) {
           labels.push(data[n]["_id"]);
           values.push(data[n]["count"]);
         }
       }
-      console.log(labels);
-      console.log(values);
       this.setState({
         [frequencyChartName]: { labels: labels, values: values }
       });
@@ -148,7 +142,6 @@ class Stats extends Component {
   }
 
   render() {
-    //console.log(this.state.dataType);
     return (
       <div className="content-container content-container-stats-scene">
         <h1 className="page-title">Statistics</h1>

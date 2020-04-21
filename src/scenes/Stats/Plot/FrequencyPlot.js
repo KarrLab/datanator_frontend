@@ -8,12 +8,7 @@ export default class FrequencyPlot extends Component {
   static propTypes = {
     data: PropTypes.array.isRequired,
     labels: PropTypes.array.isRequired,
-    selected: PropTypes.array.isRequired,
     xAxisLabel: PropTypes.string.isRequired
-  };
-
-  static defaultProps = {
-    selected: null
   };
 
   canvas = React.createRef();
@@ -76,11 +71,6 @@ export default class FrequencyPlot extends Component {
         }
       }
     };
-
-    // all measurements
-
-    //var f_hat = kernel.regression( this.props.labels, this.props.data, kernel.fun.gaussian, 0.5 );
-    console.log(f_hat(this.props.labels));
 
     // build chart
     let canvasContext = this.canvas.current.getContext("2d");

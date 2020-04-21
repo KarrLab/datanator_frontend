@@ -6,13 +6,8 @@ import * as colorPalette from "~/colors.scss";
 
 export default class BarPlot extends Component {
   static propTypes = {
-    data: PropTypes.array,
-    labels: PropTypes.array,
-    selected: PropTypes.array
-  };
-
-  static defaultProps = {
-    selected: null
+    data: PropTypes.array.isRequired,
+    labels: PropTypes.array.isRequired
   };
 
   canvas = React.createRef();
@@ -50,8 +45,6 @@ export default class BarPlot extends Component {
         }
       }
     };
-
-    // all measurements
 
     // build chart
     let canvasContext = this.canvas.current.getContext("2d");
