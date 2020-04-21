@@ -40,7 +40,7 @@ class Stats extends Component {
   componentDidMount() {
     const dataTypeInfo = [];
     dataTypeInfo.push({
-      label: "Metabolite concentrations",
+      label: "Concentrations",
       url: "metabolites/summary/concentration_count/"
     });
     dataTypeInfo.push({
@@ -173,6 +173,16 @@ class Stats extends Component {
                       Journal Numbers
                     </HashLink>
                   </li>
+                  <li>
+                    <HashLink to="#temp-dist" scroll={scrollTo}>
+                      Temperature Distribution
+                    </HashLink>
+                  </li>
+                  <li>
+                    <HashLink to="#ph-dist" scroll={scrollTo}>
+                      pH Distribution
+                    </HashLink>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -218,7 +228,7 @@ class Stats extends Component {
             </div>
 
             <div className="chart-row">
-              <div className="chart-column" id="journal-number">
+              <div className="chart-column" id="temp-dist">
                 <h2 className="content-block-heading">Temperature Frequency</h2>
                 <div className="content-block-content">
                   <FrequencyPlot
@@ -229,7 +239,7 @@ class Stats extends Component {
                 </div>
               </div>
 
-              <div className="chart-column" id="journal-number">
+              <div className="chart-column" id="ph-dist">
                 <h2 className="content-block-heading">pH Frequency</h2>
                 <div className="content-block-content">
                   <FrequencyPlot
