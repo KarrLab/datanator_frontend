@@ -310,7 +310,7 @@ class MetadataSection extends Component {
 
     sections.push({
       id: "reactions",
-      title: "Related Reactions",
+      title: "Reactions",
       content: <ReactionSearchResultsList />
     });
 
