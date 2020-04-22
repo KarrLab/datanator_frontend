@@ -1,22 +1,5 @@
-@import 'colors';
-
 .content-container-stats-scene {
-  .chart-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  .chart-row:not(:first-child) {
-    margin-top: 3rem;
-  }
-
-  .chart-column {
-    text-align: center;
-    width: calc((100% - (2 - 1) * 2rem) / 2);
-  }
-
-  .content-block-heading {
-    color: $color-accent;
+  .section-columns:first-child {
+    margin-top: 0;
   }
 }

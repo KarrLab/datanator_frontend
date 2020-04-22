@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { HashLink } from "react-router-hash-link";
-import { scrollTo } from "~/utils/utils";
+import { scrollTo, numberWithCommas } from "~/utils/utils";
 import BarPlot from "./Plot/BarPlot";
 import FrequencyPlot from "./Plot/FrequencyPlot";
 import axios from "axios";
@@ -40,54 +40,57 @@ class Stats extends Component {
   componentDidMount() {
     const dataTypeInfo = [];
     dataTypeInfo.push({
-      label: "Concentrations",
+      label: ["Met. concs."],
       url: "metabolites/summary/concentration_count/"
     });
+    // TODO: including protein abundances
     dataTypeInfo.push({
-      label: "RNA Half-Life",
-      url: "rna/summary/get_total_docs/"
-    });
-    dataTypeInfo.push({
-      label: "Kcat",
+      label: ["Reaction k_cat"],
       url: "reactions/summary/num_parameter_kcat/"
     });
     dataTypeInfo.push({
-      label: "Km",
+      label: ["Reaction K_m"],
       url: "reactions/summary/num_parameter_km/"
+    });
+    dataTypeInfo.push({
+      label: ["RNA half-lives"],
+      url: "rna/summary/get_total_docs/"
     });
     this.setBarChart("dataType", dataTypeInfo);
 
     const dataSourceInfo = [];
     dataSourceInfo.push({
-      label: "ECMDB",
+      label: ["ECMDB"],
       url: "metabolites/summary/ecmdb_doc_count/"
     });
+    // TODO: include PAX-DB
     dataSourceInfo.push({
-      label: "YMDB",
-      url: "metabolites/summary/ymdb_doc_count/"
-    });
-    dataSourceInfo.push({
-      label: "Sabio-RK",
+      label: ["SABIO-RK"],
       url: "reactions/summary/num_entries/"
     });
     dataSourceInfo.push({
-      label: "Direct from Publicatons",
+      label: ["YMDB"],
+      url: "metabolites/summary/ymdb_doc_count/"
+    });
+    dataSourceInfo.push({
+      label: ["Articles"],
       url: "rna/summary/get_distinct/?_input=halflives.reference.doi"
     });
     this.setBarChart("dataSource", dataSourceInfo);
 
     const journalByDataTypeInfo = [];
     journalByDataTypeInfo.push({
-      label: "Metabolite Concentrations",
+      label: ["Met. concs."],
       url: "metabolites/summary/get_ref_count/"
     });
     journalByDataTypeInfo.push({
-      label: "RNA Half-Life",
-      url: "rna/summary/get_distinct/?_input=halflives.reference.doi"
-    });
-    journalByDataTypeInfo.push({
-      label: "Protein Abundances",
+      label: ["Prot abund."],
       url: "proteins/summary/num_publications/"
+    });
+    // TODO: include reaction kinetic constants
+    journalByDataTypeInfo.push({
+      label: ["RNA half-lives"],
+      url: "rna/summary/get_distinct/?_input=halflives.reference.doi"
     });
     this.setBarChart("journalByDataType", journalByDataTypeInfo);
 
@@ -115,7 +118,11 @@ class Stats extends Component {
       axios.spread((...responses) => {
         for (var n = 0; n < responses.length; n++) {
           values.push(responses[n].data);
-          labels.push(chartInfo[n].label + " (" + responses[n].data + ")");
+          labels.push(
+            chartInfo[n].label.concat([
+              "(" + numberWithCommas(responses[n].data) + ")"
+            ])
+          );
         }
         this.setState({ [barChartName]: { labels: labels, values: values } });
       })
@@ -144,7 +151,12 @@ class Stats extends Component {
   render() {
     return (
       <div className="content-container content-container-stats-scene">
-        <h1 className="page-title">Statistics</h1>
+        <h1 className="page-title">
+          Statistics:{" "}
+          <span className="highlight-accent">
+            Distribution of measurements in the <i>Datanator</i> database
+          </span>
+        </h1>
         <div className="content-container-columns">
           <div className="overview-column">
             <div className="content-block table-of-contents">
@@ -153,28 +165,42 @@ class Stats extends Component {
                 <ul>
                   <li>
                     <HashLink to="#data-type" scroll={scrollTo}>
-                      Data Type
+                      Data types
                     </HashLink>
                   </li>
                   <li>
-                    <HashLink to="#data-source" scroll={scrollTo}>
-                      Data Source
+                    <HashLink to="#immediate-source" scroll={scrollTo}>
+                      Source
                     </HashLink>
+                    <ul>
+                      <li>
+                        <HashLink to="#immediate-source" scroll={scrollTo}>
+                          Immediate
+                        </HashLink>
+                      </li>
+                      <li>
+                        <HashLink to="#primary-source" scroll={scrollTo}>
+                          Primary
+                        </HashLink>
+                      </li>
+                    </ul>
                   </li>
                   <li>
-                    <HashLink to="#journal-number" scroll={scrollTo}>
-                      Journal Numbers
+                    <HashLink to="#temperature" scroll={scrollTo}>
+                      Expt. conditions
                     </HashLink>
-                  </li>
-                  <li>
-                    <HashLink to="#temp-dist" scroll={scrollTo}>
-                      Temperature Distribution
-                    </HashLink>
-                  </li>
-                  <li>
-                    <HashLink to="#ph-dist" scroll={scrollTo}>
-                      pH Distribution
-                    </HashLink>
+                    <ul>
+                      <li>
+                        <HashLink to="#temperature" scroll={scrollTo}>
+                          Temperature
+                        </HashLink>
+                      </li>
+                      <li>
+                        <HashLink to="#ph" scroll={scrollTo}>
+                          pH
+                        </HashLink>
+                      </li>
+                    </ul>
                   </li>
                 </ul>
               </div>
@@ -182,63 +208,71 @@ class Stats extends Component {
           </div>
 
           <div className="content-column">
-            <div className="chart-row">
-              <div className="chart-column" id="data-type">
+            <div className="section-columns section-3-columns">
+              <div className="section section-column" id="data-type">
                 <h2 className="content-block-heading">
-                  Number of Observations By Data Type
+                  Distribution of data types
                 </h2>
                 <div className="content-block-content">
                   <BarPlot
-                    labels={this.state.dataType.labels}
-                    data={this.state.dataType.values}
+                    data={this.state.dataType}
+                    yAxisLabel="Measurements"
                   />
                 </div>
               </div>
 
-              <div className="chart-column" id="data-source">
+              <div className="section section-column" id="immediate-source">
                 <h2 className="content-block-heading">
-                  Number of Observations By Data Source
+                  Distribution of immediate sources
                 </h2>
                 <div className="content-block-content">
                   <BarPlot
-                    labels={this.state.dataSource.labels}
-                    data={this.state.dataSource.values}
+                    data={this.state.dataSource}
+                    yAxisLabel="Measurements"
+                  />
+                </div>
+              </div>
+
+              <div className="section section-column" id="primary-source">
+                <h2 className="content-block-heading">
+                  Dist. of primary sources (articles)
+                </h2>
+                <div className="content-block-content">
+                  <BarPlot
+                    data={this.state.journalByDataType}
+                    yAxisLabel="Measurements"
                   />
                 </div>
               </div>
             </div>
 
-            <div className="content-block section" id="journal-number">
-              <h2 className="content-block-heading">
-                Referenced Journal Articles by Data Type
-              </h2>
-              <div className="content-block-content">
-                <BarPlot
-                  labels={this.state.journalByDataType.labels}
-                  data={this.state.journalByDataType.values}
-                />
-              </div>
-            </div>
-
-            <div className="chart-row">
-              <div className="chart-column" id="temp-dist">
-                <h2 className="content-block-heading">Temperature Frequency</h2>
+            <div className="section-columns section-2-columns">
+              <div className="section section-column" id="temperature">
+                <h2 className="content-block-heading">
+                  Temperature distribution
+                </h2>
                 <div className="content-block-content">
                   <FrequencyPlot
-                    labels={this.state.temperatureFrequency.labels}
-                    data={this.state.temperatureFrequency.values}
-                    xAxisLabel={"˚C"}
+                    data={this.state.temperatureFrequency}
+                    xAxisLabel={"Temperature (˚C)"}
+                    xMin={10}
+                    xMax={80}
+                    yAxisLabel="Measurements"
+                    kernelBandwidth={1}
                   />
                 </div>
               </div>
 
-              <div className="chart-column" id="ph-dist">
-                <h2 className="content-block-heading">pH Frequency</h2>
+              <div className="section section-column" id="ph">
+                <h2 className="content-block-heading">pH distribution</h2>
                 <div className="content-block-content">
                   <FrequencyPlot
-                    labels={this.state.phFrequency.labels}
-                    data={this.state.phFrequency.values}
+                    data={this.state.phFrequency}
                     xAxisLabel={"pH"}
+                    xMin={1}
+                    xMax={14}
+                    yAxisLabel="Measurements"
+                    kernelBandwidth={0.5}
                   />
                 </div>
               </div>
