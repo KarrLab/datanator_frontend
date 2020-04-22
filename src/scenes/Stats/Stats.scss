@@ -1,16 +1,15 @@
 @import 'colors';
 
 .content-container-stats-scene {
-
-.chart-row {
+  .chart-row {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
   }
 
-.chart-row:not(:first-child) {
-  margin-top: 3rem;
-}
+  .chart-row:not(:first-child) {
+    margin-top: 3rem;
+  }
 
   .chart-column {
     text-align: center;
@@ -18,7 +17,6 @@
   }
 
   .content-block-heading {
-      color: $color-accent;
-    }
+    color: $color-accent;
+  }
 }
-
