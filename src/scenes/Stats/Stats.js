@@ -45,11 +45,11 @@ class Stats extends Component {
     });
     // TODO: including protein abundances
     dataTypeInfo.push({
-      label: ["Reaction k_cat"],
+      label: ["Rxn kcat"],
       url: "reactions/summary/num_parameter_kcat/"
     });
     dataTypeInfo.push({
-      label: ["Reaction K_m"],
+      label: ["Rxn Km"],
       url: "reactions/summary/num_parameter_km/"
     });
     dataTypeInfo.push({
