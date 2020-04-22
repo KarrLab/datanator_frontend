@@ -230,7 +230,7 @@ class DataTable extends Component {
   }
 
   updateHorzScrolling(event) {
-    const columnApi = event.columnApi;    
+    const columnApi = event.columnApi;
 
     const gridRoot = event.api.gridPanel.eGui;
     const gridWidth: number = gridRoot.offsetWidth;

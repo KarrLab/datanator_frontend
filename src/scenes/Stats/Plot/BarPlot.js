@@ -6,8 +6,11 @@ import * as colorPalette from "~/colors.scss";
 
 export default class BarPlot extends Component {
   static propTypes = {
-    data: PropTypes.array.isRequired,
-    labels: PropTypes.array.isRequired
+    data: PropTypes.shape({
+      labels: PropTypes.array.isRequired,
+      values: PropTypes.array.isRequired
+    }).isRequired,
+    yAxisLabel: PropTypes.string.isRequired
   };
 
   canvas = React.createRef();
@@ -24,11 +27,13 @@ export default class BarPlot extends Component {
     let chartConfig = {
       type: "bar",
       data: {
-        labels: this.props.labels,
+        labels: this.props.data.labels,
         datasets: [
           {
-            backgroundColor: colorPalette["primary-light"],
-            data: this.props.data
+            backgroundColor: colorPalette["primary-lighter"],
+            borderColor: colorPalette["primary-light"],
+            borderWidth: 2.0,
+            data: this.props.data.values
           }
         ]
       },
@@ -42,6 +47,28 @@ export default class BarPlot extends Component {
         animation: null,
         title: {
           display: false
+        },
+        scales: {
+          xAxes: [
+            {
+              ticks: {
+                minRotation: 45,
+                maxRotation: 90
+              }
+            }
+          ],
+          yAxes: [
+            {
+              type: "linear",
+              scaleLabel: {
+                display: true,
+                labelString: this.props.yAxisLabel
+              },
+              ticks: {
+                maxTicksLimit: 4
+              }
+            }
+          ]
         }
       }
     };

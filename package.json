@@ -157,7 +157,9 @@
       "node_modules/",
       "scripts/",
       "test-results",
-      "config-overrides.js"
+      "config-overrides.js",
+      "package.json",
+      "package-lock.json"
     ],
     "plugins": [
       "react",
