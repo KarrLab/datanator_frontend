@@ -34,6 +34,7 @@ class DataTable extends Component {
     "format-data": PropTypes.func.isRequired,
     "get-side-bar-def": PropTypes.func.isRequired,
     "get-col-defs": PropTypes.func.isRequired,
+    "get-col-sort-order": PropTypes.func.isRequired,
     "dom-layout": PropTypes.string
   };
 
@@ -77,12 +78,14 @@ class DataTable extends Component {
 
     this.sideBarDef = null;
     this.colDefs = null;
+    this.colSortOrder = null;
     this.state = {
       sideBarDef: this.sideBarDef,
       colDefs: this.colDefs,
       data: null
     };
 
+    this.onFirstDataRendered = this.onFirstDataRendered.bind(this);
     this.fitCols = this.fitCols.bind(this);
     this.updateHorzScrolling = this.updateHorzScrolling.bind(this);
     this.exportCsv = this.exportCsv.bind(this);
@@ -215,12 +218,36 @@ class DataTable extends Component {
       formattedData,
       taxonomicRanks
     );
+    this.colSortOrder = this.props["get-col-sort-order"](
+      organism,
+      formattedData,
+      taxonomicRanks
+    );
 
     this.setState({
       sideBarDef: this.sideBarDef,
       colDefs: this.colDefs,
       data: formattedData
     });
+  }
+
+  onFirstDataRendered(event) {
+    this.setDefaultSorting(event);
+    this.fitCols(event);
+  }
+
+  setDefaultSorting(event) {
+    const gridApi = event.api;
+
+    const model = [];
+    for (const colId of this.colSortOrder) {
+      model.push({
+        colId: colId,
+        sort: "asc"
+      });
+    }
+    console.log(model);
+    gridApi.setSortModel(model);
   }
 
   fitCols(event) {
@@ -304,7 +331,7 @@ class DataTable extends Component {
                 onColumnVisible={this.fitCols}
                 onColumnResized={this.updateHorzScrolling}
                 onToolPanelVisibleChanged={this.fitCols}
-                onFirstDataRendered={this.fitCols}
+                onFirstDataRendered={this.onFirstDataRendered}
               />
             </div>
           </div>
@@ -319,6 +346,22 @@ class DataTable extends Component {
           <div className="content-block-content">No data is available.</div>
         </div>
       );
+    }
+  }
+
+  static numericComparator(valueA, valueB) {
+    if (valueA == null) {
+      if (valueB == null) {
+        return 0;
+      } else {
+        return 1;
+      }
+    } else {
+      if (valueB == null) {
+        return -1;
+      } else {
+        return valueA - valueB;
+      }
     }
   }
 }

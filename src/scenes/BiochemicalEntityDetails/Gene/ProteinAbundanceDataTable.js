@@ -104,7 +104,8 @@ class ProteinAbundanceDataTable extends Component {
         filter: "numberFilter",
         checkboxSelection: true,
         headerCheckboxSelection: true,
-        headerCheckboxSelectionFilteredOnly: true
+        headerCheckboxSelectionFilteredOnly: true,
+        comparator: DataTable.numericComparator
       },
       {
         headerName: "Protein",
@@ -183,6 +184,10 @@ class ProteinAbundanceDataTable extends Component {
     return colDefs;
   }
 
+  static getColSortOrder() {
+    return ["abundance"];
+  }
+
   render() {
     return (
       <DataTable
@@ -194,6 +199,7 @@ class ProteinAbundanceDataTable extends Component {
         format-data={this.formatData.bind(this)}
         get-side-bar-def={ProteinAbundanceDataTable.getSideBarDef}
         get-col-defs={ProteinAbundanceDataTable.getColDefs}
+        get-col-sort-order={ProteinAbundanceDataTable.getColSortOrder}
         dom-layout="normal"
       />
     );
