@@ -107,7 +107,8 @@ class RnaHalfLifeDataTable extends Component {
         filter: "numberFilter",
         checkboxSelection: true,
         headerCheckboxSelection: true,
-        headerCheckboxSelectionFilteredOnly: true
+        headerCheckboxSelectionFilteredOnly: true,
+        comparator: DataTable.numericComparator
       },
       {
         headerName: "Protein",
@@ -185,6 +186,10 @@ class RnaHalfLifeDataTable extends Component {
     return colDefs;
   }
 
+  static getColSortOrder() {
+    return ["halfLife"];
+  }
+
   render() {
     return (
       <DataTable
@@ -196,6 +201,7 @@ class RnaHalfLifeDataTable extends Component {
         format-data={RnaHalfLifeDataTable.formatData}
         get-side-bar-def={RnaHalfLifeDataTable.getSideBarDef}
         get-col-defs={RnaHalfLifeDataTable.getColDefs}
+        get-col-sort-order={RnaHalfLifeDataTable.getColSortOrder}
         dom-layout="normal"
       />
     );

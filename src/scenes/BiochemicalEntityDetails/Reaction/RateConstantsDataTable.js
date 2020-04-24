@@ -190,7 +190,8 @@ class RateConstantsDataTable extends Component {
         filter: "numberFilter",
         checkboxSelection: true,
         headerCheckboxSelection: true,
-        headerCheckboxSelectionFilteredOnly: true
+        headerCheckboxSelectionFilteredOnly: true,
+        comparator: DataTable.numericComparator
       });
     }
 
@@ -218,7 +219,8 @@ class RateConstantsDataTable extends Component {
         field: "km." + kmMet,
         cellRenderer: "numericCellRenderer",
         type: "numericColumn",
-        filter: "numberFilter"
+        filter: "numberFilter",
+        comparator: DataTable.numericComparator
       });
     }
 
@@ -295,6 +297,39 @@ class RateConstantsDataTable extends Component {
     return colDefs;
   }
 
+  static getColSortOrder(organism, formattedData) {
+    const sortOrder = [];
+
+    // k_cat column
+    let hasKcat = false;
+    for (const formattedDatum of formattedData) {
+      if (formattedDatum.kcat != null) {
+        hasKcat = true;
+        break;
+      }
+    }
+
+    if (hasKcat) {
+      sortOrder.push("kcat");
+    }
+
+    // K_M columns
+    let kmMets = {};
+    for (const formattedDatum of formattedData) {
+      for (const kmMet in formattedDatum.km) {
+        kmMets[kmMet] = true;
+      }
+    }
+    kmMets = Object.keys(kmMets);
+    kmMets.sort();
+
+    for (const kmMet of kmMets) {
+      sortOrder.push("km." + kmMet);
+    }
+
+    return sortOrder;
+  }
+
   render() {
     return (
       <DataTable
@@ -306,6 +341,7 @@ class RateConstantsDataTable extends Component {
         format-data={RateConstantsDataTable.formatData}
         get-side-bar-def={RateConstantsDataTable.getConcBarDef}
         get-col-defs={RateConstantsDataTable.getColDefs}
+        get-col-sort-order={RateConstantsDataTable.getColSortOrder}
       />
     );
   }
