@@ -12,12 +12,12 @@ class RateConstantsDataTable extends Component {
     const substratesProducts = query.split("-->");
     args.push(
       "substrates=" +
-        encodeURIComponent(substratesProducts[0].split(",").join("|"))
+        substratesProducts[0].split(",").join(encodeURIComponent("|"))
     );
     if (substratesProducts.length >= 2) {
       args.push(
         "products=" +
-          encodeURIComponent(substratesProducts[1].split(",").join("|"))
+          substratesProducts[1].split(",").join(encodeURIComponent("|"))
       );
     }
 
