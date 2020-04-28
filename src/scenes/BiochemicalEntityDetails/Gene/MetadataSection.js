@@ -135,19 +135,21 @@ class MetadataSection extends Component {
         </a>
       )
     });
-    descriptions.push({
-      key: "EC code",
-      value: (
-        <a
-          href={"https://enzyme.expasy.org/EC/" + processedData.ecCode}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {" "}
-          {processedData.ecCode}
-        </a>
-      )
-    });
+    if (processedData.ecCode !== undefined) {
+      descriptions.push({
+        key: "EC code",
+        value: (
+          <a
+            href={"https://enzyme.expasy.org/EC/" + processedData.ecCode}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {" "}
+            {processedData.ecCode}
+          </a>
+        )
+      });
+    }
 
     sections.push({
       id: "description",
