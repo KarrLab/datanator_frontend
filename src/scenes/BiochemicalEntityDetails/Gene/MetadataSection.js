@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { upperCaseFirstLetter, strCompare } from "~/utils/utils";
+import {
+  upperCaseFirstLetter,
+  strCompare,
+  formatParticipantForUrl
+} from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
 import { LoadExternalContent, LoadContent } from "../LoadContent";
 
@@ -55,7 +59,11 @@ class MetadataSection extends Component {
 
       const equation = formatSide(substrates) + " → " + formatSide(products);
       const ecMeta = reaction["ec_meta"];
-      let route = "/reaction/" + substrates + "-->" + products;
+      let route =
+        "/reaction/" +
+        formatParticipantForUrl(substrates) +
+        "-->" +
+        formatParticipantForUrl(products);
       if (organism) {
         route += "/" + organism;
       }

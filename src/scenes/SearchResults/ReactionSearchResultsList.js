@@ -1,7 +1,13 @@
 import React, { Component } from "react";
 import SearchResultsList from "./SearchResultsList.js";
+import PropTypes from "prop-types";
+import { formatParticipantForUrl } from "~/utils/utils";
 
 export default class ReactionSearchResultsList extends Component {
+  static propTypes = {
+    "manual-query": PropTypes.string
+  };
+
   getResultsUrl(query, pageCount, pageSize) {
     const indexQueryArg = "sabio_reaction_entries";
     return (
@@ -89,6 +95,7 @@ export default class ReactionSearchResultsList extends Component {
         format-results={this.formatResults}
         html-anchor-id="reactions"
         title="Reaction classes"
+        manual-query={this.props["manual-query"]}
       />
     );
   }
@@ -96,14 +103,6 @@ export default class ReactionSearchResultsList extends Component {
 
 function formatSide(parts) {
   return parts.join(" + ");
-}
-
-function formatParticipantForUrl(participants) {
-  const partNames = [];
-  for (const participant of participants) {
-    partNames.push(encodeURIComponent(participant));
-  }
-  return partNames;
 }
 
 function getParticipant(participants) {

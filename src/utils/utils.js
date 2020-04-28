@@ -202,6 +202,14 @@ function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+function formatParticipantForUrl(participants) {
+  const partNames = [];
+  for (const participant of participants) {
+    partNames.push(encodeURIComponent(participant));
+  }
+  return partNames;
+}
+
 export {
   formatScientificNotation,
   formatChemicalFormula,
@@ -214,5 +222,6 @@ export {
   parseHistoryLocationPathname,
   getNumProperties,
   castToArray,
-  numberWithCommas
+  numberWithCommas,
+  formatParticipantForUrl
 };
