@@ -72,9 +72,9 @@ export default class ReactionSearchResultsList extends Component {
       // route
       formattedResult["route"] =
         "/reaction/" +
-        formatParticipantForUrl(substrates) +
+        formatEntityForUrl(substrates) +
         "-->" +
-        formatParticipantForUrl(products);
+        formatEntityForUrl(products);
       if (organism) {
         formattedResult["route"] += "/" + organism;
       }

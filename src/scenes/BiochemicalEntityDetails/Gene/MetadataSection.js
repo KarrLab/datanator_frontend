@@ -61,9 +61,9 @@ class MetadataSection extends Component {
       const ecMeta = reaction["ec_meta"];
       let route =
         "/reaction/" +
-        formatParticipantForUrl(substrates) +
+        formatEntityForUrl(substrates) +
         "-->" +
-        formatParticipantForUrl(products);
+        formatEntityForUrl(products);
       if (organism) {
         route += "/" + organism;
       }
