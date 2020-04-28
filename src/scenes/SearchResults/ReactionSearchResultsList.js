@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import SearchResultsList from "./SearchResultsList.js";
 import PropTypes from "prop-types";
-import { formatParticipantForUrl } from "~/utils/utils";
+import { formatEntityForUrl } from "~/utils/utils";
 
 export default class ReactionSearchResultsList extends Component {
   static propTypes = {

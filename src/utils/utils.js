@@ -202,7 +202,7 @@ function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-function formatParticipantForUrl(participants) {
+function formatEntityForUrl(participants) {
   const partNames = [];
   for (const participant of participants) {
     partNames.push(encodeURIComponent(participant));
@@ -223,5 +223,5 @@ export {
   getNumProperties,
   castToArray,
   numberWithCommas,
-  formatParticipantForUrl
+  formatEntityForUrl
 };

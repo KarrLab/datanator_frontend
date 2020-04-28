@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import {
   upperCaseFirstLetter,
   strCompare,
-  formatParticipantForUrl
+  formatEntityForUrl
 } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
 import { LoadExternalContent, LoadContent } from "../LoadContent";
