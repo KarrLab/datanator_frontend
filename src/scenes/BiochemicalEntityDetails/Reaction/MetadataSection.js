@@ -111,7 +111,7 @@ class MetadataSection extends Component {
 
     const part_links = [];
     for (const sub of processedData.substrates) {
-      let route = "/metabolite/" + sub;
+      let route = "/metabolite/" + encodeURIComponent(sub);
       if (organism) {
         route += "/" + organism;
       }
@@ -127,7 +127,7 @@ class MetadataSection extends Component {
     }
     part_links.push(" → ");
     for (const prod of processedData.products) {
-      let route = "/metabolite/" + prod;
+      let route = "/metabolite/" + encodeURIComponent(prod);
       if (organism) {
         route += "/" + organism;
       }

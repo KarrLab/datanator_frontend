@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import {
   upperCaseFirstLetter,
   strCompare,
-  formatEntityForUrl
+  formatParticipantsForUrl
 } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
 import { LoadExternalContent, LoadContent } from "../LoadContent";
@@ -61,9 +61,9 @@ class MetadataSection extends Component {
       const ecMeta = reaction["ec_meta"];
       let route =
         "/reaction/" +
-        formatEntityForUrl(substrates) +
+        formatParticipantsForUrl(substrates) +
         "-->" +
-        formatEntityForUrl(products);
+        formatParticipantsForUrl(products);
       if (organism) {
         route += "/" + organism;
       }

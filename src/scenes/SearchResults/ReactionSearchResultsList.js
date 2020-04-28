@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import SearchResultsList from "./SearchResultsList.js";
 import PropTypes from "prop-types";
-import { formatEntityForUrl } from "~/utils/utils";
+import { formatParticipantsForUrl } from "~/utils/utils";
 
 export default class ReactionSearchResultsList extends Component {
   static propTypes = {
@@ -72,9 +72,9 @@ export default class ReactionSearchResultsList extends Component {
       // route
       formattedResult["route"] =
         "/reaction/" +
-        formatEntityForUrl(substrates) +
+        formatParticipantsForUrl(substrates) +
         "-->" +
-        formatEntityForUrl(products);
+        formatParticipantsForUrl(products);
       if (organism) {
         formattedResult["route"] += "/" + organism;
       }
