@@ -8,6 +8,7 @@ import {
   castToArray
 } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
+import Pathways from "../Pathways";
 import LazyLoad from "react-lazyload";
 import ReactionSearchResultsList from "./ReactionSearchResultsList";
 
@@ -333,44 +334,7 @@ class MetadataSection extends Component {
       sections.push({
         id: "pathways",
         title: "Pathways",
-        content: (
-          <ul className="two-col-list link-list">
-            {processedData.pathways.map(el => {
-              if (el.kegg_map_id) {
-                const map_id = el.kegg_map_id.substring(
-                  2,
-                  el.kegg_map_id.length
-                );
-                return (
-                  <li key={el.name}>
-                    <a
-                      href={
-                        "https://www.genome.jp/dbget-bin/www_bget?map" + map_id
-                      }
-                      className="bulleted-list-item"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      dangerouslySetInnerHTML={{
-                        __html: upperCaseFirstLetter(el.name)
-                      }}
-                    ></a>
-                  </li>
-                );
-              } else {
-                return (
-                  <li key={el.name}>
-                    <div
-                      className="bulleted-list-item"
-                      dangerouslySetInnerHTML={{
-                        __html: upperCaseFirstLetter(el.name)
-                      }}
-                    ></div>
-                  </li>
-                );
-              }
-            })}
-          </ul>
-        )
+        content: <Pathways pathways={processedData.pathways} page-size={30} />
       });
     }
 
