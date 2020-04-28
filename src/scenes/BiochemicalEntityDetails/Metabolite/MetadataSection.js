@@ -96,6 +96,12 @@ class MetadataSection extends Component {
     processedData = {};
 
     processedData.name = met.name;
+    if (met.synonyms.synonym) {
+      if (typeof met.synonyms.synonym === "string") {
+        met.synonyms.synonym = [met.synonyms.synonym];
+      }
+    }
+    console.log(met.synonyms);
 
     processedData.synonyms = met.synonyms.synonym.map(syn => {
       return htmlEntityDecoder.feed(syn);
@@ -135,15 +141,18 @@ class MetadataSection extends Component {
       ).value
     };
 
-    processedData.pathways = castToArray(met.pathways.pathway);
+    processedData.pathways = null;
+    if (met.pathways) {
+      castToArray(met.pathways.pathway);
 
-    processedData.pathways = removeDuplicates(
-      processedData.pathways,
-      el => el.name
-    );
-    processedData.pathways.sort((a, b) => {
-      return strCompare(a.name, b.name);
-    });
+      processedData.pathways = removeDuplicates(
+        processedData.pathways,
+        el => el.name
+      );
+      processedData.pathways.sort((a, b) => {
+        return strCompare(a.name, b.name);
+      });
+    }
 
     processedData.cellularLocations = castToArray(
       met.cellular_locations.cellular_location
@@ -161,6 +170,7 @@ class MetadataSection extends Component {
       pubchem: met.pubchem_compound_id,
       ymdb: met.ymdb_id
     };
+    console.log(processedData);
     return processedData;
   }
 
@@ -313,50 +323,52 @@ class MetadataSection extends Component {
       title: "Reactions",
       content: <ReactionSearchResultsList />
     });
-
-    if (processedData.pathways.length > 0) {
-      sections.push({
-        id: "pathways",
-        title: "Pathways",
-        content: (
-          <ul className="two-col-list link-list">
-            {processedData.pathways.map(el => {
-              if (el.kegg_map_id) {
-                const map_id = el.kegg_map_id.substring(
-                  2,
-                  el.kegg_map_id.length
-                );
-                return (
-                  <li key={el.name}>
-                    <a
-                      href={
-                        "https://www.genome.jp/dbget-bin/www_bget?map" + map_id
-                      }
-                      className="bulleted-list-item"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      dangerouslySetInnerHTML={{
-                        __html: upperCaseFirstLetter(el.name)
-                      }}
-                    ></a>
-                  </li>
-                );
-              } else {
-                return (
-                  <li key={el.name}>
-                    <div
-                      className="bulleted-list-item"
-                      dangerouslySetInnerHTML={{
-                        __html: upperCaseFirstLetter(el.name)
-                      }}
-                    ></div>
-                  </li>
-                );
-              }
-            })}
-          </ul>
-        )
-      });
+    if (processedData.pathways) {
+      if (processedData.pathways.length > 0) {
+        sections.push({
+          id: "pathways",
+          title: "Pathways",
+          content: (
+            <ul className="two-col-list link-list">
+              {processedData.pathways.map(el => {
+                if (el.kegg_map_id) {
+                  const map_id = el.kegg_map_id.substring(
+                    2,
+                    el.kegg_map_id.length
+                  );
+                  return (
+                    <li key={el.name}>
+                      <a
+                        href={
+                          "https://www.genome.jp/dbget-bin/www_bget?map" +
+                          map_id
+                        }
+                        className="bulleted-list-item"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        dangerouslySetInnerHTML={{
+                          __html: upperCaseFirstLetter(el.name)
+                        }}
+                      ></a>
+                    </li>
+                  );
+                } else {
+                  return (
+                    <li key={el.name}>
+                      <div
+                        className="bulleted-list-item"
+                        dangerouslySetInnerHTML={{
+                          __html: upperCaseFirstLetter(el.name)
+                        }}
+                      ></div>
+                    </li>
+                  );
+                }
+              })}
+            </ul>
+          )
+        });
+      }
     }
 
     return sections;
