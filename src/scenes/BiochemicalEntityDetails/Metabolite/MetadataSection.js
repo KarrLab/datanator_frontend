@@ -94,23 +94,25 @@ class MetadataSection extends Component {
     let processedData = {};
     const met = rawData;
     processedData = {};
+    processedData.synonyms = null;
+    processedData.description = null;
+    processedData.pathways = null;
+    processedData.cellularLocations = null;
 
     processedData.name = met.name;
     if (met.synonyms.synonym) {
       if (typeof met.synonyms.synonym === "string") {
         met.synonyms.synonym = [met.synonyms.synonym];
       }
+
+      processedData.synonyms = met.synonyms.synonym.map(syn => {
+        return htmlEntityDecoder.feed(syn);
+      });
+      processedData.synonyms.sort((a, b) => {
+        return strCompare(a, b);
+      });
     }
-    console.log(met.synonyms);
 
-    processedData.synonyms = met.synonyms.synonym.map(syn => {
-      return htmlEntityDecoder.feed(syn);
-    });
-    processedData.synonyms.sort((a, b) => {
-      return strCompare(a, b);
-    });
-
-    processedData.description = null;
     if (met.description != null && met.description !== undefined) {
       processedData.description = reactStringReplace(
         met.description,
@@ -141,9 +143,11 @@ class MetadataSection extends Component {
       ).value
     };
 
-    processedData.pathways = null;
     if (met.pathways) {
-      castToArray(met.pathways.pathway);
+      if (!Array.isArray(met.pathways.pathway)) {
+        met.pathways.pathway = [met.pathways.pathway];
+      }
+      processedData.pathways = castToArray(met.pathways.pathway);
 
       processedData.pathways = removeDuplicates(
         processedData.pathways,
@@ -154,9 +158,11 @@ class MetadataSection extends Component {
       });
     }
 
-    processedData.cellularLocations = castToArray(
-      met.cellular_locations.cellular_location
-    );
+    if (met.cellularLocations) {
+      processedData.cellularLocations = castToArray(
+        met.cellular_locations.cellular_location
+      );
+    }
 
     processedData.dbLinks = {
       biocyc: met.biocyc_id,
@@ -221,7 +227,7 @@ class MetadataSection extends Component {
       });
     }
 
-    if (processedData.synonyms.length > 0) {
+    if (processedData.synonyms) {
       sections.push({
         id: "synonyms",
         title: "Synonyms",
@@ -302,7 +308,7 @@ class MetadataSection extends Component {
       });
     }
 
-    if (processedData.cellularLocations.length > 0) {
+    if (processedData.cellularLocations) {
       sections.push({
         id: "localizations",
         title: "Localizations",
@@ -324,51 +330,48 @@ class MetadataSection extends Component {
       content: <ReactionSearchResultsList />
     });
     if (processedData.pathways) {
-      if (processedData.pathways.length > 0) {
-        sections.push({
-          id: "pathways",
-          title: "Pathways",
-          content: (
-            <ul className="two-col-list link-list">
-              {processedData.pathways.map(el => {
-                if (el.kegg_map_id) {
-                  const map_id = el.kegg_map_id.substring(
-                    2,
-                    el.kegg_map_id.length
-                  );
-                  return (
-                    <li key={el.name}>
-                      <a
-                        href={
-                          "https://www.genome.jp/dbget-bin/www_bget?map" +
-                          map_id
-                        }
-                        className="bulleted-list-item"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        dangerouslySetInnerHTML={{
-                          __html: upperCaseFirstLetter(el.name)
-                        }}
-                      ></a>
-                    </li>
-                  );
-                } else {
-                  return (
-                    <li key={el.name}>
-                      <div
-                        className="bulleted-list-item"
-                        dangerouslySetInnerHTML={{
-                          __html: upperCaseFirstLetter(el.name)
-                        }}
-                      ></div>
-                    </li>
-                  );
-                }
-              })}
-            </ul>
-          )
-        });
-      }
+      sections.push({
+        id: "pathways",
+        title: "Pathways",
+        content: (
+          <ul className="two-col-list link-list">
+            {processedData.pathways.map(el => {
+              if (el.kegg_map_id) {
+                const map_id = el.kegg_map_id.substring(
+                  2,
+                  el.kegg_map_id.length
+                );
+                return (
+                  <li key={el.name}>
+                    <a
+                      href={
+                        "https://www.genome.jp/dbget-bin/www_bget?map" + map_id
+                      }
+                      className="bulleted-list-item"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      dangerouslySetInnerHTML={{
+                        __html: upperCaseFirstLetter(el.name)
+                      }}
+                    ></a>
+                  </li>
+                );
+              } else {
+                return (
+                  <li key={el.name}>
+                    <div
+                      className="bulleted-list-item"
+                      dangerouslySetInnerHTML={{
+                        __html: upperCaseFirstLetter(el.name)
+                      }}
+                    ></div>
+                  </li>
+                );
+              }
+            })}
+          </ul>
+        )
+      });
     }
 
     return sections;
