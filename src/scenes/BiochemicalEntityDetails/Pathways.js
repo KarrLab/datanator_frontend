@@ -5,7 +5,9 @@ import { upperCaseFirstLetter } from "~/utils/utils";
 export default class Pathways extends Component {
   static propTypes = {
     pathways: PropTypes.array.isRequired,
-    "page-size": PropTypes.number.isRequired
+    "page-size": PropTypes.number.isRequired,
+    "kegg-id-name": PropTypes.string.isRequired,
+    "kegg-description-name": PropTypes.string.isRequired
   };
 
   constructor(props) {
@@ -22,6 +24,7 @@ export default class Pathways extends Component {
 
   render() {
     const pathways = this.props.pathways;
+    console.log(pathways);
     const displayed_pathways = pathways.slice(
       0,
       this.state.pageCount * this.props["page-size"]
@@ -38,13 +41,13 @@ export default class Pathways extends Component {
         <div>
           <ul className="two-col-list link-list">
             {displayed_pathways.map(el => {
-              if (el.kegg_map_id) {
-                const map_id = el.kegg_map_id.substring(
+              if (el[this.props["kegg-id-name"]]) {
+                const map_id = el[this.props["kegg-id-name"]].substring(
                   2,
-                  el.kegg_map_id.length
+                  el[this.props["kegg-id-name"]].length
                 );
                 return (
-                  <li key={el.name}>
+                  <li key={el[this.props["kegg-description-name"]]}>
                     <a
                       href={
                         "https://www.genome.jp/dbget-bin/www_bget?map" + map_id
@@ -53,7 +56,9 @@ export default class Pathways extends Component {
                       target="_blank"
                       rel="noopener noreferrer"
                       dangerouslySetInnerHTML={{
-                        __html: upperCaseFirstLetter(el.name)
+                        __html: upperCaseFirstLetter(
+                          el[this.props["kegg-description-name"]]
+                        )
                       }}
                     ></a>
                   </li>
@@ -64,7 +69,9 @@ export default class Pathways extends Component {
                     <div
                       className="bulleted-list-item"
                       dangerouslySetInnerHTML={{
-                        __html: upperCaseFirstLetter(el.name)
+                        __html: upperCaseFirstLetter(
+                          el[this.props["kegg-description-name"]]
+                        )
                       }}
                     ></div>
                   </li>

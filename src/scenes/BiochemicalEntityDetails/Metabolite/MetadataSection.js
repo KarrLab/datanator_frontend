@@ -326,7 +326,14 @@ class MetadataSection extends Component {
       sections.push({
         id: "pathways",
         title: "Pathways",
-        content: <Pathways pathways={processedData.pathways} page-size={30} />
+        content: (
+          <Pathways
+            pathways={processedData.pathways}
+            page-size={30}
+            kegg-id-name={"kegg_map_id"}
+            kegg-description-name={"name"}
+          />
+        )
       });
     }
 
