@@ -24,7 +24,6 @@ export default class Pathways extends Component {
 
   render() {
     const pathways = this.props.pathways;
-    console.log(pathways);
     const displayed_pathways = pathways.slice(
       0,
       this.state.pageCount * this.props["page-size"]

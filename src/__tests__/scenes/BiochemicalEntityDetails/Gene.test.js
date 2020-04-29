@@ -119,7 +119,6 @@ describe("Gene data page", () => {
   it("Processes metadata data correctly", () => {
     // format raw data
     const processedMetadata = MetadataSection.processMetadata(testRawMetadata);
-    //console.log(processedMetadata)
     expect(processedMetadata.koNumber).toEqual("K00850");
     expect(processedMetadata.koName).toEqual("6-phosphofructokinase 1");
   });

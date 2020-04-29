@@ -246,7 +246,6 @@ class DataTable extends Component {
         sort: "asc"
       });
     }
-    console.log(model);
     gridApi.setSortModel(model);
   }
 
