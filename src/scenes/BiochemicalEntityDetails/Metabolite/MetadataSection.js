@@ -102,11 +102,7 @@ class MetadataSection extends Component {
 
     processedData.name = met.name;
     if (met.synonyms.synonym) {
-      if (typeof met.synonyms.synonym === "string") {
-        met.synonyms.synonym = [met.synonyms.synonym];
-      }
-
-      processedData.synonyms = met.synonyms.synonym.map(syn => {
+      processedData.synonyms = castToArray(met.synonyms.synonym).map(syn => {
         return htmlEntityDecoder.feed(syn);
       });
       processedData.synonyms.sort((a, b) => {
@@ -145,9 +141,6 @@ class MetadataSection extends Component {
     };
 
     if (met.pathways) {
-      if (!Array.isArray(met.pathways.pathway)) {
-        met.pathways.pathway = [met.pathways.pathway];
-      }
       processedData.pathways = castToArray(met.pathways.pathway);
 
       processedData.pathways = removeDuplicates(
@@ -159,7 +152,7 @@ class MetadataSection extends Component {
       });
     }
 
-    if (met.cellularLocations) {
+    if (met.cellular_locations) {
       processedData.cellularLocations = castToArray(
         met.cellular_locations.cellular_location
       );
@@ -177,7 +170,6 @@ class MetadataSection extends Component {
       pubchem: met.pubchem_compound_id,
       ymdb: met.ymdb_id
     };
-    console.log(processedData);
     return processedData;
   }
 

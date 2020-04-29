@@ -111,7 +111,6 @@ describe("Reaction data page", () => {
     );
     const sideBarDefs = RateConstantsDataTable.getSideBarDef(formattedData);
     //expect(getSectionFromList(sideBarDefs))
-    console.log(sideBarDefs);
     expect(
       getSectionFromList(sideBarDefs.toolPanels, "id", "stats-km-AMP")
     ).not.toEqual(null);
@@ -159,6 +158,12 @@ describe("Reaction data page", () => {
     expect(MetadataSection.formatTitle(processedMetadata)).toEqual(
       "Adenylate kinase"
     );
+    const processedMetadataWithoutTitle = Object.assign({}, processedMetadata)
+    processedMetadataWithoutTitle.enzyme = null
+    expect(MetadataSection.formatTitle(processedMetadataWithoutTitle)).toEqual(
+      "AMP + ATP → ADP"
+    );
+
     const formattedMetadata = MetadataSection.formatMetadata(processedMetadata);
 
     expect(formattedMetadata[0].id).toEqual("description");
@@ -169,6 +174,7 @@ describe("Reaction data page", () => {
     const correctListOfMetadata = [
       "Enzyme: Adenylate kinase",
       "Equation: AMP + ATP → ADP",
+      "Cofactor: NAD(+)",
       "EC code: 2.7.4.3"
     ];
 

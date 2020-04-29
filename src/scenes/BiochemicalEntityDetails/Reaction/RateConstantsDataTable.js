@@ -93,7 +93,7 @@ class RateConstantsDataTable extends Component {
     return kms;
   }
 
-  static getConcBarDef(formattedData) {
+  static getSideBarDef(formattedData) {
     const sideBar = {
       toolPanels: [
         {
@@ -339,7 +339,7 @@ class RateConstantsDataTable extends Component {
         data-type="rate constants"
         get-data-url={RateConstantsDataTable.getUrl}
         format-data={RateConstantsDataTable.formatData}
-        get-side-bar-def={RateConstantsDataTable.getConcBarDef}
+        get-side-bar-def={RateConstantsDataTable.getSideBarDef}
         get-col-defs={RateConstantsDataTable.getColDefs}
         get-col-sort-order={RateConstantsDataTable.getColSortOrder}
       />
