@@ -258,7 +258,7 @@ class Stats extends Component {
                     xMin={10}
                     xMax={80}
                     yAxisLabel="Measurements"
-                    kernelBandwidth={1}
+                    kernelBandwidth={0.5}
                   />
                 </div>
               </div>
