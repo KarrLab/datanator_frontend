@@ -214,7 +214,7 @@ class MetadataSection extends Component {
           id: "pathways",
           title: "Pathways",
           content: (
-            <Pathways
+            <KeggPathwaysMetadataSection
               pathways={processedData.pathways}
               page-size={30}
               kegg-id-name={"kegg_pathway_code"}
