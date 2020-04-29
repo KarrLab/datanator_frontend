@@ -207,9 +207,6 @@ class MetadataSection extends Component {
 
     if (processedData.pathways) {
       if (processedData.pathways.length > 0) {
-        processedData.pathways.sort((a, b) => {
-          return strCompare(a.pathway_description, b.pathway_description);
-        });
         sections.push({
           id: "pathways",
           title: "Pathways",

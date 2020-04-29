@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { upperCaseFirstLetter } from "~/utils/utils";
+import { upperCaseFirstLetter, strCompare } from "~/utils/utils";
 
 export default class KeggPathwaysMetadataSection extends Component {
   static propTypes = {
@@ -24,6 +24,13 @@ export default class KeggPathwaysMetadataSection extends Component {
 
   render() {
     const pathways = this.props.pathways;
+    pathways.sort((a, b) => {
+      return strCompare(
+        a[this.props["kegg-description-name"]],
+        b[this.props["kegg-description-name"]]
+      );
+    });
+
     const displayedPathways = pathways.slice(
       0,
       this.state.pageCount * this.props["page-size"]
@@ -41,7 +48,7 @@ export default class KeggPathwaysMetadataSection extends Component {
           <ul className="two-col-list link-list">
             {displayedPathways.map(el => {
               if (el[this.props["kegg-id-name"]]) {
-                const map_id = el[this.props["kegg-id-name"]].substring(
+                const mapId = el[this.props["kegg-id-name"]].substring(
                   2,
                   el[this.props["kegg-id-name"]].length
                 );
@@ -49,7 +56,7 @@ export default class KeggPathwaysMetadataSection extends Component {
                   <li key={el[this.props["kegg-description-name"]]}>
                     <a
                       href={
-                        "https://www.genome.jp/dbget-bin/www_bget?map" + map_id
+                        "https://www.genome.jp/dbget-bin/www_bget?map" + mapId
                       }
                       className="bulleted-list-item"
                       target="_blank"
