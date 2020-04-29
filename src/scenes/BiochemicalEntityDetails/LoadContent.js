@@ -45,7 +45,7 @@ class LoadExternalContent extends Component {
   render() {
     if (this.state.text === null) {
       return <div className="loader"></div>;
-    } else if (this.state.text.length == 0) {
+    } else if (this.state.text.length === 0) {
       return <div>No data is available.</div>;
     } else {
       return <div>{this.state.text}</div>;
