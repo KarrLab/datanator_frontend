@@ -192,7 +192,7 @@ describe("Metabolite data page", () => {
       "id",
       "physics"
     );
-    expect(formattedPhysics.title).toEqual("Physics");
+    expect(formattedPhysics.title).toEqual("Chemistry");
     const physicsWrapper = shallow(formattedPhysics.content);
 
     const correctListOfPhysics = [

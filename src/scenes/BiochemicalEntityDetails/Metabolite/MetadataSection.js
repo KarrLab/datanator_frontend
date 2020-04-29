@@ -295,8 +295,8 @@ class MetadataSection extends Component {
         });
 
       sections.push({
-        id: "physics",
-        title: "Physics",
+        id: "chemistry",
+        title: "Chemistry",
         content: <ul className="key-value-list">{physicalProps}</ul>
       });
     }
