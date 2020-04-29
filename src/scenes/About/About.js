@@ -767,6 +767,9 @@ class About extends Component {
                       Saahith Pochiraju
                       <SocialIcon url="https://www.linkedin.com/in/saahithpochiraju/" />
                     </div>
+                    <div className="developer-name">
+                      Balazs Szigeti
+                    </div>
                   </div>
                 </div>
               </div>
