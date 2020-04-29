@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { upperCaseFirstLetter } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
 import { Link } from "react-router-dom";
-import Pathways from "../Pathways";
+import KeggPathwaysMetadataSection from "../KeggPathwaysMetadataSection";
 
 const DB_LINKS = [
   { label: "BRENDA", url: "https://www.brenda-enzymes.org/enzyme.php?ecno=" },
@@ -238,7 +238,7 @@ class MetadataSection extends Component {
         id: "pathways",
         title: "Pathways",
         content: (
-          <Pathways
+          <KeggPathwaysMetadataSection
             pathways={processedData.pathways}
             page-size={30}
             kegg-id-name={"kegg_pathway_code"}

@@ -8,7 +8,7 @@ import {
 } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
 import { LoadExternalContent, LoadContent } from "../LoadContent";
-import Pathways from "../Pathways";
+import KeggPathwaysMetadataSection from "../KeggPathwaysMetadataSection";
 
 class MetadataSection extends Component {
   static propTypes = {

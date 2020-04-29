@@ -8,7 +8,7 @@ import {
   castToArray
 } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
-import Pathways from "../Pathways";
+import KeggPathwaysMetadataSection from "../KeggPathwaysMetadataSection";
 import LazyLoad from "react-lazyload";
 import ReactionSearchResultsList from "./ReactionSearchResultsList";
 

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { upperCaseFirstLetter } from "~/utils/utils";
 
-export default class Pathways extends Component {
+export default class KeggPathwaysMetadataSection extends Component {
   static propTypes = {
     pathways: PropTypes.array.isRequired,
     "page-size": PropTypes.number.isRequired,
