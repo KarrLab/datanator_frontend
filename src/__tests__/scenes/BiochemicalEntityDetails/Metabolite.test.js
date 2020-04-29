@@ -4,6 +4,8 @@ import testRawData from "~/__tests__/fixtures/metabolite-concentrations-dTDP-D-G
 import testRawMetadata from "~/__tests__/fixtures/metabolite-metadata-udp.json";
 import { mount, shallow } from "enzyme";
 import { getListDomElements, getSectionFromList } from "~/utils/testing_utils";
+import ReactionSearchResultsList from "~/scenes/BiochemicalEntityDetails/Metabolite/ReactionSearchResultsList";
+import SearchResultsList from "~/scenes/BiochemicalEntityDetails/Metabolite/SearchResultsList";
 
 /* global describe, it, expect */
 describe("Metabolite data page", () => {
@@ -144,6 +146,14 @@ describe("Metabolite data page", () => {
     expect(descriptionsWrapper.text().substring(1, 30)).toEqual(
       "LazyLoad />Uridine 5'-diphosp"
     );
+
+    const formattedDataReaction = getSectionFromList(
+      formattedMetadata,
+      "id",
+      "reactions"
+    );
+    const reactionsWrapper = shallow(formattedDataReaction.content)
+    expect(reactionsWrapper.find(SearchResultsList)).toHaveLength(1);
 
     const formattedSynonyms = getSectionFromList(
       formattedMetadata,

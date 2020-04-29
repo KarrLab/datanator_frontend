@@ -103,6 +103,28 @@ describe("Reaction data page", () => {
     expect(taxonSimCol.valueFormatter({ value: 2 })).toEqual("Family");
   });
 
+  it("Properly format side bar", () => {
+    const formattedData = RateConstantsDataTable.formatData(
+      testRawData,
+      null,
+      null
+    );
+    const sideBarDefs = RateConstantsDataTable.getSideBarDef(formattedData);
+    //expect(getSectionFromList(sideBarDefs))
+    console.log(sideBarDefs);
+    expect(
+      getSectionFromList(sideBarDefs.toolPanels, "id", "stats-km-AMP")
+    ).not.toEqual(null);
+
+    const colSortOrder = RateConstantsDataTable.getColSortOrder(
+      null,
+      formattedData
+    );
+    expect(colSortOrder).toEqual(["kcat", "km.AMP"]);
+
+    //expect(taxonSimCol.valueFormatter({ value: 2 })).toEqual("Family");
+  });
+
   it("Gets correct metadata url ", () => {
     const query = "ATP,AMP-->ADP";
     //const organism = "Saccharomyces cerevisiae S288C";
