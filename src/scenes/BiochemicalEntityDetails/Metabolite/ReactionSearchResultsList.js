@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import SearchResultsList from "./SearchResultsList.js";
+import { formatParticipantsForUrl } from "~/utils/utils";
 
 export default class ReactionSearchResultsList extends Component {
   getResultsUrl(query, pageCount, pageSize) {
@@ -66,9 +67,9 @@ export default class ReactionSearchResultsList extends Component {
       // route
       formattedResult["route"] =
         "/reaction/" +
-        formatParticipantForUrl(substrates) +
+        formatParticipantsForUrl(substrates) +
         "-->" +
-        formatParticipantForUrl(products);
+        formatParticipantsForUrl(products);
       if (organism) {
         formattedResult["route"] += "/" + organism;
       }
@@ -96,14 +97,6 @@ export default class ReactionSearchResultsList extends Component {
 
 function formatSide(parts) {
   return parts.join(" + ");
-}
-
-function formatParticipantForUrl(participants) {
-  const partNames = [];
-  for (const participant of participants) {
-    partNames.push(encodeURIComponent(participant));
-  }
-  return partNames;
 }
 
 function getParticipant(participants) {
