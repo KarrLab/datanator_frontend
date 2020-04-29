@@ -157,6 +157,7 @@ class MetadataSection extends Component {
         </a>
       )
     });
+
     if (processedData.ecCode !== undefined) {
       crossRefs.push({
         key: "EC code",
