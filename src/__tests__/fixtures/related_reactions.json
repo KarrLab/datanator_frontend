@@ -1,0 +1,256 @@
+[
+  {
+    "ec_meta": {
+      "catalytic_activity": [
+        "dTDP-alpha-D-glucose = dTDP-4-dehydro-6-deoxy-alpha-D-glucose + H(2)O"
+      ],
+      "cofactor": "NAD(+)",
+      "ec_name": "dTDP-glucose 4,6-dehydratase",
+      "ec_number": "4.2.1.46"
+    },
+    "kinlaw_id": 28973,
+    "products": [
+      [
+        {
+          "None": "View all entries for compound H2O",
+          "chebi": "CHEBI:15377",
+          "created": "2018-11-13 15:34:45.639403",
+          "kegg_id": "C00001",
+          "modified": "2018-11-13 18:04:08.849600",
+          "product_coefficient": 1,
+          "product_compartment": {},
+          "product_name": "H2O",
+          "product_structure": [
+            {
+              "InChI_Key": "XLYOFNOQVPJJNP-UHFFFAOYSA-N",
+              "format": "inchi",
+              "inchi_connectivity": "H2O",
+              "inchi_structure": "InChI=1S/H2O/h1H2",
+              "value": "InChI=1S/H2O/h1H2"
+            },
+            {
+              "format": "smiles",
+              "inchi_connectivity": "H2O",
+              "inchi_structure": "InChI=1S/H2O/h1H2",
+              "value": "[H]O[H]"
+            }
+          ],
+          "product_synonym": [
+            "Water"
+          ],
+          "product_type": null,
+          "pubchem_compound_id": null,
+          "sabio_compound_id": 40
+        },
+        {
+          "None": "View all entries for compound dTDP-4-dehydro-6-deoxy-D-glucose",
+          "chebi": "CHEBI:16128",
+          "created": "2018-11-13 15:34:45.639403",
+          "kegg_id": "C11907",
+          "modified": "2018-11-13 18:04:34.639212",
+          "product_coefficient": 1,
+          "product_compartment": {},
+          "product_name": "dTDP-4-dehydro-6-deoxy-D-glucose",
+          "product_structure": [
+            {
+              "InChI_Key": "PSXWNITXWWECNY-UCBTUHGZSA-N",
+              "format": "inchi",
+              "inchi_connectivity": "C16H24N2O15P2/c1-6-4-18(16(24)17-14(6)23)10-3-8(19)9(31-10)5-29-34(25,26)33-35(27,28)32-15-13(22)12(21)11(20)7(2)30-15",
+              "inchi_structure": "InChI=1S/C16H24N2O15P2/c1-6-4-18(16(24)17-14(6)23)10-3-8(19)9(31-10)5-29-34(25,26)33-35(27,28)32-15-13(22)12(21)11(20)7(2)30-15/h4,7-10,12-13,15,19,21-22H,3,5H2,1-2H3,(H,25,26)(H,27,28)(H,17,23,24)/t7-,8+,9-,10-,12+,13-,15-/m1/s1",
+              "value": "InChI=1S/C16H24N2O15P2/c1-6-4-18(16(24)17-14(6)23)10-3-8(19)9(31-10)5-29-34(25,26)33-35(27,28)32-15-13(22)12(21)11(20)7(2)30-15/h4,7-10,12-13,15,19,21-22H,3,5H2,1-2H3,(H,25,26)(H,27,28)(H,17,23,24)/t7-,8+,9-,10-,12+,13-,15-/m1/s1"
+            },
+            {
+              "format": "smiles",
+              "inchi_connectivity": "C16H24N2O15P2/c1-6-4-18(16(24)17-14(6)23)10-3-8(19)9(31-10)5-29-34(25,26)33-35(27,28)32-15-13(22)12(21)11(20)7(2)30-15",
+              "inchi_structure": "InChI=1S/C16H24N2O15P2/c1-6-4-18(16(24)17-14(6)23)10-3-8(19)9(31-10)5-29-34(25,26)33-35(27,28)32-15-13(22)12(21)11(20)7(2)30-15/h4,7-10,12-13,15,19,21-22H,3,5H2,1-2H3,(H,25,26)(H,27,28)(H,17,23,24)",
+              "value": "CC1=CN(C(=O)NC1(=O))C3CC(O)C(COP(O)(=O)OP(O)(=O)OC2OC(C)C(=O)C(O)C2(O))O3"
+            }
+          ],
+          "product_synonym": [
+            "dTDP-4-oxo-6-deoxy-D-glucose",
+            "dTDP-4-oxo-6-deoxy-alpha-D-glucose"
+          ],
+          "product_type": null,
+          "pubchem_compound_id": null,
+          "sabio_compound_id": 1563
+        }
+      ]
+    ],
+    "resource": [
+      {
+        "id": "1993076",
+        "namespace": "pubmed"
+      },
+      {
+        "id": "4.2.1.46",
+        "namespace": "ec-code"
+      },
+      {
+        "id": "R06513",
+        "namespace": "kegg.reaction"
+      },
+      {
+        "id": "2648",
+        "namespace": "sabiork.reaction"
+      }
+    ],
+    "substrates": [
+      [
+        {
+          "None": "View all entries for compound dTDPglucose",
+          "chebi": "CHEBI:15700",
+          "created": "2018-11-13 15:34:45.639403",
+          "kegg_id": "C00842",
+          "modified": "2018-11-13 18:06:36.838340",
+          "pubchem_compound_id": null,
+          "pubchem_substance_id": "4099",
+          "sabio_compound_id": 3923,
+          "substrate_coefficient": 1,
+          "substrate_compartment": {},
+          "substrate_name": "dTDPglucose",
+          "substrate_structure": [
+            {
+              "InChI_Key": "YSYKRGRSMLTJNL-URARBOGNSA-N",
+              "format": "inchi",
+              "inchi_connectivity": "C16H26N2O16P2/c1-6-3-18(16(25)17-14(6)24)10-2-7(20)9(31-10)5-30-35(26,27)34-36(28,29)33-15-13(23)12(22)11(21)8(4-19)32-15",
+              "inchi_structure": "InChI=1S/C16H26N2O16P2/c1-6-3-18(16(25)17-14(6)24)10-2-7(20)9(31-10)5-30-35(26,27)34-36(28,29)33-15-13(23)12(22)11(21)8(4-19)32-15/h3,7-13,15,19-23H,2,4-5H2,1H3,(H,26,27)(H,28,29)(H,17,24,25)/t7-,8+,9+,10+,11+,12-,13+,15+/m0/s1",
+              "value": "InChI=1S/C16H26N2O16P2/c1-6-3-18(16(25)17-14(6)24)10-2-7(20)9(31-10)5-30-35(26,27)34-36(28,29)33-15-13(23)12(22)11(21)8(4-19)32-15/h3,7-13,15,19-23H,2,4-5H2,1H3,(H,26,27)(H,28,29)(H,17,24,25)/t7-,8+,9+,10+,11+,12-,13+,15+/m0/s1"
+            },
+            {
+              "format": "smiles",
+              "inchi_connectivity": "C16H26N2O16P2/c1-6-3-18(16(25)17-14(6)24)10-2-7(20)9(31-10)5-30-35(26,27)34-36(28,29)33-15-13(23)12(22)11(21)8(4-19)32-15",
+              "inchi_structure": "InChI=1S/C16H26N2O16P2/c1-6-3-18(16(25)17-14(6)24)10-2-7(20)9(31-10)5-30-35(26,27)34-36(28,29)33-15-13(23)12(22)11(21)8(4-19)32-15/h3,7-13,15,19-23H,2,4-5H2,1H3,(H,26,27)(H,28,29)(H,17,24,25)",
+              "value": "CC1=CN(C(=O)NC1(=O))C3CC(O)C(COP(O)(=O)OP(O)(=O)OC2OC(CO)C(O)C(O)C2(O))O3"
+            }
+          ],
+          "substrate_synonym": [],
+          "substrate_type": null
+        }
+      ]
+    ]
+  },
+  {
+    "ec_meta": {
+      "catalytic_activity": [
+        "dTDP-alpha-D-glucose = dTDP-4-dehydro-6-deoxy-alpha-D-glucose + H(2)O"
+      ],
+      "cofactor": "NAD(+)",
+      "ec_name": "dTDP-glucose 4,6-dehydratase",
+      "ec_number": "4.2.1.46"
+    },
+    "kinlaw_id": 20975,
+    "products": [
+      [
+        {
+          "None": "View all entries for compound dTDP-4-dehydro-6-deoxy-D-glucose",
+          "chebi": "CHEBI:16128",
+          "created": "2018-11-13 15:34:45.639403",
+          "kegg_id": "C11907",
+          "modified": "2018-11-13 18:04:34.639212",
+          "product_coefficient": 1,
+          "product_compartment": {},
+          "product_name": "dTDP-4-dehydro-6-deoxy-D-glucose",
+          "product_structure": [
+            {
+              "InChI_Key": "PSXWNITXWWECNY-UCBTUHGZSA-N",
+              "format": "inchi",
+              "inchi_connectivity": "C16H24N2O15P2/c1-6-4-18(16(24)17-14(6)23)10-3-8(19)9(31-10)5-29-34(25,26)33-35(27,28)32-15-13(22)12(21)11(20)7(2)30-15",
+              "inchi_structure": "InChI=1S/C16H24N2O15P2/c1-6-4-18(16(24)17-14(6)23)10-3-8(19)9(31-10)5-29-34(25,26)33-35(27,28)32-15-13(22)12(21)11(20)7(2)30-15/h4,7-10,12-13,15,19,21-22H,3,5H2,1-2H3,(H,25,26)(H,27,28)(H,17,23,24)/t7-,8+,9-,10-,12+,13-,15-/m1/s1",
+              "value": "InChI=1S/C16H24N2O15P2/c1-6-4-18(16(24)17-14(6)23)10-3-8(19)9(31-10)5-29-34(25,26)33-35(27,28)32-15-13(22)12(21)11(20)7(2)30-15/h4,7-10,12-13,15,19,21-22H,3,5H2,1-2H3,(H,25,26)(H,27,28)(H,17,23,24)/t7-,8+,9-,10-,12+,13-,15-/m1/s1"
+            },
+            {
+              "format": "smiles",
+              "inchi_connectivity": "C16H24N2O15P2/c1-6-4-18(16(24)17-14(6)23)10-3-8(19)9(31-10)5-29-34(25,26)33-35(27,28)32-15-13(22)12(21)11(20)7(2)30-15",
+              "inchi_structure": "InChI=1S/C16H24N2O15P2/c1-6-4-18(16(24)17-14(6)23)10-3-8(19)9(31-10)5-29-34(25,26)33-35(27,28)32-15-13(22)12(21)11(20)7(2)30-15/h4,7-10,12-13,15,19,21-22H,3,5H2,1-2H3,(H,25,26)(H,27,28)(H,17,23,24)",
+              "value": "CC1=CN(C(=O)NC1(=O))C3CC(O)C(COP(O)(=O)OP(O)(=O)OC2OC(C)C(=O)C(O)C2(O))O3"
+            }
+          ],
+          "product_synonym": [
+            "dTDP-4-oxo-6-deoxy-D-glucose",
+            "dTDP-4-oxo-6-deoxy-alpha-D-glucose"
+          ],
+          "product_type": null,
+          "pubchem_compound_id": null,
+          "sabio_compound_id": 1563
+        },
+        {
+          "None": "View all entries for compound H2O",
+          "chebi": "CHEBI:15377",
+          "created": "2018-11-13 15:34:45.639403",
+          "kegg_id": "C00001",
+          "modified": "2018-11-13 18:04:08.849600",
+          "product_coefficient": 1,
+          "product_compartment": {},
+          "product_name": "H2O",
+          "product_structure": [
+            {
+              "InChI_Key": "XLYOFNOQVPJJNP-UHFFFAOYSA-N",
+              "format": "inchi",
+              "inchi_connectivity": "H2O",
+              "inchi_structure": "InChI=1S/H2O/h1H2",
+              "value": "InChI=1S/H2O/h1H2"
+            },
+            {
+              "format": "smiles",
+              "inchi_connectivity": "H2O",
+              "inchi_structure": "InChI=1S/H2O/h1H2",
+              "value": "[H]O[H]"
+            }
+          ],
+          "product_synonym": [
+            "Water"
+          ],
+          "product_type": null,
+          "pubchem_compound_id": null,
+          "sabio_compound_id": 40
+        }
+      ]
+    ],
+    "resource": [
+      {
+        "id": "14284740",
+        "namespace": "pubmed"
+      },
+      {
+        "id": "4.2.1.46",
+        "namespace": "ec-code"
+      },
+      {
+        "id": "R06513",
+        "namespace": "kegg.reaction"
+      },
+      {
+        "id": "8948",
+        "namespace": "sabiork.reaction"
+      }
+    ],
+    "substrates": [
+      [
+        {
+          "None": "View all entries for compound dTDP-D-glucose",
+          "chebi": "CHEBI:35248",
+          "created": "2018-11-13 15:34:45.639403",
+          "kegg_id": "C00842",
+          "modified": "2018-11-13 18:04:34.245963",
+          "pubchem_compound_id": null,
+          "pubchem_substance_id": "4099",
+          "sabio_compound_id": 1534,
+          "substrate_coefficient": 1,
+          "substrate_compartment": {},
+          "substrate_name": "dTDP-D-glucose",
+          "substrate_structure": [
+            {
+              "InChI_Key": "YSYKRGRSMLTJNL-KFQCIAAJSA-N",
+              "format": "inchi",
+              "inchi_connectivity": "C16H26N2O16P2/c1-6-3-18(16(25)17-14(6)24)10-2-7(20)9(31-10)5-30-35(26,27)34-36(28,29)33-15-13(23)12(22)11(21)8(4-19)32-15",
+              "inchi_structure": "InChI=1S/C16H26N2O16P2/c1-6-3-18(16(25)17-14(6)24)10-2-7(20)9(31-10)5-30-35(26,27)34-36(28,29)33-15-13(23)12(22)11(21)8(4-19)32-15/h3,7-13,15,19-23H,2,4-5H2,1H3,(H,26,27)(H,28,29)(H,17,24,25)/t7-,8+,9+,10+,11+,12-,13+,15?/m0/s1",
+              "value": "InChI=1S/C16H26N2O16P2/c1-6-3-18(16(25)17-14(6)24)10-2-7(20)9(31-10)5-30-35(26,27)34-36(28,29)33-15-13(23)12(22)11(21)8(4-19)32-15/h3,7-13,15,19-23H,2,4-5H2,1H3,(H,26,27)(H,28,29)(H,17,24,25)/t7-,8+,9+,10+,11+,12-,13+,15?/m0/s1"
+            }
+          ],
+          "substrate_synonym": [],
+          "substrate_type": null
+        }
+      ]
+    ]
+  }
+]

@@ -12,7 +12,7 @@ class LoadExternalContent extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { text: "" };
+    this.state = { text: null };
     this.cancelTokenSource = null;
   }
 
@@ -43,8 +43,10 @@ class LoadExternalContent extends Component {
   }
 
   render() {
-    if (this.state.text === "") {
+    if (this.state.text == null) {
       return <div className="loader"></div>;
+    } else if (this.state.text.length === 0) {
+      return <div>No data is available.</div>;
     } else {
       return <div>{this.state.text}</div>;
     }
@@ -109,6 +111,8 @@ class LoadContent extends Component {
     const results = this.state.results;
     if (results == null) {
       return <div className="loader"></div>;
+    } else if (results.length === 0) {
+      return <div>No data is available.</div>;
     } else {
       return <div>{this.state.results}</div>;
     }

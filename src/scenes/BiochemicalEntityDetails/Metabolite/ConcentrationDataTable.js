@@ -120,7 +120,8 @@ class ConcentrationDataTable extends Component {
         filter: "numberFilter",
         checkboxSelection: true,
         headerCheckboxSelection: true,
-        headerCheckboxSelectionFilteredOnly: true
+        headerCheckboxSelectionFilteredOnly: true,
+        comparator: DataTable.numericComparator
       },
       {
         headerName: "Uncertainty (µM)",
@@ -238,6 +239,10 @@ class ConcentrationDataTable extends Component {
     return colDefs;
   }
 
+  static getColSortOrder() {
+    return ["value"];
+  }
+
   render() {
     return (
       <DataTable
@@ -249,6 +254,7 @@ class ConcentrationDataTable extends Component {
         format-data={ConcentrationDataTable.formatData}
         get-side-bar-def={ConcentrationDataTable.getSideBarDef}
         get-col-defs={ConcentrationDataTable.getColDefs}
+        get-col-sort-order={ConcentrationDataTable.getColSortOrder}
       />
     );
   }

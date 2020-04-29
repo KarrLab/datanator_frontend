@@ -1,9 +1,14 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { upperCaseFirstLetter, strCompare } from "~/utils/utils";
+import {
+  upperCaseFirstLetter,
+  strCompare,
+  formatParticipantsForUrl
+} from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
 import { LoadExternalContent, LoadContent } from "../LoadContent";
+import KeggPathwaysMetadataSection from "../KeggPathwaysMetadataSection";
 
 class MetadataSection extends Component {
   static propTypes = {
@@ -55,7 +60,11 @@ class MetadataSection extends Component {
 
       const equation = formatSide(substrates) + " → " + formatSide(products);
       const ecMeta = reaction["ec_meta"];
-      let route = "/reaction/" + substrates + "-->" + products;
+      let route =
+        "/reaction/" +
+        formatParticipantsForUrl(substrates) +
+        "-->" +
+        formatParticipantsForUrl(products);
       if (organism) {
         route += "/" + organism;
       }
@@ -117,9 +126,22 @@ class MetadataSection extends Component {
   static formatMetadata(processedData, organism) {
     const sections = [];
 
-    const descriptions = [];
+    sections.push({
+      id: "description",
+      title: "Description",
+      content: (
+        <div>
+          <LoadExternalContent
+            url={processedData.descriptionUrl}
+            format-results={MetadataSection.processDescriptionFromUniprot}
+          />
+        </div>
+      )
+    });
 
-    descriptions.push({
+    const crossRefs = [];
+
+    crossRefs.push({
       key: "KEGG",
       value: (
         <a
@@ -135,39 +157,29 @@ class MetadataSection extends Component {
         </a>
       )
     });
-    descriptions.push({
-      key: "EC code",
-      value: (
-        <a
-          href={"https://enzyme.expasy.org/EC/" + processedData.ecCode}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {" "}
-          {processedData.ecCode}
-        </a>
-      )
-    });
 
-    sections.push({
-      id: "description",
-      title: "Description",
-      content: (
-        <div>
-          <LoadExternalContent
-            url={processedData.descriptionUrl}
-            format-results={MetadataSection.processDescriptionFromUniprot}
-          />
-        </div>
-      )
-    });
+    if (processedData.ecCode !== undefined) {
+      crossRefs.push({
+        key: "EC code",
+        value: (
+          <a
+            href={"https://enzyme.expasy.org/EC/" + processedData.ecCode}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {" "}
+            {processedData.ecCode}
+          </a>
+        )
+      });
+    }
 
     sections.push({
       id: "cross-refs",
       title: "Cross references",
       content: (
         <ul className="key-value-list link-list">
-          {descriptions.map(desc => {
+          {crossRefs.map(desc => {
             return (
               <li key={desc.key}>
                 <b>{desc.key}</b>: {desc.value}
@@ -194,52 +206,21 @@ class MetadataSection extends Component {
       )
     });
 
-    if (processedData.pathways.length > 0) {
-      processedData.pathways.sort((a, b) => {
-        return strCompare(a.pathway_description, b.pathway_description);
-      });
-      sections.push({
-        id: "pathways",
-        title: "Pathways",
-        content: (
-          <ul className="two-col-list link-list">
-            {processedData.pathways.map(el => {
-              if (el.kegg_pathway_code) {
-                const map_id = el.kegg_pathway_code.substring(
-                  2,
-                  el.kegg_pathway_code.length
-                );
-                return (
-                  <li key={el.pathway_description}>
-                    <a
-                      href={
-                        "https://www.genome.jp/dbget-bin/www_bget?map" + map_id
-                      }
-                      className="bulleted-list-item"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      dangerouslySetInnerHTML={{
-                        __html: upperCaseFirstLetter(el.pathway_description)
-                      }}
-                    ></a>
-                  </li>
-                );
-              } else {
-                return (
-                  <li key={el.pathway_description}>
-                    <div
-                      className="bulleted-list-item"
-                      dangerouslySetInnerHTML={{
-                        __html: upperCaseFirstLetter(el.pathway_description)
-                      }}
-                    ></div>
-                  </li>
-                );
-              }
-            })}
-          </ul>
-        )
-      });
+    if (processedData.pathways) {
+      if (processedData.pathways.length > 0) {
+        sections.push({
+          id: "pathways",
+          title: "Pathways",
+          content: (
+            <KeggPathwaysMetadataSection
+              pathways={processedData.pathways}
+              page-size={30}
+              kegg-id-name={"kegg_pathway_code"}
+              kegg-description-name={"pathway_description"}
+            />
+          )
+        });
+      }
     }
     return sections;
   }

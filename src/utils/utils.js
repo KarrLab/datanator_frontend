@@ -198,6 +198,18 @@ function castToArray(obj) {
   }
 }
 
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function formatParticipantsForUrl(participants) {
+  const partNames = [];
+  for (const participant of participants) {
+    partNames.push(encodeURIComponent(participant));
+  }
+  return partNames;
+}
+
 export {
   formatScientificNotation,
   formatChemicalFormula,
@@ -209,5 +221,7 @@ export {
   downloadData,
   parseHistoryLocationPathname,
   getNumProperties,
-  castToArray
+  castToArray,
+  numberWithCommas,
+  formatParticipantsForUrl
 };

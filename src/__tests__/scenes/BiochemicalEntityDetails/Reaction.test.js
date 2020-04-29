@@ -26,7 +26,6 @@ describe("Reaction data page", () => {
       "escherichia coli",
       9
     );
-    //console.log(formattedData)
 
     // test formatted data
     expect(formattedData).toHaveLength(10);
@@ -103,6 +102,27 @@ describe("Reaction data page", () => {
     expect(taxonSimCol.valueFormatter({ value: 2 })).toEqual("Family");
   });
 
+  it("Properly format side bar", () => {
+    const formattedData = RateConstantsDataTable.formatData(
+      testRawData,
+      null,
+      null
+    );
+    const sideBarDefs = RateConstantsDataTable.getSideBarDef(formattedData);
+    //expect(getSectionFromList(sideBarDefs))
+    expect(
+      getSectionFromList(sideBarDefs.toolPanels, "id", "stats-km-AMP")
+    ).not.toEqual(null);
+
+    const colSortOrder = RateConstantsDataTable.getColSortOrder(
+      null,
+      formattedData
+    );
+    expect(colSortOrder).toEqual(["kcat", "km.AMP"]);
+
+    //expect(taxonSimCol.valueFormatter({ value: 2 })).toEqual("Family");
+  });
+
   it("Gets correct metadata url ", () => {
     const query = "ATP,AMP-->ADP";
     //const organism = "Saccharomyces cerevisiae S288C";
@@ -137,7 +157,16 @@ describe("Reaction data page", () => {
     expect(MetadataSection.formatTitle(processedMetadata)).toEqual(
       "Adenylate kinase"
     );
-    const formattedMetadata = MetadataSection.formatMetadata(processedMetadata);
+    const processedMetadataWithoutTitle = Object.assign({}, processedMetadata);
+    processedMetadataWithoutTitle.enzyme = null;
+    expect(MetadataSection.formatTitle(processedMetadataWithoutTitle)).toEqual(
+      "AMP + ATP → ADP"
+    );
+
+    const formattedMetadata = MetadataSection.formatMetadata(
+      processedMetadata,
+      "Escherichia coli"
+    );
 
     expect(formattedMetadata[0].id).toEqual("description");
     expect(formattedMetadata[0].title).toEqual("Description");
@@ -147,6 +176,7 @@ describe("Reaction data page", () => {
     const correctListOfMetadata = [
       "Enzyme: Adenylate kinase",
       "Equation: AMP + ATP → ADP",
+      "Cofactor: NAD(+)",
       "EC code: 2.7.4.3"
     ];
 

@@ -1,9 +1,12 @@
 import { ProteinAbundanceDataTable } from "~/scenes/BiochemicalEntityDetails/Gene/ProteinAbundanceDataTable";
 import testRawData from "~/__tests__/fixtures/protein-abundances-6-phosphofructo-2-kinase";
 import testRawMetadata from "~/__tests__/fixtures/protein-metadata-6-phosphofructo-2-kinase";
+import rawRelatedReactions from "~/__tests__/fixtures/related_reactions";
+import rawUniprotDescription from "~/__tests__/fixtures/uniprot_description";
 import { MetadataSection } from "~/scenes/BiochemicalEntityDetails/Gene/MetadataSection";
 import { shallow } from "enzyme";
 import { getListDomElements, getSectionFromList } from "~/utils/testing_utils";
+import React from "react";
 
 /* global describe, it, expect */
 describe("Gene data page", () => {
@@ -116,7 +119,6 @@ describe("Gene data page", () => {
   it("Processes metadata data correctly", () => {
     // format raw data
     const processedMetadata = MetadataSection.processMetadata(testRawMetadata);
-    //console.log(processedMetadata)
     expect(processedMetadata.koNumber).toEqual("K00850");
     expect(processedMetadata.koName).toEqual("6-phosphofructokinase 1");
   });
@@ -163,6 +165,46 @@ describe("Gene data page", () => {
 
     expect(actual_list_of_names).toEqual(
       expect.arrayContaining(correct_list_of_names)
+    );
+  });
+
+  it("get description from uniprot", () => {
+    const emptyUniprotDescription = MetadataSection.processDescriptionFromUniprot(
+      null
+    );
+    expect(emptyUniprotDescription).toEqual("No description available.");
+    const uniprotDescription = MetadataSection.processDescriptionFromUniprot(
+      rawUniprotDescription
+    );
+    expect(uniprotDescription).toEqual(
+      "Catalyzes the phosphorylation of D-fructose 6-phosphate to fructose 1,6-bisphosphate by ATP, the first committing step of glycolysis"
+    );
+  });
+
+  it("formats related reactions", () => {
+    // format raw data
+    const relatedReactions = MetadataSection.processRelatedReactions(
+      "Escherichia coli",
+      rawRelatedReactions
+    );
+    const formattedReactions = shallow(<div>{relatedReactions}</div>);
+    const reactionLinksExternal = getListDomElements(formattedReactions, "a");
+    const correctListOfLinksExternal = [
+      '<a href="https://enzyme.expasy.org/EC/4.2.1.46">4.2.1.46</a>',
+      '<a href="https://enzyme.expasy.org/EC/4.2.1.46">4.2.1.46</a>'
+    ];
+    expect(reactionLinksExternal).toEqual(
+      expect.arrayContaining(correctListOfLinksExternal)
+    );
+
+    expect(formattedReactions.text()).toEqual(
+      expect.stringContaining("dTDP-glucose 4,6-dehydratase")
+    );
+
+    expect(formattedReactions.text()).toEqual(
+      expect.stringContaining(
+        "dTDPglucose → H2O + dTDP-4-dehydro-6-deoxy-D-glucose"
+      )
     );
   });
 });

@@ -8,7 +8,9 @@ import {
   castToArray
 } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
+import KeggPathwaysMetadataSection from "../KeggPathwaysMetadataSection";
 import LazyLoad from "react-lazyload";
+import ReactionSearchResultsList from "./ReactionSearchResultsList";
 
 const htmlEntityDecoder = require("html-entity-decoder");
 const reactStringReplace = require("react-string-replace");
@@ -93,17 +95,21 @@ class MetadataSection extends Component {
     let processedData = {};
     const met = rawData;
     processedData = {};
+    processedData.synonyms = null;
+    processedData.description = null;
+    processedData.pathways = null;
+    processedData.cellularLocations = null;
 
     processedData.name = met.name;
+    if (met.synonyms.synonym) {
+      processedData.synonyms = castToArray(met.synonyms.synonym).map(syn => {
+        return htmlEntityDecoder.feed(syn);
+      });
+      processedData.synonyms.sort((a, b) => {
+        return strCompare(a, b);
+      });
+    }
 
-    processedData.synonyms = met.synonyms.synonym.map(syn => {
-      return htmlEntityDecoder.feed(syn);
-    });
-    processedData.synonyms.sort((a, b) => {
-      return strCompare(a, b);
-    });
-
-    processedData.description = null;
     if (met.description != null && met.description !== undefined) {
       processedData.description = reactStringReplace(
         met.description,
@@ -122,7 +128,7 @@ class MetadataSection extends Component {
       );
     }
 
-    processedData.physics = {
+    processedData.chemistry = {
       smiles: met.smiles,
       inchi: met.inchi,
       inchiKey: met.inchikey,
@@ -134,19 +140,23 @@ class MetadataSection extends Component {
       ).value
     };
 
-    processedData.pathways = castToArray(met.pathways.pathway);
+    if (met.pathways) {
+      processedData.pathways = castToArray(met.pathways.pathway);
 
-    processedData.pathways = removeDuplicates(
-      processedData.pathways,
-      el => el.name
-    );
-    processedData.pathways.sort((a, b) => {
-      return strCompare(a.name, b.name);
-    });
+      processedData.pathways = removeDuplicates(
+        processedData.pathways,
+        el => el.name
+      );
+      processedData.pathways.sort((a, b) => {
+        return strCompare(a.name, b.name);
+      });
+    }
 
-    processedData.cellularLocations = castToArray(
-      met.cellular_locations.cellular_location
-    );
+    if (met.cellular_locations) {
+      processedData.cellularLocations = castToArray(
+        met.cellular_locations.cellular_location
+      );
+    }
 
     processedData.dbLinks = {
       biocyc: met.biocyc_id,
@@ -171,14 +181,14 @@ class MetadataSection extends Component {
     const sections = [];
     if (processedData.description) {
       let structure;
-      if (processedData.physics.smiles) {
-        structure = { type: "", value: processedData.physics.smiles };
-      } else if (processedData.physics.inchi) {
-        structure = { type: "InChI=", value: processedData.physics.inchi };
-      } else if (processedData.physics.inchiKey) {
+      if (processedData.chemistry.smiles) {
+        structure = { type: "", value: processedData.chemistry.smiles };
+      } else if (processedData.chemistry.inchi) {
+        structure = { type: "InChI=", value: processedData.chemistry.inchi };
+      } else if (processedData.chemistry.inchiKey) {
         structure = {
           type: "InChIKey=",
-          value: processedData.physics.inchiKey
+          value: processedData.chemistry.inchiKey
         };
       }
 
@@ -210,7 +220,7 @@ class MetadataSection extends Component {
       });
     }
 
-    if (processedData.synonyms.length > 0) {
+    if (processedData.synonyms) {
       sections.push({
         id: "synonyms",
         title: "Synonyms",
@@ -261,16 +271,16 @@ class MetadataSection extends Component {
       });
     }
 
-    if (Object.values(processedData.physics).some(val => val !== undefined)) {
+    if (Object.values(processedData.chemistry).some(val => val !== undefined)) {
       let physicalProps = [
-        { name: "SMILES", value: processedData.physics.smiles },
-        { name: "InChI", value: processedData.physics.inchi },
-        { name: "Formula", value: processedData.physics.formula },
-        { name: "Molecular weight", value: processedData.physics.molWt },
-        { name: "Charge", value: processedData.physics.charge },
+        { name: "SMILES", value: processedData.chemistry.smiles },
+        { name: "InChI", value: processedData.chemistry.inchi },
+        { name: "Formula", value: processedData.chemistry.formula },
+        { name: "Molecular weight", value: processedData.chemistry.molWt },
+        { name: "Charge", value: processedData.chemistry.charge },
         {
           name: "Physiological charge",
-          value: processedData.physics.physiologicalCharge
+          value: processedData.chemistry.physiologicalCharge
         }
       ]
         .filter(prop => {
@@ -285,13 +295,13 @@ class MetadataSection extends Component {
         });
 
       sections.push({
-        id: "physics",
-        title: "Physics",
+        id: "chemistry",
+        title: "Chemistry",
         content: <ul className="key-value-list">{physicalProps}</ul>
       });
     }
 
-    if (processedData.cellularLocations.length > 0) {
+    if (processedData.cellularLocations) {
       sections.push({
         id: "localizations",
         title: "Localizations",
@@ -307,47 +317,22 @@ class MetadataSection extends Component {
       });
     }
 
-    if (processedData.pathways.length > 0) {
+    sections.push({
+      id: "reactions",
+      title: "Reactions",
+      content: <ReactionSearchResultsList />
+    });
+    if (processedData.pathways) {
       sections.push({
         id: "pathways",
         title: "Pathways",
         content: (
-          <ul className="two-col-list link-list">
-            {processedData.pathways.map(el => {
-              if (el.kegg_map_id) {
-                const map_id = el.kegg_map_id.substring(
-                  2,
-                  el.kegg_map_id.length
-                );
-                return (
-                  <li key={el.name}>
-                    <a
-                      href={
-                        "https://www.genome.jp/dbget-bin/www_bget?map" + map_id
-                      }
-                      className="bulleted-list-item"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      dangerouslySetInnerHTML={{
-                        __html: upperCaseFirstLetter(el.name)
-                      }}
-                    ></a>
-                  </li>
-                );
-              } else {
-                return (
-                  <li key={el.name}>
-                    <div
-                      className="bulleted-list-item"
-                      dangerouslySetInnerHTML={{
-                        __html: upperCaseFirstLetter(el.name)
-                      }}
-                    ></div>
-                  </li>
-                );
-              }
-            })}
-          </ul>
+          <KeggPathwaysMetadataSection
+            pathways={processedData.pathways}
+            page-size={30}
+            kegg-id-name={"kegg_map_id"}
+            kegg-description-name={"name"}
+          />
         )
       });
     }
