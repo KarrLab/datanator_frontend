@@ -24,7 +24,7 @@ export default class Pathways extends Component {
 
   render() {
     const pathways = this.props.pathways;
-    const displayed_pathways = pathways.slice(
+    const displayedPathways = pathways.slice(
       0,
       this.state.pageCount * this.props["page-size"]
     );
@@ -39,7 +39,7 @@ export default class Pathways extends Component {
       <div className="content-container-search-results-scene content-block section">
         <div>
           <ul className="two-col-list link-list">
-            {displayed_pathways.map(el => {
+            {displayedPathways.map(el => {
               if (el[this.props["kegg-id-name"]]) {
                 const map_id = el[this.props["kegg-id-name"]].substring(
                   2,
