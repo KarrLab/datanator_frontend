@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import SearchResultsList from "./SearchResultsList.js";
-import PropTypes from "prop-types";
 import { formatParticipantsForUrl } from "~/utils/utils";
 
 export default class ReactionSearchResultsList extends Component {
-
   getResultsUrl(query, pageCount, pageSize) {
     const indexQueryArg = "sabio_reaction_entries";
     return (

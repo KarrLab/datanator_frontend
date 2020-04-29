@@ -48,8 +48,9 @@ class Tutorial extends Component {
                   />
                 </LazyLoad>
                 <div className="tutorial-step-text">
-                  Additionally, you can enter a search on the header by clicking
-                  on the header&apos;s search button.
+                  Alternatively, you can search the <i>Datanator</i> database by
+                  clicking the &apos;Search&apos; button in the header and using
+                  the form that appears in the header.
                 </div>
                 <LazyLoad>
                   <img
