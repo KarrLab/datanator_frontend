@@ -109,9 +109,9 @@ class LoadContent extends Component {
 
   render() {
     const results = this.state.results;
-    if (results == null) {
+    if (results === null) {
       return <div className="loader"></div>;
-    } else if (results.length == 0) {
+    } else if (results.length === 0) {
       return <div>No data is available.</div>;
     } else {
       return <div>{this.state.results}</div>;

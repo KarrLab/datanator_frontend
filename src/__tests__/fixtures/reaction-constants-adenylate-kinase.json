@@ -73,6 +73,7 @@
         "ATP + AMP = 2 ADP"
       ],
       "ec_name": "Adenylate kinase",
+      "cofactor": "NAD(+)",
       "ec_number": "2.7.4.3",
       "ec_synonyms": [
         "Adenylic kinase",

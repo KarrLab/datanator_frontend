@@ -158,13 +158,16 @@ describe("Reaction data page", () => {
     expect(MetadataSection.formatTitle(processedMetadata)).toEqual(
       "Adenylate kinase"
     );
-    const processedMetadataWithoutTitle = Object.assign({}, processedMetadata)
-    processedMetadataWithoutTitle.enzyme = null
+    const processedMetadataWithoutTitle = Object.assign({}, processedMetadata);
+    processedMetadataWithoutTitle.enzyme = null;
     expect(MetadataSection.formatTitle(processedMetadataWithoutTitle)).toEqual(
       "AMP + ATP → ADP"
     );
 
-    const formattedMetadata = MetadataSection.formatMetadata(processedMetadata);
+    const formattedMetadata = MetadataSection.formatMetadata(
+      processedMetadata,
+      "Escherichia coli"
+    );
 
     expect(formattedMetadata[0].id).toEqual("description");
     expect(formattedMetadata[0].title).toEqual("Description");
