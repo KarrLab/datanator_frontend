@@ -4,9 +4,6 @@ import PropTypes from "prop-types";
 import { formatParticipantsForUrl } from "~/utils/utils";
 
 export default class ReactionSearchResultsList extends Component {
-  static propTypes = {
-    "manual-query": PropTypes.string
-  };
 
   getResultsUrl(query, pageCount, pageSize) {
     const indexQueryArg = "sabio_reaction_entries";
@@ -95,7 +92,6 @@ export default class ReactionSearchResultsList extends Component {
         format-results={this.formatResults}
         html-anchor-id="reactions"
         title="Reaction classes"
-        manual-query={this.props["manual-query"]}
       />
     );
   }
