@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { upperCaseFirstLetter } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
 import { Link } from "react-router-dom";
+import Pathways from "../Pathways";
 
 const DB_LINKS = [
   { label: "BRENDA", url: "https://www.brenda-enzymes.org/enzyme.php?ecno=" },
@@ -237,42 +238,12 @@ class MetadataSection extends Component {
         id: "pathways",
         title: "Pathways",
         content: (
-          <ul className="two-col-list link-list">
-            {processedData.pathways.map(el => {
-              if (el.kegg_pathway_code) {
-                const map_id = el.kegg_pathway_code.substring(
-                  2,
-                  el.kegg_pathway_code.length
-                );
-                return (
-                  <li key={el.pathway_description}>
-                    <a
-                      href={
-                        "https://www.genome.jp/dbget-bin/www_bget?map" + map_id
-                      }
-                      className="bulleted-list-item"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      dangerouslySetInnerHTML={{
-                        __html: upperCaseFirstLetter(el.pathway_description)
-                      }}
-                    ></a>
-                  </li>
-                );
-              } else {
-                return (
-                  <li key={el.pathway_description}>
-                    <div
-                      className="bulleted-list-item"
-                      dangerouslySetInnerHTML={{
-                        __html: upperCaseFirstLetter(el.pathway_description)
-                      }}
-                    ></div>
-                  </li>
-                );
-              }
-            })}
-          </ul>
+          <Pathways
+            pathways={processedData.pathways}
+            page-size={30}
+            kegg-id-name={"kegg_pathway_code"}
+            kegg-description-name={"pathway_description"}
+          />
         )
       });
     }
