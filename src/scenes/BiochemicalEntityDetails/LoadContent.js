@@ -46,7 +46,7 @@ class LoadExternalContent extends Component {
     if (this.state.text == null) {
       return <div className="loader"></div>;
     } else if (this.state.text.length === 0) {
-      return <div>No data is available.</div>;
+      return <div>No information is available.</div>;
     } else {
       return <div>{this.state.text}</div>;
     }
@@ -112,7 +112,7 @@ class LoadContent extends Component {
     if (results == null) {
       return <div className="loader"></div>;
     } else if (results.length === 0) {
-      return <div>No data is available.</div>;
+      return <div>No information is available.</div>;
     } else {
       return <div>{this.state.results}</div>;
     }
