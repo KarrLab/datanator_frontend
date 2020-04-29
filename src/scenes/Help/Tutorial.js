@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import LazyLoad from "react-lazyload";
 import one_home from "./images/1_home.png";
+import search_top from "./images/searchBarTop.png";
 import two_intermediate from "./images/2_intermediate.png";
 import three_metadata from "./images/3_metadata.png";
 import four_datatable from "./images/4_datatable.png";
@@ -41,6 +42,18 @@ class Tutorial extends Component {
                 <LazyLoad>
                   <img
                     src={one_home}
+                    className="tutorial-screenshot"
+                    alt="Identify parameters icon"
+                    aria-label="Identify parameters icon"
+                  />
+                </LazyLoad>
+                <div className="tutorial-step-text">
+                  Additionally, you can enter a search on the header by clicking
+                  on the header&apos;s search button.
+                </div>
+                <LazyLoad>
+                  <img
+                    src={search_top}
                     className="tutorial-screenshot"
                     alt="Identify parameters icon"
                     aria-label="Identify parameters icon"
