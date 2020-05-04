@@ -12,7 +12,9 @@ export default class GeneSearchResultsList extends Component {
       pageCount * pageSize +
       "&size=" +
       pageSize +
-      "&fields=protein_name&fields=synonyms&fields=enzymes&fields=ko_name&fields=gene_name&fields=name&fields=enzymes.enzyme.enzyme_name&fields=enzymes.subunit.canonical_sequence&fields=species"
+      "&fields=entry_name&fields=protein_name&fields=gene_name&fields=entrez_id&fields=ko_name" + 
+      "&fields=gene_name_alt&fields=gene_name_orf&fields=gene_name_oln&fields=species_name" + 
+      "&fields=uniprot_id&fields=ko_number&fields=ec_number"
     );
   }
 
