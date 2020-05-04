@@ -9,80 +9,6 @@
     margin: 0;
   }
 
-  /* sections */
-  .section {
-    text-align: center;
-  }
-
-  .section-title-separator {
-    height: 0;
-    margin-left: auto;
-    margin-right: auto;
-    width: 4rem;
-    border-bottom: 2px solid $color-primary;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-  }
-
-  .section-inner-container {
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: calc(3rem - 2px);
-    padding-bottom: 3rem;
-    border-bottom: 1px solid $color-border;
-  }
-
-  .section-columns {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: flex-start;
-    align-content: flex-start;
-    margin-top: 2rem;
-  }
-
-  .section-3-columns {
-    .section-column {
-      width: calc((100% - (3 - 1) * 2rem) / 3);
-    }
-  }
-
-  .section-4-columns {
-    .section-column {
-      width: calc((100% - (4 - 1) * 2rem) / 4);
-    }
-  }
-
-  .section-5-columns {
-    .section-column {
-      width: calc((100% - (5 - 1) * 2rem) / 5);
-    }
-  }
-
-  .section-column {
-    text-align: center;
-  }
-
-  .section-column-icon-container,
-  .section-column-icon {
-    height: 64px;
-  }
-
-  .section-column-title {
-    font-size: 18px;
-    font-weight: bold;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .section-column-subtitle {
-    font-size: 17px;
-    color: $color-primary;
-    margin-top: 0.5rem;
-  }
-
   /* introduction */
   .intro {
     background: linear-gradient(0deg, rgba($color-primary, 0.1) 0%, rgba($color-primary, 0.4) 100%);
@@ -168,6 +94,10 @@
     p {
       font-size: 16px;
     }
+  }
+
+  .section {
+    text-align: center;
   }
 
   .intro.section {

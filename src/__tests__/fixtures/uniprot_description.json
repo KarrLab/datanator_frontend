@@ -1,0 +1,1174 @@
+[
+  {
+    "accession": "A0A010PIC8",
+    "id": "A0A010PIC8_FINMA",
+    "proteinExistence": "Inferred from homology",
+    "info": {
+      "type": "TrEMBL",
+      "created": "2014-06-11",
+      "modified": "2019-12-11",
+      "version": 33
+    },
+    "organism": {
+      "taxonomy": 1459804,
+      "names": [
+        {
+          "type": "scientific",
+          "value": "Finegoldia magna ALB8"
+        }
+      ],
+      "lineage": [
+        "Bacteria",
+        "Firmicutes",
+        "Tissierellia",
+        "Tissierellales",
+        "Peptoniphilaceae",
+        "Finegoldia"
+      ]
+    },
+    "protein": {
+      "recommendedName": {
+        "fullName": {
+          "value": "ATP-dependent 6-phosphofructokinase",
+          "evidences": [
+            {
+              "code": "ECO:0000256",
+              "source": {
+                "name": "HAMAP-Rule",
+                "id": "MF_00339",
+                "url": "https://hamap.expasy.org/unirule/MF_00339"
+              }
+            }
+          ]
+        },
+        "shortName": [
+          {
+            "value": "ATP-PFK",
+            "evidences": [
+              {
+                "code": "ECO:0000256",
+                "source": {
+                  "name": "HAMAP-Rule",
+                  "id": "MF_00339",
+                  "url": "https://hamap.expasy.org/unirule/MF_00339"
+                }
+              }
+            ]
+          },
+          {
+            "value": "Phosphofructokinase",
+            "evidences": [
+              {
+                "code": "ECO:0000256",
+                "source": {
+                  "name": "HAMAP-Rule",
+                  "id": "MF_00339",
+                  "url": "https://hamap.expasy.org/unirule/MF_00339"
+                }
+              }
+            ]
+          }
+        ],
+        "ecNumber": [
+          {
+            "value": "2.7.1.11",
+            "evidences": [
+              {
+                "code": "ECO:0000256",
+                "source": {
+                  "name": "HAMAP-Rule",
+                  "id": "MF_00339",
+                  "url": "https://hamap.expasy.org/unirule/MF_00339"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "alternativeName": [
+        {
+          "fullName": {
+            "value": "Phosphohexokinase",
+            "evidences": [
+              {
+                "code": "ECO:0000256",
+                "source": {
+                  "name": "HAMAP-Rule",
+                  "id": "MF_00339",
+                  "url": "https://hamap.expasy.org/unirule/MF_00339"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "gene": [
+      {
+        "name": {
+          "value": "pfkA",
+          "evidences": [
+            {
+              "code": "ECO:0000256",
+              "source": {
+                "name": "HAMAP-Rule",
+                "id": "MF_00339",
+                "url": "https://hamap.expasy.org/unirule/MF_00339"
+              }
+            }
+          ]
+        },
+        "orfNames": [
+          {
+            "value": "BA93_03680",
+            "evidences": [
+              {
+                "code": "ECO:0000313",
+                "source": {
+                  "name": "EMBL",
+                  "id": "EXF26636.1",
+                  "url": "https://www.ebi.ac.uk/ena/data/view/EXF26636.1"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "comments": [
+      {
+        "type": "FUNCTION",
+        "text": [
+          {
+            "value": "Catalyzes the phosphorylation of D-fructose 6-phosphate to fructose 1,6-bisphosphate by ATP, the first committing step of glycolysis",
+            "evidences": [
+              {
+                "code": "ECO:0000256",
+                "source": {
+                  "name": "HAMAP-Rule",
+                  "id": "MF_00339",
+                  "url": "https://hamap.expasy.org/unirule/MF_00339"
+                }
+              },
+              {
+                "code": "ECO:0000256",
+                "source": {
+                  "name": "SAAS",
+                  "id": "SAAS01078966",
+                  "url": "https://www.uniprot.org/saas/SAAS01078966"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "CATALYTIC_ACTIVITY",
+        "reaction": {
+          "name": "ATP + beta-D-fructose 6-phosphate = ADP + beta-D-fructose 1,6-bisphosphate + H(+)",
+          "dbReferences": [
+            {
+              "type": "Rhea",
+              "id": "RHEA:16109"
+            },
+            {
+              "type": "ChEBI",
+              "id": "CHEBI:15378"
+            },
+            {
+              "type": "ChEBI",
+              "id": "CHEBI:30616"
+            },
+            {
+              "type": "ChEBI",
+              "id": "CHEBI:32966"
+            },
+            {
+              "type": "ChEBI",
+              "id": "CHEBI:57634"
+            },
+            {
+              "type": "ChEBI",
+              "id": "CHEBI:456216"
+            }
+          ],
+          "ecNumber": "2.7.1.11",
+          "evidences": [
+            {
+              "code": "ECO:0000256",
+              "source": {
+                "name": "HAMAP-Rule",
+                "id": "MF_00339",
+                "url": "https://hamap.expasy.org/unirule/MF_00339"
+              }
+            },
+            {
+              "code": "ECO:0000256",
+              "source": {
+                "name": "SAAS",
+                "id": "SAAS01116210",
+                "url": "https://www.uniprot.org/saas/SAAS01116210"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "COFACTOR",
+        "cofactors": [
+          {
+            "name": "Mg(2+)",
+            "dbReference": {
+              "type": "CHEBI",
+              "id": "CHEBI:18420"
+            },
+            "evidences": [
+              {
+                "code": "ECO:0000256",
+                "source": {
+                  "name": "HAMAP-Rule",
+                  "id": "MF_00339",
+                  "url": "https://hamap.expasy.org/unirule/MF_00339"
+                }
+              },
+              {
+                "code": "ECO:0000256",
+                "source": {
+                  "name": "SAAS",
+                  "id": "SAAS00609123",
+                  "url": "https://www.uniprot.org/saas/SAAS00609123"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "ACTIVITY_REGULATION",
+        "text": [
+          {
+            "value": "Allosterically activated by ADP and other diphosphonucleosides, and allosterically inhibited by phosphoenolpyruvate",
+            "evidences": [
+              {
+                "code": "ECO:0000256",
+                "source": {
+                  "name": "HAMAP-Rule",
+                  "id": "MF_00339",
+                  "url": "https://hamap.expasy.org/unirule/MF_00339"
+                }
+              },
+              {
+                "code": "ECO:0000256",
+                "source": {
+                  "name": "SAAS",
+                  "id": "SAAS01070487",
+                  "url": "https://www.uniprot.org/saas/SAAS01070487"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "PATHWAY",
+        "text": [
+          {
+            "value": "Carbohydrate degradation; glycolysis; D-glyceraldehyde 3-phosphate and glycerone phosphate from D-glucose: step 3/4",
+            "evidences": [
+              {
+                "code": "ECO:0000256",
+                "source": {
+                  "name": "HAMAP-Rule",
+                  "id": "MF_00339",
+                  "url": "https://hamap.expasy.org/unirule/MF_00339"
+                }
+              },
+              {
+                "code": "ECO:0000256",
+                "source": {
+                  "name": "SAAS",
+                  "id": "SAAS00041065",
+                  "url": "https://www.uniprot.org/saas/SAAS00041065"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "SUBUNIT",
+        "text": [
+          {
+            "value": "Homotetramer",
+            "evidences": [
+              {
+                "code": "ECO:0000256",
+                "source": {
+                  "name": "HAMAP-Rule",
+                  "id": "MF_00339",
+                  "url": "https://hamap.expasy.org/unirule/MF_00339"
+                }
+              },
+              {
+                "code": "ECO:0000256",
+                "source": {
+                  "name": "SAAS",
+                  "id": "SAAS00557934",
+                  "url": "https://www.uniprot.org/saas/SAAS00557934"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "SUBCELLULAR_LOCATION",
+        "locations": [
+          {
+            "location": {
+              "value": "Cytoplasm",
+              "evidences": [
+                {
+                  "code": "ECO:0000256",
+                  "source": {
+                    "name": "HAMAP-Rule",
+                    "id": "MF_00339",
+                    "url": "https://hamap.expasy.org/unirule/MF_00339"
+                  }
+                },
+                {
+                  "code": "ECO:0000256",
+                  "source": {
+                    "name": "SAAS",
+                    "id": "SAAS00551378",
+                    "url": "https://www.uniprot.org/saas/SAAS00551378"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "type": "SIMILARITY",
+        "text": [
+          {
+            "value": "Belongs to the phosphofructokinase type A (PFKA) family. ATP-dependent PFK group I subfamily. Prokaryotic clade 'B1' sub-subfamily",
+            "evidences": [
+              {
+                "code": "ECO:0000256",
+                "source": {
+                  "name": "HAMAP-Rule",
+                  "id": "MF_00339",
+                  "url": "https://hamap.expasy.org/unirule/MF_00339"
+                }
+              },
+              {
+                "code": "ECO:0000256",
+                "source": {
+                  "name": "SAAS",
+                  "id": "SAAS01228968",
+                  "url": "https://www.uniprot.org/saas/SAAS01228968"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "CAUTION",
+        "text": [
+          {
+            "value": "Lacks conserved residue(s) required for the propagation of feature annotation",
+            "evidences": [
+              {
+                "code": "ECO:0000256",
+                "source": {
+                  "name": "HAMAP-Rule",
+                  "id": "MF_00339",
+                  "url": "https://hamap.expasy.org/unirule/MF_00339"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "CAUTION",
+        "text": [
+          {
+            "value": "The sequence shown here is derived from an EMBL/GenBank/DDBJ whole genome shotgun (WGS) entry which is preliminary data",
+            "evidences": [
+              {
+                "code": "ECO:0000313",
+                "source": {
+                  "name": "EMBL",
+                  "id": "EXF26636.1",
+                  "url": "https://www.ebi.ac.uk/ena/data/view/EXF26636.1"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "features": [
+      {
+        "type": "DOMAIN",
+        "category": "DOMAINS_AND_SITES",
+        "description": "PFK",
+        "begin": "4",
+        "end": "275",
+        "molecule": "",
+        "evidences": [
+          {
+            "code": "ECO:0000259",
+            "source": {
+              "name": "Pfam",
+              "id": "PF00365",
+              "url": "https://pfam.xfam.org/family/PF00365"
+            }
+          }
+        ]
+      },
+      {
+        "type": "NP_BIND",
+        "category": "DOMAINS_AND_SITES",
+        "description": "ATP",
+        "begin": "72",
+        "end": "73",
+        "molecule": "",
+        "evidences": [
+          {
+            "code": "ECO:0000256",
+            "source": {
+              "name": "HAMAP-Rule",
+              "id": "MF_00339",
+              "url": "https://hamap.expasy.org/unirule/MF_00339"
+            }
+          }
+        ]
+      },
+      {
+        "type": "NP_BIND",
+        "category": "DOMAINS_AND_SITES",
+        "description": "ATP",
+        "begin": "102",
+        "end": "105",
+        "molecule": "",
+        "evidences": [
+          {
+            "code": "ECO:0000256",
+            "source": {
+              "name": "HAMAP-Rule",
+              "id": "MF_00339",
+              "url": "https://hamap.expasy.org/unirule/MF_00339"
+            }
+          }
+        ]
+      },
+      {
+        "type": "REGION",
+        "category": "DOMAINS_AND_SITES",
+        "description": "Allosteric activator ADP binding; shared with dimeric partner",
+        "begin": "21",
+        "end": "25",
+        "molecule": "",
+        "evidences": [
+          {
+            "code": "ECO:0000256",
+            "source": {
+              "name": "HAMAP-Rule",
+              "id": "MF_00339",
+              "url": "https://hamap.expasy.org/unirule/MF_00339"
+            }
+          }
+        ]
+      },
+      {
+        "type": "REGION",
+        "category": "DOMAINS_AND_SITES",
+        "description": "Substrate binding",
+        "begin": "125",
+        "end": "127",
+        "molecule": "",
+        "evidences": [
+          {
+            "code": "ECO:0000256",
+            "source": {
+              "name": "HAMAP-Rule",
+              "id": "MF_00339",
+              "url": "https://hamap.expasy.org/unirule/MF_00339"
+            }
+          }
+        ]
+      },
+      {
+        "type": "REGION",
+        "category": "DOMAINS_AND_SITES",
+        "description": "Substrate binding",
+        "begin": "169",
+        "end": "171",
+        "molecule": "",
+        "evidences": [
+          {
+            "code": "ECO:0000256",
+            "source": {
+              "name": "HAMAP-Rule",
+              "id": "MF_00339",
+              "url": "https://hamap.expasy.org/unirule/MF_00339"
+            }
+          }
+        ]
+      },
+      {
+        "type": "REGION",
+        "category": "DOMAINS_AND_SITES",
+        "description": "Allosteric activator ADP binding",
+        "begin": "185",
+        "end": "187",
+        "molecule": "",
+        "evidences": [
+          {
+            "code": "ECO:0000256",
+            "source": {
+              "name": "HAMAP-Rule",
+              "id": "MF_00339",
+              "url": "https://hamap.expasy.org/unirule/MF_00339"
+            }
+          }
+        ]
+      },
+      {
+        "type": "REGION",
+        "category": "DOMAINS_AND_SITES",
+        "description": "Allosteric activator ADP binding",
+        "begin": "213",
+        "end": "215",
+        "molecule": "",
+        "evidences": [
+          {
+            "code": "ECO:0000256",
+            "source": {
+              "name": "HAMAP-Rule",
+              "id": "MF_00339",
+              "url": "https://hamap.expasy.org/unirule/MF_00339"
+            }
+          }
+        ]
+      },
+      {
+        "type": "REGION",
+        "category": "DOMAINS_AND_SITES",
+        "description": "Substrate binding",
+        "begin": "249",
+        "end": "252",
+        "molecule": "",
+        "evidences": [
+          {
+            "code": "ECO:0000256",
+            "source": {
+              "name": "HAMAP-Rule",
+              "id": "MF_00339",
+              "url": "https://hamap.expasy.org/unirule/MF_00339"
+            }
+          }
+        ]
+      },
+      {
+        "type": "ACT_SITE",
+        "category": "DOMAINS_AND_SITES",
+        "description": "Proton acceptor",
+        "begin": "127",
+        "end": "127",
+        "molecule": "",
+        "evidences": [
+          {
+            "code": "ECO:0000256",
+            "source": {
+              "name": "HAMAP-Rule",
+              "id": "MF_00339",
+              "url": "https://hamap.expasy.org/unirule/MF_00339"
+            }
+          }
+        ]
+      },
+      {
+        "type": "METAL",
+        "category": "DOMAINS_AND_SITES",
+        "description": "Magnesium; catalytic",
+        "begin": "103",
+        "end": "103",
+        "molecule": "",
+        "evidences": [
+          {
+            "code": "ECO:0000256",
+            "source": {
+              "name": "HAMAP-Rule",
+              "id": "MF_00339",
+              "url": "https://hamap.expasy.org/unirule/MF_00339"
+            }
+          }
+        ]
+      },
+      {
+        "type": "BINDING",
+        "category": "DOMAINS_AND_SITES",
+        "description": "ATP; via amide nitrogen",
+        "begin": "11",
+        "end": "11",
+        "molecule": "",
+        "evidences": [
+          {
+            "code": "ECO:0000256",
+            "source": {
+              "name": "HAMAP-Rule",
+              "id": "MF_00339",
+              "url": "https://hamap.expasy.org/unirule/MF_00339"
+            }
+          }
+        ]
+      },
+      {
+        "type": "BINDING",
+        "category": "DOMAINS_AND_SITES",
+        "description": "Allosteric activator ADP",
+        "begin": "154",
+        "end": "154",
+        "molecule": "",
+        "evidences": [
+          {
+            "code": "ECO:0000256",
+            "source": {
+              "name": "HAMAP-Rule",
+              "id": "MF_00339",
+              "url": "https://hamap.expasy.org/unirule/MF_00339"
+            }
+          }
+        ]
+      },
+      {
+        "type": "BINDING",
+        "category": "DOMAINS_AND_SITES",
+        "description": "Substrate; shared with dimeric partner",
+        "begin": "162",
+        "end": "162",
+        "molecule": "",
+        "evidences": [
+          {
+            "code": "ECO:0000256",
+            "source": {
+              "name": "HAMAP-Rule",
+              "id": "MF_00339",
+              "url": "https://hamap.expasy.org/unirule/MF_00339"
+            }
+          }
+        ]
+      },
+      {
+        "type": "BINDING",
+        "category": "DOMAINS_AND_SITES",
+        "description": "Allosteric activator ADP",
+        "begin": "211",
+        "end": "211",
+        "molecule": "",
+        "evidences": [
+          {
+            "code": "ECO:0000256",
+            "source": {
+              "name": "HAMAP-Rule",
+              "id": "MF_00339",
+              "url": "https://hamap.expasy.org/unirule/MF_00339"
+            }
+          }
+        ]
+      },
+      {
+        "type": "BINDING",
+        "category": "DOMAINS_AND_SITES",
+        "description": "Substrate",
+        "begin": "222",
+        "end": "222",
+        "molecule": "",
+        "evidences": [
+          {
+            "code": "ECO:0000256",
+            "source": {
+              "name": "HAMAP-Rule",
+              "id": "MF_00339",
+              "url": "https://hamap.expasy.org/unirule/MF_00339"
+            }
+          }
+        ]
+      },
+      {
+        "type": "BINDING",
+        "category": "DOMAINS_AND_SITES",
+        "description": "Substrate; shared with dimeric partner",
+        "begin": "243",
+        "end": "243",
+        "molecule": "",
+        "evidences": [
+          {
+            "code": "ECO:0000256",
+            "source": {
+              "name": "HAMAP-Rule",
+              "id": "MF_00339",
+              "url": "https://hamap.expasy.org/unirule/MF_00339"
+            }
+          }
+        ]
+      }
+    ],
+    "dbReferences": [
+      {
+        "type": "EMBL",
+        "id": "JDVC01000050",
+        "properties": {
+          "molecule type": "Genomic_DNA",
+          "protein sequence ID": "EXF26636.1"
+        }
+      },
+      {
+        "type": "RefSeq",
+        "id": "WP_035112694.1",
+        "properties": {
+          "nucleotide sequence ID": "NZ_JDVC01000050.1"
+        }
+      },
+      {
+        "type": "EnsemblBacteria",
+        "id": "EXF26636",
+        "properties": {
+          "gene ID": "BA93_03680",
+          "protein sequence ID": "EXF26636"
+        }
+      },
+      {
+        "type": "PATRIC",
+        "id": "fig|1459804.4.peg.1474"
+      },
+      {
+        "type": "UniPathway",
+        "id": "UPA00109",
+        "properties": {
+          "reaction ID": "UER00182"
+        }
+      },
+      {
+        "type": "Proteomes",
+        "id": "UP000021736",
+        "properties": {
+          "component": "Unassembled WGS sequence"
+        }
+      },
+      {
+        "type": "GO",
+        "id": "GO:0005737",
+        "properties": {
+          "term": "C:cytoplasm",
+          "source": "IEA:UniProtKB-SubCell"
+        }
+      },
+      {
+        "type": "GO",
+        "id": "GO:0003872",
+        "properties": {
+          "term": "F:6-phosphofructokinase activity",
+          "source": "IEA:UniProtKB-UniRule"
+        }
+      },
+      {
+        "type": "GO",
+        "id": "GO:0005524",
+        "properties": {
+          "term": "F:ATP binding",
+          "source": "IEA:UniProtKB-KW"
+        }
+      },
+      {
+        "type": "GO",
+        "id": "GO:0046872",
+        "properties": {
+          "term": "F:metal ion binding",
+          "source": "IEA:UniProtKB-KW"
+        }
+      },
+      {
+        "type": "GO",
+        "id": "GO:0006002",
+        "properties": {
+          "term": "P:fructose 6-phosphate metabolic process",
+          "source": "IEA:InterPro"
+        }
+      },
+      {
+        "type": "HAMAP",
+        "id": "MF_00339",
+        "properties": {
+          "match status": "1",
+          "entry name": "Phosphofructokinase_I_B1"
+        }
+      },
+      {
+        "type": "InterPro",
+        "id": "IPR022953",
+        "properties": {
+          "entry name": "ATP_PFK"
+        }
+      },
+      {
+        "type": "InterPro",
+        "id": "IPR012003",
+        "properties": {
+          "entry name": "ATP_PFK_prok-type"
+        }
+      },
+      {
+        "type": "InterPro",
+        "id": "IPR012828",
+        "properties": {
+          "entry name": "PFKA_ATP_prok"
+        }
+      },
+      {
+        "type": "InterPro",
+        "id": "IPR015912",
+        "properties": {
+          "entry name": "Phosphofructokinase_CS"
+        }
+      },
+      {
+        "type": "InterPro",
+        "id": "IPR000023",
+        "properties": {
+          "entry name": "Phosphofructokinase_dom"
+        }
+      },
+      {
+        "type": "InterPro",
+        "id": "IPR035966",
+        "properties": {
+          "entry name": "PKF_sf"
+        }
+      },
+      {
+        "type": "Pfam",
+        "id": "PF00365",
+        "properties": {
+          "match status": "1",
+          "entry name": "PFK"
+        }
+      },
+      {
+        "type": "PIRSF",
+        "id": "PIRSF000532",
+        "properties": {
+          "match status": "1",
+          "entry name": "ATP_PFK_prok"
+        }
+      },
+      {
+        "type": "PRINTS",
+        "id": "PR00476",
+        "properties": {
+          "entry name": "PHFRCTKINASE"
+        }
+      },
+      {
+        "type": "SUPFAM",
+        "id": "SSF53784",
+        "properties": {
+          "match status": "1",
+          "entry name": "SSF53784"
+        }
+      },
+      {
+        "type": "TIGRFAMs",
+        "id": "TIGR02482",
+        "properties": {
+          "match status": "1",
+          "entry name": "PFKA_ATP"
+        }
+      },
+      {
+        "type": "PROSITE",
+        "id": "PS00433",
+        "properties": {
+          "match status": "1",
+          "entry name": "PHOSPHOFRUCTOKINASE"
+        }
+      }
+    ],
+    "keywords": [
+      {
+        "value": "Allosteric enzyme",
+        "evidences": [
+          {
+            "code": "ECO:0000256",
+            "source": {
+              "name": "HAMAP-Rule",
+              "id": "MF_00339",
+              "url": "https://hamap.expasy.org/unirule/MF_00339"
+            }
+          }
+        ]
+      },
+      {
+        "value": "ATP-binding",
+        "evidences": [
+          {
+            "code": "ECO:0000256",
+            "source": {
+              "name": "HAMAP-Rule",
+              "id": "MF_00339",
+              "url": "https://hamap.expasy.org/unirule/MF_00339"
+            }
+          },
+          {
+            "code": "ECO:0000256",
+            "source": {
+              "name": "SAAS",
+              "id": "SAAS00016785",
+              "url": "https://www.uniprot.org/saas/SAAS00016785"
+            }
+          }
+        ]
+      },
+      {
+        "value": "Cytoplasm",
+        "evidences": [
+          {
+            "code": "ECO:0000256",
+            "source": {
+              "name": "HAMAP-Rule",
+              "id": "MF_00339",
+              "url": "https://hamap.expasy.org/unirule/MF_00339"
+            }
+          },
+          {
+            "code": "ECO:0000256",
+            "source": {
+              "name": "SAAS",
+              "id": "SAAS00436108",
+              "url": "https://www.uniprot.org/saas/SAAS00436108"
+            }
+          }
+        ]
+      },
+      {
+        "value": "Glycolysis",
+        "evidences": [
+          {
+            "code": "ECO:0000256",
+            "source": {
+              "name": "HAMAP-Rule",
+              "id": "MF_00339",
+              "url": "https://hamap.expasy.org/unirule/MF_00339"
+            }
+          },
+          {
+            "code": "ECO:0000256",
+            "source": {
+              "name": "SAAS",
+              "id": "SAAS00436111",
+              "url": "https://www.uniprot.org/saas/SAAS00436111"
+            }
+          }
+        ]
+      },
+      {
+        "value": "Kinase",
+        "evidences": [
+          {
+            "code": "ECO:0000256",
+            "source": {
+              "name": "HAMAP-Rule",
+              "id": "MF_00339",
+              "url": "https://hamap.expasy.org/unirule/MF_00339"
+            }
+          },
+          {
+            "code": "ECO:0000256",
+            "source": {
+              "name": "SAAS",
+              "id": "SAAS00436062",
+              "url": "https://www.uniprot.org/saas/SAAS00436062"
+            }
+          },
+          {
+            "code": "ECO:0000313",
+            "source": {
+              "name": "EMBL",
+              "id": "EXF26636.1",
+              "url": "https://www.ebi.ac.uk/ena/data/view/EXF26636.1"
+            }
+          }
+        ]
+      },
+      {
+        "value": "Magnesium",
+        "evidences": [
+          {
+            "code": "ECO:0000256",
+            "source": {
+              "name": "HAMAP-Rule",
+              "id": "MF_00339",
+              "url": "https://hamap.expasy.org/unirule/MF_00339"
+            }
+          },
+          {
+            "code": "ECO:0000256",
+            "source": {
+              "name": "SAAS",
+              "id": "SAAS00436079",
+              "url": "https://www.uniprot.org/saas/SAAS00436079"
+            }
+          }
+        ]
+      },
+      {
+        "value": "Metal-binding",
+        "evidences": [
+          {
+            "code": "ECO:0000256",
+            "source": {
+              "name": "HAMAP-Rule",
+              "id": "MF_00339",
+              "url": "https://hamap.expasy.org/unirule/MF_00339"
+            }
+          },
+          {
+            "code": "ECO:0000256",
+            "source": {
+              "name": "SAAS",
+              "id": "SAAS00436116",
+              "url": "https://www.uniprot.org/saas/SAAS00436116"
+            }
+          }
+        ]
+      },
+      {
+        "value": "Nucleotide-binding",
+        "evidences": [
+          {
+            "code": "ECO:0000256",
+            "source": {
+              "name": "HAMAP-Rule",
+              "id": "MF_00339",
+              "url": "https://hamap.expasy.org/unirule/MF_00339"
+            }
+          },
+          {
+            "code": "ECO:0000256",
+            "source": {
+              "name": "SAAS",
+              "id": "SAAS00016719",
+              "url": "https://www.uniprot.org/saas/SAAS00016719"
+            }
+          }
+        ]
+      },
+      {
+        "value": "Transferase",
+        "evidences": [
+          {
+            "code": "ECO:0000256",
+            "source": {
+              "name": "HAMAP-Rule",
+              "id": "MF_00339",
+              "url": "https://hamap.expasy.org/unirule/MF_00339"
+            }
+          },
+          {
+            "code": "ECO:0000256",
+            "source": {
+              "name": "SAAS",
+              "id": "SAAS00436075",
+              "url": "https://www.uniprot.org/saas/SAAS00436075"
+            }
+          },
+          {
+            "code": "ECO:0000313",
+            "source": {
+              "name": "EMBL",
+              "id": "EXF26636.1",
+              "url": "https://www.ebi.ac.uk/ena/data/view/EXF26636.1"
+            }
+          }
+        ]
+      }
+    ],
+    "references": [
+      {
+        "citation": {
+          "type": "submission",
+          "publicationDate": "FEB-2014",
+          "authors": [
+            "Karlsson C.",
+            "Malmstrom L.",
+            "Frick I.-M.",
+            "Bjorck L.",
+            "Malmstrom J."
+          ],
+          "publication": {
+            "submissionDatabase": "EMBL/GenBank/DDBJ databases"
+          }
+        },
+        "source": {
+          "strain": [
+            {
+              "value": "ALB8",
+              "evidences": [
+                {
+                  "code": "ECO:0000313",
+                  "source": {
+                    "name": "EMBL",
+                    "id": "EXF26636.1",
+                    "url": "https://www.ebi.ac.uk/ena/data/view/EXF26636.1"
+                  }
+                },
+                {
+                  "code": "ECO:0000313",
+                  "source": {
+                    "name": "Proteomes",
+                    "id": "UP000021736",
+                    "url": "https://www.uniprot.org/proteomes/UP000021736"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "scope": [
+          "NUCLEOTIDE SEQUENCE [LARGE SCALE GENOMIC DNA]"
+        ],
+        "evidences": [
+          {
+            "code": "ECO:0000313",
+            "source": {
+              "name": "EMBL",
+              "id": "EXF26636.1",
+              "url": "https://www.ebi.ac.uk/ena/data/view/EXF26636.1"
+            }
+          },
+          {
+            "code": "ECO:0000313",
+            "source": {
+              "name": "Proteomes",
+              "id": "UP000021736",
+              "url": "https://www.uniprot.org/proteomes/UP000021736"
+            }
+          }
+        ]
+      }
+    ],
+    "sequence": {
+      "version": 1,
+      "length": 319,
+      "mass": 34277,
+      "modified": "2014-06-11",
+      "sequence": "MKTIAILTSGGDAPGMNACIRSIARTCIYNGIRVMGIRSGYDGLMNGNIYEMNVSSVADIIHRGGTILGSARCPEFKTEEGQKKGAQILKDFGIDGLVVLGGDGSFKGASALSKIGISTIGIPCTIDNDMGYTDYTIGFFTAVETVSDAISKLRDTSSSHGRANIIEVMGRNCGDIALYSGVASGAESILVPEVELNIDEVTEKIERGRKRGKLHHLIMLAEGVGGAYDIKNMIEEKTGVETKVTILGHVQRGGTPCTFDRLMATQMGNLAVKLIMEEKTDLAIAMKDNKIITVPIDEAVTTKRKFRDDLYKISKEISI"
+    }
+  }
+]

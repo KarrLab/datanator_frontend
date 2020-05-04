@@ -1,5 +1,6 @@
 build/
 coverage/
+public/_redirects
 node_modules/
 test-results/
 LICENSE
