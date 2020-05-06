@@ -103,10 +103,10 @@ describe("Metabolite data page", () => {
   });
 
   it("Gets correct metadata url ", () => {
-    const query = "dTDP-D-Glucose";
+    const query = "BAWFJGJZGIEFAR-NNYOXOHSSA-O";
     const organism = "Escherichia coli";
     expect(MetadataSection.getMetadataUrl(query, organism)).toEqual(
-      "/metabolites/meta/?_input=dTDP-D-Glucose"
+      "metabolites/meta/?inchikey=BAWFJGJZGIEFAR-NNYOXOHSSA-O"
     );
   });
 

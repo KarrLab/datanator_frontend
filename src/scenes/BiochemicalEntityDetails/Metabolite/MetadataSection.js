@@ -88,7 +88,7 @@ class MetadataSection extends Component {
   }
 
   static getMetadataUrl(query) {
-    return "/metabolites/meta/?_input=" + query;
+    return "metabolites/meta/?inchikey=" + query;
   }
 
   static processMetadata(rawData) {
