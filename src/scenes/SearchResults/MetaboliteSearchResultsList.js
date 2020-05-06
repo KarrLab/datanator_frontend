@@ -40,6 +40,8 @@ export default class MetaboliteSearchResultsList extends Component {
           name = result["synonyms"][0];
         }
 
+        let inchikey = result["InChI_Key"]
+
         formattedResult["title"] =
           name[0].toUpperCase() + name.substring(1, name.length);
 
@@ -95,7 +97,7 @@ export default class MetaboliteSearchResultsList extends Component {
         );
 
         //route
-        formattedResult["route"] = "/metabolite/" + name;
+        formattedResult["route"] = "/metabolite/" + inchikey;
         if (organism) {
           formattedResult["route"] += "/" + organism;
         }
