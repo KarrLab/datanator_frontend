@@ -14,63 +14,52 @@ import {
 class ConcentrationDataTable extends Component {
   static getUrl(query, organism, abstract = true) {
     return (
-      "metabolites/concentration/" +
-      "?metabolite=" +
+      "/metabolites/concentrations/?inchikey=" +
       query +
-      "&abstract=" +
-      abstract +
       (organism ? "&species=" + organism : "")
     );
   }
 
   static formatData(rawData, organism) {
     const formattedData = [];
-    for (const rawDatum of rawData) {
-      for (const met of rawDatum) {
-        const species = "species" in met ? met.species : "Escherichia coli";
+    for (const metConc of rawData["concentrations"]) {
+      let uncertainty = parseFloat(metConc.error);
+      if (uncertainty === 0 || isNaN(uncertainty)) {
+        uncertainty = null;
+      }
+      const species = metConc.species_name;
+      const conc = {
+        name: rawData.metabolite,
 
-        const metConcs = dictOfArraysToArrayOfDicts(met.concentrations);
-
-        for (const metConc of metConcs) {
-          let uncertainty = parseFloat(metConc.error);
-          if (uncertainty === 0 || isNaN(uncertainty)) {
-            uncertainty = null;
-          }
-          const conc = {
-            name: met.name,
-            tanimotoSimilarity: met.tanimoto_similarity,
-            value: parseFloat(metConc.concentration),
-            uncertainty: uncertainty,
-            units: metConc.concentration_units,
-            organism:
-              Object.prototype.hasOwnProperty.call(metConc, "strain") &&
-              metConc.strain
-                ? species + " " + metConc.strain
-                : species,
-            growthPhase:
-              "growth_status" in metConc ? metConc.growth_status : null,
-            growthMedia:
-              "growth_media" in metConc ? metConc.growth_media : null,
-            growthConditions:
-              "growth_system" in metConc ? metConc.growth_system : null,
-            source:
-              "m2m_id" in met
-                ? { source: "ecmdb", id: met.m2m_id }
-                : { source: "ymdb", id: met.ymdb_id }
-          };
-          if (organism != null) {
-            conc["taxonomicProximity"] = met.taxon_distance;
-          }
-          if (conc.growthPhase && conc.growthPhase.indexOf(" phase") >= 0) {
-            conc.growthPhase = conc.growthPhase.split(" phase")[0];
-          }
-          if (conc.growthPhase && conc.growthPhase.indexOf(" Phase") >= 0) {
-            conc.growthPhase = conc.growthPhase.split(" Phase")[0];
-          }
-          if (!isNaN(conc.value)) {
-            formattedData.push(conc);
-          }
-        }
+        //tanimotoSimilarity: met.tanimoto_similarity,
+        value: parseFloat(metConc.concentration),
+        uncertainty: uncertainty,
+        units: metConc.concentration_units,
+        organism:
+          Object.prototype.hasOwnProperty.call(metConc, "strain") &&
+          metConc.strain
+            ? species + " " + metConc.strain
+            : species,
+        growthPhase: "growth_status" in metConc ? metConc.growth_status : null,
+        growthMedia: "growth_media" in metConc ? metConc.growth_media : null,
+        growthConditions:
+          "growth_system" in metConc ? metConc.growth_system : null
+        //  source:
+        //    "m2m_id" in met
+        //      ? { source: "ecmdb", id: met.m2m_id }
+        //      : { source: "ymdb", id: met.ymdb_id }
+      };
+      if (organism != null) {
+        conc["taxonomicProximity"] = metConc.taxon_distance;
+      }
+      if (conc.growthPhase && conc.growthPhase.indexOf(" phase") >= 0) {
+        conc.growthPhase = conc.growthPhase.split(" phase")[0];
+      }
+      if (conc.growthPhase && conc.growthPhase.indexOf(" Phase") >= 0) {
+        conc.growthPhase = conc.growthPhase.split(" Phase")[0];
+      }
+      if (!isNaN(conc.value)) {
+        formattedData.push(conc);
       }
     }
     return formattedData;
@@ -203,7 +192,9 @@ class ConcentrationDataTable extends Component {
         field: "growthMedia",
         filter: "textFilter",
         hide: true
-      },
+      }
+
+      /**
       {
         headerName: "Source",
         field: "source",
@@ -231,6 +222,7 @@ class ConcentrationDataTable extends Component {
         },
         filter: "textFilter"
       }
+      **/
     ];
 
     if (!organism) {
