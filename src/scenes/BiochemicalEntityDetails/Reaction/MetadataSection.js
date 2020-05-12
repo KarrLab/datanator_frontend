@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { upperCaseFirstLetter } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
 import { Link } from "react-router-dom";
-import Pathways from "../Pathways";
+import KeggPathwaysMetadataSection from "../KeggPathwaysMetadataSection";
 
 const DB_LINKS = [
   { label: "BRENDA", url: "https://www.brenda-enzymes.org/enzyme.php?ecno=" },
@@ -110,37 +110,37 @@ class MetadataSection extends Component {
   static formatMetadata(processedData, organism) {
     const sections = [];
 
-    const part_links = [];
+    const partLinks = [];
     for (const sub of processedData.substrates) {
       let route = "/metabolite/" + encodeURIComponent(sub);
       if (organism) {
         route += "/" + organism;
       }
-      part_links.push(
+      partLinks.push(
         <Link key={"substrate-" + sub} to={route}>
           {sub}
         </Link>
       );
-      part_links.push(" + ");
+      partLinks.push(" + ");
     }
     if (processedData.substrates.length) {
-      part_links.pop();
+      partLinks.pop();
     }
-    part_links.push(" → ");
+    partLinks.push(" → ");
     for (const prod of processedData.products) {
       let route = "/metabolite/" + encodeURIComponent(prod);
       if (organism) {
         route += "/" + organism;
       }
-      part_links.push(
+      partLinks.push(
         <Link key={"product-" + prod} to={route}>
           {prod}
         </Link>
       );
-      part_links.push(" + ");
+      partLinks.push(" + ");
     }
     if (processedData.products.length) {
-      part_links.pop();
+      partLinks.pop();
     }
 
     // description
@@ -160,7 +160,7 @@ class MetadataSection extends Component {
       }
     }
     if (processedData.equation) {
-      descriptions.push({ label: "Equation", value: part_links });
+      descriptions.push({ label: "Equation", value: partLinks });
     }
     if (processedData.cofactor) {
       descriptions.push({
@@ -238,7 +238,7 @@ class MetadataSection extends Component {
         id: "pathways",
         title: "Pathways",
         content: (
-          <Pathways
+          <KeggPathwaysMetadataSection
             pathways={processedData.pathways}
             page-size={30}
             kegg-id-name={"kegg_pathway_code"}

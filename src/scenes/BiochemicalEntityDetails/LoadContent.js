@@ -43,10 +43,10 @@ class LoadExternalContent extends Component {
   }
 
   render() {
-    if (this.state.text === null) {
+    if (this.state.text == null) {
       return <div className="loader"></div>;
     } else if (this.state.text.length === 0) {
-      return <div>No data is available.</div>;
+      return <div>No information is available.</div>;
     } else {
       return <div>{this.state.text}</div>;
     }
@@ -109,10 +109,10 @@ class LoadContent extends Component {
 
   render() {
     const results = this.state.results;
-    if (results === null) {
+    if (results == null) {
       return <div className="loader"></div>;
     } else if (results.length === 0) {
-      return <div>No data is available.</div>;
+      return <div>No information is available.</div>;
     } else {
       return <div>{this.state.results}</div>;
     }

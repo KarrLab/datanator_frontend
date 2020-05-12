@@ -103,10 +103,10 @@ describe("Metabolite data page", () => {
   });
 
   it("Gets correct metadata url ", () => {
-    const query = "dTDP-D-Glucose";
+    const query = "BAWFJGJZGIEFAR-NNYOXOHSSA-O";
     const organism = "Escherichia coli";
     expect(MetadataSection.getMetadataUrl(query, organism)).toEqual(
-      "/metabolites/meta/?_input=dTDP-D-Glucose"
+      "metabolites/meta/?inchikey=BAWFJGJZGIEFAR-NNYOXOHSSA-O"
     );
   });
 
@@ -187,15 +187,15 @@ describe("Metabolite data page", () => {
       expect.arrayContaining(correctListOfLinks)
     );
 
-    const formattedPhysics = getSectionFromList(
+    const formattedChemistry = getSectionFromList(
       formattedMetadata,
       "id",
-      "physics"
+      "chemistry"
     );
-    expect(formattedPhysics.title).toEqual("Physics");
-    const physicsWrapper = shallow(formattedPhysics.content);
+    expect(formattedChemistry.title).toEqual("Chemistry");
+    const chemistryWrapper = shallow(formattedChemistry.content);
 
-    const correctListOfPhysics = [
+    const correctListOfChemistry = [
       "<li><b>SMILES:</b> O[C@H]1[C@@H](O)[C@@H](O[C@@H]1COP(O)(=O)OP(O)(O)=O)N1C=CC(=O)NC1=O</li>",
       "<li><b>InChI:</b> InChI=1S/C9H14N2O12P2/c12-5-1-2-11(9(15)10-5)8-7(14)6(13)4(22-8)3-21-25(19,20)23-24(16,17)18/h1-2,4,6-8,13-14H,3H2,(H,19,20)(H,10,12,15)(H2,16,17,18)/t4-,6-,7-,8-/m1/s1</li>",
       "<li><b>Formula:</b> <span>C<sub>9</sub></span><span>H<sub>14</sub></span><span>N<sub>2</sub></span><span>O<sub>12</sub></span><span>P<sub>2</sub></span></li>",
@@ -204,9 +204,9 @@ describe("Metabolite data page", () => {
       "<li><b>Physiological charge:</b> -2</li>"
     ];
 
-    const actualListOfPhysics = getListDomElements(physicsWrapper, "li");
-    expect(actualListOfPhysics).toEqual(
-      expect.arrayContaining(correctListOfPhysics)
+    const actualListOfChemistry = getListDomElements(chemistryWrapper, "li");
+    expect(actualListOfChemistry).toEqual(
+      expect.arrayContaining(correctListOfChemistry)
     );
 
     const formattedLocalizations = getSectionFromList(
@@ -248,7 +248,7 @@ describe("Metabolite data page", () => {
       "https://cactus.nci.nih.gov/chemical/structure/O[C@H]1[C@@H](O)[C@@H](O[C@@H]1COP(O)(=O)OP(O)(O)=O)N1C=CC(=O)NC1=O/"
     );
 
-    processedMetadata.physics = {
+    processedMetadata.chemistry = {
       inchi: "InChI=1S",
       inchiKey: "XCC"
     };
@@ -269,7 +269,7 @@ describe("Metabolite data page", () => {
       "https://cactus.nci.nih.gov/chemical/structure/InChI=InChI=1S/"
     );
 
-    processedMetadata.physics = {
+    processedMetadata.chemistry = {
       inchiKey: "XCC"
     };
 

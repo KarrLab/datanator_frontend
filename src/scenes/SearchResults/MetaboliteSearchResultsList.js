@@ -15,7 +15,7 @@ export default class MetaboliteSearchResultsList extends Component {
       pageCount * pageSize +
       "&size=" +
       pageSize +
-      "&fields=protein_name&fields=synonyms&fields=enzymes&fields=ko_name&fields=gene_name&fields=name&fields=enzyme_name&fields=product_names&fields=substrate_names&fields=enzymes.subunit.canonical_sequence&fields=species"
+      "&fields=inchi&fields=m2m_id&fields=ymdb_id&fields=reaction_participants&fields=synonyms&fields=InChI_Key&fields=name&fields=chebi_id&fields=hmdb_id&fields=kegg_id"
     );
   }
 
@@ -39,6 +39,8 @@ export default class MetaboliteSearchResultsList extends Component {
         if (name === "No metabolite found.") {
           name = result["synonyms"][0];
         }
+
+        let inchikey = result["InChI_Key"]
 
         formattedResult["title"] =
           name[0].toUpperCase() + name.substring(1, name.length);
@@ -95,7 +97,7 @@ export default class MetaboliteSearchResultsList extends Component {
         );
 
         //route
-        formattedResult["route"] = "/metabolite/" + name;
+        formattedResult["route"] = "/metabolite/" + inchikey;
         if (organism) {
           formattedResult["route"] += "/" + organism;
         }

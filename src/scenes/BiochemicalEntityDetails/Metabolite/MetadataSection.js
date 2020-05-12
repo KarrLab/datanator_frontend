@@ -8,7 +8,7 @@ import {
   castToArray
 } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
-import Pathways from "../Pathways";
+import KeggPathwaysMetadataSection from "../KeggPathwaysMetadataSection";
 import LazyLoad from "react-lazyload";
 import ReactionSearchResultsList from "./ReactionSearchResultsList";
 
@@ -88,7 +88,7 @@ class MetadataSection extends Component {
   }
 
   static getMetadataUrl(query) {
-    return "/metabolites/meta/?_input=" + query;
+    return "metabolites/meta/?inchikey=" + query;
   }
 
   static processMetadata(rawData) {
@@ -128,7 +128,7 @@ class MetadataSection extends Component {
       );
     }
 
-    processedData.physics = {
+    processedData.chemistry = {
       smiles: met.smiles,
       inchi: met.inchi,
       inchiKey: met.inchikey,
@@ -181,14 +181,14 @@ class MetadataSection extends Component {
     const sections = [];
     if (processedData.description) {
       let structure;
-      if (processedData.physics.smiles) {
-        structure = { type: "", value: processedData.physics.smiles };
-      } else if (processedData.physics.inchi) {
-        structure = { type: "InChI=", value: processedData.physics.inchi };
-      } else if (processedData.physics.inchiKey) {
+      if (processedData.chemistry.smiles) {
+        structure = { type: "", value: processedData.chemistry.smiles };
+      } else if (processedData.chemistry.inchi) {
+        structure = { type: "InChI=", value: processedData.chemistry.inchi };
+      } else if (processedData.chemistry.inchiKey) {
         structure = {
           type: "InChIKey=",
-          value: processedData.physics.inchiKey
+          value: processedData.chemistry.inchiKey
         };
       }
 
@@ -271,16 +271,16 @@ class MetadataSection extends Component {
       });
     }
 
-    if (Object.values(processedData.physics).some(val => val !== undefined)) {
+    if (Object.values(processedData.chemistry).some(val => val !== undefined)) {
       let physicalProps = [
-        { name: "SMILES", value: processedData.physics.smiles },
-        { name: "InChI", value: processedData.physics.inchi },
-        { name: "Formula", value: processedData.physics.formula },
-        { name: "Molecular weight", value: processedData.physics.molWt },
-        { name: "Charge", value: processedData.physics.charge },
+        { name: "SMILES", value: processedData.chemistry.smiles },
+        { name: "InChI", value: processedData.chemistry.inchi },
+        { name: "Formula", value: processedData.chemistry.formula },
+        { name: "Molecular weight", value: processedData.chemistry.molWt },
+        { name: "Charge", value: processedData.chemistry.charge },
         {
           name: "Physiological charge",
-          value: processedData.physics.physiologicalCharge
+          value: processedData.chemistry.physiologicalCharge
         }
       ]
         .filter(prop => {
@@ -295,8 +295,8 @@ class MetadataSection extends Component {
         });
 
       sections.push({
-        id: "physics",
-        title: "Physics",
+        id: "chemistry",
+        title: "Chemistry",
         content: <ul className="key-value-list">{physicalProps}</ul>
       });
     }
@@ -327,7 +327,7 @@ class MetadataSection extends Component {
         id: "pathways",
         title: "Pathways",
         content: (
-          <Pathways
+          <KeggPathwaysMetadataSection
             pathways={processedData.pathways}
             page-size={30}
             kegg-id-name={"kegg_map_id"}

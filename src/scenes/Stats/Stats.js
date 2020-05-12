@@ -38,61 +38,61 @@ class Stats extends Component {
   }
 
   componentDidMount() {
-    const dataTypeInfo = [];
-    dataTypeInfo.push({
+    const dataTypeData = [];
+    dataTypeData.push({
       label: ["Met. concs."],
       url: "metabolites/summary/concentration_count/"
     });
     // TODO: including protein abundances
-    dataTypeInfo.push({
+    dataTypeData.push({
       label: ["Rxn kcat"],
       url: "reactions/summary/num_parameter_kcat/"
     });
-    dataTypeInfo.push({
+    dataTypeData.push({
       label: ["Rxn Km"],
       url: "reactions/summary/num_parameter_km/"
     });
-    dataTypeInfo.push({
+    dataTypeData.push({
       label: ["RNA half-lives"],
       url: "rna/summary/get_total_docs/"
     });
-    this.setBarChart("dataType", dataTypeInfo);
+    this.setBarChart("dataType", dataTypeData);
 
-    const dataSourceInfo = [];
-    dataSourceInfo.push({
+    const dataSourceData = [];
+    dataSourceData.push({
       label: ["ECMDB"],
       url: "metabolites/summary/ecmdb_doc_count/"
     });
     // TODO: include PAX-DB
-    dataSourceInfo.push({
+    dataSourceData.push({
       label: ["SABIO-RK"],
       url: "reactions/summary/num_entries/"
     });
-    dataSourceInfo.push({
+    dataSourceData.push({
       label: ["YMDB"],
       url: "metabolites/summary/ymdb_doc_count/"
     });
-    dataSourceInfo.push({
+    dataSourceData.push({
       label: ["Articles"],
       url: "rna/summary/get_distinct/?_input=halflives.reference.doi"
     });
-    this.setBarChart("dataSource", dataSourceInfo);
+    this.setBarChart("dataSource", dataSourceData);
 
-    const journalByDataTypeInfo = [];
-    journalByDataTypeInfo.push({
+    const journalByDataTypeData = [];
+    journalByDataTypeData.push({
       label: ["Met. concs."],
       url: "metabolites/summary/get_ref_count/"
     });
-    journalByDataTypeInfo.push({
+    journalByDataTypeData.push({
       label: ["Prot abund."],
       url: "proteins/summary/num_publications/"
     });
     // TODO: include reaction kinetic constants
-    journalByDataTypeInfo.push({
+    journalByDataTypeData.push({
       label: ["RNA half-lives"],
       url: "rna/summary/get_distinct/?_input=halflives.reference.doi"
     });
-    this.setBarChart("journalByDataType", journalByDataTypeInfo);
+    this.setBarChart("journalByDataType", journalByDataTypeData);
 
     this.setFrequencyChart(
       "temperatureFrequency",
@@ -105,13 +105,13 @@ class Stats extends Component {
     );
   }
 
-  setBarChart(barChartName, chartInfo) {
+  setBarChart(name, data) {
     const requests = [];
     const labels = [];
     const values = [];
 
-    for (const info of chartInfo) {
-      requests.push(getDataFromApi([info.url]));
+    for (const bar of data) {
+      requests.push(getDataFromApi([bar.url]));
     }
 
     axios.all(requests).then(
@@ -119,20 +119,20 @@ class Stats extends Component {
         for (var n = 0; n < responses.length; n++) {
           values.push(responses[n].data);
           labels.push(
-            chartInfo[n].label.concat([
+            data[n].label.concat([
               "(" + numberWithCommas(responses[n].data) + ")"
             ])
           );
         }
-        this.setState({ [barChartName]: { labels: labels, values: values } });
+        this.setState({ [name]: { labels: labels, values: values } });
       })
     );
   }
 
-  setFrequencyChart(frequencyChartName, url) {
+  setFrequencyChart(name, dataUrl) {
     const labels = [];
     const values = [];
-    getDataFromApi([url]).then(response => {
+    getDataFromApi([dataUrl]).then(response => {
       let data = response.data.sort(function(a, b) {
         return a["_id"] - b["_id"];
       });
@@ -143,7 +143,7 @@ class Stats extends Component {
         }
       }
       this.setState({
-        [frequencyChartName]: { labels: labels, values: values }
+        [name]: { labels: labels, values: values }
       });
     });
   }

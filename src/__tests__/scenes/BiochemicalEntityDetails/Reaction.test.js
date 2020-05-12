@@ -26,7 +26,6 @@ describe("Reaction data page", () => {
       "escherichia coli",
       9
     );
-    //console.log(formattedData)
 
     // test formatted data
     expect(formattedData).toHaveLength(10);

@@ -8,7 +8,7 @@ import {
 } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
 import { LoadExternalContent, LoadContent } from "../LoadContent";
-import Pathways from "../Pathways";
+import KeggPathwaysMetadataSection from "../KeggPathwaysMetadataSection";
 
 class MetadataSection extends Component {
   static propTypes = {
@@ -126,9 +126,22 @@ class MetadataSection extends Component {
   static formatMetadata(processedData, organism) {
     const sections = [];
 
-    const descriptions = [];
+    sections.push({
+      id: "description",
+      title: "Description",
+      content: (
+        <div>
+          <LoadExternalContent
+            url={processedData.descriptionUrl}
+            format-results={MetadataSection.processDescriptionFromUniprot}
+          />
+        </div>
+      )
+    });
 
-    descriptions.push({
+    const crossRefs = [];
+
+    crossRefs.push({
       key: "KEGG",
       value: (
         <a
@@ -144,8 +157,9 @@ class MetadataSection extends Component {
         </a>
       )
     });
+
     if (processedData.ecCode !== undefined) {
-      descriptions.push({
+      crossRefs.push({
         key: "EC code",
         value: (
           <a
@@ -161,24 +175,11 @@ class MetadataSection extends Component {
     }
 
     sections.push({
-      id: "description",
-      title: "Description",
-      content: (
-        <div>
-          <LoadExternalContent
-            url={processedData.descriptionUrl}
-            format-results={MetadataSection.processDescriptionFromUniprot}
-          />
-        </div>
-      )
-    });
-
-    sections.push({
       id: "cross-refs",
       title: "Cross references",
       content: (
         <ul className="key-value-list link-list">
-          {descriptions.map(desc => {
+          {crossRefs.map(desc => {
             return (
               <li key={desc.key}>
                 <b>{desc.key}</b>: {desc.value}
@@ -207,14 +208,11 @@ class MetadataSection extends Component {
 
     if (processedData.pathways) {
       if (processedData.pathways.length > 0) {
-        processedData.pathways.sort((a, b) => {
-          return strCompare(a.pathway_description, b.pathway_description);
-        });
         sections.push({
           id: "pathways",
           title: "Pathways",
           content: (
-            <Pathways
+            <KeggPathwaysMetadataSection
               pathways={processedData.pathways}
               page-size={30}
               kegg-id-name={"kegg_pathway_code"}
