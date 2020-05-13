@@ -155,7 +155,7 @@ describe("Gene data page", () => {
 
     const namesMetadataWrapper = shallow(formattedCrossReferences.content);
 
-    const correct_list_of_names = ["KEGG:  K00850", "EC code:  2.7.1.11"];
+    const correct_list_of_names = ["KEGG:  K00850"];
 
     const actual_list_of_names = getListDomElements(
       namesMetadataWrapper,
