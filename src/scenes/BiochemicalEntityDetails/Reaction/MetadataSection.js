@@ -59,11 +59,13 @@ class MetadataSection extends Component {
     const reactionId = MetadataSection.getReactionId(rawData[0].resource);
     const ecNumber = MetadataSection.getEcNum(rawData[0].resource);
     const name = rawData[0]["enzymes"][0]["enzyme"][0]["enzyme_name"];
-    const substrates = MetadataSection.getSubstrateNames(
-      rawData[0].reaction_participant[0].substrate
+    const substrates = MetadataSection.getReactantNames(
+      rawData[0].reaction_participant[0].substrate,
+      "substrate"
     );
-    const products = MetadataSection.getProductNames(
-      rawData[0].reaction_participant[1].product
+    const products = MetadataSection.getReactantNames(
+      rawData[0].reaction_participant[1].product,
+      "product"
     );
     processedData["reactionId"] = reactionId;
     processedData["substrates"] = substrates;
@@ -112,31 +114,40 @@ class MetadataSection extends Component {
 
     const partLinks = [];
     for (const sub of processedData.substrates) {
-      let route = "/metabolite/" + encodeURIComponent(sub);
-      if (organism) {
-        route += "/" + organism;
+      if (sub.inchiKey) {
+        let route = "/metabolite/" + encodeURIComponent(sub.inchiKey);
+        if (organism) {
+          route += "/" + organism;
+        }
+        partLinks.push(
+          <Link key={"substrate-" + sub.name} to={route}>
+            {sub.name}
+          </Link>
+        );
+      } else {
+        partLinks.push(sub.name);
       }
-      partLinks.push(
-        <Link key={"substrate-" + sub} to={route}>
-          {sub}
-        </Link>
-      );
       partLinks.push(" + ");
     }
     if (processedData.substrates.length) {
       partLinks.pop();
     }
+
     partLinks.push(" → ");
     for (const prod of processedData.products) {
-      let route = "/metabolite/" + encodeURIComponent(prod);
-      if (organism) {
-        route += "/" + organism;
+      if (prod.inchiKey) {
+        let route = "/metabolite/" + encodeURIComponent(prod.inchiKey);
+        if (organism) {
+          route += "/" + organism;
+        }
+        partLinks.push(
+          <Link key={"substrate-" + prod.name} to={route}>
+            {prod.name}
+          </Link>
+        );
+      } else {
+        partLinks.push(prod.name);
       }
-      partLinks.push(
-        <Link key={"product-" + prod} to={route}>
-          {prod}
-        </Link>
-      );
       partLinks.push(" + ");
     }
     if (processedData.products.length) {
@@ -268,20 +279,33 @@ class MetadataSection extends Component {
     }
   }
 
-  static getSubstrateNames(substrates) {
-    const names = [];
-    for (const substrate of substrates) {
-      names.push(substrate.substrate_name);
+  static getReactantNames(reactants, reactant_type) {
+    let structure_id = null;
+    let name_id = null;
+    if (reactant_type === "substrate") {
+      structure_id = "substrate_structure";
+      name_id = "substrate_name";
+    } else if (reactant_type === "product") {
+      structure_id = "product_structure";
+      name_id = "product_name";
     }
-    return names;
-  }
-
-  static getProductNames(products) {
-    const names = [];
-    for (const product of products) {
-      names.push(product.product_name);
+    const molecules = [];
+    for (const reactant of reactants) {
+      const new_molecule = {
+        name: null,
+        inchiKey: null
+      };
+      new_molecule["name"] = reactant[name_id];
+      if (reactant[structure_id]) {
+        for (var i = reactant[structure_id].length - 1; i >= 0; i--) {
+          if (reactant[structure_id][i]["format"] === "inchi") {
+            new_molecule["inchiKey"] = reactant[structure_id][i]["InChI_Key"];
+          }
+        }
+      }
+      molecules.push(new_molecule);
     }
-    return names;
+    return molecules;
   }
 
   static formatSide(parts) {
