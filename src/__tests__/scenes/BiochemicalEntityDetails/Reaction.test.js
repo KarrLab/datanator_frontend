@@ -135,8 +135,26 @@ describe("Reaction data page", () => {
     // format raw data
     const processedMetadata = MetadataSection.processMetadata(testRawData);
     expect(processedMetadata.reactionId).toEqual("82");
-    expect(processedMetadata.substrates).toEqual(["AMP", "ATP"]);
-    expect(processedMetadata.products).toEqual(["ADP"]);
+    expect(processedMetadata.substrates).toEqual(
+      expect.arrayContaining([
+        {
+          inchiKey: "UDMBCSSLTHHNCD-KQYNXXCUSA-N",
+          name: "AMP"
+        },
+        {
+          inchiKey: "ZKHQWZAMYRWXGA-KQYNXXCUSA-J",
+          name: "ATP"
+        }
+      ])
+    );
+    expect(processedMetadata.products).toEqual(
+      expect.arrayContaining([
+        {
+          inchiKey: "XTWYTFMLZFPYCI-KQYNXXCUSA-N",
+          name: "ADP"
+        }
+      ])
+    );
     expect(processedMetadata.ecNumber).toEqual("2.7.4.3");
     expect(processedMetadata.enzyme).toEqual("Adenylate kinase");
     expect(processedMetadata.equation).toEqual("AMP + ATP → ADP");
@@ -202,22 +220,61 @@ describe("Reaction data page", () => {
 
     const substrates = [
       {
-        substrate_name: "AMP"
+        substrate_name: "AMP",
+        substrate_structure: [
+          {
+            InChI_Key: "UDMBCSSLTHHNCD-KQYNXXCUSA-N",
+            format: "inchi"
+          }
+        ]
       },
-      { substrate_name: "ATP" }
+      {
+        substrate_name: "ATP",
+        substrate_structure: [
+          {
+            InChI_Key: "ZKHQWZAMYRWXGA-KQYNXXCUSA-J",
+            format: "inchi"
+          }
+        ]
+      }
     ];
 
     const products = [
       {
-        product_name: "ADP"
+        product_name: "ADP",
+        product_structure: [
+          {
+            InChI_Key: "XTWYTFMLZFPYCI-KQYNXXCUSA-N",
+            format: "inchi"
+          }
+        ]
       }
     ];
-    expect(MetadataSection.getSubstrateNames(substrates)).toEqual([
-      "AMP",
-      "ATP"
-    ]);
-    expect(MetadataSection.getProductNames(products)).toEqual(["ADP"]);
+    expect(MetadataSection.getReactantNames(substrates, "substrate")).toEqual(
+      expect.arrayContaining([
+        {
+          inchiKey: "UDMBCSSLTHHNCD-KQYNXXCUSA-N",
+          name: "AMP"
+        },
+        {
+          inchiKey: "ZKHQWZAMYRWXGA-KQYNXXCUSA-J",
+          name: "ATP"
+        }
+      ])
+    );
+    expect(MetadataSection.getReactantNames(products, "product")).toEqual(
+      expect.arrayContaining([
+        {
+          inchiKey: "XTWYTFMLZFPYCI-KQYNXXCUSA-N",
+          name: "ADP"
+        }
+      ])
+    );
 
-    expect(MetadataSection.formatSide(["AMP", "ATP"])).toEqual("AMP + ATP");
+    expect(
+      MetadataSection.formatSide(
+        MetadataSection.getReactantNames(substrates, "substrate")
+      )
+    ).toEqual("AMP + ATP");
   });
 });
