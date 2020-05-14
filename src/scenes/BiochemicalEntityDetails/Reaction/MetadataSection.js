@@ -91,9 +91,9 @@ class MetadataSection extends Component {
     }
 
     processedData["equation"] =
-      MetadataSection.formatSide(substrates) +
+      MetadataSection.formatSide(substrates.map(part => part.name)) +
       " → " +
-      MetadataSection.formatSide(products);
+      MetadataSection.formatSide(products.map(part => part.name));
 
     if ("kegg_meta" in rawData[0]) {
       processedData["pathways"] = rawData[0].kegg_meta.kegg_pathway;
