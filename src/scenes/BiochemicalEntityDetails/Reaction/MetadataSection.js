@@ -120,7 +120,7 @@ class MetadataSection extends Component {
           route += "/" + organism;
         }
         partLinks.push(
-          <Link key={"substrate-" + sub.name} to={route}>
+          <Link key={"substrate-" + sub.inchiKey} to={route}>
             {sub.name}
           </Link>
         );
@@ -141,7 +141,7 @@ class MetadataSection extends Component {
           route += "/" + organism;
         }
         partLinks.push(
-          <Link key={"substrate-" + prod.name} to={route}>
+          <Link key={"product-" + prod.inchiKey} to={route}>
             {prod.name}
           </Link>
         );
