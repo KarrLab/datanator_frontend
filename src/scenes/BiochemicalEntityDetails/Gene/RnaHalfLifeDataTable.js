@@ -171,11 +171,11 @@ class RnaHalfLifeDataTable extends Component {
             '<a href="https://dx.doi.org/' +
             params.value +
             '" target="_blank" rel="noopener noreferrer">' +
-            "DOI" +
+            "Journal article" +
             "</a>"
           );
         },
-        filterValueGetter: () => "DOI",
+        filterValueGetter: () => "Journal article",
         filter: "textFilter"
       }
     ];
