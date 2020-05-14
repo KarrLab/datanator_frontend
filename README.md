@@ -211,15 +211,18 @@ This package is released under the [MIT license](LICENSE). The licenses of the t
 ## Development team
 This package was developed by the [Karr Lab](https://www.karrlab.org) at the Icahn School of Medicine at Mount Sinai in New York by the following individuals:
 
-* Yosef Roth
-* Yang Lian
+* [Yosef Roth](https://www.linkedin.com/in/yosef-roth-a80a378a)
+* [Yang Lian](https://www.linkedin.com/in/zlian/)
 * [Jonathan Karr](https://www.karrlab.org)
+* [Saahith Pochiraju](https://www.linkedin.com/in/saahithpochiraju/)
+* [Bilal Shaikh](https://www.linkedin.com/in/bilalshaikh42/)
+* Balazs Szigeti
 
 ## Questions and comments
 Please submit an [issue](https://github.com/KarrLab/datanator_frontend/issues/new), or contact the [Karr Lab](info@karrlab.org) with any questions or comments.
 
 ## Acknowledgements
-Datanator was developed with support from the [Center for Reproducible Biomedical Modeling](https://reproduciblebiomodels.org) from the National Institute of Bioimaging and Bioengineering and the National Institute of General Medical Sciences of the National Institutes of Health and the National Science Foundation (award P41EB023912).
+Datanator was developed with support from the [Center for Reproducible Biomedical Modeling](https://reproduciblebiomodels.org) from the National Institute of Bioimaging and Bioengineering and the National Institute of General Medical Sciences of the National Institutes of Health and the National Science Foundation (awards P41EB023912 and R35GM119771).
 
 ![Image nih](/src/scenes/About/images/nih.svg) ![Image nibib](/src/scenes/About/images/nibib.svg) ![Image nigms](/src/scenes/About/images/nigms.svg) ![Image nsf](/src/scenes/About/images/nsf.svg)
 
