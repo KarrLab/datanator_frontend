@@ -160,8 +160,15 @@ class About extends Component {
               <div className="content-block-content">
                 <p>
                   Currently, <i>Datanator</i> includes measured metabolite
-                  concentrations, protein abundances, and reaction rate
+                  concentrations, RNA modifications and half-lives, protein abundances and modifications, and reaction rate
                   parameters integrated from{" "}
+                  <a
+                    href={"https://www.brenda-enzymes.org/"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    BRENDA
+                  </a>,{" "}
                   <a
                     href={"http://ecmdb.ca/"}
                     target="_blank"
@@ -171,11 +178,27 @@ class About extends Component {
                   </a>
                   ,{" "}
                   <a
+                    href={"https://iimcb.genesilico.pl/modomics/"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    MODOMICS
+                  </a>
+                  ,{" "}
+                  <a
                     href={"https://pax-db.org/"}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     PAX-DB
+                  </a>
+                  , the{" "}
+                  <a
+                    href={"https://proconsortium.org/"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Protein Ontology (PRO)
                   </a>
                   ,{" "}
                   <a
@@ -185,14 +208,14 @@ class About extends Component {
                   >
                     SABIO-RK
                   </a>
-                  , and{" "}
+                  ,{" "}
                   <a
                     href={"http://www.ymdb.ca/"}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     YMDB
-                  </a>
+                  </a>, and numerous publications
                   . We aim to continually incorporate additional data from
                   additional sources.
                 </p>
