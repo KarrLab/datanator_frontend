@@ -3,7 +3,11 @@ import { withRouter } from "react-router";
 import PropTypes from "prop-types";
 import axios from "axios";
 import { getDataFromApi, genApiErrorHandler } from "~/services/RestApi";
-import { parseHistoryLocationPathname, downloadData } from "~/utils/utils";
+import {
+  parseHistoryLocationPathname,
+  downloadData,
+  isEmpty
+} from "~/utils/utils";
 import { AgGridReact } from "@ag-grid-community/react";
 import { ClientSideRowModelModule } from "@ag-grid-community/client-side-row-model";
 import { CsvExportModule } from "@ag-grid-community/csv-export";
@@ -147,10 +151,14 @@ class DataTable extends Component {
       ])
       .then(
         axios.spread((...responses) => {
-          this.formatData(
-            responses[0].data,
-            organism ? responses[1].data : null
-          );
+          if (isEmpty(responses[0].data)) {
+            this.props.history.push("/*");
+          } else {
+            this.formatData(
+              responses[0].data,
+              organism ? responses[1].data : null
+            );
+          }
         })
       )
       .catch(

@@ -210,6 +210,20 @@ function formatParticipantsForUrl(participants) {
   return partNames;
 }
 
+function isEmpty(element) {
+  console.log(element);
+  if (element instanceof Array) {
+    if (element.length === 0) {
+      return true;
+    }
+  } else {
+    if (Object.keys(element).length === 0) {
+      return true;
+    }
+  }
+  return false;
+}
+
 export {
   formatScientificNotation,
   formatChemicalFormula,
@@ -223,5 +237,6 @@ export {
   getNumProperties,
   castToArray,
   numberWithCommas,
-  formatParticipantsForUrl
+  formatParticipantsForUrl,
+  isEmpty
 };

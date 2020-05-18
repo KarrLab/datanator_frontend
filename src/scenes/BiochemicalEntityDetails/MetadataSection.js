@@ -3,7 +3,7 @@ import { withRouter } from "react-router";
 import PropTypes from "prop-types";
 import axios from "axios";
 import { getDataFromApi, genApiErrorHandler } from "~/services/RestApi";
-import { parseHistoryLocationPathname } from "~/utils/utils";
+import { parseHistoryLocationPathname, isEmpty } from "~/utils/utils";
 
 class MetadataSection extends Component {
   static propTypes = {
@@ -66,18 +66,24 @@ class MetadataSection extends Component {
     const url = this.props["get-metadata-url"](query, organism);
     getDataFromApi([url], { cancelToken: this.cancelTokenSource.token })
       .then(response => {
-        const processedMetadata = this.props["process-metadata"](response.data);
-        const formattedMetadataSections = this.props["format-metadata"](
-          processedMetadata,
-          organism
-        );
-        this.props["set-scene-metadata"]({
-          title: this.props["format-title"](processedMetadata),
-          organism: organism,
-          metadataSections: formattedMetadataSections,
-          other: processedMetadata.other
-        });
-        this.setState({ sections: formattedMetadataSections });
+        if (isEmpty(response.data)) {
+          this.props.history.push("/*");
+        } else {
+          const processedMetadata = this.props["process-metadata"](
+            response.data
+          );
+          const formattedMetadataSections = this.props["format-metadata"](
+            processedMetadata,
+            organism
+          );
+          this.props["set-scene-metadata"]({
+            title: this.props["format-title"](processedMetadata),
+            organism: organism,
+            metadataSections: formattedMetadataSections,
+            other: processedMetadata.other
+          });
+          this.setState({ sections: formattedMetadataSections });
+        }
       })
       .catch(
         genApiErrorHandler(
