@@ -1,6 +1,10 @@
 @import 'colors';
 
 .content-container-help-scene {
+  .vertically-spaced > li {
+    margin-top: 0.5rem;
+  }
+
   /* Tutorial */
   .tutorial {
     .tutorial-steps {
@@ -25,10 +29,6 @@
       width: 100%;
       border: 1px solid $color-border;
       border-radius: 3px;
-    }
-
-    ul li {
-      margin-top: 0.5rem;
     }
   }
 

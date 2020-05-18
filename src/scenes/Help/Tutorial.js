@@ -60,6 +60,45 @@ class Tutorial extends Component {
                     aria-label="Identify parameters icon"
                   />
                 </LazyLoad>
+
+                <div className="tutorial-step-text">
+                  The search form searches over the following fields:
+                </div>
+                <ul className="vertically-spaced">
+                  <li>
+                    Metabolites
+                    <ul>
+                      <li>Name and synonyms</li>
+                      <li>Description</li>
+                      <li>
+                        Identifiers: BioCyc, CAS, ChEBI, ChemSpider, ECMDB,
+                        HMDB, KEGG, PubChem compound, YMDB
+                      </li>
+                      <li>Structure: InChI, InChI key, SMILES, formula</li>
+                      <li>
+                        Pathways: names, descriptions, and KEGG identifiers of
+                        parent pathways
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    Genes
+                    <ul>
+                      <li>Ortholog group, gene and protein names</li>
+                      <li>Identifiers: KEGG orthology, Entrez, UniProt</li>
+                      <li>Structure: Gene and protein sequences</li>
+                      <li>Reactions: EC numbers of catalyzed reactions</li>
+                    </ul>
+                  </li>
+                  <li>
+                    Reactions
+                    <ul>
+                      <li>Reaction, enzyme, and gene names</li>
+                      <li>Identifiers: EC</li>
+                      <li>Structure: names of substrates and products</li>
+                    </ul>
+                  </li>
+                </ul>
               </li>
 
               <li className="tutorial-step">
@@ -171,7 +210,7 @@ class Tutorial extends Component {
                     environmental conditions (e.g., temperature, pH, growth
                     media). Below, we illustrate three of these filters.
                   </p>
-                  <ul>
+                  <ul className="vertically-spaced">
                     <li>
                       <b>Chemical similarity:</b> First, open the
                       <q>Filters</q> tab to the left of the table. Second, open
