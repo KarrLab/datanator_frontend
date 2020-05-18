@@ -34,7 +34,9 @@ export default class MetaboliteSearchResultsList extends Component {
 
         "fields=pathways.pathway.name",
         "fields=pathways.pathway.description",
-        "fields=pathways.pathway.kegg_map_id"
+        "fields=pathways.pathway.ecocyc_pathway_id",
+        "fields=pathways.pathway.kegg_map_id",
+        "fields=pathways.pathway.pathwhiz_id"
       ].join("&")
     );
   }

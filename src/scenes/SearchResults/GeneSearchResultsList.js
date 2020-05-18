@@ -10,19 +10,20 @@ export default class GeneSearchResultsList extends Component {
         "query_message=" + query,
         "from_=" + pageCount * pageSize,
         "size=" + pageSize,
-        "fields=entry_name",
-        "fields=protein_name",
-        "fields=gene_name",
-        "fields=entrez_id",
         "fields=ko_name",
+        "fields=ko_number",
+
+        "fields=gene_name",
         "fields=gene_name_alt",
         "fields=gene_name_orf",
         "fields=gene_name_oln",
-        "fields=species_name",
+        "fields=entrez_id",
+
+        "fields=protein_name",
+        "fields=entry_name",
         "fields=uniprot_id",
-        "fields=ko_number",
-        "fields=ec_number",
-        "fields=canonical_sequence"
+
+        "fields=ec_number"
       ].join("&")
     );
   }

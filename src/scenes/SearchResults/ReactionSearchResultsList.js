@@ -12,18 +12,14 @@ export default class ReactionSearchResultsList extends Component {
         "index=" + indexQueryArg,
         "from_=" + pageCount * pageSize,
         "size=" + pageSize,
-        "fields=protein_name",
-        "fields=synonyms",
-        "fields=enzymes",
-        "fields=ko_name",
-        "fields=gene_name",
-        "fields=name",
-        "fields=enzyme_name",
-        "fields=product_names",
+
+        "fields=enzyme_names",
+        "fields=ec-code",
+
+        "fields=substrates",
         "fields=substrate_names",
-        "fields=enzymes.subunit.canonical_sequence",
-        "fields=species",
-        "fields=ec-code"
+        "fields=products",
+        "fields=product_names"
       ].join("&")
     );
   }

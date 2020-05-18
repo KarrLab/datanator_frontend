@@ -76,8 +76,8 @@ class Tutorial extends Component {
                       </li>
                       <li>Structure: InChI, InChI key, SMILES, formula</li>
                       <li>
-                        Pathways: names, descriptions, and KEGG identifiers of
-                        parent pathways
+                        Pathways: names, descriptions, and EcoCyc, KEGG and
+                        PathWhiz identifiers of parent pathways
                       </li>
                     </ul>
                   </li>
@@ -85,17 +85,22 @@ class Tutorial extends Component {
                     Genes
                     <ul>
                       <li>Ortholog group, gene and protein names</li>
-                      <li>Identifiers: KEGG orthology, Entrez, UniProt</li>
-                      <li>Structure: Gene and protein sequences</li>
+                      <li>
+                        Identifiers: KEGG orthology, Entrez (gene), UniProt
+                        (protein)
+                      </li>
                       <li>Reactions: EC numbers of catalyzed reactions</li>
                     </ul>
                   </li>
                   <li>
                     Reactions
                     <ul>
-                      <li>Reaction, enzyme, and gene names</li>
+                      <li>Name</li>
                       <li>Identifiers: EC</li>
-                      <li>Structure: names of substrates and products</li>
+                      <li>
+                        Structure: names and InChI keys of substrates and
+                        products
+                      </li>
                     </ul>
                   </li>
                 </ul>
