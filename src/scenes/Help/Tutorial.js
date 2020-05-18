@@ -33,7 +33,7 @@ class Tutorial extends Component {
                   <a href="https://datanator.info">https://datanator.info</a>.
                   Type <q>ATP</q> in the first input box below the logo and type{" "}
                   <q>Bacillus subtilis subs. subtilis</q> in the second input
-                  box. Then type <q>Enter</q> to execute the search.
+                  box. Then press <q>Enter</q> to execute the search.
                 </div>
                 <div className="tutorial-step-text">
                   Typing enter will take you to the search results such as shown
