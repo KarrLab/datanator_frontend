@@ -15,7 +15,7 @@ export default class ReactionSearchResultsList extends Component {
       pageCount * pageSize +
       "&size=" +
       pageSize +
-      "&fields=protein_name&fields=synonyms&fields=enzymes&fields=ko_name&fields=gene_name&fields=name&fields=enzyme_name&fields=product_names&fields=substrate_names&fields=enzymes.subunit.canonical_sequence&fields=species"
+      "&fields=rxn_id&fields=ec-code&fields=enzyme_names&fields=product_names&fields=products&fields=substrate_names&fields=substrates&fields=in_metabolites"
     );
   }
 
