@@ -40,9 +40,9 @@ class RnaHalfLifeDataTable extends Component {
             let distance = "";
             const keys = Object.keys(measurement.taxon_distance);
             if (keys.length === 4) {
-              distance = measurement.taxon_distance[organism];
+              distance = measurement.taxon_distance[organism] - 1;
             } else {
-              distance = lengthOfTaxonomicRanks + 1;
+              distance = lengthOfTaxonomicRanks;
             }
             formattedDatum["taxonomicProximity"] = distance;
           }
@@ -171,11 +171,11 @@ class RnaHalfLifeDataTable extends Component {
             '<a href="https://dx.doi.org/' +
             params.value +
             '" target="_blank" rel="noopener noreferrer">' +
-            "DOI" +
+            "Journal article" +
             "</a>"
           );
         },
-        filterValueGetter: () => "DOI",
+        filterValueGetter: () => "Journal article",
         filter: "textFilter"
       }
     ];

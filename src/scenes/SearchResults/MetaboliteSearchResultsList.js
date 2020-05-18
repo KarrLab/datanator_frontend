@@ -43,7 +43,7 @@ export default class MetaboliteSearchResultsList extends Component {
           name = result["synonyms"][0];
         }
 
-        let inchikey = result["InChI_Key"]
+        let inchikey = result["InChI_Key"];
 
         formattedResult["title"] =
           name[0].toUpperCase() + name.substring(1, name.length);

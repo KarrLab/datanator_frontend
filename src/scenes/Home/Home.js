@@ -228,16 +228,15 @@ class Home extends Component {
                   Metabolite concentrations
                 </div>
                 <div className="section-column-description">
-                  1586 measurements of the concentrations of 5225 metabolites in
-                  2 organisms aggregated from{" "}
+                  XXX measurements of the concentrations of XXX metabolites in
+                  XXX organisms aggregated from{" "}
                   <a
                     href="http://ecmdb.ca/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    ECMDB
+                    ECMDB,
                   </a>{" "}
-                  and{" "}
                   <a
                     href="http://www.ymdb.ca/"
                     target="_blank"
@@ -245,7 +244,7 @@ class Home extends Component {
                   >
                     YMDB
                   </a>
-                  .
+                  , and more than XXX publications.
                 </div>
               </div>
 
@@ -261,10 +260,21 @@ class Home extends Component {
                   </LazyLoad>
                 </div>
                 <div className="section-column-subtitle">Available</div>
-                <div className="section-column-title">RNA half-lives</div>
+                <div className="section-column-title">
+                  RNA modifications &amp; half-lives
+                </div>
                 <div className="section-column-description">
-                  Measurements of the half-lives of mRNA aggregated from more
-                  than twenty publications.
+                  Reconstructed modifications of 19 rRNA and 580 tRNA integrated
+                  by{" "}
+                  <a
+                    href="https://iimcb.genesilico.pl/modomics/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    MODOMICS
+                  </a>
+                  . Measurements of the half-lives of mRNA aggregated from more
+                  than 20 publications.
                 </div>
               </div>
 
@@ -280,7 +290,9 @@ class Home extends Component {
                   </LazyLoad>
                 </div>
                 <div className="section-column-subtitle">Available</div>
-                <div className="section-column-title">Protein abundances</div>
+                <div className="section-column-title">
+                  Protein abundances &amp; modifications
+                </div>
                 <div className="section-column-description">
                   103,572 measurements of the abundance of 20,689 ortholog
                   groups and 846,970 proteins in 20,980 organisms aggregated
@@ -292,7 +304,7 @@ class Home extends Component {
                   >
                     PAXdb
                   </a>
-                  ,{" "}
+                  and organized with metadata from{" "}
                   <a
                     href="https://www.genome.jp/kegg/ko.html"
                     target="_blank"
@@ -307,6 +319,15 @@ class Home extends Component {
                     rel="noopener noreferrer"
                   >
                     UniProt
+                  </a>
+                  . Reconstructed modifications of 4,083 proteins integrated by
+                  the{" "}
+                  <a
+                    href="https://proconsortium.org/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Protein Ontology (PRO)
                   </a>
                   .
                 </div>
@@ -326,8 +347,16 @@ class Home extends Component {
                 <div className="section-column-subtitle">Available</div>
                 <div className="section-column-title">Reaction constants</div>
                 <div className="section-column-description">
-                  23,330 measurements of rate constants for 2,104 distinct
-                  enzymes and 60,193 reactions aggregated from{" "}
+                  XXX measurements of rate constants for XXX distinct enzymes
+                  and XXX reactions aggregated from{" "}
+                  <a
+                    href="https://www.brenda-enzymes.org/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    BRENDA
+                  </a>{" "}
+                  and{" "}
                   <a
                     href="http://sabio.h-its.org/"
                     target="_blank"
@@ -510,9 +539,12 @@ class Home extends Component {
               Foundation.
             </p>
             <p>
-              <i>Datanator</i> was implemented using numerous open-source tools
+              <i>Datanator</i> was implemented using several open-source tools
               including Elasticsearch, Flask, MongoDB, OpenAPI, and React. The
-              code is available open-source under the MIT license.
+              code is available open-source under the MIT license. The data is
+              available under the Creative Commons
+              Attribution-NonCommercial-NoDerivatives 4.0 (CC BY-NC-ND 4.0)
+              license.
             </p>
             <p className="no-bottom-margin">
               Please see the <Link to="about">About</Link> page for more

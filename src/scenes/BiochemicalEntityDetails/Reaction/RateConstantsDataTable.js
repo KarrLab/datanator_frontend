@@ -54,9 +54,9 @@ class RateConstantsDataTable extends Component {
         let distance = "";
         const keys = Object.keys(datum.taxon_distance);
         if (keys.length === 4) {
-          distance = datum.taxon_distance[organism];
+          distance = datum.taxon_distance[organism] - 1;
         } else {
-          distance = lengthOfTaxonomicRanks + 1;
+          distance = lengthOfTaxonomicRanks;
         }
         formattedDatum["taxonomicProximity"] = distance;
       }
@@ -252,7 +252,7 @@ class RateConstantsDataTable extends Component {
       hide: true,
       filter: "taxonomyFilter",
       valueFormatter: params => {
-        const value = taxonomicRanks[params.value];
+        const value = taxonomicRanks[params.value];        
         return upperCaseFirstLetter(value);
       }
     });
