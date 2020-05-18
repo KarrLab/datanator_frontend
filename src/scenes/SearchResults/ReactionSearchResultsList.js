@@ -6,16 +6,25 @@ export default class ReactionSearchResultsList extends Component {
   getResultsUrl(query, pageCount, pageSize) {
     const indexQueryArg = "sabio_reaction_entries";
     return (
-      "ftx/text_search/num_of_index/" +
-      "?query_message=" +
-      query +
-      "&index=" +
-      indexQueryArg +
-      "&from_=" +
-      pageCount * pageSize +
-      "&size=" +
-      pageSize +
-      "&fields=protein_name&fields=synonyms&fields=enzymes&fields=ko_name&fields=gene_name&fields=name&fields=enzyme_name&fields=product_names&fields=substrate_names&fields=enzymes.subunit.canonical_sequence&fields=species"
+      "ftx/text_search/num_of_index/?" +
+      [
+        "query_message=" + query,
+        "index=" + indexQueryArg,
+        "from_=" + pageCount * pageSize,
+        "size=" + pageSize,
+        "fields=protein_name",
+        "fields=synonyms",
+        "fields=enzymes",
+        "fields=ko_name",
+        "fields=gene_name",
+        "fields=name",
+        "fields=enzyme_name",
+        "fields=product_names",
+        "fields=substrate_names",
+        "fields=enzymes.subunit.canonical_sequence",
+        "fields=species",
+        "fields=ec-code"
+      ].join("&")
     );
   }
 

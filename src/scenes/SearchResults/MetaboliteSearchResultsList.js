@@ -6,19 +6,36 @@ export default class MetaboliteSearchResultsList extends Component {
     const indexQueryArg = "metabolites_meta";
 
     return (
-      "ftx/text_search/num_of_index/" +
-      "?index=" +
-      indexQueryArg +
-      "&query_message=" +
-      query +
-      "&from_=" +
-      pageCount * pageSize +
-      "&size=" +
-      pageSize +
-      "&fields=inchi&fields=m2m_id&fields=ymdb_id&fields=reaction_participants" + 
-      "&fields=synonyms&fields=InChI_Key&fields=name&fields=chebi_id&fields=hmdb_id&fields=kegg_id" +
-      "&fields=chebi_id&fields=biocyc_id&fields=cas_registry_number&fields=chemical_formula&fields=description" +
-      "&fields=pathways.pathway"
+      "ftx/text_search/num_of_index/?" +
+      [
+        "index=" + indexQueryArg,
+        "query_message=" + query,
+        "from_=" + pageCount * pageSize,
+        "size=" + pageSize,
+
+        "fields=inchi",
+        "fields=InChI_Key",
+        "fields=smiles",
+        "fields=chemical_formula",
+
+        "fields=name",
+        "fields=synonyms",
+        "fields=description",
+
+        "fields=biocyc_id",
+        "fields=cas_registry_number",
+        "fields=chebi_id",
+        "fields=chemspider_id",
+        "fields=hmdb_id",
+        "fields=kegg_id",
+        "fields=m2m_id",
+        "fields=pubchem_compound_id",
+        "fields=ymdb_id",
+
+        "fields=pathways.pathway.name",
+        "fields=pathways.pathway.description",
+        "fields=pathways.pathway.kegg_map_id"
+      ].join("&")
     );
   }
 
@@ -43,7 +60,7 @@ export default class MetaboliteSearchResultsList extends Component {
           name = result["synonyms"][0];
         }
 
-        let inchikey = result["InChI_Key"]
+        let inchikey = result["InChI_Key"];
 
         formattedResult["title"] =
           name[0].toUpperCase() + name.substring(1, name.length);

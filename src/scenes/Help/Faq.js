@@ -143,7 +143,7 @@ class Faq extends Component {
               facilitate?
             </div>
             <div className="faq-a">
-              <ul>
+              <ul className="vertically-spaced">
                 <li>
                   <i>Datanator</i> can help investigators find genomic and
                   biochemical data to identify the <b>initial conditions</b> and{" "}
@@ -185,7 +185,7 @@ class Faq extends Component {
             </div>
             <div className="faq-a">
               <i>Datanator</i> can help modelers accomplish several tasks:
-              <ul>
+              <ul className="vertically-spaced">
                 <li>
                   <i>Datanator</i> can help modelers <b>design</b> the scope and
                   granularity of a model by helping modelers assess the data
