@@ -91,9 +91,9 @@ class MetadataSection extends Component {
     }
 
     processedData["equation"] =
-      MetadataSection.formatSide(substrates) +
+      MetadataSection.formatSide(substrates.map(part => part.name)) +
       " → " +
-      MetadataSection.formatSide(products);
+      MetadataSection.formatSide(products.map(part => part.name));
 
     if ("kegg_meta" in rawData[0]) {
       processedData["pathways"] = rawData[0].kegg_meta.kegg_pathway;
@@ -120,7 +120,7 @@ class MetadataSection extends Component {
           route += "/" + organism;
         }
         partLinks.push(
-          <Link key={"substrate-" + sub.name} to={route}>
+          <Link key={"substrate-" + sub.inchiKey} to={route}>
             {sub.name}
           </Link>
         );
@@ -141,7 +141,7 @@ class MetadataSection extends Component {
           route += "/" + organism;
         }
         partLinks.push(
-          <Link key={"substrate-" + prod.name} to={route}>
+          <Link key={"product-" + prod.inchiKey} to={route}>
             {prod.name}
           </Link>
         );

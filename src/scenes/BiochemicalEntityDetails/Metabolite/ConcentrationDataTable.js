@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-import {
-  dictOfArraysToArrayOfDicts,
-  upperCaseFirstLetter
-} from "~/utils/utils";
+import { upperCaseFirstLetter } from "~/utils/utils";
 import DataTable from "../DataTable/DataTable";
 import Tooltip from "@material-ui/core/Tooltip";
 import { HtmlColumnHeader } from "../HtmlColumnHeader";
@@ -12,7 +9,7 @@ import {
 } from "../ColumnsToolPanel/TooltipDescriptions";
 
 class ConcentrationDataTable extends Component {
-  static getUrl(query, organism, abstract = true) {
+  static getUrl(query, organism) {
     return (
       "/metabolites/concentrations/?inchikey=" +
       query +
