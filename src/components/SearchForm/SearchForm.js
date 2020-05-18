@@ -25,7 +25,7 @@ class SearchForm extends Component {
 
     this.state = {
       query: "",
-      organism: "",
+      organism: null,
       matchingOrganisms: [],
       queryValid: false,
       organismValid: true
@@ -64,34 +64,47 @@ class SearchForm extends Component {
       ) {
         const query = route.query;
         const organism = route.organism;
+        const organismItem = {
+          _source: {
+            tax_name: organism
+          }
+        };
 
         this.setState({
           query: query,
-          queryValid: query !== ""
-        });
-
-        this.setState({
-          organism: organism,
+          queryValid: query !== "",
+          organism: organismItem,
           organismValid: true
         });
+
+        this.organismSuggest.setState({ selectedItem: organismItem });
       }
     }
   }
 
-  getMatchingOrganisms(query, event, isSelectEvent = false) {
+  getMatchingOrganisms(query, event) {
     // Blueprint appears to issue two calls per input change; ignore the one with no defined event
     if (!event) {
       return;
     }
 
-    this.setState({
-      organism: query,
-      organismValid: query === "" || isSelectEvent
-    });
-
     // cancel earlier query
     if (this.cancelTokenSource) {
       this.cancelTokenSource.cancel();
+    }
+
+    const state = {
+      organism: null,
+      organismValid: query === ""
+    };
+    if (!query) {
+      state["matchingOrganisms"] = [];
+      this.organismSuggest.setState({ selectedItem: null });
+    }
+    this.setState(state);
+
+    if (!query) {
+      return;
     }
 
     // make new query
@@ -106,13 +119,7 @@ class SearchForm extends Component {
       "&fields=tax_name" +
       "&_source_includes=tax_name";
     getDataFromApi([url], { cancelToken: this.cancelTokenSource.token })
-      .then(response => {
-        this.setState({
-          matchingOrganisms: response.data["hits"]["hits"].map(
-            hit => hit["_source"]["tax_name"]
-          )
-        });
-      })
+      .then(this.setOrganismMenu.bind(this, query))
       .catch(
         genApiErrorHandler(
           [url],
@@ -124,25 +131,32 @@ class SearchForm extends Component {
       });
   }
 
+  setOrganismMenu(query, response) {
+    this.setState({ matchingOrganisms: response.data["hits"]["hits"] });
+  }
+
   genOrganismMenuItem(organism, { handleClick, modifiers }) {
     return (
       <MenuItem
         active={modifiers.active}
-        key={organism}
+        key={organism["_id"]}
         onClick={event => {
           handleClick(event);
         }}
-        text={organism}
+        text={organism["_source"]["tax_name"]}
       />
     );
   }
 
   renderOrganism(organism) {
-    return organism;
+    return organism["_source"]["tax_name"];
   }
 
-  selectOrganism(value, event) {
-    this.getMatchingOrganisms(value, event, true);
+  selectOrganism(value) {
+    this.setState({
+      organism: value,
+      organismValid: true
+    });
     this.organismSuggest.input.focus();
   }
 
@@ -152,7 +166,7 @@ class SearchForm extends Component {
     let url = "/search/";
     url += this.state.query + "/";
     if (this.state.organism) {
-      url += this.state.organism + "/";
+      url += this.state.organism["_source"]["tax_name"] + "/";
     }
     this.props.history.push(url);
   }
@@ -197,7 +211,6 @@ class SearchForm extends Component {
           inputValueRenderer={this.renderOrganism}
           noResults={<MenuItem disabled={true} text="No matching organisms" />}
           onItemSelect={this.selectOrganism}
-          query={this.state.organism}
         >
           <InputGroup />
         </Suggest>

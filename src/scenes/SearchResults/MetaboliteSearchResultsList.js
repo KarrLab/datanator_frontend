@@ -15,7 +15,10 @@ export default class MetaboliteSearchResultsList extends Component {
       pageCount * pageSize +
       "&size=" +
       pageSize +
-      "&fields=inchi&fields=m2m_id&fields=ymdb_id&fields=reaction_participants&fields=synonyms&fields=InChI_Key&fields=name&fields=chebi_id&fields=hmdb_id&fields=kegg_id"
+      "&fields=inchi&fields=m2m_id&fields=ymdb_id&fields=reaction_participants" + 
+      "&fields=synonyms&fields=InChI_Key&fields=name&fields=chebi_id&fields=hmdb_id&fields=kegg_id" +
+      "&fields=chebi_id&fields=biocyc_id&fields=cas_registry_number&fields=chemical_formula&fields=description" +
+      "&fields=pathways.pathway"
     );
   }
 
