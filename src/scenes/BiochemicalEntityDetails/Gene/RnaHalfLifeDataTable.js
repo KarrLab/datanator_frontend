@@ -29,7 +29,7 @@ class RnaHalfLifeDataTable extends Component {
           let formattedDatum = {
             halfLife: parseFloat(measurement.halflife),
             proteinName: rawDatum.protein_names[0],
-            geneName: measurement.gene_name,
+            geneName: rawDatum.kegg_meta.gene_name[0],
             uniprotId: rawDatum.uniprot_id,
             organism: measurement.species,
             growthMedium: measurement.growth_medium,
