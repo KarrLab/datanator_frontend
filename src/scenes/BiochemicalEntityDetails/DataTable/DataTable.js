@@ -152,7 +152,9 @@ class DataTable extends Component {
       .then(
         axios.spread((...responses) => {
           if (isEmpty(responses[0].data)) {
-            this.props.history.push("/*");
+            this.setState({
+              data: []
+            });
           } else {
             this.formatData(
               responses[0].data,
