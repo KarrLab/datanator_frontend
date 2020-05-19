@@ -4,6 +4,7 @@ import { upperCaseFirstLetter } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
 import { Link } from "react-router-dom";
 import KeggPathwaysMetadataSection from "../KeggPathwaysMetadataSection";
+import { LoadMetabolites } from "../LoadContent";
 
 const DB_LINKS = [
   { label: "BRENDA", url: "https://www.brenda-enzymes.org/enzyme.php?ecno=" },
@@ -109,50 +110,48 @@ class MetadataSection extends Component {
     return upperCaseFirstLetter(title);
   }
 
+  static processRelatedMetabolites(partLinks, metabolites, organism) {
+    for (const met of metabolites) {
+      let inchiKey = null;
+      let route = null;
+      if (met.inchiKey !== null) {
+        inchiKey = met.inchiKey;
+        route = "/metabolite/" + encodeURIComponent(inchiKey);
+        if (organism) {
+          route += "/" + organism;
+        }
+      }
+      partLinks.push(
+        <LoadMetabolites
+          url={"metabolites/meta/?inchikey=" + inchiKey}
+          inchiKey={inchiKey}
+          name={met.name}
+          route={route}
+        />
+      );
+      partLinks.push(" + ");
+    }
+    if (metabolites.length) {
+      partLinks.pop();
+    }
+  }
+
   static formatMetadata(processedData, organism) {
     const sections = [];
 
     const partLinks = [];
-    for (const sub of processedData.substrates) {
-      if (sub.inchiKey) {
-        let route = "/metabolite/" + encodeURIComponent(sub.inchiKey);
-        if (organism) {
-          route += "/" + organism;
-        }
-        partLinks.push(
-          <Link key={"substrate-" + sub.inchiKey} to={route}>
-            {sub.name}
-          </Link>
-        );
-      } else {
-        partLinks.push(sub.name);
-      }
-      partLinks.push(" + ");
-    }
-    if (processedData.substrates.length) {
-      partLinks.pop();
-    }
+    MetadataSection.processRelatedMetabolites(
+      partLinks,
+      processedData.substrates,
+      organism
+    );
 
     partLinks.push(" → ");
-    for (const prod of processedData.products) {
-      if (prod.inchiKey) {
-        let route = "/metabolite/" + encodeURIComponent(prod.inchiKey);
-        if (organism) {
-          route += "/" + organism;
-        }
-        partLinks.push(
-          <Link key={"product-" + prod.inchiKey} to={route}>
-            {prod.name}
-          </Link>
-        );
-      } else {
-        partLinks.push(prod.name);
-      }
-      partLinks.push(" + ");
-    }
-    if (processedData.products.length) {
-      partLinks.pop();
-    }
+    MetadataSection.processRelatedMetabolites(
+      partLinks,
+      processedData.products,
+      organism
+    );
 
     // description
     const descriptions = [];
