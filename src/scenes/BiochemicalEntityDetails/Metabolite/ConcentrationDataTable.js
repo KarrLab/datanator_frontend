@@ -19,7 +19,7 @@ class ConcentrationDataTable extends Component {
 
   static formatData(rawData, organism) {
     const formattedData = [];
-    for (const metabolite of rawData){ 
+    for (const metabolite of rawData) {
       for (const metConc of metabolite["concentrations"]) {
         let uncertainty = parseFloat(metConc.error);
         if (uncertainty === 0 || isNaN(uncertainty)) {
@@ -28,8 +28,8 @@ class ConcentrationDataTable extends Component {
         const species = metConc.species_name;
         const conc = {
           name: metabolite.metabolite,
-  
-          //tanimotoSimilarity: met.tanimoto_similarity,
+
+          tanimotoSimilarity: metabolite.similarity_score,
           value: parseFloat(metConc.concentration),
           uncertainty: uncertainty,
           units: metConc.concentration_units,
@@ -38,7 +38,8 @@ class ConcentrationDataTable extends Component {
             metConc.strain
               ? species + " " + metConc.strain
               : species,
-          growthPhase: "growth_status" in metConc ? metConc.growth_status : null,
+          growthPhase:
+            "growth_status" in metConc ? metConc.growth_status : null,
           growthMedia: "growth_media" in metConc ? metConc.growth_media : null,
           growthConditions:
             "growth_system" in metConc ? metConc.growth_system : null
