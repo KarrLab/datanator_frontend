@@ -35,7 +35,7 @@ class ProteinAbundanceDataTable extends Component {
     for (let i = 0; i < rawData.slice(start).length; i++) {
       const docs = rawData.slice(start)[i];
       for (const rawDatum of docs.documents) {
-        if ("abundances" in rawDatum.abundances) {
+        if ("abundances" in rawDatum) {
           for (const measurement of rawDatum.abundances) {
             let proteinName = rawDatum.protein_name;
             if (proteinName.includes("(")) {

@@ -104,7 +104,7 @@ class SearchResultsList extends Component {
           genApiErrorHandler(
             [url],
             "We were unable to conduct your search for '" + this.query + "'."
-          );
+          )(error);
         } else if (!axios.isCancel(error) && (IS_DEVELOPMENT || IS_TEST)) {
           console.error(error);
         }

@@ -132,7 +132,7 @@ class SearchForm extends Component {
           genApiErrorHandler(
             [url],
             "Unable to search for organisms that match '" + query + "'."
-          );
+          )(error);
         } else if (!axios.isCancel(error) && (IS_DEVELOPMENT || IS_TEST)) {
           console.error(error);
         }

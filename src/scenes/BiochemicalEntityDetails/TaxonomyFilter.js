@@ -97,7 +97,7 @@ class TaxonomyFilter extends Component {
           genApiErrorHandler(
             ["taxon", "canon_rank_distance_by_name/?name=" + organism],
             "Unable to obtain taxonomic information about '" + organism + "'."
-          );
+          )(error);
         } else if (!axios.isCancel(error) && (IS_DEVELOPMENT || IS_TEST)) {
           console.error(error);
         }

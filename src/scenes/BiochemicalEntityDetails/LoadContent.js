@@ -46,7 +46,10 @@ class LoadExternalContent extends Component {
           "request" in error.response &&
           error.response.request.constructor.name === "XMLHttpRequest"
         ) {
-          genApiErrorHandler([this.props.url], "Unable to load metadata.");
+          genApiErrorHandler(
+            [this.props.url],
+            "Unable to load metadata."
+          )(error);
         } else if (!axios.isCancel(error) && (IS_DEVELOPMENT || IS_TEST)) {
           console.error(error);
         }
@@ -119,7 +122,7 @@ class LoadContent extends Component {
           genApiErrorHandler(
             [url],
             "We were unable to conduct your search for '" + this.query + "'."
-          );
+          )(error);
         } else if (!axios.isCancel(error) && (IS_DEVELOPMENT || IS_TEST)) {
           console.error(error);
         }
@@ -210,7 +213,7 @@ class LoadMetabolites extends Component {
             genApiErrorHandler(
               [url],
               "We were unable to conduct your search for '" + this.query + "'."
-            );
+            )(error);
           } else if (!axios.isCancel(error) && (IS_DEVELOPMENT || IS_TEST)) {
             console.error(error);
           }

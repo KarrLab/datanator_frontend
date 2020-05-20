@@ -203,7 +203,7 @@ class DataTable extends Component {
                 " '" +
                 query +
                 "'."
-            );
+            )(error);
           }
         } else if (!axios.isCancel(error) && (IS_DEVELOPMENT || IS_TEST)) {
           console.error(error);
