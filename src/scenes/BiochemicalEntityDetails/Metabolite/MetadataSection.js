@@ -153,9 +153,26 @@ class MetadataSection extends Component {
     }
 
     if (met.cellular_locations) {
-      processedData.cellularLocations = castToArray(
-        met.cellular_locations.cellular_location
-      );
+      processedData.cellularLocations = {};
+      for (const loc of met.cellular_locations) {
+        let locs = castToArray(loc.cellular_location);
+
+        for (const ref of loc.reference) {
+          let taxon = null;
+          if (ref === "ECMDB") {
+            taxon = "Escherichia coli (ECMDB)";
+          } else if (ref === "YMDB") {
+            taxon = "Saccharomyces cerevisiae (YMDB)";
+          }
+          if (!(taxon in processedData.cellularLocations)) {
+            processedData.cellularLocations[taxon] = [];
+          }
+          processedData.cellularLocations[
+            taxon
+          ] = processedData.cellularLocations[taxon].concat(locs);
+          processedData.cellularLocations[taxon].sort();
+        }
+      }
     }
 
     processedData.dbLinks = {
@@ -308,12 +325,22 @@ class MetadataSection extends Component {
         content: null
       };
 
-      if (processedData.cellularLocations.length) {
+      let taxa = Object.keys(processedData.cellularLocations);
+      if (taxa.length) {
+        taxa.sort();
+
         section.content = (
-          <ul className="two-col-list">
-            {processedData.cellularLocations.map(el => (
-              <li key={el}>
-                <div className="bulleted-list-item">{el}</div>
+          <ul className="vertically-spaced">
+            {taxa.map(taxon => (
+              <li key={taxon}>
+                <div className="bulleted-list-item">
+                  {taxon}
+                  <ul>
+                    {processedData.cellularLocations[taxon].map(loc => (
+                      <li key={loc}>{loc}</li>
+                    ))}
+                  </ul>
+                </div>
               </li>
             ))}
           </ul>
