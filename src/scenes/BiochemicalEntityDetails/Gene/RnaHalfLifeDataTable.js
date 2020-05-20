@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { upperCaseFirstLetter } from "~/utils/utils";
 import DataTable from "../DataTable/DataTable";
 import { HtmlColumnHeader } from "../HtmlColumnHeader";
@@ -6,6 +7,10 @@ import Tooltip from "@material-ui/core/Tooltip";
 import { TAXONOMIC_PROXIMITY_TOOLTIP } from "../ColumnsToolPanel/TooltipDescriptions";
 
 class RnaHalfLifeDataTable extends Component {
+  static propTypes = {
+    "set-scene-metadata": PropTypes.func.isRequired
+  };
+
   static getUrl(query, organism) {
     let url =
       "rna/halflife/get_info_by_ko/" +
@@ -203,6 +208,7 @@ class RnaHalfLifeDataTable extends Component {
         get-col-defs={RnaHalfLifeDataTable.getColDefs}
         get-col-sort-order={RnaHalfLifeDataTable.getColSortOrder}
         dom-layout="normal"
+        set-scene-metadata={this.props["set-scene-metadata"]}
       />
     );
   }

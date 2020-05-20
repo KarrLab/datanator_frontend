@@ -160,15 +160,17 @@ class About extends Component {
               <div className="content-block-content">
                 <p>
                   Currently, <i>Datanator</i> includes measured metabolite
-                  concentrations, RNA modifications and half-lives, protein abundances and modifications, and reaction rate
-                  parameters integrated from{" "}
+                  concentrations, RNA modifications and half-lives, protein
+                  abundances and modifications, and reaction rate parameters
+                  integrated from{" "}
                   <a
                     href={"https://www.brenda-enzymes.org/"}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     BRENDA
-                  </a>,{" "}
+                  </a>
+                  ,{" "}
                   <a
                     href={"http://ecmdb.ca/"}
                     target="_blank"
@@ -215,9 +217,9 @@ class About extends Component {
                     rel="noopener noreferrer"
                   >
                     YMDB
-                  </a>, and numerous publications
-                  . We aim to continually incorporate additional data from
-                  additional sources.
+                  </a>
+                  , and numerous publications . We aim to continually
+                  incorporate additional data from additional sources.
                 </p>
               </div>
             </div>

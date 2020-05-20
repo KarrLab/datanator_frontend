@@ -169,6 +169,9 @@ function parseHistoryLocationPathname(history) {
     query = match[4] ? match[4].trim() || null : null;
     organism = match[6] ? match[6].trim() || null : null;
   }
+  if (typeof organism === "string" && organism.toLowerCase() === "null") {
+    organism = null;
+  }
   return {
     route: route,
     query: query,
@@ -211,7 +214,6 @@ function formatParticipantsForUrl(participants) {
 }
 
 function isEmpty(element) {
-  console.log(element);
   if (element instanceof Array) {
     if (element.length === 0) {
       return true;

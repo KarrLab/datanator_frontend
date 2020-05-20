@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { upperCaseFirstLetter } from "~/utils/utils";
 import DataTable from "../DataTable/DataTable";
 import Tooltip from "@material-ui/core/Tooltip";
@@ -9,11 +10,15 @@ import {
 } from "../ColumnsToolPanel/TooltipDescriptions";
 
 class ConcentrationDataTable extends Component {
-  static getUrl(query, organism) {
+  static propTypes = {
+    "set-scene-metadata": PropTypes.func.isRequired
+  };
+
+  static getUrl(query) {
+    //, organism) {
     return (
-      "metabolites/concentrations/similar_compounds/?inchikey=" +
-      query +
-      (organism ? "&species=" + organism : "")
+      "metabolites/concentrations/similar_compounds/?inchikey=" + query
+      // + (organism ? "&species=" + organism : "")
     );
   }
 
@@ -247,6 +252,7 @@ class ConcentrationDataTable extends Component {
         get-side-bar-def={ConcentrationDataTable.getSideBarDef}
         get-col-defs={ConcentrationDataTable.getColDefs}
         get-col-sort-order={ConcentrationDataTable.getColSortOrder}
+        set-scene-metadata={this.props["set-scene-metadata"]}
       />
     );
   }

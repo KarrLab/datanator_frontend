@@ -8,7 +8,8 @@ import { TAXONOMIC_PROXIMITY_TOOLTIP } from "../ColumnsToolPanel/TooltipDescript
 
 class ProteinAbundanceDataTable extends Component {
   static propTypes = {
-    "uniprot-id-to-taxon-dist": PropTypes.object
+    "uniprot-id-to-taxon-dist": PropTypes.object,
+    "set-scene-metadata": PropTypes.func.isRequired
   };
 
   static defaultProps = {
@@ -201,6 +202,7 @@ class ProteinAbundanceDataTable extends Component {
         get-col-defs={ProteinAbundanceDataTable.getColDefs}
         get-col-sort-order={ProteinAbundanceDataTable.getColSortOrder}
         dom-layout="normal"
+        set-scene-metadata={this.props["set-scene-metadata"]}
       />
     );
   }

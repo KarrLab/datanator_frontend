@@ -39,7 +39,8 @@ class DataTable extends Component {
     "get-side-bar-def": PropTypes.func.isRequired,
     "get-col-defs": PropTypes.func.isRequired,
     "get-col-sort-order": PropTypes.func.isRequired,
-    "dom-layout": PropTypes.string
+    "dom-layout": PropTypes.string,
+    "set-scene-metadata": PropTypes.func.isRequired
   };
 
   static defaultProps = {
@@ -78,7 +79,8 @@ class DataTable extends Component {
 
     this.locationPathname = null;
     this.unlistenToHistory = null;
-    this.cancelTokenSource = null;
+    this.queryCancelTokenSource = null;
+    this.taxonCancelTokenSource = null;
 
     this.sideBarDef = null;
     this.colDefs = null;
@@ -110,8 +112,11 @@ class DataTable extends Component {
   componentWillUnmount() {
     this.unlistenToHistory();
     this.unlistenToHistory = null;
-    if (this.cancelTokenSource) {
-      this.cancelTokenSource.cancel();
+    if (this.queryCancelTokenSource) {
+      this.queryCancelTokenSource.cancel();
+    }
+    if (this.taxonCancelTokenSource) {
+      this.taxonCancelTokenSource.cancel();
     }
   }
 
@@ -133,20 +138,28 @@ class DataTable extends Component {
     const query = route.query;
     const organism = route.organism;
 
-    if (this.cancelTokenSource) {
-      this.cancelTokenSource.cancel();
+    if (this.queryCancelTokenSource) {
+      this.queryCancelTokenSource.cancel();
+    }
+    if (this.taxonCancelTokenSource) {
+      this.taxonCancelTokenSource.cancel();
     }
 
     const url = this.props["get-data-url"](query, organism);
-    this.cancelTokenSource = axios.CancelToken.source();
+    const taxonUrl = "taxon/canon_rank_distance_by_name/?name=" + organism;
+    this.queryCancelTokenSource = axios.CancelToken.source();
+    if (organism) {
+      this.taxonCancelTokenSource = axios.CancelToken.source();
+    }
     axios
       .all([
-        getDataFromApi([url], { cancelToken: this.cancelTokenSource.token }),
+        getDataFromApi([url], {
+          cancelToken: this.queryCancelTokenSource.token
+        }),
         organism
-          ? getDataFromApi(
-              ["taxon", "canon_rank_distance_by_name/?name=" + organism],
-              { cancelToken: this.cancelTokenSource.token }
-            )
+          ? getDataFromApi([taxonUrl], {
+              cancelToken: this.taxonCancelTokenSource.token
+            })
           : null
       ])
       .then(
@@ -163,20 +176,32 @@ class DataTable extends Component {
           }
         })
       )
-      .catch(
-        genApiErrorHandler(
-          [url],
-          "Unable to retrieve " +
-            this.props["data-type"] +
-            " data about " +
-            this.props["entity-type"] +
-            " '" +
-            query +
-            "'."
-        )
-      )
+      .catch(error => {
+        const response = error.response;
+        if (
+          response &&
+          response.config.url.endsWith(taxonUrl) &&
+          response.status === 500
+        ) {
+          this.props["set-scene-metadata"]({
+            error404: true
+          });
+        } else {
+          genApiErrorHandler(
+            [url],
+            "Unable to retrieve " +
+              this.props["data-type"] +
+              " data about " +
+              this.props["entity-type"] +
+              " '" +
+              query +
+              "'."
+          );
+        }
+      })
       .finally(() => {
-        this.cancelTokenSource = null;
+        this.queryCancelTokenSource = null;
+        this.taxonCancelTokenSource = null;
       });
   }
 
