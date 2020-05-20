@@ -38,7 +38,10 @@ class RnaHalfLifeDataTable extends Component {
             uniprotId: rawDatum.uniprot_id,
             organism: measurement.species,
             growthMedium: measurement.growth_medium,
-            source: measurement.reference[0].doi
+            source: {
+              id: "DOI: " + measurement.reference[0].doi,
+              url: "https://dx.doi.org/" + measurement.reference[0].doi
+            }
           };
 
           if (organism != null) {
@@ -172,15 +175,19 @@ class RnaHalfLifeDataTable extends Component {
         headerName: "Source",
         field: "source",
         cellRenderer: function(params) {
+          const source = params.value;
           return (
-            '<a href="https://dx.doi.org/' +
-            params.value +
+            '<a href="' +
+            source.url +
             '" target="_blank" rel="noopener noreferrer">' +
-            "Journal article" +
+            source.id +
             "</a>"
           );
         },
-        filterValueGetter: () => "Journal article",
+        filterValueGetter: params => {
+          const source = params.data.source;
+          return source.id;
+        },
         filter: "textFilter"
       }
     ];

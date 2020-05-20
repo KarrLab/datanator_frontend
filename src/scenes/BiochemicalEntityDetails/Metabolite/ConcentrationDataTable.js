@@ -14,12 +14,15 @@ class ConcentrationDataTable extends Component {
     "set-scene-metadata": PropTypes.func.isRequired
   };
 
-  static getUrl(query) {
-    //, organism) {
-    return (
-      "metabolites/concentrations/similar_compounds/?inchikey=" + query
-      // + (organism ? "&species=" + organism : "")
-    );
+  static getUrl(query, organism) {
+    const args = ["inchikey=" + query, "threshold=0.6"];
+    if (organism) {
+      args.push("target_species=" + organism);
+      args.push("taxon_distance=true");
+    } else {
+      args.push("taxon_distance=false");
+    }
+    return "metabolites/concentrations/similar_compounds/?" + args.join("&");
   }
 
   static formatData(rawData, organism) {
@@ -49,11 +52,8 @@ class ConcentrationDataTable extends Component {
             growthMedia:
               "growth_media" in metConc ? metConc.growth_media : null,
             growthConditions:
-              "growth_system" in metConc ? metConc.growth_system : null
-            //  source:
-            //    "m2m_id" in met
-            //      ? { source: "ecmdb", id: met.m2m_id }
-            //      : { source: "ymdb", id: met.ymdb_id }
+              "growth_system" in metConc ? metConc.growth_system : null,
+            source: null
           };
           if (organism != null) {
             conc["taxonomicProximity"] = metConc.taxon_distance;
@@ -63,6 +63,19 @@ class ConcentrationDataTable extends Component {
           }
           if (conc.growthPhase && conc.growthPhase.indexOf(" Phase") >= 0) {
             conc.growthPhase = conc.growthPhase.split(" Phase")[0];
+          }
+          if ("doi" in metConc.reference) {
+            conc.source = {
+              id: "DOI: " + metConc.reference.doi,
+              url: "https://dx.doi.org/" + metConc.reference.doi
+            };
+          } else if ("pubmed_id" in metConc.reference) {
+            conc.source = {
+              id: "PubMed: " + metConc.reference.pubmed_id,
+              url:
+                "https://www.ncbi.nlm.nih.gov/pubmed/" +
+                metConc.reference.pubmed_id
+            };
           }
           if (!isNaN(conc.value)) {
             formattedData.push(conc);
@@ -200,37 +213,26 @@ class ConcentrationDataTable extends Component {
         field: "growthMedia",
         filter: "textFilter",
         hide: true
-      }
-
-      /**
+      },
       {
         headerName: "Source",
         field: "source",
         cellRenderer: function(params) {
-          if (params.value.source === "ecmdb") {
-            return (
-              '<a href="http://ecmdb.ca/compounds/' +
-              params.value.id +
-              '" target="_blank" rel="noopener noreferrer">' +
-              "ECMDB" +
-              "</a>"
-            );
-          } else {
-            return (
-              '<a href="http://www.ymdb.ca/compounds/' +
-              params.value.id +
-              '" target="_blank" rel="noopener noreferrer">' +
-              "YMDB" +
-              "</a>"
-            );
-          }
+          const source = params.value;
+          return (
+            '<a href="' +
+            source.url +
+            '" target="_blank" rel="noopener noreferrer">' +
+            source.id +
+            "</a>"
+          );
         },
         filterValueGetter: params => {
-          return params.data.source.source.toUpperCase();
+          const source = params.data.source;
+          return source.id;
         },
         filter: "textFilter"
       }
-      **/
     ];
 
     if (!organism) {
