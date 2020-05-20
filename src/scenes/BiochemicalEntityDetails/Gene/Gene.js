@@ -4,6 +4,7 @@ import { scrollTo } from "~/utils/utils";
 import { MetadataSection } from "./MetadataSection";
 import { RnaHalfLifeDataTable } from "./RnaHalfLifeDataTable";
 import { ProteinAbundanceDataTable } from "./ProteinAbundanceDataTable";
+import { ProteinModificationDataTable } from "./ProteinModificationDataTable";
 import Error404 from "~/scenes/Error404/Error404";
 
 import "../BiochemicalEntityDetails.scss";
@@ -93,6 +94,9 @@ class Gene extends Component {
                 set-scene-metadata={this.setMetadata.bind(this)}
               />
               <ProteinAbundanceDataTable
+                set-scene-metadata={this.setMetadata.bind(this)}
+              />
+              <ProteinModificationDataTable
                 set-scene-metadata={this.setMetadata.bind(this)}
               />
             </div>
