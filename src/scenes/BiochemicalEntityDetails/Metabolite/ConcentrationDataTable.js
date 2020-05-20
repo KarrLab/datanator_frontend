@@ -25,45 +25,48 @@ class ConcentrationDataTable extends Component {
   static formatData(rawData, organism) {
     const formattedData = [];
     for (const metabolite of rawData) {
-      for (const metConc of metabolite["concentrations"]) {
-        let uncertainty = parseFloat(metConc.error);
-        if (uncertainty === 0 || isNaN(uncertainty)) {
-          uncertainty = null;
-        }
-        const species = metConc.species_name;
-        const conc = {
-          name: metabolite.metabolite,
+      if ("concentrations" in metabolite) {
+        for (const metConc of metabolite["concentrations"]) {
+          let uncertainty = parseFloat(metConc.error);
+          if (uncertainty === 0 || isNaN(uncertainty)) {
+            uncertainty = null;
+          }
+          const species = metConc.species_name;
+          const conc = {
+            name: metabolite.metabolite,
 
-          tanimotoSimilarity: metabolite.similarity_score,
-          value: parseFloat(metConc.concentration),
-          uncertainty: uncertainty,
-          units: metConc.concentration_units,
-          organism:
-            Object.prototype.hasOwnProperty.call(metConc, "strain") &&
-            metConc.strain
-              ? species + " " + metConc.strain
-              : species,
-          growthPhase:
-            "growth_status" in metConc ? metConc.growth_status : null,
-          growthMedia: "growth_media" in metConc ? metConc.growth_media : null,
-          growthConditions:
-            "growth_system" in metConc ? metConc.growth_system : null
-          //  source:
-          //    "m2m_id" in met
-          //      ? { source: "ecmdb", id: met.m2m_id }
-          //      : { source: "ymdb", id: met.ymdb_id }
-        };
-        if (organism != null) {
-          conc["taxonomicProximity"] = metConc.taxon_distance;
-        }
-        if (conc.growthPhase && conc.growthPhase.indexOf(" phase") >= 0) {
-          conc.growthPhase = conc.growthPhase.split(" phase")[0];
-        }
-        if (conc.growthPhase && conc.growthPhase.indexOf(" Phase") >= 0) {
-          conc.growthPhase = conc.growthPhase.split(" Phase")[0];
-        }
-        if (!isNaN(conc.value)) {
-          formattedData.push(conc);
+            tanimotoSimilarity: metabolite.similarity_score,
+            value: parseFloat(metConc.concentration),
+            uncertainty: uncertainty,
+            units: metConc.concentration_units,
+            organism:
+              Object.prototype.hasOwnProperty.call(metConc, "strain") &&
+              metConc.strain
+                ? species + " " + metConc.strain
+                : species,
+            growthPhase:
+              "growth_status" in metConc ? metConc.growth_status : null,
+            growthMedia:
+              "growth_media" in metConc ? metConc.growth_media : null,
+            growthConditions:
+              "growth_system" in metConc ? metConc.growth_system : null
+            //  source:
+            //    "m2m_id" in met
+            //      ? { source: "ecmdb", id: met.m2m_id }
+            //      : { source: "ymdb", id: met.ymdb_id }
+          };
+          if (organism != null) {
+            conc["taxonomicProximity"] = metConc.taxon_distance;
+          }
+          if (conc.growthPhase && conc.growthPhase.indexOf(" phase") >= 0) {
+            conc.growthPhase = conc.growthPhase.split(" phase")[0];
+          }
+          if (conc.growthPhase && conc.growthPhase.indexOf(" Phase") >= 0) {
+            conc.growthPhase = conc.growthPhase.split(" Phase")[0];
+          }
+          if (!isNaN(conc.value)) {
+            formattedData.push(conc);
+          }
         }
       }
     }

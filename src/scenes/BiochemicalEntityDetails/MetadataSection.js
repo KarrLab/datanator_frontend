@@ -5,6 +5,9 @@ import axios from "axios";
 import { getDataFromApi, genApiErrorHandler } from "~/services/RestApi";
 import { parseHistoryLocationPathname, isEmpty } from "~/utils/utils";
 
+const IS_DEVELOPMENT = process.env.NODE_ENV === "development";
+const IS_TEST = process.env.NODE_ENV.startsWith("test");
+
 class MetadataSection extends Component {
   static propTypes = {
     history: PropTypes.object.isRequired,
@@ -117,24 +120,31 @@ class MetadataSection extends Component {
         })
       )
       .catch(error => {
-        const response = error.response;
         if (
-          response &&
-          response.config.url.endsWith(taxonUrl) &&
-          response.status === 500
+          "response" in error &&
+          "request" in error.response &&
+          error.response.request.constructor.name === "XMLHttpRequest"
         ) {
-          this.props["set-scene-metadata"]({
-            error404: true
-          });
-        } else {
-          genApiErrorHandler(
-            [queryUrl],
-            "Unable to get metadata about " +
-              this.props["entity-type"] +
-              " '" +
-              query +
-              "'."
-          );
+          const response = error.response;
+          if (
+            response.config.url.endsWith(taxonUrl) &&
+            response.status === 500
+          ) {
+            this.props["set-scene-metadata"]({
+              error404: true
+            });
+          } else {
+            genApiErrorHandler(
+              [queryUrl],
+              "Unable to get metadata about " +
+                this.props["entity-type"] +
+                " '" +
+                query +
+                "'."
+            );
+          }
+        } else if (!axios.isCancel(error) && (IS_DEVELOPMENT || IS_TEST)) {
+          console.error(error);
         }
       })
       .finally(() => {

@@ -101,7 +101,7 @@ class MetadataSection extends Component {
     processedData.cellularLocations = null;
 
     processedData.name = met.name;
-    if (met.synonyms.synonym) {
+    if (met.synonyms && met.synonyms.synonym) {
       processedData.synonyms = castToArray(met.synonyms.synonym).map(syn => {
         return htmlEntityDecoder.feed(syn);
       });
@@ -302,10 +302,14 @@ class MetadataSection extends Component {
     }
 
     if (processedData.cellularLocations) {
-      sections.push({
+      let section = {
         id: "localizations",
         title: "Localizations",
-        content: (
+        content: null
+      };
+
+      if (processedData.cellularLocations.length) {
+        section.content = (
           <ul className="two-col-list">
             {processedData.cellularLocations.map(el => (
               <li key={el}>
@@ -313,8 +317,12 @@ class MetadataSection extends Component {
               </li>
             ))}
           </ul>
-        )
-      });
+        );
+      } else {
+        section.content = "No data is available.";
+      }
+
+      sections.push(section);
     }
 
     sections.push({

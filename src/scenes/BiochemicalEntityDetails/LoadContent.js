@@ -5,6 +5,9 @@ import axios from "axios";
 import { getDataFromApi, genApiErrorHandler } from "~/services/RestApi";
 import { Link } from "react-router-dom";
 
+const IS_DEVELOPMENT = process.env.NODE_ENV === "development";
+const IS_TEST = process.env.NODE_ENV.startsWith("test");
+
 class LoadExternalContent extends Component {
   static propTypes = {
     url: PropTypes.string.isRequired,
@@ -37,7 +40,17 @@ class LoadExternalContent extends Component {
         const processed_data = this.props["format-results"](response.data);
         this.setState({ text: processed_data });
       })
-      .catch(genApiErrorHandler([this.props.url], "Unable to load metadata."))
+      .catch(error => {
+        if (
+          "response" in error &&
+          "request" in error.response &&
+          error.response.request.constructor.name === "XMLHttpRequest"
+        ) {
+          genApiErrorHandler([this.props.url], "Unable to load metadata.");
+        } else if (!axios.isCancel(error) && (IS_DEVELOPMENT || IS_TEST)) {
+          console.error(error);
+        }
+      })
       .finally(() => {
         this.cancelTokenSource = null;
       });
@@ -97,12 +110,20 @@ class LoadContent extends Component {
           results: results
         });
       })
-      .catch(
-        genApiErrorHandler(
-          [url],
-          "We were unable to conduct your search for '" + this.query + "'."
-        )
-      )
+      .catch(error => {
+        if (
+          "response" in error &&
+          "request" in error.response &&
+          error.response.request.constructor.name === "XMLHttpRequest"
+        ) {
+          genApiErrorHandler(
+            [url],
+            "We were unable to conduct your search for '" + this.query + "'."
+          );
+        } else if (!axios.isCancel(error) && (IS_DEVELOPMENT || IS_TEST)) {
+          console.error(error);
+        }
+      })
       .finally(() => {
         this.cancelTokenSource = null;
       });
@@ -180,12 +201,20 @@ class LoadMetabolites extends Component {
             results: results
           });
         })
-        .catch(
-          genApiErrorHandler(
-            [url],
-            "We were unable to conduct your search for '" + this.query + "'."
-          )
-        )
+        .catch(error => {
+          if (
+            "response" in error &&
+            "request" in error.response &&
+            error.response.request.constructor.name === "XMLHttpRequest"
+          ) {
+            genApiErrorHandler(
+              [url],
+              "We were unable to conduct your search for '" + this.query + "'."
+            );
+          } else if (!axios.isCancel(error) && (IS_DEVELOPMENT || IS_TEST)) {
+            console.error(error);
+          }
+        })
         .finally(() => {
           this.cancelTokenSource = null;
         });
