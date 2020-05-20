@@ -178,10 +178,10 @@ class MetadataSection extends Component {
         value: (
           <Link
             to={
-              "/metabolite/" +
+              "/search/" +
               processedData.cofactor +
               "/" +
-              (organism ? organism : "")
+              (organism ? organism + "/" : "")
             }
           >
             {processedData.cofactor}
