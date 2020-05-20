@@ -56,7 +56,7 @@ class ConcentrationDataTable extends Component {
             source: null
           };
           if (organism != null) {
-            conc["taxonomicProximity"] = metConc.taxon_distance;
+            conc["taxonomicProximity"] = metConc.taxon_distance[organism];
           }
           if (conc.growthPhase && conc.growthPhase.indexOf(" phase") >= 0) {
             conc.growthPhase = conc.growthPhase.split(" phase")[0];
