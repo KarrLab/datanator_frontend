@@ -3,7 +3,7 @@
 describe("NumericCellRenderer", function() {
   it("Numeric cells render correctly", function() {
     const route = "metabolite";
-    const entity = "dTDP-D-Glucose";
+    const entity = "YSYKRGRSMLTJNL-URARBOGNSA-L"; // TDP-Glucose
     const url = "/" + route + "/" + entity;
     const dataContainerId = "concentration";
 
@@ -12,7 +12,9 @@ describe("NumericCellRenderer", function() {
       cy.route({
         method: "GET",
         url:
-          "/metabolites/concentration/?metabolite=" + entity + "&abstract=true",
+          "/metabolites/concentrations/similar_compounds/?inchikey=" +
+          entity +
+          "&*",
         status: 200,
         response: json
       });
@@ -29,22 +31,18 @@ describe("NumericCellRenderer", function() {
     getRows()
       .eq(0)
       .find('.ag-cell-value[aria-colindex="1"] .ag-numeric-cell')
-      .should("have.html", "1790.0");
+      .should("have.text", "2.6 × 10-6");
     getRows()
       .eq(1)
       .find('.ag-cell-value[aria-colindex="1"] .ag-numeric-cell')
-      .should("have.html", "1790.1");
+      .should("have.text", "4.3 × 10-6");
     getRows()
-      .eq(2)
+      .eq(18)
       .find('.ag-cell-value[aria-colindex="1"] .ag-numeric-cell')
-      .should("have.html", "1790.0");
+      .should("have.text", "0.0010");
     getRows()
-      .eq(3)
+      .eq(80)
       .find('.ag-cell-value[aria-colindex="1"] .ag-numeric-cell')
-      .should("have.text", "1.8 × 104");
-    getRows()
-      .eq(4)
-      .find('.ag-cell-value[aria-colindex="1"] .ag-numeric-cell')
-      .should("have.text", "1.8 × 10-4");
+      .should("have.text", "9240.0");
   });
 });

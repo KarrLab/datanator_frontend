@@ -163,6 +163,9 @@
             "unit": "M"
           }
         ],
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 0.00152530617644106,
         "last_modified": "2020-05-20T22:51:44.554000Z",
         "ncbi_taxonomy_id": 9606,
@@ -258,6 +261,9 @@
             "unit": "M"
           }
         ],
+        "taxon_distance": {
+          "Escherichia coli": 2
+        },
         "concentration": 0.00026785991799412,
         "last_modified": "2020-05-20T22:51:44.554000Z",
         "ncbi_taxonomy_id": 4932,
@@ -401,6 +407,9 @@
             "unit": "M"
           }
         ],
+        "taxon_distance": {
+          "Escherichia coli": 3
+        },
         "concentration": 0.0025,
         "last_modified": "2020-05-20T22:51:44.554000Z",
         "ncbi_taxonomy_id": 562,
@@ -410,6 +419,9 @@
         "species_name": "Escherichia coli"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 4
+        },
         "concentration": "150.0",
         "concentration_units": "&#181;M",
         "error": "0.0",
@@ -424,6 +436,9 @@
         "strain": null
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 5
+        },
         "concentration": "300.0",
         "concentration_units": "&#181;M",
         "error": "0.0",
@@ -445,6 +460,9 @@
   {
     "concentrations": [
       {
+        "taxon_distance": {
+          "Escherichia coli": 6
+        },
         "concentration": "2500.0",
         "concentration_units": "uM",
         "error": "0.0",
@@ -464,6 +482,9 @@
         "temperature": "37 oC"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 7
+        },
         "concentration": "1120.0",
         "concentration_units": "uM",
         "error": "0.0",
@@ -483,6 +504,9 @@
         "temperature": "37 oC"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "553.0",
         "concentration_units": "uM",
         "error": "0.0",
@@ -502,6 +526,9 @@
         "temperature": "37 oC"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "1910.0",
         "concentration_units": "uM",
         "error": "0.0",
@@ -542,6 +569,9 @@
             "unit": "M"
           }
         ],
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 0.000378,
         "last_modified": "2020-05-20T23:02:03.935000Z",
         "ncbi_taxonomy_id": 562,
@@ -551,6 +581,9 @@
         "species_name": "Escherichia coli"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "378.0",
         "concentration_units": "uM",
         "error": "0.0",
@@ -627,6 +660,9 @@
             "unit": "M"
           }
         ],
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 9.75492959634221e-05,
         "last_modified": "2020-05-20T23:02:03.004000Z",
         "ncbi_taxonomy_id": 10090,
@@ -650,6 +686,9 @@
             "unit": "M"
           }
         ],
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 0.000566,
         "last_modified": "2020-05-20T23:02:03.004000Z",
         "ncbi_taxonomy_id": 562,
@@ -659,6 +698,9 @@
         "species_name": "Escherichia coli"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "83.4",
         "concentration_units": "uM",
         "error": "0.0",
@@ -678,6 +720,9 @@
         "temperature": "37 oC"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "566.0",
         "concentration_units": "uM",
         "error": "0.0",
@@ -697,6 +742,9 @@
         "temperature": "37 oC"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "375.0",
         "concentration_units": "uM",
         "error": "0.0",
@@ -716,6 +764,9 @@
         "temperature": "37 oC"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "188.0",
         "concentration_units": "uM",
         "error": "0.0",
@@ -735,6 +786,9 @@
         "temperature": "37 oC"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "296.0",
         "concentration_units": "uM",
         "error": "12.0",
@@ -835,6 +889,9 @@
             "unit": "M"
           }
         ],
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 0.00462,
         "last_modified": "2020-05-20T23:02:03.674000Z",
         "ncbi_taxonomy_id": 562,
@@ -844,6 +901,9 @@
         "species_name": "Escherichia coli"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "4620.0",
         "concentration_units": "uM",
         "error": "0.0",
@@ -863,6 +923,9 @@
         "temperature": "37 oC"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "525.0",
         "concentration_units": "uM",
         "error": "0.0",
@@ -882,6 +945,9 @@
         "temperature": "37 oC"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "667.0",
         "concentration_units": "uM",
         "error": "0.0",
@@ -901,6 +967,9 @@
         "temperature": "37 oC"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "70.0",
         "concentration_units": "&#181;M",
         "error": "0.0",
@@ -1044,6 +1113,9 @@
             "unit": "M"
           }
         ],
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 1.18333622813687e-05,
         "last_modified": "2020-05-20T23:02:03.302000Z",
         "ncbi_taxonomy_id": 9606,
@@ -1170,6 +1242,9 @@
             "unit": "M"
           }
         ],
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 0.000133223047620732,
         "last_modified": "2020-05-20T22:56:54.740000Z",
         "ncbi_taxonomy_id": 9606,
@@ -1217,6 +1292,9 @@
             "unit": "M"
           }
         ],
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 3.68397633433545e-05,
         "last_modified": "2020-05-20T22:56:54.740000Z",
         "ncbi_taxonomy_id": 4932,
@@ -1252,6 +1330,9 @@
             "unit": "M"
           }
         ],
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 0.00179,
         "last_modified": "2020-05-20T22:56:54.740000Z",
         "ncbi_taxonomy_id": 562,
@@ -1261,6 +1342,9 @@
         "species_name": "Escherichia coli"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "1790.0",
         "concentration_units": "uM",
         "error": "0.0",
@@ -1280,6 +1364,9 @@
         "temperature": "37 oC"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "386.0",
         "concentration_units": "uM",
         "error": "0.0",
@@ -1464,6 +1551,9 @@
             "unit": "M"
           }
         ],
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 0.00896791161420303,
         "last_modified": "2020-05-20T23:02:02.988000Z",
         "ncbi_taxonomy_id": 10090,
@@ -1511,6 +1601,9 @@
             "unit": "M"
           }
         ],
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 0.00102016961624979,
         "last_modified": "2020-05-20T23:02:02.988000Z",
         "ncbi_taxonomy_id": 4932,
@@ -1606,15 +1699,21 @@
             "unit": "M"
           }
         ],
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 0.00924,
         "last_modified": "2020-05-20T23:02:02.988000Z",
         "ncbi_taxonomy_id": 562,
         "reference": {
           "doi": "10.1038/nchembio.2077"
         },
-        "species_name": "Escherichia coli"
+        "species_name": "Escherichia coli"        
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "9240.0",
         "concentration_units": "uM",
         "error": "0.0",
@@ -1634,6 +1733,9 @@
         "temperature": "37 oC"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "4110.0",
         "concentration_units": "uM",
         "error": "0.0",
@@ -1653,6 +1755,9 @@
         "temperature": "37 oC"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "2400.0",
         "concentration_units": "uM",
         "error": "0.0",
@@ -1672,6 +1777,9 @@
         "temperature": "37 oC"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "542.0",
         "concentration_units": "uM",
         "error": "0.0",
@@ -1892,6 +2000,9 @@
             "unit": "M"
           }
         ],
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 0.00176343989826253,
         "last_modified": "2020-05-20T23:02:03.178000Z",
         "ncbi_taxonomy_id": 9606,
@@ -1939,6 +2050,9 @@
             "unit": "M"
           }
         ],
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 0.000493650532064642,
         "last_modified": "2020-05-20T23:02:03.178000Z",
         "ncbi_taxonomy_id": 4932,
@@ -2070,6 +2184,9 @@
             "unit": "M"
           }
         ],
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 0.00829,
         "last_modified": "2020-05-20T23:02:03.178000Z",
         "ncbi_taxonomy_id": 562,
@@ -2079,6 +2196,9 @@
         "species_name": "Escherichia coli"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "8290.0",
         "concentration_units": "uM",
         "error": "0.0",
@@ -2098,6 +2218,9 @@
         "temperature": "37 oC"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "3990.0",
         "concentration_units": "uM",
         "error": "0.0",
@@ -2117,6 +2240,9 @@
         "temperature": "37 oC"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "2370.0",
         "concentration_units": "uM",
         "error": "0.0",
@@ -2136,6 +2262,9 @@
         "temperature": "37 oC"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "663.0",
         "concentration_units": "uM",
         "error": "0.0",
@@ -2248,6 +2377,9 @@
             "unit": "M"
           }
         ],
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 1.44985162663986e-05,
         "last_modified": "2020-05-20T23:02:03.251000Z",
         "ncbi_taxonomy_id": 9606,
@@ -2295,6 +2427,9 @@
             "unit": "M"
           }
         ],
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 1.45207883905308e-05,
         "last_modified": "2020-05-20T23:02:03.251000Z",
         "ncbi_taxonomy_id": 4932,
@@ -2304,6 +2439,9 @@
         "species_name": "Saccharomyces cerevisiae"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "129.0",
         "concentration_units": "uM",
         "error": "0.0",
@@ -2368,6 +2506,9 @@
             "unit": "M"
           }
         ],
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 4.27e-06,
         "last_modified": "2020-05-20T23:02:03.737000Z",
         "ncbi_taxonomy_id": 562,
@@ -2377,6 +2518,9 @@
         "species_name": "Escherichia coli"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "4.27",
         "concentration_units": "uM",
         "error": "0.0",
@@ -2403,6 +2547,9 @@
   {
     "concentrations": [
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "74.7",
         "concentration_units": "uM",
         "error": "0.0",
@@ -2422,6 +2569,9 @@
         "temperature": "37 oC"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "23.8",
         "concentration_units": "uM",
         "error": "0.0",
@@ -2522,6 +2672,9 @@
             "unit": "M"
           }
         ],
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 2.63660735289961e-06,
         "last_modified": "2020-05-20T23:02:03.070000Z",
         "ncbi_taxonomy_id": 10090,
@@ -2636,6 +2789,9 @@
             "unit": "M"
           }
         ],
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 0.000205,
         "last_modified": "2020-05-20T23:02:04.314000Z",
         "ncbi_taxonomy_id": 562,
@@ -2645,6 +2801,9 @@
         "species_name": "Escherichia coli"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "207.0",
         "concentration_units": "uM",
         "error": "0.0",
@@ -2664,6 +2823,9 @@
         "temperature": "37 oC"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "205.0",
         "concentration_units": "uM",
         "error": "0.0",
@@ -2690,6 +2852,9 @@
   {
     "concentrations": [
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "146.0",
         "concentration_units": "uM",
         "error": "0.0",
@@ -2716,6 +2881,9 @@
   {
     "concentrations": [
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "144.0",
         "concentration_units": "uM",
         "error": "0.0",
@@ -2756,6 +2924,9 @@
             "unit": "M"
           }
         ],
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 4.45646374679585e-06,
         "last_modified": "2020-05-20T23:02:04.068000Z",
         "ncbi_taxonomy_id": 4932,
@@ -2797,6 +2968,9 @@
             "unit": "M"
           }
         ],
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 3.45e-05,
         "last_modified": "2020-05-20T23:02:04.068000Z",
         "ncbi_taxonomy_id": 562,
@@ -2806,6 +2980,9 @@
         "species_name": "Escherichia coli"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "34.5",
         "concentration_units": "uM",
         "error": "0.0",
@@ -2825,6 +3002,9 @@
         "temperature": "37 oC"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "17.0",
         "concentration_units": "uM",
         "error": "0.0",
@@ -2844,6 +3024,9 @@
         "temperature": "37 oC"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "18.0",
         "concentration_units": "&#181;M",
         "error": "0.0",
@@ -2999,6 +3182,9 @@
             "unit": "M"
           }
         ],
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 3.01903081383724e-05,
         "last_modified": "2020-05-20T23:02:03.018000Z",
         "ncbi_taxonomy_id": 9606,
@@ -3058,6 +3244,9 @@
             "unit": "M"
           }
         ],
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 4.21125323179465e-05,
         "last_modified": "2020-05-20T23:02:03.018000Z",
         "ncbi_taxonomy_id": 4932,
@@ -3153,6 +3342,9 @@
             "unit": "M"
           }
         ],
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 0.000676,
         "last_modified": "2020-05-20T23:02:03.018000Z",
         "ncbi_taxonomy_id": 562,
@@ -3162,6 +3354,9 @@
         "species_name": "Escherichia coli"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 0.37891529528205614,
         "last_modified": "2020-04-28T17:11:15.825000Z",
         "ncbi_taxonomy_id": 562,
@@ -3174,6 +3369,9 @@
         "unit": "\u00b5mol * gCDW-1"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 0.6848112666227845,
         "last_modified": "2020-04-28T17:11:15.825000Z",
         "ncbi_taxonomy_id": 562,
@@ -3186,6 +3384,9 @@
         "unit": "\u00b5mol * gCDW-1"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 0.3385742390314757,
         "last_modified": "2020-04-28T17:11:15.825000Z",
         "ncbi_taxonomy_id": 562,
@@ -3198,6 +3399,9 @@
         "unit": "\u00b5mol * gCDW-1"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 0.7671994631588298,
         "last_modified": "2020-04-28T17:11:15.825000Z",
         "ncbi_taxonomy_id": 562,
@@ -3210,6 +3414,9 @@
         "unit": "\u00b5mol * gCDW-1"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 0.43327105441049985,
         "last_modified": "2020-04-28T17:11:15.825000Z",
         "ncbi_taxonomy_id": 562,
@@ -3222,6 +3429,9 @@
         "unit": "\u00b5mol * gCDW-1"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 0.4601429974726528,
         "last_modified": "2020-04-28T17:11:15.825000Z",
         "ncbi_taxonomy_id": 562,
@@ -3234,6 +3444,9 @@
         "unit": "\u00b5mol * gCDW-1"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 0.4258184602936404,
         "last_modified": "2020-04-28T17:11:15.825000Z",
         "ncbi_taxonomy_id": 562,
@@ -3246,6 +3459,9 @@
         "unit": "\u00b5mol * gCDW-1"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 0.7082256667066917,
         "last_modified": "2020-04-28T17:11:15.825000Z",
         "ncbi_taxonomy_id": 562,
@@ -3258,6 +3474,9 @@
         "unit": "\u00b5mol * gCDW-1"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 0.37891529528205614,
         "last_modified": "2020-05-05T19:09:34.697000Z",
         "ncbi_taxonomy_id": 562,
@@ -3270,6 +3489,9 @@
         "unit": "\u00b5mol * gCDW-1"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 0.6848112666227845,
         "last_modified": "2020-05-05T19:09:34.697000Z",
         "ncbi_taxonomy_id": 562,
@@ -3282,6 +3504,9 @@
         "unit": "\u00b5mol * gCDW-1"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 0.3385742390314757,
         "last_modified": "2020-05-05T19:09:34.697000Z",
         "ncbi_taxonomy_id": 562,
@@ -3294,6 +3519,9 @@
         "unit": "\u00b5mol * gCDW-1"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 0.7671994631588298,
         "last_modified": "2020-05-05T19:09:34.697000Z",
         "ncbi_taxonomy_id": 562,
@@ -3306,6 +3534,9 @@
         "unit": "\u00b5mol * gCDW-1"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 0.43327105441049985,
         "last_modified": "2020-05-05T19:09:34.697000Z",
         "ncbi_taxonomy_id": 562,
@@ -3318,6 +3549,9 @@
         "unit": "\u00b5mol * gCDW-1"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 0.4601429974726528,
         "last_modified": "2020-05-05T19:09:34.697000Z",
         "ncbi_taxonomy_id": 562,
@@ -3330,6 +3564,9 @@
         "unit": "\u00b5mol * gCDW-1"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 0.4258184602936404,
         "last_modified": "2020-05-05T19:09:34.697000Z",
         "ncbi_taxonomy_id": 562,
@@ -3342,6 +3579,9 @@
         "unit": "\u00b5mol * gCDW-1"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 0.7082256667066917,
         "last_modified": "2020-05-05T19:09:34.697000Z",
         "ncbi_taxonomy_id": 562,
@@ -3354,6 +3594,9 @@
         "unit": "\u00b5mol * gCDW-1"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "30.0",
         "concentration_units": "uM",
         "error": "2.0",
@@ -3373,6 +3616,9 @@
         "temperature": "37 oC"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "676.0",
         "concentration_units": "uM",
         "error": "0.0",
@@ -3392,6 +3638,9 @@
         "temperature": "37 oC"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "23.2",
         "concentration_units": "uM",
         "error": "0.0",
@@ -3411,6 +3660,9 @@
         "temperature": "37 oC"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "17.7",
         "concentration_units": "uM",
         "error": "0.0",
@@ -3430,6 +3682,9 @@
         "temperature": "37 oC"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "180.0",
         "concentration_units": "uM",
         "error": "0.0",
@@ -3566,6 +3821,9 @@
             "unit": "M"
           }
         ],
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 0.000897306129759607,
         "last_modified": "2020-05-20T23:02:03.199000Z",
         "ncbi_taxonomy_id": 9606,
@@ -3649,6 +3907,9 @@
             "unit": "M"
           }
         ],
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 0.000248539387390392,
         "last_modified": "2020-05-20T23:02:03.199000Z",
         "ncbi_taxonomy_id": 4932,
@@ -3864,6 +4125,9 @@
             "unit": "M"
           }
         ],
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": 0.00273,
         "last_modified": "2020-05-20T23:02:03.199000Z",
         "ncbi_taxonomy_id": 562,
@@ -3873,6 +4137,9 @@
         "species_name": "Escherichia coli"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "2730.0",
         "concentration_units": "uM",
         "error": "0.0",
@@ -3892,6 +4159,9 @@
         "temperature": "37 oC"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "1400.0",
         "concentration_units": "uM",
         "error": "0.0",
@@ -3911,6 +4181,9 @@
         "temperature": "37 oC"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "1150.0",
         "concentration_units": "uM",
         "error": "0.0",
@@ -3930,6 +4203,9 @@
         "temperature": "37 oC"
       },
       {
+        "taxon_distance": {
+          "Escherichia coli": 1
+        },
         "concentration": "282.0",
         "concentration_units": "uM",
         "error": "0.0",
