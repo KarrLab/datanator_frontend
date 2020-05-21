@@ -153,11 +153,12 @@ class MetadataSection extends Component {
     }
 
     if (met.cellular_locations) {
+      const locs = castToArray(met.cellular_locations);
       processedData.cellularLocations = {};
-      for (const loc of met.cellular_locations) {
+      for (const loc of locs) {
         let locs = castToArray(loc.cellular_location);
 
-        for (const ref of loc.reference) {
+        for (const ref of castToArray(loc.reference)) {
           let taxon = null;
           if (ref === "ECMDB") {
             taxon = "Escherichia coli (ECMDB)";

@@ -124,6 +124,7 @@ class MetadataSection extends Component {
       partLinks.push(
         <LoadMetabolites
           url={"metabolites/meta/?inchikey=" + inchiKey}
+          key={inchiKey}
           inchiKey={inchiKey}
           name={met.name}
           route={route}

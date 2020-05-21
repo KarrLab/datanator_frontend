@@ -44,7 +44,8 @@ class ConcentrationDataTable extends Component {
                 : null,
             value: parseFloat(metConc.concentration),
             uncertainty: uncertainty,
-            units: metConc.concentration_units,
+            units:
+              "unit" in metConc ? metConc.unit : metConc.concentration_units,
             organism:
               Object.prototype.hasOwnProperty.call(metConc, "strain") &&
               metConc.strain
@@ -67,17 +68,28 @@ class ConcentrationDataTable extends Component {
           if (conc.growthPhase && conc.growthPhase.indexOf(" Phase") >= 0) {
             conc.growthPhase = conc.growthPhase.split(" Phase")[0];
           }
-          if ("doi" in metConc.reference) {
+          if ("doi" in metConc.reference && metConc.reference.doi) {
             conc.source = {
               id: "DOI: " + metConc.reference.doi,
               url: "https://dx.doi.org/" + metConc.reference.doi
             };
-          } else if ("pubmed_id" in metConc.reference) {
+          } else if (
+            "pubmed_id" in metConc.reference &&
+            metConc.reference.pubmed_id
+          ) {
             conc.source = {
               id: "PubMed: " + metConc.reference.pubmed_id,
               url:
                 "https://www.ncbi.nlm.nih.gov/pubmed/" +
                 metConc.reference.pubmed_id
+            };
+          } else if (
+            "reference_text" in metConc.reference &&
+            metConc.reference.reference_text
+          ) {
+            conc.source = {
+              id: metConc.reference.reference_text,
+              url: null
             };
           }
           if (!isNaN(conc.value)) {
@@ -126,7 +138,7 @@ class ConcentrationDataTable extends Component {
   static getColDefs(organism, formattedData, taxonomicRanks) {
     const colDefs = [
       {
-        headerName: "Concentration (µM)",
+        headerName: "Concentration",
         field: "value",
         cellRenderer: "numericCellRenderer",
         type: "numericColumn",
@@ -137,12 +149,16 @@ class ConcentrationDataTable extends Component {
         comparator: DataTable.numericComparator
       },
       {
-        headerName: "Uncertainty (µM)",
+        headerName: "Uncertainty",
         field: "uncertainty",
         cellRenderer: "numericCellRenderer",
         type: "numericColumn",
         hide: true,
         filter: "numberFilter"
+      },
+      {
+        headerName: "Units",
+        field: "units"
       },
       {
         headerName: "Metabolite",
@@ -219,24 +235,36 @@ class ConcentrationDataTable extends Component {
         field: "source",
         cellRenderer: function(params) {
           const source = params.value;
-          return (
-            '<a href="' +
-            source.url +
-            '" target="_blank" rel="noopener noreferrer">' +
-            source.id +
-            "</a>"
-          );
+          if (source) {
+            if (source.url) {
+              return (
+                '<a href="' +
+                source.url +
+                '" target="_blank" rel="noopener noreferrer">' +
+                source.id +
+                "</a>"
+              );
+            } else {
+              return source.id;
+            }
+          } else {
+            return null;
+          }
         },
         filterValueGetter: params => {
           const source = params.data.source;
-          return source.id;
+          if (source) {
+            return source.id;
+          } else {
+            return null;
+          }
         },
         filter: "textFilter"
       }
     ];
 
     if (!organism) {
-      colDefs.splice(5, 1);
+      colDefs.splice(6, 1);
     }
     return colDefs;
   }

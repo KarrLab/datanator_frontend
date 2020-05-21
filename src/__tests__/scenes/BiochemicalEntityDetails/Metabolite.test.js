@@ -1,6 +1,6 @@
 import { ConcentrationDataTable } from "~/scenes/BiochemicalEntityDetails/Metabolite/ConcentrationDataTable";
 import { MetadataSection } from "~/scenes/BiochemicalEntityDetails/Metabolite/MetadataSection";
-import testRawData from "~/__tests__/fixtures/metabolite-concentrations-dTDP-D-Glucose";
+import testRawData from "~/__tests__/fixtures/metabolite-concentrations-Alpha-D-glucose 1-phosphate.json";
 import testRawMetadata from "~/__tests__/fixtures/metabolite-metadata-udp.json";
 import { mount, shallow } from "enzyme";
 import { getListDomElements, getSectionFromList } from "~/utils/testing_utils";
@@ -14,10 +14,10 @@ describe("Metabolite data page", () => {
 
     // assert URL correct
     expect(ConcentrationDataTable.getUrl(entity)).toEqual(
-      "metabolites/concentration/?metabolite=dTDP-D-Glucose&abstract=true"
+      "metabolites/concentrations/similar_compounds/?inchikey=dTDP-D-Glucose&threshold=0.6&taxon_distance=false"
     );
     expect(ConcentrationDataTable.getUrl(entity, organism)).toEqual(
-      "metabolites/concentration/?metabolite=dTDP-D-Glucose&abstract=true&species=Escherichia coli"
+      "metabolites/concentrations/similar_compounds/?inchikey=dTDP-D-Glucose&threshold=0.6&target_species=Escherichia coli&taxon_distance=true"
     );
   });
 
@@ -30,54 +30,61 @@ describe("Metabolite data page", () => {
     );
 
     // test formatted data
-    expect(formattedData).toHaveLength(10);
+    expect(formattedData).toHaveLength(27);
 
-    let formatedDatum = formattedData[0];
+    let formatedDatum = formattedData[26];
     expect(formatedDatum).toEqual({
-      name: "Uridine 5'-diphosphate",
-      tanimotoSimilarity: 0.783,
-      value: 1790,
+      name: "Glucose 1-phosphate",
+      tanimotoSimilarity: 1.0,
+      value: 33.4,
       uncertainty: null,
       units: "uM",
-      organism: "Escherichia coli K12 NCM3722",
+      organism: "Escherichia coli BW25113",
       taxonomicProximity: 1,
-      growthPhase: "Mid-Log",
+      growthPhase: "Stationary",
       growthMedia:
-        "Gutnick minimal complete medium (4.7 g/L KH2PO4; 13.5 g/L K2HPO4; 1 g/L K2SO4; 0.1 g/L MgSO4-7H2O; 10 mM NH4Cl) with 4 g/L glucose",
-      growthConditions: "Shake flask and filter culture",
-      source: { source: "ecmdb", id: "M2MDB000123" }
+        "48 mM Na2HPO4, 22 mM KH2PO4, 10 mM NaCl, 45 mM (NH4)2SO4, supplemented with 1 mM MgSO4, 1 mg/l thiamine·HCl, 5.6 mg/l CaCl2, 8 mg/l FeCl3, 1 mg/l MnCl2·4H2O, 1.7 mg/l ZnCl2, 0.43 mg/l CuCl2·2H2O, 0.6 mg/l CoCl2·2H2O and 0.6 mg/l Na2MoO4·2H2O.  4 g/L Gluco",
+      growthConditions:
+        "Bioreactor, pH controlled, O2 and CO2 controlled, dilution rate: 0.2/h",
+      source: {
+        url: "https://www.ncbi.nlm.nih.gov/pubmed/17379776",
+        id: "PubMed: 17379776"
+      }
     });
 
-    expect(formattedData[7].organism).toEqual("Yeast");
-    expect(formattedData[7].source).toEqual({
-      source: "ymdb",
-      id: "ymdb_id_xxx"
+    expect(formattedData[0].organism).toEqual("Escherichia coli");
+    expect(formattedData[0].source).toEqual({
+      url: "https://dx.doi.org/10.1016/j.cels.2015.09.008",
+      id: "DOI: 10.1016/j.cels.2015.09.008"
     });
-    expect(formattedData[7].growthPhase).toEqual(null);
-    expect(formattedData[7].growthMedia).toEqual(null);
-    expect(formattedData[7].growthConditions).toEqual(null);
+    expect(formattedData[0].growthPhase).toEqual(null);
+    expect(formattedData[0].growthMedia).toEqual(null);
+    expect(formattedData[0].growthConditions).toEqual(null);
   });
 
   it("test getColDefs", () => {
     const colDefs = ConcentrationDataTable.getColDefs(null, null, null);
 
-    const tanimotoCol = getSectionFromList(
-      colDefs,
-      "field",
-      "tanimotoSimilarity"
-    );
-    expect(tanimotoCol.valueFormatter({ value: 0.89345 })).toEqual("0.893");
-
     const sourceCol = getSectionFromList(colDefs, "headerName", "Source");
     expect(
-      sourceCol.cellRenderer({ value: { source: "ecmdb", id: "M2MDB000319" } })
+      sourceCol.cellRenderer({
+        value: {
+          url: "http://ecmdb.ca/compounds/M2MDB000319",
+          id: "ECMDB: M2MDB000319"
+        }
+      })
     ).toEqual(
-      '<a href="http://ecmdb.ca/compounds/M2MDB000319" target="_blank" rel="noopener noreferrer">ECMDB</a>'
+      '<a href="http://ecmdb.ca/compounds/M2MDB000319" target="_blank" rel="noopener noreferrer">ECMDB: M2MDB000319</a>'
     );
     expect(
-      sourceCol.cellRenderer({ value: { source: "ymdb", id: "YMDB00097" } })
+      sourceCol.cellRenderer({
+        value: {
+          url: "http://www.ymdb.ca/compounds/YMDB00097",
+          id: "YMDB: YMDB00097"
+        }
+      })
     ).toEqual(
-      '<a href="http://www.ymdb.ca/compounds/YMDB00097" target="_blank" rel="noopener noreferrer">YMDB</a>'
+      '<a href="http://www.ymdb.ca/compounds/YMDB00097" target="_blank" rel="noopener noreferrer">YMDB: YMDB00097</a>'
     );
 
     const nullTaxonSimCol = getSectionFromList(
@@ -114,8 +121,16 @@ describe("Metabolite data page", () => {
     // format raw data
     const processedMetadata = MetadataSection.processMetadata(testRawMetadata);
     // test processed data
-    expect(processedMetadata.cellularLocations).toHaveLength(1);
-    expect(processedMetadata.cellularLocations[0]).toEqual("Cytosol");
+    expect(Object.keys(processedMetadata.cellularLocations)).toHaveLength(1);
+    expect(Object.keys(processedMetadata.cellularLocations)[0]).toEqual(
+      "Escherichia coli (ECMDB)"
+    );
+    expect(
+      processedMetadata.cellularLocations["Escherichia coli (ECMDB)"]
+    ).toHaveLength(1);
+    expect(
+      processedMetadata.cellularLocations["Escherichia coli (ECMDB)"][0]
+    ).toEqual("Cytosol");
 
     expect(processedMetadata.dbLinks.biocyc).toEqual("UDP");
     expect(processedMetadata.dbLinks["kegg"]).toEqual("C00015");
@@ -218,7 +233,7 @@ describe("Metabolite data page", () => {
     expect(formattedLocalizations.title).toEqual("Localizations");
     const localizationsWrapper = shallow(formattedLocalizations.content);
     expect(localizationsWrapper.html()).toEqual(
-      '<ul class="two-col-list"><li><div class="bulleted-list-item">Cytosol</div></li></ul>'
+      '<ul class="vertically-spaced"><li><div class="bulleted-list-item">Escherichia coli (ECMDB)<ul><li>Cytosol</li></ul></div></li></ul>'
     );
 
     const formattedPathways = getSectionFromList(

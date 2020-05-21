@@ -51,7 +51,7 @@ class ProteinAbundanceDataTable extends Component {
               organ: measurement.organ.replace("_", " ").toLowerCase()
             };
             if (organism != null) {
-              row["taxonomicProximity"] = i;
+              row["taxonomicProximity"] = docs.distance;
             }
             formattedData.push(row);
           }

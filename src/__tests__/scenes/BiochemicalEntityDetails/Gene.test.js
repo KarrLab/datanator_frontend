@@ -43,7 +43,7 @@ describe("Gene data page", () => {
       uniprotId: "P40433",
       geneSymbol: "PFK26",
       organism: "Saccharomyces cerevisiae S288C",
-      taxonomicProximity: 7,
+      taxonomicProximity: 8,
       organ: "whole organism"
     });
 

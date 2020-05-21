@@ -99,7 +99,7 @@ describe("Reaction data page", () => {
       "field",
       "taxonomicProximity"
     );
-    expect(taxonSimCol.valueFormatter({ value: 2 })).toEqual("Family");
+    expect(taxonSimCol.valueFormatter({ value: 3 })).toEqual("Family");
   });
 
   it("Properly format side bar", () => {
@@ -193,7 +193,7 @@ describe("Reaction data page", () => {
 
     const correctListOfMetadata = [
       "Enzyme: Adenylate kinase",
-      "Equation: AMP + ATP → ADP",
+      // "Equation: AMP + ATP → ADP",
       "Cofactor: NAD(+)",
       "EC code: 2.7.4.3"
     ];
@@ -271,10 +271,6 @@ describe("Reaction data page", () => {
       ])
     );
 
-    expect(
-      MetadataSection.formatSide(
-        MetadataSection.getReactantNames(substrates, "substrate")
-      )
-    ).toEqual("AMP + ATP");
+    expect(MetadataSection.formatSide(["AMP", "ATP"])).toEqual("AMP + ATP");
   });
 });

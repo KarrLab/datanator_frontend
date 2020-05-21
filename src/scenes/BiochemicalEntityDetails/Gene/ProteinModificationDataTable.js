@@ -64,7 +64,7 @@ class ProteinModificationDataTable extends Component {
               source: measurement.pro_id
             };
             if (organism != null) {
-              row["taxonomicProximity"] = i;
+              row["taxonomicProximity"] = docs.distance;
             }
             formattedData.push(row);
           }
