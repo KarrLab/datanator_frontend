@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { HashLink } from "react-router-hash-link";
 import { scrollTo } from "~/utils/utils";
 import { MetadataSection } from "./MetadataSection";
-// import { RnaModificationDataTable } from "./RnaModificationDataTable";
+import { RnaModificationDataTable } from "./RnaModificationDataTable";
 import { RnaHalfLifeDataTable } from "./RnaHalfLifeDataTable";
 import { ProteinAbundanceDataTable } from "./ProteinAbundanceDataTable";
 import { ProteinModificationDataTable } from "./ProteinModificationDataTable";
@@ -18,8 +18,16 @@ class Gene extends Component {
     };
   }
 
-  setMetadata(metadata) {
-    this.setState({ metadata: metadata });
+  setMetadata(metadata, update = false) {
+    if (update && this.state.metadata) {
+      const allMetadata = Object.assign({}, this.state.metadata);
+      for (const key in metadata) {
+        allMetadata[key] = metadata[key];
+      }
+      this.setState({ metadata: allMetadata });
+    } else {
+      this.setState({ metadata: metadata });
+    }
   }
 
   render() {
@@ -91,20 +99,26 @@ class Gene extends Component {
               <MetadataSection
                 set-scene-metadata={this.setMetadata.bind(this)}
               />
-              {/*
               <RnaModificationDataTable
                 set-scene-metadata={this.setMetadata.bind(this)}
               />
-              */}
               <RnaHalfLifeDataTable
                 set-scene-metadata={this.setMetadata.bind(this)}
               />
-              <ProteinAbundanceDataTable
-                set-scene-metadata={this.setMetadata.bind(this)}
-              />
-              <ProteinModificationDataTable
-                set-scene-metadata={this.setMetadata.bind(this)}
-              />
+              {!this.state.metadata ||
+              !("coding" in this.state.metadata) ||
+              this.state.metadata.coding ? (
+                <ProteinAbundanceDataTable
+                  set-scene-metadata={this.setMetadata.bind(this)}
+                />
+              ) : null}
+              {!this.state.metadata ||
+              !("coding" in this.state.metadata) ||
+              this.state.metadata.coding ? (
+                <ProteinModificationDataTable
+                  set-scene-metadata={this.setMetadata.bind(this)}
+                />
+              ) : null}
             </div>
           </div>
         </div>

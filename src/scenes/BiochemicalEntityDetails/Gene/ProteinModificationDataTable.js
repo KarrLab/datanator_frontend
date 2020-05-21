@@ -55,8 +55,8 @@ class ProteinModificationDataTable extends Component {
               modifications: measurement.modifications,
               crosslinks: measurement.crosslinks,
               deletions: measurement.deletions,
-              mature_sequence:
-                measurement.modified_sequence_abbreviated_bpforms,
+              processedSequence: measurement.processsed_sequence_iubmb,
+              matureSequence: measurement.modified_sequence_abbreviated_bpforms,
               proteinName: proteinName,
               uniprotId: rawDatum.uniprot_id,
               geneSymbol: rawDatum.gene_name,
@@ -124,8 +124,13 @@ class ProteinModificationDataTable extends Component {
         field: "deletions"
       },
       {
+        headerName: "Processed sequence (IUBMB)",
+        field: "processedSequence",
+        hide: true
+      },
+      {
         headerName: "Mature sequence (BpForms)",
-        field: "mature_sequence",
+        field: "matureSequence",
         hide: true
       },
 

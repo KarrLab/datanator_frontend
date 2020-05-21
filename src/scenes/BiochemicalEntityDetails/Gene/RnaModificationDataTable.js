@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { getNumProperties, upperCaseFirstLetter } from "~/utils/utils";
 import DataTable from "../DataTable/DataTable";
-import { HtmlColumnHeader } from "../HtmlColumnHeader";
-import Tooltip from "@material-ui/core/Tooltip";
-import { TAXONOMIC_PROXIMITY_TOOLTIP } from "../ColumnsToolPanel/TooltipDescriptions";
+// import { HtmlColumnHeader } from "../HtmlColumnHeader";
+// import Tooltip from "@material-ui/core/Tooltip";
+// import { TAXONOMIC_PROXIMITY_TOOLTIP } from "../ColumnsToolPanel/TooltipDescriptions";
 
 class RnaModificationDataTable extends Component {
   static propTypes = {
@@ -16,65 +15,53 @@ class RnaModificationDataTable extends Component {
     "uniprot-id-to-taxon-dist": null
   };
 
-  getUrl(query, organism) {
-    return (
-      "rna_modification/proximity_abundance/proximity_abundance_kegg/?kegg_id=" +
-      query +
-      "&distance=40" +
-      (organism ? "&anchor=" + organism : "")
-    );
+  getUrl(query) {
+    //, organism) {
+    const args = ["ko_number=" + query, "_from=0", "size=10"];
+    /*
+    if (organism) {
+      args.push("distance=40");
+      args.push("anchor=" + organism);
+    }
+    */
+
+    return "rna/modification/get_modifications_by_ko/?" + args.join("&");
   }
 
-  formatData(rawData, organism) {
-    let start = 0;
-    if (getNumProperties(rawData[0]) === 1) {
-      start = 1;
-    }
-
+  formatData(rawData) {
+    //, organism) {
     const formattedData = [];
-    for (let i = 0; i < rawData.slice(start).length; i++) {
-      const docs = rawData.slice(start)[i];
-      for (const rawDatum of docs.documents) {
-        if ("modifications" in rawDatum) {
-          for (const measurement of rawDatum.modifications) {
-            if (
-              measurement.concrete !== true ||
-              measurement.pro_issues != null ||
-              measurement.monomeric_form_issues != null
-            ) {
-              continue;
-            }
+    for (const rawDatum of rawData) {
+      for (const measurement of rawDatum.modifications) {
+        if (measurement.bpforms_errors != null) {
+          continue;
+        }
 
-            let proteinName = rawDatum.protein_name;
-            if (proteinName.includes("(")) {
-              proteinName = proteinName.substring(0, proteinName.indexOf("("));
-            }
-
-            const row = {
-              processing: measurement.processing,
-              modifications: measurement.modifications,
-              crosslinks: measurement.crosslinks,
-              deletions: measurement.deletions,
-              mature_sequence:
-                measurement.modified_sequence_abbreviated_bpforms,
-              proteinName: proteinName,
-              uniprotId: rawDatum.uniprot_id,
-              geneSymbol: rawDatum.gene_name,
-              organism: rawDatum.species_name,
-              source: measurement.pro_id
-            };
-            if (organism != null) {
-              if (rawDatum.canon_ancestors.includes(organism)) {
-                row["taxonomicProximity"] = 0;
-              } else {
-                row["taxonomicProximity"] = docs.distance;
-              }
-            }
-            formattedData.push(row);
+        const row = {
+          numModifications: measurement.number_of_modifications,
+          unmodifiedSequence: measurement.sequence_iupac,
+          modifiedSequence: measurement.sequence_bpforms,
+          aminoAcid: rawDatum.amino_acid,
+          anticodon: measurement.anticodon,
+          organism: measurement.organism,
+          localization: measurement.organellum,
+          source: "MODOMICS"
+        };
+        /*
+        if (organism != null) {
+          if (rawDatum.canon_ancestors.includes(organism)) {
+            row["taxonomicProximity"] = 0;
+          } else {
+            row["taxonomicProximity"] = docs.distance;
           }
         }
+        */
+        formattedData.push(row);
       }
     }
+
+    this.props["set-scene-metadata"]({ coding: false }, true);
+
     return formattedData;
   }
 
@@ -102,63 +89,51 @@ class RnaModificationDataTable extends Component {
     };
   }
 
-  static getColDefs(organism, formattedData, taxonomicRanks) {
+  static getColDefs() {
+    // organism, formattedData, taxonomicRanks) {
     const colDefs = [
       {
-        headerName: "Processing",
-        field: "processing",
+        headerName: "Modifications",
+        field: "numModifications",
+        cellRenderer: "numericCellRenderer",
+        type: "numericColumn",
+        filter: "numberFilter",
         checkboxSelection: true,
         headerCheckboxSelection: true,
-        headerCheckboxSelectionFilteredOnly: true
+        headerCheckboxSelectionFilteredOnly: true,
+        comparator: DataTable.numericComparator
       },
       {
-        headerName: "Modifications",
-        field: "modifications"
-      },
-      {
-        headerName: "Crosslinks",
-        field: "crosslinks"
-      },
-      {
-        headerName: "Deletions",
-        field: "deletions"
-      },
-      {
-        headerName: "Mature sequence (BpForms)",
-        field: "mature_sequence",
-        hide: true
-      },
-
-      {
-        headerName: "Protein",
-        field: "proteinName",
+        headerName: "Unmodified sequence (IUPAC)",
+        field: "unmodifiedSequence",
         filter: "textFilter"
       },
       {
-        headerName: "UniProt id",
-        field: "uniprotId",
-        cellRenderer: function(params) {
-          return (
-            '<a href="https://www.uniprot.org/uniprot/' +
-            params.value +
-            '" target="_blank" rel="noopener noreferrer">' +
-            params.value +
-            "</a>"
-          );
-        },
-        hide: true
+        headerName: "Modified sequence (BpForms)",
+        field: "modifiedSequence",
+        filter: "textFilter"
       },
       {
-        headerName: "Gene",
-        field: "geneSymbol",
-        filter: "textFilter",
-        hide: true
+        headerName: "Amino acid",
+        field: "aminoAcid",
+        filter: "textFilter"
+      },
+      {
+        headerName: "Anticodon",
+        field: "anticodon",
+        filter: "textFilter"
       },
       {
         headerName: "Organism",
         field: "organism",
         filter: "textFilter"
       },
+      {
+        headerName: "Localization",
+        field: "localization",
+        filter: "textFilter"
+      },
+      /*
       {
         headerName: "Taxonomic similarity",
         headerComponentFramework: HtmlColumnHeader,
@@ -177,28 +152,25 @@ class RnaModificationDataTable extends Component {
           return upperCaseFirstLetter(value);
         }
       },
+      */
       {
         headerName: "Source",
         field: "source",
         cellRenderer: function(params) {
           return (
-            '<a href="https://proconsortium.org/app/entry/' +
-            params.value +
-            '/" target="_blank" rel="noopener noreferrer">' +
+            '<a href="https://iimcb.genesilico.pl/modomics/sequences/" target="_blank" rel="noopener noreferrer">' +
             params.value +
             "</a>"
           );
-        },
-        filterValueGetter: params => {
-          return params.data.source;
-        },
-        filter: "textFilter"
+        }
       }
     ];
 
+    /*
     if (!organism) {
       colDefs.splice(-2, 1);
     }
+    */
 
     return colDefs;
   }
