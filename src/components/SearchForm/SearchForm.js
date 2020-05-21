@@ -182,7 +182,6 @@ class SearchForm extends Component {
     let url = "/search/";
     url += this.state.query + "/";
     if (this.state.organism) {
-      console.log(this.state.organism);
       url += this.state.organism["_source"]["tax_name"] + "/";
     }
     this.props.history.push(url);
