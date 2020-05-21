@@ -12,7 +12,7 @@ describe("Gene scene", function() {
     // page title
     cy.get(".page-title").should(
       "have.text",
-      "Gene: Glucose-1-phosphate thymidylyltransferase in " + organism
+      "Gene: glucose-1-phosphate thymidylyltransferase in " + organism
     );
 
     // data table
