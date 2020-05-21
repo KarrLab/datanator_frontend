@@ -158,22 +158,6 @@ class MetadataSection extends Component {
       )
     });
 
-    if (processedData.ecCode !== undefined) {
-      crossRefs.push({
-        key: "EC code",
-        value: (
-          <a
-            href={"https://enzyme.expasy.org/EC/" + processedData.ecCode}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {" "}
-            {processedData.ecCode}
-          </a>
-        )
-      });
-    }
-
     sections.push({
       id: "cross-refs",
       title: "Cross references",

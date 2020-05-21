@@ -6,6 +6,9 @@ import { getDataFromApi, genApiErrorHandler } from "~/services/RestApi";
 import axios from "axios";
 import { parseHistoryLocationPathname } from "~/utils/utils";
 
+const IS_DEVELOPMENT = process.env.NODE_ENV === "development";
+const IS_TEST = process.env.NODE_ENV.startsWith("test");
+
 class SearchResultsList extends Component {
   static propTypes = {
     history: PropTypes.object.isRequired,
@@ -92,12 +95,20 @@ class SearchResultsList extends Component {
           this.props["format-results"](response.data, this.organism)
         );
       })
-      .catch(
-        genApiErrorHandler(
-          [url],
-          "We were unable to conduct your search for '" + this.query + "'."
-        )
-      )
+      .catch(error => {
+        if (
+          "response" in error &&
+          "request" in error.response &&
+          error.response.request.constructor.name === "XMLHttpRequest"
+        ) {
+          genApiErrorHandler(
+            [url],
+            "We were unable to conduct your search for '" + this.query + "'."
+          )(error);
+        } else if (!axios.isCancel(error) && (IS_DEVELOPMENT || IS_TEST)) {
+          console.error(error);
+        }
+      })
       .finally(() => {
         this.cancelTokenSource = null;
       });

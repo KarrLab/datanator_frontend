@@ -2,8 +2,11 @@ import React, { Component } from "react";
 import { HashLink } from "react-router-hash-link";
 import { scrollTo } from "~/utils/utils";
 import { MetadataSection } from "./MetadataSection";
+// import { RnaModificationDataTable } from "./RnaModificationDataTable";
 import { RnaHalfLifeDataTable } from "./RnaHalfLifeDataTable";
 import { ProteinAbundanceDataTable } from "./ProteinAbundanceDataTable";
+import { ProteinModificationDataTable } from "./ProteinModificationDataTable";
+import Error404 from "~/scenes/Error404/Error404";
 
 import "../BiochemicalEntityDetails.scss";
 
@@ -20,6 +23,10 @@ class Gene extends Component {
   }
 
   render() {
+    if (this.state.metadata && this.state.metadata.error404) {
+      return <Error404 />;
+    }
+
     return (
       <div>
         <div
@@ -84,8 +91,20 @@ class Gene extends Component {
               <MetadataSection
                 set-scene-metadata={this.setMetadata.bind(this)}
               />
-              <RnaHalfLifeDataTable />
-              <ProteinAbundanceDataTable />
+              {/*
+              <RnaModificationDataTable
+                set-scene-metadata={this.setMetadata.bind(this)}
+              />
+              */}
+              <RnaHalfLifeDataTable
+                set-scene-metadata={this.setMetadata.bind(this)}
+              />
+              <ProteinAbundanceDataTable
+                set-scene-metadata={this.setMetadata.bind(this)}
+              />
+              <ProteinModificationDataTable
+                set-scene-metadata={this.setMetadata.bind(this)}
+              />
             </div>
           </div>
         </div>

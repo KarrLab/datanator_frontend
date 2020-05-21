@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import {
-  dictOfArraysToArrayOfDicts,
-  upperCaseFirstLetter
-} from "~/utils/utils";
+import PropTypes from "prop-types";
+import { upperCaseFirstLetter } from "~/utils/utils";
 import DataTable from "../DataTable/DataTable";
 import Tooltip from "@material-ui/core/Tooltip";
 import { HtmlColumnHeader } from "../HtmlColumnHeader";
@@ -11,37 +9,48 @@ import {
   CHEMICAL_SIMILARITY_TOOLTIP
 } from "../ColumnsToolPanel/TooltipDescriptions";
 
+var htmlDecode = require("js-htmlencode").htmlDecode;
+
 class ConcentrationDataTable extends Component {
-  static getUrl(query, organism, abstract = true) {
-    return (
-      "metabolites/concentration/" +
-      "?metabolite=" +
-      query +
-      "&abstract=" +
-      abstract +
-      (organism ? "&species=" + organism : "")
-    );
+  static propTypes = {
+    "set-scene-metadata": PropTypes.func.isRequired
+  };
+
+  static getUrl(query, organism) {
+    const args = ["inchikey=" + query, "threshold=0.6"];
+    if (organism) {
+      args.push("target_species=" + organism);
+      args.push("taxon_distance=true");
+    } else {
+      args.push("taxon_distance=false");
+    }
+    return "metabolites/concentrations/similar_compounds/?" + args.join("&");
   }
 
   static formatData(rawData, organism) {
     const formattedData = [];
-    for (const rawDatum of rawData) {
-      for (const met of rawDatum) {
-        const species = "species" in met ? met.species : "Escherichia coli";
-
-        const metConcs = dictOfArraysToArrayOfDicts(met.concentrations);
-
-        for (const metConc of metConcs) {
+    for (const metabolite of rawData) {
+      if ("concentrations" in metabolite) {
+        for (const metConc of metabolite["concentrations"]) {
           let uncertainty = parseFloat(metConc.error);
           if (uncertainty === 0 || isNaN(uncertainty)) {
             uncertainty = null;
           }
+          const species = metConc.species_name;
           const conc = {
-            name: met.name,
-            tanimotoSimilarity: met.tanimoto_similarity,
+            name: metabolite.metabolite,
+            link: {
+              query: metabolite.inchikey,
+              label: metabolite.metabolite
+            },
+            tanimotoSimilarity:
+              "similarity_score" in metabolite
+                ? metabolite.similarity_score
+                : null,
             value: parseFloat(metConc.concentration),
             uncertainty: uncertainty,
-            units: metConc.concentration_units,
+            units:
+              "unit" in metConc ? metConc.unit : metConc.concentration_units,
             organism:
               Object.prototype.hasOwnProperty.call(metConc, "strain") &&
               metConc.strain
@@ -53,19 +62,51 @@ class ConcentrationDataTable extends Component {
               "growth_media" in metConc ? metConc.growth_media : null,
             growthConditions:
               "growth_system" in metConc ? metConc.growth_system : null,
-            source:
-              "m2m_id" in met
-                ? { source: "ecmdb", id: met.m2m_id }
-                : { source: "ymdb", id: met.ymdb_id }
+            source: null
           };
+          if (conc.units === "uM") {
+            conc.units = "μM";
+          } else if (conc.units != null && conc.units !== undefined) {
+            conc.units = htmlDecode(conc.units);
+          }
           if (organism != null) {
-            conc["taxonomicProximity"] = met.taxon_distance;
+            conc["taxonomicProximity"] = metConc.taxon_distance[organism];
           }
           if (conc.growthPhase && conc.growthPhase.indexOf(" phase") >= 0) {
             conc.growthPhase = conc.growthPhase.split(" phase")[0];
           }
           if (conc.growthPhase && conc.growthPhase.indexOf(" Phase") >= 0) {
             conc.growthPhase = conc.growthPhase.split(" Phase")[0];
+          }
+          if (
+            metConc.reference &&
+            "doi" in metConc.reference &&
+            metConc.reference.doi
+          ) {
+            conc.source = {
+              id: "DOI: " + metConc.reference.doi,
+              url: "https://dx.doi.org/" + metConc.reference.doi
+            };
+          } else if (
+            metConc.reference &&
+            "pubmed_id" in metConc.reference &&
+            metConc.reference.pubmed_id
+          ) {
+            conc.source = {
+              id: "PubMed: " + metConc.reference.pubmed_id,
+              url:
+                "https://www.ncbi.nlm.nih.gov/pubmed/" +
+                metConc.reference.pubmed_id
+            };
+          } else if (
+            metConc.reference &&
+            "reference_text" in metConc.reference &&
+            metConc.reference.reference_text
+          ) {
+            conc.source = {
+              id: metConc.reference.reference_text,
+              url: null
+            };
           }
           if (!isNaN(conc.value)) {
             formattedData.push(conc);
@@ -113,7 +154,7 @@ class ConcentrationDataTable extends Component {
   static getColDefs(organism, formattedData, taxonomicRanks) {
     const colDefs = [
       {
-        headerName: "Concentration (µM)",
+        headerName: "Concentration",
         field: "value",
         cellRenderer: "numericCellRenderer",
         type: "numericColumn",
@@ -124,7 +165,7 @@ class ConcentrationDataTable extends Component {
         comparator: DataTable.numericComparator
       },
       {
-        headerName: "Uncertainty (µM)",
+        headerName: "Uncertainty",
         field: "uncertainty",
         cellRenderer: "numericCellRenderer",
         type: "numericColumn",
@@ -132,13 +173,20 @@ class ConcentrationDataTable extends Component {
         filter: "numberFilter"
       },
       {
+        headerName: "Units",
+        field: "units"
+      },
+      {
         headerName: "Metabolite",
-        field: "name",
+        field: "link",
         filter: "textFilter",
         cellRenderer: "linkCellRenderer",
         cellRendererParams: {
           route: "metabolite",
           organism: organism
+        },
+        filterValueGetter: params => {
+          return params.data.name;
         }
       },
       {
@@ -158,9 +206,6 @@ class ConcentrationDataTable extends Component {
         filter: "numberFilter",
         filterParams: {
           hiBound: 1.0
-        },
-        valueFormatter: params => {
-          return params.value.toFixed(3);
         }
       },
       {
@@ -208,33 +253,37 @@ class ConcentrationDataTable extends Component {
         headerName: "Source",
         field: "source",
         cellRenderer: function(params) {
-          if (params.value.source === "ecmdb") {
-            return (
-              '<a href="http://ecmdb.ca/compounds/' +
-              params.value.id +
-              '" target="_blank" rel="noopener noreferrer">' +
-              "ECMDB" +
-              "</a>"
-            );
+          const source = params.value;
+          if (source) {
+            if (source.url) {
+              return (
+                '<a href="' +
+                source.url +
+                '" target="_blank" rel="noopener noreferrer">' +
+                source.id +
+                "</a>"
+              );
+            } else {
+              return source.id;
+            }
           } else {
-            return (
-              '<a href="http://www.ymdb.ca/compounds/' +
-              params.value.id +
-              '" target="_blank" rel="noopener noreferrer">' +
-              "YMDB" +
-              "</a>"
-            );
+            return null;
           }
         },
         filterValueGetter: params => {
-          return params.data.source.source.toUpperCase();
+          const source = params.data.source;
+          if (source) {
+            return source.id;
+          } else {
+            return null;
+          }
         },
         filter: "textFilter"
       }
     ];
 
     if (!organism) {
-      colDefs.splice(5, 1);
+      colDefs.splice(6, 1);
     }
     return colDefs;
   }
@@ -255,6 +304,7 @@ class ConcentrationDataTable extends Component {
         get-side-bar-def={ConcentrationDataTable.getSideBarDef}
         get-col-defs={ConcentrationDataTable.getColDefs}
         get-col-sort-order={ConcentrationDataTable.getColSortOrder}
+        set-scene-metadata={this.props["set-scene-metadata"]}
       />
     );
   }

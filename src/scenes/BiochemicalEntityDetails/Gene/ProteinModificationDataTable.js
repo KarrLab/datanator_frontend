@@ -6,7 +6,7 @@ import { HtmlColumnHeader } from "../HtmlColumnHeader";
 import Tooltip from "@material-ui/core/Tooltip";
 import { TAXONOMIC_PROXIMITY_TOOLTIP } from "../ColumnsToolPanel/TooltipDescriptions";
 
-class ProteinAbundanceDataTable extends Component {
+class ProteinModificationDataTable extends Component {
   static propTypes = {
     "uniprot-id-to-taxon-dist": PropTypes.object,
     "set-scene-metadata": PropTypes.func.isRequired
@@ -35,20 +35,33 @@ class ProteinAbundanceDataTable extends Component {
     for (let i = 0; i < rawData.slice(start).length; i++) {
       const docs = rawData.slice(start)[i];
       for (const rawDatum of docs.documents) {
-        if ("abundances" in rawDatum) {
-          for (const measurement of rawDatum.abundances) {
+        if ("modifications" in rawDatum) {
+          for (const measurement of rawDatum.modifications) {
+            if (
+              measurement.concrete !== true ||
+              measurement.pro_issues != null ||
+              measurement.monomeric_form_issues != null
+            ) {
+              continue;
+            }
+
             let proteinName = rawDatum.protein_name;
             if (proteinName.includes("(")) {
               proteinName = proteinName.substring(0, proteinName.indexOf("("));
             }
 
             const row = {
-              abundance: parseFloat(measurement.abundance),
+              processing: measurement.processing,
+              modifications: measurement.modifications,
+              crosslinks: measurement.crosslinks,
+              deletions: measurement.deletions,
+              mature_sequence:
+                measurement.modified_sequence_abbreviated_bpforms,
               proteinName: proteinName,
               uniprotId: rawDatum.uniprot_id,
               geneSymbol: rawDatum.gene_name,
               organism: rawDatum.species_name,
-              organ: measurement.organ.replace("_", " ").toLowerCase()
+              source: measurement.pro_id
             };
             if (organism != null) {
               row["taxonomicProximity"] = docs.distance;
@@ -77,16 +90,6 @@ class ProteinAbundanceDataTable extends Component {
           labelKey: "filters",
           iconKey: "filter",
           toolPanel: "filtersToolPanel"
-        },
-        {
-          id: "stats",
-          labelDefault: "Stats",
-          labelKey: "chart",
-          iconKey: "chart",
-          toolPanel: "statsToolPanel",
-          toolPanelParams: {
-            col: ["abundance"]
-          }
         }
       ],
       position: "left",
@@ -98,16 +101,30 @@ class ProteinAbundanceDataTable extends Component {
   static getColDefs(organism, formattedData, taxonomicRanks) {
     const colDefs = [
       {
-        headerName: "Abundance",
-        field: "abundance",
-        cellRenderer: "numericCellRenderer",
-        type: "numericColumn",
-        filter: "numberFilter",
+        headerName: "Processing",
+        field: "processing",
         checkboxSelection: true,
         headerCheckboxSelection: true,
-        headerCheckboxSelectionFilteredOnly: true,
-        comparator: DataTable.numericComparator
+        headerCheckboxSelectionFilteredOnly: true
       },
+      {
+        headerName: "Modifications",
+        field: "modifications"
+      },
+      {
+        headerName: "Crosslinks",
+        field: "crosslinks"
+      },
+      {
+        headerName: "Deletions",
+        field: "deletions"
+      },
+      {
+        headerName: "Mature sequence (BpForms)",
+        field: "mature_sequence",
+        hide: true
+      },
+
       {
         headerName: "Protein",
         field: "proteinName",
@@ -124,7 +141,8 @@ class ProteinAbundanceDataTable extends Component {
             params.value +
             "</a>"
           );
-        }
+        },
+        hide: true
       },
       {
         headerName: "Gene",
@@ -156,30 +174,26 @@ class ProteinAbundanceDataTable extends Component {
         }
       },
       {
-        headerName: "Organ",
-        field: "organ",
-        filter: "textFilter",
-        hide: false
-      },
-      {
         headerName: "Source",
-        field: "uniprotId",
+        field: "source",
         cellRenderer: function(params) {
           return (
-            '<a href="https://pax-db.org/search?q=' +
+            '<a href="https://proconsortium.org/app/entry/' +
             params.value +
-            '" target="_blank" rel="noopener noreferrer">' +
-            "PAXdb" +
+            '/" target="_blank" rel="noopener noreferrer">' +
+            params.value +
             "</a>"
           );
         },
-        filterValueGetter: () => "PAXdb",
+        filterValueGetter: params => {
+          return params.data.source;
+        },
         filter: "textFilter"
       }
     ];
 
     if (!organism) {
-      colDefs.splice(-3, 1);
+      colDefs.splice(-2, 1);
     }
 
     return colDefs;
@@ -192,19 +206,19 @@ class ProteinAbundanceDataTable extends Component {
   render() {
     return (
       <DataTable
-        id="protein-abundance"
-        title="Protein abundance"
+        id="protein-modifications"
+        title="Protein modifications"
         entity-type="ortholog group"
-        data-type="protein abundance"
+        data-type="protein modifications"
         get-data-url={this.getUrl.bind(this)}
         format-data={this.formatData.bind(this)}
-        get-side-bar-def={ProteinAbundanceDataTable.getSideBarDef}
-        get-col-defs={ProteinAbundanceDataTable.getColDefs}
-        get-col-sort-order={ProteinAbundanceDataTable.getColSortOrder}
+        get-side-bar-def={ProteinModificationDataTable.getSideBarDef}
+        get-col-defs={ProteinModificationDataTable.getColDefs}
+        get-col-sort-order={ProteinModificationDataTable.getColSortOrder}
         dom-layout="normal"
         set-scene-metadata={this.props["set-scene-metadata"]}
       />
     );
   }
 }
-export { ProteinAbundanceDataTable };
+export { ProteinModificationDataTable };

@@ -3,15 +3,18 @@
 describe("Reaction scene", function() {
   it("Reaction scene without organism successfully loads", function() {
     const route = "reaction";
-    const substrates = "D-Glucose 1-phosphate";
-    const products = "D-Glucose 6-phosphate";
+    const substrates = "dTDP-D-glucose";
+    const products = "dTDP-4-dehydro-6-deoxy-D-glucose,H2O";
     const entity = substrates + "-->" + products;
     const url = "/" + route + "/" + entity;
 
     cy.visit(url);
 
     // page title
-    cy.get(".page-title").should("have.text", "Reaction: Phosphomannomutase");
+    cy.get(".page-title").should(
+      "have.text",
+      "Reaction: DTDP-glucose 4,6-dehydratase"
+    );
 
     // data table
     const dataContainerId = "rate-constants";
@@ -24,8 +27,8 @@ describe("Reaction scene", function() {
 
   it("Reaction scene with organism successfully loads", function() {
     const route = "reaction";
-    const substrates = "D-Glucose 1-phosphate";
-    const products = "D-Glucose 6-phosphate";
+    const substrates = "dTDP-D-glucose";
+    const products = "dTDP-4-dehydro-6-deoxy-D-glucose,H2O";
     const entity = substrates + "-->" + products;
     const organism = "Escherichia coli";
     const url = "/" + route + "/" + entity + "/" + organism;
@@ -35,7 +38,7 @@ describe("Reaction scene", function() {
     // page title
     cy.get(".page-title").should(
       "have.text",
-      "Reaction: Phosphomannomutase in " + organism
+      "Reaction: DTDP-glucose 4,6-dehydratase in " + organism
     );
 
     // data table

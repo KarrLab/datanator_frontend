@@ -160,8 +160,17 @@ class About extends Component {
               <div className="content-block-content">
                 <p>
                   Currently, <i>Datanator</i> includes measured metabolite
-                  concentrations, protein abundances, and reaction rate
-                  parameters integrated from{" "}
+                  concentrations, RNA modifications and half-lives, protein
+                  abundances and modifications, and reaction rate parameters
+                  integrated from{" "}
+                  <a
+                    href={"https://www.brenda-enzymes.org/"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    BRENDA
+                  </a>
+                  ,{" "}
                   <a
                     href={"http://ecmdb.ca/"}
                     target="_blank"
@@ -171,11 +180,27 @@ class About extends Component {
                   </a>
                   ,{" "}
                   <a
+                    href={"https://iimcb.genesilico.pl/modomics/"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    MODOMICS
+                  </a>
+                  ,{" "}
+                  <a
                     href={"https://pax-db.org/"}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     PAX-DB
+                  </a>
+                  , the{" "}
+                  <a
+                    href={"https://proconsortium.org/"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Protein Ontology (PRO)
                   </a>
                   ,{" "}
                   <a
@@ -185,7 +210,7 @@ class About extends Component {
                   >
                     SABIO-RK
                   </a>
-                  , and{" "}
+                  ,{" "}
                   <a
                     href={"http://www.ymdb.ca/"}
                     target="_blank"
@@ -193,8 +218,8 @@ class About extends Component {
                   >
                     YMDB
                   </a>
-                  . We aim to continually incorporate additional data from
-                  additional sources.
+                  , and numerous publications . We aim to continually
+                  incorporate additional data from additional sources.
                 </p>
               </div>
             </div>
@@ -707,7 +732,7 @@ class About extends Component {
                   US.
                 </p>
                 <div className="developers-group main-developers">
-                  <h3>Main developers</h3>
+                  <h3>Lead developers</h3>
                   <div className="main-developers-group-list">
                     <div className="main-developer">
                       <div className="main-developer-headshot-container">
@@ -760,12 +785,12 @@ class About extends Component {
                   <h3>Additional contributors</h3>
                   <div className="additional-developers-group-list">
                     <div className="developer-name">
-                      Bilal Shaikh
-                      <SocialIcon url="https://www.linkedin.com/in/bilalshaikh42/" />
-                    </div>
-                    <div className="developer-name">
                       Saahith Pochiraju
                       <SocialIcon url="https://www.linkedin.com/in/saahithpochiraju/" />
+                    </div>
+                    <div className="developer-name">
+                      Bilal Shaikh
+                      <SocialIcon url="https://www.linkedin.com/in/bilalshaikh42/" />
                     </div>
                     <div className="developer-name">Balazs Szigeti</div>
                   </div>
@@ -812,7 +837,7 @@ class About extends Component {
                   from the National Institute of Bioimaging and Bioengineering
                   and the National Institute of General Medical Sciences of the
                   National Institutes of Health and the National Science
-                  Foundation (award P41EB023912).
+                  Foundation (awards P41EB023912 and R35GM119771).
                 </p>
                 <div className="funding-icons">
                   <a

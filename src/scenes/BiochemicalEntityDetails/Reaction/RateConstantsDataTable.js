@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { upperCaseFirstLetter } from "~/utils/utils";
 import DataTable from "../DataTable/DataTable";
 import { HtmlColumnHeader } from "../HtmlColumnHeader";
@@ -6,6 +7,10 @@ import Tooltip from "@material-ui/core/Tooltip";
 import { TAXONOMIC_PROXIMITY_TOOLTIP } from "../ColumnsToolPanel/TooltipDescriptions";
 
 class RateConstantsDataTable extends Component {
+  static propTypes = {
+    "set-scene-metadata": PropTypes.func.isRequired
+  };
+
   static getUrl(query, organism) {
     const args = ["_from=0", "size=1000", "bound=tight"];
 
@@ -52,8 +57,7 @@ class RateConstantsDataTable extends Component {
 
       if (organism != null) {
         let distance = "";
-        const keys = Object.keys(datum.taxon_distance);
-        if (keys.length === 4) {
+        if (organism in datum.taxon_distance) {
           distance = datum.taxon_distance[organism];
         } else {
           distance = lengthOfTaxonomicRanks + 1;
@@ -252,7 +256,7 @@ class RateConstantsDataTable extends Component {
       hide: true,
       filter: "taxonomyFilter",
       valueFormatter: params => {
-        const value = taxonomicRanks[params.value];
+        const value = taxonomicRanks[params.value - 1];
         return upperCaseFirstLetter(value);
       }
     });
@@ -342,6 +346,7 @@ class RateConstantsDataTable extends Component {
         get-side-bar-def={RateConstantsDataTable.getSideBarDef}
         get-col-defs={RateConstantsDataTable.getColDefs}
         get-col-sort-order={RateConstantsDataTable.getColSortOrder}
+        set-scene-metadata={this.props["set-scene-metadata"]}
       />
     );
   }

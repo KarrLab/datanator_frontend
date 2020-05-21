@@ -3,7 +3,7 @@
 describe("NumberFilter", function() {
   it("Correctly filters rows", function() {
     const route = "metabolite";
-    const entity = "dTDP-D-Glucose";
+    const entity = "YSYKRGRSMLTJNL-URARBOGNSA-L"; // TDP-Glucose
     const url = "/" + route + "/" + entity;
     const dataContainerId = "concentration";
 
@@ -13,7 +13,9 @@ describe("NumberFilter", function() {
       cy.route({
         method: "GET",
         url:
-          "/metabolites/concentration/?metabolite=" + entity + "&abstract=true",
+          "/metabolites/concentrations/similar_compounds/?inchikey=" +
+          entity +
+          "&*",
         status: 200,
         response: json
       });

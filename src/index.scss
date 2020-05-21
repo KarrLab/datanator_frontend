@@ -137,6 +137,10 @@ ol:first-child {
   margin-left: -0.25rem;
 }
 
+.vertically-spaced > li:not(:first-child) {
+  margin-top: 0.5rem;
+}
+
 /* links */
 a {
   cursor: pointer;

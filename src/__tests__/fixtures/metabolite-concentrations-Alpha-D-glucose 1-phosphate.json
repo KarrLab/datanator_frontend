@@ -1,0 +1,797 @@
+[
+  {
+    "chebi_id": "29042",
+    "concentrations": [
+      {
+        "concentration": 0.0894460007493983,
+        "last_modified": "2020-05-05T16:23:56.699000Z",
+        "ncbi_taxonomy_id": 562,
+        "reference": {
+          "doi": "10.1016/j.cels.2015.09.008"
+        },
+        "species_name": "Escherichia coli",
+        "std": 0.0321730238042049,
+        "taxon_distance": {
+          "Escherichia coli": 1,
+          "Escherichia coli_canon_ancestors": [
+            "cellular organisms",
+            "Bacteria",
+            "Proteobacteria",
+            "Gammaproteobacteria",
+            "Enterobacterales",
+            "Enterobacteriaceae",
+            "Escherichia"
+          ]
+        },
+        "time_point": "-0.766",
+        "time_unit": "h",
+        "unit": "\u00b5mol * gCDW-1"
+      },
+      {
+        "concentration": 0.0437391044370952,
+        "last_modified": "2020-05-05T16:23:56.699000Z",
+        "ncbi_taxonomy_id": 562,
+        "reference": {
+          "doi": "10.1016/j.cels.2015.09.008"
+        },
+        "species_name": "Escherichia coli",
+        "std": 0.0076878614957067,
+        "taxon_distance": {
+          "Escherichia coli": 1,
+          "Escherichia coli_canon_ancestors": [
+            "cellular organisms",
+            "Bacteria",
+            "Proteobacteria",
+            "Gammaproteobacteria",
+            "Enterobacterales",
+            "Enterobacteriaceae",
+            "Escherichia"
+          ]
+        },
+        "time_point": "-0.366",
+        "time_unit": "h",
+        "unit": "\u00b5mol * gCDW-1"
+      },
+      {
+        "concentration": 0.044037960859234,
+        "last_modified": "2020-05-05T16:23:56.699000Z",
+        "ncbi_taxonomy_id": 562,
+        "reference": {
+          "doi": "10.1016/j.cels.2015.09.008"
+        },
+        "species_name": "Escherichia coli",
+        "std": 0.0104565309727531,
+        "taxon_distance": {
+          "Escherichia coli": 1,
+          "Escherichia coli_canon_ancestors": [
+            "cellular organisms",
+            "Bacteria",
+            "Proteobacteria",
+            "Gammaproteobacteria",
+            "Enterobacterales",
+            "Enterobacteriaceae",
+            "Escherichia"
+          ]
+        },
+        "time_point": "0.083",
+        "time_unit": "h",
+        "unit": "\u00b5mol * gCDW-1"
+      },
+      {
+        "concentration": 0.0825985953362733,
+        "last_modified": "2020-05-05T16:23:56.699000Z",
+        "ncbi_taxonomy_id": 562,
+        "reference": {
+          "doi": "10.1016/j.cels.2015.09.008"
+        },
+        "species_name": "Escherichia coli",
+        "std": 0.0295172867627505,
+        "taxon_distance": {
+          "Escherichia coli": 1,
+          "Escherichia coli_canon_ancestors": [
+            "cellular organisms",
+            "Bacteria",
+            "Proteobacteria",
+            "Gammaproteobacteria",
+            "Enterobacterales",
+            "Enterobacteriaceae",
+            "Escherichia"
+          ]
+        },
+        "time_point": "0.416",
+        "time_unit": "h",
+        "unit": "\u00b5mol * gCDW-1"
+      },
+      {
+        "concentration": 0.0535157374912768,
+        "last_modified": "2020-05-05T16:23:56.699000Z",
+        "ncbi_taxonomy_id": 562,
+        "reference": {
+          "doi": "10.1016/j.cels.2015.09.008"
+        },
+        "species_name": "Escherichia coli",
+        "std": 0.00179098623498396,
+        "taxon_distance": {
+          "Escherichia coli": 1,
+          "Escherichia coli_canon_ancestors": [
+            "cellular organisms",
+            "Bacteria",
+            "Proteobacteria",
+            "Gammaproteobacteria",
+            "Enterobacterales",
+            "Enterobacteriaceae",
+            "Escherichia"
+          ]
+        },
+        "time_point": "0.750",
+        "time_unit": "h",
+        "unit": "\u00b5mol * gCDW-1"
+      },
+      {
+        "concentration": 0.16936596120349,
+        "last_modified": "2020-05-05T16:23:56.699000Z",
+        "ncbi_taxonomy_id": 562,
+        "reference": {
+          "doi": "10.1016/j.cels.2015.09.008"
+        },
+        "species_name": "Escherichia coli",
+        "std": 0.127354911011793,
+        "taxon_distance": {
+          "Escherichia coli": 1,
+          "Escherichia coli_canon_ancestors": [
+            "cellular organisms",
+            "Bacteria",
+            "Proteobacteria",
+            "Gammaproteobacteria",
+            "Enterobacterales",
+            "Enterobacteriaceae",
+            "Escherichia"
+          ]
+        },
+        "time_point": "1.083",
+        "time_unit": "h",
+        "unit": "\u00b5mol * gCDW-1"
+      },
+      {
+        "concentration": 0.0398610862700374,
+        "last_modified": "2020-05-05T16:23:56.699000Z",
+        "ncbi_taxonomy_id": 562,
+        "reference": {
+          "doi": "10.1016/j.cels.2015.09.008"
+        },
+        "species_name": "Escherichia coli",
+        "std": 0.0142841482795415,
+        "taxon_distance": {
+          "Escherichia coli": 1,
+          "Escherichia coli_canon_ancestors": [
+            "cellular organisms",
+            "Bacteria",
+            "Proteobacteria",
+            "Gammaproteobacteria",
+            "Enterobacterales",
+            "Enterobacteriaceae",
+            "Escherichia"
+          ]
+        },
+        "time_point": "1.516",
+        "time_unit": "h",
+        "unit": "\u00b5mol * gCDW-1"
+      },
+      {
+        "concentration": 0.0728301405098689,
+        "last_modified": "2020-05-05T16:23:56.699000Z",
+        "ncbi_taxonomy_id": 562,
+        "reference": {
+          "doi": "10.1016/j.cels.2015.09.008"
+        },
+        "species_name": "Escherichia coli",
+        "std": 0.0591517322087567,
+        "taxon_distance": {
+          "Escherichia coli": 1,
+          "Escherichia coli_canon_ancestors": [
+            "cellular organisms",
+            "Bacteria",
+            "Proteobacteria",
+            "Gammaproteobacteria",
+            "Enterobacterales",
+            "Enterobacteriaceae",
+            "Escherichia"
+          ]
+        },
+        "time_point": "1.866",
+        "time_unit": "h",
+        "unit": "\u00b5mol * gCDW-1"
+      },
+      {
+        "concentration": 0.0894460007493983,
+        "last_modified": "2020-05-05T16:28:56.463000Z",
+        "ncbi_taxonomy_id": 562,
+        "reference": {
+          "doi": "10.1016/j.cels.2015.09.008"
+        },
+        "species_name": "Escherichia coli",
+        "std": 0.0321730238042049,
+        "taxon_distance": {
+          "Escherichia coli": 1,
+          "Escherichia coli_canon_ancestors": [
+            "cellular organisms",
+            "Bacteria",
+            "Proteobacteria",
+            "Gammaproteobacteria",
+            "Enterobacterales",
+            "Enterobacteriaceae",
+            "Escherichia"
+          ]
+        },
+        "time_point": "-0.766",
+        "time_unit": "h",
+        "unit": "\u00b5mol * gCDW-1"
+      },
+      {
+        "concentration": 0.0437391044370952,
+        "last_modified": "2020-05-05T16:28:56.463000Z",
+        "ncbi_taxonomy_id": 562,
+        "reference": {
+          "doi": "10.1016/j.cels.2015.09.008"
+        },
+        "species_name": "Escherichia coli",
+        "std": 0.0076878614957067,
+        "taxon_distance": {
+          "Escherichia coli": 1,
+          "Escherichia coli_canon_ancestors": [
+            "cellular organisms",
+            "Bacteria",
+            "Proteobacteria",
+            "Gammaproteobacteria",
+            "Enterobacterales",
+            "Enterobacteriaceae",
+            "Escherichia"
+          ]
+        },
+        "time_point": "-0.366",
+        "time_unit": "h",
+        "unit": "\u00b5mol * gCDW-1"
+      },
+      {
+        "concentration": 0.044037960859234,
+        "last_modified": "2020-05-05T16:28:56.463000Z",
+        "ncbi_taxonomy_id": 562,
+        "reference": {
+          "doi": "10.1016/j.cels.2015.09.008"
+        },
+        "species_name": "Escherichia coli",
+        "std": 0.0104565309727531,
+        "taxon_distance": {
+          "Escherichia coli": 1,
+          "Escherichia coli_canon_ancestors": [
+            "cellular organisms",
+            "Bacteria",
+            "Proteobacteria",
+            "Gammaproteobacteria",
+            "Enterobacterales",
+            "Enterobacteriaceae",
+            "Escherichia"
+          ]
+        },
+        "time_point": "0.083",
+        "time_unit": "h",
+        "unit": "\u00b5mol * gCDW-1"
+      },
+      {
+        "concentration": 0.0825985953362733,
+        "last_modified": "2020-05-05T16:28:56.463000Z",
+        "ncbi_taxonomy_id": 562,
+        "reference": {
+          "doi": "10.1016/j.cels.2015.09.008"
+        },
+        "species_name": "Escherichia coli",
+        "std": 0.0295172867627505,
+        "taxon_distance": {
+          "Escherichia coli": 1,
+          "Escherichia coli_canon_ancestors": [
+            "cellular organisms",
+            "Bacteria",
+            "Proteobacteria",
+            "Gammaproteobacteria",
+            "Enterobacterales",
+            "Enterobacteriaceae",
+            "Escherichia"
+          ]
+        },
+        "time_point": "0.416",
+        "time_unit": "h",
+        "unit": "\u00b5mol * gCDW-1"
+      },
+      {
+        "concentration": 0.0535157374912768,
+        "last_modified": "2020-05-05T16:28:56.463000Z",
+        "ncbi_taxonomy_id": 562,
+        "reference": {
+          "doi": "10.1016/j.cels.2015.09.008"
+        },
+        "species_name": "Escherichia coli",
+        "std": 0.00179098623498396,
+        "taxon_distance": {
+          "Escherichia coli": 1,
+          "Escherichia coli_canon_ancestors": [
+            "cellular organisms",
+            "Bacteria",
+            "Proteobacteria",
+            "Gammaproteobacteria",
+            "Enterobacterales",
+            "Enterobacteriaceae",
+            "Escherichia"
+          ]
+        },
+        "time_point": "0.750",
+        "time_unit": "h",
+        "unit": "\u00b5mol * gCDW-1"
+      },
+      {
+        "concentration": 0.16936596120349,
+        "last_modified": "2020-05-05T16:28:56.463000Z",
+        "ncbi_taxonomy_id": 562,
+        "reference": {
+          "doi": "10.1016/j.cels.2015.09.008"
+        },
+        "species_name": "Escherichia coli",
+        "std": 0.127354911011793,
+        "taxon_distance": {
+          "Escherichia coli": 1,
+          "Escherichia coli_canon_ancestors": [
+            "cellular organisms",
+            "Bacteria",
+            "Proteobacteria",
+            "Gammaproteobacteria",
+            "Enterobacterales",
+            "Enterobacteriaceae",
+            "Escherichia"
+          ]
+        },
+        "time_point": "1.083",
+        "time_unit": "h",
+        "unit": "\u00b5mol * gCDW-1"
+      },
+      {
+        "concentration": 0.0398610862700374,
+        "last_modified": "2020-05-05T16:28:56.463000Z",
+        "ncbi_taxonomy_id": 562,
+        "reference": {
+          "doi": "10.1016/j.cels.2015.09.008"
+        },
+        "species_name": "Escherichia coli",
+        "std": 0.0142841482795415,
+        "taxon_distance": {
+          "Escherichia coli": 1,
+          "Escherichia coli_canon_ancestors": [
+            "cellular organisms",
+            "Bacteria",
+            "Proteobacteria",
+            "Gammaproteobacteria",
+            "Enterobacterales",
+            "Enterobacteriaceae",
+            "Escherichia"
+          ]
+        },
+        "time_point": "1.516",
+        "time_unit": "h",
+        "unit": "\u00b5mol * gCDW-1"
+      },
+      {
+        "concentration": 0.0728301405098689,
+        "last_modified": "2020-05-05T16:28:56.463000Z",
+        "ncbi_taxonomy_id": 562,
+        "reference": {
+          "doi": "10.1016/j.cels.2015.09.008"
+        },
+        "species_name": "Escherichia coli",
+        "std": 0.0591517322087567,
+        "taxon_distance": {
+          "Escherichia coli": 1,
+          "Escherichia coli_canon_ancestors": [
+            "cellular organisms",
+            "Bacteria",
+            "Proteobacteria",
+            "Gammaproteobacteria",
+            "Enterobacterales",
+            "Enterobacteriaceae",
+            "Escherichia"
+          ]
+        },
+        "time_point": "1.866",
+        "time_unit": "h",
+        "unit": "\u00b5mol * gCDW-1"
+      },
+      {
+        "concentration": 0.0894460007493983,
+        "last_modified": "2020-05-05T16:29:27.088000Z",
+        "ncbi_taxonomy_id": 562,
+        "reference": {
+          "doi": "10.1016/j.cels.2015.09.008"
+        },
+        "species_name": "Escherichia coli",
+        "std": 0.0321730238042049,
+        "taxon_distance": {
+          "Escherichia coli": 1,
+          "Escherichia coli_canon_ancestors": [
+            "cellular organisms",
+            "Bacteria",
+            "Proteobacteria",
+            "Gammaproteobacteria",
+            "Enterobacterales",
+            "Enterobacteriaceae",
+            "Escherichia"
+          ]
+        },
+        "time_point": "-0.766",
+        "time_unit": "h",
+        "unit": "\u00b5mol * gCDW-1"
+      },
+      {
+        "concentration": 0.0437391044370952,
+        "last_modified": "2020-05-05T16:29:27.088000Z",
+        "ncbi_taxonomy_id": 562,
+        "reference": {
+          "doi": "10.1016/j.cels.2015.09.008"
+        },
+        "species_name": "Escherichia coli",
+        "std": 0.0076878614957067,
+        "taxon_distance": {
+          "Escherichia coli": 1,
+          "Escherichia coli_canon_ancestors": [
+            "cellular organisms",
+            "Bacteria",
+            "Proteobacteria",
+            "Gammaproteobacteria",
+            "Enterobacterales",
+            "Enterobacteriaceae",
+            "Escherichia"
+          ]
+        },
+        "time_point": "-0.366",
+        "time_unit": "h",
+        "unit": "\u00b5mol * gCDW-1"
+      },
+      {
+        "concentration": 0.044037960859234,
+        "last_modified": "2020-05-05T16:29:27.088000Z",
+        "ncbi_taxonomy_id": 562,
+        "reference": {
+          "doi": "10.1016/j.cels.2015.09.008"
+        },
+        "species_name": "Escherichia coli",
+        "std": 0.0104565309727531,
+        "taxon_distance": {
+          "Escherichia coli": 1,
+          "Escherichia coli_canon_ancestors": [
+            "cellular organisms",
+            "Bacteria",
+            "Proteobacteria",
+            "Gammaproteobacteria",
+            "Enterobacterales",
+            "Enterobacteriaceae",
+            "Escherichia"
+          ]
+        },
+        "time_point": "0.083",
+        "time_unit": "h",
+        "unit": "\u00b5mol * gCDW-1"
+      },
+      {
+        "concentration": 0.0825985953362733,
+        "last_modified": "2020-05-05T16:29:27.088000Z",
+        "ncbi_taxonomy_id": 562,
+        "reference": {
+          "doi": "10.1016/j.cels.2015.09.008"
+        },
+        "species_name": "Escherichia coli",
+        "std": 0.0295172867627505,
+        "taxon_distance": {
+          "Escherichia coli": 1,
+          "Escherichia coli_canon_ancestors": [
+            "cellular organisms",
+            "Bacteria",
+            "Proteobacteria",
+            "Gammaproteobacteria",
+            "Enterobacterales",
+            "Enterobacteriaceae",
+            "Escherichia"
+          ]
+        },
+        "time_point": "0.416",
+        "time_unit": "h",
+        "unit": "\u00b5mol * gCDW-1"
+      },
+      {
+        "concentration": 0.0535157374912768,
+        "last_modified": "2020-05-05T16:29:27.088000Z",
+        "ncbi_taxonomy_id": 562,
+        "reference": {
+          "doi": "10.1016/j.cels.2015.09.008"
+        },
+        "species_name": "Escherichia coli",
+        "std": 0.00179098623498396,
+        "taxon_distance": {
+          "Escherichia coli": 1,
+          "Escherichia coli_canon_ancestors": [
+            "cellular organisms",
+            "Bacteria",
+            "Proteobacteria",
+            "Gammaproteobacteria",
+            "Enterobacterales",
+            "Enterobacteriaceae",
+            "Escherichia"
+          ]
+        },
+        "time_point": "0.750",
+        "time_unit": "h",
+        "unit": "\u00b5mol * gCDW-1"
+      },
+      {
+        "concentration": 0.16936596120349,
+        "last_modified": "2020-05-05T16:29:27.088000Z",
+        "ncbi_taxonomy_id": 562,
+        "reference": {
+          "doi": "10.1016/j.cels.2015.09.008"
+        },
+        "species_name": "Escherichia coli",
+        "std": 0.127354911011793,
+        "taxon_distance": {
+          "Escherichia coli": 1,
+          "Escherichia coli_canon_ancestors": [
+            "cellular organisms",
+            "Bacteria",
+            "Proteobacteria",
+            "Gammaproteobacteria",
+            "Enterobacterales",
+            "Enterobacteriaceae",
+            "Escherichia"
+          ]
+        },
+        "time_point": "1.083",
+        "time_unit": "h",
+        "unit": "\u00b5mol * gCDW-1"
+      },
+      {
+        "concentration": 0.0398610862700374,
+        "last_modified": "2020-05-05T16:29:27.088000Z",
+        "ncbi_taxonomy_id": 562,
+        "reference": {
+          "doi": "10.1016/j.cels.2015.09.008"
+        },
+        "species_name": "Escherichia coli",
+        "std": 0.0142841482795415,
+        "taxon_distance": {
+          "Escherichia coli": 1,
+          "Escherichia coli_canon_ancestors": [
+            "cellular organisms",
+            "Bacteria",
+            "Proteobacteria",
+            "Gammaproteobacteria",
+            "Enterobacterales",
+            "Enterobacteriaceae",
+            "Escherichia"
+          ]
+        },
+        "time_point": "1.516",
+        "time_unit": "h",
+        "unit": "\u00b5mol * gCDW-1"
+      },
+      {
+        "concentration": 0.0728301405098689,
+        "last_modified": "2020-05-05T16:29:27.088000Z",
+        "ncbi_taxonomy_id": 562,
+        "reference": {
+          "doi": "10.1016/j.cels.2015.09.008"
+        },
+        "species_name": "Escherichia coli",
+        "std": 0.0591517322087567,
+        "taxon_distance": {
+          "Escherichia coli": 1,
+          "Escherichia coli_canon_ancestors": [
+            "cellular organisms",
+            "Bacteria",
+            "Proteobacteria",
+            "Gammaproteobacteria",
+            "Enterobacterales",
+            "Enterobacteriaceae",
+            "Escherichia"
+          ]
+        },
+        "time_point": "1.866",
+        "time_unit": "h",
+        "unit": "\u00b5mol * gCDW-1"
+      },
+      {
+        "concentration": "413.0",
+        "concentration_units": "uM",
+        "error": "0.0",
+        "growth_media": "4.0 g/L Na2SO4; 5.36 g/L (NH4)2SO4; 1.0 g/L NH4Cl; 7.3 g/L K2HPO4; 1.8 g/L NaH2PO4 H2O; 12.0 g/L (NH4)2-H-citrate; 4.0 mL/L MgSO4 (1 M); 6.0 mL/L trace element solution; 0.02 g/L thiamine, 20 g/L glucose",
+        "growth_status": "Mid Log Phase",
+        "growth_system": "Bioreactor, pH controlled, aerated, dilution rate=0.125 L/h",
+        "internal": null,
+        "molecules": "1652000",
+        "molecules_error": "0",
+        "ncbi_taxonomy_id": 562,
+        "reference": {
+          "pubmed_id": null,
+          "reference_text": "Park, C., Park, C., Lee, Y., Lee, S.Y., Oh, H.B., Lee, J. (2011) Determination of the Intracellular Concentration of Metabolites in Escherichia coli Collected during the Exponential and Stationary Growth Phases using Liquid Chromatography-Mass Spectrometry. Bull Korean Chem. Soc. 32: 524-530."
+        },
+        "species_name": "Escherichia coli",
+        "strain": "W3110",
+        "taxon_distance": {
+          "Escherichia coli": 1,
+          "Escherichia coli_canon_ancestors": [
+            "cellular organisms",
+            "Bacteria",
+            "Proteobacteria",
+            "Gammaproteobacteria",
+            "Enterobacterales",
+            "Enterobacteriaceae",
+            "Escherichia"
+          ]
+        },
+        "temperature": "37 oC"
+      },
+      {
+        "concentration": "88.6",
+        "concentration_units": "uM",
+        "error": "0.0",
+        "growth_media": "4.0 g/L Na2SO4; 5.36 g/L (NH4)2SO4; 1.0 g/L NH4Cl; 7.3 g/L K2HPO4; 1.8 g/L NaH2PO4 H2O; 12.0 g/L (NH4)2-H-citrate; 4.0 mL/L MgSO4 (1 M); 6.0 mL/L trace element solution; 0.02 g/L thiamine, 20 g/L glucose",
+        "growth_status": "Stationary Phase",
+        "growth_system": "Bioreactor, pH controlled, aerated",
+        "internal": null,
+        "molecules": "354400",
+        "molecules_error": "0",
+        "ncbi_taxonomy_id": 562,
+        "reference": {
+          "pubmed_id": null,
+          "reference_text": "Park, C., Park, C., Lee, Y., Lee, S.Y., Oh, H.B., Lee, J. (2011) Determination of the Intracellular Concentration of Metabolites in Escherichia coli Collected during the Exponential and Stationary Growth Phases using Liquid Chromatography-Mass Spectrometry. Bull Korean Chem. Soc. 32: 524-530."
+        },
+        "species_name": "Escherichia coli",
+        "strain": "W3110",
+        "taxon_distance": {
+          "Escherichia coli": 1,
+          "Escherichia coli_canon_ancestors": [
+            "cellular organisms",
+            "Bacteria",
+            "Proteobacteria",
+            "Gammaproteobacteria",
+            "Enterobacterales",
+            "Enterobacteriaceae",
+            "Escherichia"
+          ]
+        },
+        "temperature": "37 oC"
+      },
+      {
+        "concentration": "33.4",
+        "concentration_units": "uM",
+        "error": "0.0",
+        "growth_media": "48 mM Na2HPO4, 22 mM KH2PO4, 10 mM NaCl, 45 mM (NH4)2SO4, supplemented with 1 mM MgSO4, 1 mg/l thiamine\u00b7HCl, 5.6 mg/l CaCl2, 8 mg/l FeCl3, 1 mg/l MnCl2\u00b74H2O, 1.7 mg/l ZnCl2, 0.43 mg/l CuCl2\u00b72H2O, 0.6 mg/l CoCl2\u00b72H2O and 0.6 mg/l Na2MoO4\u00b72H2O.  4 g/L Gluco",
+        "growth_status": "Stationary Phase, glucose limited",
+        "growth_system": "Bioreactor, pH controlled, O2 and CO2 controlled, dilution rate: 0.2/h",
+        "internal": null,
+        "molecules": "133600",
+        "molecules_error": "0",
+        "ncbi_taxonomy_id": 562,
+        "reference": {
+          "pubmed_id": "17379776",
+          "reference_text": "Ishii, N., Nakahigashi, K., Baba, T., Robert, M., Soga, T., Kanai, A., Hirasawa, T., Naba, M., Hirai, K., Hoque, A., Ho, P. Y., Kakazu, Y., Sugawara, K., Igarashi, S., Harada, S., Masuda, T., Sugiyama, N., Togashi, T., Hasegawa, M., Takai, Y., Yugi, K., Arakawa, K., Iwata, N., Toya, Y., Nakayama, Y., Nishioka, T., Shimizu, K., Mori, H., Tomita, M. (2007). \"Multiple high-throughput analyses monitor the response of E. coli to perturbations.\" Science 316:593-597."
+        },
+        "species_name": "Escherichia coli",
+        "strain": "BW25113",
+        "taxon_distance": {
+          "Escherichia coli": 1,
+          "Escherichia coli_canon_ancestors": [
+            "cellular organisms",
+            "Bacteria",
+            "Proteobacteria",
+            "Gammaproteobacteria",
+            "Enterobacterales",
+            "Enterobacteriaceae",
+            "Escherichia"
+          ]
+        },
+        "temperature": "37 oC"
+      }
+    ],
+    "inchikey": "HXXFSFRBOHSIMQ-VFUOTHLCSA-N",
+    "kegg_id": "C00103",
+    "metabolite": "Glucose 1-phosphate",
+    "similarity_score": 1.0,
+    "synonyms": [
+      "&alpha;-D-glucose-1-P",
+      "&alpha;-glucose-1-phosphate",
+      "&alpha;-glucose-1-phosphoric acid",
+      "A-D-Glucopyranosyl phosphate",
+      "a-D-Glucopyranosyl phosphoric acid",
+      "A-D-Glucose 1-phosphate",
+      "a-D-Glucose 1-phosphoric acid",
+      "a-D-Glucose-1-P",
+      "A-D-Glucose-1-phosphate",
+      "a-D-Glucose-1-phosphoric acid",
+      "a-delta-Glucopyranosyl phosphate",
+      "a-delta-Glucopyranosyl phosphoric acid",
+      "a-delta-Glucose 1-phosphate",
+      "a-delta-Glucose 1-phosphoric acid",
+      "a-delta-Glucose-1-phosphate",
+      "a-delta-Glucose-1-phosphoric acid",
+      "a-Glucose-1-phosphate",
+      "a-Glucose-1-phosphoric acid",
+      "a-\u03b4-Glucopyranosyl phosphate",
+      "a-\u03b4-Glucopyranosyl phosphoric acid",
+      "a-\u03b4-Glucose 1-phosphate",
+      "a-\u03b4-Glucose 1-phosphoric acid",
+      "a-\u03b4-Glucose-1-phosphate",
+      "a-\u03b4-Glucose-1-phosphoric acid",
+      "Alpha-D-Glucopyranosyl phosphate",
+      "alpha-D-Glucopyranosyl phosphoric acid",
+      "Alpha-D-Glucose 1-phosphate",
+      "alpha-D-Glucose 1-phosphoric acid",
+      "Alpha-D-Glucose-1-P",
+      "Alpha-D-Glucose-1-phosphate",
+      "alpha-D-Glucose-1-phosphoric acid",
+      "Alpha-delta-Glucopyranosyl phosphate",
+      "alpha-delta-Glucopyranosyl phosphoric acid",
+      "Alpha-delta-Glucose 1-phosphate",
+      "alpha-delta-Glucose 1-phosphoric acid",
+      "Alpha-delta-glucose-1-phosphate",
+      "alpha-delta-Glucose-1-phosphoric acid",
+      "Alpha-Glucose-1-phosphate",
+      "alpha-Glucose-1-phosphoric acid",
+      "Cori ester",
+      "D-Glucopyranose 1-phosphate",
+      "D-Glucopyranose 1-phosphoric acid",
+      "D-Glucose 1-phosphate",
+      "D-Glucose 1-phosphoric acid",
+      "D-glucose-&alpha;-1-phosphate",
+      "D-Glucose-&alpha;-1-phosphoric acid",
+      "D-Glucose-1-P",
+      "D-Glucose-1-phosphate",
+      "D-Glucose-1-phosphoric acid",
+      "D-Glucose-a-1-phosphate",
+      "D-Glucose-a-1-phosphoric acid",
+      "D-Glucose-alpha-1-phosphate",
+      "D-Glucose-alpha-1-phosphoric acid",
+      "D-Glucose-\u03b1-1-phosphate",
+      "D-Glucose-\u03b1-1-phosphoric acid",
+      "Delta-Glucopyranose 1-phosphate",
+      "delta-Glucopyranose 1-phosphoric acid",
+      "Delta-Glucose 1-phosphate",
+      "delta-Glucose 1-phosphoric acid",
+      "Delta-Glucose-1-P",
+      "Delta-Glucose-1-phosphate",
+      "delta-Glucose-1-phosphoric acid",
+      "Glucose 1-phosphate",
+      "Glucose 1-phosphoric acid",
+      "Glucose monophosphate",
+      "Glucose monophosphoric acid",
+      "Glucose-1-phosphate",
+      "Glucose-1-phosphoric acid",
+      "Glucose-1P",
+      "\u03b1-D-Glucopyranosyl phosphate",
+      "\u03b1-D-Glucopyranosyl phosphoric acid",
+      "\u03b1-D-Glucose 1-phosphate",
+      "\u03b1-D-Glucose 1-phosphoric acid",
+      "\u03b1-D-Glucose-1-P",
+      "\u03b1-D-Glucose-1-phosphate",
+      "\u03b1-D-Glucose-1-phosphoric acid",
+      "\u03b1-Glucose-1-phosphate",
+      "\u03b1-Glucose-1-phosphoric acid",
+      "\u03b1-\u03b4-Glucopyranosyl phosphate",
+      "\u03b1-\u03b4-Glucopyranosyl phosphoric acid",
+      "\u03b1-\u03b4-Glucose 1-phosphate",
+      "\u03b1-\u03b4-Glucose 1-phosphoric acid",
+      "\u03b1-\u03b4-Glucose-1-phosphate",
+      "\u03b1-\u03b4-Glucose-1-phosphoric acid",
+      "\u03b4-Glucopyranose 1-phosphate",
+      "\u03b4-Glucopyranose 1-phosphoric acid",
+      "\u03b4-Glucose 1-phosphate",
+      "\u03b4-Glucose 1-phosphoric acid",
+      "\u03b4-Glucose-1-P",
+      "\u03b4-Glucose-1-phosphate",
+      "\u03b4-Glucose-1-phosphoric acid"
+    ]
+  }
+]
