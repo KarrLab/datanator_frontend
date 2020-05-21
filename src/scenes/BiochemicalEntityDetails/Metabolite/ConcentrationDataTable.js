@@ -38,7 +38,10 @@ class ConcentrationDataTable extends Component {
           const conc = {
             name: metabolite.metabolite,
 
-            tanimotoSimilarity: metabolite.similarity_score,
+            tanimotoSimilarity:
+              "similarity_score" in metabolite
+                ? metabolite.similarity_score
+                : null,
             value: parseFloat(metConc.concentration),
             uncertainty: uncertainty,
             units: metConc.concentration_units,
@@ -168,9 +171,6 @@ class ConcentrationDataTable extends Component {
         filter: "numberFilter",
         filterParams: {
           hiBound: 1.0
-        },
-        valueFormatter: params => {
-          return params.value.toFixed(3);
         }
       },
       {
