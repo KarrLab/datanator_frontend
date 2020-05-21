@@ -113,12 +113,11 @@ class TaxonomyFilter extends Component {
     const markValueToDistance = [];
     for (let iLineage = 0; iLineage < lineage.length; iLineage++) {
       const taxon = Object.keys(lineage[iLineage])[0];
-      const distance = Object.values(lineage[iLineage])[0];
       marks.push({
         value: iLineage,
         label: upperCaseFirstLetter(taxon)
       });
-      markValueToDistance.push(distance);
+      markValueToDistance.push(iLineage);
     }
 
     this.selectedMarkValue = Math.max(marks.length - 1);

@@ -70,7 +70,11 @@ class ConcentrationDataTable extends Component {
             conc.units = htmlDecode(conc.units);
           }
           if (organism != null) {
-            conc["taxonomicProximity"] = metConc.taxon_distance[organism];
+            if (Object.keys(metConc.taxon_distance).length === 4) {
+              conc["taxonomicProximity"] = metConc.taxon_distance[organism];
+            } else {
+              conc["taxonomicProximity"] = 0;
+            }
           }
           if (conc.growthPhase && conc.growthPhase.indexOf(" phase") >= 0) {
             conc.growthPhase = conc.growthPhase.split(" phase")[0];
