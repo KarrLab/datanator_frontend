@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import {
   formatChemicalFormula,
-  upperCaseFirstLetter,
   strCompare,
   removeDuplicates,
   castToArray
@@ -192,7 +191,7 @@ class MetadataSection extends Component {
   }
 
   static formatTitle(processedData) {
-    return upperCaseFirstLetter(processedData.name);
+    return processedData.name;
   }
 
   static formatMetadata(processedData) {

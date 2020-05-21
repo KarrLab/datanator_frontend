@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { upperCaseFirstLetter } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
 import { Link } from "react-router-dom";
 import KeggPathwaysMetadataSection from "../KeggPathwaysMetadataSection";
@@ -107,7 +106,7 @@ class MetadataSection extends Component {
     if (!title) {
       title = processedData.equation;
     }
-    return upperCaseFirstLetter(title);
+    return title;
   }
 
   static processRelatedMetabolites(partLinks, metabolites, organism) {

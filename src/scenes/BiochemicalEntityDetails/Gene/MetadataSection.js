@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import {
-  upperCaseFirstLetter,
   strCompare,
   formatParticipantsForUrl
 } from "~/utils/utils";
@@ -124,7 +123,7 @@ class MetadataSection extends Component {
   }
 
   static formatTitle(processedData) {
-    return upperCaseFirstLetter(processedData.koName);
+    return processedData.koName;
   }
 
   static formatMetadata(processedData, organism) {
