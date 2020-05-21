@@ -7,6 +7,9 @@ import { getDataFromApi, genApiErrorHandler } from "~/services/RestApi";
 import { parseHistoryLocationPathname } from "~/utils/utils";
 import history from "~/utils/history";
 
+const IS_DEVELOPMENT = process.env.NODE_ENV === "development";
+const IS_TEST = process.env.NODE_ENV.startsWith("test");
+
 function valueText(value) {
   return `${value}`;
 }
@@ -85,12 +88,20 @@ class TaxonomyFilter extends Component {
         this.taxonLineage = response.data;
         this.setMarks();
       })
-      .catch(
-        genApiErrorHandler(
-          ["taxon", "canon_rank_distance_by_name/?name=" + organism],
-          "Unable to obtain taxonomic information about '" + organism + "'."
-        )
-      )
+      .catch(error => {
+        if (
+          "response" in error &&
+          "request" in error.response &&
+          error.response.request.constructor.name === "XMLHttpRequest"
+        ) {
+          genApiErrorHandler(
+            ["taxon", "canon_rank_distance_by_name/?name=" + organism],
+            "Unable to obtain taxonomic information about '" + organism + "'."
+          )(error);
+        } else if (!axios.isCancel(error) && (IS_DEVELOPMENT || IS_TEST)) {
+          console.error(error);
+        }
+      })
       .finally(() => {
         this.cancelTokenSource = null;
       });

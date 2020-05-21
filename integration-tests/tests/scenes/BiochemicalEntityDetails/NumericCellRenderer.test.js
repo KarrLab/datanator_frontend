@@ -1,9 +1,9 @@
-/* global cy, describe, it */
+/* global cy, describe, it, expect, Cypress */
 
 describe("NumericCellRenderer", function() {
   it("Numeric cells render correctly", function() {
     const route = "metabolite";
-    const entity = "dTDP-D-Glucose";
+    const entity = "YSYKRGRSMLTJNL-URARBOGNSA-L"; // TDP-Glucose
     const url = "/" + route + "/" + entity;
     const dataContainerId = "concentration";
 
@@ -12,7 +12,9 @@ describe("NumericCellRenderer", function() {
       cy.route({
         method: "GET",
         url:
-          "/metabolites/concentration/?metabolite=" + entity + "&abstract=true",
+          "/metabolites/concentrations/similar_compounds/?inchikey=" +
+          entity +
+          "&*",
         status: 200,
         response: json
       });
@@ -22,29 +24,26 @@ describe("NumericCellRenderer", function() {
 
     function getRows() {
       return cy.get(
-        "#" + dataContainerId + " .ag-root .ag-center-cols-clipper .ag-row"
+        "#" +
+          dataContainerId +
+          " .ag-root .ag-center-cols-clipper .ag-row .ag-cell-value[aria-colindex='1'] .ag-numeric-cell"
       );
     }
 
-    getRows()
-      .eq(0)
-      .find('.ag-cell-value[aria-colindex="1"] .ag-numeric-cell')
-      .should("have.html", "1790.0");
-    getRows()
-      .eq(1)
-      .find('.ag-cell-value[aria-colindex="1"] .ag-numeric-cell')
-      .should("have.html", "1790.1");
-    getRows()
-      .eq(2)
-      .find('.ag-cell-value[aria-colindex="1"] .ag-numeric-cell')
-      .should("have.html", "1790.0");
-    getRows()
-      .eq(3)
-      .find('.ag-cell-value[aria-colindex="1"] .ag-numeric-cell')
-      .should("have.text", "1.8 × 104");
-    getRows()
-      .eq(4)
-      .find('.ag-cell-value[aria-colindex="1"] .ag-numeric-cell')
-      .should("have.text", "1.8 × 10-4");
+    cy.get(
+      "#" + dataContainerId + " .ag-root .ag-center-cols-clipper .ag-row"
+    ).should("have.length", 92);
+
+    getRows().should($cells => {
+      const vals = $cells
+        .map((i, cell) => {
+          return Cypress.$(cell).text();
+        })
+        .toArray();
+      expect(vals).to.include("2.6 × 10-6");
+      expect(vals).to.include("4.3 × 10-6");
+      expect(vals).to.include("0.0010");
+      expect(vals).to.include("9240.0");
+    });
   });
 });

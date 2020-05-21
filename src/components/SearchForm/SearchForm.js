@@ -13,6 +13,9 @@ import { parseHistoryLocationPathname } from "~/utils/utils";
 
 import "./SearchForm.scss";
 
+const IS_DEVELOPMENT = process.env.NODE_ENV === "development";
+const IS_TEST = process.env.NODE_ENV.startsWith("test");
+
 class SearchForm extends Component {
   static propTypes = {
     history: PropTypes.object.isRequired
@@ -125,12 +128,20 @@ class SearchForm extends Component {
       "&_source_includes=tax_name";
     getDataFromApi([url], { cancelToken: this.cancelTokenSource.token })
       .then(this.setOrganismMenu.bind(this, query))
-      .catch(
-        genApiErrorHandler(
-          [url],
-          "Unable to search for organisms that match '" + query + "'."
-        )
-      )
+      .catch(error => {
+        if (
+          "response" in error &&
+          "request" in error.response &&
+          error.response.request.constructor.name === "XMLHttpRequest"
+        ) {
+          genApiErrorHandler(
+            [url],
+            "Unable to search for organisms that match '" + query + "'."
+          )(error);
+        } else if (!axios.isCancel(error) && (IS_DEVELOPMENT || IS_TEST)) {
+          console.error(error);
+        }
+      })
       .finally(() => {
         this.cancelTokenSource = null;
       });

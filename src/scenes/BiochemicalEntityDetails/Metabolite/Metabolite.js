@@ -3,6 +3,7 @@ import { HashLink } from "react-router-hash-link";
 import { scrollTo } from "~/utils/utils";
 import { MetadataSection } from "./MetadataSection";
 import { ConcentrationDataTable } from "./ConcentrationDataTable";
+import Error404 from "~/scenes/Error404/Error404";
 
 import "../BiochemicalEntityDetails.scss";
 
@@ -17,6 +18,10 @@ export default class Metabolite extends Component {
   }
 
   render() {
+    if (this.state.metadata && this.state.metadata.error404) {
+      return <Error404 />;
+    }
+
     return (
       <div>
         <div
@@ -76,7 +81,9 @@ export default class Metabolite extends Component {
               <MetadataSection
                 set-scene-metadata={this.setMetadata.bind(this)}
               />
-              <ConcentrationDataTable />
+              <ConcentrationDataTable
+                set-scene-metadata={this.setMetadata.bind(this)}
+              />
             </div>
           </div>
         </div>

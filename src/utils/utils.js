@@ -169,6 +169,9 @@ function parseHistoryLocationPathname(history) {
     query = match[4] ? match[4].trim() || null : null;
     organism = match[6] ? match[6].trim() || null : null;
   }
+  if (typeof organism === "string" && organism.toLowerCase() === "null") {
+    organism = null;
+  }
   return {
     route: route,
     query: query,
@@ -210,6 +213,19 @@ function formatParticipantsForUrl(participants) {
   return partNames;
 }
 
+function isEmpty(element) {
+  if (element instanceof Array) {
+    if (element.length === 0) {
+      return true;
+    }
+  } else {
+    if (Object.keys(element).length === 0) {
+      return true;
+    }
+  }
+  return false;
+}
+
 export {
   formatScientificNotation,
   formatChemicalFormula,
@@ -223,5 +239,6 @@ export {
   getNumProperties,
   castToArray,
   numberWithCommas,
-  formatParticipantsForUrl
+  formatParticipantsForUrl,
+  isEmpty
 };

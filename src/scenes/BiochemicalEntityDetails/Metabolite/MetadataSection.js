@@ -101,7 +101,7 @@ class MetadataSection extends Component {
     processedData.cellularLocations = null;
 
     processedData.name = met.name;
-    if (met.synonyms.synonym) {
+    if (met.synonyms && met.synonyms.synonym) {
       processedData.synonyms = castToArray(met.synonyms.synonym).map(syn => {
         return htmlEntityDecoder.feed(syn);
       });
@@ -153,9 +153,27 @@ class MetadataSection extends Component {
     }
 
     if (met.cellular_locations) {
-      processedData.cellularLocations = castToArray(
-        met.cellular_locations.cellular_location
-      );
+      const locs = castToArray(met.cellular_locations);
+      processedData.cellularLocations = {};
+      for (const loc of locs) {
+        let locs = castToArray(loc.cellular_location);
+
+        for (const ref of castToArray(loc.reference)) {
+          let taxon = null;
+          if (ref === "ECMDB") {
+            taxon = "Escherichia coli (ECMDB)";
+          } else if (ref === "YMDB") {
+            taxon = "Saccharomyces cerevisiae (YMDB)";
+          }
+          if (!(taxon in processedData.cellularLocations)) {
+            processedData.cellularLocations[taxon] = [];
+          }
+          processedData.cellularLocations[
+            taxon
+          ] = processedData.cellularLocations[taxon].concat(locs);
+          processedData.cellularLocations[taxon].sort();
+        }
+      }
     }
 
     processedData.dbLinks = {
@@ -302,19 +320,37 @@ class MetadataSection extends Component {
     }
 
     if (processedData.cellularLocations) {
-      sections.push({
+      let section = {
         id: "localizations",
         title: "Localizations",
-        content: (
-          <ul className="two-col-list">
-            {processedData.cellularLocations.map(el => (
-              <li key={el}>
-                <div className="bulleted-list-item">{el}</div>
+        content: null
+      };
+
+      let taxa = Object.keys(processedData.cellularLocations);
+      if (taxa.length) {
+        taxa.sort();
+
+        section.content = (
+          <ul className="vertically-spaced">
+            {taxa.map(taxon => (
+              <li key={taxon}>
+                <div className="bulleted-list-item">
+                  {taxon}
+                  <ul>
+                    {processedData.cellularLocations[taxon].map(loc => (
+                      <li key={loc}>{loc}</li>
+                    ))}
+                  </ul>
+                </div>
               </li>
             ))}
           </ul>
-        )
-      });
+        );
+      } else {
+        section.content = "No data is available.";
+      }
+
+      sections.push(section);
     }
 
     sections.push({

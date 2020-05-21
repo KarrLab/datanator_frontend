@@ -3,6 +3,10 @@ import PropTypes from "prop-types";
 import axios from "axios";
 
 import { getDataFromApi, genApiErrorHandler } from "~/services/RestApi";
+import { Link } from "react-router-dom";
+
+const IS_DEVELOPMENT = process.env.NODE_ENV === "development";
+const IS_TEST = process.env.NODE_ENV.startsWith("test");
 
 class LoadExternalContent extends Component {
   static propTypes = {
@@ -36,7 +40,20 @@ class LoadExternalContent extends Component {
         const processed_data = this.props["format-results"](response.data);
         this.setState({ text: processed_data });
       })
-      .catch(genApiErrorHandler([this.props.url], "Unable to load metadata."))
+      .catch(error => {
+        if (
+          "response" in error &&
+          "request" in error.response &&
+          error.response.request.constructor.name === "XMLHttpRequest"
+        ) {
+          genApiErrorHandler(
+            [this.props.url],
+            "Unable to load metadata."
+          )(error);
+        } else if (!axios.isCancel(error) && (IS_DEVELOPMENT || IS_TEST)) {
+          console.error(error);
+        }
+      })
       .finally(() => {
         this.cancelTokenSource = null;
       });
@@ -96,12 +113,20 @@ class LoadContent extends Component {
           results: results
         });
       })
-      .catch(
-        genApiErrorHandler(
-          [url],
-          "We were unable to conduct your search for '" + this.query + "'."
-        )
-      )
+      .catch(error => {
+        if (
+          "response" in error &&
+          "request" in error.response &&
+          error.response.request.constructor.name === "XMLHttpRequest"
+        ) {
+          genApiErrorHandler(
+            [url],
+            "We were unable to conduct your search for '" + this.query + "'."
+          )(error);
+        } else if (!axios.isCancel(error) && (IS_DEVELOPMENT || IS_TEST)) {
+          console.error(error);
+        }
+      })
       .finally(() => {
         this.cancelTokenSource = null;
       });
@@ -119,4 +144,89 @@ class LoadContent extends Component {
   }
 }
 
-export { LoadExternalContent, LoadContent };
+class LoadMetabolites extends Component {
+  static propTypes = {
+    url: PropTypes.string,
+    name: PropTypes.string.isRequired,
+    route: PropTypes.string,
+    inchiKey: PropTypes.string
+  };
+
+  constructor(props) {
+    super(props);
+
+    this.cancelTokenSource = null;
+
+    this.state = {
+      results: this.props.name
+    };
+  }
+
+  componentDidMount() {
+    this.setState({
+      results: this.props.name
+    });
+    this.fetchResults();
+  }
+
+  static processRelatedMetabolites(route, name, metadata) {
+    if (Object.keys(metadata).length > 0) {
+      return (
+        <Link key={"substrate-" + name} to={route}>
+          {name}
+        </Link>
+      );
+    } else {
+      return name;
+    }
+  }
+
+  fetchResults() {
+    this.setState({ results: this.props.name });
+    const url = this.props["url"];
+
+    if (this.cancelTokenSource) {
+      this.cancelTokenSource.cancel();
+    }
+
+    this.cancelTokenSource = axios.CancelToken.source();
+    if (this.props.inchiKey !== null) {
+      getDataFromApi([url], { cancelToken: this.cancelTokenSource.token })
+        .then(response => {
+          let results = LoadMetabolites.processRelatedMetabolites(
+            this.props.route,
+            this.props.name,
+            response.data
+          );
+          this.results = results;
+
+          this.setState({
+            results: results
+          });
+        })
+        .catch(error => {
+          if (
+            "response" in error &&
+            "request" in error.response &&
+            error.response.request.constructor.name === "XMLHttpRequest"
+          ) {
+            genApiErrorHandler(
+              [url],
+              "We were unable to conduct your search for '" + this.query + "'."
+            )(error);
+          } else if (!axios.isCancel(error) && (IS_DEVELOPMENT || IS_TEST)) {
+            console.error(error);
+          }
+        })
+        .finally(() => {
+          this.cancelTokenSource = null;
+        });
+    }
+  }
+
+  render() {
+    return <div className="metabolite_link">{this.state.results}</div>;
+  }
+}
+
+export { LoadExternalContent, LoadContent, LoadMetabolites };

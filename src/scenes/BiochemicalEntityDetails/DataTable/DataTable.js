@@ -3,7 +3,11 @@ import { withRouter } from "react-router";
 import PropTypes from "prop-types";
 import axios from "axios";
 import { getDataFromApi, genApiErrorHandler } from "~/services/RestApi";
-import { parseHistoryLocationPathname, downloadData } from "~/utils/utils";
+import {
+  parseHistoryLocationPathname,
+  downloadData,
+  isEmpty
+} from "~/utils/utils";
 import { AgGridReact } from "@ag-grid-community/react";
 import { ClientSideRowModelModule } from "@ag-grid-community/client-side-row-model";
 import { CsvExportModule } from "@ag-grid-community/csv-export";
@@ -23,6 +27,9 @@ import "@ag-grid-community/all-modules/dist/styles/ag-theme-balham/sass/ag-theme
 
 import "./DataTable.scss";
 
+const IS_DEVELOPMENT = process.env.NODE_ENV === "development";
+const IS_TEST = process.env.NODE_ENV.startsWith("test");
+
 class DataTable extends Component {
   static propTypes = {
     history: PropTypes.object.isRequired,
@@ -35,7 +42,8 @@ class DataTable extends Component {
     "get-side-bar-def": PropTypes.func.isRequired,
     "get-col-defs": PropTypes.func.isRequired,
     "get-col-sort-order": PropTypes.func.isRequired,
-    "dom-layout": PropTypes.string
+    "dom-layout": PropTypes.string,
+    "set-scene-metadata": PropTypes.func.isRequired
   };
 
   static defaultProps = {
@@ -74,7 +82,8 @@ class DataTable extends Component {
 
     this.locationPathname = null;
     this.unlistenToHistory = null;
-    this.cancelTokenSource = null;
+    this.queryCancelTokenSource = null;
+    this.taxonCancelTokenSource = null;
 
     this.sideBarDef = null;
     this.colDefs = null;
@@ -106,8 +115,11 @@ class DataTable extends Component {
   componentWillUnmount() {
     this.unlistenToHistory();
     this.unlistenToHistory = null;
-    if (this.cancelTokenSource) {
-      this.cancelTokenSource.cancel();
+    if (this.queryCancelTokenSource) {
+      this.queryCancelTokenSource.cancel();
+    }
+    if (this.taxonCancelTokenSource) {
+      this.taxonCancelTokenSource.cancel();
     }
   }
 
@@ -129,44 +141,77 @@ class DataTable extends Component {
     const query = route.query;
     const organism = route.organism;
 
-    if (this.cancelTokenSource) {
-      this.cancelTokenSource.cancel();
+    if (this.queryCancelTokenSource) {
+      this.queryCancelTokenSource.cancel();
+    }
+    if (this.taxonCancelTokenSource) {
+      this.taxonCancelTokenSource.cancel();
     }
 
     const url = this.props["get-data-url"](query, organism);
-    this.cancelTokenSource = axios.CancelToken.source();
+    const taxonUrl = "taxon/canon_rank_distance_by_name/?name=" + organism;
+    this.queryCancelTokenSource = axios.CancelToken.source();
+    if (organism) {
+      this.taxonCancelTokenSource = axios.CancelToken.source();
+    }
     axios
       .all([
-        getDataFromApi([url], { cancelToken: this.cancelTokenSource.token }),
+        getDataFromApi([url], {
+          cancelToken: this.queryCancelTokenSource.token
+        }),
         organism
-          ? getDataFromApi(
-              ["taxon", "canon_rank_distance_by_name/?name=" + organism],
-              { cancelToken: this.cancelTokenSource.token }
-            )
+          ? getDataFromApi([taxonUrl], {
+              cancelToken: this.taxonCancelTokenSource.token
+            })
           : null
       ])
       .then(
         axios.spread((...responses) => {
-          this.formatData(
-            responses[0].data,
-            organism ? responses[1].data : null
-          );
+          if (isEmpty(responses[0].data)) {
+            this.setState({
+              data: []
+            });
+          } else {
+            this.formatData(
+              responses[0].data,
+              organism ? responses[1].data : null
+            );
+          }
         })
       )
-      .catch(
-        genApiErrorHandler(
-          [url],
-          "Unable to retrieve " +
-            this.props["data-type"] +
-            " data about " +
-            this.props["entity-type"] +
-            " '" +
-            query +
-            "'."
-        )
-      )
+      .catch(error => {
+        if (
+          "response" in error &&
+          "request" in error.response &&
+          error.response.request.constructor.name === "XMLHttpRequest"
+        ) {
+          const response = error.response;
+          if (
+            response.config.url.endsWith(taxonUrl) &&
+            response.status === 500
+          ) {
+            this.props["set-scene-metadata"]({
+              error404: true
+            });
+          } else {
+            genApiErrorHandler(
+              [url],
+              "Unable to retrieve " +
+                this.props["data-type"] +
+                " data about " +
+                this.props["entity-type"] +
+                " '" +
+                query +
+                "'."
+            )(error);
+          }
+        } else if (!axios.isCancel(error) && (IS_DEVELOPMENT || IS_TEST)) {
+          console.error(error);
+        }
+      })
       .finally(() => {
-        this.cancelTokenSource = null;
+        this.queryCancelTokenSource = null;
+        this.taxonCancelTokenSource = null;
       });
   }
 

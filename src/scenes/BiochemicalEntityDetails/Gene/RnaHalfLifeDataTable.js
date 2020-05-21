@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { upperCaseFirstLetter } from "~/utils/utils";
 import DataTable from "../DataTable/DataTable";
 import { HtmlColumnHeader } from "../HtmlColumnHeader";
@@ -6,6 +7,10 @@ import Tooltip from "@material-ui/core/Tooltip";
 import { TAXONOMIC_PROXIMITY_TOOLTIP } from "../ColumnsToolPanel/TooltipDescriptions";
 
 class RnaHalfLifeDataTable extends Component {
+  static propTypes = {
+    "set-scene-metadata": PropTypes.func.isRequired
+  };
+
   static getUrl(query, organism) {
     let url =
       "rna/halflife/get_info_by_ko/" +
@@ -29,20 +34,23 @@ class RnaHalfLifeDataTable extends Component {
           let formattedDatum = {
             halfLife: parseFloat(measurement.halflife),
             proteinName: rawDatum.protein_names[0],
-            geneName: measurement.gene_name,
+            geneName: rawDatum.kegg_meta.gene_name[0],
             uniprotId: rawDatum.uniprot_id,
             organism: measurement.species,
             growthMedium: measurement.growth_medium,
-            source: measurement.reference[0].doi
+            source: {
+              id: "DOI: " + measurement.reference[0].doi,
+              url: "https://dx.doi.org/" + measurement.reference[0].doi
+            }
           };
 
           if (organism != null) {
             let distance = "";
             const keys = Object.keys(measurement.taxon_distance);
             if (keys.length === 4) {
-              distance = measurement.taxon_distance[organism];
+              distance = measurement.taxon_distance[organism] - 1;
             } else {
-              distance = lengthOfTaxonomicRanks + 1;
+              distance = lengthOfTaxonomicRanks;
             }
             formattedDatum["taxonomicProximity"] = distance;
           }
@@ -167,15 +175,19 @@ class RnaHalfLifeDataTable extends Component {
         headerName: "Source",
         field: "source",
         cellRenderer: function(params) {
+          const source = params.value;
           return (
-            '<a href="https://dx.doi.org/' +
-            params.value +
+            '<a href="' +
+            source.url +
             '" target="_blank" rel="noopener noreferrer">' +
-            "DOI" +
+            source.id +
             "</a>"
           );
         },
-        filterValueGetter: () => "DOI",
+        filterValueGetter: params => {
+          const source = params.data.source;
+          return source.id;
+        },
         filter: "textFilter"
       }
     ];
@@ -203,6 +215,7 @@ class RnaHalfLifeDataTable extends Component {
         get-col-defs={RnaHalfLifeDataTable.getColDefs}
         get-col-sort-order={RnaHalfLifeDataTable.getColSortOrder}
         dom-layout="normal"
+        set-scene-metadata={this.props["set-scene-metadata"]}
       />
     );
   }

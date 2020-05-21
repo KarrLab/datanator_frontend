@@ -3,7 +3,7 @@
 describe("StatsToolPanel", function() {
   it("Display stats of selected rows correctly", function() {
     const route = "metabolite";
-    const entity = "dTDP-D-Glucose";
+    const entity = "NBSCHQHZLSJFNQ-VFUOTHLCSA-N"; // Beta-D-Glucose 6-phosphate
     const url = "/" + route + "/" + entity;
     const dataContainerId = "concentration";
 

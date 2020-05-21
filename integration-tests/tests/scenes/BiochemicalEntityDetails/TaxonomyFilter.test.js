@@ -3,21 +3,26 @@
 describe("TaxonomyFilter", function() {
   it("Correctly filters rows", function() {
     const route = "metabolite";
-    const entity = "dTDP-D-Glucose";
+    const entity = "YSYKRGRSMLTJNL-URARBOGNSA-L"; // TDP-Glucose
     const organism = "Escherichia coli";
     const url = "/" + route + "/" + entity + "/" + organism;
     const dataContainerId = "concentration";
 
     //use fixture with taxon_distance always = 1
     cy.server();
-    cy.fixture("metabolite-concentrations-" + entity).then(json => {
-      cy.route({
-        method: "GET",
-        url: "/metabolites/concentration/?metabolite=" + entity + "&*",
-        status: 200,
-        response: json
-      });
-    });
+    cy.fixture("metabolite-concentrations-" + entity + "-" + organism).then(
+      json => {
+        cy.route({
+          method: "GET",
+          url:
+            "/metabolites/concentrations/similar_compounds/?inchikey=" +
+            entity +
+            "&*",
+          status: 200,
+          response: json
+        });
+      }
+    );
 
     cy.visit(url);
 

@@ -3,7 +3,7 @@
 describe("DataTable", function() {
   it("Data table displays, column toggle visibility, data downloads, and data tables mount and unmounts", function() {
     const route = "metabolite";
-    const entity = "dTDP-D-Glucose";
+    const entity = "HXXFSFRBOHSIMQ-VFUOTHLCSA-N"; // Alpha-D-glucose 1-phosphate
     const organism = "Escherichia coli";
     const url = "/" + route + "/" + entity + "/" + organism;
 
@@ -22,7 +22,7 @@ describe("DataTable", function() {
       .first()
       .find(".ag-header-cell-text")
       .should($el => {
-        expect($el.text().startsWith("Concentration (")).to.be.true;
+        expect($el.text().startsWith("Concentration")).to.be.true;
       });
 
     // toggle all columns

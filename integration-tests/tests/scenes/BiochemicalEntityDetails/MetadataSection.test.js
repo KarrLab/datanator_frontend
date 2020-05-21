@@ -3,7 +3,7 @@
 describe("MetadataSection", function() {
   it("Metadata section mounts and unmounts", function() {
     const route = "metabolite";
-    const entity = "dTDP-D-Glucose";
+    const entity = "YSYKRGRSMLTJNL-KFQCIAAJSA-N"; // DTDP-D-Glucose
     const organism = "Escherichia coli";
 
     cy.visit("/" + route + "/" + entity);

@@ -3,7 +3,10 @@ import { withRouter } from "react-router";
 import PropTypes from "prop-types";
 import axios from "axios";
 import { getDataFromApi, genApiErrorHandler } from "~/services/RestApi";
-import { parseHistoryLocationPathname } from "~/utils/utils";
+import { parseHistoryLocationPathname, isEmpty } from "~/utils/utils";
+
+const IS_DEVELOPMENT = process.env.NODE_ENV === "development";
+const IS_TEST = process.env.NODE_ENV.startsWith("test");
 
 class MetadataSection extends Component {
   static propTypes = {
@@ -21,7 +24,8 @@ class MetadataSection extends Component {
 
     this.locationPathname = null;
     this.unlistenToHistory = null;
-    this.cancelTokenSource = null;
+    this.queryCancelTokenSource = null;
+    this.taxonCancelTokenSource = null;
 
     this.state = { sections: [] };
   }
@@ -40,8 +44,11 @@ class MetadataSection extends Component {
   componentWillUnmount() {
     this.unlistenToHistory();
     this.unlistenToHistory = null;
-    if (this.cancelTokenSource) {
-      this.cancelTokenSource.cancel();
+    if (this.queryCancelTokenSource) {
+      this.queryCancelTokenSource.cancel();
+    }
+    if (this.taxonCancelTokenSource) {
+      this.taxonCancelTokenSource.cancel();
     }
   }
 
@@ -58,39 +65,91 @@ class MetadataSection extends Component {
     const query = route.query;
     const organism = route.organism;
 
-    if (this.cancelTokenSource) {
-      this.cancelTokenSource.cancel();
+    if (this.queryCancelTokenSource) {
+      this.queryCancelTokenSource.cancel();
     }
 
-    this.cancelTokenSource = axios.CancelToken.source();
-    const url = this.props["get-metadata-url"](query, organism);
-    getDataFromApi([url], { cancelToken: this.cancelTokenSource.token })
-      .then(response => {
-        const processedMetadata = this.props["process-metadata"](response.data);
-        const formattedMetadataSections = this.props["format-metadata"](
-          processedMetadata,
-          organism
-        );
-        this.props["set-scene-metadata"]({
-          title: this.props["format-title"](processedMetadata),
-          organism: organism,
-          metadataSections: formattedMetadataSections,
-          other: processedMetadata.other
-        });
-        this.setState({ sections: formattedMetadataSections });
-      })
-      .catch(
-        genApiErrorHandler(
-          [url],
-          "Unable to get metadata about " +
-            this.props["entity-type"] +
-            " '" +
-            query +
-            "'."
-        )
+    if (this.taxonCancelTokenSource) {
+      this.taxonCancelTokenSource.cancel();
+    }
+
+    this.queryCancelTokenSource = axios.CancelToken.source();
+    const queryUrl = this.props["get-metadata-url"](query, organism);
+    if (organism) {
+      this.taxonCancelTokenSource = axios.CancelToken.source();
+    }
+    const taxonUrl = "taxon/canon_rank_distance_by_name/?name=" + organism;
+    axios
+      .all([
+        getDataFromApi([queryUrl], {
+          cancelToken: this.queryCancelTokenSource.token
+        }),
+        organism
+          ? getDataFromApi([taxonUrl], {
+              cancelToken: this.taxonCancelTokenSource.token
+            })
+          : null
+      ])
+      .then(
+        axios.spread((...responses) => {
+          const queryResponse = responses[0];
+          if (
+            isEmpty(queryResponse.data) ||
+            queryResponse.data === "Record request exceeds limit"
+          ) {
+            this.props["set-scene-metadata"]({
+              error404: true
+            });
+          } else {
+            const processedMetadata = this.props["process-metadata"](
+              queryResponse.data
+            );
+            const formattedMetadataSections = this.props["format-metadata"](
+              processedMetadata,
+              organism
+            );
+            this.props["set-scene-metadata"]({
+              error404: false,
+              title: this.props["format-title"](processedMetadata),
+              organism: organism,
+              metadataSections: formattedMetadataSections,
+              other: processedMetadata.other
+            });
+            this.setState({ sections: formattedMetadataSections });
+          }
+        })
       )
+      .catch(error => {
+        if (
+          "response" in error &&
+          "request" in error.response &&
+          error.response.request.constructor.name === "XMLHttpRequest"
+        ) {
+          const response = error.response;
+          if (
+            response.config.url.endsWith(taxonUrl) &&
+            response.status === 500
+          ) {
+            this.props["set-scene-metadata"]({
+              error404: true
+            });
+          } else {
+            genApiErrorHandler(
+              [queryUrl],
+              "Unable to get metadata about " +
+                this.props["entity-type"] +
+                " '" +
+                query +
+                "'."
+            )(error);
+          }
+        } else if (!axios.isCancel(error) && (IS_DEVELOPMENT || IS_TEST)) {
+          console.error(error);
+        }
+      })
       .finally(() => {
-        this.cancelTokenSource = null;
+        this.queryCancelTokenSource = null;
+        this.taxonCancelTokenSource = null;
       });
   }
 
