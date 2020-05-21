@@ -57,8 +57,7 @@ class RateConstantsDataTable extends Component {
 
       if (organism != null) {
         let distance = "";
-        const keys = Object.keys(datum.taxon_distance);
-        if (keys.length === 4) {
+        if (organism in datum.taxon_distance) {
           distance = datum.taxon_distance[organism];
         } else {
           distance = lengthOfTaxonomicRanks + 1;
