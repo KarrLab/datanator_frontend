@@ -82,35 +82,37 @@ class ConcentrationDataTable extends Component {
           if (conc.growthPhase && conc.growthPhase.indexOf(" Phase") >= 0) {
             conc.growthPhase = conc.growthPhase.split(" Phase")[0];
           }
-          if (
-            metConc.reference &&
-            "doi" in metConc.reference &&
-            metConc.reference.doi
-          ) {
-            conc.source = {
-              id: "DOI: " + metConc.reference.doi,
-              url: "https://dx.doi.org/" + metConc.reference.doi
-            };
-          } else if (
-            metConc.reference &&
-            "pubmed_id" in metConc.reference &&
-            metConc.reference.pubmed_id
-          ) {
-            conc.source = {
-              id: "PubMed: " + metConc.reference.pubmed_id,
-              url:
-                "https://www.ncbi.nlm.nih.gov/pubmed/" +
-                metConc.reference.pubmed_id
-            };
-          } else if (
-            metConc.reference &&
-            "reference_text" in metConc.reference &&
-            metConc.reference.reference_text
-          ) {
-            conc.source = {
-              id: metConc.reference.reference_text,
-              url: null
-            };
+          if (metConc.reference) {
+            if (metConc.reference.namespace === "doi") {
+              conc.source = {
+                id: "DOI: " + metConc.reference.id,
+                url: "https://dx.doi.org/" + metConc.reference.id
+              };
+            } else if (metConc.reference.namespace === "ecmdb") {
+              conc.source = {
+                id: "ECMDB: " + metConc.reference.id,
+                url: "http://ecmdb.ca/compounds/" + metConc.reference.id
+              };
+            } else if (metConc.reference.namespace === "ymdb") {
+              conc.source = {
+                id: "YMDB: " + metConc.reference.id,
+                url: "http://www.ymdb.ca/compounds/" + metConc.reference.id
+              };
+            } else if (
+              metConc.reference.namespace === "pubmed" &&
+              metConc.reference.id
+            ) {
+              conc.source = {
+                id: "PubMed: " + metConc.reference.id,
+                url:
+                  "https://www.ncbi.nlm.nih.gov/pubmed/" + metConc.reference.id
+              };
+            } else if (metConc.reference.text) {
+              conc.source = {
+                id: metConc.reference.text,
+                url: null
+              };
+            }
           }
           if (!isNaN(conc.value)) {
             formattedData.push(conc);
