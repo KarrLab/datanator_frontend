@@ -64,11 +64,16 @@ class SearchForm extends Component {
       ) {
         const query = route.query;
         const organism = route.organism;
-        const organismItem = {
-          _source: {
-            tax_name: organism
-          }
-        };
+        let organismItem;
+        if (organism) {
+          organismItem = {
+            _source: {
+              tax_name: organism
+            }
+          };
+        } else {
+          organismItem = null;
+        }
 
         this.setState({
           query: query,
@@ -166,6 +171,7 @@ class SearchForm extends Component {
     let url = "/search/";
     url += this.state.query + "/";
     if (this.state.organism) {
+      console.log(this.state.organism);
       url += this.state.organism["_source"]["tax_name"] + "/";
     }
     this.props.history.push(url);
