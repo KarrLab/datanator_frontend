@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { HashLink } from "react-router-hash-link";
 import { scrollTo } from "~/utils/utils";
 import { MetadataSection } from "./MetadataSection";
+// import { RnaModificationDataTable } from "./RnaModificationDataTable";
 import { RnaHalfLifeDataTable } from "./RnaHalfLifeDataTable";
 import { ProteinAbundanceDataTable } from "./ProteinAbundanceDataTable";
 import { ProteinModificationDataTable } from "./ProteinModificationDataTable";
@@ -90,6 +91,11 @@ class Gene extends Component {
               <MetadataSection
                 set-scene-metadata={this.setMetadata.bind(this)}
               />
+              {/*
+              <RnaModificationDataTable
+                set-scene-metadata={this.setMetadata.bind(this)}
+              />
+              */}
               <RnaHalfLifeDataTable
                 set-scene-metadata={this.setMetadata.bind(this)}
               />
