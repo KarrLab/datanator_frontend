@@ -109,9 +109,13 @@ class MetadataSection extends Component {
     processedData.description = null;
     processedData.ecCode = rawData[0].definition.ec_code[0];
     processedData.pathways = rawData[0].kegg_pathway;
-    processedData.descriptionUrl =
-      "https://www.ebi.ac.uk/proteins/api/proteins?offset=0&size=1&gene=" +
-      rawData[0].gene_name[0];
+    if (rawData[0].gene_name[0].match(/^(\d+SrRNA|tRNA-[A-Z][a-z]+)$/)) {
+      processedData.descriptionUrl = null;
+    } else {
+      processedData.descriptionUrl =
+        "https://www.ebi.ac.uk/proteins/api/proteins?offset=0&size=1&gene=" +
+        rawData[0].gene_name[0];
+    }
 
     processedData.relatedLinksUrl =
       "proteins/related/related_reactions/?ko=" + rawData[0].kegg_orthology_id;
@@ -126,18 +130,20 @@ class MetadataSection extends Component {
   static formatMetadata(processedData, organism) {
     const sections = [];
 
-    sections.push({
-      id: "description",
-      title: "Description",
-      content: (
-        <div>
-          <LoadExternalContent
-            url={processedData.descriptionUrl}
-            format-results={MetadataSection.processDescriptionFromUniprot}
-          />
-        </div>
-      )
-    });
+    if (processedData.descriptionUrl) {
+      sections.push({
+        id: "description",
+        title: "Description",
+        content: (
+          <div>
+            <LoadExternalContent
+              url={processedData.descriptionUrl}
+              format-results={MetadataSection.processDescriptionFromUniprot}
+            />
+          </div>
+        )
+      });
+    }
 
     const crossRefs = [];
 
