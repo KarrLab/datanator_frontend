@@ -99,7 +99,7 @@ describe("Reaction data page", () => {
       "field",
       "taxonomicProximity"
     );
-    expect(taxonSimCol.valueFormatter({ value: 3 })).toEqual("Family");
+    expect(taxonSimCol.valueFormatter({ value: 2 })).toEqual("Family");
   });
 
   it("Properly format side bar", () => {

@@ -190,7 +190,7 @@
     },
     "kinlaw_id": 6051,
     "mechanism": null,
-    "media": "75 mM Tris-HCl, 65 mM KCl, 1 mM DTT, 50 \u00b5g/ml pyruvate kinase, 50 \u00b5g/ml lactic dehydrogenase, 1 mM phosphoenolpyruvate, 0.2 mM NADH, 5 mM MgCl2",
+    "media": "75 mM Tris-HCl, 65 mM KCl, 1 mM DTT, 50 \\u00b5g/ml pyruvate kinase, 50 \\u00b5g/ml lactic dehydrogenase, 1 mM phosphoenolpyruvate, 0.2 mM NADH, 5 mM MgCl2",
     "modified": "2019-10-22T20:17:46.821000Z",
     "parameter": [
       {
@@ -651,7 +651,7 @@
     },
     "kinlaw_id": 6052,
     "mechanism": null,
-    "media": "75 mM Tris-HCl, 65 mM KCl, 1 mM DTT, 50 \u00b5g/ml pyruvate kinase, 50 \u00b5g/ml lactic dehydrogenase, 1 mM phosphoenolpyruvate, 0.2 mM NADH, 5 mM MgCl2",
+    "media": "75 mM Tris-HCl, 65 mM KCl, 1 mM DTT, 50 \\u00b5g/ml pyruvate kinase, 50 \\u00b5g/ml lactic dehydrogenase, 1 mM phosphoenolpyruvate, 0.2 mM NADH, 5 mM MgCl2",
     "modified": "2019-10-22T20:17:46.831000Z",
     "parameter": [
       {
@@ -1112,7 +1112,7 @@
     },
     "kinlaw_id": 6053,
     "mechanism": null,
-    "media": "75 mM Tris-HCl, 65 mM KCl, 1 mM DTT, 50 \u00b5g/ml pyruvate kinase, 50 \u00b5g/ml lactic dehydrogenase, 1 mM phosphoenolpyruvate, 0.2 mM NADH, 5 mM MgCl2",
+    "media": "75 mM Tris-HCl, 65 mM KCl, 1 mM DTT, 50 \\u00b5g/ml pyruvate kinase, 50 \\u00b5g/ml lactic dehydrogenase, 1 mM phosphoenolpyruvate, 0.2 mM NADH, 5 mM MgCl2",
     "modified": "2019-10-22T20:17:46.841000Z",
     "parameter": [
       {
@@ -1573,7 +1573,7 @@
     },
     "kinlaw_id": 6054,
     "mechanism": null,
-    "media": "75 mM Tris-HCl, 65 mM KCl, 1 mM DTT, 50 \u00b5g/ml pyruvate kinase, 50 \u00b5g/ml lactic dehydrogenase, 1 mM phosphoenolpyruvate, 0.2 mM NADH, 5 mM MgCl2",
+    "media": "75 mM Tris-HCl, 65 mM KCl, 1 mM DTT, 50 \\u00b5g/ml pyruvate kinase, 50 \\u00b5g/ml lactic dehydrogenase, 1 mM phosphoenolpyruvate, 0.2 mM NADH, 5 mM MgCl2",
     "modified": "2019-10-22T20:17:46.852000Z",
     "parameter": [
       {
@@ -3417,7 +3417,7 @@
     },
     "kinlaw_id": 6061,
     "mechanism": null,
-    "media": "75 mM Tris-HCl, 65 mM KCl, 1 mM DTT, 50 \u00b5g/ml pyruvate kinase, 50 \u00b5g/ml lactic dehydrogenase, 1 mM phosphoenolpyruvate, 0.2 mM NADH, 5 mM MgCl2",
+    "media": "75 mM Tris-HCl, 65 mM KCl, 1 mM DTT, 50 \\u00b5g/ml pyruvate kinase, 50 \\u00b5g/ml lactic dehydrogenase, 1 mM phosphoenolpyruvate, 0.2 mM NADH, 5 mM MgCl2",
     "modified": "2019-10-22T20:17:46.925000Z",
     "parameter": [
       {
@@ -4010,7 +4010,7 @@
     },
     "kinlaw_id": 6062,
     "mechanism": null,
-    "media": "75 mM Tris-HCl, 65 mM KCl, 1 mM DTT, 50 \u00b5g/ml pyruvate kinase, 50 \u00b5g/ml lactic dehydrogenase, 1 mM phosphoenolpyruvate, 0.2 mM NADH, 5 mM MgCl2",
+    "media": "75 mM Tris-HCl, 65 mM KCl, 1 mM DTT, 50 \\u00b5g/ml pyruvate kinase, 50 \\u00b5g/ml lactic dehydrogenase, 1 mM phosphoenolpyruvate, 0.2 mM NADH, 5 mM MgCl2",
     "modified": "2019-10-22T20:17:46.936000Z",
     "parameter": [
       {
@@ -4603,7 +4603,7 @@
     },
     "kinlaw_id": 6063,
     "mechanism": null,
-    "media": "75 mM Tris-HCl, 65 mM KCl, 1 mM DTT, 50 \u00b5g/ml pyruvate kinase, 50 \u00b5g/ml lactic dehydrogenase, 1 mM phosphoenolpyruvate, 0.2 mM NADH, 5 mM MgCl2",
+    "media": "75 mM Tris-HCl, 65 mM KCl, 1 mM DTT, 50 \\u00b5g/ml pyruvate kinase, 50 \\u00b5g/ml lactic dehydrogenase, 1 mM phosphoenolpyruvate, 0.2 mM NADH, 5 mM MgCl2",
     "modified": "2019-10-22T20:17:46.946000Z",
     "parameter": [
       {

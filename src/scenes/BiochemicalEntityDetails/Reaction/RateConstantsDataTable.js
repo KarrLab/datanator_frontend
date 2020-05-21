@@ -34,7 +34,7 @@ class RateConstantsDataTable extends Component {
     return "reactions/kinlaw_by_name/?" + args.join("&");
   }
 
-  static formatData(rawData, organism, lengthOfTaxonomicRanks) {
+  static formatData(rawData, organism) {
     const formattedData = [];
 
     for (const datum of rawData) {
@@ -56,13 +56,11 @@ class RateConstantsDataTable extends Component {
       };
 
       if (organism != null) {
-        let distance = "";
-        if (organism in datum.taxon_distance) {
-          distance = datum.taxon_distance[organism];
-        } else {
-          distance = lengthOfTaxonomicRanks + 1;
-        }
-        formattedDatum["taxonomicProximity"] = distance;
+        formattedDatum["taxonomicProximity"] = DataTable.calcTaxonomicDistance(
+          datum.taxon_distance,
+          organism,
+          datum.taxon_name
+        );
       }
 
       if (
@@ -256,7 +254,7 @@ class RateConstantsDataTable extends Component {
       hide: true,
       filter: "taxonomyFilter",
       valueFormatter: params => {
-        const value = taxonomicRanks[params.value - 1];
+        const value = taxonomicRanks[params.value];
         return upperCaseFirstLetter(value);
       }
     });

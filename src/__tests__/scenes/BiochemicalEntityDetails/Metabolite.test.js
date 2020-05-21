@@ -44,10 +44,10 @@ describe("Metabolite data page", () => {
       uncertainty: null,
       units: "μM",
       organism: "Escherichia coli BW25113",
-      taxonomicProximity: 1,
+      taxonomicProximity: 0,
       growthPhase: "Stationary",
       growthMedia:
-        "48 mM Na2HPO4, 22 mM KH2PO4, 10 mM NaCl, 45 mM (NH4)2SO4, supplemented with 1 mM MgSO4, 1 mg/l thiamine·HCl, 5.6 mg/l CaCl2, 8 mg/l FeCl3, 1 mg/l MnCl2·4H2O, 1.7 mg/l ZnCl2, 0.43 mg/l CuCl2·2H2O, 0.6 mg/l CoCl2·2H2O and 0.6 mg/l Na2MoO4·2H2O.  4 g/L Gluco",
+        "48 mM Na2HPO4, 22 mM KH2PO4, 10 mM NaCl, 45 mM (NH4)2SO4, supplemented with 1 mM MgSO4, 1 mg/l thiamine\\u00b7HCl, 5.6 mg/l CaCl2, 8 mg/l FeCl3, 1 mg/l MnCl2\\u00b74H2O, 1.7 mg/l ZnCl2, 0.43 mg/l CuCl2\\u00b72H2O, 0.6 mg/l CoCl2\\u00b72H2O and 0.6 mg/l Na2MoO4\\u00b72H2O.  4 g/L Gluco",
       growthConditions:
         "Bioreactor, pH controlled, O2 and CO2 controlled, dilution rate: 0.2/h",
       source: {

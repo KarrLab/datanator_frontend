@@ -217,17 +217,57 @@ class DataTable extends Component {
 
   static calcTaxonomicRanks(organismData) {
     const ranks = [];
-    if (organismData[1]["rank"] === "species") {
-      ranks.push("strain");
-    } else if (organismData[1]["rank"] === "genus") {
-      ranks.push("species");
-    }
-    for (let iLineage = 1; iLineage < organismData.length - 1; iLineage++) {
-      const rank = organismData[iLineage]["rank"];
+    for (let iLineage = 0; iLineage < organismData.length; iLineage++) {
+      const lineage = organismData[iLineage];
+      let rank;
+      if ("rank" in lineage) {
+        rank = lineage["rank"];
+      } else if (iLineage === organismData.length - 1) {
+        rank = "cellular organisms";
+      } else if (organismData[iLineage + 1].rank === "species") {
+        rank = "strain";
+      } else if (organismData[iLineage + 1].rank === "genus") {
+        rank = "species";
+      } else if (organismData[iLineage + 1].rank === "family") {
+        rank = "genus";
+      } else if (organismData[iLineage + 1].rank === "order") {
+        rank = "family";
+      } else if (organismData[iLineage + 1].rank === "class") {
+        rank = "order";
+      } else if (organismData[iLineage + 1].rank === "phylum") {
+        rank = "class";
+      } else if (organismData[iLineage + 1].rank === "superkingdom") {
+        rank = "phylum";
+      }
       ranks.push(rank);
     }
-    ranks.push("cellular organisms");
     return ranks;
+  }
+
+  static calcTaxonomicDistance(taxonDistance, targetSpecies, measuredSpecies) {
+    const toAncestors = taxonDistance[targetSpecies + "_canon_ancestors"];
+    const fromAncestors = taxonDistance[measuredSpecies + "_canon_ancestors"];
+    let distance = null;
+
+    if (Object.keys(taxonDistance).length === 2) {
+      distance = 0;
+    } else {
+      toAncestors.push(targetSpecies);
+      fromAncestors.push(measuredSpecies);
+      distance = 0;
+      for (
+        let iLineage = 0;
+        iLineage < Math.min(toAncestors.length, fromAncestors.length);
+        iLineage++
+      ) {
+        if (toAncestors[iLineage] !== fromAncestors[iLineage]) {
+          distance = toAncestors.length - iLineage;
+          break;
+        }
+      }
+    }
+
+    return distance;
   }
 
   static shouldTableRender(data) {
@@ -252,11 +292,7 @@ class DataTable extends Component {
     const route = parseHistoryLocationPathname(this.props.history);
     const organism = route.organism;
 
-    const formattedData = this.props["format-data"](
-      rawData,
-      organism,
-      taxonomicRanks.length
-    );
+    const formattedData = this.props["format-data"](rawData, organism);
     this.sideBarDef = this.props["get-side-bar-def"](formattedData);
     this.colDefs = this.props["get-col-defs"](
       organism,

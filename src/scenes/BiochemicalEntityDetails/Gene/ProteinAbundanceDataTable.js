@@ -51,7 +51,11 @@ class ProteinAbundanceDataTable extends Component {
               organ: measurement.organ.replace("_", " ").toLowerCase()
             };
             if (organism != null) {
-              row["taxonomicProximity"] = docs.distance;
+              if (rawDatum.canon_ancestors.includes(organism)) {
+                row["taxonomicProximity"] = 0;
+              } else {
+                row["taxonomicProximity"] = docs.distance;
+              }
             }
             formattedData.push(row);
           }

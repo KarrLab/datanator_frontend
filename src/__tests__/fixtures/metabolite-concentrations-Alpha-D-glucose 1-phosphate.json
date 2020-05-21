@@ -25,7 +25,7 @@
         },
         "time_point": "-0.766",
         "time_unit": "h",
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.0437391044370952,
@@ -50,7 +50,7 @@
         },
         "time_point": "-0.366",
         "time_unit": "h",
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.044037960859234,
@@ -75,7 +75,7 @@
         },
         "time_point": "0.083",
         "time_unit": "h",
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.0825985953362733,
@@ -100,7 +100,7 @@
         },
         "time_point": "0.416",
         "time_unit": "h",
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.0535157374912768,
@@ -125,7 +125,7 @@
         },
         "time_point": "0.750",
         "time_unit": "h",
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.16936596120349,
@@ -150,7 +150,7 @@
         },
         "time_point": "1.083",
         "time_unit": "h",
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.0398610862700374,
@@ -175,7 +175,7 @@
         },
         "time_point": "1.516",
         "time_unit": "h",
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.0728301405098689,
@@ -200,7 +200,7 @@
         },
         "time_point": "1.866",
         "time_unit": "h",
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.0894460007493983,
@@ -225,7 +225,7 @@
         },
         "time_point": "-0.766",
         "time_unit": "h",
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.0437391044370952,
@@ -250,7 +250,7 @@
         },
         "time_point": "-0.366",
         "time_unit": "h",
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.044037960859234,
@@ -275,7 +275,7 @@
         },
         "time_point": "0.083",
         "time_unit": "h",
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.0825985953362733,
@@ -300,7 +300,7 @@
         },
         "time_point": "0.416",
         "time_unit": "h",
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.0535157374912768,
@@ -325,7 +325,7 @@
         },
         "time_point": "0.750",
         "time_unit": "h",
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.16936596120349,
@@ -350,7 +350,7 @@
         },
         "time_point": "1.083",
         "time_unit": "h",
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.0398610862700374,
@@ -375,7 +375,7 @@
         },
         "time_point": "1.516",
         "time_unit": "h",
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.0728301405098689,
@@ -400,7 +400,7 @@
         },
         "time_point": "1.866",
         "time_unit": "h",
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.0894460007493983,
@@ -425,7 +425,7 @@
         },
         "time_point": "-0.766",
         "time_unit": "h",
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.0437391044370952,
@@ -450,7 +450,7 @@
         },
         "time_point": "-0.366",
         "time_unit": "h",
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.044037960859234,
@@ -475,7 +475,7 @@
         },
         "time_point": "0.083",
         "time_unit": "h",
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.0825985953362733,
@@ -500,7 +500,7 @@
         },
         "time_point": "0.416",
         "time_unit": "h",
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.0535157374912768,
@@ -525,7 +525,7 @@
         },
         "time_point": "0.750",
         "time_unit": "h",
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.16936596120349,
@@ -550,7 +550,7 @@
         },
         "time_point": "1.083",
         "time_unit": "h",
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.0398610862700374,
@@ -575,7 +575,7 @@
         },
         "time_point": "1.516",
         "time_unit": "h",
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.0728301405098689,
@@ -600,7 +600,7 @@
         },
         "time_point": "1.866",
         "time_unit": "h",
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": "413.0",
@@ -668,7 +668,7 @@
         "concentration": "33.4",
         "concentration_units": "uM",
         "error": "0.0",
-        "growth_media": "48 mM Na2HPO4, 22 mM KH2PO4, 10 mM NaCl, 45 mM (NH4)2SO4, supplemented with 1 mM MgSO4, 1 mg/l thiamine\u00b7HCl, 5.6 mg/l CaCl2, 8 mg/l FeCl3, 1 mg/l MnCl2\u00b74H2O, 1.7 mg/l ZnCl2, 0.43 mg/l CuCl2\u00b72H2O, 0.6 mg/l CoCl2\u00b72H2O and 0.6 mg/l Na2MoO4\u00b72H2O.  4 g/L Gluco",
+        "growth_media": "48 mM Na2HPO4, 22 mM KH2PO4, 10 mM NaCl, 45 mM (NH4)2SO4, supplemented with 1 mM MgSO4, 1 mg/l thiamine\\u00b7HCl, 5.6 mg/l CaCl2, 8 mg/l FeCl3, 1 mg/l MnCl2\\u00b74H2O, 1.7 mg/l ZnCl2, 0.43 mg/l CuCl2\\u00b72H2O, 0.6 mg/l CoCl2\\u00b72H2O and 0.6 mg/l Na2MoO4\\u00b72H2O.  4 g/L Gluco",
         "growth_status": "Stationary Phase, glucose limited",
         "growth_system": "Bioreactor, pH controlled, O2 and CO2 controlled, dilution rate: 0.2/h",
         "internal": null,
@@ -699,7 +699,7 @@
     "inchikey": "HXXFSFRBOHSIMQ-VFUOTHLCSA-N",
     "kegg_id": "C00103",
     "metabolite": "Glucose 1-phosphate",
-    "similarity_score": 1.0,
+    "similarity_score": 1,
     "synonyms": [
       "&alpha;-D-glucose-1-P",
       "&alpha;-glucose-1-phosphate",
@@ -719,12 +719,12 @@
       "a-delta-Glucose-1-phosphoric acid",
       "a-Glucose-1-phosphate",
       "a-Glucose-1-phosphoric acid",
-      "a-\u03b4-Glucopyranosyl phosphate",
-      "a-\u03b4-Glucopyranosyl phosphoric acid",
-      "a-\u03b4-Glucose 1-phosphate",
-      "a-\u03b4-Glucose 1-phosphoric acid",
-      "a-\u03b4-Glucose-1-phosphate",
-      "a-\u03b4-Glucose-1-phosphoric acid",
+      "a-\\u03b4-Glucopyranosyl phosphate",
+      "a-\\u03b4-Glucopyranosyl phosphoric acid",
+      "a-\\u03b4-Glucose 1-phosphate",
+      "a-\\u03b4-Glucose 1-phosphoric acid",
+      "a-\\u03b4-Glucose-1-phosphate",
+      "a-\\u03b4-Glucose-1-phosphoric acid",
       "Alpha-D-Glucopyranosyl phosphate",
       "alpha-D-Glucopyranosyl phosphoric acid",
       "Alpha-D-Glucose 1-phosphate",
@@ -754,8 +754,8 @@
       "D-Glucose-a-1-phosphoric acid",
       "D-Glucose-alpha-1-phosphate",
       "D-Glucose-alpha-1-phosphoric acid",
-      "D-Glucose-\u03b1-1-phosphate",
-      "D-Glucose-\u03b1-1-phosphoric acid",
+      "D-Glucose-\\u03b1-1-phosphate",
+      "D-Glucose-\\u03b1-1-phosphoric acid",
       "Delta-Glucopyranose 1-phosphate",
       "delta-Glucopyranose 1-phosphoric acid",
       "Delta-Glucose 1-phosphate",
@@ -770,28 +770,28 @@
       "Glucose-1-phosphate",
       "Glucose-1-phosphoric acid",
       "Glucose-1P",
-      "\u03b1-D-Glucopyranosyl phosphate",
-      "\u03b1-D-Glucopyranosyl phosphoric acid",
-      "\u03b1-D-Glucose 1-phosphate",
-      "\u03b1-D-Glucose 1-phosphoric acid",
-      "\u03b1-D-Glucose-1-P",
-      "\u03b1-D-Glucose-1-phosphate",
-      "\u03b1-D-Glucose-1-phosphoric acid",
-      "\u03b1-Glucose-1-phosphate",
-      "\u03b1-Glucose-1-phosphoric acid",
-      "\u03b1-\u03b4-Glucopyranosyl phosphate",
-      "\u03b1-\u03b4-Glucopyranosyl phosphoric acid",
-      "\u03b1-\u03b4-Glucose 1-phosphate",
-      "\u03b1-\u03b4-Glucose 1-phosphoric acid",
-      "\u03b1-\u03b4-Glucose-1-phosphate",
-      "\u03b1-\u03b4-Glucose-1-phosphoric acid",
-      "\u03b4-Glucopyranose 1-phosphate",
-      "\u03b4-Glucopyranose 1-phosphoric acid",
-      "\u03b4-Glucose 1-phosphate",
-      "\u03b4-Glucose 1-phosphoric acid",
-      "\u03b4-Glucose-1-P",
-      "\u03b4-Glucose-1-phosphate",
-      "\u03b4-Glucose-1-phosphoric acid"
+      "\\u03b1-D-Glucopyranosyl phosphate",
+      "\\u03b1-D-Glucopyranosyl phosphoric acid",
+      "\\u03b1-D-Glucose 1-phosphate",
+      "\\u03b1-D-Glucose 1-phosphoric acid",
+      "\\u03b1-D-Glucose-1-P",
+      "\\u03b1-D-Glucose-1-phosphate",
+      "\\u03b1-D-Glucose-1-phosphoric acid",
+      "\\u03b1-Glucose-1-phosphate",
+      "\\u03b1-Glucose-1-phosphoric acid",
+      "\\u03b1-\\u03b4-Glucopyranosyl phosphate",
+      "\\u03b1-\\u03b4-Glucopyranosyl phosphoric acid",
+      "\\u03b1-\\u03b4-Glucose 1-phosphate",
+      "\\u03b1-\\u03b4-Glucose 1-phosphoric acid",
+      "\\u03b1-\\u03b4-Glucose-1-phosphate",
+      "\\u03b1-\\u03b4-Glucose-1-phosphoric acid",
+      "\\u03b4-Glucopyranose 1-phosphate",
+      "\\u03b4-Glucopyranose 1-phosphoric acid",
+      "\\u03b4-Glucose 1-phosphate",
+      "\\u03b4-Glucose 1-phosphoric acid",
+      "\\u03b4-Glucose-1-P",
+      "\\u03b4-Glucose-1-phosphate",
+      "\\u03b4-Glucose-1-phosphoric acid"
     ]
   }
 ]

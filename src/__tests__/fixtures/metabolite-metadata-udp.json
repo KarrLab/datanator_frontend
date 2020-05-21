@@ -4,7 +4,9 @@
   "cas_registry_number": "58-98-0",
   "cellular_locations": {
     "cellular_location": "Cytosol",
-    "reference": ["ECMDB"]
+    "reference": [
+      "ECMDB"
+    ]
   },
   "chebi_id": "17659",
   "chemical_formula": "C9H14N2O12P2",

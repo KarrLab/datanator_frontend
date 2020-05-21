@@ -1,6 +1,6 @@
 [
   {
-    "similarity_score": 1.0
+    "similarity_score": 1
   },
   {
     "concentrations": [
@@ -9,19 +9,19 @@
           {
             "ec_number": "1.1.1.22",
             "k_i": null,
-            "k_m": 1.9429104901336e-05,
+            "k_m": 0.000019429104901336,
             "unit": "M"
           },
           {
             "ec_number": "2.4.1.11",
             "k_i": null,
-            "k_m": 6.71737534609049e-05,
+            "k_m": 0.0000671737534609049,
             "unit": "M"
           },
           {
             "ec_number": "2.4.1.117",
             "k_i": null,
-            "k_m": 2.2248595461287e-07,
+            "k_m": 2.2248595461287e-7,
             "unit": "M"
           },
           {
@@ -51,19 +51,19 @@
           {
             "ec_number": "2.4.1.66",
             "k_i": null,
-            "k_m": 2.14386102214514e-05,
+            "k_m": 0.0000214386102214514,
             "unit": "M"
           },
           {
             "ec_number": "2.4.1.80",
             "k_i": null,
-            "k_m": 7.38308878451289e-06,
+            "k_m": 0.00000738308878451289,
             "unit": "M"
           },
           {
             "ec_number": "2.4.1.B7",
             "k_i": null,
-            "k_m": 1.75e-06,
+            "k_m": 0.00000175,
             "unit": "M"
           },
           {
@@ -87,19 +87,19 @@
           {
             "ec_number": "1.1.1.22",
             "k_i": null,
-            "k_m": 1.9429104901336e-05,
+            "k_m": 0.000019429104901336,
             "unit": "M"
           },
           {
             "ec_number": "2.4.1.11",
             "k_i": null,
-            "k_m": 6.71737534609049e-05,
+            "k_m": 0.0000671737534609049,
             "unit": "M"
           },
           {
             "ec_number": "2.4.1.117",
             "k_i": null,
-            "k_m": 2.2248595461287e-07,
+            "k_m": 2.2248595461287e-7,
             "unit": "M"
           },
           {
@@ -129,19 +129,19 @@
           {
             "ec_number": "2.4.1.66",
             "k_i": null,
-            "k_m": 2.14386102214514e-05,
+            "k_m": 0.0000214386102214514,
             "unit": "M"
           },
           {
             "ec_number": "2.4.1.80",
             "k_i": null,
-            "k_m": 7.38308878451289e-06,
+            "k_m": 0.00000738308878451289,
             "unit": "M"
           },
           {
             "ec_number": "2.4.1.B7",
             "k_i": null,
-            "k_m": 1.75e-06,
+            "k_m": 0.00000175,
             "unit": "M"
           },
           {
@@ -206,7 +206,7 @@
           {
             "ec_number": "2.7.7.9",
             "k_i": null,
-            "k_m": 3.5e-05,
+            "k_m": 0.000035,
             "unit": "M"
           },
           {
@@ -248,7 +248,7 @@
           {
             "ec_number": "2.7.7.9",
             "k_i": null,
-            "k_m": 3.5e-05,
+            "k_m": 0.000035,
             "unit": "M"
           },
           {
@@ -301,7 +301,7 @@
           {
             "ec_number": "2.4.1.73",
             "k_i": null,
-            "k_m": 9e-06,
+            "k_m": 0.000009,
             "unit": "M"
           },
           {
@@ -313,7 +313,7 @@
           {
             "ec_number": "3.6.1.45",
             "k_i": null,
-            "k_m": 1.69836421899756e-05,
+            "k_m": 0.0000169836421899756,
             "unit": "M"
           },
           {
@@ -367,7 +367,7 @@
           {
             "ec_number": "2.4.1.73",
             "k_i": null,
-            "k_m": 9e-06,
+            "k_m": 0.000009,
             "unit": "M"
           },
           {
@@ -379,7 +379,7 @@
           {
             "ec_number": "3.6.1.45",
             "k_i": null,
-            "k_m": 1.69836421899756e-05,
+            "k_m": 0.0000169836421899756,
             "unit": "M"
           },
           {
@@ -505,7 +505,7 @@
         "concentration": "1910.0",
         "concentration_units": "uM",
         "error": "0.0",
-        "growth_media": "48 mM Na2HPO4, 22 mM KH2PO4, 10 mM NaCl, 45 mM (NH4)2SO4, supplemented with 1 mM MgSO4, 1 mg/l thiamine\u00b7HCl, 5.6 mg/l CaCl2, 8 mg/l FeCl3, 1 mg/l MnCl2\u00b74H2O, 1.7 mg/l ZnCl2, 0.43 mg/l CuCl2\u00b72H2O, 0.6 mg/l CoCl2\u00b72H2O and 0.6 mg/l Na2MoO4\u00b72H2O.  4 g/L Gluco",
+        "growth_media": "48 mM Na2HPO4, 22 mM KH2PO4, 10 mM NaCl, 45 mM (NH4)2SO4, supplemented with 1 mM MgSO4, 1 mg/l thiamine\\u00b7HCl, 5.6 mg/l CaCl2, 8 mg/l FeCl3, 1 mg/l MnCl2\\u00b74H2O, 1.7 mg/l ZnCl2, 0.43 mg/l CuCl2\\u00b72H2O, 0.6 mg/l CoCl2\\u00b72H2O and 0.6 mg/l Na2MoO4\\u00b72H2O.  4 g/L Gluco",
         "growth_status": "Stationary Phase, glucose limited",
         "growth_system": "Bioreactor, pH controlled, O2 and CO2 controlled, dilution rate: 0.2/h",
         "internal": null,
@@ -581,13 +581,13 @@
           {
             "ec_number": "2.4.1.135",
             "k_i": null,
-            "k_m": 2.5e-07,
+            "k_m": 2.5e-7,
             "unit": "M"
           },
           {
             "ec_number": "2.4.1.17",
             "k_i": null,
-            "k_m": 9.29168509831126e-05,
+            "k_m": 0.0000929168509831126,
             "unit": "M"
           },
           {
@@ -605,13 +605,13 @@
           {
             "ec_number": "2.4.1.135",
             "k_i": null,
-            "k_m": 2.5e-07,
+            "k_m": 2.5e-7,
             "unit": "M"
           },
           {
             "ec_number": "2.4.1.17",
             "k_i": null,
-            "k_m": 9.29168509831126e-05,
+            "k_m": 0.0000929168509831126,
             "unit": "M"
           },
           {
@@ -627,7 +627,7 @@
             "unit": "M"
           }
         ],
-        "concentration": 9.75492959634221e-05,
+        "concentration": 0.0000975492959634221,
         "last_modified": "2020-05-20T23:02:03.004000Z",
         "ncbi_taxonomy_id": 10090,
         "reference": {
@@ -662,7 +662,7 @@
         "concentration": "83.4",
         "concentration_units": "uM",
         "error": "0.0",
-        "growth_media": "48 mM Na2HPO4, 22 mM KH2PO4, 10 mM NaCl, 45 mM (NH4)2SO4, supplemented with 1 mM MgSO4, 1 mg/l thiamine\u00b7HCl, 5.6 mg/l CaCl2, 8 mg/l FeCl3, 1 mg/l MnCl2\u00b74H2O, 1.7 mg/l ZnCl2, 0.43 mg/l CuCl2\u00b72H2O, 0.6 mg/l CoCl2\u00b72H2O and 0.6 mg/l Na2MoO4\u00b72H2O.  4 g/L Gluco",
+        "growth_media": "48 mM Na2HPO4, 22 mM KH2PO4, 10 mM NaCl, 45 mM (NH4)2SO4, supplemented with 1 mM MgSO4, 1 mg/l thiamine\\u00b7HCl, 5.6 mg/l CaCl2, 8 mg/l FeCl3, 1 mg/l MnCl2\\u00b74H2O, 1.7 mg/l ZnCl2, 0.43 mg/l CuCl2\\u00b72H2O, 0.6 mg/l CoCl2\\u00b72H2O and 0.6 mg/l Na2MoO4\\u00b72H2O.  4 g/L Gluco",
         "growth_status": "Stationary Phase, glucose limited",
         "growth_system": "Bioreactor, pH controlled, O2 and CO2 controlled, dilution rate: 0.2/h",
         "internal": null,
@@ -765,7 +765,7 @@
           {
             "ec_number": "1.17.4.1",
             "k_i": null,
-            "k_m": 1.5e-06,
+            "k_m": 0.0000015,
             "unit": "M"
           },
           {
@@ -777,13 +777,13 @@
           {
             "ec_number": "2.7.7.24",
             "k_i": null,
-            "k_m": 2.05e-05,
+            "k_m": 0.0000205,
             "unit": "M"
           },
           {
             "ec_number": "2.7.7.6",
             "k_i": null,
-            "k_m": 4e-07,
+            "k_m": 4e-7,
             "unit": "M"
           },
           {
@@ -801,7 +801,7 @@
           {
             "ec_number": "1.17.4.1",
             "k_i": null,
-            "k_m": 1.5e-06,
+            "k_m": 0.0000015,
             "unit": "M"
           },
           {
@@ -813,13 +813,13 @@
           {
             "ec_number": "2.7.7.24",
             "k_i": null,
-            "k_m": 2.05e-05,
+            "k_m": 0.0000205,
             "unit": "M"
           },
           {
             "ec_number": "2.7.7.6",
             "k_i": null,
-            "k_m": 4e-07,
+            "k_m": 4e-7,
             "unit": "M"
           },
           {
@@ -962,13 +962,13 @@
           {
             "ec_number": "2.7.4.9",
             "k_i": null,
-            "k_m": 5e-06,
+            "k_m": 0.000005,
             "unit": "M"
           },
           {
             "ec_number": "3.5.4.12",
             "k_i": null,
-            "k_m": 4.6e-06,
+            "k_m": 0.0000046,
             "unit": "M"
           },
           {
@@ -1022,13 +1022,13 @@
           {
             "ec_number": "2.7.4.9",
             "k_i": null,
-            "k_m": 5e-06,
+            "k_m": 0.000005,
             "unit": "M"
           },
           {
             "ec_number": "3.5.4.12",
             "k_i": null,
-            "k_m": 4.6e-06,
+            "k_m": 0.0000046,
             "unit": "M"
           },
           {
@@ -1044,7 +1044,7 @@
             "unit": "M"
           }
         ],
-        "concentration": 1.18333622813687e-05,
+        "concentration": 0.0000118333622813687,
         "last_modified": "2020-05-20T23:02:03.302000Z",
         "ncbi_taxonomy_id": 9606,
         "reference": {
@@ -1064,7 +1064,7 @@
           {
             "ec_number": "1.1.1.22",
             "k_i": null,
-            "k_m": 1.7e-05,
+            "k_m": 0.000017,
             "unit": "M"
           },
           {
@@ -1100,13 +1100,13 @@
           {
             "ec_number": "2.4.2.26",
             "k_i": null,
-            "k_m": 1.08e-05,
+            "k_m": 0.0000108,
             "unit": "M"
           },
           {
             "ec_number": "2.7.1.74",
             "k_i": null,
-            "k_m": 1.66132477258361e-06,
+            "k_m": 0.00000166132477258361,
             "unit": "M"
           },
           {
@@ -1118,7 +1118,7 @@
           {
             "ec_number": "1.1.1.22",
             "k_i": null,
-            "k_m": 1.7e-05,
+            "k_m": 0.000017,
             "unit": "M"
           },
           {
@@ -1154,13 +1154,13 @@
           {
             "ec_number": "2.4.2.26",
             "k_i": null,
-            "k_m": 1.08e-05,
+            "k_m": 0.0000108,
             "unit": "M"
           },
           {
             "ec_number": "2.7.1.74",
             "k_i": null,
-            "k_m": 1.66132477258361e-06,
+            "k_m": 0.00000166132477258361,
             "unit": "M"
           },
           {
@@ -1217,7 +1217,7 @@
             "unit": "M"
           }
         ],
-        "concentration": 3.68397633433545e-05,
+        "concentration": 0.0000368397633433545,
         "last_modified": "2020-05-20T22:56:54.740000Z",
         "ncbi_taxonomy_id": 4932,
         "reference": {
@@ -1283,7 +1283,7 @@
         "concentration": "386.0",
         "concentration_units": "uM",
         "error": "0.0",
-        "growth_media": "48 mM Na2HPO4, 22 mM KH2PO4, 10 mM NaCl, 45 mM (NH4)2SO4, supplemented with 1 mM MgSO4, 1 mg/l thiamine\u00b7HCl, 5.6 mg/l CaCl2, 8 mg/l FeCl3, 1 mg/l MnCl2\u00b74H2O, 1.7 mg/l ZnCl2, 0.43 mg/l CuCl2\u00b72H2O, 0.6 mg/l CoCl2\u00b72H2O and 0.6 mg/l Na2MoO4\u00b72H2O.  4 g/L Gluco",
+        "growth_media": "48 mM Na2HPO4, 22 mM KH2PO4, 10 mM NaCl, 45 mM (NH4)2SO4, supplemented with 1 mM MgSO4, 1 mg/l thiamine\\u00b7HCl, 5.6 mg/l CaCl2, 8 mg/l FeCl3, 1 mg/l MnCl2\\u00b74H2O, 1.7 mg/l ZnCl2, 0.43 mg/l CuCl2\\u00b72H2O, 0.6 mg/l CoCl2\\u00b72H2O and 0.6 mg/l Na2MoO4\\u00b72H2O.  4 g/L Gluco",
         "growth_status": "Stationary Phase, glucose limited",
         "growth_system": "Bioreactor, pH controlled, O2 and CO2 controlled, dilution rate: 0.2/h",
         "internal": null,
@@ -1340,7 +1340,7 @@
           {
             "ec_number": "2.4.1.255",
             "k_i": null,
-            "k_m": 8.3211076993801e-06,
+            "k_m": 0.0000083211076993801,
             "unit": "M"
           },
           {
@@ -1352,7 +1352,7 @@
           {
             "ec_number": "2.4.1.B7",
             "k_i": null,
-            "k_m": 6.5e-05,
+            "k_m": 0.000065,
             "unit": "M"
           },
           {
@@ -1364,13 +1364,13 @@
           {
             "ec_number": "2.7.7.83",
             "k_i": null,
-            "k_m": 3.2e-05,
+            "k_m": 0.000032,
             "unit": "M"
           },
           {
             "ec_number": "2.7.8.17",
             "k_i": null,
-            "k_m": 2.4e-05,
+            "k_m": 0.000024,
             "unit": "M"
           },
           {
@@ -1418,7 +1418,7 @@
           {
             "ec_number": "2.4.1.255",
             "k_i": null,
-            "k_m": 8.3211076993801e-06,
+            "k_m": 0.0000083211076993801,
             "unit": "M"
           },
           {
@@ -1430,7 +1430,7 @@
           {
             "ec_number": "2.4.1.B7",
             "k_i": null,
-            "k_m": 6.5e-05,
+            "k_m": 0.000065,
             "unit": "M"
           },
           {
@@ -1442,13 +1442,13 @@
           {
             "ec_number": "2.7.7.83",
             "k_i": null,
-            "k_m": 3.2e-05,
+            "k_m": 0.000032,
             "unit": "M"
           },
           {
             "ec_number": "2.7.8.17",
             "k_i": null,
-            "k_m": 2.4e-05,
+            "k_m": 0.000024,
             "unit": "M"
           },
           {
@@ -1489,7 +1489,7 @@
           {
             "ec_number": "2.7.8.15",
             "k_i": null,
-            "k_m": 1.5e-05,
+            "k_m": 0.000015,
             "unit": "M"
           },
           {
@@ -1507,7 +1507,7 @@
           {
             "ec_number": "2.7.8.15",
             "k_i": null,
-            "k_m": 1.5e-05,
+            "k_m": 0.000015,
             "unit": "M"
           }
         ],
@@ -1530,25 +1530,25 @@
           {
             "ec_number": "2.4.1.224",
             "k_i": null,
-            "k_m": 9.4e-05,
+            "k_m": 0.000094,
             "unit": "M"
           },
           {
             "ec_number": "2.4.1.227",
             "k_i": null,
-            "k_m": 6.22058259025863e-05,
+            "k_m": 0.0000622058259025863,
             "unit": "M"
           },
           {
             "ec_number": "2.5.1.7",
             "k_i": null,
-            "k_m": 4.09694351797021e-05,
+            "k_m": 0.0000409694351797021,
             "unit": "M"
           },
           {
             "ec_number": "2.7.8.33",
             "k_i": null,
-            "k_m": 3.17909287160762e-07,
+            "k_m": 3.17909287160762e-7,
             "unit": "M"
           },
           {
@@ -1572,25 +1572,25 @@
           {
             "ec_number": "2.4.1.224",
             "k_i": null,
-            "k_m": 9.4e-05,
+            "k_m": 0.000094,
             "unit": "M"
           },
           {
             "ec_number": "2.4.1.227",
             "k_i": null,
-            "k_m": 6.22058259025863e-05,
+            "k_m": 0.0000622058259025863,
             "unit": "M"
           },
           {
             "ec_number": "2.5.1.7",
             "k_i": null,
-            "k_m": 4.09694351797021e-05,
+            "k_m": 0.0000409694351797021,
             "unit": "M"
           },
           {
             "ec_number": "2.7.8.33",
             "k_i": null,
-            "k_m": 3.17909287160762e-07,
+            "k_m": 3.17909287160762e-7,
             "unit": "M"
           },
           {
@@ -1675,7 +1675,7 @@
         "concentration": "542.0",
         "concentration_units": "uM",
         "error": "0.0",
-        "growth_media": "48 mM Na2HPO4, 22 mM KH2PO4, 10 mM NaCl, 45 mM (NH4)2SO4, supplemented with 1 mM MgSO4, 1 mg/l thiamine\u00b7HCl, 5.6 mg/l CaCl2, 8 mg/l FeCl3, 1 mg/l MnCl2\u00b74H2O, 1.7 mg/l ZnCl2, 0.43 mg/l CuCl2\u00b72H2O, 0.6 mg/l CoCl2\u00b72H2O and 0.6 mg/l Na2MoO4\u00b72H2O.  4 g/L Gluco",
+        "growth_media": "48 mM Na2HPO4, 22 mM KH2PO4, 10 mM NaCl, 45 mM (NH4)2SO4, supplemented with 1 mM MgSO4, 1 mg/l thiamine\\u00b7HCl, 5.6 mg/l CaCl2, 8 mg/l FeCl3, 1 mg/l MnCl2\\u00b74H2O, 1.7 mg/l ZnCl2, 0.43 mg/l CuCl2\\u00b72H2O, 0.6 mg/l CoCl2\\u00b72H2O and 0.6 mg/l Na2MoO4\\u00b72H2O.  4 g/L Gluco",
         "growth_status": "Stationary Phase, glucose limited",
         "growth_system": "Bioreactor, pH controlled, O2 and CO2 controlled, dilution rate: 0.2/h",
         "internal": null,
@@ -1714,19 +1714,19 @@
           {
             "ec_number": "2.7.1.74",
             "k_i": null,
-            "k_m": 7.14765705099622e-06,
+            "k_m": 0.00000714765705099622,
             "unit": "M"
           },
           {
             "ec_number": "2.7.7.83",
             "k_i": null,
-            "k_m": 5.09607692249636e-05,
+            "k_m": 0.0000509607692249636,
             "unit": "M"
           },
           {
             "ec_number": "2.7.7.9",
             "k_i": null,
-            "k_m": 4.8e-05,
+            "k_m": 0.000048,
             "unit": "M"
           },
           {
@@ -1738,7 +1738,7 @@
           {
             "ec_number": "3.6.1.15",
             "k_i": null,
-            "k_m": 5e-06,
+            "k_m": 0.000005,
             "unit": "M"
           },
           {
@@ -1750,7 +1750,7 @@
           {
             "ec_number": "3.6.3.8",
             "k_i": null,
-            "k_m": 3.7e-08,
+            "k_m": 3.7e-8,
             "unit": "M"
           },
           {
@@ -1768,7 +1768,7 @@
           {
             "ec_number": "2.4.1.11",
             "k_i": null,
-            "k_m": 1.7e-05,
+            "k_m": 0.000017,
             "unit": "M"
           },
           {
@@ -1810,19 +1810,19 @@
           {
             "ec_number": "2.7.1.74",
             "k_i": null,
-            "k_m": 7.14765705099622e-06,
+            "k_m": 0.00000714765705099622,
             "unit": "M"
           },
           {
             "ec_number": "2.7.7.83",
             "k_i": null,
-            "k_m": 5.09607692249636e-05,
+            "k_m": 0.0000509607692249636,
             "unit": "M"
           },
           {
             "ec_number": "2.7.7.9",
             "k_i": null,
-            "k_m": 4.8e-05,
+            "k_m": 0.000048,
             "unit": "M"
           },
           {
@@ -1834,7 +1834,7 @@
           {
             "ec_number": "3.6.1.15",
             "k_i": null,
-            "k_m": 5e-06,
+            "k_m": 0.000005,
             "unit": "M"
           },
           {
@@ -1846,7 +1846,7 @@
           {
             "ec_number": "3.6.3.8",
             "k_i": null,
-            "k_m": 3.7e-08,
+            "k_m": 3.7e-8,
             "unit": "M"
           },
           {
@@ -1864,7 +1864,7 @@
           {
             "ec_number": "2.4.1.11",
             "k_i": null,
-            "k_m": 1.7e-05,
+            "k_m": 0.000017,
             "unit": "M"
           },
           {
@@ -1917,7 +1917,7 @@
           {
             "ec_number": "6.3.4.2",
             "k_i": null,
-            "k_m": 5.42883523318981e-05,
+            "k_m": 0.0000542883523318981,
             "unit": "M"
           },
           {
@@ -1935,7 +1935,7 @@
           {
             "ec_number": "6.3.4.2",
             "k_i": null,
-            "k_m": 5.42883523318981e-05,
+            "k_m": 0.0000542883523318981,
             "unit": "M"
           }
         ],
@@ -1976,7 +1976,7 @@
           {
             "ec_number": "2.7.4.22",
             "k_i": null,
-            "k_m": 4.6e-05,
+            "k_m": 0.000046,
             "unit": "M"
           },
           {
@@ -1994,13 +1994,13 @@
           {
             "ec_number": "2.7.7.9",
             "k_i": null,
-            "k_m": 5.8e-05,
+            "k_m": 0.000058,
             "unit": "M"
           },
           {
             "ec_number": "6.3.4.2",
             "k_i": null,
-            "k_m": 4.37835585579793e-05,
+            "k_m": 0.0000437835585579793,
             "unit": "M"
           },
           {
@@ -2036,7 +2036,7 @@
           {
             "ec_number": "2.7.4.22",
             "k_i": null,
-            "k_m": 4.6e-05,
+            "k_m": 0.000046,
             "unit": "M"
           },
           {
@@ -2054,13 +2054,13 @@
           {
             "ec_number": "2.7.7.9",
             "k_i": null,
-            "k_m": 5.8e-05,
+            "k_m": 0.000058,
             "unit": "M"
           },
           {
             "ec_number": "6.3.4.2",
             "k_i": null,
-            "k_m": 4.37835585579793e-05,
+            "k_m": 0.0000437835585579793,
             "unit": "M"
           },
           {
@@ -2139,7 +2139,7 @@
         "concentration": "663.0",
         "concentration_units": "uM",
         "error": "0.0",
-        "growth_media": "48 mM Na2HPO4, 22 mM KH2PO4, 10 mM NaCl, 45 mM (NH4)2SO4, supplemented with 1 mM MgSO4, 1 mg/l thiamine\u00b7HCl, 5.6 mg/l CaCl2, 8 mg/l FeCl3, 1 mg/l MnCl2\u00b74H2O, 1.7 mg/l ZnCl2, 0.43 mg/l CuCl2\u00b72H2O, 0.6 mg/l CoCl2\u00b72H2O and 0.6 mg/l Na2MoO4\u00b72H2O.  4 g/L Gluco",
+        "growth_media": "48 mM Na2HPO4, 22 mM KH2PO4, 10 mM NaCl, 45 mM (NH4)2SO4, supplemented with 1 mM MgSO4, 1 mg/l thiamine\\u00b7HCl, 5.6 mg/l CaCl2, 8 mg/l FeCl3, 1 mg/l MnCl2\\u00b74H2O, 1.7 mg/l ZnCl2, 0.43 mg/l CuCl2\\u00b72H2O, 0.6 mg/l CoCl2\\u00b72H2O and 0.6 mg/l Na2MoO4\\u00b72H2O.  4 g/L Gluco",
         "growth_status": "Stationary Phase, glucose limited",
         "growth_system": "Bioreactor, pH controlled, O2 and CO2 controlled, dilution rate: 0.2/h",
         "internal": null,
@@ -2178,13 +2178,13 @@
           {
             "ec_number": "3.1.3.5",
             "k_i": null,
-            "k_m": 1.4e-05,
+            "k_m": 0.000014,
             "unit": "M"
           },
           {
             "ec_number": "2.4.1.11",
             "k_i": null,
-            "k_m": 4.3e-05,
+            "k_m": 0.000043,
             "unit": "M"
           },
           {
@@ -2220,13 +2220,13 @@
           {
             "ec_number": "3.1.3.5",
             "k_i": null,
-            "k_m": 1.4e-05,
+            "k_m": 0.000014,
             "unit": "M"
           },
           {
             "ec_number": "2.4.1.11",
             "k_i": null,
-            "k_m": 4.3e-05,
+            "k_m": 0.000043,
             "unit": "M"
           },
           {
@@ -2248,7 +2248,7 @@
             "unit": "M"
           }
         ],
-        "concentration": 1.44985162663986e-05,
+        "concentration": 0.0000144985162663986,
         "last_modified": "2020-05-20T23:02:03.251000Z",
         "ncbi_taxonomy_id": 9606,
         "reference": {
@@ -2261,7 +2261,7 @@
           {
             "ec_number": "2.7.4.14",
             "k_i": null,
-            "k_m": 5.2e-05,
+            "k_m": 0.000052,
             "unit": "M"
           },
           {
@@ -2279,7 +2279,7 @@
           {
             "ec_number": "2.7.4.14",
             "k_i": null,
-            "k_m": 5.2e-05,
+            "k_m": 0.000052,
             "unit": "M"
           },
           {
@@ -2295,7 +2295,7 @@
             "unit": "M"
           }
         ],
-        "concentration": 1.45207883905308e-05,
+        "concentration": 0.0000145207883905308,
         "last_modified": "2020-05-20T23:02:03.251000Z",
         "ncbi_taxonomy_id": 4932,
         "reference": {
@@ -2307,7 +2307,7 @@
         "concentration": "129.0",
         "concentration_units": "uM",
         "error": "0.0",
-        "growth_media": "48 mM Na2HPO4, 22 mM KH2PO4, 10 mM NaCl, 45 mM (NH4)2SO4, supplemented with 1 mM MgSO4, 1 mg/l thiamine\u00b7HCl, 5.6 mg/l CaCl2, 8 mg/l FeCl3, 1 mg/l MnCl2\u00b74H2O, 1.7 mg/l ZnCl2, 0.43 mg/l CuCl2\u00b72H2O, 0.6 mg/l CoCl2\u00b72H2O and 0.6 mg/l Na2MoO4\u00b72H2O.  4 g/L Gluco",
+        "growth_media": "48 mM Na2HPO4, 22 mM KH2PO4, 10 mM NaCl, 45 mM (NH4)2SO4, supplemented with 1 mM MgSO4, 1 mg/l thiamine\\u00b7HCl, 5.6 mg/l CaCl2, 8 mg/l FeCl3, 1 mg/l MnCl2\\u00b74H2O, 1.7 mg/l ZnCl2, 0.43 mg/l CuCl2\\u00b72H2O, 0.6 mg/l CoCl2\\u00b72H2O and 0.6 mg/l Na2MoO4\\u00b72H2O.  4 g/L Gluco",
         "growth_status": "Stationary Phase, glucose limited",
         "growth_system": "Bioreactor, pH controlled, O2 and CO2 controlled, dilution rate: 0.2/h",
         "internal": null,
@@ -2334,7 +2334,7 @@
           {
             "ec_number": "2.4.1.21",
             "k_i": null,
-            "k_m": 3.5e-05,
+            "k_m": 0.000035,
             "unit": "M"
           },
           {
@@ -2352,7 +2352,7 @@
           {
             "ec_number": "2.4.1.21",
             "k_i": null,
-            "k_m": 3.5e-05,
+            "k_m": 0.000035,
             "unit": "M"
           },
           {
@@ -2368,7 +2368,7 @@
             "unit": "M"
           }
         ],
-        "concentration": 4.27e-06,
+        "concentration": 0.00000427,
         "last_modified": "2020-05-20T23:02:03.737000Z",
         "ncbi_taxonomy_id": 562,
         "reference": {
@@ -2406,7 +2406,7 @@
         "concentration": "74.7",
         "concentration_units": "uM",
         "error": "0.0",
-        "growth_media": "48 mM Na2HPO4, 22 mM KH2PO4, 10 mM NaCl, 45 mM (NH4)2SO4, supplemented with 1 mM MgSO4, 1 mg/l thiamine\u00b7HCl, 5.6 mg/l CaCl2, 8 mg/l FeCl3, 1 mg/l MnCl2\u00b74H2O, 1.7 mg/l ZnCl2, 0.43 mg/l CuCl2\u00b72H2O, 0.6 mg/l CoCl2\u00b72H2O and 0.6 mg/l Na2MoO4\u00b72H2O.  4 g/L Gluco",
+        "growth_media": "48 mM Na2HPO4, 22 mM KH2PO4, 10 mM NaCl, 45 mM (NH4)2SO4, supplemented with 1 mM MgSO4, 1 mg/l thiamine\\u00b7HCl, 5.6 mg/l CaCl2, 8 mg/l FeCl3, 1 mg/l MnCl2\\u00b74H2O, 1.7 mg/l ZnCl2, 0.43 mg/l CuCl2\\u00b72H2O, 0.6 mg/l CoCl2\\u00b72H2O and 0.6 mg/l Na2MoO4\\u00b72H2O.  4 g/L Gluco",
         "growth_status": "Stationary Phase, glucose limited",
         "growth_system": "Bioreactor, pH controlled, O2 and CO2 controlled, dilution rate: 0.2/h",
         "internal": null,
@@ -2464,7 +2464,7 @@
           {
             "ec_number": "2.7.1.21",
             "k_i": null,
-            "k_m": 5.75188363901404e-06,
+            "k_m": 0.00000575188363901404,
             "unit": "M"
           },
           {
@@ -2476,7 +2476,7 @@
           {
             "ec_number": "2.7.1.21",
             "k_i": null,
-            "k_m": 5.42217668469038e-06,
+            "k_m": 0.00000542217668469038,
             "unit": "M"
           },
           {
@@ -2500,7 +2500,7 @@
           {
             "ec_number": "2.7.1.21",
             "k_i": null,
-            "k_m": 5.75188363901404e-06,
+            "k_m": 0.00000575188363901404,
             "unit": "M"
           },
           {
@@ -2512,7 +2512,7 @@
           {
             "ec_number": "2.7.1.21",
             "k_i": null,
-            "k_m": 5.42217668469038e-06,
+            "k_m": 0.00000542217668469038,
             "unit": "M"
           },
           {
@@ -2522,7 +2522,7 @@
             "unit": "M"
           }
         ],
-        "concentration": 2.63660735289961e-06,
+        "concentration": 0.00000263660735289961,
         "last_modified": "2020-05-20T23:02:03.070000Z",
         "ncbi_taxonomy_id": 10090,
         "reference": {
@@ -2560,7 +2560,7 @@
           {
             "ec_number": "2.7.1.59",
             "k_i": null,
-            "k_m": 2.5e-07,
+            "k_m": 2.5e-7,
             "unit": "M"
           },
           {
@@ -2608,7 +2608,7 @@
           {
             "ec_number": "2.7.1.59",
             "k_i": null,
-            "k_m": 2.5e-07,
+            "k_m": 2.5e-7,
             "unit": "M"
           },
           {
@@ -2648,7 +2648,7 @@
         "concentration": "207.0",
         "concentration_units": "uM",
         "error": "0.0",
-        "growth_media": "48 mM Na2HPO4, 22 mM KH2PO4, 10 mM NaCl, 45 mM (NH4)2SO4, supplemented with 1 mM MgSO4, 1 mg/l thiamine\u00b7HCl, 5.6 mg/l CaCl2, 8 mg/l FeCl3, 1 mg/l MnCl2\u00b74H2O, 1.7 mg/l ZnCl2, 0.43 mg/l CuCl2\u00b72H2O, 0.6 mg/l CoCl2\u00b72H2O and 0.6 mg/l Na2MoO4\u00b72H2O.  4 g/L Gluco",
+        "growth_media": "48 mM Na2HPO4, 22 mM KH2PO4, 10 mM NaCl, 45 mM (NH4)2SO4, supplemented with 1 mM MgSO4, 1 mg/l thiamine\\u00b7HCl, 5.6 mg/l CaCl2, 8 mg/l FeCl3, 1 mg/l MnCl2\\u00b74H2O, 1.7 mg/l ZnCl2, 0.43 mg/l CuCl2\\u00b72H2O, 0.6 mg/l CoCl2\\u00b72H2O and 0.6 mg/l Na2MoO4\\u00b72H2O.  4 g/L Gluco",
         "growth_status": "Stationary Phase, glucose limited",
         "growth_system": "Bioreactor, pH controlled, O2 and CO2 controlled, dilution rate: 0.2/h",
         "internal": null,
@@ -2693,7 +2693,7 @@
         "concentration": "146.0",
         "concentration_units": "uM",
         "error": "0.0",
-        "growth_media": "48 mM Na2HPO4, 22 mM KH2PO4, 10 mM NaCl, 45 mM (NH4)2SO4, supplemented with 1 mM MgSO4, 1 mg/l thiamine\u00b7HCl, 5.6 mg/l CaCl2, 8 mg/l FeCl3, 1 mg/l MnCl2\u00b74H2O, 1.7 mg/l ZnCl2, 0.43 mg/l CuCl2\u00b72H2O, 0.6 mg/l CoCl2\u00b72H2O and 0.6 mg/l Na2MoO4\u00b72H2O.  4 g/L Gluco",
+        "growth_media": "48 mM Na2HPO4, 22 mM KH2PO4, 10 mM NaCl, 45 mM (NH4)2SO4, supplemented with 1 mM MgSO4, 1 mg/l thiamine\\u00b7HCl, 5.6 mg/l CaCl2, 8 mg/l FeCl3, 1 mg/l MnCl2\\u00b74H2O, 1.7 mg/l ZnCl2, 0.43 mg/l CuCl2\\u00b72H2O, 0.6 mg/l CoCl2\\u00b72H2O and 0.6 mg/l Na2MoO4\\u00b72H2O.  4 g/L Gluco",
         "growth_status": "Stationary Phase, glucose limited",
         "growth_system": "Bioreactor, pH controlled, O2 and CO2 controlled, dilution rate: 0.2/h",
         "internal": null,
@@ -2719,7 +2719,7 @@
         "concentration": "144.0",
         "concentration_units": "uM",
         "error": "0.0",
-        "growth_media": "48 mM Na2HPO4, 22 mM KH2PO4, 10 mM NaCl, 45 mM (NH4)2SO4, supplemented with 1 mM MgSO4, 1 mg/l thiamine\u00b7HCl, 5.6 mg/l CaCl2, 8 mg/l FeCl3, 1 mg/l MnCl2\u00b74H2O, 1.7 mg/l ZnCl2, 0.43 mg/l CuCl2\u00b72H2O, 0.6 mg/l CoCl2\u00b72H2O and 0.6 mg/l Na2MoO4\u00b72H2O.  4 g/L Gluco",
+        "growth_media": "48 mM Na2HPO4, 22 mM KH2PO4, 10 mM NaCl, 45 mM (NH4)2SO4, supplemented with 1 mM MgSO4, 1 mg/l thiamine\\u00b7HCl, 5.6 mg/l CaCl2, 8 mg/l FeCl3, 1 mg/l MnCl2\\u00b74H2O, 1.7 mg/l ZnCl2, 0.43 mg/l CuCl2\\u00b72H2O, 0.6 mg/l CoCl2\\u00b72H2O and 0.6 mg/l Na2MoO4\\u00b72H2O.  4 g/L Gluco",
         "growth_status": "Stationary Phase, glucose limited",
         "growth_system": "Bioreactor, pH controlled, O2 and CO2 controlled, dilution rate: 0.2/h",
         "internal": null,
@@ -2746,7 +2746,7 @@
           {
             "ec_number": "2.7.7.7",
             "k_i": null,
-            "k_m": 2.4e-05,
+            "k_m": 0.000024,
             "unit": "M"
           },
           {
@@ -2756,7 +2756,7 @@
             "unit": "M"
           }
         ],
-        "concentration": 4.45646374679585e-06,
+        "concentration": 0.00000445646374679585,
         "last_modified": "2020-05-20T23:02:04.068000Z",
         "ncbi_taxonomy_id": 4932,
         "reference": {
@@ -2797,7 +2797,7 @@
             "unit": "M"
           }
         ],
-        "concentration": 3.45e-05,
+        "concentration": 0.0000345,
         "last_modified": "2020-05-20T23:02:04.068000Z",
         "ncbi_taxonomy_id": 562,
         "reference": {
@@ -2828,7 +2828,7 @@
         "concentration": "17.0",
         "concentration_units": "uM",
         "error": "0.0",
-        "growth_media": "48 mM Na2HPO4, 22 mM KH2PO4, 10 mM NaCl, 45 mM (NH4)2SO4, supplemented with 1 mM MgSO4, 1 mg/l thiamine\u00b7HCl, 5.6 mg/l CaCl2, 8 mg/l FeCl3, 1 mg/l MnCl2\u00b74H2O, 1.7 mg/l ZnCl2, 0.43 mg/l CuCl2\u00b72H2O, 0.6 mg/l CoCl2\u00b72H2O and 0.6 mg/l Na2MoO4\u00b72H2O.  4 g/L Gluco",
+        "growth_media": "48 mM Na2HPO4, 22 mM KH2PO4, 10 mM NaCl, 45 mM (NH4)2SO4, supplemented with 1 mM MgSO4, 1 mg/l thiamine\\u00b7HCl, 5.6 mg/l CaCl2, 8 mg/l FeCl3, 1 mg/l MnCl2\\u00b74H2O, 1.7 mg/l ZnCl2, 0.43 mg/l CuCl2\\u00b72H2O, 0.6 mg/l CoCl2\\u00b72H2O and 0.6 mg/l Na2MoO4\\u00b72H2O.  4 g/L Gluco",
         "growth_status": "Stationary Phase, glucose limited",
         "growth_system": "Bioreactor, pH controlled, O2 and CO2 controlled, dilution rate: 0.2/h",
         "internal": null,
@@ -2869,7 +2869,7 @@
           {
             "ec_number": "2.4.1.65",
             "k_i": null,
-            "k_m": 1.6e-05,
+            "k_m": 0.000016,
             "unit": "M"
           },
           {
@@ -2881,7 +2881,7 @@
           {
             "ec_number": "3.6.1.58",
             "k_i": null,
-            "k_m": 4.8e-05,
+            "k_m": 0.000048,
             "unit": "M"
           },
           {
@@ -2899,19 +2899,19 @@
           {
             "ec_number": "2.4.1.152",
             "k_i": null,
-            "k_m": 1.14236596587959e-05,
+            "k_m": 0.0000114236596587959,
             "unit": "M"
           },
           {
             "ec_number": "2.4.1.68",
             "k_i": null,
-            "k_m": 3.6e-06,
+            "k_m": 0.0000036,
             "unit": "M"
           },
           {
             "ec_number": "2.4.1.69",
             "k_i": null,
-            "k_m": 5e-05,
+            "k_m": 0.00005,
             "unit": "M"
           },
           {
@@ -2929,13 +2929,13 @@
           {
             "ec_number": "3.6.5.2",
             "k_i": null,
-            "k_m": 1e-06,
+            "k_m": 0.000001,
             "unit": "M"
           },
           {
             "ec_number": "2.4.1.65",
             "k_i": null,
-            "k_m": 1.6e-05,
+            "k_m": 0.000016,
             "unit": "M"
           },
           {
@@ -2947,7 +2947,7 @@
           {
             "ec_number": "3.6.1.58",
             "k_i": null,
-            "k_m": 4.8e-05,
+            "k_m": 0.000048,
             "unit": "M"
           },
           {
@@ -2965,19 +2965,19 @@
           {
             "ec_number": "2.4.1.152",
             "k_i": null,
-            "k_m": 1.14236596587959e-05,
+            "k_m": 0.0000114236596587959,
             "unit": "M"
           },
           {
             "ec_number": "2.4.1.68",
             "k_i": null,
-            "k_m": 3.6e-06,
+            "k_m": 0.0000036,
             "unit": "M"
           },
           {
             "ec_number": "2.4.1.69",
             "k_i": null,
-            "k_m": 5e-05,
+            "k_m": 0.00005,
             "unit": "M"
           },
           {
@@ -2995,11 +2995,11 @@
           {
             "ec_number": "3.6.5.2",
             "k_i": null,
-            "k_m": 1e-06,
+            "k_m": 0.000001,
             "unit": "M"
           }
         ],
-        "concentration": 3.01903081383724e-05,
+        "concentration": 0.0000301903081383724,
         "last_modified": "2020-05-20T23:02:03.018000Z",
         "ncbi_taxonomy_id": 9606,
         "reference": {
@@ -3012,7 +3012,7 @@
           {
             "ec_number": "2.7.4.8",
             "k_i": null,
-            "k_m": 9.7e-05,
+            "k_m": 0.000097,
             "unit": "M"
           },
           {
@@ -3036,7 +3036,7 @@
           {
             "ec_number": "2.7.4.8",
             "k_i": null,
-            "k_m": 9.7e-05,
+            "k_m": 0.000097,
             "unit": "M"
           },
           {
@@ -3058,7 +3058,7 @@
             "unit": "M"
           }
         ],
-        "concentration": 4.21125323179465e-05,
+        "concentration": 0.0000421125323179465,
         "last_modified": "2020-05-20T23:02:03.018000Z",
         "ncbi_taxonomy_id": 4932,
         "reference": {
@@ -3089,13 +3089,13 @@
           {
             "ec_number": "1.1.1.271",
             "k_i": null,
-            "k_m": 6.1e-05,
+            "k_m": 0.000061,
             "unit": "M"
           },
           {
             "ec_number": "1.17.4.1",
             "k_i": null,
-            "k_m": 7e-06,
+            "k_m": 0.000007,
             "unit": "M"
           },
           {
@@ -3107,7 +3107,7 @@
           {
             "ec_number": "3.6.5.4",
             "k_i": null,
-            "k_m": 2.5298221281347e-07,
+            "k_m": 2.5298221281347e-7,
             "unit": "M"
           },
           {
@@ -3131,13 +3131,13 @@
           {
             "ec_number": "1.1.1.271",
             "k_i": null,
-            "k_m": 6.1e-05,
+            "k_m": 0.000061,
             "unit": "M"
           },
           {
             "ec_number": "1.17.4.1",
             "k_i": null,
-            "k_m": 7e-06,
+            "k_m": 0.000007,
             "unit": "M"
           },
           {
@@ -3149,7 +3149,7 @@
           {
             "ec_number": "3.6.5.4",
             "k_i": null,
-            "k_m": 2.5298221281347e-07,
+            "k_m": 2.5298221281347e-7,
             "unit": "M"
           }
         ],
@@ -3171,7 +3171,7 @@
         },
         "species_name": "Escherichia coli",
         "std": 0.02131055152302003,
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.6848112666227845,
@@ -3183,7 +3183,7 @@
         },
         "species_name": "Escherichia coli",
         "std": 0.059717361227189875,
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.3385742390314757,
@@ -3195,7 +3195,7 @@
         },
         "species_name": "Escherichia coli",
         "std": 0.013460376650894756,
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.7671994631588298,
@@ -3207,7 +3207,7 @@
         },
         "species_name": "Escherichia coli",
         "std": 0.007579251556097916,
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.43327105441049985,
@@ -3219,7 +3219,7 @@
         },
         "species_name": "Escherichia coli",
         "std": 0.013087500238144936,
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.4601429974726528,
@@ -3231,7 +3231,7 @@
         },
         "species_name": "Escherichia coli",
         "std": 0.033864283724559276,
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.4258184602936404,
@@ -3243,7 +3243,7 @@
         },
         "species_name": "Escherichia coli",
         "std": 0.025201067619453094,
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.7082256667066917,
@@ -3255,7 +3255,7 @@
         },
         "species_name": "Escherichia coli",
         "std": 0.015155102800313116,
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.37891529528205614,
@@ -3267,7 +3267,7 @@
         },
         "species_name": "Escherichia coli",
         "std": 0.02131055152302003,
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.6848112666227845,
@@ -3279,7 +3279,7 @@
         },
         "species_name": "Escherichia coli",
         "std": 0.059717361227189875,
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.3385742390314757,
@@ -3291,7 +3291,7 @@
         },
         "species_name": "Escherichia coli",
         "std": 0.013460376650894756,
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.7671994631588298,
@@ -3303,7 +3303,7 @@
         },
         "species_name": "Escherichia coli",
         "std": 0.007579251556097916,
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.43327105441049985,
@@ -3315,7 +3315,7 @@
         },
         "species_name": "Escherichia coli",
         "std": 0.013087500238144936,
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.4601429974726528,
@@ -3327,7 +3327,7 @@
         },
         "species_name": "Escherichia coli",
         "std": 0.033864283724559276,
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.4258184602936404,
@@ -3339,7 +3339,7 @@
         },
         "species_name": "Escherichia coli",
         "std": 0.025201067619453094,
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": 0.7082256667066917,
@@ -3351,7 +3351,7 @@
         },
         "species_name": "Escherichia coli",
         "std": 0.015155102800313116,
-        "unit": "\u00b5mol * gCDW-1"
+        "unit": "\\u00b5mol * gCDW-1"
       },
       {
         "concentration": "30.0",
@@ -3433,7 +3433,7 @@
         "concentration": "180.0",
         "concentration_units": "uM",
         "error": "0.0",
-        "growth_media": "48 mM Na2HPO4, 22 mM KH2PO4, 10 mM NaCl, 45 mM (NH4)2SO4, supplemented with 1 mM MgSO4, 1 mg/l thiamine\u00b7HCl, 5.6 mg/l CaCl2, 8 mg/l FeCl3, 1 mg/l MnCl2\u00b74H2O, 1.7 mg/l ZnCl2, 0.43 mg/l CuCl2\u00b72H2O, 0.6 mg/l CoCl2\u00b72H2O and 0.6 mg/l Na2MoO4\u00b72H2O.  4 g/L Gluco",
+        "growth_media": "48 mM Na2HPO4, 22 mM KH2PO4, 10 mM NaCl, 45 mM (NH4)2SO4, supplemented with 1 mM MgSO4, 1 mg/l thiamine\\u00b7HCl, 5.6 mg/l CaCl2, 8 mg/l FeCl3, 1 mg/l MnCl2\\u00b74H2O, 1.7 mg/l ZnCl2, 0.43 mg/l CuCl2\\u00b72H2O, 0.6 mg/l CoCl2\\u00b72H2O and 0.6 mg/l Na2MoO4\\u00b72H2O.  4 g/L Gluco",
         "growth_status": "Stationary Phase, glucose limited",
         "growth_system": "Bioreactor, pH controlled, O2 and CO2 controlled, dilution rate: 0.2/h",
         "internal": null,
@@ -3472,13 +3472,13 @@
           {
             "ec_number": "2.7.1.74",
             "k_i": null,
-            "k_m": 1.3e-06,
+            "k_m": 0.0000013,
             "unit": "M"
           },
           {
             "ec_number": "2.7.7.43",
             "k_i": null,
-            "k_m": 3.94516847708087e-05,
+            "k_m": 0.0000394516847708087,
             "unit": "M"
           },
           {
@@ -3490,7 +3490,7 @@
           {
             "ec_number": "3.6.1.15",
             "k_i": null,
-            "k_m": 6e-06,
+            "k_m": 0.000006,
             "unit": "M"
           },
           {
@@ -3508,7 +3508,7 @@
           {
             "ec_number": "6.3.2.5",
             "k_i": null,
-            "k_m": 7.4e-05,
+            "k_m": 0.000074,
             "unit": "M"
           },
           {
@@ -3526,13 +3526,13 @@
           {
             "ec_number": "2.7.1.74",
             "k_i": null,
-            "k_m": 1.3e-06,
+            "k_m": 0.0000013,
             "unit": "M"
           },
           {
             "ec_number": "2.7.7.43",
             "k_i": null,
-            "k_m": 3.94516847708087e-05,
+            "k_m": 0.0000394516847708087,
             "unit": "M"
           },
           {
@@ -3544,7 +3544,7 @@
           {
             "ec_number": "3.6.1.15",
             "k_i": null,
-            "k_m": 6e-06,
+            "k_m": 0.000006,
             "unit": "M"
           },
           {
@@ -3562,7 +3562,7 @@
           {
             "ec_number": "6.3.2.5",
             "k_i": null,
-            "k_m": 7.4e-05,
+            "k_m": 0.000074,
             "unit": "M"
           }
         ],
@@ -3698,13 +3698,13 @@
           {
             "ec_number": "2.7.7.60",
             "k_i": null,
-            "k_m": 6.53332096423146e-05,
+            "k_m": 0.0000653332096423146,
             "unit": "M"
           },
           {
             "ec_number": "2.7.7.76",
             "k_i": null,
-            "k_m": 3.95474398665704e-06,
+            "k_m": 0.00000395474398665704,
             "unit": "M"
           },
           {
@@ -3740,7 +3740,7 @@
           {
             "ec_number": "2.1.3.2",
             "k_i": null,
-            "k_m": 3.7e-05,
+            "k_m": 0.000037,
             "unit": "M"
           },
           {
@@ -3758,7 +3758,7 @@
           {
             "ec_number": "6.3.4.2",
             "k_i": null,
-            "k_m": 8.48528137423857e-05,
+            "k_m": 0.0000848528137423857,
             "unit": "M"
           },
           {
@@ -3800,13 +3800,13 @@
           {
             "ec_number": "2.7.7.60",
             "k_i": null,
-            "k_m": 6.53332096423146e-05,
+            "k_m": 0.0000653332096423146,
             "unit": "M"
           },
           {
             "ec_number": "2.7.7.76",
             "k_i": null,
-            "k_m": 3.95474398665704e-06,
+            "k_m": 0.00000395474398665704,
             "unit": "M"
           },
           {
@@ -3842,7 +3842,7 @@
           {
             "ec_number": "2.1.3.2",
             "k_i": null,
-            "k_m": 3.7e-05,
+            "k_m": 0.000037,
             "unit": "M"
           },
           {
@@ -3860,7 +3860,7 @@
           {
             "ec_number": "6.3.4.2",
             "k_i": null,
-            "k_m": 8.48528137423857e-05,
+            "k_m": 0.0000848528137423857,
             "unit": "M"
           }
         ],
@@ -3933,7 +3933,7 @@
         "concentration": "282.0",
         "concentration_units": "uM",
         "error": "0.0",
-        "growth_media": "48 mM Na2HPO4, 22 mM KH2PO4, 10 mM NaCl, 45 mM (NH4)2SO4, supplemented with 1 mM MgSO4, 1 mg/l thiamine\u00b7HCl, 5.6 mg/l CaCl2, 8 mg/l FeCl3, 1 mg/l MnCl2\u00b74H2O, 1.7 mg/l ZnCl2, 0.43 mg/l CuCl2\u00b72H2O, 0.6 mg/l CoCl2\u00b72H2O and 0.6 mg/l Na2MoO4\u00b72H2O.  4 g/L Gluco",
+        "growth_media": "48 mM Na2HPO4, 22 mM KH2PO4, 10 mM NaCl, 45 mM (NH4)2SO4, supplemented with 1 mM MgSO4, 1 mg/l thiamine\\u00b7HCl, 5.6 mg/l CaCl2, 8 mg/l FeCl3, 1 mg/l MnCl2\\u00b74H2O, 1.7 mg/l ZnCl2, 0.43 mg/l CuCl2\\u00b72H2O, 0.6 mg/l CoCl2\\u00b72H2O and 0.6 mg/l Na2MoO4\\u00b72H2O.  4 g/L Gluco",
         "growth_status": "Stationary Phase, glucose limited",
         "growth_system": "Bioreactor, pH controlled, O2 and CO2 controlled, dilution rate: 0.2/h",
         "internal": null,

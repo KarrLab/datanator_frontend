@@ -25,7 +25,7 @@ class RnaHalfLifeDataTable extends Component {
     return url;
   }
 
-  static formatData(rawData, organism, lengthOfTaxonomicRanks) {
+  static formatData(rawData, organism) {
     const formattedData = [];
     for (const rawDatum of rawData) {
       if (rawDatum.halflives) {
@@ -45,14 +45,13 @@ class RnaHalfLifeDataTable extends Component {
           };
 
           if (organism != null) {
-            let distance = "";
-            const keys = Object.keys(measurement.taxon_distance);
-            if (keys.length === 4) {
-              distance = measurement.taxon_distance[organism] - 1;
-            } else {
-              distance = lengthOfTaxonomicRanks;
-            }
-            formattedDatum["taxonomicProximity"] = distance;
+            formattedDatum[
+              "taxonomicProximity"
+            ] = DataTable.calcTaxonomicDistance(
+              measurement.taxon_distance,
+              organism,
+              measurement.species
+            );
           }
 
           formattedData.push(formattedDatum);

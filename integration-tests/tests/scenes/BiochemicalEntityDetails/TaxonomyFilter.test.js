@@ -8,7 +8,7 @@ describe("TaxonomyFilter", function() {
     const url = "/" + route + "/" + entity + "/" + organism;
     const dataContainerId = "concentration";
 
-    //use fixture with taxon_distance always = 1
+    //use fixture
     cy.server();
     cy.fixture("metabolite-concentrations-" + entity + "-" + organism).then(
       json => {
@@ -71,7 +71,7 @@ describe("TaxonomyFilter", function() {
     // check that rows were filtered
     cy.get("#" + dataContainerId + " .ag-center-cols-container")
       .children()
-      .should("have.length", 0);
+      .should("have.length.lessThan", 11);
     cy.get("#" + dataContainerId + " .ag-root-wrapper").then($grid => {
       expect(
         $grid[0].__agComponent.gridApi.getFilterModel().taxonomicProximity
@@ -88,6 +88,9 @@ describe("TaxonomyFilter", function() {
     cy.get("#" + dataContainerId + " .ag-center-cols-container")
       .children()
       .should("not.have.length", 0);
+    cy.get("#" + dataContainerId + " .ag-center-cols-container")
+      .children()
+      .should("have.length", 11);
 
     // programmatically set filter so no rows are displayed
     cy.get("#" + dataContainerId + " .ag-root-wrapper").then($grid => {
@@ -112,6 +115,6 @@ describe("TaxonomyFilter", function() {
     });
     cy.get("#" + dataContainerId + " .ag-center-cols-container")
       .children()
-      .should("have.length", 0);
+      .should("have.length.lessThan", 11);
   });
 });
