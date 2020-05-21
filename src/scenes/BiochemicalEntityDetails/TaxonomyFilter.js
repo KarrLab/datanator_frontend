@@ -133,7 +133,15 @@ class TaxonomyFilter extends Component {
 
   doesFilterPass(params) {
     const maxDistance = this.maxDistance;
+    if (this.maxDistance === this.markValueToDistance.length - 1) {
+      return true;
+    }
+
     const distance = this.props.valueGetter(params.node);
+    if (distance == null) {
+      return false;
+    }
+
     return distance <= maxDistance;
   }
 

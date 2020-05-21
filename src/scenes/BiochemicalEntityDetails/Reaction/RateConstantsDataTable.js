@@ -254,9 +254,14 @@ class RateConstantsDataTable extends Component {
       hide: true,
       filter: "taxonomyFilter",
       valueFormatter: params => {
-        const value = taxonomicRanks[params.value];
-        return upperCaseFirstLetter(value);
-      }
+        if (params.value != null) {
+          const value = taxonomicRanks[params.value];
+          return upperCaseFirstLetter(value);
+        } else {
+          return null;
+        }
+      },
+      comparator: DataTable.numericComparator
     });
 
     colDefs.push({

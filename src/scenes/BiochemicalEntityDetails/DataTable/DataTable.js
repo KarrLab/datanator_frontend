@@ -245,13 +245,16 @@ class DataTable extends Component {
   }
 
   static calcTaxonomicDistance(taxonDistance, targetSpecies, measuredSpecies) {
-    const toAncestors = taxonDistance[targetSpecies + "_canon_ancestors"];
-    const fromAncestors = taxonDistance[measuredSpecies + "_canon_ancestors"];
     let distance = null;
 
-    if (Object.keys(taxonDistance).length === 2) {
+    if (targetSpecies === measuredSpecies) {
       distance = 0;
-    } else {
+    } else if (
+      targetSpecies + "_canon_ancestors" in taxonDistance &&
+      measuredSpecies + "_canon_ancestors" in taxonDistance
+    ) {
+      const toAncestors = taxonDistance[targetSpecies + "_canon_ancestors"];
+      const fromAncestors = taxonDistance[measuredSpecies + "_canon_ancestors"];
       toAncestors.push(targetSpecies);
       fromAncestors.push(measuredSpecies);
       distance = 0;
@@ -265,6 +268,8 @@ class DataTable extends Component {
           break;
         }
       }
+    } else {
+      distance = null;
     }
 
     return distance;

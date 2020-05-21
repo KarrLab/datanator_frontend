@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { upperCaseFirstLetter } from "~/utils/utils";
 import DataTable from "../DataTable/DataTable";
-// import { HtmlColumnHeader } from "../HtmlColumnHeader";
-// import Tooltip from "@material-ui/core/Tooltip";
-// import { TAXONOMIC_PROXIMITY_TOOLTIP } from "../ColumnsToolPanel/TooltipDescriptions";
+import { HtmlColumnHeader } from "../HtmlColumnHeader";
+import Tooltip from "@material-ui/core/Tooltip";
+import { TAXONOMIC_PROXIMITY_TOOLTIP } from "../ColumnsToolPanel/TooltipDescriptions";
 
 class RnaModificationDataTable extends Component {
   static propTypes = {
@@ -15,21 +16,17 @@ class RnaModificationDataTable extends Component {
     "uniprot-id-to-taxon-dist": null
   };
 
-  getUrl(query) {
-    //, organism) {
+  getUrl(query, organism) {
     const args = ["ko_number=" + query, "_from=0", "size=10"];
-    /*
     if (organism) {
-      args.push("distance=40");
-      args.push("anchor=" + organism);
+      args.push("taxon_distance=true");
+      args.push("target_organism=" + organism);
     }
-    */
 
     return "rna/modification/get_modifications_by_ko/?" + args.join("&");
   }
 
-  formatData(rawData) {
-    //, organism) {
+  formatData(rawData, organism) {
     const formattedData = [];
     for (const rawDatum of rawData) {
       for (const measurement of rawDatum.modifications) {
@@ -47,15 +44,13 @@ class RnaModificationDataTable extends Component {
           localization: measurement.organellum,
           source: "MODOMICS"
         };
-        /*
         if (organism != null) {
-          if (rawDatum.canon_ancestors.includes(organism)) {
-            row["taxonomicProximity"] = 0;
-          } else {
-            row["taxonomicProximity"] = docs.distance;
-          }
+          row["taxonomicProximity"] = DataTable.calcTaxonomicDistance(
+            measurement.taxon_distance,
+            organism,
+            measurement.organism
+          );
         }
-        */
         formattedData.push(row);
       }
     }
@@ -89,8 +84,7 @@ class RnaModificationDataTable extends Component {
     };
   }
 
-  static getColDefs() {
-    // organism, formattedData, taxonomicRanks) {
+  static getColDefs(organism, formattedData, taxonomicRanks) {
     const colDefs = [
       {
         headerName: "Modifications",
@@ -133,7 +127,6 @@ class RnaModificationDataTable extends Component {
         field: "localization",
         filter: "textFilter"
       },
-      /*
       {
         headerName: "Taxonomic similarity",
         headerComponentFramework: HtmlColumnHeader,
@@ -148,11 +141,15 @@ class RnaModificationDataTable extends Component {
         hide: true,
         filter: "taxonomyFilter",
         valueFormatter: params => {
-          const value = taxonomicRanks[params.value];
-          return upperCaseFirstLetter(value);
-        }
+          if (params.value != null) {
+            const value = taxonomicRanks[params.value];
+            return upperCaseFirstLetter(value);
+          } else {
+            return null;
+          }
+        },
+        comparator: DataTable.numericComparator
       },
-      */
       {
         headerName: "Source",
         field: "source",
@@ -166,11 +163,9 @@ class RnaModificationDataTable extends Component {
       }
     ];
 
-    /*
     if (!organism) {
       colDefs.splice(-2, 1);
     }
-    */
 
     return colDefs;
   }
