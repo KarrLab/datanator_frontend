@@ -3,7 +3,7 @@
 describe("Common components", function() {
   it("Table of contents links scroll to elements", function() {
     const route = "metabolite";
-    const entity = "dTDP-D-Glucose";
+    const entity = "YSYKRGRSMLTJNL-KFQCIAAJSA-N"; // dTDP-D-Glucose
     const url = "/" + route + "/" + entity;
     const dataContainerId = "concentration";
 
@@ -19,13 +19,16 @@ describe("Common components", function() {
 
   it("REST API errors are correctly displayed", function() {
     const route = "metabolite";
-    const entity = "dTDP-D-Glucose";
+    const entity = "YSYKRGRSMLTJNL-KFQCIAAJSA-N"; // dTDP-D-Glucose
     const organism = "Escherichia coli";
 
     cy.server();
     cy.route({
       method: "GET",
-      url: "/metabolites/concentration/?metabolite=" + entity + "&*",
+      url:
+        "/metabolites/concentrations/similar_compounds/?inchikey=" +
+        entity +
+        "&*",
       status: 400,
       response: {
         status: 400,

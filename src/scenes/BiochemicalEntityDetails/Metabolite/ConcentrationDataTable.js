@@ -9,6 +9,8 @@ import {
   CHEMICAL_SIMILARITY_TOOLTIP
 } from "../ColumnsToolPanel/TooltipDescriptions";
 
+var htmlDecode = require("js-htmlencode").htmlDecode;
+
 class ConcentrationDataTable extends Component {
   static propTypes = {
     "set-scene-metadata": PropTypes.func.isRequired
@@ -37,7 +39,10 @@ class ConcentrationDataTable extends Component {
           const species = metConc.species_name;
           const conc = {
             name: metabolite.metabolite,
-
+            link: {
+              query: metabolite.inchikey,
+              label: metabolite.metabolite
+            },
             tanimotoSimilarity:
               "similarity_score" in metabolite
                 ? metabolite.similarity_score
@@ -59,6 +64,11 @@ class ConcentrationDataTable extends Component {
               "growth_system" in metConc ? metConc.growth_system : null,
             source: null
           };
+          if (conc.units === "uM") {
+            conc.units = "μM";
+          } else if (conc.units != null && conc.units !== undefined) {
+            conc.units = htmlDecode(conc.units);
+          }
           if (organism != null) {
             conc["taxonomicProximity"] = metConc.taxon_distance[organism];
           }
@@ -68,12 +78,17 @@ class ConcentrationDataTable extends Component {
           if (conc.growthPhase && conc.growthPhase.indexOf(" Phase") >= 0) {
             conc.growthPhase = conc.growthPhase.split(" Phase")[0];
           }
-          if ("doi" in metConc.reference && metConc.reference.doi) {
+          if (
+            metConc.reference &&
+            "doi" in metConc.reference &&
+            metConc.reference.doi
+          ) {
             conc.source = {
               id: "DOI: " + metConc.reference.doi,
               url: "https://dx.doi.org/" + metConc.reference.doi
             };
           } else if (
+            metConc.reference &&
             "pubmed_id" in metConc.reference &&
             metConc.reference.pubmed_id
           ) {
@@ -84,6 +99,7 @@ class ConcentrationDataTable extends Component {
                 metConc.reference.pubmed_id
             };
           } else if (
+            metConc.reference &&
             "reference_text" in metConc.reference &&
             metConc.reference.reference_text
           ) {
@@ -162,12 +178,15 @@ class ConcentrationDataTable extends Component {
       },
       {
         headerName: "Metabolite",
-        field: "name",
+        field: "link",
         filter: "textFilter",
         cellRenderer: "linkCellRenderer",
         cellRendererParams: {
           route: "metabolite",
           organism: organism
+        },
+        filterValueGetter: params => {
+          return params.data.name;
         }
       },
       {

@@ -35,10 +35,14 @@ describe("Metabolite data page", () => {
     let formatedDatum = formattedData[26];
     expect(formatedDatum).toEqual({
       name: "Glucose 1-phosphate",
+      link: {
+        label: "Glucose 1-phosphate",
+        query: "HXXFSFRBOHSIMQ-VFUOTHLCSA-N"
+      },
       tanimotoSimilarity: 1.0,
       value: 33.4,
       uncertainty: null,
-      units: "uM",
+      units: "μM",
       organism: "Escherichia coli BW25113",
       taxonomicProximity: 1,
       growthPhase: "Stationary",
