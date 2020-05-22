@@ -36,6 +36,10 @@ export default class GeneSearchResultsList extends Component {
     for (const result of results) {
       if (Array.isArray(result.key) && result.key.length > 0) {
         const koNumber = upperCaseFirstLetter(result.key[0]);
+        if (koNumber.toLowerCase() === "nan") {
+          continue;
+        }
+
         let formattedResult = formattedResults[koNumber];
         if (!formattedResult) {
           formattedResult = {};
