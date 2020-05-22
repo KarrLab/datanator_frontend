@@ -5,7 +5,7 @@ import { upperCaseFirstLetter } from "~/utils/utils";
 export default class GeneSearchResultsList extends Component {
   getResultsUrl(query, pageCount, pageSize) {
     return (
-      "ftx/text_search/protein_ranked_by_ko/?" +
+      "ftx/text_search/gene_ranked_by_ko/?" +
       [
         "query_message=" + query,
         "from_=" + pageCount * pageSize,
