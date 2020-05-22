@@ -52,6 +52,8 @@ export default class GeneSearchResultsList extends Component {
           ko.ko_name[0]
         ) {
           formattedResult["title"] = upperCaseFirstLetter(ko.ko_name[0]);
+        } else if ("definition" in ko) {
+          formattedResult["title"] = ko.definition;
         } else {
           formattedResult["title"] = koNumber;
         }
