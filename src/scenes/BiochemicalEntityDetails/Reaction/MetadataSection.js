@@ -39,18 +39,12 @@ class MetadataSection extends Component {
     const args = ["_from=0", "size=1000", "bound=tight"];
 
     const substratesProducts = query.split("-->");
-    args.push(
-      "substrates=" +
-        substratesProducts[0].split(",").join(encodeURIComponent("|"))
-    );
+    args.push("substrates=" + substratesProducts[0]);
     if (substratesProducts.length >= 2) {
-      args.push(
-        "products=" +
-          substratesProducts[1].split(",").join(encodeURIComponent("|"))
-      );
+      args.push("products=" + substratesProducts[1]);
     }
 
-    return "reactions/kinlaw_by_name/?" + args.join("&");
+    return "reactions/kinlaw_by_rxn/?" + args.join("&");
   }
 
   static processMetadata(rawData) {

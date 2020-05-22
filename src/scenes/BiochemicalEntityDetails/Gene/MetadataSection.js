@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { strCompare, formatParticipantsForUrl } from "~/utils/utils";
+import { strCompare } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
 import { LoadExternalContent, LoadContent } from "../LoadContent";
 import KeggPathwaysMetadataSection from "../KeggPathwaysMetadataSection";
@@ -45,22 +45,27 @@ class MetadataSection extends Component {
         formattedResults[id] = formattedResult;
       }
 
-      const substrates = [];
-      const products = [];
+      const substrateInchikeys = [];
+      const substrateNames = [];
+      const productInchikeys = [];
+      const productNames = [];
       for (const substrate of reaction.substrates[0]) {
-        substrates.push(substrate.substrate_name);
+        substrateInchikeys.push(substrate.substrate_structure[0].InChI_Key);
+        substrateNames.push(substrate.substrate_name);
       }
       for (const product of reaction.products[0]) {
-        products.push(product.product_name);
+        productInchikeys.push(product.product_structure[0].InChI_Key);
+        productNames.push(product.product_name);
       }
 
-      const equation = formatSide(substrates) + " → " + formatSide(products);
+      const equation =
+        formatSide(substrateNames) + " → " + formatSide(productNames);
       const ecMeta = reaction["ec_meta"];
       let route =
         "/reaction/" +
-        formatParticipantsForUrl(substrates) +
+        substrateInchikeys.join(",") +
         "-->" +
-        formatParticipantsForUrl(products);
+        productInchikeys.join(",");
       if (organism) {
         route += "/" + organism;
       }

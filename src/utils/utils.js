@@ -205,14 +205,6 @@ function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-function formatParticipantsForUrl(participants) {
-  const partNames = [];
-  for (const participant of participants) {
-    partNames.push(encodeURIComponent(participant));
-  }
-  return partNames;
-}
-
 function isEmpty(element) {
   if (element instanceof Array) {
     if (element.length === 0) {
@@ -239,6 +231,5 @@ export {
   getNumProperties,
   castToArray,
   numberWithCommas,
-  formatParticipantsForUrl,
   isEmpty
 };

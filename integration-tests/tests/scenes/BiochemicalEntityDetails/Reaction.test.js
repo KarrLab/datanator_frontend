@@ -3,8 +3,8 @@
 describe("Reaction scene", function() {
   it("Reaction scene without organism successfully loads", function() {
     const route = "reaction";
-    const substrates = "dTDP-D-glucose";
-    const products = "dTDP-4-dehydro-6-deoxy-D-glucose,H2O";
+    const substrates = "YSYKRGRSMLTJNL-KFQCIAAJSA-N"; // dTDP-D-glucose
+    const products = "PSXWNITXWWECNY-UCBTUHGZSA-N,XLYOFNOQVPJJNP-UHFFFAOYSA-N"; // dTDP-4-dehydro-6-deoxy-D-glucose,H2O
     const entity = substrates + "-->" + products;
     const url = "/" + route + "/" + entity;
 
@@ -27,8 +27,8 @@ describe("Reaction scene", function() {
 
   it("Reaction scene with organism successfully loads", function() {
     const route = "reaction";
-    const substrates = "dTDP-D-glucose";
-    const products = "dTDP-4-dehydro-6-deoxy-D-glucose,H2O";
+    const substrates = "YSYKRGRSMLTJNL-KFQCIAAJSA-N"; // dTDP-D-glucose
+    const products = "PSXWNITXWWECNY-UCBTUHGZSA-N,XLYOFNOQVPJJNP-UHFFFAOYSA-N"; // dTDP-4-dehydro-6-deoxy-D-glucose,H2O
     const entity = substrates + "-->" + products;
     const organism = "Escherichia coli";
     const url = "/" + route + "/" + entity + "/" + organism;

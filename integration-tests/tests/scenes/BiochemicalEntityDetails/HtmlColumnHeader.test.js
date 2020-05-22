@@ -3,7 +3,8 @@
 describe("HtmlColumnHeader", function() {
   it("HTML column headings display and sort correctly", function() {
     const route = "reaction";
-    const entity = "D-Glucose 1-phosphate-->D-Glucose 6-phosphate";
+    const entity =
+      "YSYKRGRSMLTJNL-KFQCIAAJSA-N-->PSXWNITXWWECNY-UCBTUHGZSA-N,XLYOFNOQVPJJNP-UHFFFAOYSA-N"; // DTDP-glucose 4,6-dehydratase
     const url = "/" + route + "/" + entity;
     const dataContainerId = "rate-constants";
 

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import SearchResultsList from "./SearchResultsList.js";
-import { formatParticipantsForUrl } from "~/utils/utils";
 
 export default class ReactionSearchResultsList extends Component {
   getResultsUrl(query, pageCount, pageSize) {
@@ -39,9 +38,10 @@ export default class ReactionSearchResultsList extends Component {
 
       // title and description
       const name = result["enzyme_names"][0];
-      const substrates = getParticipant(result["substrate_names"]);
-      const products = getParticipant(result["product_names"]);
-      const equation = formatSide(substrates) + " → " + formatSide(products);
+      const substrateNames = getParticipant(result["substrate_names"]);
+      const productNames = getParticipant(result["product_names"]);
+      const equation =
+        formatSide(substrateNames) + " → " + formatSide(productNames);
       const ecCode = result["ec-code"];
 
       if (name) {
@@ -72,9 +72,9 @@ export default class ReactionSearchResultsList extends Component {
       // route
       formattedResult["route"] =
         "/reaction/" +
-        formatParticipantsForUrl(substrates) +
+        result["substrates"].join(",") +
         "-->" +
-        formatParticipantsForUrl(products);
+        result["products"].join(",");
       if (organism) {
         formattedResult["route"] += "/" + organism;
       }
