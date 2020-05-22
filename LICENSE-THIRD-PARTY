@@ -2138,6 +2138,36 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/expressjs/compression
 │  └─ licenseFile: compression/LICENSE
+├─ compute-array-constructors@1.0.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/dstructs/array-constructors
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: compute-array-constructors/LICENSE
+├─ compute-array-dtype@1.0.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/dstructs/array-dtype
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: compute-array-dtype/LICENSE
+├─ compute-dtype@1.0.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/compute-io/dtype
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: compute-dtype/LICENSE
+├─ compute-indexspace@1.0.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/compute-io/indexspace
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: compute-indexspace/LICENSE
+├─ compute-stdev@1.0.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/compute-io/stdev
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: compute-stdev/LICENSE
 ├─ concat-map@0.0.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/substack/node-concat-map
@@ -2175,6 +2205,18 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: me@re-becca.org
 │  ├─ url: http://re-becca.org/
 │  └─ licenseFile: console-control-strings/LICENSE
+├─ const-max-uint32@1.0.2
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/const-io/max-uint32
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: const-max-uint32/LICENSE
+├─ const-pinf-float64@1.0.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/const-io/pinf-float64
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: const-pinf-float64/LICENSE
 ├─ constants-browserify@1.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/juliangruber/constants-browserify
@@ -2704,6 +2746,12 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: kevinmartensson@gmail.com
 │  ├─ url: github.com/kevva
 │  └─ licenseFile: dir-glob/license
+├─ distributions-normal-pdf@0.0.2
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/distributions-io/normal-pdf
+│  ├─ publisher: Philipp Burckhardt
+│  ├─ email: pburckhardt@outlook.com
+│  └─ licenseFile: distributions-normal-pdf/LICENSE
 ├─ dns-equal@1.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/watson/dns-equal
@@ -2823,6 +2871,30 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: BSD-2-Clause
 │  ├─ repository: https://github.com/motdotla/dotenv
 │  └─ licenseFile: dotenv/LICENSE
+├─ dstructs-array-constructors@1.0.2
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/dstructs/array-constructors
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: dstructs-array-constructors/LICENSE
+├─ dstructs-array-dtype@1.0.2
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/dstructs/array-dtype
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: dstructs-array-dtype/LICENSE
+├─ dstructs-cast-arrays@1.0.3
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/dstructs/cast-arrays
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: dstructs-cast-arrays/LICENSE
+├─ dstructs-matrix@2.1.2
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/dstructs/matrix
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: dstructs-matrix/LICENSE
 ├─ duplexer@0.1.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/Raynos/duplexer
@@ -3098,6 +3170,11 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jshttp/etag
 │  └─ licenseFile: etag/LICENSE
+├─ euclidean-distance@0.1.1
+│  ├─ licenses: WTFPL
+│  ├─ repository: https://github.com/zeke/euclidean-distance
+│  ├─ publisher: zeke
+│  └─ licenseFile: euclidean-distance/README.md
 ├─ eventemitter3@4.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/primus/eventemitter3
@@ -3837,6 +3914,12 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Marat Dulin
 │  ├─ email: mdevils@yandex.ru
 │  └─ licenseFile: html-entities/LICENSE
+├─ html-entity-decoder@1.0.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/blackish-murderer/html-entity-decoder
+│  ├─ publisher: Blackish Murderer
+│  ├─ email: blackish.murderer@gmail.com
+│  └─ licenseFile: html-entity-decoder/LICENSE
 ├─ html-escaper@2.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/WebReflection/html-escaper
@@ -4669,6 +4752,12 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/dankogai/js-base64
 │  ├─ publisher: Dan Kogai
 │  └─ licenseFile: js-base64/LICENSE.md
+├─ js-htmlencode@0.3.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/emn178/js-htmlencode
+│  ├─ publisher: emn178
+│  ├─ email: emn178@gmail.com
+│  └─ licenseFile: js-htmlencode/LICENSE.txt
 ├─ js-tokens@3.0.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/lydell/js-tokens
@@ -4829,6 +4918,11 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/evcohen/jsx-ast-utils
 │  ├─ publisher: Ethan Cohen
 │  └─ licenseFile: jsx-ast-utils/LICENSE.md
+├─ kernel-smooth@0.2.3
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/Planeshifter/kernelSmoother.js
+│  ├─ publisher: Philipp Burckhardt
+│  └─ licenseFile: kernel-smooth/LICENSE
 ├─ killable@1.0.1
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/marten-de-vries/killable
@@ -7086,6 +7180,12 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: bizauionica@gmail.com
 │  ├─ url: https://ionicabizau.net
 │  └─ licenseFile: regex-parser/LICENSE
+├─ regex-regex@1.0.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/kgryte/regex-regex
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: regex-regex/LICENSE
 ├─ regexp.prototype.flags@1.3.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/es-shims/RegExp.prototype.flags
@@ -8283,6 +8383,20 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jshttp/type-is
 │  └─ licenseFile: type-is/LICENSE
+├─ type-name@1.1.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/twada/type-name
+│  ├─ publisher: Takuto Wada
+│  ├─ email: takuto.wada@gmail.com
+│  ├─ url: https://github.com/twada
+│  └─ licenseFile: type-name/README.md
+├─ type-name@2.0.2
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/twada/type-name
+│  ├─ publisher: Takuto Wada
+│  ├─ email: takuto.wada@gmail.com
+│  ├─ url: https://github.com/twada
+│  └─ licenseFile: utils-copy/node_modules/type-name/LICENSE
 ├─ type@1.2.0
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/medikoo/type
@@ -8469,6 +8583,36 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/AriaMinaei/utila
 │  ├─ publisher: Aria Minaei
 │  └─ licenseFile: utila/LICENSE
+├─ utils-copy-error@1.0.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/kgryte/utils-copy-error
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: utils-copy-error/LICENSE
+├─ utils-copy@1.1.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/kgryte/utils-copy
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: utils-copy/LICENSE
+├─ utils-deep-get@1.0.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/kgryte/utils-deep-get
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: utils-deep-get/LICENSE
+├─ utils-deep-set@1.0.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/kgryte/utils-deep-set
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: utils-deep-set/LICENSE
+├─ utils-indexof@1.0.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/kgryte/utils-indexof
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: utils-indexof/LICENSE
 ├─ utils-merge@1.0.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jaredhanson/utils-merge
@@ -8476,6 +8620,12 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: jaredhanson@gmail.com
 │  ├─ url: http://www.jaredhanson.net/
 │  └─ licenseFile: utils-merge/LICENSE
+├─ utils-regex-from-string@1.0.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/kgryte/utils-regex-from-string
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: utils-regex-from-string/LICENSE
 ├─ uuid@3.3.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/kelektiv/node-uuid
@@ -8493,6 +8643,126 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: kyle@kemitchell.com
 │  ├─ url: https://kemitchell.com
 │  └─ licenseFile: validate-npm-package-license/LICENSE
+├─ validate.io-array-like@1.0.2
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/validate-io/array-like
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: validate.io-array-like/LICENSE
+├─ validate.io-array@1.0.6
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/validate-io/array
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: validate.io-array/LICENSE
+├─ validate.io-boolean-primitive@1.0.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/validate-io/boolean-primitive
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: validate.io-boolean-primitive/LICENSE
+├─ validate.io-buffer@1.0.2
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/validate-io/buffer
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: validate.io-buffer/LICENSE
+├─ validate.io-contains@1.0.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/validate-io/contains
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: validate.io-contains/LICENSE
+├─ validate.io-function@1.0.2
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/validate-io/function
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: validate.io-function/LICENSE
+├─ validate.io-integer-primitive@1.0.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/validate-io/integer-primitive
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: validate.io-integer-primitive/LICENSE
+├─ validate.io-integer@1.0.5
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/validate-io/integer
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: validate.io-integer/LICENSE
+├─ validate.io-matrix-like@1.0.2
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/validate-io/matrix-like
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: validate.io-matrix-like/LICENSE
+├─ validate.io-nan-primitive@1.0.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/validate-io/nan-primitive
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: validate.io-nan-primitive/LICENSE
+├─ validate.io-nan@1.0.3
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/validate-io/nan
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: validate.io-nan/LICENSE
+├─ validate.io-nonnegative-integer-array@1.0.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/validate-io/nonnegative-integer-array
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: validate.io-nonnegative-integer-array/LICENSE
+├─ validate.io-nonnegative-integer@1.0.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/validate-io/nonnegative-integer
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: validate.io-nonnegative-integer/LICENSE
+├─ validate.io-nonnegative@1.0.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/validate-io/nonnegative
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: validate.io-nonnegative/LICENSE
+├─ validate.io-number-primitive@1.0.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/validate-io/number-primitive
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: validate.io-number-primitive/LICENSE
+├─ validate.io-number@1.0.3
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/validate-io/number
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: validate.io-number/LICENSE
+├─ validate.io-object@1.0.4
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/validate-io/object
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: validate.io-object/LICENSE
+├─ validate.io-positive-primitive@1.0.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/validate-io/positive-primitive
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: validate.io-positive-primitive/LICENSE
+├─ validate.io-string-primitive@1.0.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/validate-io/string-primitive
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: validate.io-string-primitive/LICENSE
+├─ validate.io-typed-array-like@1.0.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/validate-io/typed-array-like
+│  ├─ publisher: Athan Reines
+│  ├─ email: kgryte@gmail.com
+│  └─ licenseFile: validate.io-typed-array-like/LICENSE
 ├─ value-equal@1.0.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/mjackson/value-equal
