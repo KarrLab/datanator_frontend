@@ -36,9 +36,7 @@ export default class GeneSearchResultsList extends Component {
     for (const result of results) {
       if (Array.isArray(result.key) && result.key.length > 0) {
         const koNumber = upperCaseFirstLetter(result.key[0]);
-        if (koNumber.toLowerCase() === "nan") {
-          continue;
-        }
+        const ko = result.top_ko.hits.hits[0]._source;
 
         let formattedResult = formattedResults[koNumber];
         if (!formattedResult) {
@@ -47,10 +45,13 @@ export default class GeneSearchResultsList extends Component {
         }
 
         // title
-        const name = result.top_ko.hits.hits[0]._source.ko_name[0];
-        if (name) {
-          formattedResult["title"] =
-            name[0].toUpperCase() + name.substring(1, name.length);
+        if (
+          "ko_name" in ko &&
+          Array.isArray(ko.ko_name) &&
+          ko.ko_name.length &&
+          ko.ko_name[0]
+        ) {
+          formattedResult["title"] = upperCaseFirstLetter(ko.ko_name[0]);
         } else {
           formattedResult["title"] = koNumber;
         }
