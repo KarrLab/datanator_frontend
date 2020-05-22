@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import {
-  strCompare,
-  formatParticipantsForUrl
-} from "~/utils/utils";
+import { strCompare, formatParticipantsForUrl } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
 import { LoadExternalContent, LoadContent } from "../LoadContent";
 import KeggPathwaysMetadataSection from "../KeggPathwaysMetadataSection";
