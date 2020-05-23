@@ -70,30 +70,21 @@ export default class MetaboliteSearchResultsList extends Component {
         // description
         const linkTypes = [
           {
+            label: "InChI key",
+            url:
+              "https://www.ebi.ac.uk/chebi/advancedSearchFT.do?searchString=",
+            attribute: "InChI_Key"
+          },
+          {
             label: "ChEBI",
             url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=",
             attribute: "chebi_id"
           },
-          // {
-          //   label: "ECMDB",
-          //   url: "http://ecmdb.ca/compounds/",
-          //   attribute: "m2m_id"
-          // },
-          // {
-          //   label: "HMDB",
-          //   url: "http://www.hmdb.ca/metabolites/",
-          //   attribute: "hmdb_id"
-          // },
           {
             label: "KEGG",
             url: "https://www.genome.jp/dbget-bin/www_bget?cpd:",
             attribute: "kegg_id"
           }
-          // {
-          //   label: "YMDB",
-          //   url: "http://www.ymdb.ca/compounds/",
-          //   attribute: "ymdb_id"
-          // }
         ];
         const links = [];
         for (const linkType of linkTypes) {

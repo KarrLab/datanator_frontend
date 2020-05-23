@@ -6,6 +6,8 @@ import { mount, shallow } from "enzyme";
 import { getListDomElements, getSectionFromList } from "~/utils/testing_utils";
 import SearchResultsList from "~/scenes/BiochemicalEntityDetails/Metabolite/SearchResultsList";
 
+var htmlDecode = require("js-htmlencode").htmlDecode;
+
 /* global describe, it, expect */
 describe("Metabolite data page", () => {
   it("Gets correct concentration data url", () => {
@@ -42,7 +44,7 @@ describe("Metabolite data page", () => {
       tanimotoSimilarity: 1.0,
       value: 33.4,
       uncertainty: null,
-      units: "μM",
+      units: htmlDecode("&#181;M"),
       organism: "Escherichia coli BW25113",
       taxonomicProximity: 0,
       growthPhase: "Stationary",

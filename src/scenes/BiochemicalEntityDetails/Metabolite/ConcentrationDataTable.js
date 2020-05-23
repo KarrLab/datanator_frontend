@@ -64,11 +64,17 @@ class ConcentrationDataTable extends Component {
               "growth_system" in metConc ? metConc.growth_system : null,
             source: null
           };
+
           if (conc.units === "uM") {
-            conc.units = "μM";
+            conc.units = htmlDecode("&#181;M");
+          } else if (conc.units === "umol/g DW") {
+            conc.units = htmlDecode("&#181;mol * gCDW-1");
+          } else if (conc.units === "umol/L") {
+            conc.units = htmlDecode("&#181;mol * L-1");
           } else if (conc.units != null && conc.units !== undefined) {
             conc.units = htmlDecode(conc.units);
           }
+
           if (organism != null) {
             conc["taxonomicProximity"] = DataTable.calcTaxonomicDistance(
               metConc.taxon_distance,

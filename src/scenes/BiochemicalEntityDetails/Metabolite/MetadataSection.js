@@ -110,17 +110,49 @@ class MetadataSection extends Component {
     }
 
     if (met.description != null && met.description !== undefined) {
+      processedData.description = met.description;
+      processedData.description = processedData.description.replace(
+        / *\((OMIM|Wikipedia)\)/gi,
+        ""
+      );
+      processedData.description = processedData.description.replace(
+        / *\[(OMIM|Wikipedia)\]/gi,
+        ""
+      );
       processedData.description = reactStringReplace(
-        met.description,
+        processedData.description,
         /[([]PMID:? *(\d+)[)\]]/gi,
         pmid => {
           return (
             <span key={pmid}>
               [
-              <a href={"https://www.ncbi.nlm.nih.gov/pubmed/" + pmid}>
+              <a
+                href={"https://www.ncbi.nlm.nih.gov/pubmed/" + pmid}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 PubMed: {pmid}
               </a>
               ]
+            </span>
+          );
+        }
+      );
+      processedData.description = reactStringReplace(
+        processedData.description,
+        /EC (\d+\.\d+\.\d+\.\d+)/i,
+        ecNumber => {
+          console.log(ecNumber);
+          return (
+            <span key={ecNumber}>
+              EC:{" "}
+              <a
+                href={"https://enzyme.expasy.org/EC/" + ecNumber}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {ecNumber}
+              </a>
             </span>
           );
         }
