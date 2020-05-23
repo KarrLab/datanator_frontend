@@ -34,7 +34,7 @@ describe("Search results scene with entity", function() {
       .first()
       .should($el => {
         const text = $el.text();
-        expect(text).to.match(/^(InChI key: [A-Z\-]+|ChEBI: \d+|KEGG: C\d+)$/);
+        expect(text).to.match(/^(InChI key: [A-Z-]+|ChEBI: \d+|KEGG: C\d+)$/);
       });
 
     // Genes
