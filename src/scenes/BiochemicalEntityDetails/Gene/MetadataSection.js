@@ -16,19 +16,124 @@ class MetadataSection extends Component {
     this.state = { metadata: null };
   }
 
-  static processDescriptionFromUniprot(uniprotData) {
-    let response = "No description available.";
+  static processDescriptionFromUniprot(query, uniprotData) {
+    const blankResponse = "No description available.";
     if (
-      uniprotData &&
-      uniprotData.length &&
-      uniprotData[0] &&
-      uniprotData[0].comments &&
-      uniprotData[0].comments.length &&
-      uniprotData[0].comments[0] &&
-      uniprotData[0].comments[0].text &&
-      uniprotData[0].comments[0].text.length
+      uniprotData == null ||
+      uniprotData.length === 0 ||
+      uniprotData[0] == null
     ) {
-      response = uniprotData[0].comments[0].text[0].value;
+      return blankResponse;
+    }
+
+    uniprotData = uniprotData[0];
+
+    let comments = null;
+    if (
+      uniprotData.comments &&
+      uniprotData.comments.length &&
+      uniprotData.comments[0] &&
+      uniprotData.comments[0].text &&
+      uniprotData.comments[0].text.length
+    ) {
+      comments = uniprotData.comments[0].text[0].value;
+    }
+
+    let response;
+    if (query[0].toUpperCase() === "K") {
+      if (comments) {
+        response = comments;
+      } else {
+        response = blankResponse;
+      }
+    } else {
+      const properties = [];
+
+      if (
+        uniprotData.gene &&
+        uniprotData.gene.length &&
+        uniprotData.gene[0].olnNames &&
+        uniprotData.gene[0].olnNames[0] &&
+        uniprotData.gene[0].olnNames[0].evidences &&
+        uniprotData.gene[0].olnNames[0].evidences.length
+      ) {
+        properties.push({
+          key: "Gene",
+          value: (
+            <a
+              href={uniprotData.gene[0].olnNames[0].evidences[0].source.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {uniprotData.gene[0].olnNames[0].value}
+            </a>
+          )
+        });
+      }
+
+      if (
+        uniprotData.organism &&
+        uniprotData.organism.names &&
+        uniprotData.organism.names.length &&
+        uniprotData.organism.names[0] &&
+        uniprotData.organism.names[0].value
+      ) {
+        properties.push({
+          key: "Organism",
+          value: (
+            <a
+              href={
+                "https://www.ncbi.nlm.nih.gov/taxonomy/" +
+                uniprotData.organism.taxonomy
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {uniprotData.organism.names[0].value.split(" (")[0]}
+            </a>
+          )
+        });
+      }
+
+      if (uniprotData.sequence && uniprotData.sequence.sequence) {
+        const seq = uniprotData.sequence.sequence;
+        const formattedSeq = [];
+        for (let iLine = 0; iLine < Math.ceil(seq.length / 100); iLine++) {
+          formattedSeq.push(
+            <li key={iLine}>
+              {seq.slice(iLine * 100, Math.min((iLine + 1) * 100, seq.length))}
+            </li>
+          );
+        }
+
+        properties.push({
+          key: <span>Sequence ({seq.length} aa)</span>,
+          value: <ul className="sequence">{formattedSeq}</ul>
+        });
+      }
+
+      if (comments) {
+        properties.push({
+          key: "Comments",
+          value: comments
+        });
+      }
+
+      if (properties.length) {
+        response = (
+          <ul className="key-value-list link-list">
+            {properties.map(property => {
+              return (
+                <li key={property.key}>
+                  <b>{property.key}</b>: {property.value}
+                </li>
+              );
+            })}
+          </ul>
+        );
+      } else {
+        response = blankResponse;
+      }
     }
 
     return response;
@@ -80,7 +185,11 @@ class MetadataSection extends Component {
             <div>{equation}</div>
             <div>
               EC:{" "}
-              <a href={"https://enzyme.expasy.org/EC/" + ecMeta["ec_number"]}>
+              <a
+                href={"https://enzyme.expasy.org/EC/" + ecMeta["ec_number"]}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {ecMeta["ec_number"]}
               </a>
             </div>
@@ -99,14 +208,35 @@ class MetadataSection extends Component {
   }
 
   static getMetadataUrl(query) {
-    return "kegg/get_meta/?kegg_ids=" + query;
+    if (query[0].toUpperCase() === "K") {
+      return "kegg/get_meta/?kegg_ids=" + query;
+    } else {
+      return "proteins/meta/meta_combo/?uniprot_id=" + query;
+    }
   }
 
-  static processMetadata(rawData) {
+  static processMetadata(query, organism, rawData) {
+    if (query[0].toUpperCase() === "K") {
+      return MetadataSection.processKeggOrthologGroupMetadata(
+        query,
+        organism,
+        rawData
+      );
+    } else {
+      return MetadataSection.processUniProtProteinMetadata(
+        query,
+        organism,
+        rawData
+      );
+    }
+  }
+
+  static processKeggOrthologGroupMetadata(query, organism, rawData) {
     let processedData = {};
 
-    processedData.koName = rawData[0].definition.name[0];
+    processedData.title = rawData[0].definition.name[0];
     processedData.koNumber = rawData[0].kegg_orthology_id;
+    processedData.uniprotId = null;
     processedData.description = null;
     processedData.ecCode = rawData[0].definition.ec_code[0];
     processedData.pathways = rawData[0].kegg_pathway;
@@ -124,11 +254,28 @@ class MetadataSection extends Component {
     return processedData;
   }
 
-  static formatTitle(processedData) {
-    return processedData.koName;
+  static processUniProtProteinMetadata(query, organism, rawData) {
+    let processedData = {};
+
+    processedData.title = rawData[0].protein_name;
+    processedData.koNumber = null;
+    processedData.uniprotId = query;
+    processedData.description = null;
+    processedData.ecCode = rawData[0].ec_number;
+    processedData.pathways = [];
+    processedData.descriptionUrl =
+      "https://www.ebi.ac.uk/proteins/api/proteins?offset=0&size=1&accession=" +
+      query;
+    processedData.relatedLinksUrl = null;
+
+    return processedData;
   }
 
-  static formatMetadata(processedData, organism) {
+  static formatTitle(processedData) {
+    return processedData.title;
+  }
+
+  static formatMetadata(query, organism, processedData) {
     const sections = [];
 
     if (processedData.descriptionUrl) {
@@ -139,7 +286,12 @@ class MetadataSection extends Component {
           <div>
             <LoadExternalContent
               url={processedData.descriptionUrl}
-              format-results={MetadataSection.processDescriptionFromUniprot}
+              format-results={uniprotData => {
+                return MetadataSection.processDescriptionFromUniprot(
+                  query,
+                  uniprotData
+                );
+              }}
             />
           </div>
         )
@@ -148,22 +300,44 @@ class MetadataSection extends Component {
 
     const crossRefs = [];
 
-    crossRefs.push({
-      key: "KEGG",
-      value: (
-        <a
-          href={
-            "https://www.genome.jp/dbget-bin/www_bget?ko:" +
-            processedData.koNumber
-          }
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {" "}
-          {processedData.koNumber}
-        </a>
-      )
-    });
+    if (processedData.koNumber != null) {
+      crossRefs.push({
+        key: "KEGG orthology",
+        value: (
+          <a
+            href={
+              "https://www.genome.jp/dbget-bin/www_bget?ko:" +
+              processedData.koNumber
+            }
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {" "}
+            {processedData.koNumber}
+          </a>
+        )
+      });
+    } else {
+      crossRefs.push({
+        key: "KEGG orthology",
+        value: "None"
+      });
+    }
+    if (processedData.uniprotId != null) {
+      crossRefs.push({
+        key: "UniProt",
+        value: (
+          <a
+            href={"https://www.uniprot.org/uniprot/" + processedData.uniprotId}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {" "}
+            {processedData.uniprotId}
+          </a>
+        )
+      });
+    }
 
     sections.push({
       id: "cross-refs",
@@ -181,21 +355,29 @@ class MetadataSection extends Component {
       )
     });
 
-    sections.push({
-      id: "reactions",
-      title: "Reactions",
-      content: (
-        <div>
-          <LoadContent
-            url={processedData.relatedLinksUrl}
-            format-results={MetadataSection.processRelatedReactions.bind(
-              null,
-              organism
-            )}
-          />
-        </div>
-      )
-    });
+    if (processedData.relatedLinksUrl != null) {
+      sections.push({
+        id: "reactions",
+        title: "Reactions",
+        content: (
+          <div>
+            <LoadContent
+              url={processedData.relatedLinksUrl}
+              format-results={MetadataSection.processRelatedReactions.bind(
+                null,
+                organism
+              )}
+            />
+          </div>
+        )
+      });
+    } else {
+      sections.push({
+        id: "reactions",
+        title: "Reactions",
+        content: "No data is available."
+      });
+    }
 
     if (processedData.pathways) {
       if (processedData.pathways.length > 0) {

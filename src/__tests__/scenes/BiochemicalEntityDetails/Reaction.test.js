@@ -133,7 +133,11 @@ describe("Reaction data page", () => {
 
   it("Processes metadata data correctly", () => {
     // format raw data
-    const processedMetadata = MetadataSection.processMetadata(testRawData);
+    const processedMetadata = MetadataSection.processMetadata(
+      null,
+      null,
+      testRawData
+    );
     expect(processedMetadata.reactionId).toEqual("82");
     expect(processedMetadata.substrates).toEqual(
       expect.arrayContaining([
@@ -171,7 +175,11 @@ describe("Reaction data page", () => {
 
   it("Formats metadata data correctly", () => {
     // format processed data
-    const processedMetadata = MetadataSection.processMetadata(testRawData);
+    const processedMetadata = MetadataSection.processMetadata(
+      null,
+      null,
+      testRawData
+    );
     expect(MetadataSection.formatTitle(processedMetadata)).toEqual(
       "Adenylate kinase"
     );
@@ -182,8 +190,9 @@ describe("Reaction data page", () => {
     );
 
     const formattedMetadata = MetadataSection.formatMetadata(
-      processedMetadata,
-      "Escherichia coli"
+      null,
+      "Escherichia coli",
+      processedMetadata
     );
 
     expect(formattedMetadata[0].id).toEqual("description");

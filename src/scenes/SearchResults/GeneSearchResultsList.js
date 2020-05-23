@@ -35,42 +35,69 @@ export default class GeneSearchResultsList extends Component {
     const formattedResults = {};
     for (const result of results) {
       if (Array.isArray(result.key) && result.key.length > 0) {
-        const koNumber = upperCaseFirstLetter(result.key[0]);
-        const ko = result.top_ko.hits.hits[0]._source;
+        let koNumber = upperCaseFirstLetter(result.key[0]);
+        const uniprotId = result.top_ko.hits.hits[0]._id;
 
-        let formattedResult = formattedResults[koNumber];
+        const source = result.top_ko.hits.hits[0]._source;
+        let id;
+        if (koNumber.toLowerCase() === "nan") {
+          id = uniprotId;
+          koNumber = null;
+        } else {
+          id = koNumber;
+        }
+
+        let formattedResult = formattedResults[id];
         if (!formattedResult) {
           formattedResult = {};
-          formattedResults[koNumber] = formattedResult;
+          formattedResults[id] = formattedResult;
         }
 
         // title
         if (
-          "ko_name" in ko &&
-          Array.isArray(ko.ko_name) &&
-          ko.ko_name.length &&
-          ko.ko_name[0]
+          "ko_name" in source &&
+          Array.isArray(source.ko_name) &&
+          source.ko_name.length &&
+          source.ko_name[0]
         ) {
-          formattedResult["title"] = upperCaseFirstLetter(ko.ko_name[0]);
-        } else if ("definition" in ko) {
-          formattedResult["title"] = ko.definition;
+          formattedResult["title"] = upperCaseFirstLetter(source.ko_name[0]);
+        } else if ("definition" in source) {
+          formattedResult["title"] = source.definition;
         } else {
-          formattedResult["title"] = koNumber;
+          formattedResult["title"] = source.protein_name;
         }
 
         // description
-        const href = "https://www.genome.jp/dbget-bin/www_bget?ko:" + koNumber;
-        formattedResult["description"] = (
-          <div>
-            KEGG:{" "}
-            <a href={href} target="_blank" rel="noopener noreferrer">
-              {koNumber}
-            </a>
-          </div>
-        );
+        if (koNumber == null) {
+          formattedResult["description"] = (
+            <div>
+              UniProt:{" "}
+              <a
+                href={"https://www.uniprot.org/uniprot/" + uniprotId}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {uniprotId}
+              </a>
+            </div>
+          );
+        } else {
+          formattedResult["description"] = (
+            <div>
+              KEGG:{" "}
+              <a
+                href={"https://www.genome.jp/dbget-bin/www_bget?ko:" + koNumber}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {koNumber}
+              </a>
+            </div>
+          );
+        }
 
         //route
-        formattedResult["route"] = "/gene/" + koNumber;
+        formattedResult["route"] = "/gene/" + id;
         if (organism) {
           formattedResult["route"] += "/" + organism;
         }

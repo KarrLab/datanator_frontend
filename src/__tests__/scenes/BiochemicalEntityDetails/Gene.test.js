@@ -118,20 +118,32 @@ describe("Gene data page", () => {
 
   it("Processes metadata data correctly", () => {
     // format raw data
-    const processedMetadata = MetadataSection.processMetadata(testRawMetadata);
+    const processedMetadata = MetadataSection.processMetadata(
+      "K00850",
+      null,
+      testRawMetadata
+    );
     expect(processedMetadata.koNumber).toEqual("K00850");
-    expect(processedMetadata.koName).toEqual("6-phosphofructokinase 1");
+    expect(processedMetadata.title).toEqual("6-phosphofructokinase 1");
   });
 
   it("Formats metadata data correctly", () => {
     // format processed data
-    const processedMetadata = MetadataSection.processMetadata(testRawMetadata);
+    const processedMetadata = MetadataSection.processMetadata(
+      "K00850",
+      null,
+      testRawMetadata
+    );
 
     expect(MetadataSection.formatTitle(processedMetadata)).toEqual(
       "6-phosphofructokinase 1"
     );
 
-    const formattedMetadata = MetadataSection.formatMetadata(processedMetadata);
+    const formattedMetadata = MetadataSection.formatMetadata(
+      "K00850",
+      null,
+      processedMetadata
+    );
 
     expect(formattedMetadata[0].id).toEqual("description");
     expect(formattedMetadata[0].title).toEqual("Description");
@@ -155,7 +167,7 @@ describe("Gene data page", () => {
 
     const namesMetadataWrapper = shallow(formattedCrossReferences.content);
 
-    const correct_list_of_names = ["KEGG:  K00850"];
+    const correct_list_of_names = ["KEGG orthology:  K00850"];
 
     const actual_list_of_names = getListDomElements(
       namesMetadataWrapper,
@@ -170,10 +182,12 @@ describe("Gene data page", () => {
 
   it("get description from uniprot", () => {
     const emptyUniprotDescription = MetadataSection.processDescriptionFromUniprot(
+      "K00850",
       null
     );
     expect(emptyUniprotDescription).toEqual("No description available.");
     const uniprotDescription = MetadataSection.processDescriptionFromUniprot(
+      "K00850",
       rawUniprotDescription
     );
     expect(uniprotDescription).toEqual(
@@ -190,8 +204,8 @@ describe("Gene data page", () => {
     const formattedReactions = shallow(<div>{relatedReactions}</div>);
     const reactionLinksExternal = getListDomElements(formattedReactions, "a");
     const correctListOfLinksExternal = [
-      '<a href="https://enzyme.expasy.org/EC/4.2.1.46">4.2.1.46</a>',
-      '<a href="https://enzyme.expasy.org/EC/4.2.1.46">4.2.1.46</a>'
+      '<a href="https://enzyme.expasy.org/EC/4.2.1.46" target="_blank" rel="noopener noreferrer">4.2.1.46</a>',
+      '<a href="https://enzyme.expasy.org/EC/4.2.1.46" target="_blank" rel="noopener noreferrer">4.2.1.46</a>'
     ];
     expect(reactionLinksExternal).toEqual(
       expect.arrayContaining(correctListOfLinksExternal)

@@ -225,7 +225,7 @@ class LoadMetabolites extends Component {
   }
 
   render() {
-    return <div className="metabolite_link">{this.state.results}</div>;
+    return <div className="metabolite-link">{this.state.results}</div>;
   }
 }
 

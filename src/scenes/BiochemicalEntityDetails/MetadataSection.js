@@ -102,11 +102,14 @@ class MetadataSection extends Component {
             });
           } else {
             const processedMetadata = this.props["process-metadata"](
+              query,
+              organism,
               queryResponse.data
             );
             const formattedMetadataSections = this.props["format-metadata"](
-              processedMetadata,
-              organism
+              query,
+              organism,
+              processedMetadata
             );
             this.props["set-scene-metadata"]({
               error404: false,

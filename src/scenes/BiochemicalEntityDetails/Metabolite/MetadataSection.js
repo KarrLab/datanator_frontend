@@ -90,7 +90,7 @@ class MetadataSection extends Component {
     return "metabolites/meta/?inchikey=" + query;
   }
 
-  static processMetadata(rawData) {
+  static processMetadata(query, organism, rawData) {
     let processedData = {};
     const met = rawData;
     processedData = {};
@@ -194,7 +194,7 @@ class MetadataSection extends Component {
     return processedData.name;
   }
 
-  static formatMetadata(processedData) {
+  static formatMetadata(query, organism, processedData) {
     const sections = [];
     if (processedData.description) {
       let structure;

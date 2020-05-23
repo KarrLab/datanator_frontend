@@ -123,7 +123,11 @@ describe("Metabolite data page", () => {
 
   it("Processes metadata data correctly", () => {
     // format raw data
-    const processedMetadata = MetadataSection.processMetadata(testRawMetadata);
+    const processedMetadata = MetadataSection.processMetadata(
+      null,
+      null,
+      testRawMetadata
+    );
     // test processed data
     expect(Object.keys(processedMetadata.cellularLocations)).toHaveLength(1);
     expect(Object.keys(processedMetadata.cellularLocations)[0]).toEqual(
@@ -147,11 +151,19 @@ describe("Metabolite data page", () => {
 
   it("Formats metadata data correctly", () => {
     // format processed data
-    let processedMetadata = MetadataSection.processMetadata(testRawMetadata);
+    let processedMetadata = MetadataSection.processMetadata(
+      null,
+      null,
+      testRawMetadata
+    );
     expect(MetadataSection.formatTitle(processedMetadata)).toEqual(
       "Uridine 5'-diphosphate"
     );
-    const formattedMetadata = MetadataSection.formatMetadata(processedMetadata);
+    const formattedMetadata = MetadataSection.formatMetadata(
+      null,
+      null,
+      processedMetadata
+    );
 
     const formattedDescription = getSectionFromList(
       formattedMetadata,
@@ -273,6 +285,8 @@ describe("Metabolite data page", () => {
     };
 
     const formattedMetadataWithInchi = MetadataSection.formatMetadata(
+      null,
+      null,
       processedMetadata
     );
 
@@ -293,6 +307,8 @@ describe("Metabolite data page", () => {
     };
 
     const formattedMetadataWithInchiKey = MetadataSection.formatMetadata(
+      null,
+      null,
       processedMetadata
     );
     let structureWithInchiKey =

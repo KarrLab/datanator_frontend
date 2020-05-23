@@ -38,7 +38,16 @@
     }
   }
 
-  .metabolite_link {
+  .metabolite-link {
     display: inline;
+  }
+
+  .sequence {    
+    list-style-type: none;
+    margin-top: 0;
+
+    li {
+      font-family: "Courier New", Courier, monospace;
+    }
   }
 }

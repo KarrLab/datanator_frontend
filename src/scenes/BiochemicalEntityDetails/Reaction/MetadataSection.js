@@ -47,7 +47,7 @@ class MetadataSection extends Component {
     return "reactions/kinlaw_by_rxn/?" + args.join("&");
   }
 
-  static processMetadata(rawData) {
+  static processMetadata(query, organism, rawData) {
     const processedData = {};
 
     const reactionId = MetadataSection.getReactionId(rawData[0].resource);
@@ -130,7 +130,7 @@ class MetadataSection extends Component {
     }
   }
 
-  static formatMetadata(processedData, organism) {
+  static formatMetadata(query, organism, processedData) {
     const sections = [];
 
     const partLinks = [];
