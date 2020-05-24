@@ -5,7 +5,7 @@ import axios from "axios";
 import { getDataFromApi, genApiErrorHandler } from "~/services/RestApi";
 import { parseHistoryLocationPathname, isEmpty } from "~/utils/utils";
 
-const IS_DEVELOPMENT = process.env.NODE_ENV === "development";
+const IS_DEVELOPMENT = process.env.NODE_ENV.startsWith("development");
 const IS_TEST = process.env.NODE_ENV.startsWith("test");
 
 class MetadataSection extends Component {

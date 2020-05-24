@@ -27,7 +27,7 @@ import "@ag-grid-community/all-modules/dist/styles/ag-theme-balham/sass/ag-theme
 
 import "./DataTable.scss";
 
-const IS_DEVELOPMENT = process.env.NODE_ENV === "development";
+const IS_DEVELOPMENT = process.env.NODE_ENV.startsWith("development");
 const IS_TEST = process.env.NODE_ENV.startsWith("test");
 
 class DataTable extends Component {

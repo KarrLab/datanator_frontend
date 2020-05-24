@@ -5,7 +5,7 @@ import axios from "axios";
 import { getDataFromApi, genApiErrorHandler } from "~/services/RestApi";
 import { Link } from "react-router-dom";
 
-const IS_DEVELOPMENT = process.env.NODE_ENV === "development";
+const IS_DEVELOPMENT = process.env.NODE_ENV.startsWith("development");
 const IS_TEST = process.env.NODE_ENV.startsWith("test");
 
 class LoadExternalContent extends Component {

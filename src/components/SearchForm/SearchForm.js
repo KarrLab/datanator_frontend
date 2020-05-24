@@ -13,7 +13,7 @@ import { parseHistoryLocationPathname } from "~/utils/utils";
 
 import "./SearchForm.scss";
 
-const IS_DEVELOPMENT = process.env.NODE_ENV === "development";
+const IS_DEVELOPMENT = process.env.NODE_ENV.startsWith("development");
 const IS_TEST = process.env.NODE_ENV.startsWith("test");
 
 class SearchForm extends Component {

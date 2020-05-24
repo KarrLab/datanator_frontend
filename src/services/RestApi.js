@@ -3,7 +3,7 @@ import axios from "axios";
 import { errorDialogRef } from "~/components/ErrorDialog/ErrorDialog";
 
 const ROOT_URL = process.env.REACT_APP_REST_SERVER;
-const IS_DEVELOPMENT = process.env.NODE_ENV === "development";
+const IS_DEVELOPMENT = process.env.NODE_ENV.startsWith("development");
 const IS_TEST = process.env.NODE_ENV.startsWith("test");
 const DEFAULT_ERROR_MESSAGE = (
   <span>

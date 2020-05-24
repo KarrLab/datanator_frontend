@@ -7,7 +7,7 @@ import { getDataFromApi, genApiErrorHandler } from "~/services/RestApi";
 import { parseHistoryLocationPathname } from "~/utils/utils";
 import history from "~/utils/history";
 
-const IS_DEVELOPMENT = process.env.NODE_ENV === "development";
+const IS_DEVELOPMENT = process.env.NODE_ENV.startsWith("development");
 const IS_TEST = process.env.NODE_ENV.startsWith("test");
 
 function valueText(value) {
