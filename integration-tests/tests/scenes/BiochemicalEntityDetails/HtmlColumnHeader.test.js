@@ -16,7 +16,7 @@ describe("HtmlColumnHeader", function() {
       .first()
       .find(".ag-header-cell-text")
       .find("span")
-      .should("have.html", "k<sub>cat</sub> (s<sup>-1</sup>)");
+      .should("have.html", "k<sub>cat</sub> value");
 
     // check sorts
     function getHeaderCellLabelContainer() {
