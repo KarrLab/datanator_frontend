@@ -42,6 +42,7 @@ class RateConstantsDataTable extends Component {
       const formattedDatum = {
         kcat: RateConstantsDataTable.getKcatValues(datum.parameter),
         km: RateConstantsDataTable.getKmValues(datum.parameter),
+        ki: RateConstantsDataTable.getKiValues(datum.parameter),
         organism: datum.taxon_name,
         wildtypeMutant: wildtypeMutant,
         temperature: datum.temperature,
@@ -59,7 +60,8 @@ class RateConstantsDataTable extends Component {
 
       if (
         formattedDatum.kcat != null ||
-        Object.keys(formattedDatum.km).length > 0
+        Object.keys(formattedDatum.km).length > 0 ||
+        Object.keys(formattedDatum.ki).length > 0
       ) {
         formattedData.push(formattedDatum);
       }
@@ -70,8 +72,23 @@ class RateConstantsDataTable extends Component {
 
   static getKcatValues(parameters) {
     for (const parameter of parameters) {
-      if (parameter.name === "k_cat") {
-        return parseFloat(parameter.value);
+      if (
+        parameter.type === 25 ||
+        parameter.sbo_type === 25 ||
+        parameter.type === 186 ||
+        parameter.sbo_type === 186
+      ) {
+        if (parameter.value != null) {
+          return {
+            value: parseFloat(parameter.value),
+            units: parameter.units
+          };
+        } else {
+          return {
+            value: parseFloat(parameter.observed_value),
+            units: parameter.observed_units
+          };
+        }
       }
     }
   }
@@ -79,14 +96,41 @@ class RateConstantsDataTable extends Component {
   static getKmValues(parameters) {
     const kms = {};
     for (const parameter of parameters) {
-      if (
-        parameter.type === 27 &&
-        parameter.observed_name.toLowerCase() === "km"
-      ) {
-        kms[parameter.name] = parseFloat(parameter.value);
+      if (parameter.type === 27 || parameter.sbo_type === 27) {
+        if (parameter.value != null) {
+          kms[parameter.name] = {
+            value: parseFloat(parameter.value),
+            units: parameter.units
+          };
+        } else {
+          kms[parameter.name] = {
+            value: parseFloat(parameter.observed_value),
+            units: parameter.observed_units
+          };
+        }
       }
     }
     return kms;
+  }
+
+  static getKiValues(parameters) {
+    const kis = {};
+    for (const parameter of parameters) {
+      if (parameter.type === 261 || parameter.sbo_type === 261) {
+        if (parameter.value != null) {
+          kis[parameter.name] = {
+            value: parseFloat(parameter.value),
+            units: parameter.units
+          };
+        } else {
+          kis[parameter.name] = {
+            value: parseFloat(parameter.observed_value),
+            units: parameter.observed_units
+          };
+        }
+      }
+    }
+    return kis;
   }
 
   static getSideBarDef(formattedData) {
@@ -105,26 +149,38 @@ class RateConstantsDataTable extends Component {
           labelKey: "filters",
           iconKey: "filter",
           toolPanel: "filtersToolPanel"
-        },
-        {
-          id: "stats-kcat",
-          labelDefault: (
-            <span>
-              Stats: k<sub>cat</sub> (s<sup>-1</sup>)
-            </span>
-          ),
-          labelKey: "chart",
-          iconKey: "chart",
-          toolPanel: "statsToolPanel",
-          toolPanelParams: {
-            col: ["kcat"]
-          }
         }
       ],
       position: "left",
       defaultToolPanel: "filters",
       hiddenByDefault: false
     };
+
+    // k_cat tool panel
+    let hasKcat = false;
+    for (const formattedDatum of formattedData) {
+      if (formattedDatum.kcat != null) {
+        hasKcat = true;
+        break;
+      }
+    }
+
+    if (hasKcat) {
+      sideBar["toolPanels"].push({
+        id: "stats-kcat",
+        labelDefault: (
+          <span>
+            Stats: k<sub>cat</sub>
+          </span>
+        ),
+        labelKey: "chart",
+        iconKey: "chart",
+        toolPanel: "statsToolPanel",
+        toolPanelParams: {
+          col: ["kcat", "value"]
+        }
+      });
+    }
 
     // K_M tool panels
     let kmMets = {};
@@ -141,14 +197,41 @@ class RateConstantsDataTable extends Component {
         id: "stats-km-" + kmMet,
         labelDefault: (
           <span>
-            Stats: K<sub>M</sub> {kmMet} (M)
+            Stats: K<sub>M</sub> {kmMet}
           </span>
         ),
         labelKey: "chart",
         iconKey: "chart",
         toolPanel: "statsToolPanel",
         toolPanelParams: {
-          col: ["km", kmMet]
+          col: ["km", kmMet, "value"]
+        }
+      });
+    }
+
+    // K_I tool panels
+    let kiMets = {};
+    for (const formattedDatum of formattedData) {
+      for (const met in formattedDatum.ki) {
+        kiMets[met] = true;
+      }
+    }
+    kiMets = Object.keys(kiMets);
+    kiMets.sort();
+
+    for (const kiMet of kiMets) {
+      sideBar["toolPanels"].push({
+        id: "stats-ki-" + kiMet,
+        labelDefault: (
+          <span>
+            Stats: K<sub>I</sub> {kiMet}
+          </span>
+        ),
+        labelKey: "chart",
+        iconKey: "chart",
+        toolPanel: "statsToolPanel",
+        toolPanelParams: {
+          col: ["ki", kiMet, "value"]
         }
       });
     }
@@ -171,16 +254,16 @@ class RateConstantsDataTable extends Component {
 
     if (hasKcat) {
       colDefs.push({
-        headerName: "k_{cat}",
+        headerName: "k_{cat} value",
         headerComponentFramework: HtmlColumnHeader,
         headerComponentParams: {
           name: (
             <span>
-              k<sub>cat</sub> (s<sup>-1</sup>)
+              k<sub>cat</sub> value
             </span>
           )
         },
-        field: "kcat",
+        field: "kcat.value",
         cellRenderer: "numericCellRenderer",
         type: "numericColumn",
         filter: "numberFilter",
@@ -188,6 +271,18 @@ class RateConstantsDataTable extends Component {
         headerCheckboxSelection: true,
         headerCheckboxSelectionFilteredOnly: true,
         comparator: DataTable.numericComparator
+      });
+      colDefs.push({
+        headerName: "k_{cat} units",
+        headerComponentFramework: HtmlColumnHeader,
+        headerComponentParams: {
+          name: (
+            <span>
+              k<sub>cat</sub> units
+            </span>
+          )
+        },
+        field: "kcat.units"
       });
     }
 
@@ -203,20 +298,73 @@ class RateConstantsDataTable extends Component {
 
     for (const kmMet of kmMets) {
       colDefs.push({
-        headerName: "K_M " + kmMet + " (M)",
+        headerName: "K_M " + kmMet + " value",
         headerComponentFramework: HtmlColumnHeader,
         headerComponentParams: {
           name: (
             <span>
-              K<sub>M</sub> {kmMet} (M)
+              K<sub>M</sub> {kmMet} value
             </span>
           )
         },
-        field: "km." + kmMet,
+        field: "km." + kmMet + ".value",
         cellRenderer: "numericCellRenderer",
         type: "numericColumn",
         filter: "numberFilter",
         comparator: DataTable.numericComparator
+      });
+      colDefs.push({
+        headerName: "K_M " + kmMet + " units",
+        headerComponentFramework: HtmlColumnHeader,
+        headerComponentParams: {
+          name: (
+            <span>
+              K<sub>M</sub> {kmMet} units
+            </span>
+          )
+        },
+        field: "km." + kmMet + ".units"
+      });
+    }
+
+    // K_I columns
+    let kiMets = {};
+    for (const formattedDatum of formattedData) {
+      for (const kiMet in formattedDatum.ki) {
+        kiMets[kiMet] = true;
+      }
+    }
+    kiMets = Object.keys(kiMets);
+    kiMets.sort();
+
+    for (const kiMet of kiMets) {
+      colDefs.push({
+        headerName: "K_I " + kiMet + " value",
+        headerComponentFramework: HtmlColumnHeader,
+        headerComponentParams: {
+          name: (
+            <span>
+              K<sub>I</sub> {kiMet} value
+            </span>
+          )
+        },
+        field: "ki." + kiMet + ".value",
+        cellRenderer: "numericCellRenderer",
+        type: "numericColumn",
+        filter: "numberFilter",
+        comparator: DataTable.numericComparator
+      });
+      colDefs.push({
+        headerName: "K_I " + kiMet + " units",
+        headerComponentFramework: HtmlColumnHeader,
+        headerComponentParams: {
+          name: (
+            <span>
+              K<sub>I</sub> {kiMet} units
+            </span>
+          )
+        },
+        field: "ki." + kiMet + ".units"
       });
     }
 
@@ -326,6 +474,20 @@ class RateConstantsDataTable extends Component {
 
     for (const kmMet of kmMets) {
       sortOrder.push("km." + kmMet);
+    }
+
+    // K_I columns
+    let kiMets = {};
+    for (const formattedDatum of formattedData) {
+      for (const kiMet in formattedDatum.ki) {
+        kiMets[kiMet] = true;
+      }
+    }
+    kiMets = Object.keys(kiMets);
+    kiMets.sort();
+
+    for (const kiMet of kiMets) {
+      sortOrder.push("ki." + kiMet);
     }
 
     return sortOrder;

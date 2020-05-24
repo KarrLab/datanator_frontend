@@ -22,7 +22,7 @@ describe("Reaction scene", function() {
       .find(".ag-header-cell")
       .first()
       .find(".ag-header-cell-text")
-      .should("have.text", "kcat (s-1)");
+      .should("have.text", "kcat value");
   });
 
   it("Reaction scene with organism successfully loads", function() {
@@ -47,7 +47,7 @@ describe("Reaction scene", function() {
       .find(".ag-header-cell")
       .first()
       .find(".ag-header-cell-text")
-      .should("have.text", "kcat (s-1)");
+      .should("have.text", "kcat value");
 
     // open columns tool panel and toggle all columns
     cy.get("#" + dataContainerId + " .biochemical-entity-data-table-tool-panel")

@@ -92,7 +92,12 @@ class FiltersToolPanel extends Component {
         filter.valueGetter = ((fields, node) => {
           let data = node.data;
           for (const field of fields) {
-            data = data[field];
+            if (field in data) {
+              data = data[field];
+            } else {
+              data = null;
+              break;
+            }
           }
           return data;
         }).bind(null, colDef.field.split("."));

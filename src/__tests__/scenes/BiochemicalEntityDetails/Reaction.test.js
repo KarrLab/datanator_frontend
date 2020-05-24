@@ -33,31 +33,151 @@ describe("Reaction data page", () => {
     expect(formattedData).toEqual(
       expect.arrayContaining([
         {
-          kcat: 650,
-          km: {},
+          kcat: { units: "s^(-1)", value: 650 },
+          ki: {},
+          km: {
+            AMP: { units: "M", value: 0.000092 },
+            ATP: { units: "M", value: 0.000035 }
+          },
           organism: "Gallus gallus",
           ph: 8,
           source: 6051,
+          taxonomicProximity: 7,
           temperature: 30,
-          wildtypeMutant: "wildtype",
-          taxonomicProximity: 7
+          wildtypeMutant: "wildtype"
         },
         {
-          kcat: 680,
-          km: {},
+          kcat: { units: "s^(-1)", value: 680 },
+          ki: {},
+          km: {
+            AMP: { units: "M", value: 0.00098 },
+            ATP: { units: "M", value: 0.00021 }
+          },
           organism: "Gallus gallus",
-          wildtypeMutant: "mutant",
-          temperature: 30,
           ph: 8,
           source: 6052,
-          taxonomicProximity: 7
+          taxonomicProximity: 7,
+          temperature: 30,
+          wildtypeMutant: "mutant"
+        },
+        {
+          kcat: { units: "s^(-1)", value: 595 },
+          ki: {},
+          km: {
+            AMP: { units: "M", value: 0.00041 },
+            ATP: { units: "M", value: 0.000078 }
+          },
+          organism: "Gallus gallus",
+          ph: 8,
+          source: 6053,
+          taxonomicProximity: 7,
+          temperature: 30,
+          wildtypeMutant: "mutant"
+        },
+        {
+          kcat: { units: "s^(-1)", value: 81 },
+          ki: {},
+          km: {
+            AMP: { units: "M", value: 0.00017 },
+            ATP: { units: "M", value: 0.000091 }
+          },
+          organism: "Gallus gallus",
+          ph: 8,
+          source: 6054,
+          taxonomicProximity: 7,
+          temperature: 30,
+          wildtypeMutant: "mutant"
+        },
+        {
+          kcat: { units: "s^(-1)", value: 500 },
+          ki: {},
+          km: { AMP: { units: "M", value: 0.00015 } },
+          organism: "Gallus gallus",
+          ph: null,
+          source: 6055,
+          taxonomicProximity: 7,
+          temperature: null,
+          wildtypeMutant: "wildtype"
+        },
+        {
+          kcat: { units: "s^(-1)", value: 6 },
+          ki: {},
+          km: { AMP: { units: "M", value: 0.0014 } },
+          organism: "Gallus gallus",
+          ph: null,
+          source: 6056,
+          taxonomicProximity: 7,
+          temperature: null,
+          wildtypeMutant: "mutant"
+        },
+        {
+          kcat: { units: "s^(-1)", value: 22 },
+          ki: {},
+          km: { AMP: { units: "M", value: 0.0018 } },
+          organism: "Gallus gallus",
+          ph: null,
+          source: 6057,
+          taxonomicProximity: 7,
+          temperature: null,
+          wildtypeMutant: "mutant"
+        },
+        {
+          kcat: { units: "s^(-1)", value: 650 },
+          ki: {},
+          km: {
+            AMP: { units: "M", value: 0.000098 },
+            ATP: { units: "M", value: 0.000042 }
+          },
+          organism: "Gallus gallus",
+          ph: 8,
+          source: 6061,
+          taxonomicProximity: 7,
+          temperature: 30,
+          wildtypeMutant: "wildtype"
+        },
+        {
+          kcat: { units: "s^(-1)", value: 8.3 },
+          ki: {},
+          km: {
+            AMP: { units: "M", value: 0.00055 },
+            ATP: { units: "M", value: 0.00025 }
+          },
+          organism: "Gallus gallus",
+          ph: 8,
+          source: 6062,
+          taxonomicProximity: 7,
+          temperature: 30,
+          wildtypeMutant: "mutant"
+        },
+        {
+          kcat: { units: "s^(-1)", value: 38 },
+          ki: {},
+          km: {
+            AMP: { units: "M", value: 0.00084 },
+            ATP: { units: "M", value: 0.00051 }
+          },
+          organism: "Gallus gallus",
+          ph: 8,
+          source: 6063,
+          taxonomicProximity: 7,
+          temperature: 30,
+          wildtypeMutant: "mutant"
         }
       ])
     );
 
     expect(formattedData[5].organism).toEqual("Gallus gallus");
-    expect(formattedData[5].km).toEqual({ AMP: 0.0014 });
-    expect(formattedData[9].km).toEqual({});
+    expect(formattedData[5].km).toEqual({ AMP: { value: 0.0014, units: "M" } });
+    expect(formattedData[9].km).toEqual({
+      AMP: {
+        units: "M",
+        value: 0.00084
+      },
+      ATP: {
+        units: "M",
+        value: 0.00051
+      }
+    });
   });
 
   it("Properly format columns", () => {
@@ -72,8 +192,12 @@ describe("Reaction data page", () => {
       null
     );
 
-    expect(getSectionFromList(colDefs, "field", "kcat")).not.toEqual(null);
-    expect(getSectionFromList(colDefs, "field", "km.AMP")).not.toEqual(null);
+    expect(getSectionFromList(colDefs, "field", "kcat.value")).not.toEqual(
+      null
+    );
+    expect(getSectionFromList(colDefs, "field", "km.AMP.value")).not.toEqual(
+      null
+    );
 
     const sourceCol = getSectionFromList(colDefs, "field", "source");
     expect(sourceCol.cellRenderer({ value: "11554" })).toEqual(
@@ -118,7 +242,7 @@ describe("Reaction data page", () => {
       null,
       formattedData
     );
-    expect(colSortOrder).toEqual(["kcat", "km.AMP"]);
+    expect(colSortOrder).toEqual(["kcat", "km.AMP", "km.ATP"]);
 
     //expect(taxonSimCol.valueFormatter({ value: 2 })).toEqual("Family");
   });
