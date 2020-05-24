@@ -142,7 +142,6 @@ class MetadataSection extends Component {
         processedData.description,
         /EC (\d+\.\d+\.\d+\.\d+)/i,
         ecNumber => {
-          console.log(ecNumber);
           return (
             <span key={ecNumber}>
               EC:{" "}
