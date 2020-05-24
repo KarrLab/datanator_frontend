@@ -80,6 +80,13 @@ commands:
             # Add node programs to path
             export PATH=$PATH:node_modules/.bin
 
+            # set Node environment
+            if [[ "${CIRCLE_BRANCH}" == "master" ]]; then 
+              export NODE_ENV=production
+            else
+              export NODE_ENV=test
+            fi
+
             # Run unit tests
             npm run test-unit-coverage
             if [[ $? -ne 0 ]]; then
