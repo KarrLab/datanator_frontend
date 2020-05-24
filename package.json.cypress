@@ -78,6 +78,9 @@
     "chartjs-chart-box-and-violin-plot": "^2.2.0",
     "customize-cra": "^0.9.1",
     "history": "^4.10.1",
+    "html-entity-decoder": "^1.0.1",
+    "js-htmlencode": "^0.3.0",
+    "kernel-smooth": "^0.2.3",
     "mathjs": "^6.6.0",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
@@ -140,8 +143,8 @@
     "lint-svg": "find src -name '*.svg' | xargs -r svglint --ci",
     "test-unit": "jest",
     "test-unit-coverage": "jest --coverage",
-    "test-integration-run": "NODE_ENV=test-cypress cypress run",
-    "test-integration-open": "NODE_ENV=test-cypress cypress open",
+    "test-integration-run": "cypress run",
+    "test-integration-open": "cypress open",
     "test-integration-results-report": "junit-merge --dir test-results/integration-tests/specs --recursive --out test-results/integration-tests/results.xml",
     "test-integration-coverage-report": "nyc report --reporter=text-summary --reporter=html",
     "eject": "react-scripts eject",
@@ -155,7 +158,9 @@
       "node_modules/",
       "scripts/",
       "test-results",
-      "config-overrides.js"
+      "config-overrides.js",
+      "package.json",
+      "package-lock.json"
     ],
     "plugins": [
       "react",
@@ -215,6 +220,11 @@
       "not op_mini all"
     ],
     "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ],
+    "test": [
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
