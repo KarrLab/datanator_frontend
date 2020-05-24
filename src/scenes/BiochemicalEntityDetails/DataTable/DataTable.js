@@ -148,6 +148,10 @@ class DataTable extends Component {
       this.taxonCancelTokenSource.cancel();
     }
 
+    if (!query) {
+      return;
+    }
+
     const url = this.props["get-data-url"](query, organism);
     const taxonUrl = "taxon/canon_rank_distance_by_name/?name=" + organism;
     this.queryCancelTokenSource = axios.CancelToken.source();

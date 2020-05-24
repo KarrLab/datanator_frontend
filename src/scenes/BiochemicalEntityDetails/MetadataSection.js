@@ -73,6 +73,10 @@ class MetadataSection extends Component {
       this.taxonCancelTokenSource.cancel();
     }
 
+    if (!query) {
+      return;
+    }
+
     this.queryCancelTokenSource = axios.CancelToken.source();
     const queryUrl = this.props["get-metadata-url"](query, organism);
     if (organism) {
