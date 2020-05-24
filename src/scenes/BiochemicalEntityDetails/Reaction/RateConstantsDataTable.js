@@ -12,7 +12,7 @@ class RateConstantsDataTable extends Component {
   };
 
   static getUrl(query, organism) {
-    const args = ["_from=0", "size=1000", "bound=tight"];
+    const args = ["_from=0", "size=1000", "bound=loose", "dof=0"];
 
     const substratesProducts = query.split("-->");
     args.push("substrates=" + substratesProducts[0]);
@@ -83,7 +83,7 @@ class RateConstantsDataTable extends Component {
             value: parseFloat(parameter.value),
             units: parameter.units
           };
-        } else {
+        } else if (parameter.observed_value != null) {
           return {
             value: parseFloat(parameter.observed_value),
             units: parameter.observed_units
@@ -102,7 +102,7 @@ class RateConstantsDataTable extends Component {
             value: parseFloat(parameter.value),
             units: parameter.units
           };
-        } else {
+        } else if (parameter.observed_value != null) {
           kms[parameter.name] = {
             value: parseFloat(parameter.observed_value),
             units: parameter.observed_units
@@ -122,7 +122,7 @@ class RateConstantsDataTable extends Component {
             value: parseFloat(parameter.value),
             units: parameter.units
           };
-        } else {
+        } else if (parameter.observed_value != null) {
           kis[parameter.name] = {
             value: parseFloat(parameter.observed_value),
             units: parameter.observed_units

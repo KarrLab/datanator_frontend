@@ -67,9 +67,9 @@ export default class ReactionSearchResultsList extends Component {
       // route
       formattedResult["route"] =
         "/reaction/" +
-        result["substrates"].join(",") +
+        result["substrates"].filter(substrate => substrate).join(",") +
         "-->" +
-        result["products"].join(",");
+        result["products"].filter(product => product).join(",");
       if (organism) {
         formattedResult["route"] += "/" + organism;
       }

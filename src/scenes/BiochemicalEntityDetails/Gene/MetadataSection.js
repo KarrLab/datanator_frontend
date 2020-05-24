@@ -155,11 +155,15 @@ class MetadataSection extends Component {
       const productInchikeys = [];
       const productNames = [];
       for (const substrate of reaction.substrates[0]) {
-        substrateInchikeys.push(substrate.substrate_structure[0].InChI_Key);
+        if (substrate.substrate_structure[0].InChI_Key) {
+          substrateInchikeys.push(substrate.substrate_structure[0].InChI_Key);
+        }
         substrateNames.push(substrate.substrate_name);
       }
       for (const product of reaction.products[0]) {
-        productInchikeys.push(product.product_structure[0].InChI_Key);
+        if (product.product_structure[0].InChI_Key) {
+          productInchikeys.push(product.product_structure[0].InChI_Key);
+        }
         productNames.push(product.product_name);
       }
 
