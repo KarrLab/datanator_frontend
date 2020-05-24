@@ -16,8 +16,15 @@ describe("With real API calls", () => {
       });
     cancelTokenSource.cancel();
     await request;
-    expect(console.info.mock.calls[0][0]).toMatch(
-      /^Request 'status' cancelled/
-    );
+    if (
+      process.env.NODE_ENV.startsWith("development") ||
+      process.env.NODE_ENV.startsWith("test")
+    ) {
+      expect(console.info.mock.calls[0][0]).toMatch(
+        /^Request 'status' cancelled/
+      );
+    } else {
+      expect(console.info.mock.calls).toEqual([]);
+    }
   });
 });

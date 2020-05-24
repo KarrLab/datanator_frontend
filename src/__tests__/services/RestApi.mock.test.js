@@ -38,7 +38,14 @@ describe("With mocked API calls", () => {
     await getDataFromApi(["not-implemented"], {}).catch(
       genApiErrorHandler(["not-implemented"], customErrMsg)
     );
-    expect(console.error.mock.calls[0][0]).toMatch(/^Server error 404:/);
+    if (
+      process.env.NODE_ENV.startsWith("development") ||
+      process.env.NODE_ENV.startsWith("test")
+    ) {
+      expect(console.error.mock.calls[0][0]).toMatch(/^Server error 404:/);
+    } else {
+      expect(console.error.mock.calls).toEqual([]);
+    }
 
     // close error dialog
     errorDialogRef.current.close();
@@ -59,7 +66,14 @@ describe("With mocked API calls", () => {
     await getDataFromApi(["not-implemented"], {}).catch(
       genApiErrorHandler(["not-implemented"], customErrMsg)
     );
-    expect(console.error.mock.calls[0][0]).toEqual(error);
+    if (
+      process.env.NODE_ENV.startsWith("development") ||
+      process.env.NODE_ENV.startsWith("test")
+    ) {
+      expect(console.error.mock.calls[0][0]).toEqual(error);
+    } else {
+      expect(console.error.mock.calls).toEqual([]);
+    }
 
     // close error dialog
     errorDialogRef.current.close();
@@ -76,8 +90,15 @@ describe("With mocked API calls", () => {
     }).catch(genApiErrorHandler(["status"]));
     cancelTokenSource.cancel();
     await request;
-    expect(console.info.mock.calls[0][0]).toMatch(
-      /^Request 'status' cancelled/
-    );
+    if (
+      process.env.NODE_ENV.startsWith("development") ||
+      process.env.NODE_ENV.startsWith("test")
+    ) {
+      expect(console.info.mock.calls[0][0]).toMatch(
+        /^Request 'status' cancelled/
+      );
+    } else {
+      expect(console.info.mock.calls).toEqual([]);
+    }
   });
 });
