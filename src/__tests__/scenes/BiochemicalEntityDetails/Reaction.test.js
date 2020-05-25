@@ -22,8 +22,9 @@ describe("Reaction data page", () => {
   it("Formats data correctly", () => {
     // format raw data
     const formattedData = RateConstantsDataTable.formatData(
-      testRawData,
+      null,
       "escherichia coli",
+      testRawData,
       9
     );
 
@@ -182,11 +183,13 @@ describe("Reaction data page", () => {
 
   it("Properly format columns", () => {
     const formattedData = RateConstantsDataTable.formatData(
-      testRawData,
       null,
+      null,
+      testRawData,
       null
     );
     const colDefs = RateConstantsDataTable.getColDefs(
+      null,
       null,
       formattedData,
       null
@@ -214,6 +217,7 @@ describe("Reaction data page", () => {
     const organism = "Escherichia coli";
     const rankings = ["species", "genus", "family"];
     const colDefsWithOrganism = RateConstantsDataTable.getColDefs(
+      null,
       organism,
       formattedData,
       rankings
@@ -228,17 +232,23 @@ describe("Reaction data page", () => {
 
   it("Properly format side bar", () => {
     const formattedData = RateConstantsDataTable.formatData(
-      testRawData,
       null,
+      null,
+      testRawData,
       null
     );
-    const sideBarDefs = RateConstantsDataTable.getSideBarDef(formattedData);
+    const sideBarDefs = RateConstantsDataTable.getSideBarDef(
+      null,
+      null,
+      formattedData
+    );
     //expect(getSectionFromList(sideBarDefs))
     expect(
       getSectionFromList(sideBarDefs.toolPanels, "id", "stats-km-AMP")
     ).not.toEqual(null);
 
     const colSortOrder = RateConstantsDataTable.getColSortOrder(
+      null,
       null,
       formattedData
     );

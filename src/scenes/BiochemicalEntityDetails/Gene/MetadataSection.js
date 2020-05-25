@@ -97,11 +97,19 @@ class MetadataSection extends Component {
 
       if (uniprotData.sequence && uniprotData.sequence.sequence) {
         const seq = uniprotData.sequence.sequence;
+        const aaPerLine = 115;
         const formattedSeq = [];
-        for (let iLine = 0; iLine < Math.ceil(seq.length / 100); iLine++) {
+        for (
+          let iLine = 0;
+          iLine < Math.ceil(seq.length / aaPerLine);
+          iLine++
+        ) {
           formattedSeq.push(
             <li key={iLine}>
-              {seq.slice(iLine * 100, Math.min((iLine + 1) * 100, seq.length))}
+              {seq.slice(
+                iLine * aaPerLine,
+                Math.min((iLine + 1) * aaPerLine, seq.length)
+              )}
             </li>
           );
         }

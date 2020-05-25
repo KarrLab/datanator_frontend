@@ -17,15 +17,27 @@ class ProteinAbundanceDataTable extends Component {
   };
 
   getUrl(query, organism) {
-    return (
-      "proteins/proximity_abundance/proximity_abundance_kegg/?kegg_id=" +
-      query +
-      "&distance=40" +
-      (organism ? "&anchor=" + organism : "")
-    );
+    if (query[0].toUpperCase() === "K") {
+      return (
+        "proteins/proximity_abundance/proximity_abundance_kegg/?kegg_id=" +
+        query +
+        "&distance=40" +
+        (organism ? "&anchor=" + organism : "")
+      );
+    } else {
+      return "proteins/precise_abundance/?uniprot_id=" + query;
+    }
   }
 
-  formatData(rawData, organism) {
+  formatData(query, organism, rawData) {
+    if (query[0].toUpperCase() === "K") {
+      return this.formatOrthologGroupData(query, organism, rawData);
+    } else {
+      return this.formatProteinData(query, organism, rawData);
+    }
+  }
+
+  formatOrthologGroupData(query, organism, rawData) {
     let start = 0;
     if (getNumProperties(rawData[0]) === 1) {
       start = 1;
@@ -59,6 +71,26 @@ class ProteinAbundanceDataTable extends Component {
             }
             formattedData.push(row);
           }
+        }
+      }
+    }
+    return formattedData;
+  }
+
+  formatProteinData(query, organism, rawData) {
+    const formattedData = [];
+    for (const rawDatum of rawData) {
+      if ("abundances" in rawDatum) {
+        for (const measurement of rawDatum.abundances) {
+          formattedData.push({
+            abundance: parseFloat(measurement.abundance),
+            proteinName: null,
+            uniprotId: query,
+            geneSymbol: null,
+            organism: null,
+            organ: measurement.organ.replace("_", " ").toLowerCase(),
+            taxonomicProximity: null
+          });
         }
       }
     }
@@ -99,7 +131,7 @@ class ProteinAbundanceDataTable extends Component {
     };
   }
 
-  static getColDefs(organism, formattedData, taxonomicRanks) {
+  static getColDefs(query, organism, formattedData, taxonomicRanks) {
     const colDefs = [
       {
         headerName: "Abundance",

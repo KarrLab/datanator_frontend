@@ -26,7 +26,7 @@ class RnaModificationDataTable extends Component {
     return "rna/modification/get_modifications_by_ko/?" + args.join("&");
   }
 
-  formatData(rawData, organism) {
+  formatData(query, organism, rawData) {
     const formattedData = [];
     for (const rawDatum of rawData) {
       for (const measurement of rawDatum.modifications) {
@@ -84,7 +84,7 @@ class RnaModificationDataTable extends Component {
     };
   }
 
-  static getColDefs(organism, formattedData, taxonomicRanks) {
+  static getColDefs(query, organism, formattedData, taxonomicRanks) {
     const colDefs = [
       {
         headerName: "Modifications",

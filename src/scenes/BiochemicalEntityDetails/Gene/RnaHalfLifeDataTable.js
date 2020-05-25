@@ -25,7 +25,7 @@ class RnaHalfLifeDataTable extends Component {
     return url;
   }
 
-  static formatData(rawData, organism) {
+  static formatData(query, organism, rawData) {
     const formattedData = [];
     for (const rawDatum of rawData) {
       if (rawDatum.halflives) {
@@ -96,7 +96,7 @@ class RnaHalfLifeDataTable extends Component {
     };
   }
 
-  static getColDefs(organism, formattedData, taxonomicRanks) {
+  static getColDefs(query, organism, formattedData, taxonomicRanks) {
     const colDefs = [
       {
         headerName: "Half-life (s^{-1})",

@@ -25,7 +25,7 @@ class ProteinModificationDataTable extends Component {
     );
   }
 
-  formatData(rawData, organism) {
+  formatData(query, organism, rawData) {
     let start = 0;
     if (getNumProperties(rawData[0]) === 1) {
       start = 1;
@@ -102,7 +102,7 @@ class ProteinModificationDataTable extends Component {
     };
   }
 
-  static getColDefs(organism, formattedData, taxonomicRanks) {
+  static getColDefs(query, organism, formattedData, taxonomicRanks) {
     const colDefs = [
       {
         headerName: "Processing",

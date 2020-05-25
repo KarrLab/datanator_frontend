@@ -30,8 +30,9 @@ describe("Gene data page", () => {
     const dataTable = new ProteinAbundanceDataTable();
 
     // format raw data
+    const query = "K00850";
     const organism = "Escherichia coli";
-    const formattedData = dataTable.formatData(testRawData, organism);
+    const formattedData = dataTable.formatData(query, organism, testRawData);
 
     // test formatted data
     expect(formattedData).toHaveLength(30);
@@ -53,8 +54,9 @@ describe("Gene data page", () => {
     expect(formattedData[8].geneSymbol).toEqual(null);
 
     const formattedDataWithoutTaxonomicData = dataTable.formatData(
-      testRawData,
-      null
+      "K00850",
+      null,
+      testRawData
     );
 
     let formatedDatumWithoutTaxonomicData =
@@ -72,6 +74,7 @@ describe("Gene data page", () => {
   it("Properly format columns", () => {
     const dummy_data = null;
     const colDefs = ProteinAbundanceDataTable.getColDefs(
+      null,
       null,
       dummy_data,
       null
@@ -97,6 +100,7 @@ describe("Gene data page", () => {
     const organism = "Escherichia coli";
     const rankings = ["species", "genus", "family"];
     const colDefsWithOrganism = ProteinAbundanceDataTable.getColDefs(
+      null,
       organism,
       dummy_data,
       rankings

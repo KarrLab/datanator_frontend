@@ -299,16 +299,23 @@ class DataTable extends Component {
       taxonomicRanks = DataTable.calcTaxonomicRanks(organismData);
     }
     const route = parseHistoryLocationPathname(this.props.history);
+    const query = route.query;
     const organism = route.organism;
 
-    const formattedData = this.props["format-data"](rawData, organism);
-    this.sideBarDef = this.props["get-side-bar-def"](formattedData);
+    const formattedData = this.props["format-data"](query, organism, rawData);
+    this.sideBarDef = this.props["get-side-bar-def"](
+      query,
+      organism,
+      formattedData
+    );
     this.colDefs = this.props["get-col-defs"](
+      query,
       organism,
       formattedData,
       taxonomicRanks
     );
     this.colSortOrder = this.props["get-col-sort-order"](
+      query,
       organism,
       formattedData,
       taxonomicRanks

@@ -28,7 +28,7 @@ class RateConstantsDataTable extends Component {
     return "reactions/kinlaw_by_rxn/?" + args.join("&");
   }
 
-  static formatData(rawData, organism) {
+  static formatData(query, organism, rawData) {
     const formattedData = [];
 
     for (const datum of rawData) {
@@ -133,7 +133,7 @@ class RateConstantsDataTable extends Component {
     return kis;
   }
 
-  static getSideBarDef(formattedData) {
+  static getSideBarDef(query, organism, formattedData) {
     const sideBar = {
       toolPanels: [
         {
@@ -240,7 +240,7 @@ class RateConstantsDataTable extends Component {
     return sideBar;
   }
 
-  static getColDefs(organism, formattedData, taxonomicRanks) {
+  static getColDefs(query, organism, formattedData, taxonomicRanks) {
     const colDefs = [];
 
     // k_cat column
@@ -446,7 +446,7 @@ class RateConstantsDataTable extends Component {
     return colDefs;
   }
 
-  static getColSortOrder(organism, formattedData) {
+  static getColSortOrder(query, organism, formattedData) {
     const sortOrder = [];
 
     // k_cat column

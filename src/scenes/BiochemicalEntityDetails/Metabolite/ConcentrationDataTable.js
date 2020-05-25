@@ -27,7 +27,7 @@ class ConcentrationDataTable extends Component {
     return "metabolites/concentrations/similar_compounds/?" + args.join("&");
   }
 
-  static formatData(rawData, organism) {
+  static formatData(query, organism, rawData) {
     const formattedData = [];
     for (const metabolite of rawData) {
       if ("concentrations" in metabolite) {
@@ -163,7 +163,7 @@ class ConcentrationDataTable extends Component {
     };
   }
 
-  static getColDefs(organism, formattedData, taxonomicRanks) {
+  static getColDefs(query, organism, formattedData, taxonomicRanks) {
     const colDefs = [
       {
         headerName: "Concentration",

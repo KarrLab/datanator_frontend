@@ -45,9 +45,11 @@
   .sequence {
     list-style-type: none;
     margin-top: 0;
+    margin-left: 0.5rem;
 
     li {
       font-family: "Courier New", Courier, monospace;
+      white-space: nowrap;
     }
   }
 }

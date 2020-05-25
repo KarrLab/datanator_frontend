@@ -27,8 +27,9 @@ describe("Metabolite data page", () => {
     // format raw data
     const organism = "Escherichia coli";
     const formattedData = ConcentrationDataTable.formatData(
-      testRawData,
-      organism
+      null,
+      organism,
+      testRawData
     );
 
     // test formatted data
@@ -69,7 +70,7 @@ describe("Metabolite data page", () => {
   });
 
   it("test getColDefs", () => {
-    const colDefs = ConcentrationDataTable.getColDefs(null, null, null);
+    const colDefs = ConcentrationDataTable.getColDefs(null, null, null, null);
 
     const sourceCol = getSectionFromList(colDefs, "headerName", "Source");
     expect(
@@ -103,6 +104,7 @@ describe("Metabolite data page", () => {
     const organism = "Escherichia coli";
     const rankings = ["species", "genus", "family"];
     const colDefsWithOrganism = ConcentrationDataTable.getColDefs(
+      null,
       organism,
       null,
       rankings
