@@ -48,28 +48,47 @@ class MetadataSection extends Component {
     } else {
       const properties = [];
 
-      if (
-        uniprotData.gene &&
-        uniprotData.gene.length &&
-        uniprotData.gene[0].olnNames &&
-        uniprotData.gene[0].olnNames[0] &&
-        uniprotData.gene[0].olnNames[0].evidences &&
-        uniprotData.gene[0].olnNames[0].evidences.length
-      ) {
-        properties.push({
-          key: "Gene",
-          value: (
-            <a
-              href={uniprotData.gene[0].olnNames[0].evidences[0].source.url}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {uniprotData.gene[0].olnNames[0].value}
-            </a>
-          )
-        });
+      // gene
+      let geneName = null;
+      let geneUrl = null;
+      if (uniprotData.gene && uniprotData.gene.length && uniprotData.gene[0]) {
+        if (uniprotData.gene[0].name && uniprotData.gene[0].name.value) {
+          geneName = uniprotData.gene[0].name.value;
+        } else if (
+          uniprotData.gene[0].olnNames &&
+          uniprotData.gene[0].olnNames[0]
+        ) {
+          if (uniprotData.gene[0].olnNames[0].value) {
+            geneName = uniprotData.gene[0].olnNames[0].value;
+          } else if (
+            uniprotData.gene[0].olnNames[0].evidences &&
+            uniprotData.gene[0].olnNames[0].evidences.length
+          ) {
+            geneName = uniprotData.gene[0].olnNames[0].value;
+            geneUrl = uniprotData.gene[0].olnNames[0].evidences[0].source.url;
+          }
+        }
       }
 
+      if (geneName != null) {
+        if (geneUrl != null) {
+          properties.push({
+            key: "Gene",
+            value: (
+              <a href={geneUrl} target="_blank" rel="noopener noreferrer">
+                {geneName}
+              </a>
+            )
+          });
+        } else {
+          properties.push({
+            key: "Gene",
+            value: geneName
+          });
+        }
+      }
+
+      // organism
       if (
         uniprotData.organism &&
         uniprotData.organism.names &&
@@ -94,6 +113,15 @@ class MetadataSection extends Component {
         });
       }
 
+      // comments
+      if (comments) {
+        properties.push({
+          key: "Comments",
+          value: comments
+        });
+      }
+
+      // sequence
       if (uniprotData.sequence && uniprotData.sequence.sequence) {
         const seq = uniprotData.sequence.sequence;
         const aaPerLine = 115;
@@ -116,13 +144,6 @@ class MetadataSection extends Component {
         properties.push({
           key: <span>Sequence ({seq.length} aa)</span>,
           value: <ul className="sequence">{formattedSeq}</ul>
-        });
-      }
-
-      if (comments) {
-        properties.push({
-          key: "Comments",
-          value: comments
         });
       }
 
@@ -250,7 +271,8 @@ class MetadataSection extends Component {
     }
 
     processedData.relatedLinksUrl =
-      "proteins/related/related_reactions/?ko=" + rawData[0].kegg_orthology_id;
+      "proteins/related/related_reactions_by/?ko=" +
+      rawData[0].kegg_orthology_id;
 
     return processedData;
   }
@@ -267,7 +289,8 @@ class MetadataSection extends Component {
     processedData.descriptionUrl =
       "https://www.ebi.ac.uk/proteins/api/proteins?offset=0&size=1&accession=" +
       query;
-    processedData.relatedLinksUrl = null; // todo
+    processedData.relatedLinksUrl =
+      "proteins/related/related_reactions_by_uniprot/?uniprot_id=" + query;
 
     return processedData;
   }

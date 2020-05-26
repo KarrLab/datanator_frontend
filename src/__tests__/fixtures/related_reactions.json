@@ -9,6 +9,10 @@
       "ec_number": "4.2.1.46"
     },
     "kinlaw_id": 28973,
+    "reaction_participant": [
+      {"substrate_aggregate": ["YSYKRGRSMLTJNL-URARBOGNSA-N"]},
+      {"product_aggregate": ["XLYOFNOQVPJJNP-UHFFFAOYSA-N", "PSXWNITXWWECNY-UCBTUHGZSA-N"]}
+    ],
     "products": [
       [
         {
@@ -139,6 +143,10 @@
       "ec_number": "4.2.1.46"
     },
     "kinlaw_id": 20975,
+    "reaction_participant": [
+      {"substrate_aggregate": ["YSYKRGRSMLTJNL-KFQCIAAJSA-N"]},
+      {"product_aggregate": ["PSXWNITXWWECNY-UCBTUHGZSA-N", "XLYOFNOQVPJJNP-UHFFFAOYSA-N"]}
+    ],
     "products": [
       [
         {
