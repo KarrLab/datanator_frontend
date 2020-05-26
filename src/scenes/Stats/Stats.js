@@ -45,17 +45,17 @@ class Stats extends Component {
     });
     // TODO: including protein abundances
     dataTypeData.push({
+      label: ["RNA half-lives"],
+      url: "rna/summary/get_total_docs/"
+    });
+    dataTypeData.push({
       label: ["Rxn kcat"],
       url: "reactions/summary/num_parameter_kcat/"
     });
     dataTypeData.push({
       label: ["Rxn Km"],
       url: "reactions/summary/num_parameter_km/"
-    });
-    dataTypeData.push({
-      label: ["RNA half-lives"],
-      url: "rna/summary/get_total_docs/"
-    });
+    });    
     this.setBarChart("dataType", dataTypeData);
 
     const dataSourceData = [];
