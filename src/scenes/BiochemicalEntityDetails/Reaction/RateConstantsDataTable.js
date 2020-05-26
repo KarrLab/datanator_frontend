@@ -32,6 +32,16 @@ class RateConstantsDataTable extends Component {
     const formattedData = [];
 
     for (const datum of rawData) {
+      let enzymeName = null;
+      let enzymeUniprotIds = null ;
+      for (const enz of datum.enzymes) {
+        if ("enzyme" in enz) {
+          enzymeName = enz["enzyme"][0].enzyme_name;
+        } else if ("subunit" in enz) {
+          enzymeUniprotIds = enz["subunit"].map(subunit => subunit.uniprot_id);
+        }
+      }
+
       let wildtypeMutant = null;
       if (datum["taxon_wildtype"] === 1) {
         wildtypeMutant = "wildtype";
@@ -43,6 +53,7 @@ class RateConstantsDataTable extends Component {
         kcat: RateConstantsDataTable.getKcatValues(datum.parameter),
         km: RateConstantsDataTable.getKmValues(datum.parameter),
         ki: RateConstantsDataTable.getKiValues(datum.parameter),
+        enzyme: enzymeName == null ? null : {name: enzymeName, uniprotIds: enzymeUniprotIds},
         organism: datum.taxon_name,
         wildtypeMutant: wildtypeMutant,
         temperature: datum.temperature,
@@ -369,6 +380,12 @@ class RateConstantsDataTable extends Component {
     }
 
     // metadata columns
+    colDefs.push({
+      headerName: "Enzyme",
+      field: "enzyme.name",
+      filter: "textFilter"
+    });
+
     colDefs.push({
       headerName: "Organism",
       field: "organism",
