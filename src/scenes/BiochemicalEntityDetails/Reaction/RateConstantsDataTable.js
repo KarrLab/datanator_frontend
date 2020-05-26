@@ -33,7 +33,7 @@ class RateConstantsDataTable extends Component {
 
     for (const datum of rawData) {
       let enzymeName = null;
-      let enzymeUniprotIds = null ;
+      let enzymeUniprotIds = null;
       for (const enz of datum.enzymes) {
         if ("enzyme" in enz) {
           enzymeName = enz["enzyme"][0].enzyme_name;
@@ -53,7 +53,10 @@ class RateConstantsDataTable extends Component {
         kcat: RateConstantsDataTable.getKcatValues(datum.parameter),
         km: RateConstantsDataTable.getKmValues(datum.parameter),
         ki: RateConstantsDataTable.getKiValues(datum.parameter),
-        enzyme: enzymeName == null ? null : {name: enzymeName, uniprotIds: enzymeUniprotIds},
+        enzyme:
+          enzymeName == null
+            ? null
+            : { name: enzymeName, uniprotIds: enzymeUniprotIds },
         organism: datum.taxon_name,
         wildtypeMutant: wildtypeMutant,
         temperature: datum.temperature,
