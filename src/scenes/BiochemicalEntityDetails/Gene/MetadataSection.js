@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { strCompare } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
 import { LoadExternalContent, LoadContent } from "../LoadContent";
 import KeggPathwaysMetadataSection from "../KeggPathwaysMetadataSection";
@@ -148,29 +147,30 @@ class MetadataSection extends Component {
   }
 
   static processRelatedReactions(organism, relatedReactions) {
-    const formattedResults = {};
+    const formattedResults = [];
 
     for (const reaction of relatedReactions) {
       const id = reaction.kinlaw_id;
-      let formattedResult = formattedResults[id];
-      if (!formattedResult) {
-        formattedResult = {};
-        formattedResults[id] = formattedResult;
-      }
+      const formattedResult = {};
+      formattedResults.push(formattedResult);
 
-      const substrateInchikeys = [];
+      const substrateIds = [];
       const substrateNames = [];
-      const productInchikeys = [];
+      const productIds = [];
       const productNames = [];
       for (const substrate of reaction.substrates[0]) {
         if (substrate.substrate_structure[0].InChI_Key) {
-          substrateInchikeys.push(substrate.substrate_structure[0].InChI_Key);
+          substrateIds.push(substrate.substrate_structure[0].InChI_Key);
+        } else {
+          // substrateIds.push(md5(substrate.substrate_name));
         }
         substrateNames.push(substrate.substrate_name);
       }
       for (const product of reaction.products[0]) {
         if (product.product_structure[0].InChI_Key) {
-          productInchikeys.push(product.product_structure[0].InChI_Key);
+          productIds.push(product.product_structure[0].InChI_Key);
+        } else {
+          // substrateIds.push(md5(product.product_name));
         }
         productNames.push(product.product_name);
       }
@@ -179,10 +179,7 @@ class MetadataSection extends Component {
         formatSide(substrateNames) + " → " + formatSide(productNames);
       const ecMeta = reaction["ec_meta"];
       let route =
-        "/reaction/" +
-        substrateInchikeys.join(",") +
-        "-->" +
-        productInchikeys.join(",");
+        "/reaction/" + substrateIds.join(",") + "-->" + productIds.join(",");
       if (organism) {
         route += "/" + organism;
       }
@@ -210,11 +207,7 @@ class MetadataSection extends Component {
       );
     }
 
-    const sortedResults = Object.values(formattedResults);
-    sortedResults.sort((a, b) => {
-      return strCompare(a.title, b.title);
-    });
-    return sortedResults.map(result => {
+    return formattedResults.map(result => {
       return result.content;
     });
   }

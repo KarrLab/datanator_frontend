@@ -45,80 +45,72 @@ export default class MetaboliteSearchResultsList extends Component {
     const results = data["metabolites_meta"];
     const numResults = data["metabolites_meta_total"]["value"];
 
-    const formattedResults = {};
+    const formattedResults = [];
     for (const result of results) {
-      if (result.InChI_Key) {
-        const inchiKey = result.InChI_Key;
+      const formattedResult = {};
+      formattedResults.push(formattedResult);
 
-        let formattedResult = formattedResults[inchiKey];
-        if (!formattedResult) {
-          formattedResult = {};
-          formattedResults[inchiKey] = formattedResult;
+      // title
+      let name = result["name"];
+      if (name === "No metabolite found.") {
+        name = result["synonyms"][0];
+      }
+
+      let inchikey = result["InChI_Key"];
+
+      formattedResult["title"] =
+        name[0].toUpperCase() + name.substring(1, name.length);
+
+      // description
+      const linkTypes = [
+        {
+          label: "InChI key",
+          url: "https://www.ebi.ac.uk/chebi/advancedSearchFT.do?searchString=",
+          attribute: "InChI_Key"
+        },
+        {
+          label: "ChEBI",
+          url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=",
+          attribute: "chebi_id"
+        },
+        {
+          label: "KEGG",
+          url: "https://www.genome.jp/dbget-bin/www_bget?cpd:",
+          attribute: "kegg_id"
         }
-
-        // title
-        let name = result["name"];
-        if (name === "No metabolite found.") {
-          name = result["synonyms"][0];
+      ];
+      const links = [];
+      for (const linkType of linkTypes) {
+        const linkId = result[linkType.attribute];
+        if (linkId != null && linkId !== undefined) {
+          links.push(
+            <li key={linkType.label}>
+              {linkType.label}:{" "}
+              <a
+                href={linkType.url + linkId}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {linkId}
+              </a>
+            </li>
+          );
         }
+      }
 
-        let inchikey = result["InChI_Key"];
+      formattedResult["description"] = (
+        <ul className="comma-separated-list">{links}</ul>
+      );
 
-        formattedResult["title"] =
-          name[0].toUpperCase() + name.substring(1, name.length);
-
-        // description
-        const linkTypes = [
-          {
-            label: "InChI key",
-            url:
-              "https://www.ebi.ac.uk/chebi/advancedSearchFT.do?searchString=",
-            attribute: "InChI_Key"
-          },
-          {
-            label: "ChEBI",
-            url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=",
-            attribute: "chebi_id"
-          },
-          {
-            label: "KEGG",
-            url: "https://www.genome.jp/dbget-bin/www_bget?cpd:",
-            attribute: "kegg_id"
-          }
-        ];
-        const links = [];
-        for (const linkType of linkTypes) {
-          const linkId = result[linkType.attribute];
-          if (linkId != null && linkId !== undefined) {
-            links.push(
-              <li key={linkType.label}>
-                {linkType.label}:{" "}
-                <a
-                  href={linkType.url + linkId}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {linkId}
-                </a>
-              </li>
-            );
-          }
-        }
-
-        formattedResult["description"] = (
-          <ul className="comma-separated-list">{links}</ul>
-        );
-
-        //route
-        formattedResult["route"] = "/metabolite/" + inchikey;
-        if (organism) {
-          formattedResult["route"] += "/" + organism;
-        }
+      //route
+      formattedResult["route"] = "/metabolite/" + inchikey;
+      if (organism) {
+        formattedResult["route"] += "/" + organism;
       }
     }
 
     return {
-      results: Object.values(formattedResults),
+      results: formattedResults,
       numResults: numResults
     };
   }

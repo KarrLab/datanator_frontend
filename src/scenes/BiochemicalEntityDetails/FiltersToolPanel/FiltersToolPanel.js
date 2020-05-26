@@ -92,7 +92,7 @@ class FiltersToolPanel extends Component {
         filter.valueGetter = ((fields, node) => {
           let data = node.data;
           for (const field of fields) {
-            if (field in data) {
+            if (data != null && data !== undefined && field in data) {
               data = data[field];
             } else {
               data = null;

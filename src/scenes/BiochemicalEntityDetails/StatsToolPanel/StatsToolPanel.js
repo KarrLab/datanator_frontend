@@ -138,7 +138,7 @@ class StatsToolPanel extends Component {
     for (const datum of data) {
       let val = datum;
       for (const col of this.props.col) {
-        if (col in val) {
+        if (val != null && val !== undefined && col in val) {
           val = val[col];
         } else {
           val = null;

@@ -27,14 +27,10 @@ export default class ReactionSearchResultsList extends Component {
     const results = data["sabio_reaction_entries"];
     const numResults = data["sabio_reaction_entries_total"]["value"];
 
-    const formattedResults = {};
+    const formattedResults = [];
     for (const result of results) {
-      const id = result["rxn_id"];
-      let formattedResult = formattedResults[id];
-      if (!formattedResult) {
-        formattedResult = {};
-        formattedResults[id] = formattedResult;
-      }
+      const formattedResult = {};
+      formattedResults.push(formattedResult);
 
       // title and description
       const name = result["enzyme_names"][0];
@@ -72,16 +68,16 @@ export default class ReactionSearchResultsList extends Component {
       // route
       formattedResult["route"] =
         "/reaction/" +
-        result["substrates"].filter(substrate => substrate).join(",") +
+        result["substrates"].join(",") +
         "-->" +
-        result["products"].filter(product => product).join(",");
+        result["products"].join(",");
       if (organism) {
         formattedResult["route"] += "/" + organism;
       }
     }
 
     return {
-      results: Object.values(formattedResults),
+      results: formattedResults,
       numResults: numResults
     };
   }

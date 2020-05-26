@@ -32,7 +32,7 @@ export default class GeneSearchResultsList extends Component {
     const results = data["top_kos"]["buckets"];
     const numResults = data["total_buckets"]["value"];
 
-    const formattedResults = {};
+    const formattedResults = [];
     for (const result of results) {
       if (Array.isArray(result.key) && result.key.length > 0) {
         let koNumber = upperCaseFirstLetter(result.key[0]);
@@ -47,11 +47,8 @@ export default class GeneSearchResultsList extends Component {
           id = koNumber;
         }
 
-        let formattedResult = formattedResults[id];
-        if (!formattedResult) {
-          formattedResult = {};
-          formattedResults[id] = formattedResult;
-        }
+        const formattedResult = {};
+        formattedResults.push(formattedResult);
 
         // title
         if (
@@ -105,7 +102,7 @@ export default class GeneSearchResultsList extends Component {
     }
 
     return {
-      results: Object.values(formattedResults),
+      results: formattedResults,
       numResults: numResults
     };
   }
