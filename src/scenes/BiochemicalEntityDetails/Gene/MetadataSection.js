@@ -154,26 +154,22 @@ class MetadataSection extends Component {
       const formattedResult = {};
       formattedResults.push(formattedResult);
 
-      const substrateIds = [];
-      const substrateNames = [];
-      const productIds = [];
-      const productNames = [];
-      for (const substrate of reaction.substrates[0]) {
-        if (substrate.substrate_structure[0].InChI_Key) {
-          substrateIds.push(substrate.substrate_structure[0].InChI_Key);
-        } else {
-          // substrateIds.push(md5(substrate.substrate_name));
+      let substrateIds = null;
+      let productIds = null;
+      for (const participant of reaction.reaction_participant) {
+        if ("substrate_aggregate" in participant) {
+          substrateIds = participant.substrate_aggregate;
+        } else if ("product_aggregate" in participant) {
+          productIds = participant.product_aggregate;
         }
-        substrateNames.push(substrate.substrate_name);
       }
-      for (const product of reaction.products[0]) {
-        if (product.product_structure[0].InChI_Key) {
-          productIds.push(product.product_structure[0].InChI_Key);
-        } else {
-          // substrateIds.push(md5(product.product_name));
-        }
-        productNames.push(product.product_name);
-      }
+
+      const substrateNames = reaction.substrates[0].map(
+        substrate => substrate.substrate_name
+      );
+      const productNames = reaction.products[0].map(
+        product => product.product_name
+      );
 
       const equation =
         formatSide(substrateNames) + " → " + formatSide(productNames);
@@ -271,7 +267,7 @@ class MetadataSection extends Component {
     processedData.descriptionUrl =
       "https://www.ebi.ac.uk/proteins/api/proteins?offset=0&size=1&accession=" +
       query;
-    processedData.relatedLinksUrl = null;
+    processedData.relatedLinksUrl = null; // todo
 
     return processedData;
   }
