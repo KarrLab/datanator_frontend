@@ -186,6 +186,7 @@ class DataTable extends Component {
       .catch(error => {
         if (
           "response" in error &&
+          error.response !== undefined &&
           "request" in error.response &&
           error.response.request.constructor.name === "XMLHttpRequest"
         ) {
@@ -251,6 +252,13 @@ class DataTable extends Component {
   static calcTaxonomicDistance(taxonDistance, targetSpecies, measuredSpecies) {
     let distance = null;
 
+    targetSpecies = targetSpecies.toLowerCase();
+    measuredSpecies = measuredSpecies.toLowerCase();
+    taxonDistance = Object.assign({}, taxonDistance);
+    for (const key in taxonDistance) {
+      taxonDistance[key.toLowerCase()] = taxonDistance[key];
+    }
+
     if (targetSpecies === measuredSpecies) {
       distance = 0;
     } else if (
@@ -272,6 +280,8 @@ class DataTable extends Component {
           break;
         }
       }
+      toAncestors.pop();
+      fromAncestors.pop();
     } else {
       distance = null;
     }

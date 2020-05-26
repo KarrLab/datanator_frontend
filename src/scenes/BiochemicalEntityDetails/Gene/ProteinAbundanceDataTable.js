@@ -18,14 +18,21 @@ class ProteinAbundanceDataTable extends Component {
 
   getUrl(query, organism) {
     if (query[0].toUpperCase() === "K") {
+      const args = ["kegg_id=" + query, "distance=40"];
+      if (organism) {
+        args.push("anchor=" + organism);
+      }
       return (
-        "proteins/proximity_abundance/proximity_abundance_kegg/?kegg_id=" +
-        query +
-        "&distance=40" +
-        (organism ? "&anchor=" + organism : "")
+        "proteins/proximity_abundance/proximity_abundance_kegg/?" +
+        args.join("&")
       );
     } else {
-      return "proteins/precise_abundance/?uniprot_id=" + query;
+      const args = ["uniprot_id=" + query];
+      if (organism) {
+        args.push("taxon_distance=true");
+        args.push("taget_species=" + organism);
+      }
+      return "proteins/precise_abundance/?" + args.join("&");
     }
   }
 
@@ -84,12 +91,16 @@ class ProteinAbundanceDataTable extends Component {
         for (const measurement of rawDatum.abundances) {
           formattedData.push({
             abundance: parseFloat(measurement.abundance),
-            proteinName: null,
+            proteinName: rawDatum.protein_name,
             uniprotId: query,
-            geneSymbol: null,
-            organism: null,
+            geneSymbol: rawDatum.gene_name,
+            organism: rawDatum.species_name,
             organ: measurement.organ.replace("_", " ").toLowerCase(),
-            taxonomicProximity: null
+            taxonomicProximity: DataTable.calcTaxonomicDistance(
+              rawDatum.taxon_distance,
+              organism,
+              rawDatum.species_name
+            )
           });
         }
       }
