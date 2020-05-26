@@ -33,12 +33,15 @@ class RateConstantsDataTable extends Component {
 
     for (const datum of rawData) {
       let enzymeName = null;
-      let enzymeUniprotIds = null;
+      let enzymeSubunitUniprotIds = null;
       for (const enz of datum.enzymes) {
         if ("enzyme" in enz) {
           enzymeName = enz["enzyme"][0].enzyme_name;
         } else if ("subunit" in enz) {
-          enzymeUniprotIds = enz["subunit"].map(subunit => subunit.uniprot_id);
+          enzymeSubunitUniprotIds = enz["subunit"].map(
+            subunit => subunit.uniprot_id
+          );
+          enzymeSubunitUniprotIds.sort();
         }
       }
 
@@ -56,7 +59,7 @@ class RateConstantsDataTable extends Component {
         enzyme:
           enzymeName == null
             ? null
-            : { name: enzymeName, uniprotIds: enzymeUniprotIds },
+            : { name: enzymeName, subunits: enzymeSubunitUniprotIds },
         organism: datum.taxon_name,
         wildtypeMutant: wildtypeMutant,
         temperature: datum.temperature,
@@ -387,6 +390,26 @@ class RateConstantsDataTable extends Component {
       headerName: "Enzyme",
       field: "enzyme.name",
       filter: "textFilter"
+    });
+
+    colDefs.push({
+      headerName: "Enzyme subunits",
+      field: "enzyme.subunits",
+      filter: "textFilter",
+      valueFormatter: params => {
+        if (params.value != null) {
+          return params.value.join(", ");
+        } else {
+          return null;
+        }
+      },
+      filterValueGetter: params => {
+        if (params.data.enzyme && params.data.enzyme.subunits.length) {
+          return params.data.enzyme.subunits;
+        } else {
+          return null;
+        }
+      }
     });
 
     colDefs.push({

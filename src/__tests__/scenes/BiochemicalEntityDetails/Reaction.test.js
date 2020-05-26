@@ -34,7 +34,7 @@ describe("Reaction data page", () => {
     expect(formattedData).toEqual(
       expect.arrayContaining([
         {
-          enzyme: { name: "adenylate kinase", uniprotIds: ["P05081"] },
+          enzyme: { name: "adenylate kinase", subunits: ["P05081"] },
           kcat: { units: "s^(-1)", value: 650 },
           ki: {},
           km: {
@@ -49,7 +49,7 @@ describe("Reaction data page", () => {
           wildtypeMutant: "wildtype"
         },
         {
-          enzyme: { name: "adenylate kinase", uniprotIds: ["P05081"] },
+          enzyme: { name: "adenylate kinase", subunits: ["P05081"] },
           kcat: { units: "s^(-1)", value: 680 },
           ki: {},
           km: {
@@ -64,7 +64,7 @@ describe("Reaction data page", () => {
           wildtypeMutant: "mutant"
         },
         {
-          enzyme: { name: "adenylate kinase", uniprotIds: ["P05081"] },
+          enzyme: { name: "adenylate kinase", subunits: ["P05081"] },
           kcat: { units: "s^(-1)", value: 595 },
           ki: {},
           km: {
@@ -79,7 +79,7 @@ describe("Reaction data page", () => {
           wildtypeMutant: "mutant"
         },
         {
-          enzyme: { name: "adenylate kinase", uniprotIds: ["P05081"] },
+          enzyme: { name: "adenylate kinase", subunits: ["P05081"] },
           kcat: { units: "s^(-1)", value: 81 },
           ki: {},
           km: {
@@ -94,7 +94,7 @@ describe("Reaction data page", () => {
           wildtypeMutant: "mutant"
         },
         {
-          enzyme: { name: "adenylate kinase", uniprotIds: ["P05081"] },
+          enzyme: { name: "adenylate kinase", subunits: ["P05081"] },
           kcat: { units: "s^(-1)", value: 500 },
           ki: {},
           km: { AMP: { units: "M", value: 0.00015 } },
@@ -106,7 +106,7 @@ describe("Reaction data page", () => {
           wildtypeMutant: "wildtype"
         },
         {
-          enzyme: { name: "adenylate kinase", uniprotIds: ["P05081"] },
+          enzyme: { name: "adenylate kinase", subunits: ["P05081"] },
           kcat: { units: "s^(-1)", value: 6 },
           ki: {},
           km: { AMP: { units: "M", value: 0.0014 } },
@@ -118,7 +118,7 @@ describe("Reaction data page", () => {
           wildtypeMutant: "mutant"
         },
         {
-          enzyme: { name: "adenylate kinase", uniprotIds: ["P05081"] },
+          enzyme: { name: "adenylate kinase", subunits: ["P05081"] },
           kcat: { units: "s^(-1)", value: 22 },
           ki: {},
           km: { AMP: { units: "M", value: 0.0018 } },
@@ -130,7 +130,7 @@ describe("Reaction data page", () => {
           wildtypeMutant: "mutant"
         },
         {
-          enzyme: { name: "adenylate kinase", uniprotIds: ["P05081"] },
+          enzyme: { name: "adenylate kinase", subunits: ["P05081"] },
           kcat: { units: "s^(-1)", value: 650 },
           ki: {},
           km: {
@@ -145,7 +145,7 @@ describe("Reaction data page", () => {
           wildtypeMutant: "wildtype"
         },
         {
-          enzyme: { name: "adenylate kinase", uniprotIds: ["P05081"] },
+          enzyme: { name: "adenylate kinase", subunits: ["P05081"] },
           kcat: { units: "s^(-1)", value: 8.3 },
           ki: {},
           km: {
@@ -160,7 +160,7 @@ describe("Reaction data page", () => {
           wildtypeMutant: "mutant"
         },
         {
-          enzyme: { name: "adenylate kinase", uniprotIds: ["P05081"] },
+          enzyme: { name: "adenylate kinase", subunits: ["P05081"] },
           kcat: { units: "s^(-1)", value: 38 },
           ki: {},
           km: {
