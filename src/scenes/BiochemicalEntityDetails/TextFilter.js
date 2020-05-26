@@ -59,7 +59,11 @@ class TextFilter extends Component {
       const getter = this.props.filterValueGetter || this.props.valueGetter;
       const value = getter(node);
       if (value != null && value !== undefined && value !== "") {
-        unorderedVals.add(value);
+        if (Array.isArray(value)) {
+          value.forEach(val => unorderedVals.add(val));
+        } else {
+          unorderedVals.add(value);
+        }
       }
     });
 
@@ -87,7 +91,16 @@ class TextFilter extends Component {
     } else {
       const getter = this.props.filterValueGetter || this.props.valueGetter;
       const value = getter(params.node);
-      return this.selectedVals.has(value);
+      if (Array.isArray(value)) {
+        for (const val of value) {
+          if (this.selectedVals.has(val)) {
+            return true;
+          }
+        }
+        return false;
+      } else {
+        return this.selectedVals.has(value);
+      }
     }
   }
 
