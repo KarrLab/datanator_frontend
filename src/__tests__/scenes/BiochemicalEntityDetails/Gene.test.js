@@ -221,7 +221,7 @@ describe("Gene data page", () => {
 
     expect(formattedReactions.text()).toEqual(
       expect.stringContaining(
-        "dTDPglucose → H2O + dTDP-4-dehydro-6-deoxy-D-glucose"
+        "dTDPglucose → dTDP-4-dehydro-6-deoxy-D-glucose + H2O"
       )
     );
   });

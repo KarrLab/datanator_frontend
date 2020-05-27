@@ -55,7 +55,7 @@ class Stats extends Component {
     dataTypeData.push({
       label: ["Rxn Km"],
       url: "reactions/summary/num_parameter_km/"
-    });    
+    });
     this.setBarChart("dataType", dataTypeData);
 
     const dataSourceData = [];

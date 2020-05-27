@@ -218,6 +218,14 @@ function isEmpty(element) {
   return false;
 }
 
+function naturalSort(a, b) {
+  return a.localeCompare(b, navigator.languages[0] || navigator.language, {
+    caseFirst: "lower",
+    numeric: true,
+    ignorePunctuation: false
+  });
+}
+
 export {
   formatScientificNotation,
   formatChemicalFormula,
@@ -231,5 +239,6 @@ export {
   getNumProperties,
   castToArray,
   numberWithCommas,
-  isEmpty
+  isEmpty,
+  naturalSort
 };

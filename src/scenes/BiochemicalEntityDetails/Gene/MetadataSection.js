@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import BaseMetadataSection from "../MetadataSection";
 import { LoadExternalContent, LoadContent } from "../LoadContent";
 import KeggPathwaysMetadataSection from "../KeggPathwaysMetadataSection";
+import { naturalSort } from "~/utils/utils";
 
 class MetadataSection extends Component {
   static propTypes = {
@@ -180,8 +181,10 @@ class MetadataSection extends Component {
       for (const participant of reaction.reaction_participant) {
         if ("substrate_aggregate" in participant) {
           substrateIds = participant.substrate_aggregate;
+          substrateIds.sort();
         } else if ("product_aggregate" in participant) {
           productIds = participant.product_aggregate;
+          productIds.sort();
         }
       }
 
@@ -191,6 +194,8 @@ class MetadataSection extends Component {
       const productNames = reaction.products[0].map(
         product => product.product_name
       );
+      substrateNames.sort(naturalSort);
+      productNames.sort(naturalSort);
 
       const equation =
         formatSide(substrateNames) + " → " + formatSide(productNames);

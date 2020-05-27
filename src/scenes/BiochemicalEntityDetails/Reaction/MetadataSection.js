@@ -4,6 +4,7 @@ import BaseMetadataSection from "../MetadataSection";
 import { Link } from "react-router-dom";
 import KeggPathwaysMetadataSection from "../KeggPathwaysMetadataSection";
 import { LoadMetabolites } from "../LoadContent";
+import { naturalSort } from "~/utils/utils";
 
 const DB_LINKS = [
   { label: "BRENDA", url: "https://www.brenda-enzymes.org/enzyme.php?ecno=" },
@@ -84,10 +85,16 @@ class MetadataSection extends Component {
         rawData[0]["kegg_meta"]["kegg_orthology_id"];
     }
 
+    const substrateNames = substrates.map(part => part.name);
+    const productNames = products.map(part => part.name);
+
+    substrateNames.sort(naturalSort);
+    productNames.sort(naturalSort);
+
     processedData["equation"] =
-      MetadataSection.formatSide(substrates.map(part => part.name)) +
+      MetadataSection.formatSide(substrateNames) +
       " → " +
-      MetadataSection.formatSide(products.map(part => part.name));
+      MetadataSection.formatSide(productNames);
 
     if ("kegg_meta" in rawData[0]) {
       processedData["pathways"] = rawData[0].kegg_meta.kegg_pathway;
@@ -104,6 +111,10 @@ class MetadataSection extends Component {
   }
 
   static processRelatedMetabolites(partLinks, metabolites, organism) {
+    metabolites.sort((a, b) => {
+      return naturalSort(a.name, b.name);
+    });
+
     for (const met of metabolites) {
       let inchiKey = null;
       let route = null;

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import SearchResultsList from "./SearchResultsList.js";
+import { naturalSort } from "~/utils/utils";
 
 export default class ReactionSearchResultsList extends Component {
   getResultsUrl(query, pageCount, pageSize) {
@@ -31,6 +32,8 @@ export default class ReactionSearchResultsList extends Component {
       const name = result["enzyme_names"][0];
       const substrateNames = getParticipant(result["substrate_names"]);
       const productNames = getParticipant(result["product_names"]);
+      substrateNames.sort(naturalSort);
+      productNames.sort(naturalSort);
       const equation =
         formatSide(substrateNames) + " → " + formatSide(productNames);
       const ecCode = result["ec-code"];
