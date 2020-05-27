@@ -40,7 +40,7 @@ export default class GeneSearchResultsList extends Component {
 
         const source = result.top_ko.hits.hits[0]._source;
         let id;
-        if (koNumber.toLowerCase() === "nan") {
+        if (["nan", "n/a"].includes(koNumber.toLowerCase())) {
           id = uniprotId;
           koNumber = null;
         } else {
@@ -65,9 +65,27 @@ export default class GeneSearchResultsList extends Component {
         }
 
         // description
+        const descriptions = [];
         if (koNumber == null) {
-          formattedResult["description"] = (
-            <div>
+          /*
+          const taxonId = 9606;
+          const taxonName = "Homo sapiens";
+          descriptions.push(
+            <li>
+              Organism:{" "}
+              <a
+                href={"https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=" + taxonId}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {taxonName}
+              </a>
+            </li>
+          );
+          */
+
+          descriptions.push(
+            <li>
               UniProt:{" "}
               <a
                 href={"https://www.uniprot.org/uniprot/" + uniprotId}
@@ -76,11 +94,11 @@ export default class GeneSearchResultsList extends Component {
               >
                 {uniprotId}
               </a>
-            </div>
+            </li>
           );
         } else {
-          formattedResult["description"] = (
-            <div>
+          descriptions.push(
+            <li>
               KEGG:{" "}
               <a
                 href={"https://www.genome.jp/dbget-bin/www_bget?ko:" + koNumber}
@@ -89,9 +107,13 @@ export default class GeneSearchResultsList extends Component {
               >
                 {koNumber}
               </a>
-            </div>
+            </li>
           );
         }
+
+        formattedResult["description"] = (
+          <ul className="comma-separated-list">{descriptions}</ul>
+        );
 
         //route
         formattedResult["route"] = "/gene/" + id;
