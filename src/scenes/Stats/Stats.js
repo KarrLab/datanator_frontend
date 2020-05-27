@@ -116,7 +116,11 @@ class Stats extends Component {
     const journalByDataTypeData = [];
     journalByDataTypeData.push({
       label: ["Met. concs."],
-      urls: ["metabolites/summary/get_ref_count/"]
+      urls: [
+        "metabolites/summary/ecmdb_ref_count",
+        "metabolites/summary/ymdb_ref_count",
+        "metabolites/summary/curated_ref_count"
+        ]
     });
     journalByDataTypeData.push({
       label: ["Prot abund."],
