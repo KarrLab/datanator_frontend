@@ -5,6 +5,7 @@ import DataTable from "../DataTable/DataTable";
 import { HtmlColumnHeader } from "../HtmlColumnHeader";
 import Tooltip from "@material-ui/core/Tooltip";
 import { TAXONOMIC_PROXIMITY_TOOLTIP } from "../ColumnsToolPanel/TooltipDescriptions";
+import { isKeggOrthologyId } from "~/utils/utils";
 
 class ProteinAbundanceDataTable extends Component {
   static propTypes = {
@@ -17,7 +18,7 @@ class ProteinAbundanceDataTable extends Component {
   };
 
   getUrl(query, organism) {
-    if (query[0].toUpperCase() === "K") {
+    if (isKeggOrthologyId(query)) {
       const args = ["kegg_id=" + query, "distance=40"];
       if (organism) {
         args.push("anchor=" + organism);
@@ -37,7 +38,7 @@ class ProteinAbundanceDataTable extends Component {
   }
 
   formatData(query, organism, rawData) {
-    if (query[0].toUpperCase() === "K") {
+    if (isKeggOrthologyId(query)) {
       return this.formatOrthologGroupData(query, organism, rawData);
     } else {
       return this.formatProteinData(query, organism, rawData);

@@ -226,6 +226,10 @@ function naturalSort(a, b) {
   });
 }
 
+function isKeggOrthologyId(id) {
+  return id.match(/K\d{5,5}/i);
+}
+
 export {
   formatScientificNotation,
   formatChemicalFormula,
@@ -240,5 +244,6 @@ export {
   castToArray,
   numberWithCommas,
   isEmpty,
-  naturalSort
+  naturalSort,
+  isKeggOrthologyId
 };

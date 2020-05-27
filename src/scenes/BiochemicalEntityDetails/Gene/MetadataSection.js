@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import BaseMetadataSection from "../MetadataSection";
 import { LoadExternalContent, LoadContent } from "../LoadContent";
 import KeggPathwaysMetadataSection from "../KeggPathwaysMetadataSection";
-import { naturalSort } from "~/utils/utils";
+import { naturalSort, isKeggOrthologyId } from "~/utils/utils";
 
 class MetadataSection extends Component {
   static propTypes = {
@@ -40,7 +40,7 @@ class MetadataSection extends Component {
     }
 
     let response;
-    if (query[0].toUpperCase() === "K") {
+    if (isKeggOrthologyId(query)) {
       if (comments) {
         response = comments;
       } else {
@@ -235,7 +235,7 @@ class MetadataSection extends Component {
   }
 
   static getMetadataUrl(query) {
-    if (query[0].toUpperCase() === "K") {
+    if (isKeggOrthologyId(query)) {
       return "kegg/get_meta/?kegg_ids=" + query;
     } else {
       return "proteins/meta/meta_combo/?uniprot_id=" + query;
@@ -243,7 +243,7 @@ class MetadataSection extends Component {
   }
 
   static processMetadata(query, organism, rawData) {
-    if (query[0].toUpperCase() === "K") {
+    if (isKeggOrthologyId(query)) {
       return MetadataSection.processKeggOrthologGroupMetadata(
         query,
         organism,
@@ -276,7 +276,7 @@ class MetadataSection extends Component {
     }
 
     processedData.relatedLinksUrl =
-      "proteins/related/related_reactions_by/?ko=" +
+      "proteins/related/related_reactions_by_kegg/?ko=" +
       rawData[0].kegg_orthology_id;
 
     return processedData;
