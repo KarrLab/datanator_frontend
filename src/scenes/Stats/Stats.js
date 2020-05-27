@@ -104,7 +104,11 @@ class Stats extends Component {
     // });
     dataSourceData.push({
       label: ["SABIO-RK"],
-      urls: ["reactions/summary/num_entries/"]
+      urls: [
+        "reactions/summary/get_sabio_obs/?parameter=k_cats",
+        "reactions/summary/get_sabio_obs/?parameter=k_ms",
+        "reactions/summary/get_sabio_obs/?parameter=k_is"
+      ]
     });
     dataSourceData.push({
       label: ["YMDB"],
@@ -120,7 +124,7 @@ class Stats extends Component {
         "metabolites/summary/ecmdb_ref_count",
         "metabolites/summary/ymdb_ref_count",
         "metabolites/summary/curated_ref_count"
-        ]
+      ]
     });
     journalByDataTypeData.push({
       label: ["Prot abund."],
