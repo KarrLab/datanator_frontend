@@ -48,7 +48,6 @@
 
     .search-form {
       margin-top: 2px;
-      margin-bottom: calc(2rem - 4px);
       margin-left: auto;
       margin-right: auto;
       max-width: 1000px;
@@ -88,6 +87,23 @@
 
       .search-submit.bp3-disabled .bp3-icon {
         color: $color-primary-lighter;
+      }
+    }
+
+    .examples {
+      text-align: center;
+      margin-top: 2rem;
+      margin-bottom: calc(2rem - 4px);
+      font-style: italic;
+
+      li a.truncate {
+        max-width: 100px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: inline-block;
+        position: relative;
+        top: 3.5px;
       }
     }
 

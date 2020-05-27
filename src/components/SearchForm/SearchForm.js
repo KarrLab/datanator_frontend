@@ -197,7 +197,7 @@ class SearchForm extends Component {
           type="text"
           className="search-form-el search-form-el-entity search-input"
           leftIcon=<FontAwesomeIcon icon="atom" />
-          placeholder="metabolite, gene, or reaction (e.g., glucose)"
+          placeholder="metabolite, gene, or reaction (e.g., D-glucose)"
           value={this.state.query}
           onChange={event => {
             this.setState({
