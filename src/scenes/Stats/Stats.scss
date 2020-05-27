@@ -2,4 +2,9 @@
   .section-columns:first-child {
     margin-top: 0;
   }
+
+  .loader {
+    height: calc(150px - 2 * 16px);
+    width: calc(150px - 2 * 16px);
+  }
 }

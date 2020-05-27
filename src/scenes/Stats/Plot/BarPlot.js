@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Chart from "chart.js";
+import { numberWithCommas } from "~/utils/utils";
 
 import * as colorPalette from "~/colors.scss";
 
@@ -24,6 +25,18 @@ export default class BarPlot extends Component {
   }
 
   configChart() {
+    if (!this.props.data.values.length) {
+      return;
+    }
+
+    const maxVal = Math.max(...this.props.data.values);
+    const log = Math.floor(Math.log10(maxVal));
+    const maxTick = Math.ceil(maxVal / Math.pow(10, log)) * Math.pow(10, log);
+    const yTickLogStep = Math.ceil(Math.max(Math.log10(maxVal)) / 4);
+    const maxTicksLimit = Math.ceil(
+      Math.ceil(Math.log10(maxTick)) / yTickLogStep
+    );
+
     let chartConfig = {
       type: "bar",
       data: {
@@ -59,13 +72,22 @@ export default class BarPlot extends Component {
           ],
           yAxes: [
             {
-              type: "linear",
+              type: "logarithmic",
               scaleLabel: {
                 display: true,
                 labelString: this.props.yAxisLabel
               },
               ticks: {
-                maxTicksLimit: 4
+                min: 1,
+                max: maxTick,
+                maxTicksLimit: maxTicksLimit,
+                callback: numberWithCommas
+              },
+              afterBuildTicks: chart => {
+                chart.ticks = [];
+                for (let i = 0; i < maxTicksLimit; i++) {
+                  chart.ticks.push(Math.pow(10, i * yTickLogStep));
+                }
               }
             }
           ]
@@ -79,11 +101,15 @@ export default class BarPlot extends Component {
   }
 
   render() {
-    return (
-      <canvas
-        ref={this.canvas}
-        className="biochemical-entity-scene-measurement-plot"
-      />
-    );
+    if (this.props.data.values.length) {
+      return (
+        <canvas
+          ref={this.canvas}
+          className="biochemical-entity-scene-measurement-plot"
+        />
+      );
+    } else {
+      return <div className="loader"></div>;
+    }
   }
 }

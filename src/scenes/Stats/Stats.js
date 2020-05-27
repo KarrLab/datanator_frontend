@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { HashLink } from "react-router-hash-link";
-import { scrollTo, numberWithCommas } from "~/utils/utils";
+import { scrollTo } from "~/utils/utils";
 import BarPlot from "./Plot/BarPlot";
 import FrequencyPlot from "./Plot/FrequencyPlot";
 import axios from "axios";
@@ -41,56 +41,93 @@ class Stats extends Component {
     const dataTypeData = [];
     dataTypeData.push({
       label: ["Met. concs."],
-      url: "metabolites/summary/concentration_count/"
+      urls: ["metabolites/summary/concentration_count/"]
     });
-    // TODO: including protein abundances
+    dataTypeData.push({
+      label: ["RNA mods"],
+      urls: ["rna/summary/get_total_modifications/"]
+    });
     dataTypeData.push({
       label: ["RNA half-lives"],
-      url: "rna/summary/get_total_docs/"
+      urls: ["rna/summary/get_total_docs/"]
     });
     dataTypeData.push({
+      label: ["Prot. abund."],
+      urls: ["proteins/summary/num_obs_abundances/"]
+    });
+    // TODO: protein modifications
+    // dataTypeData.push({
+    //   label: ["Prot. mods"],
+    //   urls: ["proteins/summary/num_obs_modifications/"]
+    // });
+    dataTypeData.push({
       label: ["Rxn kcat"],
-      url: "reactions/summary/num_parameter_kcat/"
+      urls: ["reactions/summary/num_parameter_kcat/"]
     });
     dataTypeData.push({
       label: ["Rxn Km"],
-      url: "reactions/summary/num_parameter_km/"
+      urls: ["reactions/summary/num_parameter_km/"]
     });
     this.setBarChart("dataType", dataTypeData);
 
     const dataSourceData = [];
     dataSourceData.push({
-      label: ["ECMDB"],
-      url: "metabolites/summary/ecmdb_doc_count/"
+      label: ["Articles"],
+      urls: ["rna/summary/get_distinct/?_input=halflives.reference.doi"]
     });
-    // TODO: include PAX-DB
+    // TODO: BRENDA Kis
+    dataSourceData.push({
+      label: ["BRENDA"],
+      urls: [
+        "reactions/summary/get_brenda_obs/?parameter=k_cats",
+        "reactions/summary/get_brenda_obs/?parameter=k_ms" //,
+        // "reactions/summary/get_brenda_obs/?parameter=k_is"
+      ]
+    });
+    dataSourceData.push({
+      label: ["ECMDB"],
+      urls: ["metabolites/summary/ecmdb_doc_count/"]
+    });
+    dataSourceData.push({
+      label: ["MODOMICS"],
+      urls: ["rna/summary/get_total_modifications/"]
+    });
+    dataSourceData.push({
+      label: ["PAXdb"],
+      urls: ["proteins/summary/num_obs_abundances/"]
+    });
+    // TODO: protein ontology
+    // dataSourceData.push({
+    //   label: ["PRO"],
+    //   urls: ["proteins/summary/num_obs_abundances/"]
+    // });
     dataSourceData.push({
       label: ["SABIO-RK"],
-      url: "reactions/summary/num_entries/"
+      urls: ["reactions/summary/num_entries/"]
     });
     dataSourceData.push({
       label: ["YMDB"],
-      url: "metabolites/summary/ymdb_doc_count/"
-    });
-    dataSourceData.push({
-      label: ["Articles"],
-      url: "rna/summary/get_distinct/?_input=halflives.reference.doi"
+      urls: ["metabolites/summary/ymdb_doc_count/"]
     });
     this.setBarChart("dataSource", dataSourceData);
 
     const journalByDataTypeData = [];
     journalByDataTypeData.push({
       label: ["Met. concs."],
-      url: "metabolites/summary/get_ref_count/"
+      urls: ["metabolites/summary/get_ref_count/"]
     });
     journalByDataTypeData.push({
       label: ["Prot abund."],
-      url: "proteins/summary/num_publications/"
+      urls: ["proteins/summary/num_publications/"]
     });
     // TODO: include reaction kinetic constants
+    // journalByDataTypeData.push({
+    //   label: ["Rxn kinetics"],
+    //   urls: ["proteins/summary/num_publications/"]
+    // });
     journalByDataTypeData.push({
       label: ["RNA half-lives"],
-      url: "rna/summary/get_distinct/?_input=halflives.reference.doi"
+      urls: ["rna/summary/get_distinct/?_input=halflives.reference.doi"]
     });
     this.setBarChart("journalByDataType", journalByDataTypeData);
 
@@ -111,18 +148,22 @@ class Stats extends Component {
     const values = [];
 
     for (const bar of data) {
-      requests.push(getDataFromApi([bar.url]));
+      for (const url of bar.urls) {
+        requests.push(getDataFromApi([url]));
+      }
     }
 
     axios.all(requests).then(
       axios.spread((...responses) => {
-        for (var n = 0; n < responses.length; n++) {
-          values.push(responses[n].data);
-          labels.push(
-            data[n].label.concat([
-              "(" + numberWithCommas(responses[n].data) + ")"
-            ])
-          );
+        let iResponse = 0;
+        for (const bar of data) {
+          let value = 0;
+          for (let iUrl = 0; iUrl < bar.urls.length; iUrl++) {
+            value += responses[iResponse].data;
+            iResponse++;
+          }
+          values.push(value);
+          labels.push(bar.label);
         }
         this.setState({ [name]: { labels: labels, values: values } });
       })
@@ -235,12 +276,12 @@ class Stats extends Component {
 
               <div className="section section-column" id="primary-source">
                 <h2 className="content-block-heading">
-                  Dist. of primary sources (articles)
+                  Dist. of primary sources
                 </h2>
                 <div className="content-block-content">
                   <BarPlot
                     data={this.state.journalByDataType}
-                    yAxisLabel="Measurements"
+                    yAxisLabel="Articles"
                   />
                 </div>
               </div>

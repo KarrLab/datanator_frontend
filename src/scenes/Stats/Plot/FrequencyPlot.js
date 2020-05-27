@@ -38,7 +38,7 @@ export default class FrequencyPlot extends Component {
   }
 
   configChart() {
-    if (!this.props.data.labels.length) {
+    if (!this.props.data.values.length) {
       return;
     }
 
@@ -129,11 +129,15 @@ export default class FrequencyPlot extends Component {
   }
 
   render() {
-    return (
-      <canvas
-        ref={this.canvas}
-        className="biochemical-entity-scene-measurement-plot"
-      />
-    );
+    if (this.props.data.values.length) {
+      return (
+        <canvas
+          ref={this.canvas}
+          className="biochemical-entity-scene-measurement-plot"
+        />
+      );
+    } else {
+      return <div className="loader"></div>;
+    }
   }
 }

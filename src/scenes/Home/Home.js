@@ -228,7 +228,7 @@ class Home extends Component {
                   Metabolite concentrations
                 </div>
                 <div className="section-column-description">
-                  XXX measurements of the concentrations of XXX metabolites in
+                  3,841 measurements of the concentrations of XXX metabolites in
                   XXX organisms aggregated from{" "}
                   <a
                     href="http://ecmdb.ca/"
