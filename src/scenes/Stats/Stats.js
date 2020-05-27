@@ -38,6 +38,7 @@ class Stats extends Component {
   }
 
   componentDidMount() {
+    // number of observations of each data type
     const dataTypeData = [];
     dataTypeData.push({
       label: ["Met. concs."],
@@ -49,17 +50,16 @@ class Stats extends Component {
     });
     dataTypeData.push({
       label: ["RNA half-lives"],
-      urls: ["rna/summary/get_total_docs/"]
+      urls: ["rna/summary/get_total_halflife_obs/"]
     });
     dataTypeData.push({
       label: ["Prot. abund."],
       urls: ["proteins/summary/num_obs_abundances/"]
     });
-    // TODO: protein modifications
-    // dataTypeData.push({
-    //   label: ["Prot. mods"],
-    //   urls: ["proteins/summary/num_obs_modifications/"]
-    // });
+    dataTypeData.push({
+      label: ["Prot. mods"],
+      urls: ["proteins/summary/num_obs_modifications/"]
+    });
     dataTypeData.push({
       label: ["Rxn kcat"],
       urls: ["reactions/summary/num_parameter_kcat/"]
@@ -70,6 +70,7 @@ class Stats extends Component {
     });
     this.setBarChart("dataType", dataTypeData);
 
+    // number of observations from each source
     const dataSourceData = [];
     dataSourceData.push({
       label: ["Articles"],
@@ -86,7 +87,7 @@ class Stats extends Component {
     });
     dataSourceData.push({
       label: ["ECMDB"],
-      urls: ["metabolites/summary/ecmdb_doc_count/"]
+      urls: ["metabolites/summary/ecmdb_conc_count/"]
     });
     dataSourceData.push({
       label: ["MODOMICS"],
@@ -107,10 +108,11 @@ class Stats extends Component {
     });
     dataSourceData.push({
       label: ["YMDB"],
-      urls: ["metabolites/summary/ymdb_doc_count/"]
+      urls: ["metabolites/summary/ymdb_conc_count/"]
     });
     this.setBarChart("dataSource", dataSourceData);
 
+    // number of articles behind each type of data
     const journalByDataTypeData = [];
     journalByDataTypeData.push({
       label: ["Met. concs."],
@@ -131,11 +133,13 @@ class Stats extends Component {
     });
     this.setBarChart("journalByDataType", journalByDataTypeData);
 
+    // temperature distribution of measurements
     this.setFrequencyChart(
       "temperatureFrequency",
       "reactions/summary/get_frequency/?field=temperature"
     );
 
+    // pH distribution of measurements
     this.setFrequencyChart(
       "phFrequency",
       "reactions/summary/get_frequency/?field=ph"
