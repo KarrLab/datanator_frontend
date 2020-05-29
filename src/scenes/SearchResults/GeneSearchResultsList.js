@@ -67,14 +67,12 @@ export default class GeneSearchResultsList extends Component {
         // description
         const descriptions = [];
         if (koNumber == null) {
-          /*
-          const taxonId = 9606;
-          const taxonName = "Homo sapiens";
+          const taxonName = source.species_name;
           descriptions.push(
             <li>
               Organism:{" "}
               <a
-                href={"https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=" + taxonId}
+                href={"https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?name=" + taxonName}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -82,7 +80,6 @@ export default class GeneSearchResultsList extends Component {
               </a>
             </li>
           );
-          */
 
           descriptions.push(
             <li>
