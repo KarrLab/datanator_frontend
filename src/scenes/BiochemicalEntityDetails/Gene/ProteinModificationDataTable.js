@@ -118,7 +118,13 @@ class ProteinModificationDataTable extends Component {
                 rawDatum.species_name
               );
             } else {
-              if (rawDatum.canon_ancestors.includes(organism)) {
+              if (
+                organism.toLowerCase() ===
+                  rawDatum.species_name.toLowerCase() ||
+                rawDatum.canon_ancestors
+                  .map(el => el.toLowerCase())
+                  .includes(organism.toLowerCase())
+              ) {
                 formattedDatum["taxonomicProximity"] = 0;
               } else {
                 formattedDatum["taxonomicProximity"] = taxonDistance;
