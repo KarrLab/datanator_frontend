@@ -228,8 +228,8 @@ class Home extends Component {
                   Metabolite concentrations
                 </div>
                 <div className="section-column-description">
-                  XXX measurements of the concentrations of XXX metabolites in
-                  XXX organisms aggregated from{" "}
+                  3841 measurements of the concentrations of 1621 metabolites in
+                  4 organisms aggregated from{" "}
                   <a
                     href="http://ecmdb.ca/"
                     target="_blank"
@@ -244,7 +244,7 @@ class Home extends Component {
                   >
                     YMDB
                   </a>
-                  , and more than XXX publications.
+                  , and more than 5 publications.
                 </div>
               </div>
 
@@ -347,8 +347,8 @@ class Home extends Component {
                 <div className="section-column-subtitle">Available</div>
                 <div className="section-column-title">Reaction constants</div>
                 <div className="section-column-description">
-                  XXX measurements of rate constants for XXX distinct enzymes
-                  and XXX reactions aggregated from{" "}
+                  273,596 measurements of rate constants for more than 3,137 distinct enzymes
+                  and 37,858 reactions aggregated from{" "}
                   <a
                     href="https://www.brenda-enzymes.org/"
                     target="_blank"
