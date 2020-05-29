@@ -2,6 +2,8 @@ import React from "react";
 import axios from "axios";
 import { errorDialogRef } from "~/components/ErrorDialog/ErrorDialog";
 
+const JSON5 = require("json5");
+
 const ROOT_URL = process.env.REACT_APP_REST_SERVER;
 const IS_DEVELOPMENT = process.env.NODE_ENV.startsWith("development");
 const IS_TEST = process.env.NODE_ENV.startsWith("test");
@@ -16,6 +18,11 @@ const DEFAULT_ERROR_MESSAGE = (
 
 function getDataFromApi(params, options = {}) {
   const url = ROOT_URL + params.join("/");
+  options.transformResponse = [
+    function(data) {
+      return JSON5.parse(data);
+    }
+  ];
   return axios.get(url, options);
 }
 
