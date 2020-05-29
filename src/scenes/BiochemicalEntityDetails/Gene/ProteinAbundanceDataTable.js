@@ -54,33 +54,13 @@ class ProteinAbundanceDataTable extends Component {
     const formattedData = [];
     for (let i = 0; i < rawData.slice(start).length; i++) {
       const docs = rawData.slice(start)[i];
-      for (const rawDatum of docs.documents) {
-        if ("abundances" in rawDatum) {
-          for (const measurement of rawDatum.abundances) {
-            let proteinName = rawDatum.protein_name;
-            if (proteinName.includes("(")) {
-              proteinName = proteinName.substring(0, proteinName.indexOf("("));
-            }
-
-            const row = {
-              abundance: parseFloat(measurement.abundance),
-              proteinName: proteinName,
-              uniprotId: rawDatum.uniprot_id,
-              geneSymbol: rawDatum.gene_name,
-              organism: rawDatum.species_name,
-              organ: measurement.organ.replace("_", " ").toLowerCase()
-            };
-            if (organism != null) {
-              if (rawDatum.canon_ancestors.includes(organism)) {
-                row["taxonomicProximity"] = 0;
-              } else {
-                row["taxonomicProximity"] = docs.distance;
-              }
-            }
-            formattedData.push(row);
-          }
-        }
-      }
+      this.formatDocuments(
+        null,
+        organism,
+        docs.distance,
+        docs.documents,
+        formattedData
+      );
     }
     return formattedData;
   }
@@ -91,33 +71,51 @@ class ProteinAbundanceDataTable extends Component {
     }
 
     const formattedData = [];
+    this.formatDocuments(query, organism, null, rawData, formattedData);
+    return formattedData;
+  }
+
+  formatDocuments(uniprotId, organism, taxonDistance, rawData, formattedData) {
     for (const rawDatum of rawData) {
       if ("abundances" in rawDatum) {
         for (const measurement of rawDatum.abundances) {
+          let proteinName = rawDatum.protein_name;
+          if (proteinName.includes("(")) {
+            proteinName = proteinName.substring(0, proteinName.indexOf("("));
+          }
+
           const formattedDatum = {
             abundance: parseFloat(measurement.abundance),
-            proteinName: rawDatum.protein_name,
-            uniprotId: query,
+            proteinName: proteinName,
+            uniprotId:
+              "uniprot_id" in rawDatum ? rawDatum.uniprot_id : uniprotId,
             geneSymbol: rawDatum.gene_name,
             organism: rawDatum.species_name,
             organ: measurement.organ.replace("_", " ").toLowerCase()
           };
 
           if (organism != null) {
-            formattedDatum[
-              "taxonomicProximity"
-            ] = DataTable.calcTaxonomicDistance(
-              rawDatum.taxon_distance,
-              organism,
-              rawDatum.species_name
-            );
+            if ("taxon_distance" in rawDatum) {
+              formattedDatum[
+                "taxonomicProximity"
+              ] = DataTable.calcTaxonomicDistance(
+                rawDatum.taxon_distance,
+                organism,
+                rawDatum.species_name
+              );
+            } else {
+              if (rawDatum.canon_ancestors.includes(organism)) {
+                formattedDatum["taxonomicProximity"] = 0;
+              } else {
+                formattedDatum["taxonomicProximity"] = taxonDistance;
+              }
+            }
           }
 
           formattedData.push(formattedDatum);
         }
       }
     }
-    return formattedData;
   }
 
   static getSideBarDef() {

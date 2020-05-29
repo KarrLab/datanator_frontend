@@ -57,46 +57,12 @@ class ProteinModificationDataTable extends Component {
     const formattedData = [];
     for (let i = 0; i < rawData.slice(start).length; i++) {
       const docs = rawData.slice(start)[i];
-      for (const rawDatum of docs.documents) {
-        if ("modifications" in rawDatum) {
-          for (const measurement of rawDatum.modifications) {
-            if (
-              measurement.concrete !== true ||
-              measurement.pro_issues != null ||
-              measurement.monomeric_form_issues != null
-            ) {
-              continue;
-            }
-
-            let proteinName = rawDatum.protein_name;
-            if (proteinName.includes("(")) {
-              proteinName = proteinName.substring(0, proteinName.indexOf("("));
-            }
-
-            const row = {
-              processing: measurement.processing,
-              modifications: measurement.modifications,
-              crosslinks: measurement.crosslinks,
-              deletions: measurement.deletions,
-              processedSequence: measurement.processsed_sequence_iubmb,
-              matureSequence: measurement.modified_sequence_abbreviated_bpforms,
-              proteinName: proteinName,
-              uniprotId: rawDatum.uniprot_id,
-              geneSymbol: rawDatum.gene_name,
-              organism: rawDatum.species_name,
-              source: measurement.pro_id
-            };
-            if (organism != null) {
-              if (rawDatum.canon_ancestors.includes(organism)) {
-                row["taxonomicProximity"] = 0;
-              } else {
-                row["taxonomicProximity"] = docs.distance;
-              }
-            }
-            formattedData.push(row);
-          }
-        }
-      }
+      this.formatDocuments(
+        organism,
+        docs.distance,
+        docs.documents,
+        formattedData
+      );
     }
     return formattedData;
   }
@@ -107,6 +73,11 @@ class ProteinModificationDataTable extends Component {
     }
 
     const formattedData = [];
+    this.formatDocuments(organism, null, rawData, formattedData);
+    return formattedData;
+  }
+
+  formatDocuments(organism, taxonDistance, rawData, formattedData) {
     for (const rawDatum of rawData) {
       if ("modifications" in rawDatum) {
         for (const measurement of rawDatum.modifications) {
@@ -138,20 +109,27 @@ class ProteinModificationDataTable extends Component {
           };
 
           if (organism != null) {
-            formattedDatum[
-              "taxonomicProximity"
-            ] = DataTable.calcTaxonomicDistance(
-              rawDatum.taxon_distance,
-              organism,
-              rawDatum.species_name
-            );
+            if ("taxon_distance" in rawDatum) {
+              formattedDatum[
+                "taxonomicProximity"
+              ] = DataTable.calcTaxonomicDistance(
+                rawDatum.taxon_distance,
+                organism,
+                rawDatum.species_name
+              );
+            } else {
+              if (rawDatum.canon_ancestors.includes(organism)) {
+                formattedDatum["taxonomicProximity"] = 0;
+              } else {
+                formattedDatum["taxonomicProximity"] = taxonDistance;
+              }
+            }
           }
 
           formattedData.push(formattedDatum);
         }
       }
     }
-    return formattedData;
   }
 
   static getSideBarDef() {
@@ -206,8 +184,7 @@ class ProteinModificationDataTable extends Component {
       },
       {
         headerName: "Mature sequence (BpForms)",
-        field: "matureSequence",
-        hide: true
+        field: "matureSequence"
       },
 
       {
