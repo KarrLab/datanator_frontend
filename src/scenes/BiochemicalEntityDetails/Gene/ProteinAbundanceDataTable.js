@@ -31,7 +31,7 @@ class ProteinAbundanceDataTable extends Component {
       const args = ["uniprot_id=" + query];
       if (organism) {
         args.push("taxon_distance=true");
-        args.push("taget_species=" + organism);
+        args.push("target_species=" + organism);
       }
       return "proteins/precise_abundance/?" + args.join("&");
     }
