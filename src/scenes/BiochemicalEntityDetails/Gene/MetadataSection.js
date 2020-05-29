@@ -108,7 +108,7 @@ class MetadataSection extends Component {
               target="_blank"
               rel="noopener noreferrer"
             >
-              {uniprotData.organism.names[0].value.split(" (")[0]}
+              {uniprotData.organism.names[0].value.split("(")[0].trim()}
             </a>
           )
         });
@@ -285,7 +285,7 @@ class MetadataSection extends Component {
   static processUniProtProteinMetadata(query, organism, rawData) {
     let processedData = {};
 
-    processedData.title = rawData[0].protein_name;
+    processedData.title = rawData[0].protein_name.split("(")[0].trim();
     processedData.koNumber = null;
     processedData.uniprotId = query;
     processedData.description = null;
