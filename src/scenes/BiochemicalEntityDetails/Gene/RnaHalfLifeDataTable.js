@@ -31,30 +31,116 @@ class RnaHalfLifeDataTable extends Component {
       if (rawDatum.halflives) {
         const measurements = rawDatum.halflives;
         for (const measurement of measurements) {
-          let formattedDatum = {
-            halfLife: parseFloat(measurement.halflife),
-            proteinName: rawDatum.protein_names[0],
-            geneName: rawDatum.kegg_meta.gene_name[0],
-            uniprotId: rawDatum.uniprot_id,
-            organism: measurement.species,
-            growthMedium: measurement.growth_medium,
-            source: {
-              id: "DOI: " + measurement.reference[0].doi,
-              url: "https://dx.doi.org/" + measurement.reference[0].doi
+          if ("halflife" in measurement) {
+            let formattedDatum = {
+              halfLife: parseFloat(measurement.halflife),
+              units: measurement.unit,
+              proteinName: rawDatum.protein_names[0],
+              geneName: rawDatum.kegg_meta.gene_name[0],
+              uniprotId: rawDatum.uniprot_id,
+              organism: measurement.species,
+              cellLine: null,
+              growthMedium:
+                "growth_medium" in measurement
+                  ? measurement.growth_medium
+                  : null,
+              source: {
+                id: "DOI: " + measurement.reference[0].doi,
+                url: "https://dx.doi.org/" + measurement.reference[0].doi
+              }
+            };
+
+            if (organism != null) {
+              formattedDatum[
+                "taxonomicProximity"
+              ] = DataTable.calcTaxonomicDistance(
+                measurement.taxon_distance,
+                organism,
+                measurement.species
+              );
             }
-          };
 
-          if (organism != null) {
-            formattedDatum[
-              "taxonomicProximity"
-            ] = DataTable.calcTaxonomicDistance(
-              measurement.taxon_distance,
-              organism,
-              measurement.species
-            );
+            formattedData.push(formattedDatum);
+          } else if ("values" in measurement) {
+            const cellLineValues = {};
+
+            for (const value of measurement.values) {
+              let cellLine;
+              for (const key in value) {
+                if (
+                  key !== "biological_replicates" &&
+                  key !== "technical_replicates" &&
+                  key !== "note" &&
+                  key !== "unit"
+                ) {
+                  cellLine = key;
+                }
+              }
+
+              let units = value.unit;
+              let halfLife = value[cellLine];
+              if (units === "hr") {
+                units = "s";
+                halfLife *= 60;
+              }
+
+              if ("biological_replicates" in value) {
+                if (cellLine in cellLineValues) {
+                  if ("values" in cellLineValues[cellLine]) {
+                    cellLineValues[cellLine].values.push(halfLife);
+                  }
+                } else {
+                  cellLineValues[cellLine] = {
+                    values: [halfLife],
+                    units: units
+                  };
+                }
+              } else {
+                cellLineValues[cellLine] = { value: halfLife, units: units };
+              }
+            }
+
+            for (const cellLine in cellLineValues) {
+              const cellLineValue = cellLineValues[cellLine];
+
+              let formattedDatum = {
+                units: cellLineValue.units,
+                proteinName: rawDatum.protein_names[0],
+                geneName: rawDatum.kegg_meta.gene_name[0],
+                uniprotId: rawDatum.uniprot_id,
+                organism: measurement.species,
+                cellLine: cellLine.toUpperCase(),
+                growthMedium:
+                  "growth_medium" in measurement
+                    ? measurement.growth_medium
+                    : null,
+                source: {
+                  id: "DOI: " + measurement.reference[0].doi,
+                  url: "https://dx.doi.org/" + measurement.reference[0].doi
+                }
+              };
+
+              if ("value" in cellLineValue) {
+                formattedDatum.halfLife = cellLineValue.value;
+              } else {
+                formattedDatum.halfLife =
+                  cellLineValue.values.reduce((a, b) => a + b, 0) /
+                  cellLineValue.values.length;
+              }
+
+              if (organism != null) {
+                formattedDatum[
+                  "taxonomicProximity"
+                ] = DataTable.calcTaxonomicDistance(
+                  measurement.taxon_distance,
+                  organism,
+                  measurement.species
+                );
+              }
+
+              formattedData.push(formattedDatum);
+            }
           }
-
-          formattedData.push(formattedDatum);
         }
       }
     }
@@ -99,14 +185,10 @@ class RnaHalfLifeDataTable extends Component {
   static getColDefs(query, organism, formattedData, taxonomicRanks) {
     const colDefs = [
       {
-        headerName: "Half-life (s^{-1})",
+        headerName: "Half-life",
         headerComponentFramework: HtmlColumnHeader,
         headerComponentParams: {
-          name: (
-            <span>
-              Half-life (s<sup>-1</sup>)
-            </span>
-          )
+          name: <span>Half-life</span>
         },
         field: "halfLife",
         cellRenderer: "numericCellRenderer",
@@ -116,6 +198,11 @@ class RnaHalfLifeDataTable extends Component {
         headerCheckboxSelection: true,
         headerCheckboxSelectionFilteredOnly: true,
         comparator: DataTable.numericComparator
+      },
+      {
+        headerName: "Units",
+        field: "units",
+        filter: "textFilter"
       },
       {
         headerName: "Protein",
@@ -144,7 +231,21 @@ class RnaHalfLifeDataTable extends Component {
       {
         headerName: "Organism",
         field: "organism",
-        filter: "textFilter"
+        filter: "textFilter",
+        cellRenderer: function(params) {
+          const organism = params.value;
+          if (organism) {
+            return (
+              '<a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?name=' +
+              organism +
+              '" target="_blank" rel="noopener noreferrer">' +
+              organism +
+              "</a>"
+            );
+          } else {
+            return null;
+          }
+        }
       },
       {
         headerName: "Taxonomic similarity",
@@ -168,6 +269,25 @@ class RnaHalfLifeDataTable extends Component {
           }
         },
         comparator: DataTable.numericComparator
+      },
+      {
+        headerName: "Cell line",
+        field: "cellLine",
+        filter: "textFilter",
+        cellRenderer: function(params) {
+          const cellLine = params.value;
+          if (cellLine) {
+            return (
+              '<a href="https://www.coriell.org/0/Sections/Search/Sample_Detail.aspx?Ref=' +
+              cellLine +
+              '" target="_blank" rel="noopener noreferrer">' +
+              cellLine +
+              "</a>"
+            );
+          } else {
+            return null;
+          }
+        }
       },
       {
         headerName: "Media",
@@ -197,7 +317,7 @@ class RnaHalfLifeDataTable extends Component {
     ];
 
     if (!organism) {
-      colDefs.splice(-3, 1);
+      colDefs.splice(-4, 1);
     }
     return colDefs;
   }

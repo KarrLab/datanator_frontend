@@ -86,23 +86,34 @@ class ProteinAbundanceDataTable extends Component {
   }
 
   formatProteinData(query, organism, rawData) {
+    if (!Array.isArray(rawData)) {
+      return [];
+    }
+
     const formattedData = [];
     for (const rawDatum of rawData) {
       if ("abundances" in rawDatum) {
         for (const measurement of rawDatum.abundances) {
-          formattedData.push({
+          const formattedDatum = {
             abundance: parseFloat(measurement.abundance),
             proteinName: rawDatum.protein_name,
             uniprotId: query,
             geneSymbol: rawDatum.gene_name,
             organism: rawDatum.species_name,
-            organ: measurement.organ.replace("_", " ").toLowerCase(),
-            taxonomicProximity: DataTable.calcTaxonomicDistance(
+            organ: measurement.organ.replace("_", " ").toLowerCase()
+          };
+
+          if (organism != null) {
+            formattedDatum[
+              "taxonomicProximity"
+            ] = DataTable.calcTaxonomicDistance(
               rawDatum.taxon_distance,
               organism,
               rawDatum.species_name
-            )
-          });
+            );
+          }
+
+          formattedData.push(formattedDatum);
         }
       }
     }
@@ -183,7 +194,21 @@ class ProteinAbundanceDataTable extends Component {
       {
         headerName: "Organism",
         field: "organism",
-        filter: "textFilter"
+        filter: "textFilter",
+        cellRenderer: function(params) {
+          const organism = params.value;
+          if (organism) {
+            return (
+              '<a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?name=' +
+              organism +
+              '" target="_blank" rel="noopener noreferrer">' +
+              organism +
+              "</a>"
+            );
+          } else {
+            return null;
+          }
+        }
       },
       {
         headerName: "Taxonomic similarity",

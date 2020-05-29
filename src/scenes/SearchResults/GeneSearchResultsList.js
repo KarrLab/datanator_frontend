@@ -69,10 +69,13 @@ export default class GeneSearchResultsList extends Component {
         if (koNumber == null) {
           const taxonName = source.species_name;
           descriptions.push(
-            <li>
+            <li key="taxonomy">
               Organism:{" "}
               <a
-                href={"https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?name=" + taxonName}
+                href={
+                  "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?name=" +
+                  taxonName
+                }
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -82,7 +85,7 @@ export default class GeneSearchResultsList extends Component {
           );
 
           descriptions.push(
-            <li>
+            <li key="uniprot">
               UniProt:{" "}
               <a
                 href={"https://www.uniprot.org/uniprot/" + uniprotId}
@@ -95,7 +98,7 @@ export default class GeneSearchResultsList extends Component {
           );
         } else {
           descriptions.push(
-            <li>
+            <li key="kegg">
               KEGG:{" "}
               <a
                 href={"https://www.genome.jp/dbget-bin/www_bget?ko:" + koNumber}

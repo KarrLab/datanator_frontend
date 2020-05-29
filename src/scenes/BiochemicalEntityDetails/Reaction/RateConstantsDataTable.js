@@ -403,6 +403,34 @@ class RateConstantsDataTable extends Component {
           return null;
         }
       },
+      cellRenderer: function(params) {
+        const subunits = params.value;
+        if (subunits != null) {
+          return (
+            '<ul class="comma-separated-list">' +
+            subunits
+              .filter(subunit => subunit != null)
+              .map(
+                subunit =>
+                  "<li>" +
+                  "<a" +
+                  ' href="https://www.uniprot.org/uniprot/' +
+                  subunit +
+                  '"' +
+                  ' target="_blank"' +
+                  ' rel="noopener noreferrer"' +
+                  ">" +
+                  subunit +
+                  "</a>" +
+                  "</li>"
+              )
+              .join("") +
+            "</ul>"
+          );
+        } else {
+          return null;
+        }
+      },
       filterValueGetter: params => {
         if (params.data.enzyme && params.data.enzyme.subunits.length) {
           return params.data.enzyme.subunits;
@@ -415,7 +443,21 @@ class RateConstantsDataTable extends Component {
     colDefs.push({
       headerName: "Organism",
       field: "organism",
-      filter: "textFilter"
+      filter: "textFilter",
+      cellRenderer: function(params) {
+        const organism = params.value;
+        if (organism) {
+          return (
+            '<a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?name=' +
+            organism +
+            '" target="_blank" rel="noopener noreferrer">' +
+            organism +
+            "</a>"
+          );
+        } else {
+          return null;
+        }
+      }
     });
 
     colDefs.push({

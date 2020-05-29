@@ -67,7 +67,7 @@ describe("Gene scene", function() {
       .find(".ag-header-cell")
       .first()
       .find(".ag-header-cell-text")
-      .should("have.text", "Half-life (s-1)");
+      .should("have.text", "Half-life");
 
     // open columns tool panel and toggle all columns
     cy.get("#" + dataContainerId + " .biochemical-entity-data-table-tool-panel")

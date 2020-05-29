@@ -120,7 +120,21 @@ class RnaModificationDataTable extends Component {
       {
         headerName: "Organism",
         field: "organism",
-        filter: "textFilter"
+        filter: "textFilter",
+        cellRenderer: function(params) {
+          const organism = params.value;
+          if (organism) {
+            return (
+              '<a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?name=' +
+              organism +
+              '" target="_blank" rel="noopener noreferrer">' +
+              organism +
+              "</a>"
+            );
+          } else {
+            return null;
+          }
+        }
       },
       {
         headerName: "Localization",
