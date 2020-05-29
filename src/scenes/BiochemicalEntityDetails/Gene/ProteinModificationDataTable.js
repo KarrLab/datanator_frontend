@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { getNumProperties, upperCaseFirstLetter } from "~/utils/utils";
+import {
+  getNumProperties,
+  upperCaseFirstLetter,
+  isKeggOrthologyId
+} from "~/utils/utils";
 import DataTable from "../DataTable/DataTable";
 import { HtmlColumnHeader } from "../HtmlColumnHeader";
 import Tooltip from "@material-ui/core/Tooltip";
@@ -17,15 +21,34 @@ class ProteinModificationDataTable extends Component {
   };
 
   getUrl(query, organism) {
-    return (
-      "proteins/proximity_abundance/proximity_abundance_kegg/?kegg_id=" +
-      query +
-      "&distance=40" +
-      (organism ? "&anchor=" + organism : "")
-    );
+    if (isKeggOrthologyId(query)) {
+      const args = ["kegg_id=" + query, "distance=40"];
+      if (organism) {
+        args.push("anchor=" + organism);
+      }
+      return (
+        "proteins/proximity_abundance/proximity_abundance_kegg/?" +
+        args.join("&")
+      );
+    } else {
+      const args = ["uniprot_id=" + query];
+      if (organism) {
+        args.push("taxon_distance=true");
+        args.push("taget_species=" + organism);
+      }
+      return "proteins/precise_abundance/?" + args.join("&");
+    }
   }
 
   formatData(query, organism, rawData) {
+    if (isKeggOrthologyId(query)) {
+      return this.formatOrthologGroupData(query, organism, rawData);
+    } else {
+      return this.formatProteinData(query, organism, rawData);
+    }
+  }
+
+  formatOrthologGroupData(query, organism, rawData) {
     let start = 0;
     if (getNumProperties(rawData[0]) === 1) {
       start = 1;
@@ -72,6 +95,59 @@ class ProteinModificationDataTable extends Component {
             }
             formattedData.push(row);
           }
+        }
+      }
+    }
+    return formattedData;
+  }
+
+  formatProteinData(query, organism, rawData) {
+    if (!Array.isArray(rawData)) {
+      return [];
+    }
+
+    const formattedData = [];
+    for (const rawDatum of rawData) {
+      if ("modifications" in rawDatum) {
+        for (const measurement of rawDatum.modifications) {
+          if (
+            measurement.concrete !== true ||
+            measurement.pro_issues != null ||
+            measurement.monomeric_form_issues != null
+          ) {
+            continue;
+          }
+
+          let proteinName = rawDatum.protein_name;
+          if (proteinName.includes("(")) {
+            proteinName = proteinName.substring(0, proteinName.indexOf("("));
+          }
+
+          const formattedDatum = {
+            processing: measurement.processing,
+            modifications: measurement.modifications,
+            crosslinks: measurement.crosslinks,
+            deletions: measurement.deletions,
+            processedSequence: measurement.processsed_sequence_iubmb,
+            matureSequence: measurement.modified_sequence_abbreviated_bpforms,
+            proteinName: proteinName,
+            uniprotId: rawDatum.uniprot_id,
+            geneSymbol: rawDatum.gene_name,
+            organism: rawDatum.species_name,
+            source: measurement.pro_id
+          };
+
+          if (organism != null) {
+            formattedDatum[
+              "taxonomicProximity"
+            ] = DataTable.calcTaxonomicDistance(
+              rawDatum.taxon_distance,
+              organism,
+              rawDatum.species_name
+            );
+          }
+
+          formattedData.push(formattedDatum);
         }
       }
     }
