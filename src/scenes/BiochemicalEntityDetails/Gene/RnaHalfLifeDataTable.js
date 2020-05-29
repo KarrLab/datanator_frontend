@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { upperCaseFirstLetter } from "~/utils/utils";
+import { upperCaseFirstLetter, isKeggOrthologyId } from "~/utils/utils";
 import DataTable from "../DataTable/DataTable";
 import { HtmlColumnHeader } from "../HtmlColumnHeader";
 import Tooltip from "@material-ui/core/Tooltip";
@@ -12,17 +12,26 @@ class RnaHalfLifeDataTable extends Component {
   };
 
   static getUrl(query, organism) {
-    let url =
-      "rna/halflife/get_info_by_ko/" +
-      "?ko_number=" +
-      query +
-      "&_from=0" +
-      "&size=1000";
+    let endpoint;
+    const args = [];
+
+    if (isKeggOrthologyId(query)) {
+      endpoint = "rna/halflife/get_info_by_ko/";
+      args.push("ko_number=" + query);
+    } else {
+      endpoint = "rna/halflife/get_info_by_uniprot/";
+      args.push("uniprot_id=" + query);
+    }
+
+    args.push("_from=0");
+    args.push("size=1000");
 
     if (organism) {
-      url = url + "&taxon_distance=true&species=" + organism;
+      args.push("taxon_distance=true");
+      args.push("species=" + organism);
     }
-    return url;
+
+    return endpoint + "?" + args.join("&");
   }
 
   static formatData(query, organism, rawData) {
