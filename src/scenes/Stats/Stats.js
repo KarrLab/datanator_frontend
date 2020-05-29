@@ -4,9 +4,12 @@ import { scrollTo } from "~/utils/utils";
 import BarPlot from "./Plot/BarPlot";
 import FrequencyPlot from "./Plot/FrequencyPlot";
 import axios from "axios";
-import { getDataFromApi } from "~/services/RestApi";
+import { getDataFromApi, genApiErrorHandler } from "~/services/RestApi";
 
 import "./Stats.scss";
+
+const IS_DEVELOPMENT = process.env.NODE_ENV.startsWith("development");
+const IS_TEST = process.env.NODE_ENV.startsWith("test");
 
 class Stats extends Component {
   constructor() {
@@ -21,6 +24,10 @@ class Stats extends Component {
         values: []
       },
       journalByDataType: {
+        labels: [],
+        values: []
+      },
+      taxonomy: {
         labels: [],
         values: []
       },
@@ -141,6 +148,75 @@ class Stats extends Component {
     });
     this.setBarChart("journalByDataType", journalByDataTypeData);
 
+    // taxonomic distribution of measurements
+    const taxonomicUrl =
+      "https://raw.githubusercontent.com/KarrLab/datanator_query_python/testapi/docs/taxon_distribution_frontend.json";
+    axios
+      .get(taxonomicUrl)
+      .then(response => {
+        const organismCountsDict = {};
+        for (const organismLong in response.data) {
+          if (organismLong !== "others") {
+            const organismParts = organismLong.split(" ");
+            const organismShort =
+              organismParts[0].substr(0, 1) + ". " + organismParts[1];
+
+            if (!(organismShort in organismCountsDict)) {
+              organismCountsDict[organismShort] = 0;
+            }
+            organismCountsDict[organismShort] += response.data[organismLong];
+          }
+        }
+
+        const organismCountsArr = [];
+        for (const organism in organismCountsDict) {
+          organismCountsArr.push({
+            organism: organism,
+            count: organismCountsDict[organism]
+          });
+        }
+        organismCountsArr.sort((a, b) => {
+          if (a.count < b.count) {
+            return 1;
+          } else if (a.count > b.count) {
+            return -1;
+          } else {
+            return 0;
+          }
+        });
+
+        const labels = [];
+        const values = [];
+        for (const organismCount of organismCountsArr) {
+          labels.push(organismCount.organism);
+          values.push(organismCount.count);
+        }
+        labels.push("Other");
+        values.push(response.data["others"]);
+
+        this.setState({
+          taxonomy: {
+            labels: labels,
+            values: values
+          }
+        });
+      })
+      .catch(error => {
+        if (
+          "response" in error &&
+          error.response !== undefined &&
+          "request" in error.response &&
+          error.response.request.constructor.name === "XMLHttpRequest"
+        ) {
+          genApiErrorHandler(
+            [taxonomicUrl],
+            "Unable to get taxonomic distribution of measurements."
+          )(error);
+        } else if (IS_DEVELOPMENT || IS_TEST) {
+          console.error(error);
+        }
+      });
+
     // temperature distribution of measurements
     this.setFrequencyChart(
       "temperatureFrequency",
@@ -239,8 +315,13 @@ class Stats extends Component {
                     </ul>
                   </li>
                   <li>
+                    <HashLink to="#taxa" scroll={scrollTo}>
+                      Taxa
+                    </HashLink>
+                  </li>
+                  <li>
                     <HashLink to="#temperature" scroll={scrollTo}>
-                      Expt. conditions
+                      Env. conditions
                     </HashLink>
                     <ul>
                       <li>
@@ -261,7 +342,7 @@ class Stats extends Component {
           </div>
 
           <div className="content-column">
-            <div className="section-columns section-3-columns">
+            <div className="section-columns section-2-columns">
               <div className="section section-column" id="data-type">
                 <h2 className="content-block-heading">
                   Distribution of data types
@@ -285,7 +366,9 @@ class Stats extends Component {
                   />
                 </div>
               </div>
+            </div>
 
+            <div className="section-columns section-2-columns">
               <div className="section section-column" id="primary-source">
                 <h2 className="content-block-heading">
                   Dist. of primary sources
@@ -294,6 +377,18 @@ class Stats extends Component {
                   <BarPlot
                     data={this.state.journalByDataType}
                     yAxisLabel="Articles"
+                  />
+                </div>
+              </div>
+
+              <div className="section section-column" id="taxa">
+                <h2 className="content-block-heading">
+                  Taxonomic distribution
+                </h2>
+                <div className="content-block-content">
+                  <BarPlot
+                    data={this.state.taxonomy}
+                    yAxisLabel="Measurements"
                   />
                 </div>
               </div>
