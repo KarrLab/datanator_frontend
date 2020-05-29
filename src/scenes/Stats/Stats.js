@@ -104,11 +104,10 @@ class Stats extends Component {
       label: ["PAXdb"],
       urls: ["proteins/summary/num_obs_abundances/"]
     });
-    // TODO: protein ontology
-    // dataSourceData.push({
-    //   label: ["PRO"],
-    //   urls: ["proteins/summary/num_obs_abundances/"]
-    // });
+    dataSourceData.push({
+      label: ["PRO"],
+      urls: ["proteins/summary/num_obs_abundances/"]
+    });
     dataSourceData.push({
       label: ["SABIO-RK"],
       urls: [
@@ -137,11 +136,10 @@ class Stats extends Component {
       label: ["Prot abund."],
       urls: ["proteins/summary/num_publications/"]
     });
-    // TODO: include reaction kinetic constants
-    // journalByDataTypeData.push({
-    //   label: ["Rxn kinetics"],
-    //   urls: ["proteins/summary/num_publications/"]
-    // });
+    journalByDataTypeData.push({
+      label: ["Rxn kinetics"],
+      urls: ["/reactions/summary/num_refs/"]
+    });
     journalByDataTypeData.push({
       label: ["RNA half-lives"],
       urls: ["rna/summary/get_distinct/?_input=halflives.reference.doi"]

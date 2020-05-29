@@ -379,7 +379,7 @@ class Home extends Component {
                     rel="noopener noreferrer"
                   >
                     PAXdb
-                  </a>
+                  </a>{" "}
                   and organized with metadata from{" "}
                   <a
                     href="https://www.genome.jp/kegg/ko.html"
