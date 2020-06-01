@@ -1,44 +1,44 @@
 The following is a list of the licenses of the third party dependencies of Datanator, including the location of each license file where available. This list was generated using license-checker (https://github.com/davglass/license-checker).
 
-├─ @ag-grid-community/all-modules@22.1.1
+├─ @ag-grid-community/all-modules@23.1.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/ag-grid/ag-grid
 │  ├─ publisher: Sean Landsman
 │  ├─ email: sean@thelandsmans.com
 │  └─ licenseFile: @ag-grid-community/all-modules/LICENSE.txt
-├─ @ag-grid-community/client-side-row-model@22.1.1
+├─ @ag-grid-community/client-side-row-model@23.1.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/ag-grid/ag-grid
 │  ├─ publisher: Sean Landsman
 │  ├─ email: sean@thelandsmans.com
 │  └─ licenseFile: @ag-grid-community/client-side-row-model/LICENSE.txt
-├─ @ag-grid-community/core@22.1.1
+├─ @ag-grid-community/core@23.1.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/ag-grid/ag-grid
 │  ├─ publisher: Sean Landsman
 │  ├─ email: sean@thelandsmans.com
 │  └─ licenseFile: @ag-grid-community/core/LICENSE.txt
-├─ @ag-grid-community/csv-export@22.1.1
+├─ @ag-grid-community/csv-export@23.1.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/ag-grid/ag-grid
 │  ├─ publisher: Sean Landsman
 │  ├─ email: sean@thelandsmans.com
 │  └─ licenseFile: @ag-grid-community/csv-export/LICENSE.txt
-├─ @ag-grid-community/infinite-row-model@22.1.1
+├─ @ag-grid-community/infinite-row-model@23.1.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/ag-grid/ag-grid
 │  ├─ publisher: Sean Landsman
 │  ├─ email: sean@thelandsmans.com
 │  └─ licenseFile: @ag-grid-community/infinite-row-model/LICENSE.txt
-├─ @ag-grid-community/react@22.1.2
+├─ @ag-grid-community/react@23.1.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/ag-grid/ag-grid
 │  ├─ publisher: Niall Crosby
 │  ├─ email: niall.crosby@ag-grid.com
 │  └─ licenseFile: @ag-grid-community/react/LICENSE.txt
-├─ @babel/code-frame@7.5.5
+├─ @babel/code-frame@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-code-frame
+│  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: Sebastian McKenzie
 │  ├─ email: sebmck@gmail.com
 │  └─ licenseFile: @babel/code-frame/LICENSE
@@ -47,258 +47,256 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-code-frame
 │  ├─ publisher: Sebastian McKenzie
 │  ├─ email: sebmck@gmail.com
-│  └─ licenseFile: react-scripts/node_modules/@babel/code-frame/LICENSE
-├─ @babel/compat-data@7.8.5
+│  └─ licenseFile: react-dev-utils/node_modules/@babel/code-frame/LICENSE
+├─ @babel/compat-data@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-compat-data
+│  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: The Babel Team
 │  ├─ url: https://babeljs.io/team
 │  └─ licenseFile: @babel/compat-data/LICENSE
-├─ @babel/core@7.8.4
+├─ @babel/core@7.9.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-core
 │  ├─ publisher: Sebastian McKenzie
 │  ├─ email: sebmck@gmail.com
-│  └─ licenseFile: react-scripts/node_modules/@babel/core/LICENSE
-├─ @babel/generator@7.7.4
+│  └─ licenseFile: @babel/core/LICENSE
+├─ @babel/generator@7.10.2
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-generator
+│  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: Sebastian McKenzie
 │  ├─ email: sebmck@gmail.com
 │  └─ licenseFile: @babel/generator/LICENSE
-├─ @babel/generator@7.8.4
+├─ @babel/helper-annotate-as-pure@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-generator
-│  ├─ publisher: Sebastian McKenzie
-│  ├─ email: sebmck@gmail.com
-│  └─ licenseFile: react-scripts/node_modules/@babel/generator/LICENSE
-├─ @babel/helper-annotate-as-pure@7.8.3
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-helper-annotate-as-pure
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/helper-annotate-as-pure/LICENSE
-├─ @babel/helper-builder-binary-assignment-operator-visitor@7.8.3
+├─ @babel/helper-builder-binary-assignment-operator-visitor@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-helper-builder-binary-assignment-operator-visitor
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/helper-builder-binary-assignment-operator-visitor/LICENSE
-├─ @babel/helper-builder-react-jsx@7.8.3
+├─ @babel/helper-builder-react-jsx-experimental@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-helper-builder-react-jsx
+│  ├─ repository: https://github.com/babel/babel
+│  └─ licenseFile: @babel/helper-builder-react-jsx-experimental/LICENSE
+├─ @babel/helper-builder-react-jsx@7.10.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/helper-builder-react-jsx/LICENSE
-├─ @babel/helper-call-delegate@7.8.3
+├─ @babel/helper-compilation-targets@7.10.2
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-helper-call-delegate
-│  └─ licenseFile: @babel/helper-call-delegate/LICENSE
-├─ @babel/helper-compilation-targets@7.8.4
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-helper-compilation-targets
+│  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: The Babel Team
 │  ├─ url: https://babeljs.io/team
 │  └─ licenseFile: @babel/helper-compilation-targets/LICENSE
-├─ @babel/helper-create-class-features-plugin@7.8.3
+├─ @babel/helper-create-class-features-plugin@7.10.2
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-helper-create-class-features-plugin
+│  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: The Babel Team
 │  ├─ url: https://babeljs.io/team
 │  └─ licenseFile: @babel/helper-create-class-features-plugin/LICENSE
-├─ @babel/helper-create-regexp-features-plugin@7.8.3
+├─ @babel/helper-create-regexp-features-plugin@7.10.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: The Babel Team
 │  ├─ url: https://babeljs.io/team
 │  └─ licenseFile: @babel/helper-create-regexp-features-plugin/LICENSE
-├─ @babel/helper-define-map@7.8.3
+├─ @babel/helper-define-map@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-helper-define-map
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/helper-define-map/LICENSE
-├─ @babel/helper-explode-assignable-expression@7.8.3
+├─ @babel/helper-explode-assignable-expression@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-helper-explode-assignable-expression
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/helper-explode-assignable-expression/LICENSE
-├─ @babel/helper-function-name@7.7.4
+├─ @babel/helper-function-name@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-helper-function-name
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/helper-function-name/LICENSE
-├─ @babel/helper-function-name@7.8.3
+├─ @babel/helper-get-function-arity@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-helper-function-name
-│  └─ licenseFile: react-scripts/node_modules/@babel/helper-function-name/LICENSE
-├─ @babel/helper-get-function-arity@7.7.4
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-helper-get-function-arity
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/helper-get-function-arity/LICENSE
-├─ @babel/helper-get-function-arity@7.8.3
+├─ @babel/helper-hoist-variables@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-helper-get-function-arity
-│  └─ licenseFile: react-scripts/node_modules/@babel/helper-get-function-arity/LICENSE
-├─ @babel/helper-hoist-variables@7.8.3
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-helper-hoist-variables
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/helper-hoist-variables/LICENSE
-├─ @babel/helper-member-expression-to-functions@7.8.3
+├─ @babel/helper-member-expression-to-functions@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-helper-member-expression-to-functions
+│  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: Justin Ridgewell
 │  ├─ email: justin@ridgewell.name
 │  └─ licenseFile: @babel/helper-member-expression-to-functions/LICENSE
-├─ @babel/helper-module-imports@7.8.3
+├─ @babel/helper-module-imports@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-helper-module-imports
+│  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: Logan Smyth
 │  ├─ email: loganfsmyth@gmail.com
 │  └─ licenseFile: @babel/helper-module-imports/LICENSE
-├─ @babel/helper-module-transforms@7.8.3
+├─ @babel/helper-module-transforms@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-helper-module-transforms
+│  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: Logan Smyth
 │  ├─ email: loganfsmyth@gmail.com
 │  └─ licenseFile: @babel/helper-module-transforms/LICENSE
-├─ @babel/helper-optimise-call-expression@7.8.3
+├─ @babel/helper-optimise-call-expression@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-helper-optimise-call-expression
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/helper-optimise-call-expression/LICENSE
-├─ @babel/helper-plugin-utils@7.8.3
+├─ @babel/helper-plugin-utils@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-helper-plugin-utils
+│  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: Logan Smyth
 │  ├─ email: loganfsmyth@gmail.com
 │  └─ licenseFile: @babel/helper-plugin-utils/LICENSE
-├─ @babel/helper-regex@7.8.3
+├─ @babel/helper-regex@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-helper-regex
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/helper-regex/LICENSE
-├─ @babel/helper-remap-async-to-generator@7.8.3
+├─ @babel/helper-remap-async-to-generator@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-helper-remap-async-to-generator
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/helper-remap-async-to-generator/LICENSE
-├─ @babel/helper-replace-supers@7.8.3
+├─ @babel/helper-replace-supers@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-helper-replace-supers
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/helper-replace-supers/LICENSE
-├─ @babel/helper-simple-access@7.8.3
+├─ @babel/helper-simple-access@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-helper-simple-access
+│  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: Logan Smyth
 │  ├─ email: loganfsmyth@gmail.com
 │  └─ licenseFile: @babel/helper-simple-access/LICENSE
-├─ @babel/helper-split-export-declaration@7.7.4
+├─ @babel/helper-split-export-declaration@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-helper-split-export-declaration
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/helper-split-export-declaration/LICENSE
-├─ @babel/helper-split-export-declaration@7.8.3
+├─ @babel/helper-validator-identifier@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-helper-split-export-declaration
-│  └─ licenseFile: react-scripts/node_modules/@babel/helper-split-export-declaration/LICENSE
-├─ @babel/helper-wrap-function@7.8.3
+│  ├─ repository: https://github.com/babel/babel
+│  └─ licenseFile: @babel/helper-validator-identifier/LICENSE
+├─ @babel/helper-wrap-function@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-helper-wrap-function
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/helper-wrap-function/LICENSE
-├─ @babel/helpers@7.8.4
+├─ @babel/helpers@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-helpers
+│  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: Sebastian McKenzie
 │  ├─ email: sebmck@gmail.com
-│  └─ licenseFile: react-scripts/node_modules/@babel/helpers/LICENSE
-├─ @babel/highlight@7.5.0
+│  └─ licenseFile: @babel/helpers/LICENSE
+├─ @babel/highlight@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-highlight
+│  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: suchipi
 │  ├─ email: me@suchipi.com
 │  └─ licenseFile: @babel/highlight/LICENSE
-├─ @babel/highlight@7.8.3
+├─ @babel/parser@7.10.2
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-highlight
-│  ├─ publisher: suchipi
-│  ├─ email: me@suchipi.com
-│  └─ licenseFile: react-scripts/node_modules/@babel/highlight/LICENSE
-├─ @babel/parser@7.7.4
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-parser
+│  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: Sebastian McKenzie
 │  ├─ email: sebmck@gmail.com
 │  └─ licenseFile: @babel/parser/LICENSE
-├─ @babel/parser@7.8.4
+├─ @babel/plugin-proposal-async-generator-functions@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-parser
-│  ├─ publisher: Sebastian McKenzie
-│  ├─ email: sebmck@gmail.com
-│  └─ licenseFile: react-scripts/node_modules/@babel/parser/LICENSE
-├─ @babel/plugin-proposal-async-generator-functions@7.8.3
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-proposal-async-generator-functions
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-proposal-async-generator-functions/LICENSE
+├─ @babel/plugin-proposal-class-properties@7.10.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/babel/babel
+│  └─ licenseFile: @babel/plugin-proposal-class-properties/LICENSE
 ├─ @babel/plugin-proposal-class-properties@7.8.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-proposal-class-properties
-│  └─ licenseFile: @babel/plugin-proposal-class-properties/LICENSE
+│  └─ licenseFile: babel-preset-react-app/node_modules/@babel/plugin-proposal-class-properties/LICENSE
 ├─ @babel/plugin-proposal-decorators@7.8.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-proposal-decorators
 │  ├─ publisher: Logan Smyth
 │  ├─ email: loganfsmyth@gmail.com
 │  └─ licenseFile: @babel/plugin-proposal-decorators/LICENSE
-├─ @babel/plugin-proposal-dynamic-import@7.8.3
+├─ @babel/plugin-proposal-dynamic-import@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-proposal-dynamic-import
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-proposal-dynamic-import/LICENSE
-├─ @babel/plugin-proposal-json-strings@7.8.3
+├─ @babel/plugin-proposal-json-strings@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-proposal-json-strings
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-proposal-json-strings/LICENSE
+├─ @babel/plugin-proposal-nullish-coalescing-operator@7.10.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/babel/babel
+│  └─ licenseFile: @babel/plugin-proposal-nullish-coalescing-operator/LICENSE
 ├─ @babel/plugin-proposal-nullish-coalescing-operator@7.8.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-proposal-nullish-coalescing-operator
-│  └─ licenseFile: @babel/plugin-proposal-nullish-coalescing-operator/LICENSE
+│  └─ licenseFile: babel-preset-react-app/node_modules/@babel/plugin-proposal-nullish-coalescing-operator/LICENSE
+├─ @babel/plugin-proposal-numeric-separator@7.10.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/babel/babel
+│  └─ licenseFile: @babel/plugin-proposal-numeric-separator/LICENSE
 ├─ @babel/plugin-proposal-numeric-separator@7.8.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-proposal-numeric-separator
-│  └─ licenseFile: @babel/plugin-proposal-numeric-separator/LICENSE
-├─ @babel/plugin-proposal-object-rest-spread@7.8.3
+│  └─ licenseFile: babel-preset-react-app/node_modules/@babel/plugin-proposal-numeric-separator/LICENSE
+├─ @babel/plugin-proposal-object-rest-spread@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-proposal-object-rest-spread
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-proposal-object-rest-spread/LICENSE
-├─ @babel/plugin-proposal-optional-catch-binding@7.8.3
+├─ @babel/plugin-proposal-optional-catch-binding@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-proposal-optional-catch-binding
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-proposal-optional-catch-binding/LICENSE
-├─ @babel/plugin-proposal-optional-chaining@7.8.3
+├─ @babel/plugin-proposal-optional-chaining@7.10.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/babel/babel
+│  └─ licenseFile: @babel/plugin-proposal-optional-chaining/LICENSE
+├─ @babel/plugin-proposal-optional-chaining@7.9.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-proposal-optional-chaining
-│  └─ licenseFile: @babel/plugin-proposal-optional-chaining/LICENSE
-├─ @babel/plugin-proposal-unicode-property-regex@7.8.3
+│  └─ licenseFile: babel-preset-react-app/node_modules/@babel/plugin-proposal-optional-chaining/LICENSE
+├─ @babel/plugin-proposal-private-methods@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-proposal-unicode-property-regex
+│  ├─ repository: https://github.com/babel/babel
+│  └─ licenseFile: @babel/plugin-proposal-private-methods/LICENSE
+├─ @babel/plugin-proposal-unicode-property-regex@7.10.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-proposal-unicode-property-regex/LICENSE
 ├─ @babel/plugin-syntax-async-generators@7.8.4
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-async-generators
 │  └─ licenseFile: @babel/plugin-syntax-async-generators/LICENSE
-├─ @babel/plugin-syntax-decorators@7.8.3
+├─ @babel/plugin-syntax-class-properties@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-decorators
+│  ├─ repository: https://github.com/babel/babel
+│  └─ licenseFile: @babel/plugin-syntax-class-properties/LICENSE
+├─ @babel/plugin-syntax-decorators@7.10.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-syntax-decorators/LICENSE
 ├─ @babel/plugin-syntax-dynamic-import@7.8.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-dynamic-import
 │  └─ licenseFile: @babel/plugin-syntax-dynamic-import/LICENSE
-├─ @babel/plugin-syntax-flow@7.8.3
+├─ @babel/plugin-syntax-flow@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-flow
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-syntax-flow/LICENSE
 ├─ @babel/plugin-syntax-json-strings@7.8.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-json-strings
 │  └─ licenseFile: @babel/plugin-syntax-json-strings/LICENSE
-├─ @babel/plugin-syntax-jsx@7.8.3
+├─ @babel/plugin-syntax-jsx@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-jsx
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-syntax-jsx/LICENSE
 ├─ @babel/plugin-syntax-nullish-coalescing-operator@7.8.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-nullish-coalescing-operator
 │  └─ licenseFile: @babel/plugin-syntax-nullish-coalescing-operator/LICENSE
-├─ @babel/plugin-syntax-numeric-separator@7.8.3
+├─ @babel/plugin-syntax-numeric-separator@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-numeric-separator
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-syntax-numeric-separator/LICENSE
 ├─ @babel/plugin-syntax-object-rest-spread@7.8.3
 │  ├─ licenses: MIT
@@ -312,247 +310,266 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-optional-chaining
 │  └─ licenseFile: @babel/plugin-syntax-optional-chaining/LICENSE
-├─ @babel/plugin-syntax-top-level-await@7.8.3
+├─ @babel/plugin-syntax-top-level-await@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-top-level-await
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-syntax-top-level-await/LICENSE
-├─ @babel/plugin-syntax-typescript@7.8.3
+├─ @babel/plugin-syntax-typescript@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-typescript
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-syntax-typescript/LICENSE
-├─ @babel/plugin-transform-arrow-functions@7.8.3
+├─ @babel/plugin-transform-arrow-functions@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-arrow-functions
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-transform-arrow-functions/LICENSE
-├─ @babel/plugin-transform-async-to-generator@7.8.3
+├─ @babel/plugin-transform-async-to-generator@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-async-to-generator
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-transform-async-to-generator/LICENSE
-├─ @babel/plugin-transform-block-scoped-functions@7.8.3
+├─ @babel/plugin-transform-block-scoped-functions@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-block-scoped-functions
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-transform-block-scoped-functions/LICENSE
-├─ @babel/plugin-transform-block-scoping@7.8.3
+├─ @babel/plugin-transform-block-scoping@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-block-scoping
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-transform-block-scoping/LICENSE
-├─ @babel/plugin-transform-classes@7.8.3
+├─ @babel/plugin-transform-classes@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-classes
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-transform-classes/LICENSE
-├─ @babel/plugin-transform-computed-properties@7.8.3
+├─ @babel/plugin-transform-computed-properties@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-computed-properties
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-transform-computed-properties/LICENSE
-├─ @babel/plugin-transform-destructuring@7.8.3
+├─ @babel/plugin-transform-destructuring@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-destructuring
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-transform-destructuring/LICENSE
-├─ @babel/plugin-transform-dotall-regex@7.8.3
+├─ @babel/plugin-transform-dotall-regex@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-dotall-regex
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-transform-dotall-regex/LICENSE
-├─ @babel/plugin-transform-duplicate-keys@7.8.3
+├─ @babel/plugin-transform-duplicate-keys@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-duplicate-keys
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-transform-duplicate-keys/LICENSE
-├─ @babel/plugin-transform-exponentiation-operator@7.8.3
+├─ @babel/plugin-transform-exponentiation-operator@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-exponentiation-operator
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-transform-exponentiation-operator/LICENSE
-├─ @babel/plugin-transform-flow-strip-types@7.8.3
+├─ @babel/plugin-transform-flow-strip-types@7.9.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-flow-strip-types
 │  └─ licenseFile: @babel/plugin-transform-flow-strip-types/LICENSE
-├─ @babel/plugin-transform-for-of@7.8.4
+├─ @babel/plugin-transform-for-of@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-for-of
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-transform-for-of/LICENSE
-├─ @babel/plugin-transform-function-name@7.8.3
+├─ @babel/plugin-transform-function-name@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-function-name
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-transform-function-name/LICENSE
-├─ @babel/plugin-transform-literals@7.8.3
+├─ @babel/plugin-transform-literals@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-literals
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-transform-literals/LICENSE
-├─ @babel/plugin-transform-member-expression-literals@7.8.3
+├─ @babel/plugin-transform-member-expression-literals@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-member-expression-literals
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-transform-member-expression-literals/LICENSE
-├─ @babel/plugin-transform-modules-amd@7.8.3
+├─ @babel/plugin-transform-modules-amd@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-modules-amd
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-transform-modules-amd/LICENSE
-├─ @babel/plugin-transform-modules-commonjs@7.8.3
+├─ @babel/plugin-transform-modules-commonjs@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-modules-commonjs
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-transform-modules-commonjs/LICENSE
-├─ @babel/plugin-transform-modules-systemjs@7.8.3
+├─ @babel/plugin-transform-modules-systemjs@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-modules-systemjs
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-transform-modules-systemjs/LICENSE
-├─ @babel/plugin-transform-modules-umd@7.8.3
+├─ @babel/plugin-transform-modules-umd@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-modules-umd
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-transform-modules-umd/LICENSE
 ├─ @babel/plugin-transform-named-capturing-groups-regex@7.8.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-transform-named-capturing-groups-regex/LICENSE
-├─ @babel/plugin-transform-new-target@7.8.3
+├─ @babel/plugin-transform-new-target@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-new-target
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-transform-new-target/LICENSE
-├─ @babel/plugin-transform-object-super@7.8.3
+├─ @babel/plugin-transform-object-super@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-object-super
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-transform-object-super/LICENSE
-├─ @babel/plugin-transform-parameters@7.8.4
+├─ @babel/plugin-transform-parameters@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-parameters
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-transform-parameters/LICENSE
-├─ @babel/plugin-transform-property-literals@7.8.3
+├─ @babel/plugin-transform-property-literals@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-property-literals
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-transform-property-literals/LICENSE
-├─ @babel/plugin-transform-react-constant-elements@7.8.3
+├─ @babel/plugin-transform-react-constant-elements@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-react-constant-elements
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-transform-react-constant-elements/LICENSE
+├─ @babel/plugin-transform-react-display-name@7.10.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/babel/babel
+│  └─ licenseFile: @babel/plugin-transform-react-display-name/LICENSE
 ├─ @babel/plugin-transform-react-display-name@7.8.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-react-display-name
-│  └─ licenseFile: @babel/plugin-transform-react-display-name/LICENSE
-├─ @babel/plugin-transform-react-jsx-self@7.8.3
+│  └─ licenseFile: babel-preset-react-app/node_modules/@babel/plugin-transform-react-display-name/LICENSE
+├─ @babel/plugin-transform-react-jsx-development@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-react-jsx-self
+│  ├─ repository: https://github.com/babel/babel
+│  └─ licenseFile: @babel/plugin-transform-react-jsx-development/LICENSE
+├─ @babel/plugin-transform-react-jsx-self@7.10.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-transform-react-jsx-self/LICENSE
-├─ @babel/plugin-transform-react-jsx-source@7.8.3
+├─ @babel/plugin-transform-react-jsx-source@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-react-jsx-source
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-transform-react-jsx-source/LICENSE
-├─ @babel/plugin-transform-react-jsx@7.8.3
+├─ @babel/plugin-transform-react-jsx@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-react-jsx
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-transform-react-jsx/LICENSE
-├─ @babel/plugin-transform-regenerator@7.8.3
+├─ @babel/plugin-transform-react-pure-annotations@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-regenerator
+│  ├─ repository: https://github.com/babel/babel
+│  └─ licenseFile: @babel/plugin-transform-react-pure-annotations/LICENSE
+├─ @babel/plugin-transform-regenerator@7.10.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: Ben Newman
 │  ├─ email: bn@cs.stanford.edu
 │  └─ licenseFile: @babel/plugin-transform-regenerator/LICENSE
-├─ @babel/plugin-transform-reserved-words@7.8.3
+├─ @babel/plugin-transform-reserved-words@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-reserved-words
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-transform-reserved-words/LICENSE
-├─ @babel/plugin-transform-runtime@7.8.3
+├─ @babel/plugin-transform-runtime@7.9.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-runtime
 │  └─ licenseFile: @babel/plugin-transform-runtime/LICENSE
-├─ @babel/plugin-transform-shorthand-properties@7.8.3
+├─ @babel/plugin-transform-shorthand-properties@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-shorthand-properties
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-transform-shorthand-properties/LICENSE
-├─ @babel/plugin-transform-spread@7.8.3
+├─ @babel/plugin-transform-spread@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-spread
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-transform-spread/LICENSE
-├─ @babel/plugin-transform-sticky-regex@7.8.3
+├─ @babel/plugin-transform-sticky-regex@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-sticky-regex
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-transform-sticky-regex/LICENSE
-├─ @babel/plugin-transform-template-literals@7.8.3
+├─ @babel/plugin-transform-template-literals@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-template-literals
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-transform-template-literals/LICENSE
-├─ @babel/plugin-transform-typeof-symbol@7.8.4
+├─ @babel/plugin-transform-typeof-symbol@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-typeof-symbol
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-transform-typeof-symbol/LICENSE
-├─ @babel/plugin-transform-typescript@7.8.3
+├─ @babel/plugin-transform-typescript@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-typescript
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-transform-typescript/LICENSE
-├─ @babel/plugin-transform-unicode-regex@7.8.3
+├─ @babel/plugin-transform-unicode-escapes@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-unicode-regex
+│  ├─ repository: https://github.com/babel/babel
+│  └─ licenseFile: @babel/plugin-transform-unicode-escapes/LICENSE
+├─ @babel/plugin-transform-unicode-regex@7.10.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/babel/babel
 │  └─ licenseFile: @babel/plugin-transform-unicode-regex/LICENSE
-├─ @babel/preset-env@7.8.4
+├─ @babel/preset-env@7.10.2
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/babel/babel
+│  ├─ publisher: Henry Zhu
+│  ├─ email: hi@henryzoo.com
+│  └─ licenseFile: @babel/preset-env/LICENSE
+├─ @babel/preset-env@7.9.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-preset-env
 │  ├─ publisher: Henry Zhu
 │  ├─ email: hi@henryzoo.com
-│  └─ licenseFile: @babel/preset-env/LICENSE
-├─ @babel/preset-react@7.8.3
+│  └─ licenseFile: babel-preset-react-app/node_modules/@babel/preset-env/LICENSE
+├─ @babel/preset-modules@0.1.3
+│  ├─ licenses: MIT
+│  └─ licenseFile: @babel/preset-modules/README.md
+├─ @babel/preset-react@7.10.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/babel/babel
+│  ├─ publisher: Sebastian McKenzie
+│  ├─ email: sebmck@gmail.com
+│  └─ licenseFile: @babel/preset-react/LICENSE
+├─ @babel/preset-react@7.9.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-preset-react
 │  ├─ publisher: Sebastian McKenzie
 │  ├─ email: sebmck@gmail.com
-│  └─ licenseFile: @babel/preset-react/LICENSE
-├─ @babel/preset-typescript@7.8.3
+│  └─ licenseFile: babel-preset-react-app/node_modules/@babel/preset-react/LICENSE
+├─ @babel/preset-typescript@7.9.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-preset-typescript
 │  └─ licenseFile: @babel/preset-typescript/LICENSE
-├─ @babel/runtime@7.7.4
+├─ @babel/runtime-corejs3@7.10.2
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/babel/babel
+│  ├─ publisher: Denis Pushkarev
+│  ├─ email: zloirock@zloirock.ru
+│  └─ licenseFile: @babel/runtime-corejs3/LICENSE
+├─ @babel/runtime@7.10.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: Sebastian McKenzie
 │  ├─ email: sebmck@gmail.com
 │  └─ licenseFile: @babel/runtime/LICENSE
-├─ @babel/runtime@7.8.4
+├─ @babel/runtime@7.9.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: Sebastian McKenzie
 │  ├─ email: sebmck@gmail.com
 │  └─ licenseFile: babel-preset-react-app/node_modules/@babel/runtime/LICENSE
-├─ @babel/template@7.7.4
+├─ @babel/template@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-template
+│  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: Sebastian McKenzie
 │  ├─ email: sebmck@gmail.com
 │  └─ licenseFile: @babel/template/LICENSE
-├─ @babel/template@7.8.3
+├─ @babel/traverse@7.10.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-template
-│  ├─ publisher: Sebastian McKenzie
-│  ├─ email: sebmck@gmail.com
-│  └─ licenseFile: react-scripts/node_modules/@babel/template/LICENSE
-├─ @babel/traverse@7.7.4
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-traverse
+│  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: Sebastian McKenzie
 │  ├─ email: sebmck@gmail.com
 │  └─ licenseFile: @babel/traverse/LICENSE
-├─ @babel/traverse@7.8.4
+├─ @babel/types@7.10.2
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-traverse
-│  ├─ publisher: Sebastian McKenzie
-│  ├─ email: sebmck@gmail.com
-│  └─ licenseFile: react-scripts/node_modules/@babel/traverse/LICENSE
-├─ @babel/types@7.7.4
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-types
+│  ├─ repository: https://github.com/babel/babel
 │  ├─ publisher: Sebastian McKenzie
 │  ├─ email: sebmck@gmail.com
 │  └─ licenseFile: @babel/types/LICENSE
-├─ @babel/types@7.8.3
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/babel/babel/tree/master/packages/babel-types
-│  ├─ publisher: Sebastian McKenzie
-│  ├─ email: sebmck@gmail.com
-│  └─ licenseFile: react-scripts/node_modules/@babel/types/LICENSE
-├─ @blueprintjs/core@3.23.1
+├─ @blueprintjs/core@3.28.1
 │  ├─ licenses: Apache-2.0
 │  ├─ repository: https://github.com/palantir/blueprint
 │  ├─ publisher: Palantir Technologies
 │  └─ licenseFile: @blueprintjs/core/LICENSE
-├─ @blueprintjs/icons@3.13.0
+├─ @blueprintjs/icons@3.18.0
 │  ├─ licenses: Apache-2.0
 │  ├─ repository: https://github.com/palantir/blueprint
 │  ├─ publisher: Palantir Technologies
 │  └─ licenseFile: @blueprintjs/icons/LICENSE
-├─ @blueprintjs/select@3.11.2
+├─ @blueprintjs/select@3.13.2
 │  ├─ licenses: Apache-2.0
 │  ├─ repository: https://github.com/palantir/blueprint
 │  ├─ publisher: Palantir Technologies
@@ -569,7 +586,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/Moventes/bruit.io-types
 │  ├─ publisher: moventes
 │  └─ email: dev@moventes.com
-├─ @cnakazawa/watch@1.0.3
+├─ @cnakazawa/watch@1.0.4
 │  ├─ licenses: Apache-2.0
 │  ├─ repository: https://github.com/mikeal/watch
 │  ├─ publisher: Mikeal Rogers
@@ -587,7 +604,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Jonathan Neal
 │  ├─ email: jonathantneal@hotmail.com
 │  └─ licenseFile: @csstools/normalize.css/LICENSE.md
-├─ @emotion/hash@0.7.4
+├─ @emotion/hash@0.8.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/emotion-js/emotion/tree/master/packages/hash
 │  └─ licenseFile: @emotion/hash/LICENSE
@@ -605,28 +622,28 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: firebase-support@google.com
 │  ├─ url: https://firebase.google.com/
 │  └─ licenseFile: @firebase/firestore-types/README.md
-├─ @fortawesome/fontawesome-common-types@0.2.27
+├─ @fortawesome/fontawesome-common-types@0.2.28
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/FortAwesome/Font-Awesome
 │  ├─ publisher: Dave Gandy
 │  ├─ email: dave@fontawesome.com
 │  ├─ url: http://twitter.com/davegandy
 │  └─ licenseFile: @fortawesome/fontawesome-common-types/LICENSE.txt
-├─ @fortawesome/fontawesome-svg-core@1.2.27
+├─ @fortawesome/fontawesome-svg-core@1.2.28
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/FortAwesome/Font-Awesome
 │  ├─ publisher: Dave Gandy
 │  ├─ email: dave@fontawesome.com
 │  ├─ url: http://twitter.com/davegandy
 │  └─ licenseFile: @fortawesome/fontawesome-svg-core/LICENSE.txt
-├─ @fortawesome/free-solid-svg-icons@5.12.1
+├─ @fortawesome/free-solid-svg-icons@5.13.0
 │  ├─ licenses: (CC-BY-4.0 AND MIT)
 │  ├─ repository: https://github.com/FortAwesome/Font-Awesome
 │  ├─ publisher: Dave Gandy
 │  ├─ email: dave@fontawesome.com
 │  ├─ url: http://twitter.com/davegandy
 │  └─ licenseFile: @fortawesome/free-solid-svg-icons/LICENSE.txt
-├─ @fortawesome/react-fontawesome@0.1.8
+├─ @fortawesome/react-fontawesome@0.1.9
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/FortAwesome/react-fontawesome
 │  └─ licenseFile: @fortawesome/react-fontawesome/LICENSE.txt
@@ -685,8 +702,8 @@ The following is a list of the licenses of the third party dependencies of Datan
 ├─ @jest/types@24.9.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/jest
-│  └─ licenseFile: @jest/transform/node_modules/@jest/types/LICENSE
-├─ @material-ui/core@4.9.2
+│  └─ licenseFile: @jest/types/LICENSE
+├─ @material-ui/core@4.10.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/mui-org/material-ui
 │  ├─ publisher: Material-UI Team
@@ -696,22 +713,22 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/mui-org/material-ui
 │  ├─ publisher: Material-UI Team
 │  └─ licenseFile: @material-ui/icons/LICENSE
-├─ @material-ui/styles@4.9.0
+├─ @material-ui/styles@4.10.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/mui-org/material-ui
 │  ├─ publisher: Material-UI Team
 │  └─ licenseFile: @material-ui/styles/LICENSE
-├─ @material-ui/system@4.9.1
+├─ @material-ui/system@4.9.14
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/mui-org/material-ui
 │  ├─ publisher: Material-UI Team
 │  └─ licenseFile: @material-ui/system/LICENSE
-├─ @material-ui/types@5.0.0
+├─ @material-ui/types@5.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/mui-org/material-ui
 │  ├─ publisher: Material-UI Team
 │  └─ licenseFile: @material-ui/types/README.md
-├─ @material-ui/utils@4.7.1
+├─ @material-ui/utils@4.9.12
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/mui-org/material-ui
 │  ├─ publisher: Material-UI Team
@@ -816,7 +833,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Greg Bergé
 │  ├─ email: berge.greg@gmail.com
 │  └─ licenseFile: @svgr/webpack/LICENSE
-├─ @types/babel__core@7.1.3
+├─ @types/babel__core@7.1.7
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  └─ licenseFile: @types/babel__core/LICENSE
@@ -828,7 +845,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  └─ licenseFile: @types/babel__template/LICENSE
-├─ @types/babel__traverse@7.0.8
+├─ @types/babel__traverse@7.0.11
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  └─ licenseFile: @types/babel__traverse/LICENSE
@@ -852,7 +869,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  └─ licenseFile: @types/glob/LICENSE
-├─ @types/istanbul-lib-coverage@2.0.1
+├─ @types/istanbul-lib-coverage@2.0.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  └─ licenseFile: @types/istanbul-lib-coverage/LICENSE
@@ -860,7 +877,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  └─ licenseFile: @types/istanbul-lib-report/LICENSE
-├─ @types/istanbul-reports@1.1.1
+├─ @types/istanbul-reports@1.1.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  └─ licenseFile: @types/istanbul-reports/LICENSE
@@ -872,7 +889,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  └─ licenseFile: @types/minimatch/LICENSE
-├─ @types/node@12.12.21
+├─ @types/node@14.0.6
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  └─ licenseFile: @types/node/LICENSE
@@ -884,15 +901,15 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  └─ licenseFile: @types/prop-types/LICENSE
-├─ @types/q@1.5.2
+├─ @types/q@1.5.4
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  └─ licenseFile: @types/q/LICENSE
-├─ @types/react-transition-group@4.2.3
+├─ @types/react-transition-group@4.4.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  └─ licenseFile: @types/react-transition-group/LICENSE
-├─ @types/react@16.9.17
+├─ @types/react@16.9.35
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  └─ licenseFile: @types/react/LICENSE
@@ -904,23 +921,23 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  └─ licenseFile: @types/yargs-parser/LICENSE
-├─ @types/yargs@13.0.8
+├─ @types/yargs@13.0.9
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
-│  └─ licenseFile: @jest/transform/node_modules/@types/yargs/LICENSE
-├─ @typescript-eslint/eslint-plugin@2.19.2
+│  └─ licenseFile: @types/yargs/LICENSE
+├─ @typescript-eslint/eslint-plugin@2.34.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/typescript-eslint/typescript-eslint
 │  └─ licenseFile: @typescript-eslint/eslint-plugin/LICENSE
-├─ @typescript-eslint/experimental-utils@2.19.2
+├─ @typescript-eslint/experimental-utils@2.34.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/typescript-eslint/typescript-eslint
 │  └─ licenseFile: @typescript-eslint/experimental-utils/LICENSE
-├─ @typescript-eslint/parser@2.19.2
+├─ @typescript-eslint/parser@2.34.0
 │  ├─ licenses: BSD-2-Clause
 │  ├─ repository: https://github.com/typescript-eslint/typescript-eslint
 │  └─ licenseFile: @typescript-eslint/parser/LICENSE
-├─ @typescript-eslint/typescript-estree@2.19.2
+├─ @typescript-eslint/typescript-estree@2.34.0
 │  ├─ licenses: BSD-2-Clause
 │  ├─ repository: https://github.com/typescript-eslint/typescript-eslint
 │  └─ licenseFile: @typescript-eslint/typescript-estree/LICENSE
@@ -1027,12 +1044,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Jeff Carpenter
 │  ├─ email: gcarpenterv@gmail.com
 │  └─ licenseFile: abab/LICENSE.md
-├─ abbrev@1.1.1
-│  ├─ licenses: ISC
-│  ├─ repository: https://github.com/isaacs/abbrev-js
-│  ├─ publisher: Isaac Z. Schlueter
-│  ├─ email: i@izs.me
-│  └─ licenseFile: abbrev/LICENSE
 ├─ accepts@1.3.7
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jshttp/accepts
@@ -1042,7 +1053,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/ForbesLindesay/acorn-globals
 │  ├─ publisher: ForbesLindesay
 │  └─ licenseFile: acorn-globals/LICENSE
-├─ acorn-jsx@5.1.0
+├─ acorn-jsx@5.2.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/acornjs/acorn-jsx
 │  └─ licenseFile: acorn-jsx/LICENSE
@@ -1050,15 +1061,15 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/acornjs/acorn
 │  └─ licenseFile: acorn-walk/LICENSE
-├─ acorn@5.7.3
+├─ acorn@5.7.4
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/acornjs/acorn
 │  └─ licenseFile: jsdom/node_modules/acorn/LICENSE
-├─ acorn@6.4.0
+├─ acorn@6.4.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/acornjs/acorn
 │  └─ licenseFile: acorn-globals/node_modules/acorn/LICENSE
-├─ acorn@7.1.0
+├─ acorn@7.2.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/acornjs/acorn
 │  └─ licenseFile: acorn/LICENSE
@@ -1089,7 +1100,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/epoberezkin/ajv-keywords
 │  ├─ publisher: Evgeny Poberezkin
 │  └─ licenseFile: ajv-keywords/LICENSE
-├─ ajv@6.10.2
+├─ ajv@6.12.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/epoberezkin/ajv
 │  ├─ publisher: Evgeny Poberezkin
@@ -1100,13 +1111,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Bogdan Chadkin
 │  ├─ email: trysound@yandex.ru
 │  └─ licenseFile: alphanum-sort/LICENSE
-├─ amdefine@1.0.1
-│  ├─ licenses: BSD-3-Clause OR MIT
-│  ├─ repository: https://github.com/jrburke/amdefine
-│  ├─ publisher: James Burke
-│  ├─ email: jrburke@gmail.com
-│  ├─ url: http://github.com/jrburke
-│  └─ licenseFile: amdefine/LICENSE
 ├─ ansi-colors@3.2.4
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/doowb/ansi-colors
@@ -1120,12 +1124,12 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
 │  └─ licenseFile: @jest/core/node_modules/ansi-escapes/license
-├─ ansi-escapes@4.3.0
+├─ ansi-escapes@4.3.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/ansi-escapes
 │  ├─ publisher: Sindre Sorhus
 │  ├─ email: sindresorhus@gmail.com
-│  ├─ url: sindresorhus.com
+│  ├─ url: https://sindresorhus.com
 │  └─ licenseFile: ansi-escapes/license
 ├─ ansi-html@0.0.7
 │  ├─ licenses: Apache-2.0
@@ -1180,7 +1184,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Sindre Sorhus
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
-│  └─ licenseFile: react-dev-utils/node_modules/chalk/node_modules/ansi-styles/license
+│  └─ licenseFile: inquirer/node_modules/ansi-styles/license
 ├─ anymatch@2.0.0
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/micromatch/anymatch
@@ -1199,12 +1203,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Rebecca Turner
 │  ├─ email: me@re-becca.org
 │  └─ licenseFile: aproba/LICENSE
-├─ are-we-there-yet@1.1.5
-│  ├─ licenses: ISC
-│  ├─ repository: https://github.com/iarna/are-we-there-yet
-│  ├─ publisher: Rebecca Turner
-│  ├─ url: http://re-becca.org
-│  └─ licenseFile: are-we-there-yet/LICENSE
 ├─ argparse@1.0.10
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/nodeca/argparse
@@ -1245,13 +1243,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: me@jongleberry.com
 │  ├─ url: http://jongleberry.com
 │  └─ licenseFile: array-equal/LICENSE
-├─ array-find-index@1.0.2
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/sindresorhus/array-find-index
-│  ├─ publisher: Sindre Sorhus
-│  ├─ email: sindresorhus@gmail.com
-│  ├─ url: sindresorhus.com
-│  └─ licenseFile: array-find-index/license
 ├─ array-flatten@1.1.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/blakeembrey/array-flatten
@@ -1356,12 +1347,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Paul Miller
 │  ├─ url: https://paulmillr.com/
 │  └─ licenseFile: async-each/README.md
-├─ async-foreach@0.1.3
-│  ├─ licenses: MIT*
-│  ├─ repository: https://github.com/cowboy/javascript-sync-async-foreach
-│  ├─ publisher: "Cowboy" Ben Alman
-│  ├─ url: http://benalman.com/
-│  └─ licenseFile: async-foreach/LICENSE-MIT
 ├─ async-limiter@1.0.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/strml/async-limiter
@@ -1385,7 +1370,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: coolaj86@gmail.com
 │  ├─ url: https://coolaj86.com
 │  └─ licenseFile: atob/LICENSE
-├─ autoprefixer@9.7.4
+├─ autoprefixer@9.8.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/postcss/autoprefixer
 │  ├─ publisher: Andrey Sitnik
@@ -1398,12 +1383,12 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: mikeal.rogers@gmail.com
 │  ├─ url: http://www.futurealoof.com
 │  └─ licenseFile: aws-sign2/LICENSE
-├─ aws4@1.9.0
+├─ aws4@1.10.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/mhart/aws4
 │  ├─ publisher: Michael Hart
 │  ├─ email: michael.hart.au@gmail.com
-│  ├─ url: http://github.com/mhart
+│  ├─ url: https://github.com/mhart
 │  └─ licenseFile: aws4/LICENSE
 ├─ axios@0.19.2
 │  ├─ licenses: MIT
@@ -1422,7 +1407,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Sebastian McKenzie
 │  ├─ email: sebmck@gmail.com
 │  └─ licenseFile: babel-code-frame/README.md
-├─ babel-eslint@10.0.3
+├─ babel-eslint@10.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel-eslint
 │  ├─ publisher: Sebastian McKenzie
@@ -1437,14 +1422,14 @@ The following is a list of the licenses of the third party dependencies of Datan
 ├─ babel-jest@24.9.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/jest
-│  └─ licenseFile: react-scripts/node_modules/babel-jest/README.md
-├─ babel-loader@8.0.6
+│  └─ licenseFile: babel-jest/README.md
+├─ babel-loader@8.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel-loader
 │  ├─ publisher: Luis Couto
 │  ├─ email: hello@luiscouto.pt
 │  └─ licenseFile: babel-loader/LICENSE
-├─ babel-plugin-dynamic-import-node@2.3.0
+├─ babel-plugin-dynamic-import-node@2.3.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/airbnb/babel-plugin-dynamic-import-node
 │  ├─ publisher: Jordan Gensler
@@ -1458,7 +1443,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 ├─ babel-plugin-jest-hoist@24.9.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/jest
-│  └─ licenseFile: react-scripts/node_modules/babel-plugin-jest-hoist/LICENSE
+│  └─ licenseFile: babel-plugin-jest-hoist/LICENSE
 ├─ babel-plugin-macros@2.8.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/kentcdodds/babel-plugin-macros
@@ -1470,7 +1455,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/create-react-app
 │  └─ licenseFile: babel-plugin-named-asset-import/LICENSE
-├─ babel-plugin-root-import@6.4.1
+├─ babel-plugin-root-import@6.5.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/entwicklerstube/babel-plugin-root-import
 │  ├─ publisher: Michael J. Zoidl
@@ -1492,8 +1477,8 @@ The following is a list of the licenses of the third party dependencies of Datan
 ├─ babel-preset-jest@24.9.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/jest
-│  └─ licenseFile: react-scripts/node_modules/babel-preset-jest/LICENSE
-├─ babel-preset-react-app@9.1.1
+│  └─ licenseFile: babel-preset-jest/LICENSE
+├─ babel-preset-react-app@9.1.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/create-react-app
 │  └─ licenseFile: babel-preset-react-app/LICENSE
@@ -1557,7 +1542,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Sindre Sorhus
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
-│  └─ licenseFile: watchpack/node_modules/binary-extensions/license
+│  └─ licenseFile: webpack-dev-server/node_modules/binary-extensions/license
 ├─ binary-extensions@2.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/binary-extensions
@@ -1565,13 +1550,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
 │  └─ licenseFile: binary-extensions/license
-├─ block-stream@0.0.9
-│  ├─ licenses: ISC
-│  ├─ repository: https://github.com/isaacs/block-stream
-│  ├─ publisher: Isaac Z. Schlueter
-│  ├─ email: i@izs.me
-│  ├─ url: http://blog.izs.me/
-│  └─ licenseFile: block-stream/LICENSE
 ├─ bluebird@3.7.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/petkaantonov/bluebird
@@ -1579,7 +1557,13 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: petka_antonov@hotmail.com
 │  ├─ url: http://github.com/petkaantonov/
 │  └─ licenseFile: bluebird/LICENSE
-├─ bn.js@4.11.8
+├─ bn.js@4.11.9
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/indutny/bn.js
+│  ├─ publisher: Fedor Indutny
+│  ├─ email: fedor@indutny.com
+│  └─ licenseFile: browserify-rsa/node_modules/bn.js/README.md
+├─ bn.js@5.1.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/indutny/bn.js
 │  ├─ publisher: Fedor Indutny
@@ -1634,7 +1618,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Fedor Indutny
 │  ├─ email: fedor@indutny.com
 │  └─ licenseFile: brorand/README.md
-├─ browser-process-hrtime@0.1.3
+├─ browser-process-hrtime@1.0.0
 │  ├─ licenses: BSD-2-Clause
 │  ├─ repository: https://github.com/kumavis/browser-process-hrtime
 │  ├─ publisher: kumavis
@@ -1665,7 +1649,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/crypto-browserify/browserify-rsa
 │  └─ licenseFile: browserify-rsa/LICENSE
-├─ browserify-sign@4.0.4
+├─ browserify-sign@4.2.0
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/crypto-browserify/browserify-sign
 │  └─ licenseFile: browserify-sign/LICENSE
@@ -1675,18 +1659,18 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Devon Govett
 │  ├─ email: devongovett@gmail.com
 │  └─ licenseFile: browserify-zlib/LICENSE
-├─ browserslist@4.8.2
+├─ browserslist@4.10.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/browserslist/browserslist
+│  ├─ publisher: Andrey Sitnik
+│  ├─ email: andrey@sitnik.ru
+│  └─ licenseFile: react-dev-utils/node_modules/browserslist/LICENSE
+├─ browserslist@4.12.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/browserslist/browserslist
 │  ├─ publisher: Andrey Sitnik
 │  ├─ email: andrey@sitnik.ru
 │  └─ licenseFile: browserslist/LICENSE
-├─ browserslist@4.8.6
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/browserslist/browserslist
-│  ├─ publisher: Andrey Sitnik
-│  ├─ email: andrey@sitnik.ru
-│  └─ licenseFile: @babel/compat-data/node_modules/browserslist/LICENSE
 ├─ bser@2.1.1
 │  ├─ licenses: Apache-2.0
 │  ├─ repository: https://github.com/facebook/watchman
@@ -1736,7 +1720,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: tj@vision-media.ca
 │  ├─ url: http://tjholowaychuk.com
 │  └─ licenseFile: body-parser/node_modules/bytes/LICENSE
-├─ cacache@12.0.3
+├─ cacache@12.0.4
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/npm/cacache
 │  ├─ publisher: Kat Marchán
@@ -1781,42 +1765,21 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Sindre Sorhus
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
-│  └─ licenseFile: caller-callsite/node_modules/callsites/license
+│  └─ licenseFile: callsites/license
 ├─ callsites@3.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/callsites
 │  ├─ publisher: Sindre Sorhus
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
-│  └─ licenseFile: callsites/license
-├─ camel-case@3.0.0
+│  └─ licenseFile: @jest/source-map/node_modules/callsites/license
+├─ camel-case@4.1.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/blakeembrey/camel-case
+│  ├─ repository: https://github.com/blakeembrey/change-case
 │  ├─ publisher: Blake Embrey
 │  ├─ email: hello@blakeembrey.com
 │  ├─ url: http://blakeembrey.me
 │  └─ licenseFile: camel-case/LICENSE
-├─ camelcase-keys@2.1.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/sindresorhus/camelcase-keys
-│  ├─ publisher: Sindre Sorhus
-│  ├─ email: sindresorhus@gmail.com
-│  ├─ url: http://sindresorhus.com
-│  └─ licenseFile: camelcase-keys/license
-├─ camelcase@2.1.1
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/sindresorhus/camelcase
-│  ├─ publisher: Sindre Sorhus
-│  ├─ email: sindresorhus@gmail.com
-│  ├─ url: http://sindresorhus.com
-│  └─ licenseFile: camelcase-keys/node_modules/camelcase/license
-├─ camelcase@3.0.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/sindresorhus/camelcase
-│  ├─ publisher: Sindre Sorhus
-│  ├─ email: sindresorhus@gmail.com
-│  ├─ url: http://sindresorhus.com
-│  └─ licenseFile: sass-graph/node_modules/camelcase/license
 ├─ camelcase@5.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/camelcase
@@ -1835,27 +1798,13 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/nyalab/caniuse-api
 │  └─ licenseFile: caniuse-api/LICENSE
-├─ caniuse-lite@1.0.30001016
+├─ caniuse-lite@1.0.30001066
 │  ├─ licenses: CC-BY-4.0
 │  ├─ repository: https://github.com/ben-eb/caniuse-lite
 │  ├─ publisher: Ben Briggs
 │  ├─ email: beneb.info@gmail.com
 │  ├─ url: http://beneb.info
 │  └─ licenseFile: caniuse-lite/LICENSE
-├─ caniuse-lite@1.0.30001025
-│  ├─ licenses: CC-BY-4.0
-│  ├─ repository: https://github.com/ben-eb/caniuse-lite
-│  ├─ publisher: Ben Briggs
-│  ├─ email: beneb.info@gmail.com
-│  ├─ url: http://beneb.info
-│  └─ licenseFile: core-js-compat/node_modules/caniuse-lite/LICENSE
-├─ caniuse-lite@1.0.30001027
-│  ├─ licenses: CC-BY-4.0
-│  ├─ repository: https://github.com/ben-eb/caniuse-lite
-│  ├─ publisher: Ben Briggs
-│  ├─ email: beneb.info@gmail.com
-│  ├─ url: http://beneb.info
-│  └─ licenseFile: @babel/compat-data/node_modules/caniuse-lite/LICENSE
 ├─ capture-exit@2.0.0
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/stefanpenner/capture-exit
@@ -1884,7 +1833,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 ├─ chalk@3.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/chalk/chalk
-│  └─ licenseFile: react-dev-utils/node_modules/chalk/license
+│  └─ licenseFile: inquirer/node_modules/chalk/license
 ├─ chardet@0.7.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/runk/node-chardet
@@ -1895,7 +1844,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/chartjs/Chart.js
 │  └─ licenseFile: chart.js/LICENSE.md
-├─ chartjs-chart-box-and-violin-plot@2.2.0
+├─ chartjs-chart-box-and-violin-plot@2.3.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/datavisyn/chartjs-chart-box-and-violin-plot
 │  ├─ publisher: datavisyn
@@ -1917,14 +1866,14 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/paulmillr/chokidar
 │  ├─ publisher: Paul Miller
 │  ├─ url: https://paulmillr.com
-│  └─ licenseFile: watchpack/node_modules/chokidar/README.md
-├─ chokidar@3.3.1
+│  └─ licenseFile: webpack-dev-server/node_modules/chokidar/README.md
+├─ chokidar@3.4.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/paulmillr/chokidar
 │  ├─ publisher: Paul Miller
 │  ├─ url: https://paulmillr.com
 │  └─ licenseFile: chokidar/LICENSE
-├─ chownr@1.1.3
+├─ chownr@1.1.4
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/isaacs/chownr
 │  ├─ publisher: Isaac Z. Schlueter
@@ -1981,18 +1930,12 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
 │  └─ licenseFile: cli-cursor/license
-├─ cli-width@2.2.0
+├─ cli-width@2.2.1
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/knownasilya/cli-width
 │  ├─ publisher: Ilya Radchenko
-│  ├─ email: ilya@burstcreations.com
+│  ├─ email: knownasilya@gmail.com
 │  └─ licenseFile: cli-width/LICENSE
-├─ cliui@3.2.0
-│  ├─ licenses: ISC
-│  ├─ repository: https://github.com/yargs/cliui
-│  ├─ publisher: Ben Coe
-│  ├─ email: ben@npmjs.com
-│  └─ licenseFile: sass-graph/node_modules/cliui/LICENSE.txt
 ├─ cliui@4.1.0
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/yargs/cliui
@@ -2004,7 +1947,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/yargs/cliui
 │  ├─ publisher: Ben Coe
 │  ├─ email: ben@npmjs.com
-│  └─ licenseFile: jest-runtime/node_modules/cliui/LICENSE.txt
+│  └─ licenseFile: cliui/LICENSE.txt
 ├─ clone-deep@0.2.4
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jonschlinkert/clone-deep
@@ -2017,7 +1960,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Jon Schlinkert
 │  ├─ url: https://github.com/jonschlinkert
 │  └─ licenseFile: sass-loader/node_modules/clone-deep/LICENSE
-├─ clsx@1.1.0
+├─ clsx@1.1.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/lukeed/clsx
 │  ├─ publisher: Luke Edwards
@@ -2059,19 +2002,19 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/Qix-/color-convert
 │  ├─ publisher: Heather Arthur
 │  ├─ email: fayearthur@gmail.com
-│  └─ licenseFile: react-dev-utils/node_modules/color-convert/LICENSE
+│  └─ licenseFile: inquirer/node_modules/color-convert/LICENSE
 ├─ color-name@1.1.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/dfcreative/color-name
 │  ├─ publisher: DY
 │  ├─ email: dfcreative@gmail.com
-│  └─ licenseFile: color-name/LICENSE
+│  └─ licenseFile: color-convert/node_modules/color-name/LICENSE
 ├─ color-name@1.1.4
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/colorjs/color-name
 │  ├─ publisher: DY
 │  ├─ email: dfcreative@gmail.com
-│  └─ licenseFile: react-dev-utils/node_modules/color-name/LICENSE
+│  └─ licenseFile: color-name/LICENSE
 ├─ color-string@1.5.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/Qix-/color-string
@@ -2198,13 +2141,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Raynos
 │  ├─ email: raynos2@gmail.com
 │  └─ licenseFile: console-browserify/LICENCE
-├─ console-control-strings@1.1.0
-│  ├─ licenses: ISC
-│  ├─ repository: https://github.com/iarna/console-control-strings
-│  ├─ publisher: Rebecca Turner
-│  ├─ email: me@re-becca.org
-│  ├─ url: http://re-becca.org/
-│  └─ licenseFile: console-control-strings/LICENSE
 ├─ const-max-uint32@1.0.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/const-io/max-uint32
@@ -2242,12 +2178,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Douglas Christopher Wilson
 │  ├─ email: doug@somethingdoug.com
 │  └─ licenseFile: content-type/LICENSE
-├─ convert-css-length@2.0.1
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/KyleAMathews/convert-css-length
-│  ├─ publisher: Kyle Mathews
-│  ├─ email: mathews.kyle@gmail.com
-│  └─ licenseFile: convert-css-length/LICENSE
 ├─ convert-source-map@0.3.5
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/thlorenz/convert-source-map
@@ -2287,15 +2217,19 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Jon Schlinkert
 │  ├─ url: https://github.com/jonschlinkert
 │  └─ licenseFile: copy-descriptor/LICENSE
-├─ core-js-compat@3.6.4
+├─ core-js-compat@3.6.5
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/zloirock/core-js
 │  └─ licenseFile: core-js-compat/LICENSE
+├─ core-js-pure@3.6.5
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/zloirock/core-js
+│  └─ licenseFile: core-js-pure/LICENSE
 ├─ core-js@2.6.11
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/zloirock/core-js
 │  └─ licenseFile: babel-runtime/node_modules/core-js/LICENSE
-├─ core-js@3.6.4
+├─ core-js@3.6.5
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/zloirock/core-js
 │  └─ licenseFile: core-js/LICENSE
@@ -2337,13 +2271,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: James Kyle
 │  ├─ email: me@thejameskyle.com
 │  └─ licenseFile: create-react-context/LICENSE
-├─ cross-spawn@3.0.1
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/IndigoUnited/node-cross-spawn
-│  ├─ publisher: IndigoUnited
-│  ├─ email: hello@indigounited.com
-│  ├─ url: http://indigounited.com
-│  └─ licenseFile: node-sass/node_modules/cross-spawn/LICENSE
 ├─ cross-spawn@6.0.5
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/moxystudio/node-cross-spawn
@@ -2432,12 +2359,14 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: rdvornov@gmail.com
 │  ├─ url: https://github.com/lahmatiy
 │  └─ licenseFile: css-tree/LICENSE
-├─ css-unit-converter@1.1.1
+├─ css-tree@1.0.0-alpha.39
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/andyjansson/css-unit-converter
-│  ├─ publisher: Andy Jansson
-│  └─ licenseFile: css-unit-converter/LICENSE
-├─ css-vendor@2.0.7
+│  ├─ repository: https://github.com/csstree/csstree
+│  ├─ publisher: Roman Dvornov
+│  ├─ email: rdvornov@gmail.com
+│  ├─ url: https://github.com/lahmatiy
+│  └─ licenseFile: csso/node_modules/css-tree/LICENSE
+├─ css-vendor@2.0.8
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/cssinjs/css-vendor
 │  ├─ publisher: Oleg Slobodskoi
@@ -2450,7 +2379,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: me@feedic.com
 │  ├─ url: http://feedic.com
 │  └─ licenseFile: renderkid/node_modules/css-what/LICENSE
-├─ css-what@3.2.1
+├─ css-what@3.3.0
 │  ├─ licenses: BSD-2-Clause
 │  ├─ repository: https://github.com/fb55/css-what
 │  ├─ publisher: Felix Böhm
@@ -2474,7 +2403,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/mathiasbynens/cssesc
 │  ├─ publisher: Mathias Bynens
 │  ├─ url: https://mathiasbynens.be/
-│  └─ licenseFile: postcss-calc/node_modules/cssesc/LICENSE-MIT.txt
+│  └─ licenseFile: css-has-pseudo/node_modules/cssesc/LICENSE-MIT.txt
 ├─ cssesc@3.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/mathiasbynens/cssesc
@@ -2523,7 +2452,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: beneb.info@gmail.com
 │  ├─ url: http://beneb.info
 │  └─ licenseFile: cssnano/LICENSE-MIT
-├─ csso@4.0.2
+├─ csso@4.0.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/css/csso
 │  ├─ publisher: Sergey Kryzhanovsky
@@ -2540,20 +2469,13 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jsakas/CSSStyleDeclaration
 │  └─ licenseFile: cssstyle/README.md
-├─ csstype@2.6.8
+├─ csstype@2.6.10
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/frenic/csstype
 │  ├─ publisher: Fredrik Nicol
 │  ├─ email: fredrik.nicol@gmail.com
 │  └─ licenseFile: csstype/LICENSE
-├─ currently-unhandled@0.4.1
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/jamestalmage/currently-unhandled
-│  ├─ publisher: James Talmage
-│  ├─ email: james@talmage.io
-│  ├─ url: github.com/jamestalmage
-│  └─ licenseFile: currently-unhandled/license
-├─ customize-cra@0.9.1
+├─ customize-cra@1.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/arackaf/customize-cra
 │  ├─ publisher: Adam Rackis
@@ -2601,19 +2523,19 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/visionmedia/debug
 │  ├─ publisher: TJ Holowaychuk
 │  ├─ email: tj@vision-media.ca
-│  └─ licenseFile: axios/node_modules/debug/LICENSE
+│  └─ licenseFile: debug/LICENSE
 ├─ debug@3.2.6
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/visionmedia/debug
 │  ├─ publisher: TJ Holowaychuk
 │  ├─ email: tj@vision-media.ca
-│  └─ licenseFile: follow-redirects/node_modules/debug/LICENSE
+│  └─ licenseFile: portfinder/node_modules/debug/LICENSE
 ├─ debug@4.1.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/visionmedia/debug
 │  ├─ publisher: TJ Holowaychuk
 │  ├─ email: tj@vision-media.ca
-│  └─ licenseFile: debug/LICENSE
+│  └─ licenseFile: @babel/traverse/node_modules/debug/LICENSE
 ├─ decamelize@1.2.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/decamelize
@@ -2691,10 +2613,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: felix@debuggable.com
 │  ├─ url: http://debuggable.com/
 │  └─ licenseFile: delayed-stream/License
-├─ delegates@1.0.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/visionmedia/node-delegates
-│  └─ licenseFile: delegates/License
 ├─ depd@1.1.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/dougwilson/nodejs-depd
@@ -2733,7 +2651,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 ├─ diff-sequences@24.9.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/jest
-│  └─ licenseFile: expect/node_modules/diff-sequences/LICENSE
+│  └─ licenseFile: diff-sequences/LICENSE
 ├─ diffie-hellman@5.0.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/crypto-browserify/diffie-hellman
@@ -2794,9 +2712,9 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Jason Quense
 │  ├─ email: monastic.panic@gmail.com
 │  └─ licenseFile: dom-helpers/LICENSE
-├─ dom-helpers@5.1.3
+├─ dom-helpers@5.1.4
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/jquense/dom-helpers
+│  ├─ repository: https://github.com/react-bootstrap/dom-helpers
 │  ├─ publisher: Jason Quense
 │  ├─ email: monastic.panic@gmail.com
 │  └─ licenseFile: @material-ui/core/node_modules/dom-helpers/LICENSE
@@ -2856,7 +2774,14 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Felix Boehm
 │  ├─ email: me@feedic.com
 │  └─ licenseFile: domutils/LICENSE
-├─ dot-prop@4.2.0
+├─ dot-case@3.0.3
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/blakeembrey/change-case
+│  ├─ publisher: Blake Embrey
+│  ├─ email: hello@blakeembrey.com
+│  ├─ url: http://blakeembrey.me
+│  └─ licenseFile: dot-case/LICENSE
+├─ dot-prop@5.2.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/dot-prop
 │  ├─ publisher: Sindre Sorhus
@@ -2920,21 +2845,11 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: me@jongleberry.com
 │  ├─ url: http://jongleberry.com
 │  └─ licenseFile: ee-first/LICENSE
-├─ electron-to-chromium@1.3.322
+├─ electron-to-chromium@1.3.455
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/kilian/electron-to-chromium
 │  ├─ publisher: Kilian Valkhof
 │  └─ licenseFile: electron-to-chromium/LICENSE
-├─ electron-to-chromium@1.3.346
-│  ├─ licenses: ISC
-│  ├─ repository: https://github.com/kilian/electron-to-chromium
-│  ├─ publisher: Kilian Valkhof
-│  └─ licenseFile: core-js-compat/node_modules/electron-to-chromium/LICENSE
-├─ electron-to-chromium@1.3.348
-│  ├─ licenses: ISC
-│  ├─ repository: https://github.com/kilian/electron-to-chromium
-│  ├─ publisher: Kilian Valkhof
-│  └─ licenseFile: @babel/compat-data/node_modules/electron-to-chromium/LICENSE
 ├─ elliptic@6.5.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/indutny/elliptic
@@ -2954,6 +2869,13 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ url: https://mathiasbynens.be/
 │  └─ licenseFile: emoji-regex/LICENSE-MIT.txt
 ├─ emojis-list@2.1.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/kikobeats/emojis-list
+│  ├─ publisher: Kiko Beats
+│  ├─ email: josefrancisco.verdu@gmail.com
+│  ├─ url: https://github.com/Kikobeats
+│  └─ licenseFile: react-dev-utils/node_modules/emojis-list/LICENSE.md
+├─ emojis-list@3.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/kikobeats/emojis-list
 │  ├─ publisher: Kiko Beats
@@ -2981,7 +2903,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Felix Boehm
 │  ├─ email: me@feedic.com
 │  └─ licenseFile: htmlparser2/node_modules/entities/LICENSE
-├─ entities@2.0.0
+├─ entities@2.0.2
 │  ├─ licenses: BSD-2-Clause
 │  ├─ repository: https://github.com/fb55/entities
 │  ├─ publisher: Felix Boehm
@@ -2995,7 +2917,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/qix-/node-error-ex
 │  └─ licenseFile: error-ex/LICENSE
-├─ es-abstract@1.17.0
+├─ es-abstract@1.17.5
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/ljharb/es-abstract
 │  ├─ publisher: Jordan Harband
@@ -3056,7 +2978,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: BSD-2-Clause
 │  ├─ repository: https://github.com/estools/escodegen
 │  └─ licenseFile: escodegen/LICENSE.BSD
-├─ eslint-config-react-app@5.2.0
+├─ eslint-config-react-app@5.2.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/create-react-app
 │  └─ licenseFile: eslint-config-react-app/LICENSE
@@ -3071,7 +2993,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/webpack-contrib/eslint-loader
 │  ├─ publisher: Maxime Thirouin
 │  └─ licenseFile: eslint-loader/LICENSE
-├─ eslint-module-utils@2.5.2
+├─ eslint-module-utils@2.6.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/benmosher/eslint-plugin-import
 │  ├─ publisher: Ben Mosher
@@ -3084,7 +3006,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: gajus@gajus.com
 │  ├─ url: http://gajus.com
 │  └─ licenseFile: eslint-plugin-flowtype/LICENSE
-├─ eslint-plugin-import@2.20.0
+├─ eslint-plugin-import@2.20.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/benmosher/eslint-plugin-import
 │  ├─ publisher: Ben Mosher
@@ -3099,13 +3021,13 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/react
 │  └─ licenseFile: eslint-plugin-react-hooks/LICENSE
-├─ eslint-plugin-react@7.18.0
+├─ eslint-plugin-react@7.19.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/yannickcr/eslint-plugin-react
 │  ├─ publisher: Yannick Croissant
 │  ├─ email: yannick.croissant+npm@gmail.com
 │  └─ licenseFile: react-scripts/node_modules/eslint-plugin-react/LICENSE
-├─ eslint-plugin-react@7.18.3
+├─ eslint-plugin-react@7.20.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/yannickcr/eslint-plugin-react
 │  ├─ publisher: Yannick Croissant
@@ -3123,6 +3045,11 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/mysticatea/eslint-utils
 │  ├─ publisher: Toru Nagashima
+│  └─ licenseFile: eslint/node_modules/eslint-utils/LICENSE
+├─ eslint-utils@2.0.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/mysticatea/eslint-utils
+│  ├─ publisher: Toru Nagashima
 │  └─ licenseFile: eslint-utils/LICENSE
 ├─ eslint-visitor-keys@1.1.0
 │  ├─ licenses: Apache-2.0
@@ -3136,7 +3063,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Nicholas C. Zakas
 │  ├─ email: nicholas+npm@nczconsulting.com
 │  └─ licenseFile: eslint/LICENSE
-├─ espree@6.1.2
+├─ espree@6.2.1
 │  ├─ licenses: BSD-2-Clause
 │  ├─ repository: https://github.com/eslint/espree
 │  ├─ publisher: Nicholas C. Zakas
@@ -3148,9 +3075,9 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Ariya Hidayat
 │  ├─ email: ariya.hidayat@gmail.com
 │  └─ licenseFile: esprima/LICENSE.BSD
-├─ esquery@1.0.1
+├─ esquery@1.3.1
 │  ├─ licenses: BSD-3-Clause
-│  ├─ repository: https://github.com/jrfeenst/esquery
+│  ├─ repository: https://github.com/estools/esquery
 │  ├─ publisher: Joel Feenstra
 │  ├─ email: jrfeenst+esquery@gmail.com
 │  └─ licenseFile: esquery/license.txt
@@ -3162,6 +3089,10 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: BSD-2-Clause
 │  ├─ repository: https://github.com/estools/estraverse
 │  └─ licenseFile: estraverse/LICENSE.BSD
+├─ estraverse@5.1.0
+│  ├─ licenses: BSD-2-Clause
+│  ├─ repository: https://github.com/estools/estraverse
+│  └─ licenseFile: esquery/node_modules/estraverse/LICENSE.BSD
 ├─ esutils@2.0.3
 │  ├─ licenses: BSD-2-Clause
 │  ├─ repository: https://github.com/estools/esutils
@@ -3175,7 +3106,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/zeke/euclidean-distance
 │  ├─ publisher: zeke
 │  └─ licenseFile: euclidean-distance/README.md
-├─ eventemitter3@4.0.0
+├─ eventemitter3@4.0.4
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/primus/eventemitter3
 │  ├─ publisher: Arnout Kazemier
@@ -3277,7 +3208,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/davepacheco/node-extsprintf
 │  └─ licenseFile: extsprintf/LICENSE
-├─ fast-deep-equal@2.0.1
+├─ fast-deep-equal@3.1.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/epoberezkin/fast-deep-equal
 │  ├─ publisher: Evgeny Poberezkin
@@ -3288,7 +3219,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Denis Malinochkin
 │  ├─ url: canonium.com
 │  └─ licenseFile: fast-glob/LICENSE
-├─ fast-json-stable-stringify@2.0.0
+├─ fast-json-stable-stringify@2.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/epoberezkin/fast-json-stable-stringify
 │  ├─ publisher: James Halliday
@@ -3323,18 +3254,18 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: wez@fb.com
 │  ├─ url: http://wezfurlong.org
 │  └─ licenseFile: fb-watchman/README.md
-├─ figgy-pudding@3.5.1
+├─ figgy-pudding@3.5.2
 │  ├─ licenses: ISC
-│  ├─ repository: https://github.com/zkat/figgy-pudding
+│  ├─ repository: https://github.com/npm/figgy-pudding
 │  ├─ publisher: Kat Marchán
 │  ├─ email: kzm@sykosomatic.org
 │  └─ licenseFile: figgy-pudding/LICENSE.md
-├─ figures@3.1.0
+├─ figures@3.2.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/figures
 │  ├─ publisher: Sindre Sorhus
 │  ├─ email: sindresorhus@gmail.com
-│  ├─ url: sindresorhus.com
+│  ├─ url: https://sindresorhus.com
 │  └─ licenseFile: figures/license
 ├─ file-entry-cache@5.0.1
 │  ├─ licenses: MIT
@@ -3382,7 +3313,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/avajs/find-cache-dir
 │  └─ licenseFile: find-cache-dir/license
-├─ find-cache-dir@3.2.0
+├─ find-cache-dir@3.3.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/avajs/find-cache-dir
 │  └─ licenseFile: terser-webpack-plugin/node_modules/find-cache-dir/license
@@ -3399,14 +3330,14 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Sindre Sorhus
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
-│  └─ licenseFile: eslint-module-utils/node_modules/find-up/license
+│  └─ licenseFile: find-up/license
 ├─ find-up@3.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/find-up
 │  ├─ publisher: Sindre Sorhus
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
-│  └─ licenseFile: find-up/license
+│  └─ licenseFile: @jest/transform/node_modules/find-up/license
 ├─ find-up@4.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/find-up
@@ -3420,7 +3351,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Roy Riojas
 │  ├─ url: http://royriojas.com
 │  └─ licenseFile: flat-cache/LICENSE
-├─ flatted@2.0.1
+├─ flatted@2.0.2
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/WebReflection/flatted
 │  ├─ publisher: Andrea Giammarchi
@@ -3438,20 +3369,13 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Mathias Buus
 │  ├─ url: @mafintosh
 │  └─ licenseFile: flush-write-stream/LICENSE
-├─ follow-redirects@1.10.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/follow-redirects/follow-redirects
-│  ├─ publisher: Ruben Verborgh
-│  ├─ email: ruben@verborgh.org
-│  ├─ url: https://ruben.verborgh.org/
-│  └─ licenseFile: follow-redirects/LICENSE
 ├─ follow-redirects@1.5.10
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/follow-redirects/follow-redirects
 │  ├─ publisher: Ruben Verborgh
 │  ├─ email: ruben@verborgh.org
 │  ├─ url: https://ruben.verborgh.org/
-│  └─ licenseFile: axios/node_modules/follow-redirects/LICENSE
+│  └─ licenseFile: follow-redirects/LICENSE
 ├─ for-in@0.1.8
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jonschlinkert/for-in
@@ -3560,13 +3484,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: i@izs.me
 │  ├─ url: http://blog.izs.me/
 │  └─ licenseFile: fs.realpath/LICENSE
-├─ fstream@1.0.12
-│  ├─ licenses: ISC
-│  ├─ repository: https://github.com/npm/fstream
-│  ├─ publisher: Isaac Z. Schlueter
-│  ├─ email: i@izs.me
-│  ├─ url: http://blog.izs.me/
-│  └─ licenseFile: fstream/LICENSE
 ├─ function-bind@1.1.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/Raynos/function-bind
@@ -3578,18 +3495,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/mikolalysenko/functional-red-black-tree
 │  ├─ publisher: Mikola Lysenko
 │  └─ licenseFile: functional-red-black-tree/LICENSE
-├─ gauge@2.7.4
-│  ├─ licenses: ISC
-│  ├─ repository: https://github.com/iarna/gauge
-│  ├─ publisher: Rebecca Turner
-│  ├─ email: me@re-becca.org
-│  └─ licenseFile: gauge/LICENSE
-├─ gaze@1.1.3
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/shama/gaze
-│  ├─ publisher: Kyle Robinson Young
-│  ├─ email: kyle@dontkry.com
-│  └─ licenseFile: gaze/LICENSE-MIT
 ├─ gensync@1.0.0-beta.1
 │  ├─ licenses: MIT
 │  ├─ publisher: Logan Smyth
@@ -3612,13 +3517,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: mightyiampresence@gmail.com
 │  ├─ url: mightyiam
 │  └─ licenseFile: get-own-enumerable-property-symbols/LICENSE
-├─ get-stdin@4.0.1
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/sindresorhus/get-stdin
-│  ├─ publisher: Sindre Sorhus
-│  ├─ email: sindresorhus@gmail.com
-│  ├─ url: http://sindresorhus.com
-│  └─ licenseFile: get-stdin/readme.md
 ├─ get-stream@4.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/get-stream
@@ -3644,7 +3542,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Elan Shanker
 │  ├─ url: https://github.com/es128
 │  └─ licenseFile: fast-glob/node_modules/glob-parent/LICENSE
-├─ glob-parent@5.1.0
+├─ glob-parent@5.1.1
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/gulpjs/glob-parent
 │  ├─ publisher: Gulp Team
@@ -3683,12 +3581,12 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
 │  └─ licenseFile: globals/license
-├─ globals@12.3.0
+├─ globals@12.4.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/globals
 │  ├─ publisher: Sindre Sorhus
 │  ├─ email: sindresorhus@gmail.com
-│  ├─ url: sindresorhus.com
+│  ├─ url: https://sindresorhus.com
 │  └─ licenseFile: eslint/node_modules/globals/license
 ├─ globby@6.1.0
 │  ├─ licenses: MIT
@@ -3704,13 +3602,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
 │  └─ licenseFile: globby/license
-├─ globule@1.3.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/cowboy/node-globule
-│  ├─ publisher: "Cowboy" Ben Alman
-│  ├─ url: http://benalman.com/
-│  └─ licenseFile: globule/LICENSE
-├─ graceful-fs@4.2.3
+├─ graceful-fs@4.2.4
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/isaacs/node-graceful-fs
 │  └─ licenseFile: graceful-fs/LICENSE
@@ -3734,7 +3626,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
 │  └─ licenseFile: gzip-size/license
-├─ handle-thing@2.0.0
+├─ handle-thing@2.0.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/indutny/handle-thing
 │  ├─ publisher: Fedor Indutny
@@ -3778,7 +3670,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Sindre Sorhus
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
-│  └─ licenseFile: react-dev-utils/node_modules/chalk/node_modules/has-flag/license
+│  └─ licenseFile: inquirer/node_modules/has-flag/license
 ├─ has-symbols@1.0.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/ljharb/has-symbols
@@ -3786,12 +3678,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: ljharb@gmail.com
 │  ├─ url: http://ljharb.codes
 │  └─ licenseFile: has-symbols/LICENSE
-├─ has-unicode@2.0.1
-│  ├─ licenses: ISC
-│  ├─ repository: https://github.com/iarna/has-unicode
-│  ├─ publisher: Rebecca Turner
-│  ├─ email: me@re-becca.org
-│  └─ licenseFile: has-unicode/LICENSE
 ├─ has-value@0.3.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jonschlinkert/has-value
@@ -3822,7 +3708,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Thiago de Arruda
 │  ├─ email: tpadilha84@gmail.com
 │  └─ licenseFile: has/LICENSE-MIT
-├─ hash-base@3.0.4
+├─ hash-base@3.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/crypto-browserify/hash-base
 │  ├─ publisher: Kirill Fomichev
@@ -3859,19 +3745,13 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Fedor Indutny
 │  ├─ email: fedor@indutny.com
 │  └─ licenseFile: hmac-drbg/README.md
-├─ hoist-non-react-statics@3.3.1
-│  ├─ licenses: BSD-3-Clause
-│  ├─ repository: https://github.com/mridgway/hoist-non-react-statics
-│  ├─ publisher: Michael Ridgway
-│  ├─ email: mcridgway@gmail.com
-│  └─ licenseFile: hoist-non-react-statics/LICENSE.md
 ├─ hoist-non-react-statics@3.3.2
 │  ├─ licenses: BSD-3-Clause
 │  ├─ repository: https://github.com/mridgway/hoist-non-react-statics
 │  ├─ publisher: Michael Ridgway
 │  ├─ email: mcridgway@gmail.com
-│  └─ licenseFile: @material-ui/core/node_modules/hoist-non-react-statics/LICENSE.md
-├─ hosted-git-info@2.8.5
+│  └─ licenseFile: hoist-non-react-statics/LICENSE.md
+├─ hosted-git-info@2.8.8
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/npm/hosted-git-info
 │  ├─ publisher: Rebecca Turner
@@ -3908,7 +3788,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: d@domenic.me
 │  ├─ url: https://domenic.me/
 │  └─ licenseFile: html-encoding-sniffer/LICENSE.txt
-├─ html-entities@1.2.1
+├─ html-entities@1.3.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/mdevils/node-html-entities
 │  ├─ publisher: Marat Dulin
@@ -3920,12 +3800,12 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Blackish Murderer
 │  ├─ email: blackish.murderer@gmail.com
 │  └─ licenseFile: html-entity-decoder/LICENSE
-├─ html-escaper@2.0.0
+├─ html-escaper@2.0.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/WebReflection/html-escaper
 │  ├─ publisher: Andrea Giammarchi
 │  └─ licenseFile: html-escaper/LICENSE.txt
-├─ html-minifier-terser@5.0.3
+├─ html-minifier-terser@5.1.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DanielRuf/html-minifier-terser
 │  ├─ publisher: Daniel Ruf
@@ -3970,7 +3850,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: me@jongleberry.com
 │  ├─ url: http://jongleberry.com
 │  └─ licenseFile: http-errors/LICENSE
-├─ http-parser-js@0.4.10
+├─ http-parser-js@0.5.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/creationix/http-parser-js
 │  ├─ publisher: Tim Caswell
@@ -3981,7 +3861,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/chimurai/http-proxy-middleware
 │  ├─ publisher: Steven Chim
 │  └─ licenseFile: http-proxy-middleware/LICENSE
-├─ http-proxy@1.18.0
+├─ http-proxy@1.18.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/http-party/node-http-proxy
 │  ├─ publisher: Charlie Robbins
@@ -4092,19 +3972,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: jensyt@gmail.com
 │  ├─ url: https://github.com/homebrewing
 │  └─ licenseFile: imurmurhash/README.md
-├─ in-publish@2.0.0
-│  ├─ licenses: ISC
-│  ├─ repository: https://github.com/iarna/in-publish
-│  ├─ publisher: Rebecca Turner
-│  ├─ email: me@re-becca.org
-│  └─ licenseFile: in-publish/LICENSE
-├─ indent-string@2.1.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/sindresorhus/indent-string
-│  ├─ publisher: Sindre Sorhus
-│  ├─ email: sindresorhus@gmail.com
-│  ├─ url: sindresorhus.com
-│  └─ licenseFile: meow/node_modules/indent-string/license
 ├─ indent-string@4.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/indent-string
@@ -4152,18 +4019,18 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: i@izs.me
 │  ├─ url: http://blog.izs.me/
 │  └─ licenseFile: ini/LICENSE
-├─ inquirer@7.0.1
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/SBoudrias/Inquirer.js
-│  ├─ publisher: Simon Boudrias
-│  ├─ email: admin@simonboudrias.com
-│  └─ licenseFile: inquirer/LICENSE
 ├─ inquirer@7.0.4
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/SBoudrias/Inquirer.js
 │  ├─ publisher: Simon Boudrias
 │  ├─ email: admin@simonboudrias.com
 │  └─ licenseFile: react-dev-utils/node_modules/inquirer/LICENSE
+├─ inquirer@7.1.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/SBoudrias/Inquirer.js
+│  ├─ publisher: Simon Boudrias
+│  ├─ email: admin@simonboudrias.com
+│  └─ licenseFile: inquirer/LICENSE
 ├─ internal-ip@4.3.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/internal-ip
@@ -4183,13 +4050,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Andres Suarez
 │  ├─ email: zertosh@gmail.com
 │  └─ licenseFile: invariant/LICENSE
-├─ invert-kv@1.0.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/sindresorhus/invert-kv
-│  ├─ publisher: Sindre Sorhus
-│  ├─ email: sindresorhus@gmail.com
-│  ├─ url: http://sindresorhus.com
-│  └─ licenseFile: sass-graph/node_modules/invert-kv/readme.md
 ├─ invert-kv@2.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/invert-kv
@@ -4210,7 +4070,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Fedor Indutny
 │  ├─ email: fedor@indutny.com
 │  └─ licenseFile: ip/README.md
-├─ ipaddr.js@1.9.0
+├─ ipaddr.js@1.9.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/whitequark/ipaddr.js
 │  ├─ publisher: whitequark
@@ -4267,7 +4127,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Sindre Sorhus
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
-│  └─ licenseFile: watchpack/node_modules/is-binary-path/license
+│  └─ licenseFile: webpack-dev-server/node_modules/is-binary-path/license
 ├─ is-binary-path@2.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/is-binary-path
@@ -4282,20 +4142,13 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: feross@feross.org
 │  ├─ url: http://feross.org/
 │  └─ licenseFile: is-buffer/LICENSE
-├─ is-callable@1.1.4
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/ljharb/is-callable
-│  ├─ publisher: Jordan Harband
-│  ├─ email: ljharb@gmail.com
-│  ├─ url: http://ljharb.codes
-│  └─ licenseFile: is-callable/LICENSE
 ├─ is-callable@1.1.5
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/ljharb/is-callable
 │  ├─ publisher: Jordan Harband
 │  ├─ email: ljharb@gmail.com
 │  ├─ url: http://ljharb.codes
-│  └─ licenseFile: es-abstract/node_modules/is-callable/LICENSE
+│  └─ licenseFile: is-callable/LICENSE
 ├─ is-ci@2.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/watson/is-ci
@@ -4321,7 +4174,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Jon Schlinkert
 │  ├─ url: https://github.com/jonschlinkert
 │  └─ licenseFile: base/node_modules/is-data-descriptor/LICENSE
-├─ is-date-object@1.0.1
+├─ is-date-object@1.0.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/ljharb/is-date-object
 │  ├─ publisher: Jordan Harband
@@ -4344,6 +4197,13 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Jon Schlinkert
 │  ├─ url: https://github.com/jonschlinkert
 │  └─ licenseFile: is-directory/LICENSE
+├─ is-docker@2.0.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/sindresorhus/is-docker
+│  ├─ publisher: Sindre Sorhus
+│  ├─ email: sindresorhus@gmail.com
+│  ├─ url: sindresorhus.com
+│  └─ licenseFile: is-docker/license
 ├─ is-extendable@0.1.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jonschlinkert/is-extendable
@@ -4362,13 +4222,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Jon Schlinkert
 │  ├─ url: https://github.com/jonschlinkert
 │  └─ licenseFile: is-extglob/LICENSE
-├─ is-finite@1.0.2
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/sindresorhus/is-finite
-│  ├─ publisher: Sindre Sorhus
-│  ├─ email: sindresorhus@gmail.com
-│  ├─ url: sindresorhus.com
-│  └─ licenseFile: is-finite/license
 ├─ is-fullwidth-code-point@1.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/is-fullwidth-code-point
@@ -4432,6 +4285,13 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Sindre Sorhus
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
+│  └─ licenseFile: stringify-object/node_modules/is-obj/license
+├─ is-obj@2.0.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/sindresorhus/is-obj
+│  ├─ publisher: Sindre Sorhus
+│  ├─ email: sindresorhus@gmail.com
+│  ├─ url: sindresorhus.com
 │  └─ licenseFile: is-obj/license
 ├─ is-path-cwd@2.2.0
 │  ├─ licenses: MIT
@@ -4467,11 +4327,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Jon Schlinkert
 │  ├─ url: https://github.com/jonschlinkert
 │  └─ licenseFile: is-plain-object/LICENSE
-├─ is-promise@2.1.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/then/is-promise
-│  ├─ publisher: ForbesLindesay
-│  └─ licenseFile: is-promise/LICENSE
 ├─ is-regex@1.0.5
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/ljharb/is-regex
@@ -4531,11 +4386,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: hughskennedy@gmail.com
 │  ├─ url: http://hughsk.io/
 │  └─ licenseFile: is-typedarray/LICENSE.md
-├─ is-utf8@0.2.1
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/wayfind/is-utf8
-│  ├─ publisher: wayfind
-│  └─ licenseFile: is-utf8/LICENSE
 ├─ is-windows@1.0.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jonschlinkert/is-windows
@@ -4549,20 +4399,27 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
 │  └─ licenseFile: is-wsl/license
+├─ is-wsl@2.2.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/sindresorhus/is-wsl
+│  ├─ publisher: Sindre Sorhus
+│  ├─ email: sindresorhus@gmail.com
+│  ├─ url: sindresorhus.com
+│  └─ licenseFile: open/node_modules/is-wsl/license
 ├─ isarray@0.0.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/juliangruber/isarray
 │  ├─ publisher: Julian Gruber
 │  ├─ email: mail@juliangruber.com
 │  ├─ url: http://juliangruber.com
-│  └─ licenseFile: react-router/node_modules/isarray/README.md
+│  └─ licenseFile: isarray/README.md
 ├─ isarray@1.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/juliangruber/isarray
 │  ├─ publisher: Julian Gruber
 │  ├─ email: mail@juliangruber.com
 │  ├─ url: http://juliangruber.com
-│  └─ licenseFile: isarray/README.md
+│  └─ licenseFile: unset-value/node_modules/isarray/README.md
 ├─ isexe@2.0.0
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/isaacs/isexe
@@ -4605,19 +4462,19 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/istanbuljs/istanbuljs
 │  ├─ publisher: Krishnan Anantheswaran
 │  ├─ email: kananthmail-github@yahoo.com
-│  └─ licenseFile: @jest/reporters/node_modules/istanbul-lib-report/LICENSE
+│  └─ licenseFile: istanbul-lib-report/LICENSE
 ├─ istanbul-lib-source-maps@3.0.6
 │  ├─ licenses: BSD-3-Clause
 │  ├─ repository: https://github.com/istanbuljs/istanbuljs
 │  ├─ publisher: Krishnan Anantheswaran
 │  ├─ email: kananthmail-github@yahoo.com
-│  └─ licenseFile: @jest/reporters/node_modules/istanbul-lib-source-maps/LICENSE
+│  └─ licenseFile: istanbul-lib-source-maps/LICENSE
 ├─ istanbul-reports@2.2.7
 │  ├─ licenses: BSD-3-Clause
 │  ├─ repository: https://github.com/istanbuljs/istanbuljs
 │  ├─ publisher: Krishnan Anantheswaran
 │  ├─ email: kananthmail-github@yahoo.com
-│  └─ licenseFile: @jest/reporters/node_modules/istanbul-reports/LICENSE
+│  └─ licenseFile: istanbul-reports/LICENSE
 ├─ javascript-natural-sort@0.7.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/Bill4Time/javascript-natural-sort
@@ -4638,7 +4495,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 ├─ jest-diff@24.9.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/jest
-│  └─ licenseFile: expect/node_modules/jest-diff/LICENSE
+│  └─ licenseFile: jest-diff/LICENSE
 ├─ jest-docblock@24.9.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/jest
@@ -4664,7 +4521,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 ├─ jest-get-type@24.9.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/jest
-│  └─ licenseFile: expect/node_modules/jest-get-type/LICENSE
+│  └─ licenseFile: jest-get-type/LICENSE
 ├─ jest-haste-map@24.9.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/jest
@@ -4679,7 +4536,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 ├─ jest-matcher-utils@24.9.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/jest
-│  └─ licenseFile: expect/node_modules/jest-matcher-utils/LICENSE
+│  └─ licenseFile: jest-matcher-utils/LICENSE
 ├─ jest-message-util@24.9.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/jest
@@ -4739,7 +4596,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/jest
 │  └─ licenseFile: jest-worker/LICENSE
-├─ jest-worker@25.1.0
+├─ jest-worker@25.5.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/jest
 │  └─ licenseFile: terser-webpack-plugin/node_modules/jest-worker/LICENSE
@@ -4747,11 +4604,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/jest
 │  └─ licenseFile: jest/README.md
-├─ js-base64@2.5.1
-│  ├─ licenses: BSD-3-Clause
-│  ├─ repository: https://github.com/dankogai/js-base64
-│  ├─ publisher: Dan Kogai
-│  └─ licenseFile: js-base64/LICENSE.md
 ├─ js-htmlencode@0.3.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/emn178/js-htmlencode
@@ -4768,7 +4620,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/lydell/js-tokens
 │  ├─ publisher: Simon Lydell
 │  └─ licenseFile: js-tokens/LICENSE
-├─ js-yaml@3.13.1
+├─ js-yaml@3.14.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/nodeca/js-yaml
 │  ├─ publisher: Vladimir Zapparov
@@ -4851,7 +4703,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Aseem Kishore
 │  ├─ email: aseem.kishore@gmail.com
 │  └─ licenseFile: loader-utils/node_modules/json5/LICENSE.md
-├─ json5@2.1.1
+├─ json5@2.1.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/json5/json5
 │  ├─ publisher: Aseem Kishore
@@ -4873,47 +4725,47 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/joyent/node-jsprim
 │  └─ licenseFile: jsprim/LICENSE
-├─ jss-plugin-camel-case@10.0.4
+├─ jss-plugin-camel-case@10.1.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/cssinjs/jss
 │  ├─ publisher: JSS Team
 │  └─ licenseFile: jss-plugin-camel-case/LICENSE
-├─ jss-plugin-default-unit@10.0.4
+├─ jss-plugin-default-unit@10.1.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/cssinjs/jss
 │  ├─ publisher: JSS Team
 │  └─ licenseFile: jss-plugin-default-unit/LICENSE
-├─ jss-plugin-global@10.0.4
+├─ jss-plugin-global@10.1.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/cssinjs/jss
 │  ├─ publisher: JSS Team
 │  └─ licenseFile: jss-plugin-global/LICENSE
-├─ jss-plugin-nested@10.0.4
+├─ jss-plugin-nested@10.1.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/cssinjs/jss
 │  ├─ publisher: JSS Team
 │  └─ licenseFile: jss-plugin-nested/LICENSE
-├─ jss-plugin-props-sort@10.0.4
+├─ jss-plugin-props-sort@10.1.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/cssinjs/jss
 │  ├─ publisher: JSS Team
 │  └─ licenseFile: jss-plugin-props-sort/LICENSE
-├─ jss-plugin-rule-value-function@10.0.4
+├─ jss-plugin-rule-value-function@10.1.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/cssinjs/jss
 │  ├─ publisher: JSS Team
 │  └─ licenseFile: jss-plugin-rule-value-function/LICENSE
-├─ jss-plugin-vendor-prefixer@10.0.4
+├─ jss-plugin-vendor-prefixer@10.1.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/cssinjs/jss
 │  ├─ publisher: JSS Team
 │  └─ licenseFile: jss-plugin-vendor-prefixer/LICENSE
-├─ jss@10.0.4
+├─ jss@10.1.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/cssinjs/jss
 │  ├─ publisher: JSS Team
 │  └─ licenseFile: jss/LICENSE
-├─ jsx-ast-utils@2.2.3
+├─ jsx-ast-utils@2.3.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/evcohen/jsx-ast-utils
 │  ├─ publisher: Ethan Cohen
@@ -4952,12 +4804,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Jon Schlinkert
 │  ├─ url: https://github.com/jonschlinkert
 │  └─ licenseFile: is-descriptor/node_modules/kind-of/LICENSE
-├─ kind-of@6.0.2
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/jonschlinkert/kind-of
-│  ├─ publisher: Jon Schlinkert
-│  ├─ url: https://github.com/jonschlinkert
-│  └─ licenseFile: global-prefix/node_modules/kind-of/LICENSE
 ├─ kind-of@6.0.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jonschlinkert/kind-of
@@ -4988,13 +4834,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Jon Schlinkert
 │  ├─ url: https://github.com/jonschlinkert
 │  └─ licenseFile: lazy-cache/LICENSE
-├─ lcid@1.0.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/sindresorhus/lcid
-│  ├─ publisher: Sindre Sorhus
-│  ├─ email: sindresorhus@gmail.com
-│  ├─ url: sindresorhus.com
-│  └─ licenseFile: sass-graph/node_modules/lcid/license
 ├─ lcid@2.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/lcid
@@ -5032,13 +4871,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Brian Donovan
 │  ├─ email: me@brian-donovan.com
 │  └─ licenseFile: lines-and-columns/LICENSE
-├─ load-json-file@1.1.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/sindresorhus/load-json-file
-│  ├─ publisher: Sindre Sorhus
-│  ├─ email: sindresorhus@gmail.com
-│  ├─ url: sindresorhus.com
-│  └─ licenseFile: meow/node_modules/load-json-file/license
 ├─ load-json-file@2.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/load-json-file
@@ -5053,8 +4885,9 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
 │  └─ licenseFile: load-json-file/license
-├─ loader-fs-cache@1.0.2
+├─ loader-fs-cache@1.0.3
 │  ├─ licenses: MIT
+│  ├─ repository: https://github.com/viankakrisna/loader-fs-cache
 │  ├─ publisher: Ade Viankakrisna Fadlil
 │  └─ licenseFile: loader-fs-cache/LICENSE
 ├─ loader-runner@2.4.0
@@ -5066,6 +4899,11 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/webpack/loader-utils
 │  ├─ publisher: Tobias Koppers @sokra
+│  └─ licenseFile: react-dev-utils/node_modules/loader-utils/LICENSE
+├─ loader-utils@1.4.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/webpack/loader-utils
+│  ├─ publisher: Tobias Koppers @sokra
 │  └─ licenseFile: loader-utils/LICENSE
 ├─ locate-path@2.0.0
 │  ├─ licenses: MIT
@@ -5073,21 +4911,21 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Sindre Sorhus
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
-│  └─ licenseFile: eslint-module-utils/node_modules/locate-path/license
+│  └─ licenseFile: locate-path/license
 ├─ locate-path@3.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/locate-path
 │  ├─ publisher: Sindre Sorhus
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
-│  └─ licenseFile: locate-path/license
+│  └─ licenseFile: @jest/transform/node_modules/locate-path/license
 ├─ locate-path@5.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/locate-path
 │  ├─ publisher: Sindre Sorhus
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
-│  └─ licenseFile: react-dev-utils/node_modules/locate-path/license
+│  └─ licenseFile: react-dev-utils/node_modules/find-up/node_modules/locate-path/license
 ├─ lodash._reinterpolate@3.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/lodash/lodash
@@ -5141,7 +4979,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: John-David Dalton
 │  ├─ email: john.david.dalton@gmail.com
 │  └─ licenseFile: lodash/LICENSE
-├─ loglevel@1.6.7
+├─ loglevel@1.6.8
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/pimterry/loglevel
 │  ├─ publisher: Tim Perry
@@ -5154,26 +4992,13 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Andres Suarez
 │  ├─ email: zertosh@gmail.com
 │  └─ licenseFile: loose-envify/LICENSE
-├─ loud-rejection@1.6.0
+├─ lower-case@2.0.1
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/sindresorhus/loud-rejection
-│  ├─ publisher: Sindre Sorhus
-│  ├─ email: sindresorhus@gmail.com
-│  ├─ url: sindresorhus.com
-│  └─ licenseFile: loud-rejection/license
-├─ lower-case@1.1.4
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/blakeembrey/lower-case
+│  ├─ repository: https://github.com/blakeembrey/change-case
 │  ├─ publisher: Blake Embrey
 │  ├─ email: hello@blakeembrey.com
 │  ├─ url: http://blakeembrey.me
 │  └─ licenseFile: lower-case/LICENSE
-├─ lru-cache@4.1.5
-│  ├─ licenses: ISC
-│  ├─ repository: https://github.com/isaacs/node-lru-cache
-│  ├─ publisher: Isaac Z. Schlueter
-│  ├─ email: i@izs.me
-│  └─ licenseFile: node-sass/node_modules/lru-cache/LICENSE
 ├─ lru-cache@5.1.1
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/isaacs/node-lru-cache
@@ -5193,7 +5018,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
 │  └─ licenseFile: make-dir/license
-├─ make-dir@3.0.0
+├─ make-dir@3.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/make-dir
 │  ├─ publisher: Sindre Sorhus
@@ -5222,20 +5047,13 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Jon Schlinkert
 │  ├─ url: https://github.com/jonschlinkert
 │  └─ licenseFile: map-cache/LICENSE
-├─ map-obj@1.0.1
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/sindresorhus/map-obj
-│  ├─ publisher: Sindre Sorhus
-│  ├─ email: sindresorhus@gmail.com
-│  ├─ url: sindresorhus.com
-│  └─ licenseFile: map-obj/license
 ├─ map-visit@1.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jonschlinkert/map-visit
 │  ├─ publisher: Jon Schlinkert
 │  ├─ url: https://github.com/jonschlinkert
 │  └─ licenseFile: map-visit/LICENSE
-├─ mathjs@6.6.0
+├─ mathjs@7.0.1
 │  ├─ licenses: Apache-2.0
 │  ├─ repository: https://github.com/josdejong/mathjs
 │  ├─ publisher: Jos de Jong
@@ -5255,6 +5073,11 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/mdn/data
 │  ├─ publisher: Mozilla Developer Network
 │  └─ licenseFile: mdn-data/LICENSE
+├─ mdn-data@2.0.6
+│  ├─ licenses: CC0-1.0
+│  ├─ repository: https://github.com/mdn/data
+│  ├─ publisher: Mozilla Developer Network
+│  └─ licenseFile: csso/node_modules/mdn-data/LICENSE
 ├─ media-typer@0.3.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jshttp/media-typer
@@ -5278,13 +5101,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/webpack/memory-fs
 │  ├─ publisher: Tobias Koppers @sokra
 │  └─ licenseFile: enhanced-resolve/node_modules/memory-fs/LICENSE
-├─ meow@3.7.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/sindresorhus/meow
-│  ├─ publisher: Sindre Sorhus
-│  ├─ email: sindresorhus@gmail.com
-│  ├─ url: sindresorhus.com
-│  └─ licenseFile: meow/license
 ├─ merge-deep@3.0.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jonschlinkert/merge-deep
@@ -5331,15 +5147,11 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Fedor Indutny
 │  ├─ email: fedor@indutny.com
 │  └─ licenseFile: miller-rabin/README.md
-├─ mime-db@1.42.0
+├─ mime-db@1.44.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jshttp/mime-db
 │  └─ licenseFile: mime-db/LICENSE
-├─ mime-db@1.43.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/jshttp/mime-db
-│  └─ licenseFile: compressible/node_modules/mime-db/LICENSE
-├─ mime-types@2.1.25
+├─ mime-types@2.1.27
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jshttp/mime-types
 │  └─ licenseFile: mime-types/LICENSE
@@ -5350,9 +5162,9 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: robert@broofa.com
 │  ├─ url: http://github.com/broofa
 │  └─ licenseFile: send/node_modules/mime/LICENSE
-├─ mime@2.4.4
+├─ mime@2.4.6
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/broofa/node-mime
+│  ├─ repository: https://github.com/broofa/mime
 │  ├─ publisher: Robert Kieffer
 │  ├─ email: robert@broofa.com
 │  ├─ url: http://github.com/broofa
@@ -5364,7 +5176,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
 │  └─ licenseFile: mimic-fn/license
-├─ mini-create-react-context@0.3.2
+├─ mini-create-react-context@0.4.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/StringEpsilon/mini-create-react-context
 │  ├─ publisher: StringEpsilon
@@ -5391,14 +5203,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: i@izs.me
 │  ├─ url: http://blog.izs.me
 │  └─ licenseFile: minimatch/LICENSE
-├─ minimist@0.0.8
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/substack/minimist
-│  ├─ publisher: James Halliday
-│  ├─ email: mail@substack.net
-│  ├─ url: http://substack.net
-│  └─ licenseFile: mkdirp/node_modules/minimist/LICENSE
-├─ minimist@1.2.0
+├─ minimist@1.2.5
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/substack/minimist
 │  ├─ publisher: James Halliday
@@ -5418,13 +5223,13 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: i@izs.me
 │  ├─ url: https://izs.me
 │  └─ licenseFile: minipass-flush/LICENSE
-├─ minipass-pipeline@1.2.2
+├─ minipass-pipeline@1.2.3
 │  ├─ licenses: ISC
 │  ├─ publisher: Isaac Z. Schlueter
 │  ├─ email: i@izs.me
 │  ├─ url: https://izs.me
 │  └─ licenseFile: minipass-pipeline/LICENSE
-├─ minipass@3.1.1
+├─ minipass@3.1.3
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/isaacs/minipass
 │  ├─ publisher: Isaac Z. Schlueter
@@ -5448,14 +5253,14 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Jon Schlinkert
 │  ├─ url: https://github.com/jonschlinkert
 │  └─ licenseFile: mixin-object/LICENSE
-├─ mkdirp@0.5.1
+├─ mkdirp@0.5.5
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/substack/node-mkdirp
 │  ├─ publisher: James Halliday
 │  ├─ email: mail@substack.net
 │  ├─ url: http://substack.net
 │  └─ licenseFile: mkdirp/LICENSE
-├─ moment@2.24.0
+├─ moment@2.26.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/moment/moment
 │  ├─ publisher: Iskren Ivov Chernev
@@ -5472,7 +5277,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 ├─ ms@2.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/zeit/ms
-│  └─ licenseFile: axios/node_modules/ms/license.md
+│  └─ licenseFile: ms/license.md
 ├─ ms@2.1.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/zeit/ms
@@ -5480,7 +5285,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 ├─ ms@2.1.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/zeit/ms
-│  └─ licenseFile: ms/license.md
+│  └─ licenseFile: @babel/traverse/node_modules/ms/license.md
 ├─ multicast-dns-service-types@1.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/mafintosh/multicast-dns-service-types
@@ -5500,10 +5305,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: i@izs.me
 │  ├─ url: http://blog.izs.me/
 │  └─ licenseFile: mute-stream/LICENSE
-├─ nan@2.14.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/nodejs/nan
-│  └─ licenseFile: nan/LICENSE.md
 ├─ nanomatch@1.2.13
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/micromatch/nanomatch
@@ -5535,9 +5336,9 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/electerious/nice-try
 │  └─ licenseFile: nice-try/LICENSE
-├─ no-case@2.3.2
+├─ no-case@3.0.3
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/blakeembrey/no-case
+│  ├─ repository: https://github.com/blakeembrey/change-case
 │  ├─ publisher: Blake Embrey
 │  ├─ email: hello@blakeembrey.com
 │  ├─ url: http://blakeembrey.me
@@ -5549,13 +5350,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: support@digitalbazaar.com
 │  ├─ url: http://digitalbazaar.com/
 │  └─ licenseFile: node-forge/LICENSE
-├─ node-gyp@3.8.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/nodejs/node-gyp
-│  ├─ publisher: Nathan Rajlich
-│  ├─ email: nathan@tootallnate.net
-│  ├─ url: http://tootallnate.net
-│  └─ licenseFile: node-gyp/LICENSE
 ├─ node-int64@0.4.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/broofa/node-int64
@@ -5579,32 +5373,12 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/mikaelbr/node-notifier
 │  ├─ publisher: Mikael Brevik
 │  └─ licenseFile: node-notifier/LICENSE
-├─ node-releases@1.1.43
+├─ node-releases@1.1.57
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/chicoxyzzy/node-releases
 │  ├─ publisher: Sergey Rubanov
 │  ├─ email: chi187@gmail.com
 │  └─ licenseFile: node-releases/LICENSE
-├─ node-releases@1.1.48
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/chicoxyzzy/node-releases
-│  ├─ publisher: Sergey Rubanov
-│  ├─ email: chi187@gmail.com
-│  └─ licenseFile: @babel/compat-data/node_modules/node-releases/LICENSE
-├─ node-sass@4.13.1
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/sass/node-sass
-│  ├─ publisher: Andrew Nesbitt
-│  ├─ email: andrewnez@gmail.com
-│  ├─ url: http://andrew.github.com
-│  └─ licenseFile: node-sass/LICENSE
-├─ nopt@3.0.6
-│  ├─ licenses: ISC
-│  ├─ repository: https://github.com/npm/nopt
-│  ├─ publisher: Isaac Z. Schlueter
-│  ├─ email: i@izs.me
-│  ├─ url: http://blog.izs.me/
-│  └─ licenseFile: nopt/LICENSE
 ├─ normalize-package-data@2.5.0
 │  ├─ licenses: BSD-2-Clause
 │  ├─ repository: https://github.com/npm/normalize-package-data
@@ -5630,12 +5404,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: james@talmage.io
 │  ├─ url: github.com/jamestalmage
 │  └─ licenseFile: normalize-range/license
-├─ normalize-scroll-left@0.2.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/alitaheri/normalize-scroll-left
-│  ├─ publisher: Ali Taheri Moghaddar
-│  ├─ email: ali.taheri.m@gmail.com
-│  └─ licenseFile: normalize-scroll-left/LICENSE
 ├─ normalize-url@1.9.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/normalize-url
@@ -5661,13 +5429,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
 │  └─ licenseFile: npm-run-path/license
-├─ npmlog@4.1.2
-│  ├─ licenses: ISC
-│  ├─ repository: https://github.com/npm/npmlog
-│  ├─ publisher: Isaac Z. Schlueter
-│  ├─ email: i@izs.me
-│  ├─ url: http://blog.izs.me/
-│  └─ licenseFile: npmlog/LICENSE
 ├─ nth-check@1.0.2
 │  ├─ licenses: BSD-2-Clause
 │  ├─ repository: https://github.com/fb55/nth-check
@@ -5715,7 +5476,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Jon Schlinkert
 │  ├─ url: https://github.com/jonschlinkert
 │  └─ licenseFile: object-copy/LICENSE
-├─ object-hash@2.0.2
+├─ object-hash@2.0.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/puleos/object-hash
 │  ├─ publisher: Scott Puleo
@@ -5728,7 +5489,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: mail@substack.net
 │  ├─ url: http://substack.net
 │  └─ licenseFile: object-inspect/LICENSE
-├─ object-is@1.0.2
+├─ object-is@1.1.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/es-shims/object-is
 │  ├─ publisher: Jordan Harband
@@ -5756,7 +5517,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/ljharb/object.assign
 │  ├─ publisher: Jordan Harband
 │  └─ licenseFile: object.assign/LICENSE
-├─ object.entries@1.1.1
+├─ object.entries@1.1.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/es-shims/Object.entries
 │  ├─ publisher: Jordan Harband
@@ -5815,12 +5576,12 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
 │  └─ licenseFile: onetime/license
-├─ open@6.4.0
+├─ open@7.0.4
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/open
 │  ├─ publisher: Sindre Sorhus
 │  ├─ email: sindresorhus@gmail.com
-│  ├─ url: sindresorhus.com
+│  ├─ url: https://sindresorhus.com
 │  └─ licenseFile: open/license
 ├─ opn@5.5.0
 │  ├─ licenses: MIT
@@ -5851,20 +5612,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: CoderPuppy
 │  ├─ email: coderpup@gmail.com
 │  └─ licenseFile: os-browserify/LICENSE
-├─ os-homedir@1.0.2
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/sindresorhus/os-homedir
-│  ├─ publisher: Sindre Sorhus
-│  ├─ email: sindresorhus@gmail.com
-│  ├─ url: sindresorhus.com
-│  └─ licenseFile: os-homedir/license
-├─ os-locale@1.4.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/sindresorhus/os-locale
-│  ├─ publisher: Sindre Sorhus
-│  ├─ email: sindresorhus@gmail.com
-│  ├─ url: sindresorhus.com
-│  └─ licenseFile: sass-graph/node_modules/os-locale/license
 ├─ os-locale@3.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/os-locale
@@ -5879,13 +5626,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
 │  └─ licenseFile: os-tmpdir/license
-├─ osenv@0.1.5
-│  ├─ licenses: ISC
-│  ├─ repository: https://github.com/npm/osenv
-│  ├─ publisher: Isaac Z. Schlueter
-│  ├─ email: i@izs.me
-│  ├─ url: http://blog.izs.me/
-│  └─ licenseFile: osenv/LICENSE
 ├─ p-defer@1.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/p-defer
@@ -5920,42 +5660,35 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Sindre Sorhus
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
-│  └─ licenseFile: eslint-module-utils/node_modules/p-limit/license
-├─ p-limit@2.2.1
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/sindresorhus/p-limit
-│  ├─ publisher: Sindre Sorhus
-│  ├─ email: sindresorhus@gmail.com
-│  ├─ url: sindresorhus.com
 │  └─ licenseFile: p-limit/license
-├─ p-limit@2.2.2
+├─ p-limit@2.3.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/p-limit
 │  ├─ publisher: Sindre Sorhus
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
-│  └─ licenseFile: terser-webpack-plugin/node_modules/p-limit/license
+│  └─ licenseFile: @jest/transform/node_modules/p-limit/license
 ├─ p-locate@2.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/p-locate
 │  ├─ publisher: Sindre Sorhus
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
-│  └─ licenseFile: eslint-module-utils/node_modules/p-locate/license
+│  └─ licenseFile: p-locate/license
 ├─ p-locate@3.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/p-locate
 │  ├─ publisher: Sindre Sorhus
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
-│  └─ licenseFile: p-locate/license
+│  └─ licenseFile: @jest/transform/node_modules/p-locate/license
 ├─ p-locate@4.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/p-locate
 │  ├─ publisher: Sindre Sorhus
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
-│  └─ licenseFile: react-dev-utils/node_modules/p-locate/license
+│  └─ licenseFile: react-dev-utils/node_modules/find-up/node_modules/p-locate/license
 ├─ p-map@2.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/p-map
@@ -5990,14 +5723,14 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Sindre Sorhus
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
-│  └─ licenseFile: eslint-module-utils/node_modules/p-try/license
+│  └─ licenseFile: p-try/license
 ├─ p-try@2.2.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/p-try
 │  ├─ publisher: Sindre Sorhus
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
-│  └─ licenseFile: p-try/license
+│  └─ licenseFile: @jest/transform/node_modules/p-try/license
 ├─ pako@1.0.11
 │  ├─ licenses: (MIT AND Zlib)
 │  ├─ repository: https://github.com/nodeca/pako
@@ -6008,9 +5741,9 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Mathias Buus Madsen
 │  ├─ email: mathiasbuus@gmail.com
 │  └─ licenseFile: parallel-transform/LICENSE
-├─ param-case@2.1.1
+├─ param-case@3.0.3
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/blakeembrey/param-case
+│  ├─ repository: https://github.com/blakeembrey/change-case
 │  ├─ publisher: Blake Embrey
 │  ├─ email: hello@blakeembrey.com
 │  ├─ url: http://blakeembrey.me
@@ -6065,6 +5798,13 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/pillarjs/parseurl
 │  └─ licenseFile: parseurl/LICENSE
+├─ pascal-case@3.1.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/blakeembrey/change-case
+│  ├─ publisher: Blake Embrey
+│  ├─ email: hello@blakeembrey.com
+│  ├─ url: http://blakeembrey.me
+│  └─ licenseFile: pascal-case/LICENSE
 ├─ pascalcase@0.1.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jonschlinkert/pascalcase
@@ -6103,7 +5843,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Sindre Sorhus
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
-│  └─ licenseFile: react-dev-utils/node_modules/path-exists/license
+│  └─ licenseFile: react-dev-utils/node_modules/find-up/node_modules/path-exists/license
 ├─ path-is-absolute@1.0.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/path-is-absolute
@@ -6141,18 +5881,11 @@ The following is a list of the licenses of the third party dependencies of Datan
 ├─ path-to-regexp@0.1.7
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/component/path-to-regexp
-│  └─ licenseFile: path-to-regexp/LICENSE
+│  └─ licenseFile: express/node_modules/path-to-regexp/LICENSE
 ├─ path-to-regexp@1.8.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/pillarjs/path-to-regexp
-│  └─ licenseFile: react-router/node_modules/path-to-regexp/LICENSE
-├─ path-type@1.1.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/sindresorhus/path-type
-│  ├─ publisher: Sindre Sorhus
-│  ├─ email: sindresorhus@gmail.com
-│  ├─ url: sindresorhus.com
-│  └─ licenseFile: meow/node_modules/path-type/license
+│  └─ licenseFile: path-to-regexp/LICENSE
 ├─ path-type@2.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/path-type
@@ -6185,7 +5918,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Braveg1rl
 │  ├─ email: braveg1rl@outlook.com
 │  └─ licenseFile: performance-now/license.txt
-├─ picomatch@2.2.1
+├─ picomatch@2.2.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/micromatch/picomatch
 │  ├─ publisher: Jon Schlinkert
@@ -6261,31 +5994,44 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
 │  └─ licenseFile: terser-webpack-plugin/node_modules/pkg-dir/license
-├─ pkg-up@3.1.0
+├─ pkg-up@2.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/pkg-up
 │  ├─ publisher: Sindre Sorhus
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
 │  └─ licenseFile: pkg-up/license
+├─ pkg-up@3.1.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/sindresorhus/pkg-up
+│  ├─ publisher: Sindre Sorhus
+│  ├─ email: sindresorhus@gmail.com
+│  ├─ url: sindresorhus.com
+│  └─ licenseFile: react-dev-utils/node_modules/pkg-up/license
 ├─ pn@1.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/cscott/node-pn
 │  ├─ publisher: C. Scott Ananian
 │  └─ licenseFile: pn/README.md
-├─ pnp-webpack-plugin@1.6.0
+├─ pnp-webpack-plugin@1.6.4
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/arcanis/pnp-webpack-plugin
 │  └─ licenseFile: pnp-webpack-plugin/README.md
-├─ popper.js@1.16.0
+├─ popper.js@1.16.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/FezVrasta/popper.js
 │  ├─ publisher: Federico Zivolo
 │  ├─ email: federico.zivolo@gmail.com
 │  └─ licenseFile: popper.js/README.md
-├─ portfinder@1.0.25
+├─ popper.js@1.16.1-lts
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/indexzero/node-portfinder
+│  ├─ repository: https://github.com/FezVrasta/popper.js
+│  ├─ publisher: Federico Zivolo
+│  ├─ email: federico.zivolo@gmail.com
+│  └─ licenseFile: @material-ui/core/node_modules/popper.js/README.md
+├─ portfinder@1.0.26
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/http-party/node-portfinder
 │  ├─ publisher: Charlie Robbins
 │  ├─ email: charlie.robbins@gmail.com
 │  └─ licenseFile: portfinder/LICENSE
@@ -6306,7 +6052,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Jonathan Neal
 │  ├─ email: csstools@hotmail.com
 │  └─ licenseFile: postcss-browser-comments/LICENSE.md
-├─ postcss-calc@7.0.1
+├─ postcss-calc@7.0.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/postcss/postcss-calc
 │  ├─ publisher: Andy Jansson
@@ -6537,7 +6283,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/css-modules/postcss-modules-local-by-default
 │  ├─ publisher: Mark Dalgleish
 │  └─ licenseFile: postcss-modules-local-by-default/LICENSE
-├─ postcss-modules-scope@2.1.1
+├─ postcss-modules-scope@2.2.0
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/css-modules/postcss-modules-scope
 │  ├─ publisher: Glen Maddern
@@ -6694,14 +6440,14 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/postcss/postcss-selector-not
 │  ├─ publisher: Maxime Thirouin
 │  └─ licenseFile: postcss-selector-not/LICENSE
-├─ postcss-selector-parser@3.1.1
+├─ postcss-selector-parser@3.1.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/postcss/postcss-selector-parser
 │  └─ licenseFile: stylehacks/node_modules/postcss-selector-parser/LICENSE-MIT
 ├─ postcss-selector-parser@5.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/postcss/postcss-selector-parser
-│  └─ licenseFile: postcss-calc/node_modules/postcss-selector-parser/LICENSE-MIT
+│  └─ licenseFile: css-has-pseudo/node_modules/postcss-selector-parser/LICENSE-MIT
 ├─ postcss-selector-parser@6.0.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/postcss/postcss-selector-parser
@@ -6725,8 +6471,8 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/TrySound/postcss-value-parser
 │  ├─ publisher: Bogdan Chadkin
 │  ├─ email: trysound@yandex.ru
-│  └─ licenseFile: postcss-calc/node_modules/postcss-value-parser/LICENSE
-├─ postcss-value-parser@4.0.2
+│  └─ licenseFile: postcss-colormin/node_modules/postcss-value-parser/LICENSE
+├─ postcss-value-parser@4.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/TrySound/postcss-value-parser
 │  ├─ publisher: Bogdan Chadkin
@@ -6745,18 +6491,12 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Andrey Sitnik
 │  ├─ email: andrey@sitnik.ru
 │  └─ licenseFile: resolve-url-loader/node_modules/postcss/LICENSE
-├─ postcss@7.0.25
+├─ postcss@7.0.31
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/postcss/postcss
 │  ├─ publisher: Andrey Sitnik
 │  ├─ email: andrey@sitnik.ru
 │  └─ licenseFile: postcss/LICENSE
-├─ postcss@7.0.26
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/postcss/postcss
-│  ├─ publisher: Andrey Sitnik
-│  ├─ email: andrey@sitnik.ru
-│  └─ licenseFile: autoprefixer/node_modules/postcss/LICENSE
 ├─ prelude-ls@1.1.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/gkz/prelude-ls
@@ -6787,7 +6527,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/facebook/jest
 │  ├─ publisher: James Kyle
 │  ├─ email: me@thejameskyle.com
-│  └─ licenseFile: expect/node_modules/pretty-format/LICENSE
+│  └─ licenseFile: pretty-format/LICENSE
 ├─ private@0.1.8
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/benjamn/private
@@ -6817,12 +6557,12 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: me@re-becca.org
 │  ├─ url: http://re-becca.org/
 │  └─ licenseFile: promise-inflight/LICENSE
-├─ promise@8.0.3
+├─ promise@8.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/then/promise
 │  ├─ publisher: ForbesLindesay
 │  └─ licenseFile: promise/LICENSE
-├─ prompts@2.3.0
+├─ prompts@2.3.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/terkelg/prompts
 │  ├─ publisher: Terkel Gjervig
@@ -6833,7 +6573,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/prop-types
 │  └─ licenseFile: prop-types/LICENSE
-├─ proxy-addr@2.0.5
+├─ proxy-addr@2.0.6
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jshttp/proxy-addr
 │  ├─ publisher: Douglas Christopher Wilson
@@ -6846,14 +6586,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: rod@vagg.org
 │  ├─ url: https://github.com/rvagg
 │  └─ licenseFile: prr/LICENSE.md
-├─ pseudomap@1.0.2
-│  ├─ licenses: ISC
-│  ├─ repository: https://github.com/isaacs/pseudomap
-│  ├─ publisher: Isaac Z. Schlueter
-│  ├─ email: i@izs.me
-│  ├─ url: http://blog.izs.me/
-│  └─ licenseFile: pseudomap/LICENSE
-├─ psl@1.6.0
+├─ psl@1.8.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/lupomontero/psl
 │  ├─ publisher: Lupo Montero
@@ -6893,7 +6626,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/bestiejs/punycode.js
 │  ├─ publisher: Mathias Bynens
 │  ├─ url: https://mathiasbynens.be/
-│  └─ licenseFile: request/node_modules/punycode/LICENSE-MIT.txt
+│  └─ licenseFile: node-libs-browser/node_modules/punycode/LICENSE-MIT.txt
 ├─ punycode@2.1.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/bestiejs/punycode.js
@@ -6971,29 +6704,29 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/create-react-app
 │  └─ licenseFile: react-app-polyfill/LICENSE
-├─ react-app-rewired@2.1.5
+├─ react-app-rewired@2.1.6
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/timarney/react-app-rewired
 │  └─ licenseFile: react-app-rewired/LICENSE
-├─ react-dev-utils@10.1.0
+├─ react-dev-utils@10.2.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/create-react-app
 │  └─ licenseFile: react-dev-utils/LICENSE
-├─ react-dom@16.12.0
+├─ react-dom@16.13.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/react
 │  └─ licenseFile: react-dom/LICENSE
-├─ react-error-overlay@6.0.5
+├─ react-error-overlay@6.0.7
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/create-react-app
 │  ├─ publisher: Joe Haddad
 │  ├─ email: timer150@gmail.com
 │  └─ licenseFile: react-error-overlay/LICENSE
-├─ react-is@16.12.0
+├─ react-is@16.13.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/react
 │  └─ licenseFile: react-is/LICENSE
-├─ react-lazyload@2.6.5
+├─ react-lazyload@2.6.7
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jasonslyvia/react-lazyload
 │  ├─ publisher: jasonslyvia
@@ -7011,9 +6744,11 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: travis@souporserious.com
 │  ├─ url: http://souporserious.com
 │  └─ licenseFile: react-popper/LICENSE
-├─ react-router-dom@5.1.2
+├─ react-router-dom@5.2.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/ReactTraining/react-router
+│  ├─ publisher: React Training
+│  ├─ email: hello@reacttraining.com
 │  └─ licenseFile: react-router-dom/LICENSE
 ├─ react-router-hash-link@1.2.2
 │  ├─ licenses: MIT
@@ -7021,11 +6756,13 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Rafael Pedicini
 │  ├─ email: code@rafrex.com
 │  └─ licenseFile: react-router-hash-link/LICENSE
-├─ react-router@5.1.2
+├─ react-router@5.2.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/ReactTraining/react-router
+│  ├─ publisher: React Training
+│  ├─ email: hello@reacttraining.com
 │  └─ licenseFile: react-router/LICENSE
-├─ react-scripts@3.3.1
+├─ react-scripts@3.4.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/create-react-app
 │  └─ licenseFile: react-scripts/LICENSE
@@ -7045,21 +6782,14 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: BSD-3-Clause
 │  ├─ repository: https://github.com/reactjs/react-transition-group
 │  └─ licenseFile: react-transition-group/LICENSE
-├─ react-transition-group@4.3.0
+├─ react-transition-group@4.4.1
 │  ├─ licenses: BSD-3-Clause
 │  ├─ repository: https://github.com/reactjs/react-transition-group
 │  └─ licenseFile: @material-ui/core/node_modules/react-transition-group/LICENSE
-├─ react@16.12.0
+├─ react@16.13.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/react
 │  └─ licenseFile: react/LICENSE
-├─ read-pkg-up@1.0.1
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/sindresorhus/read-pkg-up
-│  ├─ publisher: Sindre Sorhus
-│  ├─ email: sindresorhus@gmail.com
-│  ├─ url: sindresorhus.com
-│  └─ licenseFile: meow/node_modules/read-pkg-up/license
 ├─ read-pkg-up@2.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/read-pkg-up
@@ -7074,13 +6804,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
 │  └─ licenseFile: read-pkg-up/license
-├─ read-pkg@1.1.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/sindresorhus/read-pkg
-│  ├─ publisher: Sindre Sorhus
-│  ├─ email: sindresorhus@gmail.com
-│  ├─ url: sindresorhus.com
-│  └─ licenseFile: meow/node_modules/read-pkg/license
 ├─ read-pkg@2.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/read-pkg
@@ -7099,7 +6822,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/nodejs/readable-stream
 │  └─ licenseFile: fs-write-stream-atomic/node_modules/readable-stream/LICENSE
-├─ readable-stream@3.4.0
+├─ readable-stream@3.6.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/nodejs/readable-stream
 │  └─ licenseFile: readable-stream/LICENSE
@@ -7109,8 +6832,8 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Thorsten Lorenz
 │  ├─ email: thlorenz@gmx.de
 │  ├─ url: thlorenz.com
-│  └─ licenseFile: watchpack/node_modules/readdirp/LICENSE
-├─ readdirp@3.3.0
+│  └─ licenseFile: webpack-dev-server/node_modules/readdirp/LICENSE
+├─ readdirp@3.4.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/paulmillr/readdirp
 │  ├─ publisher: Thorsten Lorenz
@@ -7130,14 +6853,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: jergason@gmail.com
 │  ├─ url: http://jamisondance.com/
 │  └─ licenseFile: recursive-readdir/LICENSE
-├─ redent@1.0.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/sindresorhus/redent
-│  ├─ publisher: Sindre Sorhus
-│  ├─ email: sindresorhus@gmail.com
-│  ├─ url: sindresorhus.com
-│  └─ licenseFile: meow/node_modules/redent/license
-├─ regenerate-unicode-properties@8.1.0
+├─ regenerate-unicode-properties@8.2.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/mathiasbynens/regenerate-unicode-properties
 │  ├─ publisher: Mathias Bynens
@@ -7155,13 +6871,13 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Ben Newman
 │  ├─ email: bn@cs.stanford.edu
 │  └─ licenseFile: babel-runtime/node_modules/regenerator-runtime/README.md
-├─ regenerator-runtime@0.13.3
+├─ regenerator-runtime@0.13.5
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/regenerator/tree/master/packages/regenerator-runtime
 │  ├─ publisher: Ben Newman
 │  ├─ email: bn@cs.stanford.edu
 │  └─ licenseFile: regenerator-runtime/LICENSE
-├─ regenerator-transform@0.14.1
+├─ regenerator-transform@0.14.4
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/regenerator/tree/master/packages/regenerator-transform
 │  ├─ publisher: Ben Newman
@@ -7198,25 +6914,25 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Toru Nagashima
 │  ├─ url: https://github.com/mysticatea
 │  └─ licenseFile: eslint/node_modules/regexpp/LICENSE
-├─ regexpp@3.0.0
+├─ regexpp@3.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/mysticatea/regexpp
 │  ├─ publisher: Toru Nagashima
 │  ├─ url: https://github.com/mysticatea
 │  └─ licenseFile: regexpp/LICENSE
-├─ regexpu-core@4.6.0
+├─ regexpu-core@4.7.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/mathiasbynens/regexpu-core
 │  ├─ publisher: Mathias Bynens
 │  ├─ url: https://mathiasbynens.be/
 │  └─ licenseFile: regexpu-core/LICENSE-MIT.txt
-├─ regjsgen@0.5.1
+├─ regjsgen@0.5.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/bnjmnt4n/regjsgen
 │  ├─ publisher: Benjamin Tan
-│  ├─ url: https://bnjmnt4n.now.sh/
-│  └─ licenseFile: regjsgen/LICENSE
-├─ regjsparser@0.6.2
+│  ├─ url: https://ofcr.se/
+│  └─ licenseFile: regjsgen/LICENSE-MIT.txt
+├─ regjsparser@0.6.4
 │  ├─ licenses: BSD-2-Clause
 │  ├─ repository: https://github.com/jviereck/regjsparser
 │  ├─ publisher: 'Julian Viereck'
@@ -7251,13 +6967,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Jon Schlinkert
 │  ├─ url: http://github.com/jonschlinkert
 │  └─ licenseFile: repeat-string/LICENSE
-├─ repeating@2.0.1
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/sindresorhus/repeating
-│  ├─ publisher: Sindre Sorhus
-│  ├─ email: sindresorhus@gmail.com
-│  ├─ url: sindresorhus.com
-│  └─ licenseFile: repeating/license
 ├─ request-promise-core@1.1.3
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/request/promise-core
@@ -7270,7 +6979,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Nicolai Kamenzky
 │  ├─ url: https://github.com/analog-nico
 │  └─ licenseFile: request-promise-native/LICENSE
-├─ request@2.88.0
+├─ request@2.88.2
 │  ├─ licenses: Apache-2.0
 │  ├─ repository: https://github.com/request/request
 │  ├─ publisher: Mikeal Rogers
@@ -7349,27 +7058,20 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: mail@substack.net
 │  ├─ url: http://substack.net
 │  └─ licenseFile: browser-resolve/node_modules/resolve/LICENSE
-├─ resolve@1.13.1
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/browserify/resolve
-│  ├─ publisher: James Halliday
-│  ├─ email: mail@substack.net
-│  ├─ url: http://substack.net
-│  └─ licenseFile: resolve/LICENSE
 ├─ resolve@1.15.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/browserify/resolve
 │  ├─ publisher: James Halliday
 │  ├─ email: mail@substack.net
 │  ├─ url: http://substack.net
-│  └─ licenseFile: react-scripts/node_modules/resolve/LICENSE
-├─ resolve@1.15.1
+│  └─ licenseFile: resolve/LICENSE
+├─ resolve@1.17.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/browserify/resolve
 │  ├─ publisher: James Halliday
 │  ├─ email: mail@substack.net
 │  ├─ url: http://substack.net
-│  └─ licenseFile: eslint-plugin-react/node_modules/resolve/LICENSE
+│  └─ licenseFile: react-scripts/node_modules/eslint-plugin-react/node_modules/resolve/LICENSE
 ├─ restore-cursor@3.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/restore-cursor
@@ -7432,7 +7134,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/tildeio/rsvp.js
 │  ├─ publisher: Tilde, Inc. & Stefan Penner
 │  └─ licenseFile: rsvp/LICENSE
-├─ run-async@2.3.0
+├─ run-async@2.4.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/SBoudrias/run-async
 │  ├─ publisher: Simon Boudrias
@@ -7445,7 +7147,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: me@re-becca.org
 │  ├─ url: http://re-becca.org/
 │  └─ licenseFile: run-queue/README.md
-├─ rxjs@6.5.3
+├─ rxjs@6.5.5
 │  ├─ licenses: Apache-2.0
 │  ├─ repository: https://github.com/reactivex/rxjs
 │  ├─ publisher: Ben Lesh
@@ -7457,14 +7159,14 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Feross Aboukhadijeh
 │  ├─ email: feross@feross.org
 │  ├─ url: http://feross.org
-│  └─ licenseFile: convert-source-map/node_modules/safe-buffer/LICENSE
-├─ safe-buffer@5.2.0
+│  └─ licenseFile: safe-buffer/LICENSE
+├─ safe-buffer@5.2.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/feross/safe-buffer
 │  ├─ publisher: Feross Aboukhadijeh
 │  ├─ email: feross@feross.org
-│  ├─ url: http://feross.org
-│  └─ licenseFile: safe-buffer/LICENSE
+│  ├─ url: https://feross.org
+│  └─ licenseFile: string_decoder/node_modules/safe-buffer/LICENSE
 ├─ safe-regex@1.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/substack/safe-regex
@@ -7490,16 +7192,18 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Jonathan Neal
 │  ├─ email: jonathantneal@hotmail.com
 │  └─ licenseFile: sanitize.css/LICENSE.md
-├─ sass-graph@2.2.4
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/xzyfer/sass-graph
-│  ├─ publisher: xzyfer
-│  └─ licenseFile: sass-graph/readme.md
 ├─ sass-loader@8.0.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/webpack-contrib/sass-loader
 │  ├─ publisher: J. Tangelder
 │  └─ licenseFile: sass-loader/LICENSE
+├─ sass@1.26.7
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/sass/dart-sass
+│  ├─ publisher: Natalie Weizenbaum
+│  ├─ email: nweiz@google.com
+│  ├─ url: https://github.com/nex3
+│  └─ licenseFile: sass/LICENSE
 ├─ sax@1.2.4
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/isaacs/sax-js
@@ -7513,7 +7217,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Louis-Dominique Dubeau
 │  ├─ email: ldd@lddubeau.com
 │  └─ licenseFile: saxes/LICENSE
-├─ scheduler@0.18.0
+├─ scheduler@0.19.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/react
 │  └─ licenseFile: scheduler/LICENSE
@@ -7523,17 +7227,12 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: webpack Contrib
 │  ├─ url: https://github.com/webpack-contrib
 │  └─ licenseFile: mini-css-extract-plugin/node_modules/schema-utils/LICENSE
-├─ schema-utils@2.6.4
+├─ schema-utils@2.7.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/webpack/schema-utils
 │  ├─ publisher: webpack Contrib
 │  ├─ url: https://github.com/webpack-contrib
 │  └─ licenseFile: schema-utils/LICENSE
-├─ scss-tokenizer@0.2.3
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/sasstools/scss-tokenizer
-│  ├─ publisher: xzyfer
-│  └─ licenseFile: scss-tokenizer/LICENSE
 ├─ seed-random@2.2.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/ForbesLindesay/seed-random
@@ -7552,22 +7251,22 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: jfromaniello@gmail.com
 │  ├─ url: http://joseoncode.com
 │  └─ licenseFile: selfsigned/LICENSE
-├─ semver@5.3.0
-│  ├─ licenses: ISC
-│  ├─ repository: https://github.com/npm/node-semver
-│  └─ licenseFile: node-gyp/node_modules/semver/LICENSE
 ├─ semver@5.7.1
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/npm/node-semver
-│  └─ licenseFile: react-app-rewired/node_modules/semver/LICENSE
+│  └─ licenseFile: semver/LICENSE
 ├─ semver@6.3.0
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/npm/node-semver
-│  └─ licenseFile: @babel/compat-data/node_modules/node-releases/node_modules/semver/LICENSE
+│  └─ licenseFile: istanbul-lib-instrument/node_modules/semver/LICENSE
 ├─ semver@7.0.0
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/npm/node-semver
 │  └─ licenseFile: core-js-compat/node_modules/semver/LICENSE
+├─ semver@7.3.2
+│  ├─ licenses: ISC
+│  ├─ repository: https://github.com/npm/node-semver
+│  └─ licenseFile: @typescript-eslint/typescript-estree/node_modules/semver/LICENSE
 ├─ send@0.17.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/pillarjs/send
@@ -7686,7 +7385,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Jordan Harband
 │  ├─ email: ljharb@gmail.com
 │  └─ licenseFile: side-channel/LICENSE
-├─ signal-exit@3.0.2
+├─ signal-exit@3.0.3
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/tapjs/signal-exit
 │  ├─ publisher: Ben Coe
@@ -7698,7 +7397,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Qix
 │  ├─ url: http://github.com/qix-
 │  └─ licenseFile: simple-swizzle/LICENSE
-├─ sisteransi@1.0.4
+├─ sisteransi@1.0.5
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/terkelg/sisteransi
 │  ├─ publisher: Terkel Gjervig
@@ -7718,14 +7417,14 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Sindre Sorhus
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
-│  └─ licenseFile: slash/license
+│  └─ licenseFile: @jest/console/node_modules/slash/license
 ├─ slash@3.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/slash
 │  ├─ publisher: Sindre Sorhus
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
-│  └─ licenseFile: babel-plugin-root-import/node_modules/slash/license
+│  └─ licenseFile: slash/license
 ├─ slice-ansi@2.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/chalk/slice-ansi
@@ -7770,12 +7469,12 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/webpack/source-list-map
 │  ├─ publisher: Tobias Koppers @sokra
 │  └─ licenseFile: source-list-map/LICENSE
-├─ source-map-resolve@0.5.2
+├─ source-map-resolve@0.5.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/lydell/source-map-resolve
 │  ├─ publisher: Simon Lydell
 │  └─ licenseFile: source-map-resolve/LICENSE
-├─ source-map-support@0.5.16
+├─ source-map-support@0.5.19
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/evanw/node-source-map-support
 │  └─ licenseFile: source-map-support/LICENSE.md
@@ -7784,42 +7483,36 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/lydell/source-map-url
 │  ├─ publisher: Simon Lydell
 │  └─ licenseFile: source-map-url/LICENSE
-├─ source-map@0.4.4
-│  ├─ licenses: BSD-3-Clause
-│  ├─ repository: https://github.com/mozilla/source-map
-│  ├─ publisher: Nick Fitzgerald
-│  ├─ email: nfitzgerald@mozilla.com
-│  └─ licenseFile: scss-tokenizer/node_modules/source-map/README.md
 ├─ source-map@0.5.7
 │  ├─ licenses: BSD-3-Clause
 │  ├─ repository: https://github.com/mozilla/source-map
 │  ├─ publisher: Nick Fitzgerald
 │  ├─ email: nfitzgerald@mozilla.com
-│  └─ licenseFile: react-scripts/node_modules/source-map/LICENSE
+│  └─ licenseFile: source-map/LICENSE
 ├─ source-map@0.6.1
 │  ├─ licenses: BSD-3-Clause
 │  ├─ repository: https://github.com/mozilla/source-map
 │  ├─ publisher: Nick Fitzgerald
 │  ├─ email: nfitzgerald@mozilla.com
-│  └─ licenseFile: source-map/LICENSE
-├─ spdx-correct@3.1.0
+│  └─ licenseFile: css-tree/node_modules/source-map/LICENSE
+├─ spdx-correct@3.1.1
 │  ├─ licenses: Apache-2.0
 │  ├─ repository: https://github.com/jslicense/spdx-correct.js
 │  ├─ publisher: Kyle E. Mitchell
 │  ├─ email: kyle@kemitchell.com
 │  ├─ url: https://kemitchell.com
 │  └─ licenseFile: spdx-correct/LICENSE
-├─ spdx-exceptions@2.2.0
+├─ spdx-exceptions@2.3.0
 │  ├─ licenses: CC-BY-3.0
 │  ├─ repository: https://github.com/kemitchell/spdx-exceptions.json
 │  ├─ publisher: The Linux Foundation
 │  └─ licenseFile: spdx-exceptions/README.md
-├─ spdx-expression-parse@3.0.0
+├─ spdx-expression-parse@3.0.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jslicense/spdx-expression-parse.js
 │  ├─ publisher: Kyle E. Mitchell
 │  ├─ email: kyle@kemitchell.com
-│  ├─ url: http://kemitchell.com
+│  ├─ url: https://kemitchell.com
 │  └─ licenseFile: spdx-expression-parse/LICENSE
 ├─ spdx-license-ids@3.0.5
 │  ├─ licenses: CC0-1.0
@@ -7833,7 +7526,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Fedor Indutny
 │  ├─ email: fedor@indutny.com
 │  └─ licenseFile: spdy-transport/README.md
-├─ spdy@4.0.1
+├─ spdy@4.0.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/indutny/node-spdy
 │  ├─ publisher: Fedor Indutny
@@ -7898,10 +7591,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jshttp/statuses
 │  └─ licenseFile: statuses/LICENSE
-├─ stdout-stream@1.4.1
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/mafintosh/stdout-stream
-│  └─ licenseFile: stdout-stream/LICENSE
 ├─ stealthy-require@1.1.1
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/analog-nico/stealthy-require
@@ -7987,16 +7676,29 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Jordan Harband
 │  ├─ email: ljharb@gmail.com
 │  └─ licenseFile: string.prototype.matchall/LICENSE
-├─ string.prototype.trimleft@2.1.1
+├─ string.prototype.trimend@1.0.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/es-shims/String.prototype.trimEnd
+│  ├─ publisher: Jordan Harband
+│  ├─ email: ljharb@gmail.com
+│  └─ licenseFile: string.prototype.trimend/LICENSE
+├─ string.prototype.trimleft@2.1.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/es-shims/String.prototype.trimLeft
 │  ├─ publisher: Jordan Harband
+│  ├─ email: ljharb@gmail.com
 │  └─ licenseFile: string.prototype.trimleft/LICENSE
-├─ string.prototype.trimright@2.1.1
+├─ string.prototype.trimright@2.1.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/es-shims/String.prototype.trimRight
 │  ├─ publisher: Jordan Harband
 │  └─ licenseFile: string.prototype.trimright/LICENSE
+├─ string.prototype.trimstart@1.0.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/es-shims/String.prototype.trimStart
+│  ├─ publisher: Jordan Harband
+│  ├─ email: ljharb@gmail.com
+│  └─ licenseFile: string.prototype.trimstart/LICENSE
 ├─ string_decoder@1.1.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/nodejs/string_decoder
@@ -8040,13 +7742,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
 │  └─ licenseFile: string-width/node_modules/strip-ansi/license
-├─ strip-bom@2.0.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/sindresorhus/strip-bom
-│  ├─ publisher: Sindre Sorhus
-│  ├─ email: sindresorhus@gmail.com
-│  ├─ url: sindresorhus.com
-│  └─ licenseFile: meow/node_modules/strip-bom/license
 ├─ strip-bom@3.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/strip-bom
@@ -8067,21 +7762,14 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
 │  └─ licenseFile: strip-eof/license
-├─ strip-indent@1.0.1
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/sindresorhus/strip-indent
-│  ├─ publisher: Sindre Sorhus
-│  ├─ email: sindresorhus@gmail.com
-│  ├─ url: http://sindresorhus.com
-│  └─ licenseFile: meow/node_modules/strip-indent/license
-├─ strip-json-comments@3.0.1
+├─ strip-json-comments@3.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/strip-json-comments
 │  ├─ publisher: Sindre Sorhus
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
 │  └─ licenseFile: strip-json-comments/license
-├─ style-loader@1.1.3
+├─ style-loader@0.23.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/webpack-contrib/style-loader
 │  ├─ publisher: Tobias Koppers @sokra
@@ -8106,22 +7794,22 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Sindre Sorhus
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
-│  └─ licenseFile: chalk/node_modules/supports-color/license
+│  └─ licenseFile: supports-color/license
 ├─ supports-color@6.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/chalk/supports-color
 │  ├─ publisher: Sindre Sorhus
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
-│  └─ licenseFile: supports-color/license
+│  └─ licenseFile: jest-worker/node_modules/supports-color/license
 ├─ supports-color@7.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/chalk/supports-color
 │  ├─ publisher: Sindre Sorhus
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
-│  └─ licenseFile: react-dev-utils/node_modules/chalk/node_modules/supports-color/license
-├─ svg-parser@2.0.3
+│  └─ licenseFile: inquirer/node_modules/supports-color/license
+├─ svg-parser@2.0.4
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/Rich-Harris/svg-parser
 │  ├─ publisher: Rich Harris
@@ -8151,24 +7839,17 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/webpack/tapable
 │  ├─ publisher: Tobias Koppers @sokra
 │  └─ licenseFile: tapable/LICENSE
-├─ tar@2.2.2
-│  ├─ licenses: ISC
-│  ├─ repository: https://github.com/isaacs/node-tar
-│  ├─ publisher: Isaac Z. Schlueter
-│  ├─ email: i@izs.me
-│  ├─ url: http://blog.izs.me/
-│  └─ licenseFile: tar/LICENSE
 ├─ terser-webpack-plugin@1.4.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/webpack-contrib/terser-webpack-plugin
 │  ├─ publisher: webpack Contrib Team
 │  └─ licenseFile: webpack/node_modules/terser-webpack-plugin/LICENSE
-├─ terser-webpack-plugin@2.3.4
+├─ terser-webpack-plugin@2.3.5
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/webpack-contrib/terser-webpack-plugin
 │  ├─ publisher: webpack Contrib Team
 │  └─ licenseFile: terser-webpack-plugin/LICENSE
-├─ terser@4.6.3
+├─ terser@4.7.0
 │  ├─ licenses: BSD-2-Clause
 │  ├─ repository: https://github.com/terser/terser
 │  ├─ publisher: Mihai Bazon
@@ -8180,7 +7861,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/istanbuljs/istanbuljs
 │  ├─ publisher: Ben Coe
 │  ├─ email: ben@npmjs.com
-│  └─ licenseFile: @jest/transform/node_modules/test-exclude/LICENSE.txt
+│  └─ licenseFile: test-exclude/LICENSE.txt
 ├─ text-table@0.2.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/substack/text-table
@@ -8231,7 +7912,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/scottcorgan/tiny-emitter
 │  ├─ publisher: Scott Corgan
 │  └─ licenseFile: tiny-emitter/LICENSE
-├─ tiny-invariant@1.0.6
+├─ tiny-invariant@1.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/alexreardon/tiny-invariant
 │  ├─ publisher: Alex Reardon
@@ -8298,12 +7979,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Douglas Christopher Wilson
 │  ├─ email: doug@somethingdoug.com
 │  └─ licenseFile: toidentifier/LICENSE
-├─ tough-cookie@2.4.3
-│  ├─ licenses: BSD-3-Clause
-│  ├─ repository: https://github.com/salesforce/tough-cookie
-│  ├─ publisher: Jeremy Stashewsky
-│  ├─ email: jstash@gmail.com
-│  └─ licenseFile: request/node_modules/tough-cookie/LICENSE
 ├─ tough-cookie@2.5.0
 │  ├─ licenses: BSD-3-Clause
 │  ├─ repository: https://github.com/salesforce/tough-cookie
@@ -8316,19 +7991,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Sebastian Mayr
 │  ├─ email: npm@smayr.name
 │  └─ licenseFile: tr46/LICENSE.md
-├─ trim-newlines@1.0.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/sindresorhus/trim-newlines
-│  ├─ publisher: Sindre Sorhus
-│  ├─ email: sindresorhus@gmail.com
-│  ├─ url: sindresorhus.com
-│  └─ licenseFile: trim-newlines/license
-├─ true-case-path@1.0.3
-│  ├─ licenses: Apache-2.0
-│  ├─ repository: https://github.com/barsh/true-case-path
-│  ├─ publisher: barsh
-│  └─ licenseFile: true-case-path/LICENSE
-├─ ts-pnp@1.1.5
+├─ ts-pnp@1.1.6
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/arcanis/ts-pnp
 │  └─ licenseFile: ts-pnp/README.md
@@ -8337,11 +8000,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/Microsoft/tslib
 │  ├─ publisher: Microsoft Corp.
 │  └─ licenseFile: tslib/LICENSE.txt
-├─ tslib@1.9.3
-│  ├─ licenses: Apache-2.0
-│  ├─ repository: https://github.com/Microsoft/tslib
-│  ├─ publisher: Microsoft Corp.
-│  └─ licenseFile: @blueprintjs/icons/node_modules/tslib/LICENSE.txt
 ├─ tsutils@3.17.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/ajafff/tsutils
@@ -8372,6 +8030,13 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: George Zahariev
 │  ├─ email: z@georgezahariev.com
 │  └─ licenseFile: type-check/LICENSE
+├─ type-fest@0.11.0
+│  ├─ licenses: (MIT OR CC0-1.0)
+│  ├─ repository: https://github.com/sindresorhus/type-fest
+│  ├─ publisher: Sindre Sorhus
+│  ├─ email: sindresorhus@gmail.com
+│  ├─ url: sindresorhus.com
+│  └─ licenseFile: ansi-escapes/node_modules/type-fest/license
 ├─ type-fest@0.8.1
 │  ├─ licenses: (MIT OR CC0-1.0)
 │  ├─ repository: https://github.com/sindresorhus/type-fest
@@ -8442,13 +8107,13 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Mathias Bynens
 │  ├─ url: https://mathiasbynens.be/
 │  └─ licenseFile: unicode-match-property-ecmascript/LICENSE-MIT.txt
-├─ unicode-match-property-value-ecmascript@1.1.0
+├─ unicode-match-property-value-ecmascript@1.2.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/mathiasbynens/unicode-match-property-value-ecmascript
 │  ├─ publisher: Mathias Bynens
 │  ├─ url: https://mathiasbynens.be/
 │  └─ licenseFile: unicode-match-property-value-ecmascript/LICENSE-MIT.txt
-├─ unicode-property-aliases-ecmascript@1.0.5
+├─ unicode-property-aliases-ecmascript@1.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/mathiasbynens/unicode-property-aliases-ecmascript
 │  ├─ publisher: Mathias Bynens
@@ -8515,13 +8180,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Angelos Pikoulas
 │  ├─ email: agelos.pikoulas@gmail.com
 │  └─ licenseFile: upath/LICENSE
-├─ upper-case@1.1.3
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/blakeembrey/upper-case
-│  ├─ publisher: Blake Embrey
-│  ├─ email: hello@blakeembrey.com
-│  ├─ url: http://blakeembrey.me
-│  └─ licenseFile: upper-case/LICENSE
 ├─ uri-js@4.2.2
 │  ├─ licenses: BSD-2-Clause
 │  ├─ repository: https://github.com/garycourt/uri-js
@@ -8561,6 +8219,12 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ url: http://n8.io/
 │  └─ licenseFile: util-deprecate/LICENSE
 ├─ util.promisify@1.0.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/ljharb/util.promisify
+│  ├─ publisher: Jordan Harband
+│  ├─ email: ljharb@gmail.com
+│  └─ licenseFile: html-webpack-plugin/node_modules/util.promisify/LICENSE
+├─ util.promisify@1.0.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/ljharb/util.promisify
 │  ├─ publisher: Jordan Harband
@@ -8626,11 +8290,11 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Athan Reines
 │  ├─ email: kgryte@gmail.com
 │  └─ licenseFile: utils-regex-from-string/LICENSE
-├─ uuid@3.3.3
+├─ uuid@3.4.0
 │  ├─ licenses: MIT
-│  ├─ repository: https://github.com/kelektiv/node-uuid
+│  ├─ repository: https://github.com/uuidjs/uuid
 │  └─ licenseFile: uuid/LICENSE.md
-├─ v8-compile-cache@2.1.0
+├─ v8-compile-cache@2.1.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/zertosh/v8-compile-cache
 │  ├─ publisher: Andres Suarez
@@ -8792,12 +8456,12 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: mail@substack.net
 │  ├─ url: http://substack.net
 │  └─ licenseFile: vm-browserify/LICENSE
-├─ w3c-hr-time@1.0.1
+├─ w3c-hr-time@1.0.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jsdom/w3c-hr-time
 │  ├─ publisher: Timothy Gu
 │  ├─ email: timothygu99@gmail.com
-│  └─ licenseFile: w3c-hr-time/README.md
+│  └─ licenseFile: w3c-hr-time/LICENSE.md
 ├─ w3c-xmlserializer@1.1.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jsdom/w3c-xmlserializer
@@ -8815,7 +8479,11 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: berkeley@berkeleytrue.com
 │  ├─ url: http://www.berkeleytrue.com
 │  └─ licenseFile: warning/LICENSE.md
-├─ watchpack@1.6.0
+├─ watchpack-chokidar2@2.0.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/webpack/watchpack
+│  └─ publisher: Tobias Koppers @sokra
+├─ watchpack@1.7.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/webpack/watchpack
 │  ├─ publisher: Tobias Koppers @sokra
@@ -8838,7 +8506,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/webpack/webpack-dev-middleware
 │  ├─ publisher: Tobias Koppers @sokra
 │  └─ licenseFile: webpack-dev-middleware/LICENSE
-├─ webpack-dev-server@3.10.1
+├─ webpack-dev-server@3.10.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/webpack/webpack-dev-server
 │  ├─ publisher: Tobias Koppers @sokra
@@ -8860,12 +8528,12 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/webpack/webpack-sources
 │  ├─ publisher: Tobias Koppers @sokra
 │  └─ licenseFile: webpack-sources/LICENSE
-├─ webpack@4.41.5
+├─ webpack@4.42.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/webpack/webpack
 │  ├─ publisher: Tobias Koppers @sokra
 │  └─ licenseFile: webpack/LICENSE
-├─ websocket-driver@0.7.3
+├─ websocket-driver@0.7.4
 │  ├─ licenses: Apache-2.0
 │  ├─ repository: https://github.com/faye/websocket-driver-node
 │  ├─ publisher: James Coglan
@@ -8909,11 +8577,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Sebastian Mayr
 │  ├─ email: github@smayr.name
 │  └─ licenseFile: data-urls/node_modules/whatwg-url/LICENSE.txt
-├─ which-module@1.0.0
-│  ├─ licenses: ISC
-│  ├─ repository: https://github.com/nexdrew/which-module
-│  ├─ publisher: nexdrew
-│  └─ licenseFile: sass-graph/node_modules/which-module/LICENSE
 ├─ which-module@2.0.0
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/nexdrew/which-module
@@ -8933,13 +8596,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: i@izs.me
 │  ├─ url: http://blog.izs.me
 │  └─ licenseFile: react-dev-utils/node_modules/which/LICENSE
-├─ wide-align@1.1.3
-│  ├─ licenses: ISC
-│  ├─ repository: https://github.com/iarna/wide-align
-│  ├─ publisher: Rebecca Turner
-│  ├─ email: me@re-becca.org
-│  ├─ url: http://re-becca.org/
-│  └─ licenseFile: wide-align/LICENSE
 ├─ word-wrap@1.2.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jonschlinkert/word-wrap
@@ -9052,7 +8708,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Sindre Sorhus
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
-│  └─ licenseFile: jest-runtime/node_modules/wrap-ansi/license
+│  └─ licenseFile: wrap-ansi/license
 ├─ wrappy@1.0.2
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/npm/wrappy
@@ -9079,7 +8735,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Einar Otto Stangvik
 │  ├─ email: einaros@gmail.com
 │  ├─ url: http://2x.io
-│  └─ licenseFile: jsdom/node_modules/ws/LICENSE
+│  └─ licenseFile: ws/LICENSE
 ├─ ws@6.2.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/websockets/ws
@@ -9100,31 +8756,24 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Louis-Dominique Dubeau
 │  ├─ email: ldd@lddubeau.com
 │  └─ licenseFile: xmlchars/LICENSE
+├─ xregexp@4.3.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/slevithan/xregexp
+│  ├─ publisher: Steven Levithan
+│  ├─ email: steves_list@hotmail.com
+│  └─ licenseFile: xregexp/LICENSE
 ├─ xtend@4.0.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/Raynos/xtend
 │  ├─ publisher: Raynos
 │  ├─ email: raynos2@gmail.com
 │  └─ licenseFile: xtend/LICENSE
-├─ y18n@3.2.1
-│  ├─ licenses: ISC
-│  ├─ repository: https://github.com/yargs/y18n
-│  ├─ publisher: Ben Coe
-│  ├─ email: ben@npmjs.com
-│  └─ licenseFile: sass-graph/node_modules/y18n/LICENSE
 ├─ y18n@4.0.0
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/yargs/y18n
 │  ├─ publisher: Ben Coe
 │  ├─ email: ben@npmjs.com
 │  └─ licenseFile: y18n/LICENSE
-├─ yallist@2.1.2
-│  ├─ licenses: ISC
-│  ├─ repository: https://github.com/isaacs/yallist
-│  ├─ publisher: Isaac Z. Schlueter
-│  ├─ email: i@izs.me
-│  ├─ url: http://blog.izs.me/
-│  └─ licenseFile: node-sass/node_modules/yallist/LICENSE
 ├─ yallist@3.1.1
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/isaacs/yallist
@@ -9139,7 +8788,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: i@izs.me
 │  ├─ url: http://blog.izs.me/
 │  └─ licenseFile: yallist/LICENSE
-├─ yaml@1.7.2
+├─ yaml@1.10.0
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/eemeli/yaml
 │  ├─ publisher: Eemeli Aro
@@ -9151,27 +8800,17 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Ben Coe
 │  ├─ email: ben@npmjs.com
 │  └─ licenseFile: webpack-dev-server/node_modules/yargs-parser/LICENSE.txt
-├─ yargs-parser@13.1.1
+├─ yargs-parser@13.1.2
 │  ├─ licenses: ISC
 │  ├─ repository: https://github.com/yargs/yargs-parser
 │  ├─ publisher: Ben Coe
 │  ├─ email: ben@npmjs.com
-│  └─ licenseFile: jest-runtime/node_modules/yargs-parser/LICENSE.txt
-├─ yargs-parser@5.0.0
-│  ├─ licenses: ISC
-│  ├─ repository: https://github.com/yargs/yargs-parser
-│  ├─ publisher: Ben Coe
-│  ├─ email: ben@npmjs.com
-│  └─ licenseFile: sass-graph/node_modules/yargs-parser/LICENSE.txt
+│  └─ licenseFile: yargs-parser/LICENSE.txt
 ├─ yargs@12.0.5
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/yargs/yargs
 │  └─ licenseFile: webpack-dev-server/node_modules/yargs/LICENSE
-├─ yargs@13.3.0
-│  ├─ licenses: MIT
-│  ├─ repository: https://github.com/yargs/yargs
-│  └─ licenseFile: jest-runtime/node_modules/yargs/LICENSE
-└─ yargs@7.1.0
+└─ yargs@13.3.2
    ├─ licenses: MIT
    ├─ repository: https://github.com/yargs/yargs
-   └─ licenseFile: sass-graph/node_modules/yargs/LICENSE
+   └─ licenseFile: yargs/LICENSE
