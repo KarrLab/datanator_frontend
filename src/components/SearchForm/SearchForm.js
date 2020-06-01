@@ -173,7 +173,7 @@ class SearchForm extends Component {
       organism: value,
       organismValid: true
     });
-    this.organismSuggest.input.focus();
+    this.organismSuggest.inputEl.focus();
   }
 
   submitSearch(event) {
