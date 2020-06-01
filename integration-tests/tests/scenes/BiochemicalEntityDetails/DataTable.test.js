@@ -43,9 +43,9 @@ describe("DataTable", function () {
     // download as CSV, JSON
     cy.get(
       "#concentration .content-block-heading-container .content-block-heading-actions button"
-    ).each(($button) => {
-      // cy.wrap($button).click();
-    });
+    ); // .each(($button) => {
+    // cy.wrap($button).click();
+    // });
 
     // navigate to new page, back, to home, back
     cy.window()
