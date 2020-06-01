@@ -16,7 +16,7 @@ class StatsToolPanel extends Component {
     /* AG-Grid API */
     api: PropTypes.shape({
       addEventListener: PropTypes.func.isRequired,
-      removeEventListener: PropTypes.func.isRequired
+      removeEventListener: PropTypes.func.isRequired,
     }).isRequired,
 
     /**
@@ -24,7 +24,7 @@ class StatsToolPanel extends Component {
      * For example, in metabolite concentrations, we want the summarize the value of "concentration",
      * so we need to tell the compomenet to look for the column labeled "concentration"
      */
-    col: PropTypes.array.isRequired
+    col: PropTypes.array.isRequired,
   };
 
   constructor(props) {
@@ -38,7 +38,7 @@ class StatsToolPanel extends Component {
         median: null,
         stdDev: null,
         min: null,
-        max: null
+        max: null,
       },
       selected: {
         values: null,
@@ -47,8 +47,8 @@ class StatsToolPanel extends Component {
         median: null,
         stdDev: null,
         min: null,
-        max: null
-      }
+        max: null,
+      },
     };
 
     this.updateStats = this.updateStats.bind(this);
@@ -105,12 +105,12 @@ class StatsToolPanel extends Component {
 
   updateStats(event) {
     const dataPoints = [];
-    event.api.forEachNode(node => {
+    event.api.forEachNode((node) => {
       dataPoints.push(node.data);
     });
 
     this.setState({
-      all: this.calcStats(dataPoints)
+      all: this.calcStats(dataPoints),
     });
 
     this.updateSelectedStats(event);
@@ -118,14 +118,14 @@ class StatsToolPanel extends Component {
 
   updateSelectedStats(event) {
     const dataPoints = [];
-    event.api.forEachNodeAfterFilter(node => {
+    event.api.forEachNodeAfterFilter((node) => {
       if (node.selected) {
         dataPoints.push(node.data);
       }
     });
 
     this.setState({
-      selected: this.calcStats(dataPoints)
+      selected: this.calcStats(dataPoints),
     });
   }
 
@@ -159,7 +159,7 @@ class StatsToolPanel extends Component {
       median: null,
       stdDev: null,
       min: null,
-      max: null
+      max: null,
     };
 
     if (vals.length > 0) {

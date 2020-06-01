@@ -8,11 +8,11 @@ import * as colorPalette from "~/colors.scss";
 export default class MeasurementsBoxScatterPlot extends Component {
   static propTypes = {
     all: PropTypes.array,
-    selected: PropTypes.array
+    selected: PropTypes.array,
   };
 
   static defaultProps = {
-    selected: null
+    selected: null,
   };
 
   canvas = React.createRef();
@@ -39,22 +39,22 @@ export default class MeasurementsBoxScatterPlot extends Component {
             padding: 10,
             itemRadius: 0,
             data: [],
-            order: 2
-          }
-        ]
+            order: 2,
+          },
+        ],
       },
       options: {
         events: [],
         responsive: true,
         maintainAspectRatio: false,
         legend: {
-          display: false
+          display: false,
         },
         animation: null,
         title: {
-          display: false
-        }
-      }
+          display: false,
+        },
+      },
     };
 
     // all measurements
@@ -64,7 +64,7 @@ export default class MeasurementsBoxScatterPlot extends Component {
     for (const measurement of measurements) {
       dataForScatterPlot.push({
         x: "All",
-        y: measurement
+        y: measurement,
       });
     }
     chartConfig.data.datasets[0].data.push(dataForBoxPlot);
@@ -77,7 +77,7 @@ export default class MeasurementsBoxScatterPlot extends Component {
       borderWidth: 1,
       data: dataForScatterPlot,
       order: 1,
-      type: "scatter"
+      type: "scatter",
     });
 
     // selected measurements
@@ -88,7 +88,7 @@ export default class MeasurementsBoxScatterPlot extends Component {
       for (const measurement of measurements) {
         dataForScatterPlot.push({
           x: "Selected",
-          y: parseFloat(measurement)
+          y: parseFloat(measurement),
         });
       }
 
@@ -102,7 +102,7 @@ export default class MeasurementsBoxScatterPlot extends Component {
         borderWidth: 1,
         data: dataForScatterPlot,
         order: 1,
-        type: "scatter"
+        type: "scatter",
       });
     }
 

@@ -18,7 +18,7 @@ class TaxonomyFilter extends Component {
   static propTypes = {
     agGridReact: PropTypes.object.isRequired,
     valueGetter: PropTypes.func.isRequired,
-    filterChangedCallback: PropTypes.func.isRequired
+    filterChangedCallback: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -33,7 +33,7 @@ class TaxonomyFilter extends Component {
     this.state = {
       marks: [],
       selectedMarkValue: this.selectedMarkValue,
-      maxDistance: null
+      maxDistance: null,
     };
 
     this.markValueToDistance = null;
@@ -47,7 +47,7 @@ class TaxonomyFilter extends Component {
 
   componentDidMount() {
     this.locationPathname = history.location.pathname;
-    this.unlistenToHistory = history.listen(location => {
+    this.unlistenToHistory = history.listen((location) => {
       if (location.pathname !== this.locationPathname) {
         this.locationPathname = history.location.pathname;
         this.updateStateFromLocation();
@@ -82,13 +82,13 @@ class TaxonomyFilter extends Component {
 
     this.cancelTokenSource = axios.CancelToken.source();
     getDataFromApi(["taxon", "canon_rank_distance_by_name/?name=" + organism], {
-      cancelToken: this.cancelTokenSource.token
+      cancelToken: this.cancelTokenSource.token,
     })
-      .then(response => {
+      .then((response) => {
         this.taxonLineage = response.data;
         this.setMarks();
       })
-      .catch(error => {
+      .catch((error) => {
         if (
           "response" in error &&
           "request" in error.response &&
@@ -115,7 +115,7 @@ class TaxonomyFilter extends Component {
       const taxon = Object.keys(lineage[iLineage])[0];
       marks.push({
         value: iLineage,
-        label: upperCaseFirstLetter(taxon)
+        label: upperCaseFirstLetter(taxon),
       });
       markValueToDistance.push(iLineage);
     }
@@ -127,7 +127,7 @@ class TaxonomyFilter extends Component {
     this.setState({
       marks: marks,
       selectedMarkValue: this.selectedMarkValue,
-      maxDistance: this.maxDistance
+      maxDistance: this.maxDistance,
     });
   }
 
@@ -148,7 +148,7 @@ class TaxonomyFilter extends Component {
   getModel() {
     return {
       markValueToDistance: this.markValueToDistance,
-      selectedMarkValue: this.selectedMarkValue
+      selectedMarkValue: this.selectedMarkValue,
     };
   }
 
@@ -177,7 +177,7 @@ class TaxonomyFilter extends Component {
     this.maxDistance = this.markValueToDistance[this.selectedMarkValue];
     this.setState({
       selectedMarkValue: this.selectedMarkValue,
-      maxDistance: this.maxDistance
+      maxDistance: this.maxDistance,
     });
     this.props.filterChangedCallback();
   }
@@ -193,7 +193,7 @@ class TaxonomyFilter extends Component {
       this.setState(
         {
           selectedMarkValue: selectedMarkValue,
-          maxDistance: maxDistance
+          maxDistance: maxDistance,
         },
         () => {
           this.props.filterChangedCallback();

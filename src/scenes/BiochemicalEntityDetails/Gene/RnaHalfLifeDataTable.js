@@ -8,7 +8,7 @@ import { TAXONOMIC_PROXIMITY_TOOLTIP } from "../ColumnsToolPanel/TooltipDescript
 
 class RnaHalfLifeDataTable extends Component {
   static propTypes = {
-    "set-scene-metadata": PropTypes.func.isRequired
+    "set-scene-metadata": PropTypes.func.isRequired,
   };
 
   static getUrl(query, organism) {
@@ -55,8 +55,8 @@ class RnaHalfLifeDataTable extends Component {
                   : null,
               source: {
                 id: "DOI: " + measurement.reference[0].doi,
-                url: "https://dx.doi.org/" + measurement.reference[0].doi
-              }
+                url: "https://dx.doi.org/" + measurement.reference[0].doi,
+              },
             };
 
             if (organism != null) {
@@ -101,7 +101,7 @@ class RnaHalfLifeDataTable extends Component {
                 } else {
                   cellLineValues[cellLine] = {
                     values: [halfLife],
-                    units: units
+                    units: units,
                   };
                 }
               } else {
@@ -125,8 +125,8 @@ class RnaHalfLifeDataTable extends Component {
                     : null,
                 source: {
                   id: "DOI: " + measurement.reference[0].doi,
-                  url: "https://dx.doi.org/" + measurement.reference[0].doi
-                }
+                  url: "https://dx.doi.org/" + measurement.reference[0].doi,
+                },
               };
 
               if ("value" in cellLineValue) {
@@ -165,14 +165,14 @@ class RnaHalfLifeDataTable extends Component {
           labelDefault: "Columns",
           labelKey: "columns",
           iconKey: "columns",
-          toolPanel: "columnsToolPanel"
+          toolPanel: "columnsToolPanel",
         },
         {
           id: "filters",
           labelDefault: "Filters",
           labelKey: "filters",
           iconKey: "filter",
-          toolPanel: "filtersToolPanel"
+          toolPanel: "filtersToolPanel",
         },
         {
           id: "stats",
@@ -181,13 +181,13 @@ class RnaHalfLifeDataTable extends Component {
           iconKey: "chart",
           toolPanel: "statsToolPanel",
           toolPanelParams: {
-            col: ["halfLife"]
-          }
-        }
+            col: ["halfLife"],
+          },
+        },
       ],
       position: "left",
       defaultToolPanel: "filters",
-      hiddenByDefault: false
+      hiddenByDefault: false,
     };
   }
 
@@ -197,7 +197,7 @@ class RnaHalfLifeDataTable extends Component {
         headerName: "Half-life",
         headerComponentFramework: HtmlColumnHeader,
         headerComponentParams: {
-          name: <span>Half-life</span>
+          name: <span>Half-life</span>,
         },
         field: "halfLife",
         cellRenderer: "numericCellRenderer",
@@ -206,22 +206,22 @@ class RnaHalfLifeDataTable extends Component {
         checkboxSelection: true,
         headerCheckboxSelection: true,
         headerCheckboxSelectionFilteredOnly: true,
-        comparator: DataTable.numericComparator
+        comparator: DataTable.numericComparator,
       },
       {
         headerName: "Units",
         field: "units",
-        filter: "textFilter"
+        filter: "textFilter",
       },
       {
         headerName: "Protein",
         field: "proteinName",
-        filter: "textFilter"
+        filter: "textFilter",
       },
       {
         headerName: "UniProt id",
         field: "uniprotId",
-        cellRenderer: function(params) {
+        cellRenderer: function (params) {
           return (
             '<a href="https://www.uniprot.org/uniprot/' +
             params.value +
@@ -229,19 +229,19 @@ class RnaHalfLifeDataTable extends Component {
             params.value +
             "</a>"
           );
-        }
+        },
       },
       {
         headerName: "Gene",
         field: "geneName",
         filter: "textFilter",
-        hide: true
+        hide: true,
       },
       {
         headerName: "Organism",
         field: "organism",
         filter: "textFilter",
-        cellRenderer: function(params) {
+        cellRenderer: function (params) {
           const organism = params.value;
           if (organism) {
             return (
@@ -254,7 +254,7 @@ class RnaHalfLifeDataTable extends Component {
           } else {
             return null;
           }
-        }
+        },
       },
       {
         headerName: "Taxonomic similarity",
@@ -264,12 +264,12 @@ class RnaHalfLifeDataTable extends Component {
             <Tooltip title={TAXONOMIC_PROXIMITY_TOOLTIP} arrow>
               <span>Taxonomic similarity</span>
             </Tooltip>
-          )
+          ),
         },
         field: "taxonomicProximity",
         hide: true,
         filter: "taxonomyFilter",
-        valueFormatter: params => {
+        valueFormatter: (params) => {
           if (params.value != null) {
             const value = taxonomicRanks[params.value];
             return upperCaseFirstLetter(value);
@@ -277,13 +277,13 @@ class RnaHalfLifeDataTable extends Component {
             return null;
           }
         },
-        comparator: DataTable.numericComparator
+        comparator: DataTable.numericComparator,
       },
       {
         headerName: "Cell line",
         field: "cellLine",
         filter: "textFilter",
-        cellRenderer: function(params) {
+        cellRenderer: function (params) {
           const cellLine = params.value;
           if (cellLine) {
             return (
@@ -296,18 +296,18 @@ class RnaHalfLifeDataTable extends Component {
           } else {
             return null;
           }
-        }
+        },
       },
       {
         headerName: "Media",
         field: "growthMedium",
         filter: "textFilter",
-        hide: false
+        hide: false,
       },
       {
         headerName: "Source",
         field: "source",
-        cellRenderer: function(params) {
+        cellRenderer: function (params) {
           const source = params.value;
           return (
             '<a href="' +
@@ -317,12 +317,12 @@ class RnaHalfLifeDataTable extends Component {
             "</a>"
           );
         },
-        filterValueGetter: params => {
+        filterValueGetter: (params) => {
           const source = params.data.source;
           return source.id;
         },
-        filter: "textFilter"
-      }
+        filter: "textFilter",
+      },
     ];
 
     if (!organism) {

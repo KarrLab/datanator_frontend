@@ -18,7 +18,7 @@ const IS_TEST = process.env.NODE_ENV.startsWith("test");
 
 class SearchForm extends Component {
   static propTypes = {
-    history: PropTypes.object.isRequired
+    history: PropTypes.object.isRequired,
   };
 
   constructor(props) {
@@ -31,7 +31,7 @@ class SearchForm extends Component {
       organism: null,
       matchingOrganisms: [],
       queryValid: false,
-      organismValid: true
+      organismValid: true,
     };
 
     this.getMatchingOrganisms = this.getMatchingOrganisms.bind(this);
@@ -71,8 +71,8 @@ class SearchForm extends Component {
         if (organism) {
           organismItem = {
             _source: {
-              tax_name: organism
-            }
+              tax_name: organism,
+            },
           };
         } else {
           organismItem = null;
@@ -82,7 +82,7 @@ class SearchForm extends Component {
           query: query,
           queryValid: query !== "",
           organism: organismItem,
-          organismValid: true
+          organismValid: true,
         });
 
         this.organismSuggest.setState({ selectedItem: organismItem });
@@ -103,7 +103,7 @@ class SearchForm extends Component {
 
     const state = {
       organism: null,
-      organismValid: query === ""
+      organismValid: query === "",
     };
     if (!query) {
       state["matchingOrganisms"] = [];
@@ -128,7 +128,7 @@ class SearchForm extends Component {
       "&_source_includes=tax_name";
     getDataFromApi([url], { cancelToken: this.cancelTokenSource.token })
       .then(this.setOrganismMenu.bind(this, query))
-      .catch(error => {
+      .catch((error) => {
         if (
           "response" in error &&
           "request" in error.response &&
@@ -156,7 +156,7 @@ class SearchForm extends Component {
       <MenuItem
         active={modifiers.active}
         key={organism["_id"]}
-        onClick={event => {
+        onClick={(event) => {
           handleClick(event);
         }}
         text={organism["_source"]["tax_name"]}
@@ -171,7 +171,7 @@ class SearchForm extends Component {
   selectOrganism(value) {
     this.setState({
       organism: value,
-      organismValid: true
+      organismValid: true,
     });
     this.organismSuggest.inputEl.focus();
   }
@@ -199,10 +199,11 @@ class SearchForm extends Component {
           leftIcon=<FontAwesomeIcon icon="atom" />
           placeholder="metabolite, gene, or reaction (e.g., D-glucose)"
           value={this.state.query}
-          onChange={event => {
+          onChange={(event) => {
             this.setState({
               query: event.target.value,
-              queryValid: event.target.value && event.target.value.trim() !== ""
+              queryValid:
+                event.target.value && event.target.value.trim() !== "",
             });
           }}
         />
@@ -210,7 +211,7 @@ class SearchForm extends Component {
         <div className="search-label search-label-in">in</div>
 
         <Suggest
-          ref={el => {
+          ref={(el) => {
             this.organismSuggest = el;
           }}
           className="search-form-el search-form-el-organism"
@@ -218,7 +219,7 @@ class SearchForm extends Component {
             "aria-label": "Taxon (e.g., Escherichia coli)",
             className: "search-input",
             leftIcon: <FontAwesomeIcon icon="dna" />,
-            placeholder: "taxon (e.g., Escherichia coli)"
+            placeholder: "taxon (e.g., Escherichia coli)",
           }}
           items={this.state.matchingOrganisms}
           openOnKeyDown={true}

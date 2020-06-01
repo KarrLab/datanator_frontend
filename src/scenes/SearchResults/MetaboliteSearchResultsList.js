@@ -36,7 +36,7 @@ export default class MetaboliteSearchResultsList extends Component {
         "fields=pathways.pathway.description",
         "fields=pathways.pathway.ecocyc_pathway_id",
         "fields=pathways.pathway.kegg_map_id",
-        "fields=pathways.pathway.pathwhiz_id"
+        "fields=pathways.pathway.pathwhiz_id",
       ].join("&")
     );
   }
@@ -66,18 +66,18 @@ export default class MetaboliteSearchResultsList extends Component {
         {
           label: "InChI key",
           url: "https://www.ebi.ac.uk/chebi/advancedSearchFT.do?searchString=",
-          attribute: "InChI_Key"
+          attribute: "InChI_Key",
         },
         {
           label: "ChEBI",
           url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=",
-          attribute: "chebi_id"
+          attribute: "chebi_id",
         },
         {
           label: "KEGG",
           url: "https://www.genome.jp/dbget-bin/www_bget?cpd:",
-          attribute: "kegg_id"
-        }
+          attribute: "kegg_id",
+        },
       ];
       const links = [];
       for (const linkType of linkTypes) {
@@ -111,7 +111,7 @@ export default class MetaboliteSearchResultsList extends Component {
 
     return {
       results: formattedResults,
-      numResults: numResults
+      numResults: numResults,
     };
   }
 

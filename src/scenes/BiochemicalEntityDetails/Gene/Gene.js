@@ -14,7 +14,7 @@ class Gene extends Component {
   constructor() {
     super();
     this.state = {
-      metadata: null
+      metadata: null,
     };
   }
 
@@ -74,7 +74,7 @@ class Gene extends Component {
                   <ul>
                     {this.state.metadata &&
                       this.state.metadata.metadataSections &&
-                      this.state.metadata.metadataSections.map(section => (
+                      this.state.metadata.metadataSections.map((section) => (
                         <li key={section.id}>
                           <HashLink to={"#" + section.id} scroll={scrollTo}>
                             {section.title}

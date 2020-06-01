@@ -21,7 +21,7 @@ import {
   faDna,
   faBug,
   faEnvelope,
-  faExclamationCircle
+  faExclamationCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
 // Common page components

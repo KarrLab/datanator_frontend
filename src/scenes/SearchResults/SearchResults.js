@@ -11,14 +11,14 @@ import "./SearchResults.scss";
 
 class SearchResults extends Component {
   static propTypes = {
-    history: PropTypes.object.isRequired
+    history: PropTypes.object.isRequired,
   };
 
   constructor(props) {
     super(props);
     this.state = {
       query: null,
-      organism: null
+      organism: null,
     };
   }
 
@@ -39,7 +39,7 @@ class SearchResults extends Component {
       const route = parseHistoryLocationPathname(this.props.history);
       this.setState({
         query: route.query,
-        organism: route.organism
+        organism: route.organism,
       });
     }
   }

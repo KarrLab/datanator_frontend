@@ -1,7 +1,7 @@
 /* global cy, describe, it, expect */
 
-describe("Open and close", function() {
-  it("successfully loads", function() {
+describe("Open and close", function () {
+  it("successfully loads", function () {
     cy.server();
     cy.route({
       method: "GET",
@@ -9,15 +9,15 @@ describe("Open and close", function() {
       status: 400,
       response: {
         status: 400,
-        detail: "Missing parameters"
-      }
+        detail: "Missing parameters",
+      },
     }).as("getResults");
 
     cy.visit("/search/glucose");
     cy.wait("@getResults");
     cy.get(".dialog-message-container span")
       .first()
-      .should($el => {
+      .should(($el) => {
         const text = $el.text();
         expect(text).to.equal(
           "We were unable to conduct your search for 'glucose'."

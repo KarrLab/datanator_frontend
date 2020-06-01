@@ -2,7 +2,7 @@ import React from "react";
 
 function matchAll(string, regex) {
   const matches = [];
-  string.replace(regex, function() {
+  string.replace(regex, function () {
     const match = Array.prototype.slice.call(arguments, 0, -2);
     match.input = arguments[arguments.length - 1];
     match.index = arguments[arguments.length - 2];
@@ -175,7 +175,7 @@ function parseHistoryLocationPathname(history) {
   return {
     route: route,
     query: query,
-    organism: organism
+    organism: organism,
   };
 }
 
@@ -222,7 +222,7 @@ function naturalSort(a, b) {
   return a.localeCompare(b, navigator.languages[0] || navigator.language, {
     caseFirst: "lower",
     numeric: true,
-    ignorePunctuation: false
+    ignorePunctuation: false,
   });
 }
 
@@ -293,5 +293,5 @@ export {
   isEmpty,
   naturalSort,
   isKeggOrthologyId,
-  replaceNanWithNull
+  replaceNanWithNull,
 };

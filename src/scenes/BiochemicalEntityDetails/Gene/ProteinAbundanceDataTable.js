@@ -10,11 +10,11 @@ import { isKeggOrthologyId } from "~/utils/utils";
 class ProteinAbundanceDataTable extends Component {
   static propTypes = {
     "uniprot-id-to-taxon-dist": PropTypes.object,
-    "set-scene-metadata": PropTypes.func.isRequired
+    "set-scene-metadata": PropTypes.func.isRequired,
   };
 
   static defaultProps = {
-    "uniprot-id-to-taxon-dist": null
+    "uniprot-id-to-taxon-dist": null,
   };
 
   getUrl(query, organism) {
@@ -91,7 +91,7 @@ class ProteinAbundanceDataTable extends Component {
               "uniprot_id" in rawDatum ? rawDatum.uniprot_id : uniprotId,
             geneSymbol: rawDatum.gene_name,
             organism: rawDatum.species_name,
-            organ: measurement.organ.replace("_", " ").toLowerCase()
+            organ: measurement.organ.replace("_", " ").toLowerCase(),
           };
 
           if (organism != null) {
@@ -108,7 +108,7 @@ class ProteinAbundanceDataTable extends Component {
                 organism.toLowerCase() ===
                   rawDatum.species_name.toLowerCase() ||
                 rawDatum.canon_ancestors
-                  .map(el => el.toLowerCase())
+                  .map((el) => el.toLowerCase())
                   .includes(organism.toLowerCase())
               ) {
                 formattedDatum["taxonomicProximity"] = 0;
@@ -132,14 +132,14 @@ class ProteinAbundanceDataTable extends Component {
           labelDefault: "Columns",
           labelKey: "columns",
           iconKey: "columns",
-          toolPanel: "columnsToolPanel"
+          toolPanel: "columnsToolPanel",
         },
         {
           id: "filters",
           labelDefault: "Filters",
           labelKey: "filters",
           iconKey: "filter",
-          toolPanel: "filtersToolPanel"
+          toolPanel: "filtersToolPanel",
         },
         {
           id: "stats",
@@ -148,13 +148,13 @@ class ProteinAbundanceDataTable extends Component {
           iconKey: "chart",
           toolPanel: "statsToolPanel",
           toolPanelParams: {
-            col: ["abundance"]
-          }
-        }
+            col: ["abundance"],
+          },
+        },
       ],
       position: "left",
       defaultToolPanel: "filters",
-      hiddenByDefault: false
+      hiddenByDefault: false,
     };
   }
 
@@ -169,17 +169,17 @@ class ProteinAbundanceDataTable extends Component {
         checkboxSelection: true,
         headerCheckboxSelection: true,
         headerCheckboxSelectionFilteredOnly: true,
-        comparator: DataTable.numericComparator
+        comparator: DataTable.numericComparator,
       },
       {
         headerName: "Protein",
         field: "proteinName",
-        filter: "textFilter"
+        filter: "textFilter",
       },
       {
         headerName: "UniProt id",
         field: "uniprotId",
-        cellRenderer: function(params) {
+        cellRenderer: function (params) {
           return (
             '<a href="https://www.uniprot.org/uniprot/' +
             params.value +
@@ -187,19 +187,19 @@ class ProteinAbundanceDataTable extends Component {
             params.value +
             "</a>"
           );
-        }
+        },
       },
       {
         headerName: "Gene",
         field: "geneSymbol",
         filter: "textFilter",
-        hide: true
+        hide: true,
       },
       {
         headerName: "Organism",
         field: "organism",
         filter: "textFilter",
-        cellRenderer: function(params) {
+        cellRenderer: function (params) {
           const organism = params.value;
           if (organism) {
             return (
@@ -212,7 +212,7 @@ class ProteinAbundanceDataTable extends Component {
           } else {
             return null;
           }
-        }
+        },
       },
       {
         headerName: "Taxonomic similarity",
@@ -222,12 +222,12 @@ class ProteinAbundanceDataTable extends Component {
             <Tooltip title={TAXONOMIC_PROXIMITY_TOOLTIP} arrow>
               <span>Taxonomic similarity</span>
             </Tooltip>
-          )
+          ),
         },
         field: "taxonomicProximity",
         hide: true,
         filter: "taxonomyFilter",
-        valueFormatter: params => {
+        valueFormatter: (params) => {
           if (params.value != null) {
             const value = taxonomicRanks[params.value];
             return upperCaseFirstLetter(value);
@@ -235,18 +235,18 @@ class ProteinAbundanceDataTable extends Component {
             return null;
           }
         },
-        comparator: DataTable.numericComparator
+        comparator: DataTable.numericComparator,
       },
       {
         headerName: "Organ",
         field: "organ",
         filter: "textFilter",
-        hide: false
+        hide: false,
       },
       {
         headerName: "Source",
         field: "uniprotId",
-        cellRenderer: function(params) {
+        cellRenderer: function (params) {
           return (
             '<a href="https://pax-db.org/search?q=' +
             params.value +
@@ -256,8 +256,8 @@ class ProteinAbundanceDataTable extends Component {
           );
         },
         filterValueGetter: () => "PAXdb",
-        filter: "textFilter"
-      }
+        filter: "textFilter",
+      },
     ];
 
     if (!organism) {

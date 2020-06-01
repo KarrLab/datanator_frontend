@@ -23,7 +23,7 @@ export default class GeneSearchResultsList extends Component {
         "fields=entry_name",
         "fields=uniprot_id",
 
-        "fields=ec_number"
+        "fields=ec_number",
       ].join("&")
     );
   }
@@ -125,7 +125,7 @@ export default class GeneSearchResultsList extends Component {
 
     return {
       results: formattedResults,
-      numResults: numResults
+      numResults: numResults,
     };
   }
 

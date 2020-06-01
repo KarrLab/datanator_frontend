@@ -20,15 +20,15 @@ const DEFAULT_ERROR_MESSAGE = (
 function getDataFromApi(params, options = {}) {
   const url = ROOT_URL + params.join("/");
   options.transformResponse = [
-    function(data) {
+    function (data) {
       return replaceNanWithNull(JSON5.parse(data));
-    }
+    },
   ];
   return axios.get(url, options);
 }
 
 function genApiErrorHandler(params, errorMessage = null) {
-  return error => {
+  return (error) => {
     if (axios.isCancel(error)) {
       if (IS_DEVELOPMENT || IS_TEST) {
         console.info("Request '" + params.join("/") + "' cancelled");

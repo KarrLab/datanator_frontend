@@ -6,7 +6,7 @@ import { getDataFromApi, genApiErrorHandler } from "~/services/RestApi";
 import {
   parseHistoryLocationPathname,
   downloadData,
-  isEmpty
+  isEmpty,
 } from "~/utils/utils";
 import { AgGridReact } from "@ag-grid-community/react";
 import { ClientSideRowModelModule } from "@ag-grid-community/client-side-row-model";
@@ -43,11 +43,11 @@ class DataTable extends Component {
     "get-col-defs": PropTypes.func.isRequired,
     "get-col-sort-order": PropTypes.func.isRequired,
     "dom-layout": PropTypes.string,
-    "set-scene-metadata": PropTypes.func.isRequired
+    "set-scene-metadata": PropTypes.func.isRequired,
   };
 
   static defaultProps = {
-    "dom-layout": "autoHeight"
+    "dom-layout": "autoHeight",
   };
 
   static frameworkComponents = {
@@ -59,7 +59,7 @@ class DataTable extends Component {
     statsToolPanel: StatsToolPanel,
     textFilter: TextFilter,
     taxonomyFilter: TaxonomyFilter,
-    numberFilter: NumberFilter
+    numberFilter: NumberFilter,
   };
 
   static defaultColDef = {
@@ -67,12 +67,12 @@ class DataTable extends Component {
     filter: "textFilter",
     sortable: true,
     resizable: true,
-    suppressMenu: true
+    suppressMenu: true,
   };
 
   static exportParams = {
     allColumns: true,
-    onlySelected: false
+    onlySelected: false,
   };
 
   constructor() {
@@ -91,7 +91,7 @@ class DataTable extends Component {
     this.state = {
       sideBarDef: this.sideBarDef,
       colDefs: this.colDefs,
-      data: null
+      data: null,
     };
 
     this.onFirstDataRendered = this.onFirstDataRendered.bind(this);
@@ -103,7 +103,7 @@ class DataTable extends Component {
 
   componentDidMount() {
     this.locationPathname = this.props.history.location.pathname;
-    this.unlistenToHistory = this.props.history.listen(location => {
+    this.unlistenToHistory = this.props.history.listen((location) => {
       if (location.pathname !== this.locationPathname) {
         this.locationPathname = this.props.history.location.pathname;
         this.updateStateFromLocation();
@@ -130,7 +130,7 @@ class DataTable extends Component {
       this.setState({
         sideBarDef: this.sideBarDef,
         colDefs: this.colDefs,
-        data: null
+        data: null,
       });
       this.getDataFromApi();
     }
@@ -161,19 +161,19 @@ class DataTable extends Component {
     axios
       .all([
         getDataFromApi([url], {
-          cancelToken: this.queryCancelTokenSource.token
+          cancelToken: this.queryCancelTokenSource.token,
         }),
         organism
           ? getDataFromApi([taxonUrl], {
-              cancelToken: this.taxonCancelTokenSource.token
+              cancelToken: this.taxonCancelTokenSource.token,
             })
-          : null
+          : null,
       ])
       .then(
         axios.spread((...responses) => {
           if (isEmpty(responses[0].data)) {
             this.setState({
-              data: []
+              data: [],
             });
           } else {
             this.formatData(
@@ -183,7 +183,7 @@ class DataTable extends Component {
           }
         })
       )
-      .catch(error => {
+      .catch((error) => {
         if (
           "response" in error &&
           error.response !== undefined &&
@@ -196,7 +196,7 @@ class DataTable extends Component {
             response.status === 500
           ) {
             this.props["set-scene-metadata"]({
-              error404: true
+              error404: true,
             });
           } else {
             genApiErrorHandler(
@@ -334,7 +334,7 @@ class DataTable extends Component {
     this.setState({
       sideBarDef: this.sideBarDef,
       colDefs: this.colDefs,
-      data: formattedData
+      data: formattedData,
     });
   }
 
@@ -350,7 +350,7 @@ class DataTable extends Component {
     for (const colId of this.colSortOrder) {
       model.push({
         colId: colId,
-        sort: "asc"
+        sort: "asc",
       });
     }
     gridApi.setSortModel(model);

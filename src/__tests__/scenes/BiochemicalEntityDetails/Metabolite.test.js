@@ -40,7 +40,7 @@ describe("Metabolite data page", () => {
       name: "Glucose 1-phosphate",
       link: {
         label: "Glucose 1-phosphate",
-        query: "HXXFSFRBOHSIMQ-VFUOTHLCSA-N"
+        query: "HXXFSFRBOHSIMQ-VFUOTHLCSA-N",
       },
       tanimotoSimilarity: 1.0,
       value: 33.4,
@@ -55,14 +55,14 @@ describe("Metabolite data page", () => {
         "Bioreactor, pH controlled, O2 and CO2 controlled, dilution rate: 0.2/h",
       source: {
         url: "https://www.ncbi.nlm.nih.gov/pubmed/17379776",
-        id: "PubMed: 17379776"
-      }
+        id: "PubMed: 17379776",
+      },
     });
 
     expect(formattedData[0].organism).toEqual("Escherichia coli");
     expect(formattedData[0].source).toEqual({
       url: "https://dx.doi.org/10.1016/j.cels.2015.09.008",
-      id: "DOI: 10.1016/j.cels.2015.09.008"
+      id: "DOI: 10.1016/j.cels.2015.09.008",
     });
     expect(formattedData[0].growthPhase).toEqual(null);
     expect(formattedData[0].growthMedia).toEqual(null);
@@ -77,8 +77,8 @@ describe("Metabolite data page", () => {
       sourceCol.cellRenderer({
         value: {
           url: "http://ecmdb.ca/compounds/M2MDB000319",
-          id: "ECMDB: M2MDB000319"
-        }
+          id: "ECMDB: M2MDB000319",
+        },
       })
     ).toEqual(
       '<a href="http://ecmdb.ca/compounds/M2MDB000319" target="_blank" rel="noopener noreferrer">ECMDB: M2MDB000319</a>'
@@ -87,8 +87,8 @@ describe("Metabolite data page", () => {
       sourceCol.cellRenderer({
         value: {
           url: "http://www.ymdb.ca/compounds/YMDB00097",
-          id: "YMDB: YMDB00097"
-        }
+          id: "YMDB: YMDB00097",
+        },
       })
     ).toEqual(
       '<a href="http://www.ymdb.ca/compounds/YMDB00097" target="_blank" rel="noopener noreferrer">YMDB: YMDB00097</a>'
@@ -214,7 +214,7 @@ describe("Metabolite data page", () => {
       '<a href="http://ecmdb.ca/compounds/M2MDB000123" target="_blank" rel="noopener noreferrer">M2MDB000123</a>',
       '<a href="http://www.hmdb.ca/metabolites/HMDB00295" target="_blank" rel="noopener noreferrer">HMDB00295</a>',
       '<a href="https://www.genome.jp/dbget-bin/www_bget?cpd:C00015" target="_blank" rel="noopener noreferrer">C00015</a>',
-      '<a href="https://pubchem.ncbi.nlm.nih.gov/compound/6031" target="_blank" rel="noopener noreferrer">6031</a>'
+      '<a href="https://pubchem.ncbi.nlm.nih.gov/compound/6031" target="_blank" rel="noopener noreferrer">6031</a>',
     ];
 
     const actualListOfLinks = getListDomElements(linksWrapper, "a");
@@ -236,7 +236,7 @@ describe("Metabolite data page", () => {
       "<li><b>Formula:</b> <span>C<sub>9</sub></span><span>H<sub>14</sub></span><span>N<sub>2</sub></span><span>O<sub>12</sub></span><span>P<sub>2</sub></span></li>",
       "<li><b>Molecular weight:</b> 404.1612</li>",
       "<li><b>Charge:</b> 0</li>",
-      "<li><b>Physiological charge:</b> -2</li>"
+      "<li><b>Physiological charge:</b> -2</li>",
     ];
 
     const actualListOfChemistry = getListDomElements(chemistryWrapper, "li");
@@ -267,7 +267,7 @@ describe("Metabolite data page", () => {
 
     const correctListOfPathways = [
       '<li><a href="https://www.genome.jp/dbget-bin/www_bget?map00240" class="bulleted-list-item" target="_blank" rel="noopener noreferrer">Pyrimidine metabolism</a></li>',
-      '<li><div class="bulleted-list-item">Superpathway of (KDO)<SUB>2</SUB>-lipid A biosynthesis</div></li>'
+      '<li><div class="bulleted-list-item">Superpathway of (KDO)<SUB>2</SUB>-lipid A biosynthesis</div></li>',
     ];
 
     const actualListOfPathways = getListDomElements(pathwaysWrapper, "li");
@@ -285,7 +285,7 @@ describe("Metabolite data page", () => {
 
     processedMetadata.chemistry = {
       inchi: "InChI=1S",
-      inchiKey: "XCC"
+      inchiKey: "XCC",
     };
 
     const formattedMetadataWithInchi = MetadataSection.formatMetadata(
@@ -307,7 +307,7 @@ describe("Metabolite data page", () => {
     );
 
     processedMetadata.chemistry = {
-      inchiKey: "XCC"
+      inchiKey: "XCC",
     };
 
     const formattedMetadataWithInchiKey = MetadataSection.formatMetadata(

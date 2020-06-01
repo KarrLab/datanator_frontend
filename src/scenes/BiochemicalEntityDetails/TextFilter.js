@@ -6,15 +6,15 @@ class TextFilter extends Component {
     api: PropTypes.shape({
       addEventListener: PropTypes.func.isRequired,
       removeEventListener: PropTypes.func.isRequired,
-      forEachNode: PropTypes.func.isRequired
+      forEachNode: PropTypes.func.isRequired,
     }).isRequired,
     valueGetter: PropTypes.func.isRequired,
     filterValueGetter: PropTypes.func,
-    filterChangedCallback: PropTypes.func.isRequired
+    filterChangedCallback: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
-    filterValueGetter: null
+    filterValueGetter: null,
   };
 
   constructor(props) {
@@ -22,7 +22,7 @@ class TextFilter extends Component {
 
     this.selectedVals = new Set();
     this.state = {
-      vals: []
+      vals: [],
     };
 
     this.updateVals = this.updateVals.bind(this);
@@ -55,12 +55,12 @@ class TextFilter extends Component {
 
   updateVals() {
     const unorderedVals = new Set();
-    this.props.api.forEachNode(node => {
+    this.props.api.forEachNode((node) => {
       const getter = this.props.filterValueGetter || this.props.valueGetter;
       const value = getter(node);
       if (value != null && value !== undefined && value !== "") {
         if (Array.isArray(value)) {
-          value.forEach(val => unorderedVals.add(val));
+          value.forEach((val) => unorderedVals.add(val));
         } else {
           unorderedVals.add(value);
         }
@@ -75,12 +75,12 @@ class TextFilter extends Component {
       vals.push({
         index: vals.length,
         val: val,
-        selected: false
+        selected: false,
       });
     }
 
     this.setState({
-      vals: vals
+      vals: vals,
     });
     this.selectedVals.clear();
   }
@@ -147,7 +147,7 @@ class TextFilter extends Component {
   render() {
     return (
       <ul className="biochemical-entity-scene-filter biochemical-entity-scene-text-filter">
-        {this.state.vals.map(val => {
+        {this.state.vals.map((val) => {
           return (
             <li key={val.val} title={val.val}>
               <input

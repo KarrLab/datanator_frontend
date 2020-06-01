@@ -7,14 +7,14 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 class ToolPanels extends Component {
   static propTypes = {
-    agGridReactRef: PropTypes.object.isRequired
+    agGridReactRef: PropTypes.object.isRequired,
   };
 
   constructor(props) {
     super(props);
     this.state = {
       agGridReact: null,
-      panels: []
+      panels: [],
     };
   }
 
@@ -57,20 +57,20 @@ class ToolPanels extends Component {
         params: "toolPanelParams" in panelDef ? panelDef.toolPanelParams : {},
         expanded:
           panelDefs.defaultToolPanel !== undefined &&
-          panelDef.id === panelDefs.defaultToolPanel
+          panelDef.id === panelDefs.defaultToolPanel,
       });
     }
 
     this.setState({
       agGridReact: agGridReact,
-      panels: panels
+      panels: panels,
     });
   }
 
   render() {
     return (
       <div className="biochemical-entity-data-table-tool-panels">
-        {this.state.panels.map(panel => {
+        {this.state.panels.map((panel) => {
           return (
             <ExpansionPanel
               key={panel.id}

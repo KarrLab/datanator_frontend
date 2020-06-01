@@ -6,14 +6,14 @@ export class LinkCellRenderer extends Component {
   static propTypes = {
     value: PropTypes.shape({
       query: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired
+      label: PropTypes.string.isRequired,
     }),
     colDef: PropTypes.shape({
       cellRendererParams: PropTypes.shape({
         route: PropTypes.string.isRequired,
-        organism: PropTypes.string
-      }).isRequired
-    }).isRequired
+        organism: PropTypes.string,
+      }).isRequired,
+    }).isRequired,
   };
 
   render() {

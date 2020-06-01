@@ -12,7 +12,7 @@ export class ErrorDialog extends Component {
 
     this.state = {
       message: null,
-      open: false
+      open: false,
     };
 
     this.close = this.close.bind(this);
@@ -21,7 +21,7 @@ export class ErrorDialog extends Component {
   open(message) {
     this.setState({
       message: message,
-      open: true
+      open: true,
     });
   }
 

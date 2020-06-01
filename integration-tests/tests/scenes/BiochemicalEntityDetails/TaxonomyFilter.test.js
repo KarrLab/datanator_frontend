@@ -1,7 +1,7 @@
 /* global cy, describe, it, expect */
 
-describe("TaxonomyFilter", function() {
-  it("Correctly filters rows", function() {
+describe("TaxonomyFilter", function () {
+  it("Correctly filters rows", function () {
     const route = "metabolite";
     const entity = "YSYKRGRSMLTJNL-URARBOGNSA-L"; // TDP-Glucose
     const organism = "Escherichia coli";
@@ -11,7 +11,7 @@ describe("TaxonomyFilter", function() {
     //use fixture
     cy.server();
     cy.fixture("metabolite-concentrations-" + entity + "-" + organism).then(
-      json => {
+      (json) => {
         cy.route({
           method: "GET",
           url:
@@ -19,7 +19,7 @@ describe("TaxonomyFilter", function() {
             entity +
             "&*",
           status: 200,
-          response: json
+          response: json,
         });
       }
     );
@@ -34,7 +34,7 @@ describe("TaxonomyFilter", function() {
       "#" +
         dataContainerId +
         " .biochemical-entity-scene-columns-tool-panel input"
-    ).each($input => {
+    ).each(($input) => {
       cy.wrap($input).check({ force: true });
     });
 
@@ -44,7 +44,7 @@ describe("TaxonomyFilter", function() {
       .click();
     cy.get(
       "#" + dataContainerId + " .biochemical-entity-scene-filter-container"
-    ).each($filter => {
+    ).each(($filter) => {
       cy.wrap($filter).click();
     });
 
@@ -72,7 +72,7 @@ describe("TaxonomyFilter", function() {
     cy.get("#" + dataContainerId + " .ag-center-cols-container")
       .children()
       .should("have.length.lessThan", 11);
-    cy.get("#" + dataContainerId + " .ag-root-wrapper").then($grid => {
+    cy.get("#" + dataContainerId + " .ag-root-wrapper").then(($grid) => {
       expect(
         $grid[0].__agComponent.gridApi.getFilterModel().taxonomicProximity
           .selectedMarkValue
@@ -80,9 +80,9 @@ describe("TaxonomyFilter", function() {
     });
 
     // programmatically reset filter so all rows are displayed
-    cy.get("#" + dataContainerId + " .ag-root-wrapper").then($grid => {
+    cy.get("#" + dataContainerId + " .ag-root-wrapper").then(($grid) => {
       $grid[0].__agComponent.gridApi.setFilterModel({
-        taxonomicProximity: null
+        taxonomicProximity: null,
       });
     });
     cy.get("#" + dataContainerId + " .ag-center-cols-container")
@@ -93,7 +93,7 @@ describe("TaxonomyFilter", function() {
       .should("have.length", 11);
 
     // programmatically set filter so no rows are displayed
-    cy.get("#" + dataContainerId + " .ag-root-wrapper").then($grid => {
+    cy.get("#" + dataContainerId + " .ag-root-wrapper").then(($grid) => {
       $grid[0].__agComponent.gridApi.setFilterModel({
         taxonomicProximity: {
           selectedMarkValue: 0,
@@ -108,9 +108,9 @@ describe("TaxonomyFilter", function() {
             class: 4,
             phylum: 5,
             superkingdom: 6,
-            "cellular life": 7
-          }
-        }
+            "cellular life": 7,
+          },
+        },
       });
     });
     cy.get("#" + dataContainerId + " .ag-center-cols-container")

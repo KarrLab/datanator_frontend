@@ -39,14 +39,14 @@ describe("Reaction data page", () => {
           ki: {},
           km: {
             AMP: { units: "M", value: 0.000092 },
-            ATP: { units: "M", value: 0.000035 }
+            ATP: { units: "M", value: 0.000035 },
           },
           organism: "Gallus gallus",
           ph: 8,
           source: 6051,
           taxonomicProximity: 7,
           temperature: 30,
-          wildtypeMutant: "wildtype"
+          wildtypeMutant: "wildtype",
         },
         {
           enzyme: { name: "adenylate kinase", subunits: ["P05081"] },
@@ -54,14 +54,14 @@ describe("Reaction data page", () => {
           ki: {},
           km: {
             AMP: { units: "M", value: 0.00098 },
-            ATP: { units: "M", value: 0.00021 }
+            ATP: { units: "M", value: 0.00021 },
           },
           organism: "Gallus gallus",
           ph: 8,
           source: 6052,
           taxonomicProximity: 7,
           temperature: 30,
-          wildtypeMutant: "mutant"
+          wildtypeMutant: "mutant",
         },
         {
           enzyme: { name: "adenylate kinase", subunits: ["P05081"] },
@@ -69,14 +69,14 @@ describe("Reaction data page", () => {
           ki: {},
           km: {
             AMP: { units: "M", value: 0.00041 },
-            ATP: { units: "M", value: 0.000078 }
+            ATP: { units: "M", value: 0.000078 },
           },
           organism: "Gallus gallus",
           ph: 8,
           source: 6053,
           taxonomicProximity: 7,
           temperature: 30,
-          wildtypeMutant: "mutant"
+          wildtypeMutant: "mutant",
         },
         {
           enzyme: { name: "adenylate kinase", subunits: ["P05081"] },
@@ -84,14 +84,14 @@ describe("Reaction data page", () => {
           ki: {},
           km: {
             AMP: { units: "M", value: 0.00017 },
-            ATP: { units: "M", value: 0.000091 }
+            ATP: { units: "M", value: 0.000091 },
           },
           organism: "Gallus gallus",
           ph: 8,
           source: 6054,
           taxonomicProximity: 7,
           temperature: 30,
-          wildtypeMutant: "mutant"
+          wildtypeMutant: "mutant",
         },
         {
           enzyme: { name: "adenylate kinase", subunits: ["P05081"] },
@@ -103,7 +103,7 @@ describe("Reaction data page", () => {
           source: 6055,
           taxonomicProximity: 7,
           temperature: null,
-          wildtypeMutant: "wildtype"
+          wildtypeMutant: "wildtype",
         },
         {
           enzyme: { name: "adenylate kinase", subunits: ["P05081"] },
@@ -115,7 +115,7 @@ describe("Reaction data page", () => {
           source: 6056,
           taxonomicProximity: 7,
           temperature: null,
-          wildtypeMutant: "mutant"
+          wildtypeMutant: "mutant",
         },
         {
           enzyme: { name: "adenylate kinase", subunits: ["P05081"] },
@@ -127,7 +127,7 @@ describe("Reaction data page", () => {
           source: 6057,
           taxonomicProximity: 7,
           temperature: null,
-          wildtypeMutant: "mutant"
+          wildtypeMutant: "mutant",
         },
         {
           enzyme: { name: "adenylate kinase", subunits: ["P05081"] },
@@ -135,14 +135,14 @@ describe("Reaction data page", () => {
           ki: {},
           km: {
             AMP: { units: "M", value: 0.000098 },
-            ATP: { units: "M", value: 0.000042 }
+            ATP: { units: "M", value: 0.000042 },
           },
           organism: "Gallus gallus",
           ph: 8,
           source: 6061,
           taxonomicProximity: 7,
           temperature: 30,
-          wildtypeMutant: "wildtype"
+          wildtypeMutant: "wildtype",
         },
         {
           enzyme: { name: "adenylate kinase", subunits: ["P05081"] },
@@ -150,14 +150,14 @@ describe("Reaction data page", () => {
           ki: {},
           km: {
             AMP: { units: "M", value: 0.00055 },
-            ATP: { units: "M", value: 0.00025 }
+            ATP: { units: "M", value: 0.00025 },
           },
           organism: "Gallus gallus",
           ph: 8,
           source: 6062,
           taxonomicProximity: 7,
           temperature: 30,
-          wildtypeMutant: "mutant"
+          wildtypeMutant: "mutant",
         },
         {
           enzyme: { name: "adenylate kinase", subunits: ["P05081"] },
@@ -165,15 +165,15 @@ describe("Reaction data page", () => {
           ki: {},
           km: {
             AMP: { units: "M", value: 0.00084 },
-            ATP: { units: "M", value: 0.00051 }
+            ATP: { units: "M", value: 0.00051 },
           },
           organism: "Gallus gallus",
           ph: 8,
           source: 6063,
           taxonomicProximity: 7,
           temperature: 30,
-          wildtypeMutant: "mutant"
-        }
+          wildtypeMutant: "mutant",
+        },
       ])
     );
 
@@ -182,12 +182,12 @@ describe("Reaction data page", () => {
     expect(formattedData[9].km).toEqual({
       AMP: {
         units: "M",
-        value: 0.00084
+        value: 0.00084,
       },
       ATP: {
         units: "M",
-        value: 0.00051
-      }
+        value: 0.00051,
+      },
     });
   });
 
@@ -287,20 +287,20 @@ describe("Reaction data page", () => {
       expect.arrayContaining([
         {
           inchiKey: "UDMBCSSLTHHNCD-KQYNXXCUSA-N",
-          name: "AMP"
+          name: "AMP",
         },
         {
           inchiKey: "ZKHQWZAMYRWXGA-KQYNXXCUSA-J",
-          name: "ATP"
-        }
+          name: "ATP",
+        },
       ])
     );
     expect(processedMetadata.products).toEqual(
       expect.arrayContaining([
         {
           inchiKey: "XTWYTFMLZFPYCI-KQYNXXCUSA-N",
-          name: "ADP"
-        }
+          name: "ADP",
+        },
       ])
     );
     expect(processedMetadata.ecNumber).toEqual("2.7.4.3");
@@ -311,8 +311,8 @@ describe("Reaction data page", () => {
       expect.arrayContaining([
         {
           kegg_pathway_code: "ko00230",
-          pathway_description: "Purine metabolism"
-        }
+          pathway_description: "Purine metabolism",
+        },
       ])
     );
   });
@@ -348,7 +348,7 @@ describe("Reaction data page", () => {
       "Enzyme: Adenylate kinase",
       // "Equation: AMP + ATP → ADP",
       "Cofactor: NAD(+)",
-      "EC code: 2.7.4.3"
+      "EC code: 2.7.4.3",
     ];
 
     const actualListOfMetadata = getListDomElements(
@@ -366,7 +366,7 @@ describe("Reaction data page", () => {
     // format raw data
     const resources = [
       { id: "82", namespace: "sabiork.reaction" },
-      { id: "2.7.4.3", namespace: "ec-code" }
+      { id: "2.7.4.3", namespace: "ec-code" },
     ];
     expect(MetadataSection.getEcNum(resources)).toEqual("2.7.4.3");
     expect(MetadataSection.getReactionId(resources)).toEqual("82");
@@ -377,19 +377,19 @@ describe("Reaction data page", () => {
         substrate_structure: [
           {
             InChI_Key: "UDMBCSSLTHHNCD-KQYNXXCUSA-N",
-            format: "inchi"
-          }
-        ]
+            format: "inchi",
+          },
+        ],
       },
       {
         substrate_name: "ATP",
         substrate_structure: [
           {
             InChI_Key: "ZKHQWZAMYRWXGA-KQYNXXCUSA-J",
-            format: "inchi"
-          }
-        ]
-      }
+            format: "inchi",
+          },
+        ],
+      },
     ];
 
     const products = [
@@ -398,29 +398,29 @@ describe("Reaction data page", () => {
         product_structure: [
           {
             InChI_Key: "XTWYTFMLZFPYCI-KQYNXXCUSA-N",
-            format: "inchi"
-          }
-        ]
-      }
+            format: "inchi",
+          },
+        ],
+      },
     ];
     expect(MetadataSection.getReactantNames(substrates, "substrate")).toEqual(
       expect.arrayContaining([
         {
           inchiKey: "UDMBCSSLTHHNCD-KQYNXXCUSA-N",
-          name: "AMP"
+          name: "AMP",
         },
         {
           inchiKey: "ZKHQWZAMYRWXGA-KQYNXXCUSA-J",
-          name: "ATP"
-        }
+          name: "ATP",
+        },
       ])
     );
     expect(MetadataSection.getReactantNames(products, "product")).toEqual(
       expect.arrayContaining([
         {
           inchiKey: "XTWYTFMLZFPYCI-KQYNXXCUSA-N",
-          name: "ADP"
-        }
+          name: "ADP",
+        },
       ])
     );
 

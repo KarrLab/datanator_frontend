@@ -16,11 +16,11 @@ class SearchResultsList extends Component {
     "format-results": PropTypes.func.isRequired,
     "html-anchor-id": PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    "page-size": PropTypes.number
+    "page-size": PropTypes.number,
   };
 
   static defaultProps = {
-    "page-size": 10
+    "page-size": 10,
   };
 
   constructor(props) {
@@ -34,7 +34,7 @@ class SearchResultsList extends Component {
     this.state = {
       results: null,
       numResults: null,
-      locationPathname: ""
+      locationPathname: "",
     };
 
     this.formatResult = this.formatResult.bind(this);
@@ -42,7 +42,7 @@ class SearchResultsList extends Component {
 
   componentDidMount() {
     this.setState({ locationPathname: this.props.history.location.pathname });
-    this.unlistenToHistory = this.props.history.listen(location => {
+    this.unlistenToHistory = this.props.history.listen((location) => {
       if (location.pathname !== this.state.locationPathname) {
         this.setState({ locationPathname: location.pathname });
         this.updateStateFromLocation();
@@ -68,7 +68,7 @@ class SearchResultsList extends Component {
       this.results = null;
       this.setState({
         results: null,
-        numResults: null
+        numResults: null,
       });
       this.fetchResults();
     }
@@ -88,14 +88,14 @@ class SearchResultsList extends Component {
 
     this.cancelTokenSource = axios.CancelToken.source();
     getDataFromApi([url], { cancelToken: this.cancelTokenSource.token })
-      .then(response => {
+      .then((response) => {
         this.pageCount++;
 
         this.updateResults(
           this.props["format-results"](response.data, this.organism)
         );
       })
-      .catch(error => {
+      .catch((error) => {
         if (
           "response" in error &&
           "request" in error.response &&
@@ -126,7 +126,7 @@ class SearchResultsList extends Component {
 
     this.setState({
       results: results,
-      numResults: newUnformattedResults.numResults
+      numResults: newUnformattedResults.numResults,
     });
   }
 

@@ -2,7 +2,7 @@ import { getDataFromApi, genApiErrorHandler } from "~/services/RestApi";
 import axios from "axios";
 import {
   errorDialog,
-  errorDialogRef
+  errorDialogRef,
 } from "~/components/ErrorDialog/ErrorDialog";
 import { render } from "@testing-library/react";
 
@@ -14,10 +14,10 @@ describe("With mocked API calls", () => {
   it("Request successful", async () => {
     axios.get.mockResolvedValue({
       status: 200,
-      data: { message: "Api server is up." }
+      data: { message: "Api server is up." },
     });
 
-    await getDataFromApi(["status"]).then(response => {
+    await getDataFromApi(["status"]).then((response) => {
       expect(response.status).toBe(200);
       expect(response.data.message).toBe("Api server is up.");
     });
@@ -28,8 +28,8 @@ describe("With mocked API calls", () => {
       isAxiosError: true,
       response: {
         status: 404,
-        data: { status: 404, detail: "Server error." }
-      }
+        data: { status: 404, detail: "Server error." },
+      },
     });
 
     render(errorDialog);
@@ -55,8 +55,8 @@ describe("With mocked API calls", () => {
     const error = {
       response: {
         status: 404,
-        data: { status: 404, detail: "Server error." }
-      }
+        data: { status: 404, detail: "Server error." },
+      },
     };
     axios.get.mockRejectedValue(error);
 
@@ -86,7 +86,7 @@ describe("With mocked API calls", () => {
     console.info = jest.fn();
     let cancelTokenSource = { token: 0, cancel: () => {} };
     const request = getDataFromApi(["status"], {
-      cancelToken: cancelTokenSource.token
+      cancelToken: cancelTokenSource.token,
     }).catch(genApiErrorHandler(["status"]));
     cancelTokenSource.cancel();
     await request;

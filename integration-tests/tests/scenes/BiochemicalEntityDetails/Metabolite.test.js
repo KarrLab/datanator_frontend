@@ -1,7 +1,7 @@
 /* global cy, describe, it, expect */
 
-describe("Metabolite scene", function() {
-  it("Metabolite scene without organism successfully loads", function() {
+describe("Metabolite scene", function () {
+  it("Metabolite scene without organism successfully loads", function () {
     const route = "metabolite";
     const entity = "YSYKRGRSMLTJNL-URARBOGNSA-L"; // TDP-Glucose
     const url = "/" + route + "/" + entity;
@@ -9,7 +9,7 @@ describe("Metabolite scene", function() {
     cy.visit(url);
 
     // page title
-    cy.get(".page-title").should($el => {
+    cy.get(".page-title").should(($el) => {
       expect($el.text().startsWith("Metabolite: ")).to.be.true;
     });
 
@@ -22,7 +22,7 @@ describe("Metabolite scene", function() {
       .should("have.text", "Concentration");
   });
 
-  it("Metabolite scene with organism successfully loads", function() {
+  it("Metabolite scene with organism successfully loads", function () {
     const route = "metabolite";
     const entity = "YSYKRGRSMLTJNL-URARBOGNSA-L"; // TDP-Glucose
     const organism = "Escherichia coli";
@@ -30,7 +30,7 @@ describe("Metabolite scene", function() {
 
     cy.server();
     cy.fixture("metabolite-concentrations-" + entity + "-" + organism).then(
-      json => {
+      (json) => {
         cy.route({
           method: "GET",
           url:
@@ -38,7 +38,7 @@ describe("Metabolite scene", function() {
             entity +
             "&*",
           status: 200,
-          response: json
+          response: json,
         });
       }
     );
@@ -46,7 +46,7 @@ describe("Metabolite scene", function() {
     cy.visit(url);
 
     // page title
-    cy.get(".page-title").should($el => {
+    cy.get(".page-title").should(($el) => {
       expect($el.text().startsWith("Metabolite: ")).to.be.true;
       expect($el.text().endsWith(" in " + organism)).to.be.true;
     });
@@ -67,7 +67,7 @@ describe("Metabolite scene", function() {
       "#" +
         dataContainerId +
         " .biochemical-entity-scene-columns-tool-panel input"
-    ).each($input => {
+    ).each(($input) => {
       cy.wrap($input).click();
     });
 
@@ -77,14 +77,14 @@ describe("Metabolite scene", function() {
       .click();
     cy.get(
       "#" + dataContainerId + " .biochemical-entity-scene-filter-container"
-    ).each($filter => {
+    ).each(($filter) => {
       cy.wrap($filter).click();
     });
 
     // open stats tool panel
     cy.get(
       "#" + dataContainerId + " .biochemical-entity-data-table-tool-panel"
-    ).each($toolPanelButton => {
+    ).each(($toolPanelButton) => {
       cy.wrap($toolPanelButton).click();
     });
   });

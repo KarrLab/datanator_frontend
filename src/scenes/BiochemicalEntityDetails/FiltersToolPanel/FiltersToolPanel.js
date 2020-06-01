@@ -14,16 +14,16 @@ class FiltersToolPanel extends Component {
       addEventListener: PropTypes.func.isRequired,
       removeEventListener: PropTypes.func.isRequired,
       getFilterModel: PropTypes.func.isRequired,
-      setFilterModel: PropTypes.func.isRequired
+      setFilterModel: PropTypes.func.isRequired,
     }).isRequired,
     agGridReact: PropTypes.shape({
       gridOptions: PropTypes.shape({
-        frameworkComponents: PropTypes.object.isRequired
+        frameworkComponents: PropTypes.object.isRequired,
       }).isRequired,
       columnApi: PropTypes.shape({
-        setColumnVisible: PropTypes.func.isRequired
-      }).isRequired
-    }).isRequired
+        setColumnVisible: PropTypes.func.isRequired,
+      }).isRequired,
+    }).isRequired,
   };
 
   constructor(props) {
@@ -31,7 +31,7 @@ class FiltersToolPanel extends Component {
 
     this.filterRefs = {};
     this.state = {
-      filters: []
+      filters: [],
     };
 
     this.updateFilters = this.updateFilters.bind(this);
@@ -81,7 +81,7 @@ class FiltersToolPanel extends Component {
         name: null,
         colDef: colApi.colDef,
         filterValueGetter: colApi.colDef.filterValueGetter,
-        valueGetter: colApi.colDef.valueGetter
+        valueGetter: colApi.colDef.valueGetter,
       };
 
       if (filter.filterValueGetter === undefined) {
@@ -113,7 +113,7 @@ class FiltersToolPanel extends Component {
     }
 
     this.setState({
-      filters: filters
+      filters: filters,
     });
   }
 
@@ -127,7 +127,7 @@ class FiltersToolPanel extends Component {
     const filterTypes = this.props.agGridReact.gridOptions.frameworkComponents;
     return (
       <div className="biochemical-entity-scene-filters-tool-panel">
-        {this.state.filters.map(filter => {
+        {this.state.filters.map((filter) => {
           const FilterType = filterTypes[filter.colDef.filter];
           this.filterRefs[filter.colId] = React.createRef();
           return (

@@ -1,7 +1,7 @@
 /* global cy, describe, it */
 
-describe("Reaction scene", function() {
-  it("Reaction scene without organism successfully loads", function() {
+describe("Reaction scene", function () {
+  it("Reaction scene without organism successfully loads", function () {
     const route = "reaction";
     const substrates = "YSYKRGRSMLTJNL-KFQCIAAJSA-N"; // dTDP-D-glucose
     const products = "PSXWNITXWWECNY-UCBTUHGZSA-N,XLYOFNOQVPJJNP-UHFFFAOYSA-N"; // dTDP-4-dehydro-6-deoxy-D-glucose,H2O
@@ -25,7 +25,7 @@ describe("Reaction scene", function() {
       .should("have.text", "kcat value");
   });
 
-  it("Reaction scene with organism successfully loads", function() {
+  it("Reaction scene with organism successfully loads", function () {
     const route = "reaction";
     const substrates = "YSYKRGRSMLTJNL-KFQCIAAJSA-N"; // dTDP-D-glucose
     const products = "PSXWNITXWWECNY-UCBTUHGZSA-N,XLYOFNOQVPJJNP-UHFFFAOYSA-N"; // dTDP-4-dehydro-6-deoxy-D-glucose,H2O
@@ -57,7 +57,7 @@ describe("Reaction scene", function() {
       "#" +
         dataContainerId +
         " .biochemical-entity-scene-columns-tool-panel input"
-    ).each($input => {
+    ).each(($input) => {
       cy.wrap($input).click();
     });
 
@@ -67,14 +67,14 @@ describe("Reaction scene", function() {
       .click();
     cy.get(
       "#" + dataContainerId + " .biochemical-entity-scene-filter-container"
-    ).each($filter => {
+    ).each(($filter) => {
       cy.wrap($filter).click();
     });
 
     // open stats tool panels
     cy.get(
       "#" + dataContainerId + " .biochemical-entity-data-table-tool-panel"
-    ).each($toolPanelButton => {
+    ).each(($toolPanelButton) => {
       cy.wrap($toolPanelButton).click();
     });
   });

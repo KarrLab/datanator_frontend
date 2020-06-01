@@ -12,7 +12,7 @@ import {
   downloadData,
   parseHistoryLocationPathname,
   getNumProperties,
-  castToArray
+  castToArray,
 } from "~/utils/utils";
 
 /* global jest, test, expect */
@@ -108,7 +108,7 @@ test("dictOfArraysToArrayOfDicts", () => {
   expect(result).toEqual([
     { a: 1, b: 4, c: 7 },
     { a: 2, b: 5 },
-    { a: 3, b: 6 }
+    { a: 3, b: 6 },
   ]);
 
   result = dictOfArraysToArrayOfDicts({ c: 7 });
@@ -140,7 +140,7 @@ test("removeDuplicates", () => {
   expect(removeDuplicates(["b", "a", "c", "a"])).toEqual(["b", "a", "c"]);
   expect(removeDuplicates(["b", "a", "c", "A"])).toEqual(["b", "a", "c", "A"]);
   expect(
-    removeDuplicates(["b", "a", "c", "a"], key => key.toLowerCase())
+    removeDuplicates(["b", "a", "c", "a"], (key) => key.toLowerCase())
   ).toEqual(["b", "a", "c"]);
 });
 
@@ -153,7 +153,7 @@ test("downloadData", () => {
       click: () => {
         el.clickHandler();
       },
-      clickHandler: null
+      clickHandler: null,
     };
     el.addEventListener = (eventType, handler) => {
       el.clickHandler = handler;
@@ -167,14 +167,14 @@ test("parseHistoryLocationPathname", () => {
   expect(parseHistoryLocationPathname({ location: { pathname: "" } })).toEqual({
     route: undefined,
     query: null,
-    organism: null
+    organism: null,
   });
 
   expect(parseHistoryLocationPathname({ location: { pathname: "/" } })).toEqual(
     {
       route: "",
       query: null,
-      organism: null
+      organism: null,
     }
   );
 
@@ -183,7 +183,7 @@ test("parseHistoryLocationPathname", () => {
   ).toEqual({
     route: "home",
     query: null,
-    organism: null
+    organism: null,
   });
 
   expect(
@@ -191,7 +191,7 @@ test("parseHistoryLocationPathname", () => {
   ).toEqual({
     route: "search",
     query: null,
-    organism: null
+    organism: null,
   });
 
   expect(
@@ -199,17 +199,17 @@ test("parseHistoryLocationPathname", () => {
   ).toEqual({
     route: "search",
     query: "glucose",
-    organism: null
+    organism: null,
   });
 
   expect(
     parseHistoryLocationPathname({
-      location: { pathname: "/search/glucose/Homo sapiens" }
+      location: { pathname: "/search/glucose/Homo sapiens" },
     })
   ).toEqual({
     route: "search",
     query: "glucose",
-    organism: "Homo sapiens"
+    organism: "Homo sapiens",
   });
 
   expect(
@@ -217,7 +217,7 @@ test("parseHistoryLocationPathname", () => {
   ).toEqual({
     route: "search",
     query: null,
-    organism: null
+    organism: null,
   });
 });
 

@@ -16,7 +16,7 @@ class MetadataSection extends Component {
     "process-metadata": PropTypes.func.isRequired,
     "format-title": PropTypes.func.isRequired,
     "format-metadata": PropTypes.func.isRequired,
-    "set-scene-metadata": PropTypes.func.isRequired
+    "set-scene-metadata": PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -32,7 +32,7 @@ class MetadataSection extends Component {
 
   componentDidMount() {
     this.locationPathname = this.props.history.location.pathname;
-    this.unlistenToHistory = this.props.history.listen(location => {
+    this.unlistenToHistory = this.props.history.listen((location) => {
       if (location.pathname !== this.locationPathname) {
         this.locationPathname = this.props.history.location.pathname;
         this.updateStateFromLocation();
@@ -86,13 +86,13 @@ class MetadataSection extends Component {
     axios
       .all([
         getDataFromApi([queryUrl], {
-          cancelToken: this.queryCancelTokenSource.token
+          cancelToken: this.queryCancelTokenSource.token,
         }),
         organism
           ? getDataFromApi([taxonUrl], {
-              cancelToken: this.taxonCancelTokenSource.token
+              cancelToken: this.taxonCancelTokenSource.token,
             })
-          : null
+          : null,
       ])
       .then(
         axios.spread((...responses) => {
@@ -102,7 +102,7 @@ class MetadataSection extends Component {
             queryResponse.data === "Record request exceeds limit"
           ) {
             this.props["set-scene-metadata"]({
-              error404: true
+              error404: true,
             });
           } else {
             const processedMetadata = this.props["process-metadata"](
@@ -120,13 +120,13 @@ class MetadataSection extends Component {
               title: this.props["format-title"](processedMetadata),
               organism: organism,
               metadataSections: formattedMetadataSections,
-              other: processedMetadata.other
+              other: processedMetadata.other,
             });
             this.setState({ sections: formattedMetadataSections });
           }
         })
       )
-      .catch(error => {
+      .catch((error) => {
         if (
           "response" in error &&
           error.response !== undefined &&
@@ -139,7 +139,7 @@ class MetadataSection extends Component {
             response.status === 500
           ) {
             this.props["set-scene-metadata"]({
-              error404: true
+              error404: true,
             });
           } else {
             genApiErrorHandler(
@@ -164,7 +164,7 @@ class MetadataSection extends Component {
   render() {
     return (
       <div>
-        {this.state.sections.map(section => {
+        {this.state.sections.map((section) => {
           return (
             <div className="content-block" id={section.id} key={section.id}>
               <h2 className="content-block-heading">{section.title}</h2>

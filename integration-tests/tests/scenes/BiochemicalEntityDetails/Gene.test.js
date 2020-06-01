@@ -1,7 +1,7 @@
 /* global cy, describe, it */
 
-describe("Gene scene", function() {
-  it("Gene scene with organism successfully loads with protein abundances", function() {
+describe("Gene scene", function () {
+  it("Gene scene with organism successfully loads with protein abundances", function () {
     const route = "gene";
     const entity = "K00973";
     const organism = "Escherichia coli";
@@ -31,7 +31,7 @@ describe("Gene scene", function() {
       "#" +
         dataContainerId +
         " .biochemical-entity-scene-columns-tool-panel input"
-    ).each($input => {
+    ).each(($input) => {
       cy.wrap($input).click();
     });
 
@@ -41,19 +41,19 @@ describe("Gene scene", function() {
       .click();
     cy.get(
       "#" + dataContainerId + " .biochemical-entity-scene-filter-container"
-    ).each($filter => {
+    ).each(($filter) => {
       cy.wrap($filter).click();
     });
 
     // open stats tool panels
     cy.get(
       "#" + dataContainerId + " .biochemical-entity-data-table-tool-panel"
-    ).each($toolPanelButton => {
+    ).each(($toolPanelButton) => {
       cy.wrap($toolPanelButton).click();
     });
   });
 
-  it("Gene scene with organism successfully loads with RNA half-lives", function() {
+  it("Gene scene with organism successfully loads with RNA half-lives", function () {
     const route = "gene";
     const entity = "K16370";
     const organism = "Escherichia coli";
@@ -77,7 +77,7 @@ describe("Gene scene", function() {
       "#" +
         dataContainerId +
         " .biochemical-entity-scene-columns-tool-panel input"
-    ).each($input => {
+    ).each(($input) => {
       cy.wrap($input).click();
     });
 
@@ -87,14 +87,14 @@ describe("Gene scene", function() {
       .click();
     cy.get(
       "#" + dataContainerId + " .biochemical-entity-scene-filter-container"
-    ).each($filter => {
+    ).each(($filter) => {
       cy.wrap($filter).click();
     });
 
     // open stats tool panels
     cy.get(
       "#" + dataContainerId + " .biochemical-entity-data-table-tool-panel"
-    ).each($toolPanelButton => {
+    ).each(($toolPanelButton) => {
       cy.wrap($toolPanelButton).click();
     });
   });

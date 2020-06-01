@@ -1,7 +1,7 @@
 /* global cy, describe, it */
 
-describe("HtmlColumnHeader", function() {
-  it("HTML column headings display and sort correctly", function() {
+describe("HtmlColumnHeader", function () {
+  it("HTML column headings display and sort correctly", function () {
     const route = "reaction";
     const entity =
       "YSYKRGRSMLTJNL-KFQCIAAJSA-N-->PSXWNITXWWECNY-UCBTUHGZSA-N,XLYOFNOQVPJJNP-UHFFFAOYSA-N"; // DTDP-glucose 4,6-dehydratase

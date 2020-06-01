@@ -8,7 +8,7 @@ import { TAXONOMIC_PROXIMITY_TOOLTIP } from "../ColumnsToolPanel/TooltipDescript
 
 class RateConstantsDataTable extends Component {
   static propTypes = {
-    "set-scene-metadata": PropTypes.func.isRequired
+    "set-scene-metadata": PropTypes.func.isRequired,
   };
 
   static getUrl(query, organism) {
@@ -39,7 +39,7 @@ class RateConstantsDataTable extends Component {
           enzymeName = enz["enzyme"][0].enzyme_name;
         } else if ("subunit" in enz) {
           enzymeSubunitUniprotIds = enz["subunit"].map(
-            subunit => subunit.uniprot_id
+            (subunit) => subunit.uniprot_id
           );
           enzymeSubunitUniprotIds.sort();
         }
@@ -64,7 +64,7 @@ class RateConstantsDataTable extends Component {
         wildtypeMutant: wildtypeMutant,
         temperature: datum.temperature,
         ph: datum.ph,
-        source: datum["kinlaw_id"]
+        source: datum["kinlaw_id"],
       };
 
       if (organism != null) {
@@ -98,12 +98,12 @@ class RateConstantsDataTable extends Component {
         if (parameter.value != null) {
           return {
             value: parseFloat(parameter.value),
-            units: parameter.units
+            units: parameter.units,
           };
         } else if (parameter.observed_value != null) {
           return {
             value: parseFloat(parameter.observed_value),
-            units: parameter.observed_units
+            units: parameter.observed_units,
           };
         }
       }
@@ -117,12 +117,12 @@ class RateConstantsDataTable extends Component {
         if (parameter.value != null) {
           kms[parameter.name] = {
             value: parseFloat(parameter.value),
-            units: parameter.units
+            units: parameter.units,
           };
         } else if (parameter.observed_value != null) {
           kms[parameter.name] = {
             value: parseFloat(parameter.observed_value),
-            units: parameter.observed_units
+            units: parameter.observed_units,
           };
         }
       }
@@ -137,12 +137,12 @@ class RateConstantsDataTable extends Component {
         if (parameter.value != null) {
           kis[parameter.name] = {
             value: parseFloat(parameter.value),
-            units: parameter.units
+            units: parameter.units,
           };
         } else if (parameter.observed_value != null) {
           kis[parameter.name] = {
             value: parseFloat(parameter.observed_value),
-            units: parameter.observed_units
+            units: parameter.observed_units,
           };
         }
       }
@@ -158,19 +158,19 @@ class RateConstantsDataTable extends Component {
           labelDefault: "Columns",
           labelKey: "columns",
           iconKey: "columns",
-          toolPanel: "columnsToolPanel"
+          toolPanel: "columnsToolPanel",
         },
         {
           id: "filters",
           labelDefault: "Filters",
           labelKey: "filters",
           iconKey: "filter",
-          toolPanel: "filtersToolPanel"
-        }
+          toolPanel: "filtersToolPanel",
+        },
       ],
       position: "left",
       defaultToolPanel: "filters",
-      hiddenByDefault: false
+      hiddenByDefault: false,
     };
 
     // k_cat tool panel
@@ -194,8 +194,8 @@ class RateConstantsDataTable extends Component {
         iconKey: "chart",
         toolPanel: "statsToolPanel",
         toolPanelParams: {
-          col: ["kcat", "value"]
-        }
+          col: ["kcat", "value"],
+        },
       });
     }
 
@@ -221,8 +221,8 @@ class RateConstantsDataTable extends Component {
         iconKey: "chart",
         toolPanel: "statsToolPanel",
         toolPanelParams: {
-          col: ["km", kmMet, "value"]
-        }
+          col: ["km", kmMet, "value"],
+        },
       });
     }
 
@@ -248,8 +248,8 @@ class RateConstantsDataTable extends Component {
         iconKey: "chart",
         toolPanel: "statsToolPanel",
         toolPanelParams: {
-          col: ["ki", kiMet, "value"]
-        }
+          col: ["ki", kiMet, "value"],
+        },
       });
     }
 
@@ -278,7 +278,7 @@ class RateConstantsDataTable extends Component {
             <span>
               k<sub>cat</sub> value
             </span>
-          )
+          ),
         },
         field: "kcat.value",
         cellRenderer: "numericCellRenderer",
@@ -287,7 +287,7 @@ class RateConstantsDataTable extends Component {
         checkboxSelection: true,
         headerCheckboxSelection: true,
         headerCheckboxSelectionFilteredOnly: true,
-        comparator: DataTable.numericComparator
+        comparator: DataTable.numericComparator,
       });
       colDefs.push({
         headerName: "k_{cat} units",
@@ -297,9 +297,9 @@ class RateConstantsDataTable extends Component {
             <span>
               k<sub>cat</sub> units
             </span>
-          )
+          ),
         },
-        field: "kcat.units"
+        field: "kcat.units",
       });
     }
 
@@ -322,13 +322,13 @@ class RateConstantsDataTable extends Component {
             <span>
               K<sub>M</sub> {kmMet} value
             </span>
-          )
+          ),
         },
         field: "km." + kmMet + ".value",
         cellRenderer: "numericCellRenderer",
         type: "numericColumn",
         filter: "numberFilter",
-        comparator: DataTable.numericComparator
+        comparator: DataTable.numericComparator,
       });
       colDefs.push({
         headerName: "K_M " + kmMet + " units",
@@ -338,9 +338,9 @@ class RateConstantsDataTable extends Component {
             <span>
               K<sub>M</sub> {kmMet} units
             </span>
-          )
+          ),
         },
-        field: "km." + kmMet + ".units"
+        field: "km." + kmMet + ".units",
       });
     }
 
@@ -363,13 +363,13 @@ class RateConstantsDataTable extends Component {
             <span>
               K<sub>I</sub> {kiMet} value
             </span>
-          )
+          ),
         },
         field: "ki." + kiMet + ".value",
         cellRenderer: "numericCellRenderer",
         type: "numericColumn",
         filter: "numberFilter",
-        comparator: DataTable.numericComparator
+        comparator: DataTable.numericComparator,
       });
       colDefs.push({
         headerName: "K_I " + kiMet + " units",
@@ -379,9 +379,9 @@ class RateConstantsDataTable extends Component {
             <span>
               K<sub>I</sub> {kiMet} units
             </span>
-          )
+          ),
         },
-        field: "ki." + kiMet + ".units"
+        field: "ki." + kiMet + ".units",
       });
     }
 
@@ -389,29 +389,29 @@ class RateConstantsDataTable extends Component {
     colDefs.push({
       headerName: "Enzyme",
       field: "enzyme.name",
-      filter: "textFilter"
+      filter: "textFilter",
     });
 
     colDefs.push({
       headerName: "Enzyme subunits",
       field: "enzyme.subunits",
       filter: "textFilter",
-      valueFormatter: params => {
+      valueFormatter: (params) => {
         if (params.value != null) {
           return params.value.join(", ");
         } else {
           return null;
         }
       },
-      cellRenderer: function(params) {
+      cellRenderer: function (params) {
         const subunits = params.value;
         if (subunits != null) {
           return (
             '<ul class="comma-separated-list">' +
             subunits
-              .filter(subunit => subunit != null)
+              .filter((subunit) => subunit != null)
               .map(
-                subunit =>
+                (subunit) =>
                   "<li>" +
                   "<a" +
                   ' href="https://www.uniprot.org/uniprot/' +
@@ -431,20 +431,20 @@ class RateConstantsDataTable extends Component {
           return null;
         }
       },
-      filterValueGetter: params => {
+      filterValueGetter: (params) => {
         if (params.data.enzyme && params.data.enzyme.subunits.length) {
           return params.data.enzyme.subunits;
         } else {
           return null;
         }
-      }
+      },
     });
 
     colDefs.push({
       headerName: "Organism",
       field: "organism",
       filter: "textFilter",
-      cellRenderer: function(params) {
+      cellRenderer: function (params) {
         const organism = params.value;
         if (organism) {
           return (
@@ -457,14 +457,14 @@ class RateConstantsDataTable extends Component {
         } else {
           return null;
         }
-      }
+      },
     });
 
     colDefs.push({
       headerName: "Variant",
       field: "wildtypeMutant",
       hide: true,
-      filter: "textFilter"
+      filter: "textFilter",
     });
 
     colDefs.push({
@@ -475,12 +475,12 @@ class RateConstantsDataTable extends Component {
           <Tooltip title={TAXONOMIC_PROXIMITY_TOOLTIP} arrow>
             <span>Taxonomic similarity</span>
           </Tooltip>
-        )
+        ),
       },
       field: "taxonomicProximity",
       hide: true,
       filter: "taxonomyFilter",
-      valueFormatter: params => {
+      valueFormatter: (params) => {
         if (params.value != null) {
           const value = taxonomicRanks[params.value];
           return upperCaseFirstLetter(value);
@@ -488,7 +488,7 @@ class RateConstantsDataTable extends Component {
           return null;
         }
       },
-      comparator: DataTable.numericComparator
+      comparator: DataTable.numericComparator,
     });
 
     colDefs.push({
@@ -496,7 +496,7 @@ class RateConstantsDataTable extends Component {
       field: "temperature",
       cellRenderer: "numericCellRenderer",
       type: "numericColumn",
-      filter: "numberFilter"
+      filter: "numberFilter",
     });
 
     colDefs.push({
@@ -504,13 +504,13 @@ class RateConstantsDataTable extends Component {
       field: "ph",
       cellRenderer: "numericCellRenderer",
       type: "numericColumn",
-      filter: "numberFilter"
+      filter: "numberFilter",
     });
 
     colDefs.push({
       headerName: "Source",
       field: "source",
-      cellRenderer: function(params) {
+      cellRenderer: function (params) {
         return (
           '<a href="http://sabiork.h-its.org/newSearch/index?q=EntryID:' +
           params.value +
@@ -520,7 +520,7 @@ class RateConstantsDataTable extends Component {
         );
       },
       filterValueGetter: () => "SABIO-RK",
-      filter: "textFilter"
+      filter: "textFilter",
     });
 
     if (!organism) {

@@ -17,28 +17,28 @@ class Stats extends Component {
     this.state = {
       dataType: {
         labels: [],
-        values: []
+        values: [],
       },
       dataSource: {
         labels: [],
-        values: []
+        values: [],
       },
       journalByDataType: {
         labels: [],
-        values: []
+        values: [],
       },
       taxonomy: {
         labels: [],
-        values: []
+        values: [],
       },
       temperatureFrequency: {
         labels: [],
-        values: []
+        values: [],
       },
       phFrequency: {
         labels: [],
-        values: []
-      }
+        values: [],
+      },
     };
 
     this.setBarChart = this.setBarChart.bind(this);
@@ -49,31 +49,31 @@ class Stats extends Component {
     const dataTypeData = [];
     dataTypeData.push({
       label: ["Met. concs."],
-      urls: ["metabolites/summary/concentration_count/"]
+      urls: ["metabolites/summary/concentration_count/"],
     });
     dataTypeData.push({
       label: ["RNA mods"],
-      urls: ["rna/summary/get_total_modifications/"]
+      urls: ["rna/summary/get_total_modifications/"],
     });
     dataTypeData.push({
       label: ["RNA half-lives"],
-      urls: ["rna/summary/get_total_halflife_obs/"]
+      urls: ["rna/summary/get_total_halflife_obs/"],
     });
     dataTypeData.push({
       label: ["Prot. abund."],
-      urls: ["proteins/summary/num_obs_abundances/"]
+      urls: ["proteins/summary/num_obs_abundances/"],
     });
     dataTypeData.push({
       label: ["Prot. mods"],
-      urls: ["proteins/summary/num_obs_modifications/"]
+      urls: ["proteins/summary/num_obs_modifications/"],
     });
     dataTypeData.push({
       label: ["Rxn kcat"],
-      urls: ["reactions/summary/num_parameter_kcat/"]
+      urls: ["reactions/summary/num_parameter_kcat/"],
     });
     dataTypeData.push({
       label: ["Rxn Km"],
-      urls: ["reactions/summary/num_parameter_km/"]
+      urls: ["reactions/summary/num_parameter_km/"],
     });
     this.setBarChart("dataType", dataTypeData);
 
@@ -81,44 +81,44 @@ class Stats extends Component {
     const dataSourceData = [];
     dataSourceData.push({
       label: ["Articles"],
-      urls: ["rna/summary/get_distinct/?_input=halflives.reference.doi"]
+      urls: ["rna/summary/get_distinct/?_input=halflives.reference.doi"],
     });
     // TODO: BRENDA Kis
     dataSourceData.push({
       label: ["BRENDA"],
       urls: [
         "reactions/summary/get_brenda_obs/?parameter=k_cats",
-        "reactions/summary/get_brenda_obs/?parameter=k_ms" //,
+        "reactions/summary/get_brenda_obs/?parameter=k_ms", //,
         // "reactions/summary/get_brenda_obs/?parameter=k_is"
-      ]
+      ],
     });
     dataSourceData.push({
       label: ["ECMDB"],
-      urls: ["metabolites/summary/ecmdb_conc_count/"]
+      urls: ["metabolites/summary/ecmdb_conc_count/"],
     });
     dataSourceData.push({
       label: ["MODOMICS"],
-      urls: ["rna/summary/get_total_modifications/"]
+      urls: ["rna/summary/get_total_modifications/"],
     });
     dataSourceData.push({
       label: ["PAXdb"],
-      urls: ["proteins/summary/num_obs_abundances/"]
+      urls: ["proteins/summary/num_obs_abundances/"],
     });
     dataSourceData.push({
       label: ["PRO"],
-      urls: ["proteins/summary/num_obs_abundances/"]
+      urls: ["proteins/summary/num_obs_abundances/"],
     });
     dataSourceData.push({
       label: ["SABIO-RK"],
       urls: [
         "reactions/summary/get_sabio_obs/?parameter=k_cats",
         "reactions/summary/get_sabio_obs/?parameter=k_ms",
-        "reactions/summary/get_sabio_obs/?parameter=k_is"
-      ]
+        "reactions/summary/get_sabio_obs/?parameter=k_is",
+      ],
     });
     dataSourceData.push({
       label: ["YMDB"],
-      urls: ["metabolites/summary/ymdb_conc_count/"]
+      urls: ["metabolites/summary/ymdb_conc_count/"],
     });
     this.setBarChart("dataSource", dataSourceData);
 
@@ -129,20 +129,20 @@ class Stats extends Component {
       urls: [
         "metabolites/summary/ecmdb_ref_count",
         "metabolites/summary/ymdb_ref_count",
-        "metabolites/summary/curated_ref_count"
-      ]
+        "metabolites/summary/curated_ref_count",
+      ],
     });
     journalByDataTypeData.push({
       label: ["Prot abund."],
-      urls: ["proteins/summary/num_publications/"]
+      urls: ["proteins/summary/num_publications/"],
     });
     journalByDataTypeData.push({
       label: ["Rxn kinetics"],
-      urls: ["/reactions/summary/num_refs/"]
+      urls: ["/reactions/summary/num_refs/"],
     });
     journalByDataTypeData.push({
       label: ["RNA half-lives"],
-      urls: ["rna/summary/get_distinct/?_input=halflives.reference.doi"]
+      urls: ["rna/summary/get_distinct/?_input=halflives.reference.doi"],
     });
     this.setBarChart("journalByDataType", journalByDataTypeData);
 
@@ -151,7 +151,7 @@ class Stats extends Component {
       "https://raw.githubusercontent.com/KarrLab/datanator_query_python/testapi/docs/taxon_distribution_frontend.json";
     axios
       .get(taxonomicUrl)
-      .then(response => {
+      .then((response) => {
         const organismCountsDict = {};
         for (const organismLong in response.data) {
           if (organismLong !== "others") {
@@ -170,7 +170,7 @@ class Stats extends Component {
         for (const organism in organismCountsDict) {
           organismCountsArr.push({
             organism: organism,
-            count: organismCountsDict[organism]
+            count: organismCountsDict[organism],
           });
         }
         organismCountsArr.sort((a, b) => {
@@ -195,11 +195,11 @@ class Stats extends Component {
         this.setState({
           taxonomy: {
             labels: labels,
-            values: values
-          }
+            values: values,
+          },
         });
       })
-      .catch(error => {
+      .catch((error) => {
         if (
           "response" in error &&
           error.response !== undefined &&
@@ -259,8 +259,8 @@ class Stats extends Component {
   setFrequencyChart(name, dataUrl) {
     const labels = [];
     const values = [];
-    getDataFromApi([dataUrl]).then(response => {
-      let data = response.data.sort(function(a, b) {
+    getDataFromApi([dataUrl]).then((response) => {
+      let data = response.data.sort(function (a, b) {
         return a["_id"] - b["_id"];
       });
       for (var n = 0; n < data.length; n++) {
@@ -270,7 +270,7 @@ class Stats extends Component {
         }
       }
       this.setState({
-        [name]: { labels: labels, values: values }
+        [name]: { labels: labels, values: values },
       });
     });
   }

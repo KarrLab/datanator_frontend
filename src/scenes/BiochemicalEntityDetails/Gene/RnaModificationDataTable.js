@@ -9,11 +9,11 @@ import { TAXONOMIC_PROXIMITY_TOOLTIP } from "../ColumnsToolPanel/TooltipDescript
 class RnaModificationDataTable extends Component {
   static propTypes = {
     "uniprot-id-to-taxon-dist": PropTypes.object,
-    "set-scene-metadata": PropTypes.func.isRequired
+    "set-scene-metadata": PropTypes.func.isRequired,
   };
 
   static defaultProps = {
-    "uniprot-id-to-taxon-dist": null
+    "uniprot-id-to-taxon-dist": null,
   };
 
   getUrl(query, organism) {
@@ -42,7 +42,7 @@ class RnaModificationDataTable extends Component {
           anticodon: measurement.anticodon,
           organism: measurement.organism,
           localization: measurement.organellum,
-          source: "MODOMICS"
+          source: "MODOMICS",
         };
         if (organism != null) {
           row["taxonomicProximity"] = DataTable.calcTaxonomicDistance(
@@ -68,19 +68,19 @@ class RnaModificationDataTable extends Component {
           labelDefault: "Columns",
           labelKey: "columns",
           iconKey: "columns",
-          toolPanel: "columnsToolPanel"
+          toolPanel: "columnsToolPanel",
         },
         {
           id: "filters",
           labelDefault: "Filters",
           labelKey: "filters",
           iconKey: "filter",
-          toolPanel: "filtersToolPanel"
-        }
+          toolPanel: "filtersToolPanel",
+        },
       ],
       position: "left",
       defaultToolPanel: "filters",
-      hiddenByDefault: false
+      hiddenByDefault: false,
     };
   }
 
@@ -95,33 +95,33 @@ class RnaModificationDataTable extends Component {
         checkboxSelection: true,
         headerCheckboxSelection: true,
         headerCheckboxSelectionFilteredOnly: true,
-        comparator: DataTable.numericComparator
+        comparator: DataTable.numericComparator,
       },
       {
         headerName: "Unmodified sequence (IUPAC)",
         field: "unmodifiedSequence",
-        filter: "textFilter"
+        filter: "textFilter",
       },
       {
         headerName: "Modified sequence (BpForms)",
         field: "modifiedSequence",
-        filter: "textFilter"
+        filter: "textFilter",
       },
       {
         headerName: "Amino acid",
         field: "aminoAcid",
-        filter: "textFilter"
+        filter: "textFilter",
       },
       {
         headerName: "Anticodon",
         field: "anticodon",
-        filter: "textFilter"
+        filter: "textFilter",
       },
       {
         headerName: "Organism",
         field: "organism",
         filter: "textFilter",
-        cellRenderer: function(params) {
+        cellRenderer: function (params) {
           const organism = params.value;
           if (organism) {
             return (
@@ -134,12 +134,12 @@ class RnaModificationDataTable extends Component {
           } else {
             return null;
           }
-        }
+        },
       },
       {
         headerName: "Localization",
         field: "localization",
-        filter: "textFilter"
+        filter: "textFilter",
       },
       {
         headerName: "Taxonomic similarity",
@@ -149,12 +149,12 @@ class RnaModificationDataTable extends Component {
             <Tooltip title={TAXONOMIC_PROXIMITY_TOOLTIP} arrow>
               <span>Taxonomic similarity</span>
             </Tooltip>
-          )
+          ),
         },
         field: "taxonomicProximity",
         hide: true,
         filter: "taxonomyFilter",
-        valueFormatter: params => {
+        valueFormatter: (params) => {
           if (params.value != null) {
             const value = taxonomicRanks[params.value];
             return upperCaseFirstLetter(value);
@@ -162,19 +162,19 @@ class RnaModificationDataTable extends Component {
             return null;
           }
         },
-        comparator: DataTable.numericComparator
+        comparator: DataTable.numericComparator,
       },
       {
         headerName: "Source",
         field: "source",
-        cellRenderer: function(params) {
+        cellRenderer: function (params) {
           return (
             '<a href="https://iimcb.genesilico.pl/modomics/sequences/" target="_blank" rel="noopener noreferrer">' +
             params.value +
             "</a>"
           );
-        }
-      }
+        },
+      },
     ];
 
     if (!organism) {

@@ -7,14 +7,14 @@ export default class KeggPathwaysMetadataSection extends Component {
     pathways: PropTypes.array.isRequired,
     "page-size": PropTypes.number.isRequired,
     "kegg-id-name": PropTypes.string.isRequired,
-    "kegg-description-name": PropTypes.string.isRequired
+    "kegg-description-name": PropTypes.string.isRequired,
   };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      pageCount: 1
+      pageCount: 1,
     };
   }
 
@@ -46,7 +46,7 @@ export default class KeggPathwaysMetadataSection extends Component {
       <div className="content-container-search-results-scene content-block section">
         <div>
           <ul className="two-col-list link-list">
-            {displayedPathways.map(el => {
+            {displayedPathways.map((el) => {
               if (el[this.props["kegg-id-name"]]) {
                 const mapId = el[this.props["kegg-id-name"]].substring(
                   2,
@@ -64,7 +64,7 @@ export default class KeggPathwaysMetadataSection extends Component {
                       dangerouslySetInnerHTML={{
                         __html: upperCaseFirstLetter(
                           el[this.props["kegg-description-name"]]
-                        )
+                        ),
                       }}
                     ></a>
                   </li>
@@ -77,7 +77,7 @@ export default class KeggPathwaysMetadataSection extends Component {
                       dangerouslySetInnerHTML={{
                         __html: upperCaseFirstLetter(
                           el[this.props["kegg-description-name"]]
-                        )
+                        ),
                       }}
                     ></div>
                   </li>

@@ -1,7 +1,7 @@
 /* global cy, describe, it */
 
-describe("StatsToolPanel", function() {
-  it("Display stats of selected rows correctly", function() {
+describe("StatsToolPanel", function () {
+  it("Display stats of selected rows correctly", function () {
     const route = "metabolite";
     const entity = "NBSCHQHZLSJFNQ-VFUOTHLCSA-N"; // Beta-D-Glucose 6-phosphate
     const url = "/" + route + "/" + entity;
@@ -17,10 +17,8 @@ describe("StatsToolPanel", function() {
     // select some rows
     cy.get(
       "#" + dataContainerId + " .ag-root .ag-center-cols-container .ag-row"
-    ).each($row => {
-      cy.wrap($row)
-        .find(".ag-selection-checkbox")
-        .click();
+    ).each(($row) => {
+      cy.wrap($row).find(".ag-selection-checkbox").click();
     });
   });
 });

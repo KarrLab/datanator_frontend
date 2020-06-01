@@ -11,14 +11,14 @@ import SearchForm from "~/components/SearchForm/SearchForm";
 
 class Header extends Component {
   static propTypes = {
-    history: PropTypes.object.isRequired
+    history: PropTypes.object.isRequired,
   };
 
   constructor() {
     super();
     this.unlistenToHistory = null;
     this.state = {
-      showSearchForm: false
+      showSearchForm: false,
     };
   }
 

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {
   getNumProperties,
   upperCaseFirstLetter,
-  isKeggOrthologyId
+  isKeggOrthologyId,
 } from "~/utils/utils";
 import DataTable from "../DataTable/DataTable";
 import { HtmlColumnHeader } from "../HtmlColumnHeader";
@@ -13,11 +13,11 @@ import { TAXONOMIC_PROXIMITY_TOOLTIP } from "../ColumnsToolPanel/TooltipDescript
 class ProteinModificationDataTable extends Component {
   static propTypes = {
     "uniprot-id-to-taxon-dist": PropTypes.object,
-    "set-scene-metadata": PropTypes.func.isRequired
+    "set-scene-metadata": PropTypes.func.isRequired,
   };
 
   static defaultProps = {
-    "uniprot-id-to-taxon-dist": null
+    "uniprot-id-to-taxon-dist": null,
   };
 
   getUrl(query, organism) {
@@ -105,7 +105,7 @@ class ProteinModificationDataTable extends Component {
             uniprotId: rawDatum.uniprot_id,
             geneSymbol: rawDatum.gene_name,
             organism: rawDatum.species_name,
-            source: measurement.pro_id
+            source: measurement.pro_id,
           };
 
           if (organism != null) {
@@ -122,7 +122,7 @@ class ProteinModificationDataTable extends Component {
                 organism.toLowerCase() ===
                   rawDatum.species_name.toLowerCase() ||
                 rawDatum.canon_ancestors
-                  .map(el => el.toLowerCase())
+                  .map((el) => el.toLowerCase())
                   .includes(organism.toLowerCase())
               ) {
                 formattedDatum["taxonomicProximity"] = 0;
@@ -146,19 +146,19 @@ class ProteinModificationDataTable extends Component {
           labelDefault: "Columns",
           labelKey: "columns",
           iconKey: "columns",
-          toolPanel: "columnsToolPanel"
+          toolPanel: "columnsToolPanel",
         },
         {
           id: "filters",
           labelDefault: "Filters",
           labelKey: "filters",
           iconKey: "filter",
-          toolPanel: "filtersToolPanel"
-        }
+          toolPanel: "filtersToolPanel",
+        },
       ],
       position: "left",
       defaultToolPanel: "filters",
-      hiddenByDefault: false
+      hiddenByDefault: false,
     };
   }
 
@@ -169,39 +169,39 @@ class ProteinModificationDataTable extends Component {
         field: "processing",
         checkboxSelection: true,
         headerCheckboxSelection: true,
-        headerCheckboxSelectionFilteredOnly: true
+        headerCheckboxSelectionFilteredOnly: true,
       },
       {
         headerName: "Modifications",
-        field: "modifications"
+        field: "modifications",
       },
       {
         headerName: "Crosslinks",
-        field: "crosslinks"
+        field: "crosslinks",
       },
       {
         headerName: "Deletions",
-        field: "deletions"
+        field: "deletions",
       },
       {
         headerName: "Processed sequence (IUBMB)",
         field: "processedSequence",
-        hide: true
+        hide: true,
       },
       {
         headerName: "Mature sequence (BpForms)",
-        field: "matureSequence"
+        field: "matureSequence",
       },
 
       {
         headerName: "Protein",
         field: "proteinName",
-        filter: "textFilter"
+        filter: "textFilter",
       },
       {
         headerName: "UniProt id",
         field: "uniprotId",
-        cellRenderer: function(params) {
+        cellRenderer: function (params) {
           return (
             '<a href="https://www.uniprot.org/uniprot/' +
             params.value +
@@ -210,19 +210,19 @@ class ProteinModificationDataTable extends Component {
             "</a>"
           );
         },
-        hide: true
+        hide: true,
       },
       {
         headerName: "Gene",
         field: "geneSymbol",
         filter: "textFilter",
-        hide: true
+        hide: true,
       },
       {
         headerName: "Organism",
         field: "organism",
         filter: "textFilter",
-        cellRenderer: function(params) {
+        cellRenderer: function (params) {
           const organism = params.value;
           if (organism) {
             return (
@@ -235,7 +235,7 @@ class ProteinModificationDataTable extends Component {
           } else {
             return null;
           }
-        }
+        },
       },
       {
         headerName: "Taxonomic similarity",
@@ -245,12 +245,12 @@ class ProteinModificationDataTable extends Component {
             <Tooltip title={TAXONOMIC_PROXIMITY_TOOLTIP} arrow>
               <span>Taxonomic similarity</span>
             </Tooltip>
-          )
+          ),
         },
         field: "taxonomicProximity",
         hide: true,
         filter: "taxonomyFilter",
-        valueFormatter: params => {
+        valueFormatter: (params) => {
           if (params.value != null) {
             const value = taxonomicRanks[params.value];
             return upperCaseFirstLetter(value);
@@ -258,12 +258,12 @@ class ProteinModificationDataTable extends Component {
             return null;
           }
         },
-        comparator: DataTable.numericComparator
+        comparator: DataTable.numericComparator,
       },
       {
         headerName: "Source",
         field: "source",
-        cellRenderer: function(params) {
+        cellRenderer: function (params) {
           return (
             '<a href="https://proconsortium.org/app/entry/' +
             params.value +
@@ -272,11 +272,11 @@ class ProteinModificationDataTable extends Component {
             "</a>"
           );
         },
-        filterValueGetter: params => {
+        filterValueGetter: (params) => {
           return params.data.source;
         },
-        filter: "textFilter"
-      }
+        filter: "textFilter",
+      },
     ];
 
     if (!organism) {

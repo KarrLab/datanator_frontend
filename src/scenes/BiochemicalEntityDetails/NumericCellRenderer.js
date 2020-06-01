@@ -4,7 +4,7 @@ import { formatScientificNotation } from "~/utils/utils";
 
 export class NumericCellRenderer extends Component {
   static propTypes = {
-    value: PropTypes.number
+    value: PropTypes.number,
   };
 
   render() {

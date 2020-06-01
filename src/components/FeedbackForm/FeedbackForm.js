@@ -11,22 +11,22 @@ export default class FeedbackForm extends Component {
           apiKey: API_KEY,
           labels: {
             title: "Send us feedback",
-            button: "Send"
+            button: "Send",
           },
           form: [
             {
               label: "Comments",
               type: "textarea",
               id: "title",
-              required: true
+              required: true,
             },
             {
               label: "Your name",
-              type: "text"
+              type: "text",
             },
             {
               label: "Email",
-              type: "text"
+              type: "text",
             },
             {
               id: "agreement",
@@ -34,17 +34,17 @@ export default class FeedbackForm extends Component {
               label:
                 "I agree to send a screenshot and technical information about my browser",
               value: false,
-              required: true
-            }
+              required: true,
+            },
           ],
           colors: {
             header: "#2196f3",
             body: "#eee",
             background: "#444444ee",
             errors: "#f44336",
-            focus: "#2196f3"
+            focus: "#2196f3",
           },
-          closeModalOnSubmit: true
+          closeModalOnSubmit: true,
         })}
       >
         <div className="feedback-form-component">Send feedback</div>

@@ -2,19 +2,9 @@ function getListDomElements(wrapper, elementId, return_format = "html") {
   let testingListOfLinks = [];
   for (let i = 0; i < wrapper.find(elementId).length; i++) {
     if (return_format == "text") {
-      testingListOfLinks.push(
-        wrapper
-          .find(elementId)
-          .at(i)
-          .text()
-      );
+      testingListOfLinks.push(wrapper.find(elementId).at(i).text());
     } else {
-      testingListOfLinks.push(
-        wrapper
-          .find(elementId)
-          .at(i)
-          .html()
-      );
+      testingListOfLinks.push(wrapper.find(elementId).at(i).html());
     }
   }
   return testingListOfLinks;

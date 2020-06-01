@@ -4,7 +4,7 @@ import {
   formatChemicalFormula,
   strCompare,
   removeDuplicates,
-  castToArray
+  castToArray,
 } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
 import KeggPathwaysMetadataSection from "../KeggPathwaysMetadataSection";
@@ -23,12 +23,12 @@ const STRUCTURE_IMG_ARGS = {
   symbolfontsize: 10,
   bgcolor: "transparent",
   antialiasing: 0,
-  crop: 0
+  crop: 0,
 };
 const STRUCTURE_IMG_URL =
   "https://cactus.nci.nih.gov/chemical/structure/%s%s/image?" +
   Object.keys(STRUCTURE_IMG_ARGS)
-    .map(el => {
+    .map((el) => {
       return el + "=" + STRUCTURE_IMG_ARGS[el];
     })
     .join("&");
@@ -36,49 +36,49 @@ const STRUCTURE_IMG_URL =
 const DATABASES = {
   biocyc: {
     name: "BioCyC",
-    url: "https://biocyc.org/compound?id=%s"
+    url: "https://biocyc.org/compound?id=%s",
   },
   cas: {
     name: "CAS",
-    url: "https://webbook.nist.gov/cgi/cbook.cgi?ID=%s"
+    url: "https://webbook.nist.gov/cgi/cbook.cgi?ID=%s",
   },
   chebi: {
     name: "CHEBI",
-    url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:%s"
+    url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:%s",
   },
   chemspider: {
     name: "ChemSpider",
-    url: "https://www.chemspider.com/Chemical-Structure.%s.html"
+    url: "https://www.chemspider.com/Chemical-Structure.%s.html",
   },
   ecmdb: {
     name: "ECMDB",
-    url: "http://ecmdb.ca/compounds/%s"
+    url: "http://ecmdb.ca/compounds/%s",
   },
   foodb: {
     name: "FooDB",
-    url: "http://foodb.ca/compounds/%s"
+    url: "http://foodb.ca/compounds/%s",
   },
   hmdb: {
     name: "HMDB",
-    url: "http://www.hmdb.ca/metabolites/%s"
+    url: "http://www.hmdb.ca/metabolites/%s",
   },
   kegg: {
     name: "KEGG",
-    url: "https://www.genome.jp/dbget-bin/www_bget?cpd:%s"
+    url: "https://www.genome.jp/dbget-bin/www_bget?cpd:%s",
   },
   pubchem: {
     name: "PubChem",
-    url: "https://pubchem.ncbi.nlm.nih.gov/compound/%s"
+    url: "https://pubchem.ncbi.nlm.nih.gov/compound/%s",
   },
   ymdb: {
     name: "YMDB",
-    url: "http://www.ymdb.ca/compounds/%s"
-  }
+    url: "http://www.ymdb.ca/compounds/%s",
+  },
 };
 
 class MetadataSection extends Component {
   static propTypes = {
-    "set-scene-metadata": PropTypes.func.isRequired
+    "set-scene-metadata": PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -101,7 +101,7 @@ class MetadataSection extends Component {
 
     processedData.name = met.name;
     if (met.synonyms && met.synonyms.synonym) {
-      processedData.synonyms = castToArray(met.synonyms.synonym).map(syn => {
+      processedData.synonyms = castToArray(met.synonyms.synonym).map((syn) => {
         return htmlEntityDecoder.feed(syn);
       });
       processedData.synonyms.sort((a, b) => {
@@ -122,7 +122,7 @@ class MetadataSection extends Component {
       processedData.description = reactStringReplace(
         processedData.description,
         /[([]PMID:? *(\d+)[)\]]/gi,
-        pmid => {
+        (pmid) => {
           return (
             <span key={pmid}>
               [
@@ -141,7 +141,7 @@ class MetadataSection extends Component {
       processedData.description = reactStringReplace(
         processedData.description,
         /EC (\d+\.\d+\.\d+\.\d+)/i,
-        ecNumber => {
+        (ecNumber) => {
           return (
             <span key={ecNumber}>
               EC:{" "}
@@ -164,10 +164,10 @@ class MetadataSection extends Component {
       inchiKey: met.inchikey,
       formula: formatChemicalFormula(met.chemical_formula),
       molWt: met.average_molecular_weight,
-      charge: met.property.find(el => el.kind === "formal_charge").value,
+      charge: met.property.find((el) => el.kind === "formal_charge").value,
       physiologicalCharge: met.property.find(
-        el => el.kind === "physiological_charge"
-      ).value
+        (el) => el.kind === "physiological_charge"
+      ).value,
     };
 
     if (met.pathways) {
@@ -175,7 +175,7 @@ class MetadataSection extends Component {
 
       processedData.pathways = removeDuplicates(
         processedData.pathways,
-        el => el.name
+        (el) => el.name
       );
       processedData.pathways.sort((a, b) => {
         return strCompare(a.name, b.name);
@@ -216,7 +216,7 @@ class MetadataSection extends Component {
       hmdb: met.hmdb_id,
       kegg: met.kegg_id,
       pubchem: met.pubchem_compound_id,
-      ymdb: met.ymdb_id
+      ymdb: met.ymdb_id,
     };
     return processedData;
   }
@@ -236,7 +236,7 @@ class MetadataSection extends Component {
       } else if (processedData.chemistry.inchiKey) {
         structure = {
           type: "InChIKey=",
-          value: processedData.chemistry.inchiKey
+          value: processedData.chemistry.inchiKey,
         };
       }
 
@@ -264,7 +264,7 @@ class MetadataSection extends Component {
             )}
             <div>{processedData.description}</div>
           </div>
-        )
+        ),
       });
     }
 
@@ -274,7 +274,7 @@ class MetadataSection extends Component {
         title: "Synonyms",
         content: (
           <ul className="three-col-list">
-            {processedData.synonyms.map(syn => {
+            {processedData.synonyms.map((syn) => {
               return (
                 <li key={syn}>
                   <div
@@ -285,7 +285,7 @@ class MetadataSection extends Component {
               );
             })}
           </ul>
-        )
+        ),
       });
     }
 
@@ -315,11 +315,13 @@ class MetadataSection extends Component {
         title: "Cross references",
         content: (
           <ul className="key-value-list three-col-list link-list">{dbLinks}</ul>
-        )
+        ),
       });
     }
 
-    if (Object.values(processedData.chemistry).some(val => val !== undefined)) {
+    if (
+      Object.values(processedData.chemistry).some((val) => val !== undefined)
+    ) {
       let physicalProps = [
         { name: "SMILES", value: processedData.chemistry.smiles },
         { name: "InChI", value: processedData.chemistry.inchi },
@@ -328,13 +330,13 @@ class MetadataSection extends Component {
         { name: "Charge", value: processedData.chemistry.charge },
         {
           name: "Physiological charge",
-          value: processedData.chemistry.physiologicalCharge
-        }
+          value: processedData.chemistry.physiologicalCharge,
+        },
       ]
-        .filter(prop => {
+        .filter((prop) => {
           return prop.value !== undefined;
         })
-        .map(prop => {
+        .map((prop) => {
           return (
             <li key={prop.name}>
               <b>{prop.name}:</b> {prop.value}
@@ -345,7 +347,7 @@ class MetadataSection extends Component {
       sections.push({
         id: "chemistry",
         title: "Chemistry",
-        content: <ul className="key-value-list">{physicalProps}</ul>
+        content: <ul className="key-value-list">{physicalProps}</ul>,
       });
     }
 
@@ -353,7 +355,7 @@ class MetadataSection extends Component {
       let section = {
         id: "localizations",
         title: "Localizations",
-        content: null
+        content: null,
       };
 
       let taxa = Object.keys(processedData.cellularLocations);
@@ -362,12 +364,12 @@ class MetadataSection extends Component {
 
         section.content = (
           <ul className="vertically-spaced">
-            {taxa.map(taxon => (
+            {taxa.map((taxon) => (
               <li key={taxon}>
                 <div className="bulleted-list-item">
                   {taxon}
                   <ul>
-                    {processedData.cellularLocations[taxon].map(loc => (
+                    {processedData.cellularLocations[taxon].map((loc) => (
                       <li key={loc}>{loc}</li>
                     ))}
                   </ul>
@@ -386,7 +388,7 @@ class MetadataSection extends Component {
     sections.push({
       id: "reactions",
       title: "Reactions",
-      content: <ReactionSearchResultsList />
+      content: <ReactionSearchResultsList />,
     });
     if (processedData.pathways) {
       sections.push({
@@ -399,7 +401,7 @@ class MetadataSection extends Component {
             kegg-id-name={"kegg_map_id"}
             kegg-description-name={"name"}
           />
-        )
+        ),
       });
     }
 

@@ -1,7 +1,7 @@
 /* global cy, describe, it, expect */
 
-describe("Works correctly", function() {
-  it("Works correctly", function() {
+describe("Works correctly", function () {
+  it("Works correctly", function () {
     cy.visit("/");
     cy.get(".content-container-home-scene .search-form .search-submit").should(
       "have.class",
@@ -69,7 +69,7 @@ describe("Works correctly", function() {
     cy.get(".bp3-popover-content .bp3-menu li")
       .eq(1)
       .find(".bp3-menu-item")
-      .should($el => {
+      .should(($el) => {
         expect($el.text().startsWith("Escherichia coli ")).to.be.true;
       });
     cy.get(".bp3-popover-content .bp3-menu li")
@@ -79,7 +79,7 @@ describe("Works correctly", function() {
       .click();
     cy.get(
       ".content-container-home-scene .search-form .search-form-el-organism input"
-    ).should($el => {
+    ).should(($el) => {
       expect($el.val().startsWith("Escherichia coli ")).to.be.true;
     });
     cy.get(".content-container-home-scene .search-form .search-submit").should(

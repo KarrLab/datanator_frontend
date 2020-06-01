@@ -8,19 +8,19 @@ class NumberFilter extends Component {
     api: PropTypes.shape({
       addEventListener: PropTypes.func.isRequired,
       removeEventListener: PropTypes.func.isRequired,
-      forEachNode: PropTypes.func.isRequired
+      forEachNode: PropTypes.func.isRequired,
     }).isRequired,
     valueGetter: PropTypes.func.isRequired,
     loBound: PropTypes.number,
     hiBound: PropTypes.number,
     step: PropTypes.number,
-    filterChangedCallback: PropTypes.func.isRequired
+    filterChangedCallback: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
     loBound: null,
     hiBound: null,
-    step: null
+    step: null,
   };
 
   constructor(props) {
@@ -38,15 +38,15 @@ class NumberFilter extends Component {
       marks: [
         {
           value: this.loBound,
-          label: formatScientificNotation(this.loBound, 4, 3, 1, 1, 3)
+          label: formatScientificNotation(this.loBound, 4, 3, 1, 1, 3),
         },
         {
           value: this.hiBound,
-          label: formatScientificNotation(this.hiBound, 4, 3, 1, 1, 3)
-        }
+          label: formatScientificNotation(this.hiBound, 4, 3, 1, 1, 3),
+        },
       ],
       step: 0.01,
-      disabled: false
+      disabled: false,
     };
 
     this.slider = React.createRef();
@@ -88,7 +88,7 @@ class NumberFilter extends Component {
     if (this.loBound == null || this.hiBound == null) {
       let loBound = Infinity;
       let hiBound = -Infinity;
-      this.props.api.forEachNode(node => {
+      this.props.api.forEachNode((node) => {
         const value = this.props.valueGetter(node);
         if (value != null && value !== undefined && !isNaN(value)) {
           loBound = Math.min(loBound, value);
@@ -142,14 +142,14 @@ class NumberFilter extends Component {
       hiBound: this.hiBound,
       min: this.min,
       max: this.max,
-      marks: marks.map(mark => {
+      marks: marks.map((mark) => {
         return {
           value: mark,
-          label: formatScientificNotation(mark, 4, 3, 1, 1, 3)
+          label: formatScientificNotation(mark, 4, 3, 1, 1, 3),
         };
       }),
       step: step,
-      disabled: disabled
+      disabled: disabled,
     });
   }
 
@@ -165,7 +165,7 @@ class NumberFilter extends Component {
   getModel() {
     return {
       min: this.min,
-      max: this.max
+      max: this.max,
     };
   }
 
@@ -188,7 +188,7 @@ class NumberFilter extends Component {
     }
     this.setState({
       min: this.min,
-      max: this.max
+      max: this.max,
     });
     this.props.filterChangedCallback();
   }
@@ -208,7 +208,7 @@ class NumberFilter extends Component {
       this.max = max;
       this.setState({
         min: this.min,
-        max: this.max
+        max: this.max,
       });
       this.props.filterChangedCallback();
     }

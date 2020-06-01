@@ -6,18 +6,18 @@ class HtmlColumnHeader extends Component {
     column: PropTypes.shape({
       colDef: PropTypes.shape({
         headerComponentParams: PropTypes.shape({
-          name: PropTypes.object.isRequired
-        }).isRequired
-      }).isRequired
+          name: PropTypes.object.isRequired,
+        }).isRequired,
+      }).isRequired,
     }).isRequired,
-    setSort: PropTypes.func.isRequired
+    setSort: PropTypes.func.isRequired,
   };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      sort: "none"
+      sort: "none",
     };
 
     this.toggleSort = this.toggleSort.bind(this);

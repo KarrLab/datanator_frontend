@@ -19,7 +19,7 @@ export default class ReactionSearchResultsList extends Component {
         "fields=substrates",
         "fields=substrate_names",
         "fields=products",
-        "fields=product_names"
+        "fields=product_names",
       ].join("&")
     );
   }
@@ -81,7 +81,7 @@ export default class ReactionSearchResultsList extends Component {
 
     return {
       results: formattedResults,
-      numResults: numResults
+      numResults: numResults,
     };
   }
 

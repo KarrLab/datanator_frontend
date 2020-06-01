@@ -1,7 +1,7 @@
 /* global cy, describe, it, expect */
 
-describe("LinkCellRenderer", function() {
-  it("Link cells function correctly", function() {
+describe("LinkCellRenderer", function () {
+  it("Link cells function correctly", function () {
     const route = "metabolite";
     const entity = "RFSUNEUAIZKAJO-ARQDHWQXSA-N"; // D-Fructose
     const organism = "Escherichia coli";
@@ -17,7 +17,7 @@ describe("LinkCellRenderer", function() {
       .click();
 
     cy.location("pathname").should("not.equal", url);
-    cy.location("pathname").should($val => {
+    cy.location("pathname").should(($val) => {
       const val = decodeURI($val);
       expect(val.startsWith("/" + route + "/")).to.be.true;
       expect(val.endsWith("/" + organism + "/")).to.be.false;
@@ -31,7 +31,7 @@ describe("LinkCellRenderer", function() {
       .first()
       .click();
     cy.location("pathname").should("not.equal", url);
-    cy.location("pathname").should($val => {
+    cy.location("pathname").should(($val) => {
       const val = decodeURI($val);
       expect(val.startsWith("/" + route + "/")).to.be.true;
       expect(val.endsWith("/" + organism + "/")).to.be.true;

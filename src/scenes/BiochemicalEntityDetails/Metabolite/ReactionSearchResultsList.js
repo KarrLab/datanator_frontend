@@ -76,7 +76,7 @@ export default class ReactionSearchResultsList extends Component {
 
     return {
       results: formattedResults,
-      numResults: numResults
+      numResults: numResults,
     };
   }
 

@@ -11,7 +11,7 @@ const IS_TEST = process.env.NODE_ENV.startsWith("test");
 class LoadExternalContent extends Component {
   static propTypes = {
     url: PropTypes.string.isRequired,
-    "format-results": PropTypes.func.isRequired
+    "format-results": PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -34,13 +34,13 @@ class LoadExternalContent extends Component {
     axios
       .get(this.props.url, {
         headers: { "Content-Type": "application/json" },
-        cancelToken: this.cancelTokenSource.token
+        cancelToken: this.cancelTokenSource.token,
       })
-      .then(response => {
+      .then((response) => {
         const processed_data = this.props["format-results"](response.data);
         this.setState({ text: processed_data });
       })
-      .catch(error => {
+      .catch((error) => {
         if (
           "response" in error &&
           "request" in error.response &&
@@ -73,7 +73,7 @@ class LoadExternalContent extends Component {
 class LoadContent extends Component {
   static propTypes = {
     url: PropTypes.string.isRequired,
-    "format-results": PropTypes.func.isRequired
+    "format-results": PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -84,14 +84,14 @@ class LoadContent extends Component {
 
     this.state = {
       results: null,
-      locationPathname: ""
+      locationPathname: "",
     };
   }
 
   componentDidMount() {
     this.results = null;
     this.setState({
-      results: null
+      results: null,
     });
     this.fetchResults();
   }
@@ -105,15 +105,15 @@ class LoadContent extends Component {
 
     this.cancelTokenSource = axios.CancelToken.source();
     getDataFromApi([url], { cancelToken: this.cancelTokenSource.token })
-      .then(response => {
+      .then((response) => {
         let results = this.props["format-results"](response.data);
         this.results = results;
 
         this.setState({
-          results: results
+          results: results,
         });
       })
-      .catch(error => {
+      .catch((error) => {
         if (
           "response" in error &&
           "request" in error.response &&
@@ -149,7 +149,7 @@ class LoadMetabolites extends Component {
     url: PropTypes.string,
     name: PropTypes.string.isRequired,
     route: PropTypes.string,
-    inchiKey: PropTypes.string
+    inchiKey: PropTypes.string,
   };
 
   constructor(props) {
@@ -158,13 +158,13 @@ class LoadMetabolites extends Component {
     this.cancelTokenSource = null;
 
     this.state = {
-      results: this.props.name
+      results: this.props.name,
     };
   }
 
   componentDidMount() {
     this.setState({
-      results: this.props.name
+      results: this.props.name,
     });
     this.fetchResults();
   }
@@ -192,7 +192,7 @@ class LoadMetabolites extends Component {
     this.cancelTokenSource = axios.CancelToken.source();
     if (this.props.inchiKey !== null) {
       getDataFromApi([url], { cancelToken: this.cancelTokenSource.token })
-        .then(response => {
+        .then((response) => {
           let results = LoadMetabolites.processRelatedMetabolites(
             this.props.route,
             this.props.name,
@@ -201,10 +201,10 @@ class LoadMetabolites extends Component {
           this.results = results;
 
           this.setState({
-            results: results
+            results: results,
           });
         })
-        .catch(error => {
+        .catch((error) => {
           if (
             "response" in error &&
             "request" in error.response &&

@@ -8,7 +8,7 @@ describe("With real API calls", () => {
     console.info = jest.fn();
     let cancelTokenSource = axios.CancelToken.source();
     const request = getDataFromApi(["status"], {
-      cancelToken: cancelTokenSource.token
+      cancelToken: cancelTokenSource.token,
     })
       .catch(genApiErrorHandler(["status"]))
       .finally(() => {

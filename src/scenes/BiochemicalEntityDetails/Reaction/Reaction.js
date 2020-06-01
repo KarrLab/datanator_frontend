@@ -60,7 +60,7 @@ export default class Reaction extends Component {
                 <div className="content-block-content">
                   <ul>
                     {this.state.metadata &&
-                      this.state.metadata.metadataSections.map(section => (
+                      this.state.metadata.metadataSections.map((section) => (
                         <li key={section.id}>
                           <HashLink to={"#" + section.id} scroll={scrollTo}>
                             {section.title}

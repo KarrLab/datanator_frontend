@@ -8,19 +8,19 @@ export default class FrequencyPlot extends Component {
   static propTypes = {
     data: PropTypes.shape({
       labels: PropTypes.array.isRequired,
-      values: PropTypes.array.isRequired
+      values: PropTypes.array.isRequired,
     }).isRequired,
     xAxisLabel: PropTypes.string.isRequired,
     xMin: PropTypes.number,
     xMax: PropTypes.number,
     yAxisLabel: PropTypes.string.isRequired,
-    kernelBandwidth: PropTypes.number
+    kernelBandwidth: PropTypes.number,
   };
 
   static defaultProps = {
     xMin: null,
     xMax: null,
-    kernelBandwidth: 0.5
+    kernelBandwidth: 0.5,
   };
 
   constructor(props) {
@@ -78,20 +78,20 @@ export default class FrequencyPlot extends Component {
             borderWidth: 2.0,
             data: data,
             pointRadius: 0,
-            showLine: true
-          }
-        ]
+            showLine: true,
+          },
+        ],
       },
       options: {
         events: [],
         responsive: true,
         maintainAspectRatio: false,
         legend: {
-          display: false
+          display: false,
         },
         animation: null,
         title: {
-          display: false
+          display: false,
         },
         scales: {
           yAxes: [
@@ -99,24 +99,24 @@ export default class FrequencyPlot extends Component {
               type: "linear",
               scaleLabel: {
                 display: true,
-                labelString: this.props.yAxisLabel
+                labelString: this.props.yAxisLabel,
               },
               ticks: {
-                maxTicksLimit: 4
-              }
-            }
+                maxTicksLimit: 4,
+              },
+            },
           ],
           xAxes: [
             {
               type: "linear",
               scaleLabel: {
                 display: true,
-                labelString: this.props.xAxisLabel
-              }
-            }
-          ]
-        }
-      }
+                labelString: this.props.xAxisLabel,
+              },
+            },
+          ],
+        },
+      },
     };
 
     // build chart

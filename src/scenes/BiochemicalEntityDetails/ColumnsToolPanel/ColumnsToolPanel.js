@@ -8,20 +8,20 @@ class ColumnsToolPanel extends Component {
     /* AG-Grid API */
     api: PropTypes.shape({
       addEventListener: PropTypes.func.isRequired,
-      removeEventListener: PropTypes.func.isRequired
+      removeEventListener: PropTypes.func.isRequired,
     }).isRequired,
     agGridReact: PropTypes.shape({
       columnApi: PropTypes.shape({
-        setColumnVisible: PropTypes.func.isRequired
-      }).isRequired
-    }).isRequired
+        setColumnVisible: PropTypes.func.isRequired,
+      }).isRequired,
+    }).isRequired,
   };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      cols: []
+      cols: [],
     };
 
     this.updateCols = this.updateCols.bind(this);
@@ -75,7 +75,7 @@ class ColumnsToolPanel extends Component {
         index: cols.length,
         id: colApi.colId,
         name: null,
-        visible: colApi.visible
+        visible: colApi.visible,
       };
 
       const colDef = colApi.colDef;
@@ -89,7 +89,7 @@ class ColumnsToolPanel extends Component {
     }
 
     this.setState({
-      cols: cols
+      cols: cols,
     });
   }
 
@@ -103,7 +103,7 @@ class ColumnsToolPanel extends Component {
   render() {
     return (
       <ul className="biochemical-entity-scene-columns-tool-panel">
-        {this.state.cols.map(col => {
+        {this.state.cols.map((col) => {
           return (
             <li key={col.id}>
               <input

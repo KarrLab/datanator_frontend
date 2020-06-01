@@ -8,7 +8,7 @@ import { naturalSort, isKeggOrthologyId } from "~/utils/utils";
 
 class MetadataSection extends Component {
   static propTypes = {
-    "set-scene-metadata": PropTypes.func.isRequired
+    "set-scene-metadata": PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -79,12 +79,12 @@ class MetadataSection extends Component {
               <a href={geneUrl} target="_blank" rel="noopener noreferrer">
                 {geneName}
               </a>
-            )
+            ),
           });
         } else {
           properties.push({
             key: "Gene",
-            value: geneName
+            value: geneName,
           });
         }
       }
@@ -110,7 +110,7 @@ class MetadataSection extends Component {
             >
               {uniprotData.organism.names[0].value.split("(")[0].trim()}
             </a>
-          )
+          ),
         });
       }
 
@@ -118,7 +118,7 @@ class MetadataSection extends Component {
       if (comments) {
         properties.push({
           key: "Comments",
-          value: comments
+          value: comments,
         });
       }
 
@@ -144,14 +144,14 @@ class MetadataSection extends Component {
 
         properties.push({
           key: <span>Sequence ({seq.length} aa)</span>,
-          value: <ul className="sequence">{formattedSeq}</ul>
+          value: <ul className="sequence">{formattedSeq}</ul>,
         });
       }
 
       if (properties.length) {
         response = (
           <ul className="key-value-list link-list">
-            {properties.map(property => {
+            {properties.map((property) => {
               return (
                 <li key={property.key}>
                   <b>{property.key}</b>: {property.value}
@@ -189,10 +189,10 @@ class MetadataSection extends Component {
       }
 
       const substrateNames = reaction.substrates[0].map(
-        substrate => substrate.substrate_name
+        (substrate) => substrate.substrate_name
       );
       const productNames = reaction.products[0].map(
-        product => product.product_name
+        (product) => product.product_name
       );
       substrateNames.sort(naturalSort);
       productNames.sort(naturalSort);
@@ -229,7 +229,7 @@ class MetadataSection extends Component {
       );
     }
 
-    return formattedResults.map(result => {
+    return formattedResults.map((result) => {
       return result.content;
     });
   }
@@ -315,7 +315,7 @@ class MetadataSection extends Component {
           <div>
             <LoadExternalContent
               url={processedData.descriptionUrl}
-              format-results={uniprotData => {
+              format-results={(uniprotData) => {
                 return MetadataSection.processDescriptionFromUniprot(
                   query,
                   uniprotData
@@ -323,7 +323,7 @@ class MetadataSection extends Component {
               }}
             />
           </div>
-        )
+        ),
       });
     }
 
@@ -344,12 +344,12 @@ class MetadataSection extends Component {
             {" "}
             {processedData.koNumber}
           </a>
-        )
+        ),
       });
     } else {
       crossRefs.push({
         key: "KEGG orthology",
-        value: "None"
+        value: "None",
       });
     }
     if (processedData.uniprotId != null) {
@@ -364,7 +364,7 @@ class MetadataSection extends Component {
             {" "}
             {processedData.uniprotId}
           </a>
-        )
+        ),
       });
     }
 
@@ -373,7 +373,7 @@ class MetadataSection extends Component {
       title: "Cross references",
       content: (
         <ul className="key-value-list link-list">
-          {crossRefs.map(desc => {
+          {crossRefs.map((desc) => {
             return (
               <li key={desc.key}>
                 <b>{desc.key}</b>: {desc.value}
@@ -381,7 +381,7 @@ class MetadataSection extends Component {
             );
           })}
         </ul>
-      )
+      ),
     });
 
     if (processedData.relatedLinksUrl != null) {
@@ -398,13 +398,13 @@ class MetadataSection extends Component {
               )}
             />
           </div>
-        )
+        ),
       });
     } else {
       sections.push({
         id: "reactions",
         title: "Reactions",
-        content: "No data is available."
+        content: "No data is available.",
       });
     }
 
@@ -420,7 +420,7 @@ class MetadataSection extends Component {
               kegg-id-name={"kegg_pathway_code"}
               kegg-description-name={"pathway_description"}
             />
-          )
+          ),
         });
       }
     }

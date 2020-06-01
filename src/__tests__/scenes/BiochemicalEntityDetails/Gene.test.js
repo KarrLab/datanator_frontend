@@ -45,7 +45,7 @@ describe("Gene data page", () => {
       geneSymbol: "PFK26",
       organism: "Saccharomyces cerevisiae S288C",
       taxonomicProximity: 8,
-      organ: "whole organism"
+      organ: "whole organism",
     });
 
     expect(formattedData[7].organism).toEqual(
@@ -67,7 +67,7 @@ describe("Gene data page", () => {
       uniprotId: "P40433",
       geneSymbol: "PFK26",
       organism: "Saccharomyces cerevisiae S288C",
-      organ: "whole organism"
+      organ: "whole organism",
     });
   });
 
@@ -209,7 +209,7 @@ describe("Gene data page", () => {
     const reactionLinksExternal = getListDomElements(formattedReactions, "a");
     const correctListOfLinksExternal = [
       '<a href="https://enzyme.expasy.org/EC/4.2.1.46" target="_blank" rel="noopener noreferrer">4.2.1.46</a>',
-      '<a href="https://enzyme.expasy.org/EC/4.2.1.46" target="_blank" rel="noopener noreferrer">4.2.1.46</a>'
+      '<a href="https://enzyme.expasy.org/EC/4.2.1.46" target="_blank" rel="noopener noreferrer">4.2.1.46</a>',
     ];
     expect(reactionLinksExternal).toEqual(
       expect.arrayContaining(correctListOfLinksExternal)

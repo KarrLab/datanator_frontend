@@ -1,7 +1,7 @@
 /* global cy, describe, it, expect */
 
-describe("NumberFilter", function() {
-  it("Correctly filters rows", function() {
+describe("NumberFilter", function () {
+  it("Correctly filters rows", function () {
     const route = "metabolite";
     const entity = "YSYKRGRSMLTJNL-URARBOGNSA-L"; // TDP-Glucose
     const url = "/" + route + "/" + entity;
@@ -9,7 +9,7 @@ describe("NumberFilter", function() {
 
     //use fixture with tanimoto_similarity always < 1
     cy.server();
-    cy.fixture("metabolite-concentrations-" + entity).then(json => {
+    cy.fixture("metabolite-concentrations-" + entity).then((json) => {
       cy.route({
         method: "GET",
         url:
@@ -17,7 +17,7 @@ describe("NumberFilter", function() {
           entity +
           "&*",
         status: 200,
-        response: json
+        response: json,
       });
     });
     cy.visit(url);
@@ -30,7 +30,7 @@ describe("NumberFilter", function() {
       "#" +
         dataContainerId +
         " .biochemical-entity-scene-columns-tool-panel input"
-    ).each($input => {
+    ).each(($input) => {
       cy.wrap($input).check({ force: true });
     });
 
@@ -40,7 +40,7 @@ describe("NumberFilter", function() {
       .click();
     cy.get(
       "#" + dataContainerId + " .biochemical-entity-scene-filter-container"
-    ).each($filter => {
+    ).each(($filter) => {
       cy.wrap($filter).click();
     });
 
@@ -61,16 +61,16 @@ describe("NumberFilter", function() {
     cy.get("#" + dataContainerId + " .ag-center-cols-container")
       .children()
       .should("have.length", 0);
-    cy.get("#" + dataContainerId + " .ag-root-wrapper").then($grid => {
+    cy.get("#" + dataContainerId + " .ag-root-wrapper").then(($grid) => {
       expect(
         $grid[0].__agComponent.gridApi.getFilterModel().tanimotoSimilarity.min
       ).to.equal(1);
     });
 
     // programmatically reset filter so all rows are displayed
-    cy.get("#" + dataContainerId + " .ag-root-wrapper").then($grid => {
+    cy.get("#" + dataContainerId + " .ag-root-wrapper").then(($grid) => {
       $grid[0].__agComponent.gridApi.setFilterModel({
-        tanimotoSimilarity: null
+        tanimotoSimilarity: null,
       });
     });
     cy.get("#" + dataContainerId + " .ag-center-cols-container")
@@ -78,12 +78,12 @@ describe("NumberFilter", function() {
       .should("not.have.length", 0);
 
     // programmatically set filter so no rows are displayed
-    cy.get("#" + dataContainerId + " .ag-root-wrapper").then($grid => {
+    cy.get("#" + dataContainerId + " .ag-root-wrapper").then(($grid) => {
       $grid[0].__agComponent.gridApi.setFilterModel({
         tanimotoSimilarity: {
           min: 1,
-          max: 1
-        }
+          max: 1,
+        },
       });
     });
     cy.get("#" + dataContainerId + " .ag-center-cols-container")

@@ -6,14 +6,14 @@ import Tooltip from "@material-ui/core/Tooltip";
 import { HtmlColumnHeader } from "../HtmlColumnHeader";
 import {
   TAXONOMIC_PROXIMITY_TOOLTIP,
-  CHEMICAL_SIMILARITY_TOOLTIP
+  CHEMICAL_SIMILARITY_TOOLTIP,
 } from "../ColumnsToolPanel/TooltipDescriptions";
 
 var htmlDecode = require("js-htmlencode").htmlDecode;
 
 class ConcentrationDataTable extends Component {
   static propTypes = {
-    "set-scene-metadata": PropTypes.func.isRequired
+    "set-scene-metadata": PropTypes.func.isRequired,
   };
 
   static getUrl(query, organism) {
@@ -41,7 +41,7 @@ class ConcentrationDataTable extends Component {
             name: metabolite.metabolite,
             link: {
               query: metabolite.inchikey,
-              label: metabolite.metabolite
+              label: metabolite.metabolite,
             },
             tanimotoSimilarity:
               "similarity_score" in metabolite
@@ -62,7 +62,7 @@ class ConcentrationDataTable extends Component {
               "growth_media" in metConc ? metConc.growth_media : null,
             growthConditions:
               "growth_system" in metConc ? metConc.growth_system : null,
-            source: null
+            source: null,
           };
 
           if (conc.units === "uM") {
@@ -92,17 +92,17 @@ class ConcentrationDataTable extends Component {
             if (metConc.reference.namespace === "doi") {
               conc.source = {
                 id: "DOI: " + metConc.reference.id,
-                url: "https://dx.doi.org/" + metConc.reference.id
+                url: "https://dx.doi.org/" + metConc.reference.id,
               };
             } else if (metConc.reference.namespace === "ecmdb") {
               conc.source = {
                 id: "ECMDB: " + metConc.reference.id,
-                url: "http://ecmdb.ca/compounds/" + metConc.reference.id
+                url: "http://ecmdb.ca/compounds/" + metConc.reference.id,
               };
             } else if (metConc.reference.namespace === "ymdb") {
               conc.source = {
                 id: "YMDB: " + metConc.reference.id,
-                url: "http://www.ymdb.ca/compounds/" + metConc.reference.id
+                url: "http://www.ymdb.ca/compounds/" + metConc.reference.id,
               };
             } else if (
               metConc.reference.namespace === "pubmed" &&
@@ -111,12 +111,12 @@ class ConcentrationDataTable extends Component {
               conc.source = {
                 id: "PubMed: " + metConc.reference.id,
                 url:
-                  "https://www.ncbi.nlm.nih.gov/pubmed/" + metConc.reference.id
+                  "https://www.ncbi.nlm.nih.gov/pubmed/" + metConc.reference.id,
               };
             } else if (metConc.reference.text) {
               conc.source = {
                 id: metConc.reference.text,
-                url: null
+                url: null,
               };
             }
           }
@@ -137,14 +137,14 @@ class ConcentrationDataTable extends Component {
           labelDefault: "Columns",
           labelKey: "columns",
           iconKey: "columns",
-          toolPanel: "columnsToolPanel"
+          toolPanel: "columnsToolPanel",
         },
         {
           id: "filters",
           labelDefault: "Filters",
           labelKey: "filters",
           iconKey: "filter",
-          toolPanel: "filtersToolPanel"
+          toolPanel: "filtersToolPanel",
         },
         {
           id: "stats",
@@ -153,13 +153,13 @@ class ConcentrationDataTable extends Component {
           iconKey: "chart",
           toolPanel: "statsToolPanel",
           toolPanelParams: {
-            col: ["value"]
-          }
-        }
+            col: ["value"],
+          },
+        },
       ],
       position: "left",
       defaultToolPanel: "filters",
-      hiddenByDefault: false
+      hiddenByDefault: false,
     };
   }
 
@@ -174,7 +174,7 @@ class ConcentrationDataTable extends Component {
         checkboxSelection: true,
         headerCheckboxSelection: true,
         headerCheckboxSelectionFilteredOnly: true,
-        comparator: DataTable.numericComparator
+        comparator: DataTable.numericComparator,
       },
       {
         headerName: "Uncertainty",
@@ -182,11 +182,11 @@ class ConcentrationDataTable extends Component {
         cellRenderer: "numericCellRenderer",
         type: "numericColumn",
         hide: true,
-        filter: "numberFilter"
+        filter: "numberFilter",
       },
       {
         headerName: "Units",
-        field: "units"
+        field: "units",
       },
       {
         headerName: "Metabolite",
@@ -195,11 +195,11 @@ class ConcentrationDataTable extends Component {
         cellRenderer: "linkCellRenderer",
         cellRendererParams: {
           route: "metabolite",
-          organism: organism
+          organism: organism,
         },
-        filterValueGetter: params => {
+        filterValueGetter: (params) => {
           return params.data.name;
-        }
+        },
       },
       {
         headerName: "Chemical similarity",
@@ -209,7 +209,7 @@ class ConcentrationDataTable extends Component {
             <Tooltip title={CHEMICAL_SIMILARITY_TOOLTIP} arrow>
               <span>Chemical similarity</span>
             </Tooltip>
-          )
+          ),
         },
         field: "tanimotoSimilarity",
         cellRenderer: "numericCellRenderer",
@@ -217,14 +217,14 @@ class ConcentrationDataTable extends Component {
         hide: true,
         filter: "numberFilter",
         filterParams: {
-          hiBound: 1.0
-        }
+          hiBound: 1.0,
+        },
       },
       {
         headerName: "Organism",
         field: "organism",
         filter: "textFilter",
-        cellRenderer: function(params) {
+        cellRenderer: function (params) {
           const organism = params.value;
           if (organism) {
             return (
@@ -237,7 +237,7 @@ class ConcentrationDataTable extends Component {
           } else {
             return null;
           }
-        }
+        },
       },
       {
         headerName: "Taxonomic similarity",
@@ -247,12 +247,12 @@ class ConcentrationDataTable extends Component {
             <Tooltip title={TAXONOMIC_PROXIMITY_TOOLTIP} arrow>
               <span>Taxonomic similarity</span>
             </Tooltip>
-          )
+          ),
         },
         field: "taxonomicProximity",
         hide: true,
         filter: "taxonomyFilter",
-        valueFormatter: params => {
+        valueFormatter: (params) => {
           if (params.value != null) {
             const value = taxonomicRanks[params.value];
             return upperCaseFirstLetter(value);
@@ -260,30 +260,30 @@ class ConcentrationDataTable extends Component {
             return null;
           }
         },
-        comparator: DataTable.numericComparator
+        comparator: DataTable.numericComparator,
       },
       {
         headerName: "Growth phase",
         field: "growthPhase",
         filter: "textFilter",
-        hide: true
+        hide: true,
       },
       {
         headerName: "Conditions",
         field: "growthConditions",
         filter: "textFilter",
-        hide: true
+        hide: true,
       },
       {
         headerName: "Media",
         field: "growthMedia",
         filter: "textFilter",
-        hide: true
+        hide: true,
       },
       {
         headerName: "Source",
         field: "source",
-        cellRenderer: function(params) {
+        cellRenderer: function (params) {
           const source = params.value;
           if (source) {
             if (source.url) {
@@ -301,7 +301,7 @@ class ConcentrationDataTable extends Component {
             return null;
           }
         },
-        filterValueGetter: params => {
+        filterValueGetter: (params) => {
           const source = params.data.source;
           if (source) {
             return source.id;
@@ -309,8 +309,8 @@ class ConcentrationDataTable extends Component {
             return null;
           }
         },
-        filter: "textFilter"
-      }
+        filter: "textFilter",
+      },
     ];
 
     if (!organism) {

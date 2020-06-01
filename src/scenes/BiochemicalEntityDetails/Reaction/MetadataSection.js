@@ -12,19 +12,19 @@ const DB_LINKS = [
   { label: "ExplorEnz", url: "https://www.enzyme-database.org/query.php?ec=" },
   {
     label: "IntEnz",
-    url: "https://www.ebi.ac.uk/intenz/query?cmd=SearchEC&ec="
+    url: "https://www.ebi.ac.uk/intenz/query?cmd=SearchEC&ec=",
   },
   { label: "KEGG", url: "https://www.genome.jp/dbget-bin/www_bget?ec:" },
   {
     label: "MetaCyc",
-    url: "http://biocyc.org/META/substring-search?type=REACTION&object="
+    url: "http://biocyc.org/META/substring-search?type=REACTION&object=",
   },
-  { label: "SABIO-RK", url: "http://sabiork.h-its.org/newSearch?q=ecnumber:" }
+  { label: "SABIO-RK", url: "http://sabiork.h-its.org/newSearch?q=ecnumber:" },
 ];
 
 class MetadataSection extends Component {
   static propTypes = {
-    "set-scene-metadata": PropTypes.func.isRequired
+    "set-scene-metadata": PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -85,8 +85,8 @@ class MetadataSection extends Component {
         rawData[0]["kegg_meta"]["kegg_orthology_id"];
     }
 
-    const substrateNames = substrates.map(part => part.name);
-    const productNames = products.map(part => part.name);
+    const substrateNames = substrates.map((part) => part.name);
+    const productNames = products.map((part) => part.name);
 
     substrateNames.sort(naturalSort);
     productNames.sort(naturalSort);
@@ -168,7 +168,7 @@ class MetadataSection extends Component {
         }
         descriptions.push({
           label: "Enzyme",
-          value: <Link to={route}>{processedData.enzyme}</Link>
+          value: <Link to={route}>{processedData.enzyme}</Link>,
         });
       } else {
         descriptions.push({ label: "Enzyme", value: processedData.enzyme });
@@ -191,7 +191,7 @@ class MetadataSection extends Component {
           >
             {processedData.cofactor}
           </Link>
-        )
+        ),
       });
     }
     if (processedData.ecNumber) {
@@ -205,7 +205,7 @@ class MetadataSection extends Component {
           >
             {processedData.ecNumber}
           </a>
-        )
+        ),
       });
     }
     if (descriptions) {
@@ -214,13 +214,13 @@ class MetadataSection extends Component {
         title: "Description",
         content: (
           <ul className="key-value-list link-list">
-            {descriptions.map(el => (
+            {descriptions.map((el) => (
               <li key={el.label}>
                 <b>{el.label}:</b> {el.value}
               </li>
             ))}
           </ul>
-        )
+        ),
       });
     }
 
@@ -244,7 +244,7 @@ class MetadataSection extends Component {
       sections.push({
         id: "cross-refs",
         title: "Cross references",
-        content: <ul className="three-col-list link-list">{dbLinks}</ul>
+        content: <ul className="three-col-list link-list">{dbLinks}</ul>,
       });
     }
 
@@ -259,7 +259,7 @@ class MetadataSection extends Component {
             kegg-id-name={"kegg_pathway_code"}
             kegg-description-name={"pathway_description"}
           />
-        )
+        ),
       });
     }
 
@@ -297,7 +297,7 @@ class MetadataSection extends Component {
     for (const reactant of reactants) {
       const new_molecule = {
         name: null,
-        inchiKey: null
+        inchiKey: null,
       };
       new_molecule["name"] = reactant[name_id];
       if (reactant[structure_id]) {

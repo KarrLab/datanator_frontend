@@ -1,23 +1,18 @@
 /* global cy, describe, it */
 
-describe("Common components", function() {
-  it("Table of contents links scroll to elements", function() {
+describe("Common components", function () {
+  it("Table of contents links scroll to elements", function () {
     const route = "metabolite";
     const entity = "YSYKRGRSMLTJNL-KFQCIAAJSA-N"; // dTDP-D-Glucose
     const url = "/" + route + "/" + entity;
     const dataContainerId = "concentration";
 
     cy.visit(url);
-    cy.get(".table-of-contents ul")
-      .first()
-      .find("li")
-      .last()
-      .find("a")
-      .click();
+    cy.get(".table-of-contents ul").first().find("li").last().find("a").click();
     cy.location("hash").should("equal", "#" + dataContainerId);
   });
 
-  it("REST API errors are correctly displayed", function() {
+  it("REST API errors are correctly displayed", function () {
     const route = "metabolite";
     const entity = "YSYKRGRSMLTJNL-KFQCIAAJSA-N"; // dTDP-D-Glucose
     const organism = "Escherichia coli";
@@ -32,8 +27,8 @@ describe("Common components", function() {
       status: 400,
       response: {
         status: 400,
-        detail: "Invalid"
-      }
+        detail: "Invalid",
+      },
     }).as("getData");
 
     cy.visit("/" + route + "/" + entity);

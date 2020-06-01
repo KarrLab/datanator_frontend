@@ -9,9 +9,9 @@ export default class BarPlot extends Component {
   static propTypes = {
     data: PropTypes.shape({
       labels: PropTypes.array.isRequired,
-      values: PropTypes.array.isRequired
+      values: PropTypes.array.isRequired,
     }).isRequired,
-    yAxisLabel: PropTypes.string.isRequired
+    yAxisLabel: PropTypes.string.isRequired,
   };
 
   canvas = React.createRef();
@@ -46,53 +46,53 @@ export default class BarPlot extends Component {
             backgroundColor: colorPalette["primary-lighter"],
             borderColor: colorPalette["primary-light"],
             borderWidth: 2.0,
-            data: this.props.data.values
-          }
-        ]
+            data: this.props.data.values,
+          },
+        ],
       },
       options: {
         events: [],
         responsive: true,
         maintainAspectRatio: false,
         legend: {
-          display: false
+          display: false,
         },
         animation: null,
         title: {
-          display: false
+          display: false,
         },
         scales: {
           xAxes: [
             {
               ticks: {
                 minRotation: 45,
-                maxRotation: 90
-              }
-            }
+                maxRotation: 90,
+              },
+            },
           ],
           yAxes: [
             {
               type: "logarithmic",
               scaleLabel: {
                 display: true,
-                labelString: this.props.yAxisLabel
+                labelString: this.props.yAxisLabel,
               },
               ticks: {
                 min: 1,
                 max: maxTick,
                 maxTicksLimit: maxTicksLimit,
-                callback: numberWithCommas
+                callback: numberWithCommas,
               },
-              afterBuildTicks: chart => {
+              afterBuildTicks: (chart) => {
                 chart.ticks = [];
                 for (let i = 0; i < maxTicksLimit; i++) {
                   chart.ticks.push(Math.pow(10, i * yTickLogStep));
                 }
-              }
-            }
-          ]
-        }
-      }
+              },
+            },
+          ],
+        },
+      },
     };
 
     // build chart
