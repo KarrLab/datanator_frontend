@@ -8,7 +8,6 @@ find . -name "*.json" -not -path "./node_modules/*" -print0 > $tmpfile
 export error=0
 while IFS= read -r -d '' line; do
   if [[ "$line" != "./package.json" && "$line" != "./package-lock.json" ]]; then
-    echo "$line"
     jsonlint -p -i -q "$line"
     if [[ $? -ne 0 ]]; then export error=1; fi
   fi
