@@ -10,8 +10,17 @@
     },
     "kinlaw_id": 28973,
     "reaction_participant": [
-      {"substrate_aggregate": ["YSYKRGRSMLTJNL-URARBOGNSA-N"]},
-      {"product_aggregate": ["XLYOFNOQVPJJNP-UHFFFAOYSA-N", "PSXWNITXWWECNY-UCBTUHGZSA-N"]}
+      {
+        "substrate_aggregate": [
+          "YSYKRGRSMLTJNL-URARBOGNSA-N"
+        ]
+      },
+      {
+        "product_aggregate": [
+          "XLYOFNOQVPJJNP-UHFFFAOYSA-N",
+          "PSXWNITXWWECNY-UCBTUHGZSA-N"
+        ]
+      }
     ],
     "products": [
       [
@@ -144,8 +153,17 @@
     },
     "kinlaw_id": 20975,
     "reaction_participant": [
-      {"substrate_aggregate": ["YSYKRGRSMLTJNL-KFQCIAAJSA-N"]},
-      {"product_aggregate": ["PSXWNITXWWECNY-UCBTUHGZSA-N", "XLYOFNOQVPJJNP-UHFFFAOYSA-N"]}
+      {
+        "substrate_aggregate": [
+          "YSYKRGRSMLTJNL-KFQCIAAJSA-N"
+        ]
+      },
+      {
+        "product_aggregate": [
+          "PSXWNITXWWECNY-UCBTUHGZSA-N",
+          "XLYOFNOQVPJJNP-UHFFFAOYSA-N"
+        ]
+      }
     ],
     "products": [
       [
