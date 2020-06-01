@@ -44,7 +44,7 @@ describe("DataTable", function () {
     cy.get(
       "#concentration .content-block-heading-container .content-block-heading-actions button"
     ).each(($button) => {
-      cy.wrap($button).click();
+      // cy.wrap($button).click();
     });
 
     // navigate to new page, back, to home, back

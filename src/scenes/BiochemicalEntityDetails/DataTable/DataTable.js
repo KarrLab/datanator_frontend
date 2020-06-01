@@ -23,7 +23,7 @@ import { TaxonomyFilter } from "../TaxonomyFilter";
 import { TextFilter } from "../TextFilter";
 
 import "@ag-grid-community/all-modules/dist/styles/ag-grid.scss";
-import "@ag-grid-community/all-modules/dist/styles/ag-theme-balham/sass/ag-theme-balham.scss";
+import "@ag-grid-community/all-modules/dist/styles/ag-theme-balham/sass/legacy/_ag-theme-balham-v22-compat.scss";
 
 import "./DataTable.scss";
 

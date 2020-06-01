@@ -76,7 +76,7 @@
     "babel-plugin-root-import": "^6.5.0",
     "chart.js": "^2.9.3",
     "chartjs-chart-box-and-violin-plot": "^2.3.0",
-    "customize-cra": "^0.9.1",
+    "customize-cra": "^1.0.0",
     "history": "^4.10.1",
     "html-entity-decoder": "^1.0.1",
     "js-htmlencode": "^0.3.0",
