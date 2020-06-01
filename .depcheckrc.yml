@@ -10,12 +10,13 @@ ignores:
   - coveralls
   - depcheck
   - http
+  - istanbul-lib-coverage
   - jsonlint
   - lcov-result-merger
   - license-checker
   - mocha-junit-reporter
-  - node-sass
   - regenerator-runtime
+  - sass
   - socket.io
   - socket.io-client
   - stylelint
