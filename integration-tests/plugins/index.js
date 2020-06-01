@@ -15,6 +15,7 @@
 /**
  * @type {Cypress.PluginConfig}
  */
-module.exports = on => {
-  on("task", require("@cypress/code-coverage/task"));
-};
+module.exports = (on, config) => {
+  require('@cypress/code-coverage/task')(on, config);
+  return config;
+}
