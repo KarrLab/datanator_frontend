@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { errorDialogRef } from "~/components/ErrorDialog/ErrorDialog";
+import { replaceNanWithNull } from "~/utils/utils";
 
 const JSON5 = require("json5");
 
@@ -20,7 +21,7 @@ function getDataFromApi(params, options = {}) {
   const url = ROOT_URL + params.join("/");
   options.transformResponse = [
     function(data) {
-      return JSON5.parse(data);
+      return replaceNanWithNull(JSON5.parse(data));
     }
   ];
   return axios.get(url, options);

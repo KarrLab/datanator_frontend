@@ -230,6 +230,53 @@ function isKeggOrthologyId(id) {
   return id.match(/K\d{5,5}/i);
 }
 
+function replaceNanWithNull(value) {
+  if (Number.isNaN(value)) {
+    return null;
+  }
+
+  if (
+    value != null &&
+    value !== undefined &&
+    (Array.isArray(value) || value.constructor === Object)
+  ) {
+    const toReplace = [value];
+    while (toReplace.length) {
+      const val = toReplace.pop();
+
+      if (Array.isArray(val)) {
+        for (let i = 0; i < val.length; i++) {
+          const v = val[i];
+          if (Number.isNaN(v)) {
+            val[i] = null;
+          } else if (
+            v != null &&
+            v !== undefined &&
+            (Array.isArray(v) || v.constructor === Object)
+          ) {
+            toReplace.push(v);
+          }
+        }
+      } else if (Object.keys(val).length) {
+        for (const key in val) {
+          const v = val[key];
+          if (Number.isNaN(v)) {
+            val[key] = null;
+          } else if (
+            v != null &&
+            v !== undefined &&
+            (Array.isArray(v) || v.constructor === Object)
+          ) {
+            toReplace.push(v);
+          }
+        }
+      }
+    }
+  }
+
+  return value;
+}
+
 export {
   formatScientificNotation,
   formatChemicalFormula,
@@ -245,5 +292,6 @@ export {
   numberWithCommas,
   isEmpty,
   naturalSort,
-  isKeggOrthologyId
+  isKeggOrthologyId,
+  replaceNanWithNull
 };
