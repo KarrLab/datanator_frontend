@@ -57,7 +57,7 @@ class RateConstantsDataTable extends Component {
         km: RateConstantsDataTable.getKmValues(datum.parameter),
         ki: RateConstantsDataTable.getKiValues(datum.parameter),
         enzyme:
-          enzymeName == null
+          enzymeName == null && enzymeSubunitUniprotIds == null
             ? null
             : { name: enzymeName, subunits: enzymeSubunitUniprotIds },
         organism: datum.taxon_name,
@@ -288,6 +288,7 @@ class RateConstantsDataTable extends Component {
         headerCheckboxSelection: true,
         headerCheckboxSelectionFilteredOnly: true,
         comparator: DataTable.numericComparator,
+        minWidth: 120,
       });
       colDefs.push({
         headerName: "k_{cat} units",
@@ -300,6 +301,7 @@ class RateConstantsDataTable extends Component {
           ),
         },
         field: "kcat.units",
+        minWidth: 80,
       });
     }
 
@@ -329,6 +331,7 @@ class RateConstantsDataTable extends Component {
         type: "numericColumn",
         filter: "numberFilter",
         comparator: DataTable.numericComparator,
+        minWidth: 120,
       });
       colDefs.push({
         headerName: "K_M " + kmMet + " units",
@@ -341,6 +344,7 @@ class RateConstantsDataTable extends Component {
           ),
         },
         field: "km." + kmMet + ".units",
+        minWidth: 120,
       });
     }
 
@@ -370,6 +374,7 @@ class RateConstantsDataTable extends Component {
         type: "numericColumn",
         filter: "numberFilter",
         comparator: DataTable.numericComparator,
+        minWidth: 120,
       });
       colDefs.push({
         headerName: "K_I " + kiMet + " units",
@@ -382,6 +387,7 @@ class RateConstantsDataTable extends Component {
           ),
         },
         field: "ki." + kiMet + ".units",
+        minWidth: 120,
       });
     }
 

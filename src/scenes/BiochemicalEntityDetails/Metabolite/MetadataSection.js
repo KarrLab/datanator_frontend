@@ -170,8 +170,6 @@ class MetadataSection extends Component {
       ).value,
     };
 
-    console.log(met);
-
     if (met.pathways) {
       processedData.pathways = castToArray(met.pathways.pathway);
 

@@ -150,7 +150,10 @@ class SearchResultsList extends Component {
     return (
       <div className="content-block section" id={this.props["html-anchor-id"]}>
         <h2 className="content-block-heading">
-          {this.props.title} ({numResults})
+          {this.props.title}
+          {this.state.results
+            ? " (" + this.state.results.length + " of " + numResults + ")"
+            : ""}
         </h2>
         <div className="content-block-content">
           {results == null && <div className="loader"></div>}

@@ -88,6 +88,10 @@ class RnaHalfLifeDataTable extends Component {
 
               let units = value.unit;
               let halfLife = value[cellLine];
+              if (halfLife == null) {
+                continue;
+              }
+
               if (units === "hr") {
                 units = "s";
                 halfLife *= 60;

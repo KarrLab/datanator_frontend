@@ -266,7 +266,10 @@ class DataTable extends Component {
       taxonDistance[key.toLowerCase()] = taxonDistance[key];
     }
 
-    if (targetSpecies === measuredSpecies) {
+    if (
+      targetSpecies === measuredSpecies ||
+      measuredSpecies.startsWith(targetSpecies)
+    ) {
       distance = 0;
     } else if (
       targetSpecies + "_canon_ancestors" in taxonDistance &&
@@ -409,8 +412,8 @@ class DataTable extends Component {
         <div className="content-block" id={this.props.id}>
           <div className="content-block-heading-container">
             <h2 className="content-block-heading">
-              {this.props.title} ({this.state.data ? this.state.data.length : 0}
-              )
+              {this.props.title}
+              {this.state.data ? " (" + this.state.data.length + ")" : ""}
             </h2>
             <div className="content-block-heading-actions">
               Export:{" "}
@@ -457,7 +460,7 @@ class DataTable extends Component {
       return (
         <div className="content-block" id={this.props.id}>
           <div className="content-block-heading-container">
-            <h2 className="content-block-heading">{this.props.title}</h2>
+            <h2 className="content-block-heading">{this.props.title} (0)</h2>
           </div>
           <div className="content-block-content">No data is available.</div>
         </div>

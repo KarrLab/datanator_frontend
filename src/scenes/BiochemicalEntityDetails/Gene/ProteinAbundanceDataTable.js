@@ -86,6 +86,7 @@ class ProteinAbundanceDataTable extends Component {
 
           const formattedDatum = {
             abundance: parseFloat(measurement.abundance),
+            units: "ppm",
             proteinName: proteinName,
             uniprotId:
               "uniprot_id" in rawDatum ? rawDatum.uniprot_id : uniprotId,
@@ -170,6 +171,13 @@ class ProteinAbundanceDataTable extends Component {
         headerCheckboxSelection: true,
         headerCheckboxSelectionFilteredOnly: true,
         comparator: DataTable.numericComparator,
+        minWidth: 140,
+      },
+      {
+        headerName: "Units",
+        field: "units",
+        filter: "textFilter",
+        minWidth: 60,
       },
       {
         headerName: "Protein",

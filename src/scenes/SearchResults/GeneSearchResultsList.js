@@ -35,12 +35,15 @@ export default class GeneSearchResultsList extends Component {
     const formattedResults = [];
     for (const result of results) {
       if (Array.isArray(result.key) && result.key.length > 0) {
-        let koNumber = upperCaseFirstLetter(result.key[0]);
-        const uniprotId = result.top_ko.hits.hits[0]._id;
+        let koNumber = result.top_ko.hits.hits[0]._source.ko_number;
+        const uniprotId = result.top_ko.hits.hits[0]._id.toUpperCase();
 
         const source = result.top_ko.hits.hits[0]._source;
         let id;
-        if (["nan", "n/a"].includes(koNumber.toLowerCase())) {
+        if (
+          koNumber == null ||
+          ["nan", "n/a"].includes(koNumber.toLowerCase())
+        ) {
           id = uniprotId;
           koNumber = null;
         } else {
@@ -61,7 +64,7 @@ export default class GeneSearchResultsList extends Component {
         } else if ("definition" in source) {
           formattedResult["title"] = source.definition;
         } else {
-          formattedResult["title"] = source.protein_name;
+          formattedResult["title"] = source.protein_name.split("(")[0].trim();
         }
 
         // description

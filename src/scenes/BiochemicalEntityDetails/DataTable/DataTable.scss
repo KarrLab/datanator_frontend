@@ -25,6 +25,13 @@
       }
     }
 
+    .ag-header-cell,
+    .ag-cell {
+      .ag-react-container {
+        max-width: 100%;
+      }
+    }
+
     .ag-cell {
       .ag-react-container {
         width: 100%;
