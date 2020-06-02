@@ -280,12 +280,11 @@ describe("Metabolite data page", () => {
         .children.props.src;
     structure = structure.substring(0, structure.indexOf("image"));
     expect(structure).toEqual(
-      "https://cactus.nci.nih.gov/chemical/structure/O[C@H]1[C@@H](O)[C@@H](O[C@@H]1COP(O)(=O)OP(O)(O)=O)N1C=CC(=O)NC1=O/"
+      "https://cactus.nci.nih.gov/chemical/structure/O%5BC%40H%5D1%5BC%40%40H%5D(O)%5BC%40%40H%5D(O%5BC%40%40H%5D1COP(O)(%3DO)OP(O)(O)%3DO)N1C%3DCC(%3DO)NC1%3DO/"
     );
 
-    processedMetadata.chemistry = {
-      inchi: "InChI=1S",
-      inchiKey: "XCC",
+    processedMetadata.chemistry = {      
+      inchiKey: "LZCLXQDLBQLTDK-UHFFFAOYSA-N",
     };
 
     const formattedMetadataWithInchi = MetadataSection.formatMetadata(
@@ -303,11 +302,11 @@ describe("Metabolite data page", () => {
     );
 
     expect(structureWithInchi).toEqual(
-      "https://cactus.nci.nih.gov/chemical/structure/InChI=InChI=1S/"
+      "https://cactus.nci.nih.gov/chemical/structure/stdinchikey/LZCLXQDLBQLTDK-UHFFFAOYSA-N/"      
     );
 
     processedMetadata.chemistry = {
-      inchiKey: "XCC",
+      inchi: "InChI=1S"
     };
 
     const formattedMetadataWithInchiKey = MetadataSection.formatMetadata(
@@ -324,7 +323,7 @@ describe("Metabolite data page", () => {
     );
 
     expect(structureWithInchiKey).toEqual(
-      "https://cactus.nci.nih.gov/chemical/structure/InChIKey=XCC/"
+      "https://cactus.nci.nih.gov/chemical/structure/stdinchi/InChI%3D1S/"
     );
   });
 });

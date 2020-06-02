@@ -40,6 +40,7 @@ describe("Gene data page", () => {
     let formatedDatum = formattedData[17];
     expect(formatedDatum).toEqual({
       abundance: 2.04,
+      units: "ppm",
       proteinName: "6-phosphofructo-2-kinase 1 ",
       uniprotId: "P40433",
       geneSymbol: "PFK26",
@@ -63,6 +64,7 @@ describe("Gene data page", () => {
       formattedDataWithoutTaxonomicData[17];
     expect(formatedDatumWithoutTaxonomicData).toEqual({
       abundance: 2.04,
+      units: "ppm",
       proteinName: "6-phosphofructo-2-kinase 1 ",
       uniprotId: "P40433",
       geneSymbol: "PFK26",
