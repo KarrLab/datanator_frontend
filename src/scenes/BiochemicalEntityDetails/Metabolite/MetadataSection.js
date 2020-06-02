@@ -228,7 +228,7 @@ class MetadataSection extends Component {
   static formatMetadata(query, organism, processedData) {
     const sections = [];
     if (processedData.description) {
-      let structure;
+      let structure = null;
       if (processedData.chemistry.smiles) {
         structure = {
           type: null,
@@ -238,11 +238,6 @@ class MetadataSection extends Component {
         structure = {
           type: "stdinchikey",
           value: processedData.chemistry.inchiKey,
-        };
-      } else if (processedData.chemistry.inchi) {
-        structure = {
-          type: "stdinchi",
-          value: encodeURIComponent(processedData.chemistry.inchi),
         };
       }
 
