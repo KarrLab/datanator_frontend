@@ -15,7 +15,10 @@ class Error404 extends Component {
         <div className="message">
           We&apos;re sorry. The page you requested could not be found. Please go
           back to the <Link to="/">home page</Link> or contact us at{" "}
-          <a href="mailto:info@karrlab.org">info@karrlab.org</a>.
+          <a href="mailto:info@karrlab.org" subject="Datanator error">
+            info@karrlab.org
+          </a>
+          .
         </div>
       </div>
     );

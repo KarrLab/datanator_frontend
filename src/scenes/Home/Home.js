@@ -69,7 +69,9 @@ class Home extends Component {
               </div>
               <h1>Datanator</h1>
             </div>
-            <h2>Tools to discover data to model cellular biochemistry</h2>
+            <h2>
+              Tools for discovering data for modeling cellular biochemistry
+            </h2>
             <SearchForm />
             <div className="examples">
               <b>Examples</b>
@@ -170,7 +172,7 @@ class Home extends Component {
         <div className="section use-cases">
           <div className="section-inner-container">
             <h2 className="section-title">
-              Aim:{" "}
+              Use cases:{" "}
               <span className="highlight-primary">
                 construct and validate comprehensive models
               </span>
@@ -244,7 +246,7 @@ class Home extends Component {
                 </div>
                 <div className="section-column-description">
                   <i>Datanator</i> can help investigators modify models to
-                  capture other organisms, tissues, and cell types by helping
+                  capture related organisms, tissues, and cell types by helping
                   investigators find data to re-calibrate model parameters. In
                   turn, this can help investigators compare organisms, tissues,
                   and cell types.
@@ -269,9 +271,9 @@ class Home extends Component {
                   Meta-analyze multiple organisms and data types
                 </div>
                 <div className="section-column-description">
-                  <i>Datanator</i> can also help investigators conduct
-                  data-driven meta-analyses of molecular biology. For example,
-                  the <i>Datanator</i> database can be used to conduct
+                  <i>Datanator</i> can help investigators conduct data-driven
+                  meta-analyses of molecular biology. For example, the{" "}
+                  <i>Datanator</i> database can be used to conduct
                   multi-dimensional analyses of an individual organism or
                   conduct comparative analyses of multiple organisms.
                 </div>
@@ -386,7 +388,7 @@ class Home extends Component {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    KEGG orthology
+                    KEGG Orthology
                   </a>
                   , and{" "}
                   <a
@@ -451,7 +453,7 @@ class Home extends Component {
             <h2 className="section-title">
               Workflow to{" "}
               <span className="highlight-primary">
-                systematic data discovery
+                systematically discover data
               </span>{" "}
               for modeling
             </h2>
@@ -507,7 +509,7 @@ class Home extends Component {
                     similar cells and similar environments
                   </div>
                   <div className="vertical-workflow-el-description">
-                    Select a metabolite, RNA, protein, or reaction class (e.g,
+                    Select a metabolite, RNA, protein, or reaction class (e.g.,
                     KEGG ortholog group) to obtain potentially relevant
                     measurements to the entity of interest. Then filter for data
                     about similar entities (e.g., by sequence similarity)
@@ -561,8 +563,8 @@ class Home extends Component {
                     the distribution of relevant measurements
                   </div>
                   <div className="vertical-workflow-el-description">
-                    Review box plots and statistical properties of the selected
-                    and potentially relevant measurements.
+                    Review the distribution and statistical properties of the
+                    potentially relevant measurements.
                   </div>
                 </div>
               </div>
@@ -586,8 +588,8 @@ class Home extends Component {
                   </div>
                   <div className="vertical-workflow-el-description">
                     Export the selected measurements, or all of the
-                    measurements, in JSON format for further analysis such as
-                    model construction or validation.
+                    measurements, in CSV or JSON format for further analysis
+                    such as model construction or validation.
                   </div>
                 </div>
               </div>
@@ -610,9 +612,9 @@ class Home extends Component {
               >
                 Karr Lab
               </a>{" "}
-              at the Icahn School of Medicine at Mount Sinai in New York support
-              from the National Institutes of Health and the National Science
-              Foundation.
+              at the Icahn School of Medicine at Mount Sinai in New York with
+              support from the National Institutes of Health and the National
+              Science Foundation.
             </p>
             <p>
               <i>Datanator</i> was implemented using several open-source tools

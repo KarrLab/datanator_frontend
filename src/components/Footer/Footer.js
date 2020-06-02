@@ -17,10 +17,18 @@ export default class Footer extends Component {
           </a>
         </span>
         <span className="footer-item">
-          <Link to="about">About</Link>
+          <Link to="/stats">Stats</Link>
         </span>
         <span className="footer-item">
-          <a href="mailto:info@karrlab.org">Contact us</a>
+          <Link to="/help">Help</Link>
+        </span>
+        <span className="footer-item">
+          <Link to="/about">About</Link>
+        </span>
+        <span className="footer-item">
+          <a href="mailto:info@karrlab.org" subject="Datanator">
+            Contact us
+          </a>
         </span>
       </div>
     );

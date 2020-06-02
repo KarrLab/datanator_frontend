@@ -12,8 +12,10 @@ const DEFAULT_ERROR_MESSAGE = (
   <span>
     We&apos;re sorry our server could not complete your request. Please try
     again, or contact us at{" "}
-    <a href="mailto:info@karrlab.org">info@karrlab.org</a> if the problem
-    persists.
+    <a href="mailto:info@karrlab.org" subject="Datanator error">
+      info@karrlab.org
+    </a>{" "}
+    if the problem persists.
   </span>
 );
 

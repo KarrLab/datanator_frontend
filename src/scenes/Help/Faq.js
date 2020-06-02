@@ -12,7 +12,7 @@ class Faq extends Component {
         <div className="content-block-content">
           <div className="faq">
             <div className="faq-q">
-              Why are mRNAs and proteins grouped by{" "}
+              Why are RNAs and proteins grouped by{" "}
               <a
                 href={"https://www.genome.jp/kegg/ko.html"}
                 target="_blank"
@@ -108,7 +108,7 @@ class Faq extends Component {
 
               <p>
                 In addition, the measurements in the protein abundance table can
-                be filtered by tissue type and the measurements in the reaction
+                be filtered by tissue type, and the measurements in the reaction
                 rate constants table can be filtered by whether the measurement
                 was conducted in a wildtype or mutant strain.
               </p>
@@ -153,7 +153,7 @@ class Faq extends Component {
                   more accurate models.
                 </li>
                 <li>
-                  <i>Datanator</i> can help investigators improve
+                  <i>Datanator</i> can help investigators improve{" "}
                   <b>constraint-based models</b> of metabolism by helping
                   investigators find enzyme abundances and reaction velocities
                   to <b>bound the fluxes</b> of chemical transformation and
@@ -169,7 +169,7 @@ class Faq extends Component {
                   organisms, tissues, and cell types.
                 </li>
                 <li>
-                  <i>Datanator</i> can also help investigators conduct
+                  <i>Datanator</i> can also help investigators conduct{" "}
                   <b>data-driven meta-analyses</b> of molecular biology. For
                   example, the <i>Datanator</i> database can be used to conduct
                   multi-dimensional analyses of an individual organism or
@@ -231,11 +231,11 @@ class Faq extends Component {
 
           <div className="faq">
             <div className="faq-q">
-              Can I download <i>Datanator&apos;s</i> data?
+              Can I download <i>Datanator</i>&apos;s data?
             </div>
             <div className="faq-a">
               <p>
-                <i>Datanator&apos;s</i> data is available via the{" "}
+                <i>Datanator</i>&apos;s data is available via the{" "}
                 <a
                   href={
                     "https://open.quiltdata.com/b/karrlab/packages/karrlab/datanator/"
@@ -278,7 +278,7 @@ class Faq extends Component {
                   <i>Datanator</i> software
                 </a>{" "}
                 to construct their own version of
-                <i>Datanator&apos;s</i> dataset. This will download the data
+                <i>Datanator</i>&apos;s database. This will download the data
                 from the primary sources and parse, normalize, and integrate the
                 data into a single database.
               </p>

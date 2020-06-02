@@ -21,10 +21,11 @@ class Tutorial extends Component {
             <div className="tutorial-overview">
               <i>Datanator</i> can be used to systematically discover data for
               modeling a specific cell in a specific environment. In this
-              tutorial, we will demonstrate how <i>Datanator</i> can help find
-              data for modeling ATP in <i>Bacillus subtilis subsp. subtilis</i>.
-              The steps illustrated below can be used to find data to model any
-              molecule in any other organism in any environment.
+              tutorial, we demonstrate how <i>Datanator</i> can help researchers
+              find data for modeling ATP in{" "}
+              <i>Bacillus subtilis subsp. subtilis</i>. The steps illustrated
+              below can be used to find data to model any molecule in any other
+              organism in any environment.
             </div>
             <ol className="tutorial-steps">
               <li className="tutorial-step">
@@ -109,8 +110,7 @@ class Tutorial extends Component {
               <li className="tutorial-step">
                 <div className="tutorial-step-title">
                   Click on <q>Adenosine triphosphate</q> in the{" "}
-                  <q>Metabolites</q>
-                  section.
+                  <q>Metabolites</q> section.
                 </div>
                 <div className="tutorial-step-text">
                   The search results are organized by biomolecule type (e.g.,
@@ -180,7 +180,7 @@ class Tutorial extends Component {
                 </div>
                 <div className="tutorial-step-text">
                   Click on the <q>Columns</q> tab to the left of the
-                  concentration table to open controls for adding and removing
+                  concentration table to open controls for displaying and hiding
                   columns. For example, click the checkbox next to <q>Media</q>{" "}
                   to display an additional column with information about the
                   growth media in which each concentration was measured.
@@ -217,11 +217,11 @@ class Tutorial extends Component {
                   </p>
                   <ul className="vertically-spaced">
                     <li>
-                      <b>Chemical similarity:</b> First, open the
-                      <q>Filters</q> tab to the left of the table. Second, open
-                      the <q>Chemical similarity</q> sub-tab. Next, use the
-                      slider to filter for concentrations measured for highly
-                      similar molecules. <i>Datanator</i> uses the{" "}
+                      <b>Chemical similarity:</b> First, open the <q>Filters</q>{" "}
+                      tab to the left of the table. Second, open the{" "}
+                      <q>Chemical similarity</q> sub-tab. Next, use the slider
+                      to filter for concentrations measured for highly similar
+                      molecules. <i>Datanator</i> uses the{" "}
                       <a
                         href={
                           "http://openbabel.org/docs/dev/Features/Fingerprints.html"

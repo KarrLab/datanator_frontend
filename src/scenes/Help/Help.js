@@ -45,7 +45,7 @@ class Help extends Component {
               <h2 className="content-block-heading">Need more help?</h2>
               <div className="content-block-content">
                 <div id="contact">
-                  <a href="mailto:info@karrlab.org">
+                  <a href="mailto:info@karrlab.org" subject="Datanator help">
                     <FontAwesomeIcon icon="envelope" /> Contact us
                   </a>
                 </div>

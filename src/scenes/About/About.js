@@ -92,7 +92,7 @@ class About extends Component {
               <h2 className="content-block-heading">Need help?</h2>
               <div className="content-block-content">
                 <div>
-                  <a href="mailto:info@karrlab.org">
+                  <a href="mailto:info@karrlab.org" subject="Datanator">
                     <FontAwesomeIcon icon="envelope" /> Contact us
                   </a>
                 </div>
@@ -136,21 +136,23 @@ class About extends Component {
                   mechanistic modeling.
                 </p>
                 <p>
-                  To accelerate cell modeling, we developed <i>Datanator</i>, a
-                  toolkit for systematically discovering data for modeling a
-                  specific cell in a specific environment. <i>Datanator</i>{" "}
-                  includes an integrated database of genomic and biochemical
-                  data about several aspects of cells, this web application for
-                  searching the database for data relevant to specific cells,
-                  and a REST API and Python library for programmatically
-                  aggregating data for large models. The web application enables
-                  investigators to search for experimental measurements of
-                  biochemical parameters (e.g. metabolite concentration,
-                  reaction rate, etc.) relevant to a specific cell (taxon, cell
-                  type) in a specific environment (e.g., temperature, pH, growth
-                  media, etc.). For each search, this web application displays a
-                  filterable and sortable list of relevant experimental
-                  measurements aggregated from a range of sources.
+                  To accelerate cell modeling, <i>Datanator</i> provides
+                  researchers tools for systematically discovering the data
+                  needed to model specific biochemical mechanisms in a specific
+                  cell in a specific environment. <i>Datanator</i> includes an
+                  integrated database of genomic and biochemical data about
+                  several aspects of cells, this web application for searching
+                  the database for data relevant to specific cells and
+                  environments, and a REST API and Python library for
+                  programmatically aggregating data for large models. The web
+                  application enables investigators to search for experimental
+                  measurements of biochemical parameters (e.g. metabolite
+                  concentration, reaction rate, etc.) relevant to a specific
+                  cell (taxon, cell type) in a specific environment (e.g.,
+                  temperature, pH, growth media, etc.). For each search, this
+                  web application displays a filterable and sortable list of
+                  relevant experimental measurements aggregated from a range of
+                  sources.
                 </p>
               </div>
             </div>
@@ -239,13 +241,13 @@ class About extends Component {
                 </p>
                 <ul className="no-top-margin">
                   <li>
-                    Full text search: Users can use the search form on the home
-                    page to identify metabolites, proteins, and reactions that
-                    they would like information.
+                    <b>Full text search:</b> Users can use the search form on
+                    the home page to identify metabolites, proteins, and
+                    reactions that they would like information about.
                   </li>
                   <li>
-                    Molecular similarity: Users can identify measurements of
-                    similar metabolites according to the{" "}
+                    <b>Molecular similarity:</b> Users can identify measurements
+                    of similar metabolites according to the{" "}
                     <a
                       href={
                         "http://openbabel.org/docs/dev/Features/Fingerprints.html"
@@ -262,10 +264,10 @@ class About extends Component {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      orthology and sequence similarity
-                    </a>
-                    . Users can identify measurements of similar reactions
-                    according to their{" "}
+                      orthology
+                    </a>{" "}
+                    (sequence similarity). Users can identify measurements of
+                    similar reactions according to their{" "}
                     <a
                       href={
                         "https://en.wikipedia.org/wiki/Enzyme_Commission_number"
@@ -278,10 +280,10 @@ class About extends Component {
                     .
                   </li>
                   <li>
-                    Phylogenetic similarity: Users can identify measurements
-                    observed in closely related taxa to their taxon of interest
-                    by filtering measurements according to their distance along
-                    the{" "}
+                    <b>Phylogenetic similarity:</b> Users can identify
+                    measurements observed in closely related taxa to their taxon
+                    of interest by filtering measurements according to their
+                    distance along the{" "}
                     <a
                       href={
                         "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi"
@@ -294,8 +296,9 @@ class About extends Component {
                     .
                   </li>
                   <li>
-                    Environmental similarity: Users can filter for measurements
-                    from similar temperatures, pHs, and media conditions.
+                    <b>Environmental similarity:</b> Users can filter for
+                    measurements from similar temperatures, pHs, and media
+                    conditions to their environment of interest.
                   </li>
                 </ul>
               </div>
@@ -308,7 +311,7 @@ class About extends Component {
 
               <div className="content-block-content">
                 <p className="no-bottom-margin">
-                  The <i>Datanator</i> data is available as the{" "}
+                  The data in <i>Datanator</i> is available as the{" "}
                   <a
                     href="https://open.quiltdata.com/b/karrlab/packages/karrlab/datanator"
                     target="_blank"
@@ -401,6 +404,15 @@ class About extends Component {
                   >
                     license
                   </a>
+                  . The licenses for <i>Datanator</i>&apos;s third-party
+                  dependencies are described{" "}
+                  <a
+                    href="https://github.com/KarrLab/datanator_frontend/blob/master/LICENSE-THIRD-PARTY"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    here
+                  </a>
                   .
                 </p>
               </div>
@@ -412,9 +424,8 @@ class About extends Component {
               </h2>
               <div className="content-block-content">
                 <p className="no-bottom-margin">
-                  <i>Datanator</i> is implemented <i>Datanator</i> as a Single
-                  Page Application using the technologies listed below. Please
-                  see the{" "}
+                  <i>Datanator</i> is implemented as a Single Page Application
+                  using the technologies listed below. Please see the{" "}
                   <a
                     href="https://github.com/KarrLab/datanator_frontend/blob/master/README.md"
                     target="_blank"
@@ -746,7 +757,11 @@ class About extends Component {
                       </div>
                       <div className="developer-name">
                         Yosef Roth
-                        <SocialIcon url="https://www.linkedin.com/in/yosef-roth-a80a378a" />
+                        <SocialIcon
+                          url="https://www.linkedin.com/in/yosef-roth-a80a378a"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        />
                       </div>
                     </div>
                     <div className="main-developer">
@@ -761,7 +776,11 @@ class About extends Component {
                       </div>
                       <div className="developer-name">
                         Zhouyang Lian
-                        <SocialIcon url="https://www.linkedin.com/in/zlian/" />
+                        <SocialIcon
+                          url="https://www.linkedin.com/in/zlian/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        />
                       </div>
                     </div>
                     <div className="main-developer">
@@ -776,7 +795,11 @@ class About extends Component {
                       </div>
                       <div className="developer-name">
                         Jonathan Karr
-                        <SocialIcon url="https://www.linkedin.com/in/jonrkarr/" />
+                        <SocialIcon
+                          url="https://www.linkedin.com/in/jonrkarr/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        />
                       </div>
                     </div>
                   </div>
@@ -786,11 +809,19 @@ class About extends Component {
                   <div className="additional-developers-group-list">
                     <div className="developer-name">
                       Saahith Pochiraju
-                      <SocialIcon url="https://www.linkedin.com/in/saahithpochiraju/" />
+                      <SocialIcon
+                        url="https://www.linkedin.com/in/saahithpochiraju/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      />
                     </div>
                     <div className="developer-name">
                       Bilal Shaikh
-                      <SocialIcon url="https://www.linkedin.com/in/bilalshaikh42/" />
+                      <SocialIcon
+                        url="https://www.linkedin.com/in/bilalshaikh42/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      />
                     </div>
                     <div className="developer-name">Balazs Szigeti</div>
                   </div>
