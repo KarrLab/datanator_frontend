@@ -26,7 +26,7 @@ const STRUCTURE_IMG_ARGS = {
   crop: 0,
 };
 const STRUCTURE_IMG_URL =
-  "https://cactus.nci.nih.gov/chemical/structure/%s%s/image?" +
+  "https://cactus.nci.nih.gov/chemical/structure/%s/image?" +
   Object.keys(STRUCTURE_IMG_ARGS)
     .map((el) => {
       return el + "=" + STRUCTURE_IMG_ARGS[el];
@@ -161,7 +161,7 @@ class MetadataSection extends Component {
     processedData.chemistry = {
       smiles: met.smiles,
       inchi: met.inchi,
-      inchiKey: met.inchikey,
+      inchiKey: met.InChI_Key,
       formula: formatChemicalFormula(met.chemical_formula),
       molWt: met.average_molecular_weight,
       charge: met.property.find((el) => el.kind === "formal_charge").value,
@@ -169,6 +169,8 @@ class MetadataSection extends Component {
         (el) => el.kind === "physiological_charge"
       ).value,
     };
+
+    console.log(met);
 
     if (met.pathways) {
       processedData.pathways = castToArray(met.pathways.pathway);
@@ -230,13 +232,19 @@ class MetadataSection extends Component {
     if (processedData.description) {
       let structure;
       if (processedData.chemistry.smiles) {
-        structure = { type: "", value: processedData.chemistry.smiles };
-      } else if (processedData.chemistry.inchi) {
-        structure = { type: "InChI=", value: processedData.chemistry.inchi };
+        structure = {
+          type: null,
+          value: encodeURIComponent(processedData.chemistry.smiles),
+        };
       } else if (processedData.chemistry.inchiKey) {
         structure = {
-          type: "InChIKey=",
+          type: "stdinchikey",
           value: processedData.chemistry.inchiKey,
+        };
+      } else if (processedData.chemistry.inchi) {
+        structure = {
+          type: "stdinchi",
+          value: encodeURIComponent(processedData.chemistry.inchi),
         };
       }
 
@@ -251,8 +259,8 @@ class MetadataSection extends Component {
                   <img
                     src={sprintf(
                       STRUCTURE_IMG_URL,
-                      structure.type,
-                      structure.value
+                      (structure.type ? structure.type + "/" : "") +
+                        structure.value
                     )}
                     className="entity-scene-icon hover-zoom"
                     alt="Chemical structure"
