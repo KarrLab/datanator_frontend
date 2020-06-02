@@ -281,7 +281,7 @@ class Stats extends Component {
         <h1 className="page-title">
           Statistics:{" "}
           <span className="highlight-accent">
-            Distribution of measurements in the <i>Datanator</i> database
+            Distribution of the measurements in the <i>Datanator</i> database
           </span>
         </h1>
         <div className="content-container-columns">
@@ -294,23 +294,6 @@ class Stats extends Component {
                     <HashLink to="#data-type" scroll={scrollTo}>
                       Data types
                     </HashLink>
-                  </li>
-                  <li>
-                    <HashLink to="#immediate-source" scroll={scrollTo}>
-                      Source
-                    </HashLink>
-                    <ul>
-                      <li>
-                        <HashLink to="#immediate-source" scroll={scrollTo}>
-                          Immediate
-                        </HashLink>
-                      </li>
-                      <li>
-                        <HashLink to="#primary-source" scroll={scrollTo}>
-                          Primary
-                        </HashLink>
-                      </li>
-                    </ul>
                   </li>
                   <li>
                     <HashLink to="#taxa" scroll={scrollTo}>
@@ -334,6 +317,23 @@ class Stats extends Component {
                       </li>
                     </ul>
                   </li>
+                  <li>
+                    <HashLink to="#immediate-source" scroll={scrollTo}>
+                      Sources
+                    </HashLink>
+                    <ul>
+                      <li>
+                        <HashLink to="#immediate-source" scroll={scrollTo}>
+                          Immediate
+                        </HashLink>
+                      </li>
+                      <li>
+                        <HashLink to="#primary-source" scroll={scrollTo}>
+                          Primary
+                        </HashLink>
+                      </li>
+                    </ul>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -343,7 +343,7 @@ class Stats extends Component {
             <div className="section-columns section-2-columns">
               <div className="section section-column" id="data-type">
                 <h2 className="content-block-heading">
-                  Distribution of data types
+                  Distribution of the types of the measurements
                 </h2>
                 <div className="content-block-content">
                   <BarPlot
@@ -353,35 +353,9 @@ class Stats extends Component {
                 </div>
               </div>
 
-              <div className="section section-column" id="immediate-source">
-                <h2 className="content-block-heading">
-                  Distribution of immediate sources
-                </h2>
-                <div className="content-block-content">
-                  <BarPlot
-                    data={this.state.dataSource}
-                    yAxisLabel="Measurements"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="section-columns section-2-columns">
-              <div className="section section-column" id="primary-source">
-                <h2 className="content-block-heading">
-                  Dist. of primary sources
-                </h2>
-                <div className="content-block-content">
-                  <BarPlot
-                    data={this.state.journalByDataType}
-                    yAxisLabel="Articles"
-                  />
-                </div>
-              </div>
-
               <div className="section section-column" id="taxa">
                 <h2 className="content-block-heading">
-                  Taxonomic distribution
+                  Taxonomic distribution of the measurements
                 </h2>
                 <div className="content-block-content">
                   <BarPlot
@@ -395,7 +369,7 @@ class Stats extends Component {
             <div className="section-columns section-2-columns">
               <div className="section section-column" id="temperature">
                 <h2 className="content-block-heading">
-                  Temperature distribution
+                  Temperature distribution of the measurements
                 </h2>
                 <div className="content-block-content">
                   <FrequencyPlot
@@ -410,7 +384,9 @@ class Stats extends Component {
               </div>
 
               <div className="section section-column" id="ph">
-                <h2 className="content-block-heading">pH distribution</h2>
+                <h2 className="content-block-heading">
+                  pH distribution of the measurements
+                </h2>
                 <div className="content-block-content">
                   <FrequencyPlot
                     data={this.state.phFrequency}
@@ -419,6 +395,32 @@ class Stats extends Component {
                     xMax={14}
                     yAxisLabel="Measurements"
                     kernelBandwidth={0.5}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="section-columns section-2-columns">
+              <div className="section section-column" id="immediate-source">
+                <h2 className="content-block-heading">
+                  Distribution of the immediate sources of the data
+                </h2>
+                <div className="content-block-content">
+                  <BarPlot
+                    data={this.state.dataSource}
+                    yAxisLabel="Measurements"
+                  />
+                </div>
+              </div>
+
+              <div className="section section-column" id="primary-source">
+                <h2 className="content-block-heading">
+                  Distribution of the primary sources of the data
+                </h2>
+                <div className="content-block-content">
+                  <BarPlot
+                    data={this.state.journalByDataType}
+                    yAxisLabel="Articles"
                   />
                 </div>
               </div>
