@@ -278,6 +278,13 @@ class RnaHalfLifeDataTable extends Component {
           }
         },
         comparator: DataTable.numericComparator,
+        processCellCallback: (value) => {
+          if (value) {
+            return taxonomicRanks[value];
+          } else {
+            return null;
+          }
+        },
       },
       {
         headerName: "Cell line",
@@ -322,6 +329,13 @@ class RnaHalfLifeDataTable extends Component {
           return source.id;
         },
         filter: "textFilter",
+        processCellCallback: (value) => {
+          if (value) {
+            return value.id;
+          } else {
+            return null;
+          }
+        },
       },
     ];
 

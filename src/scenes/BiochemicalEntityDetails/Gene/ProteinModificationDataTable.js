@@ -259,6 +259,13 @@ class ProteinModificationDataTable extends Component {
           }
         },
         comparator: DataTable.numericComparator,
+        processCellCallback: (value) => {
+          if (value) {
+            return taxonomicRanks[value];
+          } else {
+            return null;
+          }
+        },
       },
       {
         headerName: "Source",

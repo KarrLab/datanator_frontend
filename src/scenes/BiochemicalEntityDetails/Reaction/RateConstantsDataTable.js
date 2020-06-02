@@ -438,6 +438,13 @@ class RateConstantsDataTable extends Component {
           return null;
         }
       },
+      processCellCallback: (value) => {
+        if (value) {
+          return value.join(", ");
+        } else {
+          return null;
+        }
+      },
     });
 
     colDefs.push({
@@ -489,6 +496,13 @@ class RateConstantsDataTable extends Component {
         }
       },
       comparator: DataTable.numericComparator,
+      processCellCallback: (value) => {
+        if (value) {
+          return taxonomicRanks[value];
+        } else {
+          return null;
+        }
+      },
     });
 
     colDefs.push({
@@ -521,6 +535,13 @@ class RateConstantsDataTable extends Component {
       },
       filterValueGetter: () => "SABIO-RK",
       filter: "textFilter",
+      processCellCallback: (value) => {
+        if (value) {
+          return "SABIO-RK: " + value;
+        } else {
+          return null;
+        }
+      },
     });
 
     if (!organism) {

@@ -200,6 +200,9 @@ class ConcentrationDataTable extends Component {
         filterValueGetter: (params) => {
           return params.data.name;
         },
+        processCellCallback: (value) => {
+          return value.label;
+        },
       },
       {
         headerName: "Chemical similarity",
@@ -261,6 +264,13 @@ class ConcentrationDataTable extends Component {
           }
         },
         comparator: DataTable.numericComparator,
+        processCellCallback: (value) => {
+          if (value != null) {
+            return taxonomicRanks[value];
+          } else {
+            return null;
+          }
+        },
       },
       {
         headerName: "Growth phase",
@@ -310,6 +320,13 @@ class ConcentrationDataTable extends Component {
           }
         },
         filter: "textFilter",
+        processCellCallback: (value) => {
+          if (value) {
+            return value.id;
+          } else {
+            return null;
+          }
+        },
       },
     ];
 

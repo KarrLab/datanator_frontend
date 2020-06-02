@@ -73,6 +73,13 @@ class DataTable extends Component {
   static exportParams = {
     allColumns: true,
     onlySelected: false,
+    processCellCallback: function (params) {
+      if ("processCellCallback" in params.column.colDef) {
+        return params.column.colDef.processCellCallback(params.value);
+      } else {
+        return params.value;
+      }
+    },
   };
 
   constructor() {
@@ -401,7 +408,10 @@ class DataTable extends Component {
       return (
         <div className="content-block" id={this.props.id}>
           <div className="content-block-heading-container">
-            <h2 className="content-block-heading">{this.props.title}</h2>
+            <h2 className="content-block-heading">
+              {this.props.title} ({this.state.data ? this.state.data.length : 0}
+              )
+            </h2>
             <div className="content-block-heading-actions">
               Export:{" "}
               <button className="text-button" onClick={this.exportCsv}>
