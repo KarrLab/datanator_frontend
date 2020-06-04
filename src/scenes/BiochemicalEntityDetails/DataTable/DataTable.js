@@ -27,9 +27,6 @@ import "@ag-grid-community/all-modules/dist/styles/ag-theme-balham/sass/legacy/_
 
 import "./DataTable.scss";
 
-const IS_DEVELOPMENT = process.env.NODE_ENV.startsWith("development");
-const IS_TEST = process.env.NODE_ENV.startsWith("test");
-
 class DataTable extends Component {
   static propTypes = {
     history: PropTypes.object.isRequired,
@@ -217,8 +214,11 @@ class DataTable extends Component {
                 "'."
             )(error);
           }
-        } else if (!axios.isCancel(error) && (IS_DEVELOPMENT || IS_TEST)) {
-          console.error(error);
+        } else if (
+          !axios.isCancel(error) &&
+          !("isAxiosError" in error && error.isAxiosError)
+        ) {
+          throw error;
         }
       })
       .finally(() => {

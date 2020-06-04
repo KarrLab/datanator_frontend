@@ -6,9 +6,6 @@ import { getDataFromApi, genApiErrorHandler } from "~/services/RestApi";
 import axios from "axios";
 import { parseHistoryLocationPathname } from "~/utils/utils";
 
-const IS_DEVELOPMENT = process.env.NODE_ENV.startsWith("development");
-const IS_TEST = process.env.NODE_ENV.startsWith("test");
-
 class SearchResultsList extends Component {
   static propTypes = {
     history: PropTypes.object.isRequired,
@@ -105,8 +102,11 @@ class SearchResultsList extends Component {
             [url],
             "We were unable to conduct your search for '" + this.query + "'."
           )(error);
-        } else if (!axios.isCancel(error) && (IS_DEVELOPMENT || IS_TEST)) {
-          console.error(error);
+        } else if (
+          !axios.isCancel(error) &&
+          !("isAxiosError" in error && error.isAxiosError)
+        ) {
+          throw error;
         }
       })
       .finally(() => {

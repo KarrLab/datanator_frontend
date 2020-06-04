@@ -36,16 +36,25 @@ function genApiErrorHandler(params, errorMessage = null) {
         console.info("Request '" + params.join("/") + "' cancelled");
       }
     } else {
-      if (IS_DEVELOPMENT || IS_TEST) {
-        if (
-          "isAxiosError" in error &&
-          error.isAxiosError &&
-          error.response !== undefined
-        ) {
-          const errorInfo = error.response.data;
-          console.error(
-            "Server error " + errorInfo.status + ": " + errorInfo.detail
-          );
+      if (
+        (IS_DEVELOPMENT || IS_TEST) &&
+        "isAxiosError" in error &&
+        error.isAxiosError &&
+        error.response !== undefined
+      ) {
+        const errorInfo = error.response.data;
+        console.error(
+          "Server error " + errorInfo.status + ": " + errorInfo.detail
+        );
+      }
+
+      if (
+        IS_DEVELOPMENT ||
+        IS_TEST ||
+        !("isAxiosError" in error && error.isAxiosError)
+      ) {
+        if (error && "stack" in error && "message" in error) {
+          throw error;
         } else {
           console.error(error);
         }

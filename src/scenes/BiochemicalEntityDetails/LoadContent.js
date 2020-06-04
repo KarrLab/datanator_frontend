@@ -5,9 +5,6 @@ import axios from "axios";
 import { getDataFromApi, genApiErrorHandler } from "~/services/RestApi";
 import { Link } from "react-router-dom";
 
-const IS_DEVELOPMENT = process.env.NODE_ENV.startsWith("development");
-const IS_TEST = process.env.NODE_ENV.startsWith("test");
-
 class LoadExternalContent extends Component {
   static propTypes = {
     url: PropTypes.string.isRequired,
@@ -50,8 +47,11 @@ class LoadExternalContent extends Component {
             [this.props.url],
             "Unable to load metadata."
           )(error);
-        } else if (!axios.isCancel(error) && (IS_DEVELOPMENT || IS_TEST)) {
-          console.error(error);
+        } else if (
+          !axios.isCancel(error) &&
+          !("isAxiosError" in error && error.isAxiosError)
+        ) {
+          throw error;
         }
       })
       .finally(() => {
@@ -123,8 +123,11 @@ class LoadContent extends Component {
             [url],
             "We were unable to conduct your search for '" + this.query + "'."
           )(error);
-        } else if (!axios.isCancel(error) && (IS_DEVELOPMENT || IS_TEST)) {
-          console.error(error);
+        } else if (
+          !axios.isCancel(error) &&
+          !("isAxiosError" in error && error.isAxiosError)
+        ) {
+          throw error;
         }
       })
       .finally(() => {
@@ -214,8 +217,11 @@ class LoadMetabolites extends Component {
               [url],
               "We were unable to conduct your search for '" + this.query + "'."
             )(error);
-          } else if (!axios.isCancel(error) && (IS_DEVELOPMENT || IS_TEST)) {
-            console.error(error);
+          } else if (
+            !axios.isCancel(error) &&
+            !("isAxiosError" in error && error.isAxiosError)
+          ) {
+            throw error;
           }
         })
         .finally(() => {

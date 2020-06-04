@@ -7,9 +7,6 @@ import { getDataFromApi, genApiErrorHandler } from "~/services/RestApi";
 import { parseHistoryLocationPathname } from "~/utils/utils";
 import history from "~/utils/history";
 
-const IS_DEVELOPMENT = process.env.NODE_ENV.startsWith("development");
-const IS_TEST = process.env.NODE_ENV.startsWith("test");
-
 function valueText(value) {
   return `${value}`;
 }
@@ -98,8 +95,11 @@ class TaxonomyFilter extends Component {
             ["taxon", "canon_rank_distance_by_name/?name=" + organism],
             "Unable to obtain taxonomic information about '" + organism + "'."
           )(error);
-        } else if (!axios.isCancel(error) && (IS_DEVELOPMENT || IS_TEST)) {
-          console.error(error);
+        } else if (
+          !axios.isCancel(error) &&
+          !("isAxiosError" in error && error.isAxiosError)
+        ) {
+          throw error;
         }
       })
       .finally(() => {

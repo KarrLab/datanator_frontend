@@ -13,9 +13,6 @@ import { parseHistoryLocationPathname } from "~/utils/utils";
 
 import "./SearchForm.scss";
 
-const IS_DEVELOPMENT = process.env.NODE_ENV.startsWith("development");
-const IS_TEST = process.env.NODE_ENV.startsWith("test");
-
 class SearchForm extends Component {
   static propTypes = {
     history: PropTypes.object.isRequired,
@@ -138,8 +135,11 @@ class SearchForm extends Component {
             [url],
             "Unable to search for organisms that match '" + query + "'."
           )(error);
-        } else if (!axios.isCancel(error) && (IS_DEVELOPMENT || IS_TEST)) {
-          console.error(error);
+        } else if (
+          !axios.isCancel(error) &&
+          !("isAxiosError" in error && error.isAxiosError)
+        ) {
+          throw error;
         }
       })
       .finally(() => {

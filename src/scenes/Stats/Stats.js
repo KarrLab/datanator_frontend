@@ -8,9 +8,6 @@ import { getDataFromApi, genApiErrorHandler } from "~/services/RestApi";
 
 import "./Stats.scss";
 
-const IS_DEVELOPMENT = process.env.NODE_ENV.startsWith("development");
-const IS_TEST = process.env.NODE_ENV.startsWith("test");
-
 class Stats extends Component {
   constructor() {
     super();
@@ -210,8 +207,11 @@ class Stats extends Component {
             [taxonomicUrl],
             "Unable to get taxonomic distribution of measurements."
           )(error);
-        } else if (IS_DEVELOPMENT || IS_TEST) {
-          console.error(error);
+        } else if (
+          !axios.isCancel(error) &&
+          !("isAxiosError" in error && error.isAxiosError)
+        ) {
+          throw error;
         }
       });
 
