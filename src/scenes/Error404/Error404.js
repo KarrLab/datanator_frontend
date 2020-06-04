@@ -5,6 +5,11 @@ import { Link } from "react-router-dom";
 import "./Error404.scss";
 
 class Error404 extends Component {
+  constructor(props) {
+    super(props);
+    this.contactEmail = process.env.REACT_APP_CONTACT_EMAIL;
+  }
+
   render() {
     return (
       <div className="content-container content-container-error-404-scene">
@@ -15,8 +20,8 @@ class Error404 extends Component {
         <div className="message">
           We&apos;re sorry. The page you requested could not be found. Please go
           back to the <Link to="/">home page</Link> or contact us at{" "}
-          <a href="mailto:info@karrlab.org" subject="Datanator error">
-            info@karrlab.org
+          <a href={"mailto:" + this.contactEmail} subject="Datanator error">
+            {this.contactEmail}
           </a>
           .
         </div>

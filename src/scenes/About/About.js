@@ -17,6 +17,11 @@ import nigmsIcon from "./images/nigms.svg";
 import nsfIcon from "./images/nsf.svg";
 
 class About extends Component {
+  constructor(props) {
+    super(props);
+    this.contactEmail = process.env.REACT_APP_CONTACT_EMAIL;
+  }
+
   render() {
     return (
       <div className="content-container content-container-about-scene">
@@ -92,7 +97,7 @@ class About extends Component {
               <h2 className="content-block-heading">Need help?</h2>
               <div className="content-block-content">
                 <div>
-                  <a href="mailto:info@karrlab.org" subject="Datanator">
+                  <a href={"mailto:" + this.contactEmail} subject="Datanator">
                     <FontAwesomeIcon icon="envelope" /> Contact us
                   </a>
                 </div>

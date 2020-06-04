@@ -3,6 +3,11 @@ import { Link } from "react-router-dom";
 import "./Footer.scss";
 
 export default class Footer extends Component {
+  constructor(props) {
+    super(props);
+    this.contactEmail = process.env.REACT_APP_CONTACT_EMAIL;
+  }
+
   render() {
     return (
       <div className="footer-component">
@@ -26,7 +31,7 @@ export default class Footer extends Component {
           <Link to="/about">About</Link>
         </span>
         <span className="footer-item">
-          <a href="mailto:info@karrlab.org" subject="Datanator">
+          <a href={"mailto:" + this.contactEmail} subject="Datanator">
             Contact us
           </a>
         </span>

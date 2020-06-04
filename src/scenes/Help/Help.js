@@ -8,6 +8,11 @@ import Faq from "./Faq";
 import "./Help.scss";
 
 class Help extends Component {
+  constructor(props) {
+    super(props);
+    this.contactEmail = process.env.REACT_APP_CONTACT_EMAIL;
+  }
+
   render() {
     return (
       <div className="content-container content-container-help-scene">
@@ -45,7 +50,10 @@ class Help extends Component {
               <h2 className="content-block-heading">Need more help?</h2>
               <div className="content-block-content">
                 <div id="contact">
-                  <a href="mailto:info@karrlab.org" subject="Datanator help">
+                  <a
+                    href={"mailto:" + this.contactEmail}
+                    subject="Datanator help"
+                  >
                     <FontAwesomeIcon icon="envelope" /> Contact us
                   </a>
                 </div>

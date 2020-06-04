@@ -29,6 +29,7 @@ import Header from "~/components/Header/Header";
 import Footer from "~/components/Footer/Footer";
 import FeedbackForm from "~/components/FeedbackForm/FeedbackForm";
 import { errorDialog } from "~/components/ErrorDialog/ErrorDialog";
+import ErrorBoundary from "~/components/ErrorBoundary/ErrorBoundary";
 
 // Website pages (scenes)
 import Home from "~/scenes/Home/Home";
@@ -47,35 +48,37 @@ library.add(faAtom, faDna, faBug, faEnvelope, faExclamationCircle);
 // Render site
 const SiteRouter = () => {
   return (
-    <Router history={history}>
-      <Header />
-      <Switch>
-        <Route path="/" exact component={Home} />
-        <Route
-          path="/search/:query/:organism?/"
-          exact
-          component={SearchResults}
-        />
-        <Route
-          path="/metabolite/:metabolite/:organism?/"
-          exact
-          component={Metabolite}
-        />
-        <Route path="/gene/:gene/:organism?/" exact component={Gene} />
-        <Route
-          path="/reaction/:substrates-->:products/:organism?/"
-          exact
-          component={Reaction}
-        />
-        <Route path="/stats/" exact component={Stats} />
-        <Route path="/help/" exact component={Help} />
-        <Route path="/about/" exact component={About} />
-        <Route path="*" component={Error404} />
-      </Switch>
-      <Footer />
-      {errorDialog}
-      <FeedbackForm />
-    </Router>
+    <ErrorBoundary>
+      <Router history={history}>
+        <Header />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route
+            path="/search/:query/:organism?/"
+            exact
+            component={SearchResults}
+          />
+          <Route
+            path="/metabolite/:metabolite/:organism?/"
+            exact
+            component={Metabolite}
+          />
+          <Route path="/gene/:gene/:organism?/" exact component={Gene} />
+          <Route
+            path="/reaction/:substrates-->:products/:organism?/"
+            exact
+            component={Reaction}
+          />
+          <Route path="/stats/" exact component={Stats} />
+          <Route path="/help/" exact component={Help} />
+          <Route path="/about/" exact component={About} />
+          <Route path="*" component={Error404} />
+        </Switch>
+        <Footer />
+        {errorDialog}
+        <FeedbackForm />
+      </Router>
+    </ErrorBoundary>
   );
 };
 
