@@ -38,12 +38,13 @@ function genApiErrorHandler(params, errorMessage = null) {
         );
       }
 
-      if (
-        IS_DEVELOPMENT ||
-        IS_TEST ||
-        !("isAxiosError" in error && error.isAxiosError)
-      ) {
-        if (error && "stack" in error && "message" in error) {
+      if (!("isAxiosError" in error && error.isAxiosError)) {
+        if (
+          error &&
+          "stack" in error &&
+          "message" in error &&
+          !(IS_DEVELOPMENT || IS_TEST)
+        ) {
           throw error;
         } else {
           console.error(error);
