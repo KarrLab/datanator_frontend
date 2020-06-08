@@ -86,21 +86,10 @@ class TaxonomyFilter extends Component {
         this.setMarks();
       })
       .catch((error) => {
-        if (
-          "response" in error &&
-          "request" in error.response &&
-          error.response.request.constructor.name === "XMLHttpRequest"
-        ) {
-          genApiErrorHandler(
-            ["taxon", "canon_rank_distance_by_name/?name=" + organism],
-            "Unable to obtain taxonomic information about '" + organism + "'."
-          )(error);
-        } else if (
-          !axios.isCancel(error) &&
-          !("isAxiosError" in error && error.isAxiosError)
-        ) {
-          throw error;
-        }
+        genApiErrorHandler(
+          ["taxon", "canon_rank_distance_by_name/?name=" + organism],
+          "Unable to obtain taxonomic information about '" + organism + "'."
+        )(error);
       })
       .finally(() => {
         this.cancelTokenSource = null;

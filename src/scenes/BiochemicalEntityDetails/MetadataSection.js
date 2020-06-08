@@ -107,19 +107,25 @@ class MetadataSection extends Component {
               organism,
               queryResponse.data
             );
-            const formattedMetadataSections = this.props["format-metadata"](
-              query,
-              organism,
-              processedMetadata
-            );
-            this.props["set-scene-metadata"]({
-              error404: false,
-              title: this.props["format-title"](processedMetadata),
-              organism: organism,
-              metadataSections: formattedMetadataSections,
-              other: processedMetadata.other,
-            });
-            this.setState({ sections: formattedMetadataSections });
+            if (processedMetadata == null) {
+              this.props["set-scene-metadata"]({
+                error404: true,
+              });
+            } else {
+              const formattedMetadataSections = this.props["format-metadata"](
+                query,
+                organism,
+                processedMetadata
+              );
+              this.props["set-scene-metadata"]({
+                error404: false,
+                title: this.props["format-title"](processedMetadata),
+                organism: organism,
+                metadataSections: formattedMetadataSections,
+                other: processedMetadata.other,
+              });
+              this.setState({ sections: formattedMetadataSections });
+            }
           }
         })
       )
@@ -131,29 +137,22 @@ class MetadataSection extends Component {
           error.response.request.constructor.name === "XMLHttpRequest"
         ) {
           const response = error.response;
-          if (
-            response.config.url.endsWith(taxonUrl) &&
-            response.status === 500
-          ) {
+          if (response.status === 500) {
             this.props["set-scene-metadata"]({
               error404: true,
             });
-          } else {
-            genApiErrorHandler(
-              [queryUrl],
-              "Unable to get metadata about " +
-                this.props["entity-type"] +
-                " '" +
-                query +
-                "'."
-            )(error);
+            return;
           }
-        } else if (
-          !axios.isCancel(error) &&
-          !("isAxiosError" in error && error.isAxiosError)
-        ) {
-          throw error;
         }
+
+        genApiErrorHandler(
+          [queryUrl],
+          "Unable to get metadata about " +
+            this.props["entity-type"] +
+            " '" +
+            query +
+            "'."
+        )(error);
       })
       .finally(() => {
         this.queryCancelTokenSource = null;

@@ -38,21 +38,7 @@ class LoadExternalContent extends Component {
         this.setState({ text: processed_data });
       })
       .catch((error) => {
-        if (
-          "response" in error &&
-          "request" in error.response &&
-          error.response.request.constructor.name === "XMLHttpRequest"
-        ) {
-          genApiErrorHandler(
-            [this.props.url],
-            "Unable to load metadata."
-          )(error);
-        } else if (
-          !axios.isCancel(error) &&
-          !("isAxiosError" in error && error.isAxiosError)
-        ) {
-          throw error;
-        }
+        genApiErrorHandler([this.props.url], "Unable to load metadata.")(error);
       })
       .finally(() => {
         this.cancelTokenSource = null;
@@ -114,21 +100,10 @@ class LoadContent extends Component {
         });
       })
       .catch((error) => {
-        if (
-          "response" in error &&
-          "request" in error.response &&
-          error.response.request.constructor.name === "XMLHttpRequest"
-        ) {
-          genApiErrorHandler(
-            [url],
-            "We were unable to conduct your search for '" + this.query + "'."
-          )(error);
-        } else if (
-          !axios.isCancel(error) &&
-          !("isAxiosError" in error && error.isAxiosError)
-        ) {
-          throw error;
-        }
+        genApiErrorHandler(
+          [url],
+          "We were unable to conduct your search for '" + this.query + "'."
+        )(error);
       })
       .finally(() => {
         this.cancelTokenSource = null;
@@ -208,21 +183,10 @@ class LoadMetabolites extends Component {
           });
         })
         .catch((error) => {
-          if (
-            "response" in error &&
-            "request" in error.response &&
-            error.response.request.constructor.name === "XMLHttpRequest"
-          ) {
-            genApiErrorHandler(
-              [url],
-              "We were unable to conduct your search for '" + this.query + "'."
-            )(error);
-          } else if (
-            !axios.isCancel(error) &&
-            !("isAxiosError" in error && error.isAxiosError)
-          ) {
-            throw error;
-          }
+          genApiErrorHandler(
+            [url],
+            "We were unable to conduct your search for '" + this.query + "'."
+          )(error);
         })
         .finally(() => {
           this.cancelTokenSource = null;

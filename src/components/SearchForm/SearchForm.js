@@ -126,21 +126,10 @@ class SearchForm extends Component {
     getDataFromApi([url], { cancelToken: this.cancelTokenSource.token })
       .then(this.setOrganismMenu.bind(this, query))
       .catch((error) => {
-        if (
-          "response" in error &&
-          "request" in error.response &&
-          error.response.request.constructor.name === "XMLHttpRequest"
-        ) {
-          genApiErrorHandler(
-            [url],
-            "Unable to search for organisms that match '" + query + "'."
-          )(error);
-        } else if (
-          !axios.isCancel(error) &&
-          !("isAxiosError" in error && error.isAxiosError)
-        ) {
-          throw error;
-        }
+        genApiErrorHandler(
+          [url],
+          "Unable to search for organisms that match '" + query + "'."
+        )(error);
       })
       .finally(() => {
         this.cancelTokenSource = null;
