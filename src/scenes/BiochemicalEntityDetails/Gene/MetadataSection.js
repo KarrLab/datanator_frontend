@@ -259,6 +259,10 @@ class MetadataSection extends Component {
   }
 
   static processKeggOrthologGroupMetadata(query, organism, rawData) {
+    if (!Array.isArray(rawData)) {
+      return;
+    }
+
     let processedData = {};
 
     processedData.title = rawData[0].definition.name[0];
@@ -283,6 +287,10 @@ class MetadataSection extends Component {
   }
 
   static processUniProtProteinMetadata(query, organism, rawData) {
+    if (!Array.isArray(rawData)) {
+      return;
+    }
+
     let processedData = {};
 
     processedData.title = rawData[0].protein_name.split("(")[0].trim();

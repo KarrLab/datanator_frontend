@@ -195,31 +195,24 @@ class DataTable extends Component {
           error.response.request.constructor.name === "XMLHttpRequest"
         ) {
           const response = error.response;
-          if (
-            response.config.url.endsWith(taxonUrl) &&
-            response.status === 500
-          ) {
+          if (response.status === 500) {
             this.props["set-scene-metadata"]({
               error404: true,
             });
-          } else {
-            genApiErrorHandler(
-              [url],
-              "Unable to retrieve " +
-                this.props["data-type"] +
-                " data about " +
-                this.props["entity-type"] +
-                " '" +
-                query +
-                "'."
-            )(error);
+            return;
           }
-        } else if (
-          !axios.isCancel(error) &&
-          !("isAxiosError" in error && error.isAxiosError)
-        ) {
-          throw error;
         }
+
+        genApiErrorHandler(
+          [url],
+          "Unable to retrieve " +
+            this.props["data-type"] +
+            " data about " +
+            this.props["entity-type"] +
+            " '" +
+            query +
+            "'."
+        )(error);
       })
       .finally(() => {
         this.queryCancelTokenSource = null;
