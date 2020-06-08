@@ -242,7 +242,7 @@ jobs:
           name: Netlify Deploy Non-master Branch
           command: |
             export PATH=$PATH:node_modules/.bin
-            export REACT_APP_REST_SERVER=${REACT_APP_REST_SERVER_TEST}
+            export NODE_ENV=development
 
             # deploy
             netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --dir=build
