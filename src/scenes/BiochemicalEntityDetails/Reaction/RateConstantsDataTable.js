@@ -12,7 +12,7 @@ class RateConstantsDataTable extends Component {
   };
 
   static getUrl(query, organism) {
-    const args = ["_from=0", "size=1000", "bound=loose", "dof=0"];
+    const args = ["_from=0", "size=1000", "bound=tight", "dof=0"];
 
     const substratesProducts = query.split("-->");
     args.push("substrates=" + substratesProducts[0]);

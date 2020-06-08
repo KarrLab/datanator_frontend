@@ -11,11 +11,11 @@ describe("Reaction data page", () => {
 
     // assert URL correct
     expect(RateConstantsDataTable.getUrl(entity)).toEqual(
-      "reactions/kinlaw_by_rxn/?_from=0&size=1000&bound=loose&dof=0&substrates=ATP,AMP&products=ADP"
+      "reactions/kinlaw_by_rxn/?_from=0&size=1000&bound=tight&dof=0&substrates=ATP,AMP&products=ADP"
     );
 
     expect(RateConstantsDataTable.getUrl(entity, "Escherichia coli")).toEqual(
-      "reactions/kinlaw_by_rxn/?_from=0&size=1000&bound=loose&dof=0&substrates=ATP,AMP&products=ADP&taxon_distance=true&species=Escherichia coli"
+      "reactions/kinlaw_by_rxn/?_from=0&size=1000&bound=tight&dof=0&substrates=ATP,AMP&products=ADP&taxon_distance=true&species=Escherichia coli"
     );
   });
 
@@ -271,7 +271,7 @@ describe("Reaction data page", () => {
     const query = "ATP,AMP-->ADP";
     //const organism = "Saccharomyces cerevisiae S288C";
     expect(MetadataSection.getMetadataUrl(query)).toEqual(
-      "reactions/kinlaw_by_rxn/?_from=0&size=1000&bound=loose&dof=0&substrates=ATP,AMP&products=ADP"
+      "reactions/kinlaw_by_rxn/?_from=0&size=1000&bound=tight&dof=0&substrates=ATP,AMP&products=ADP"
     );
   });
 

@@ -65,7 +65,7 @@ const SiteRouter = () => {
           />
           <Route path="/gene/:gene/:organism?/" exact component={Gene} />
           <Route
-            path="/reaction/:substrates-->:products/:organism?/"
+            path="/reaction/:reaction/:organism?/"
             exact
             component={Reaction}
           />
