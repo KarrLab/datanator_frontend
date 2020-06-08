@@ -88,6 +88,7 @@ class TaxonomyFilter extends Component {
       .catch((error) => {
         if (
           "response" in error &&
+          error.response !== undefined &&
           "request" in error.response &&
           error.response.request.constructor.name === "XMLHttpRequest"
         ) {

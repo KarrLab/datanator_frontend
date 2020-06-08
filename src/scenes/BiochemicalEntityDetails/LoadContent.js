@@ -40,6 +40,7 @@ class LoadExternalContent extends Component {
       .catch((error) => {
         if (
           "response" in error &&
+          error.response !== undefined &&
           "request" in error.response &&
           error.response.request.constructor.name === "XMLHttpRequest"
         ) {
@@ -116,6 +117,7 @@ class LoadContent extends Component {
       .catch((error) => {
         if (
           "response" in error &&
+          error.response !== undefined &&
           "request" in error.response &&
           error.response.request.constructor.name === "XMLHttpRequest"
         ) {
@@ -210,6 +212,7 @@ class LoadMetabolites extends Component {
         .catch((error) => {
           if (
             "response" in error &&
+            error.response !== undefined &&
             "request" in error.response &&
             error.response.request.constructor.name === "XMLHttpRequest"
           ) {
