@@ -255,7 +255,7 @@ jobs:
           name: Netlify Deploy Master
           command: |
             export PATH=$PATH:node_modules/.bin
-            export REACT_APP_REST_SERVER=${REACT_APP_REST_SERVER_PROD}
+            export NODE_ENV=production
 
             # deploy
             netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir=build
