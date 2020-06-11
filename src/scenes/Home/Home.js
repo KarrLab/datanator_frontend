@@ -286,7 +286,7 @@ class Home extends Component {
           <div className="section-inner-container">
             <h2 className="section-title">
               <span className="highlight-primary">Integrated database</span> of
-              key data for cell modeling
+              data for biochemical analysis and modeling
             </h2>
             <div className="section-title-separator"></div>
             <div className="section-columns section-4-columns">
@@ -301,13 +301,15 @@ class Home extends Component {
                     />
                   </LazyLoad>
                 </div>
-                <div className="section-column-subtitle">Available</div>
-                <div className="section-column-title">
-                  Metabolite concentrations
+                <div className="section-column-title highlight-primary">
+                  Metabolites
+                </div>
+                <div className="section-column-subsection-title">
+                  Concentrations
                 </div>
                 <div className="section-column-description">
-                  3,841 measurements of the concentrations of 1,621 metabolites
-                  in 4 organisms aggregated from{" "}
+                  3,841 measurements of 1,621 metabolites in 4 organisms
+                  aggregated from{" "}
                   <a
                     href="http://ecmdb.ca/"
                     target="_blank"
@@ -322,7 +324,7 @@ class Home extends Component {
                   >
                     YMDB
                   </a>
-                  , and 5 publications.
+                  , and various publications.
                 </div>
               </div>
 
@@ -337,9 +339,11 @@ class Home extends Component {
                     />
                   </LazyLoad>
                 </div>
-                <div className="section-column-subtitle">Available</div>
-                <div className="section-column-title">
-                  RNA modifications &amp; half-lives
+                <div className="section-column-title highlight-primary">
+                  RNAs
+                </div>
+                <div className="section-column-subsection-title">
+                  Modifications
                 </div>
                 <div className="section-column-description">
                   Reconstructed modifications of 19 rRNA and 580 tRNA integrated
@@ -351,8 +355,36 @@ class Home extends Component {
                   >
                     MODOMICS
                   </a>
-                  . Measurements of the half-lives of mRNA aggregated from more
-                  than 20 publications.
+                </div>
+
+                <div className="section-column-subsection-title">
+                  Half-lives
+                </div>
+                <div className="section-column-description">
+                  Measurements aggregated from more than 20 publications.
+                </div>
+
+                <div className="section-column-subsection-title">
+                  Localizations &ndash; coming soon
+                </div>
+                <div className="section-column-description">
+                  Nearly 1,000,000 localizations aggregated from{" "}
+                  <a
+                    href="http://www.rna-society.org/rnalocate/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    RNALocate
+                  </a>
+                  ,{" "}
+                  <a
+                    href="http://lncatlas.crg.eu/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    lncATLAS
+                  </a>
+                  , and various publications.
                 </div>
               </div>
 
@@ -367,14 +399,16 @@ class Home extends Component {
                     />
                   </LazyLoad>
                 </div>
-                <div className="section-column-subtitle">Available</div>
-                <div className="section-column-title">
-                  Protein abundances &amp; modifications
+                <div className="section-column-title highlight-primary">
+                  Proteins
+                </div>
+
+                <div className="section-column-subsection-title">
+                  Abundances
                 </div>
                 <div className="section-column-description">
-                  103,572 measurements of the abundance of 20,689 ortholog
-                  groups and 846,970 proteins in 20,980 organisms aggregated
-                  from{" "}
+                  103,572 measurements of 20,689 ortholog groups and 846,970
+                  proteins in 20,980 organisms aggregated from{" "}
                   <a
                     href="https://pax-db.org/"
                     target="_blank"
@@ -398,7 +432,13 @@ class Home extends Component {
                   >
                     UniProt
                   </a>
-                  . Reconstructed modifications of 4,083 proteins integrated by
+                </div>
+
+                <div className="section-column-subsection-title">
+                  Modifications
+                </div>
+                <div className="section-column-description">
+                  Reconstructed modifications of 4,083 proteins integrated by
                   the{" "}
                   <a
                     href="https://proconsortium.org/"
@@ -408,6 +448,53 @@ class Home extends Component {
                     Protein Ontology (PRO)
                   </a>
                   .
+                </div>
+
+                <div className="section-column-subsection-title">
+                  Localizations &ndash; coming soon
+                </div>
+                <div className="section-column-description">
+                  Over 100,000 observed and predicted localizations aggregated
+                  from{" "}
+                  <a
+                    href="http://gpcr.biocomp.unibo.it/esldb/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    eSLDB
+                  </a>
+                  ,{" "}
+                  <a
+                    href="https://www.proteinatlas.org/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    The Human Protein Atlas
+                  </a>
+                  ,{" "}
+                  <a
+                    href="https://db.psort.org/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    PSORTdb
+                  </a>
+                  , and{" "}
+                  <a
+                    href="https://www.subcellbarcode.org/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    SubCell
+                  </a>
+                  .
+                </div>
+
+                <div className="section-column-subsection-title">
+                  Half-lives &ndash; coming soon
+                </div>
+                <div className="section-column-description">
+                  Half-lives curated from over 10 publications.
                 </div>
               </div>
 
@@ -422,8 +509,13 @@ class Home extends Component {
                     />
                   </LazyLoad>
                 </div>
-                <div className="section-column-subtitle">Available</div>
-                <div className="section-column-title">Reaction constants</div>
+                <div className="section-column-title highlight-primary">
+                  Reactions
+                </div>
+
+                <div className="section-column-subsection-title">
+                  Rate constants
+                </div>
                 <div className="section-column-description">
                   273,596 measurements of rate constants for more than 3,137
                   distinct enzymes and 37,858 reactions aggregated from{" "}
@@ -444,6 +536,21 @@ class Home extends Component {
                   </a>
                   .
                 </div>
+
+                <div className="section-column-subsection-title">
+                  Fluxes &ndash; coming soon
+                </div>
+                <div className="section-column-description">
+                  Fluxes curated from{" "}
+                  <a
+                    href="http://www.cecafdb.org/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    CeCaFDB
+                  </a>{" "}
+                  and various publications.
+                </div>
               </div>
             </div>
           </div>
@@ -455,7 +562,7 @@ class Home extends Component {
               <span className="highlight-primary">
                 systematically discover data
               </span>{" "}
-              for modeling
+              for analysis and modeling
             </h2>
             <div className="section-title-separator"></div>
             <div className="vertical-workflow">
