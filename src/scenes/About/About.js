@@ -839,8 +839,24 @@ class About extends Component {
                 Contributing to <i>Datanator</i>
               </h2>
               <div className="content-block-content">
-                We welcome contributions to <i>Datanator</i> via Git pull
-                requests. Please contact the developers to coordinate potential
+                We welcome contributions to <i>Datanator</i> via GitHub{" "}
+                <a
+                  href="https://github.com/KarrLab/datanator/issues"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  issues
+                </a>{" "}
+                or{" "}
+                <a
+                  href="https://github.com/KarrLab/datanator/compare"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  pull requests
+                </a>
+                . We are particularly interested in suggestions for additional
+                datasets. Please contact the developers to coordinate potential
                 contributions, and please see the{" "}
                 <a
                   href="https://github.com/KarrLab/datanator_frontend/blob/master/README.md"
