@@ -3,7 +3,7 @@
 describe("Gene scene", function () {
   it("Gene scene with organism successfully loads with protein abundances", function () {
     const route = "gene";
-    const entity = "K00973";
+    const entity = "K00117";
     const organism = "Escherichia coli";
     const url = "/" + route + "/" + entity + "/" + organism;
 
@@ -12,7 +12,7 @@ describe("Gene scene", function () {
     // page title
     cy.get(".page-title").should(
       "have.text",
-      "Gene: glucose-1-phosphate thymidylyltransferase in " + organism
+      "Gene: quinoprotein glucose dehydrogenase in " + organism
     );
 
     // data table
