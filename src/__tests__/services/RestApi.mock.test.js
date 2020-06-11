@@ -72,7 +72,19 @@ describe("With mocked API calls", () => {
     ) {
       expect(console.error.mock.calls[0][0]).toEqual(error);
     } else {
-      expect(console.error.mock.calls).toEqual([]);
+      expect(console.error.mock.calls).toEqual([
+        [
+          {
+            response: {
+              data: {
+                detail: "Server error.",
+                status: 404,
+              },
+              status: 404,
+            },
+          },
+        ],
+      ]);
     }
 
     // close error dialog
