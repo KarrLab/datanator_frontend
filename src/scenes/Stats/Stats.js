@@ -124,9 +124,9 @@ class Stats extends Component {
     journalByDataTypeData.push({
       label: ["Met. concs."],
       urls: [
-        "metabolites/summary/ecmdb_ref_count",
-        "metabolites/summary/ymdb_ref_count",
-        "metabolites/summary/curated_ref_count",
+        "metabolites/summary/ecmdb_ref_count/",
+        "metabolites/summary/ymdb_ref_count/",
+        "metabolites/summary/curated_ref_count/",
       ],
     });
     journalByDataTypeData.push({
