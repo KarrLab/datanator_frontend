@@ -135,7 +135,7 @@ class Stats extends Component {
     });
     journalByDataTypeData.push({
       label: ["Rxn kinetics"],
-      urls: ["/reactions/summary/num_refs/"],
+      urls: ["reactions/summary/num_refs/"],
     });
     journalByDataTypeData.push({
       label: ["RNA half-lives"],
