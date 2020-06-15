@@ -4,7 +4,7 @@ describe("Common components", function () {
   it("Table of contents links scroll to elements", function () {
     const route = "metabolite";
     const entity = "YSYKRGRSMLTJNL-KFQCIAAJSA-N"; // dTDP-D-Glucose
-    const url = "/" + route + "/" + entity;
+    const url = "/" + route + "/" + entity + "/";
     const dataContainerId = "concentration";
 
     cy.visit(url);
@@ -31,7 +31,7 @@ describe("Common components", function () {
       },
     }).as("getData");
 
-    cy.visit("/" + route + "/" + entity);
+    cy.visit("/" + route + "/" + entity + "/");
     cy.wait("@getData");
     cy.get(".dialog-message-container span")
       .first()

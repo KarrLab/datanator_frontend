@@ -103,9 +103,9 @@ export default class MetaboliteSearchResultsList extends Component {
       );
 
       //route
-      formattedResult["route"] = "/metabolite/" + inchikey;
+      formattedResult["route"] = "/metabolite/" + inchikey + "/";
       if (organism) {
-        formattedResult["route"] += "/" + organism;
+        formattedResult["route"] += organism + "/";
       }
     }
 

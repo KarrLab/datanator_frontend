@@ -13,7 +13,7 @@ describe("Open and close", function () {
       },
     }).as("getResults");
 
-    cy.visit("/search/glucose");
+    cy.visit("/search/glucose/");
     cy.wait("@getResults");
     cy.get(".dialog-message-container span")
       .first()

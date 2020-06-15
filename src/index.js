@@ -2,7 +2,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 // Router (enables persistant URLs and History)
-import { Router, Switch, Route } from "react-router-dom";
+import { Router, Switch, Route, Redirect } from "react-router-dom";
 
 // Redux (used for state management)
 import history from "~/utils/history";
@@ -52,26 +52,71 @@ const SiteRouter = () => {
       <Router history={history}>
         <Header />
         <Switch>
-          <Route path="/" exact component={Home} />
+          {/* Add trailing slash */}
           <Route
-            path="/search/:query/:organism?/"
+            path={/^.*?(?<!\/)$/}
             exact
+            render={({ location }) => {
+              return <Redirect to={location.pathname + "/"} />;
+            }}
+          />
+
+          {/* Remove duplicate slashes */}
+          <Route
+            path="(.*//+.*)"
+            exact
+            render={({ match }) => {
+              return <Redirect to={match.url.replace(/\/\/+/, "/")} />;
+            }}
+          />
+
+          <Route path="/" exact strict component={Home} />
+
+          <Route
+            path="/search/:query/:organism/"
+            exact
+            strict
             component={SearchResults}
           />
           <Route
-            path="/metabolite/:metabolite/:organism?/"
+            path="/search/:query/"
             exact
+            strict
+            component={SearchResults}
+          />
+
+          <Route
+            path="/metabolite/:metabolite/:organism/"
+            exact
+            strict
             component={Metabolite}
           />
-          <Route path="/gene/:gene/:organism?/" exact component={Gene} />
           <Route
-            path="/reaction/:reaction/:organism?/"
+            path="/metabolite/:metabolite/"
             exact
+            strict
+            component={Metabolite}
+          />
+
+          <Route path="/gene/:gene/:organism/" exact strict component={Gene} />
+          <Route path="/gene/:gene/" exact strict component={Gene} />
+
+          <Route
+            path="/reaction/:reaction/:organism/"
+            exact
+            strict
             component={Reaction}
           />
-          <Route path="/stats/" exact component={Stats} />
-          <Route path="/help/" exact component={Help} />
-          <Route path="/about/" exact component={About} />
+          <Route
+            path="/reaction/:reaction/"
+            exact
+            strict
+            component={Reaction}
+          />
+
+          <Route path="/stats/" exact strict component={Stats} />
+          <Route path="/help/" exact strict component={Help} />
+          <Route path="/about/" exact strict component={About} />
           <Route path="*" component={Error404} />
         </Switch>
         <Footer />

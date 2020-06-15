@@ -75,7 +75,7 @@ class Header extends Component {
               this.setState({ showSearchForm: !this.state.showSearchForm })
             }
           />
-          <Link to="/stats">
+          <Link to="/stats/">
             <Button
               minimal="true"
               className="icon-button"
@@ -83,7 +83,7 @@ class Header extends Component {
               text="Stats"
             />
           </Link>
-          <Link to="/help">
+          <Link to="/help/">
             <Button
               minimal="true"
               className="icon-button"
@@ -91,7 +91,7 @@ class Header extends Component {
               text="Help"
             />
           </Link>
-          <Link to="/about">
+          <Link to="/about/">
             <Button
               minimal="true"
               className="icon-button"

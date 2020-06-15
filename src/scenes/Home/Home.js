@@ -732,7 +732,7 @@ class Home extends Component {
               license.
             </p>
             <p className="no-bottom-margin">
-              Please see the <Link to="about">About</Link> page for more
+              Please see the <Link to="/about/">About</Link> page for more
               information.
             </p>
             <div className="about-icons">

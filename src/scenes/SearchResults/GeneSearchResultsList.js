@@ -119,9 +119,9 @@ export default class GeneSearchResultsList extends Component {
         );
 
         //route
-        formattedResult["route"] = "/gene/" + id;
+        formattedResult["route"] = "/gene/" + id + "/";
         if (organism) {
-          formattedResult["route"] += "/" + organism;
+          formattedResult["route"] += organism + "/";
         }
       }
     }

@@ -9,10 +9,10 @@ describe("LinkCellRenderer", function () {
     let url;
 
     // without organism
-    url = "/" + route + "/" + entity;
+    url = "/" + route + "/" + entity + "/";
     cy.visit(url);
     cy.get("#" + dataContainerId + " .ag-root .ag-center-cols-clipper .ag-row")
-      .find('.ag-cell-link:not([href~="' + url + '/"])')
+      .find('.ag-cell-link:not([href~="' + url + '"])')
       .first()
       .click();
 
@@ -24,10 +24,10 @@ describe("LinkCellRenderer", function () {
     });
 
     // with organism
-    url = "/" + route + "/" + entity + "/" + organism;
+    url = "/" + route + "/" + entity + "/" + organism + "/";
     cy.visit(url);
     cy.get("#" + dataContainerId + " .ag-root .ag-center-cols-clipper .ag-row")
-      .find('.ag-cell-link:not([href~="' + url + '/"])')
+      .find('.ag-cell-link:not([href~="' + url + '"])')
       .first()
       .click();
     cy.location("pathname").should("not.equal", url);

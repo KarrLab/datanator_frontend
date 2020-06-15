@@ -5,7 +5,7 @@ describe("HtmlColumnHeader", function () {
     const route = "reaction";
     const entity =
       "YSYKRGRSMLTJNL-KFQCIAAJSA-N-->PSXWNITXWWECNY-UCBTUHGZSA-N,XLYOFNOQVPJJNP-UHFFFAOYSA-N"; // DTDP-glucose 4,6-dehydratase
-    const url = "/" + route + "/" + entity;
+    const url = "/" + route + "/" + entity + "/";
     const dataContainerId = "rate-constants";
 
     cy.visit(url);

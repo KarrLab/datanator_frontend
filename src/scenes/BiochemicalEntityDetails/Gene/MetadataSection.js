@@ -201,9 +201,13 @@ class MetadataSection extends Component {
         formatSide(substrateNames) + " → " + formatSide(productNames);
       const ecMeta = reaction["ec_meta"];
       let route =
-        "/reaction/" + substrateIds.join(",") + "-->" + productIds.join(",");
+        "/reaction/" +
+        substrateIds.join(",") +
+        "-->" +
+        productIds.join(",") +
+        "/";
       if (organism) {
-        route += "/" + organism;
+        route += organism + "/";
       }
 
       formattedResult["title"] = ecMeta["ec_name"];

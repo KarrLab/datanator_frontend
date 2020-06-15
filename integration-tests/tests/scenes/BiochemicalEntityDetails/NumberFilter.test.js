@@ -4,7 +4,7 @@ describe("NumberFilter", function () {
   it("Correctly filters rows", function () {
     const route = "metabolite";
     const entity = "YSYKRGRSMLTJNL-URARBOGNSA-L"; // TDP-Glucose
-    const url = "/" + route + "/" + entity;
+    const url = "/" + route + "/" + entity + "/";
     const dataContainerId = "concentration";
 
     //use fixture with tanimoto_similarity always < 1

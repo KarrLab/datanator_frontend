@@ -22,13 +22,13 @@ export default class Footer extends Component {
           </a>
         </span>
         <span className="footer-item">
-          <Link to="/stats">Stats</Link>
+          <Link to="/stats/">Stats</Link>
         </span>
         <span className="footer-item">
-          <Link to="/help">Help</Link>
+          <Link to="/help/">Help</Link>
         </span>
         <span className="footer-item">
-          <Link to="/about">About</Link>
+          <Link to="/about/">About</Link>
         </span>
         <span className="footer-item">
           <a href={"mailto:" + this.contactEmail} subject="Datanator">

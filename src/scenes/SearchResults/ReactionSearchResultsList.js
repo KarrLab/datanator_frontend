@@ -34,7 +34,11 @@ export default class ReactionSearchResultsList extends Component {
       formattedResults.push(formattedResult);
 
       // title and description
-      const name = result["enzyme_names"][0];
+      let name = result["enzyme_names"][0];
+      if (name.toUpperCase() === "NULL") {
+        name = null;
+      }
+
       const substrateNames = getParticipant(result["substrate_names"]);
       const productNames = getParticipant(result["product_names"]);
       substrateNames.sort(naturalSort);
@@ -53,7 +57,7 @@ export default class ReactionSearchResultsList extends Component {
       if (!ecCode.startsWith("-")) {
         formattedResult["description"] = (
           <div>
-            <div>{equation}</div>
+            {name ? <div>{equation}</div> : null}
             <div>
               EC:{" "}
               <a
@@ -73,9 +77,10 @@ export default class ReactionSearchResultsList extends Component {
         "/reaction/" +
         result["substrates"].join(",") +
         "-->" +
-        result["products"].join(",");
+        result["products"].join(",") +
+        "/";
       if (organism) {
-        formattedResult["route"] += "/" + organism;
+        formattedResult["route"] += organism + "/";
       }
     }
 

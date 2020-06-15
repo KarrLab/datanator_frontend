@@ -5,7 +5,7 @@ describe("Gene scene", function () {
     const route = "gene";
     const entity = "K00117";
     const organism = "Escherichia coli";
-    const url = "/" + route + "/" + entity + "/" + organism;
+    const url = "/" + route + "/" + entity + "/" + organism + "/";
 
     cy.visit(url);
 
@@ -57,7 +57,7 @@ describe("Gene scene", function () {
     const route = "gene";
     const entity = "K16370";
     const organism = "Escherichia coli";
-    const url = "/" + route + "/" + entity + "/" + organism;
+    const url = "/" + route + "/" + entity + "/" + organism + "/";
 
     cy.visit(url);
 
