@@ -35,7 +35,7 @@ export default class ReactionSearchResultsList extends Component {
 
       // title and description
       let name = result["enzyme_names"][0];
-      if (name.toUpperCase() === "NULL") {
+      if (!name || name.toUpperCase() === "NULL") {
         name = null;
       }
 
