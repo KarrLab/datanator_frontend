@@ -246,6 +246,11 @@ jobs:
 
             # deploy
             netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --dir=build
+
+            # let Airbrake track deployment
+            curl -X POST -H "Content-Type: application/json" \
+              -d "{\"environment\":\"test\",\"username\":\"${CIRCLE_USERNAME}\",\"repository\":\"https://github.com/KarrLab/datanator_frontend\",\"revision\":\"${CIRCLE_SHA1}\"}" \
+              "https://airbrake.io/api/v4/projects/275996/deploys?key=527a182e6ad1d36557df055c2d85df51"
   release:
     executor: node-executor
     working_directory: ~/project
@@ -259,3 +264,8 @@ jobs:
 
             # deploy
             netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir=build
+
+            # let Airbrake track deployment
+            curl -X POST -H "Content-Type: application/json" \
+              -d "{\"environment\":\"production\",\"username\":\"${CIRCLE_USERNAME}\",\"repository\":\"https://github.com/KarrLab/datanator_frontend\",\"revision\":\"${CIRCLE_SHA1}\"}" \
+              "https://airbrake.io/api/v4/projects/275996/deploys?key=527a182e6ad1d36557df055c2d85df51"
