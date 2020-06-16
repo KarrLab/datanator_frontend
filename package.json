@@ -139,6 +139,7 @@
     "start": "node scripts/start.js",
     "stop": "node scripts/stop.js",
     "build": "react-app-rewired build",
+    "deploy": "scripts/deploy.sh",
     "lint-js": "eslint --fix .",
     "lint-style": "stylelint --fix .",
     "lint-json": "scripts/lint-json.sh",
