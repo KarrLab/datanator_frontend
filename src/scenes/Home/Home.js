@@ -150,13 +150,14 @@ class Home extends Component {
               </div>
             </div>
             <p>
-              <i>Datanator</i> is a toolkit for discovering the data needed to
-              build, calibrate, and validate mechanistic models of cells.{" "}
-              <i>Datanator</i> is composed of an integrated database of genomic
-              and biochemical data, this web application for identifying
-              relevant data for modeling a specific organism in a specific
-              environmental condition, and a REST API and Python library for
-              programmatically discovering data for large models such as{" "}
+              <i>Datanator</i> is a free and open toolkit for discovering the
+              data needed to build, calibrate, and validate mechanistic models
+              of cells. <i>Datanator</i> is composed of an integrated database
+              of genomic and biochemical data, this web application for
+              identifying relevant data for modeling a specific organism in a
+              specific environmental condition, and a REST API and Python
+              library for programmatically discovering data for large models
+              such as{" "}
               <a
                 href="https://www.wholecell.org"
                 target="_blank"
