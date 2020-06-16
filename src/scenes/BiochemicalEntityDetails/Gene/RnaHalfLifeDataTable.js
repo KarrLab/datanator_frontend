@@ -44,9 +44,18 @@ class RnaHalfLifeDataTable extends Component {
             let formattedDatum = {
               halfLife: parseFloat(measurement.halflife),
               units: measurement.unit,
-              proteinName: rawDatum.protein_names[0],
-              geneName: rawDatum.kegg_meta.gene_name[0],
-              uniprotId: rawDatum.uniprot_id,
+              proteinName:
+                "protein_names" in rawDatum && rawDatum.protein_names
+                  ? rawDatum.protein_names[0]
+                  : null,
+              geneName:
+                "kegg_meta" in rawDatum &&
+                rawDatum.kegg_meta &&
+                "gene_name" in rawDatum.kegg_meta &&
+                rawDatum.kegg_meta.gene_name
+                  ? rawDatum.kegg_meta.gene_name[0]
+                  : null,
+              uniprotId: "uniprot_id" in rawDatum ? rawDatum.uniprot_id : null,
               organism: measurement.species,
               cellLine: null,
               growthMedium:
@@ -118,9 +127,19 @@ class RnaHalfLifeDataTable extends Component {
 
               let formattedDatum = {
                 units: cellLineValue.units,
-                proteinName: rawDatum.protein_names[0],
-                geneName: rawDatum.kegg_meta.gene_name[0],
-                uniprotId: rawDatum.uniprot_id,
+                proteinName:
+                  "protein_names" in rawDatum && rawDatum.protein_names
+                    ? rawDatum.protein_names[0]
+                    : null,
+                geneName:
+                  "kegg_meta" in rawDatum &&
+                  rawDatum.kegg_meta &&
+                  "gene_name" in rawDatum.kegg_meta &&
+                  rawDatum.kegg_meta.gene_name
+                    ? rawDatum.kegg_meta.gene_name[0]
+                    : null,
+                uniprotId:
+                  "uniprot_id" in rawDatum ? rawDatum.uniprot_id : null,
                 organism: measurement.species,
                 cellLine: cellLine.toUpperCase(),
                 growthMedium:
