@@ -1,7 +1,8 @@
 import React from "react";
 import axios from "axios";
 import { errorDialogRef } from "~/components/ErrorDialog/ErrorDialog";
-import { replaceNanWithNull } from "~/utils/utils";
+import { replaceNanWithNull, httpRequestLog } from "~/utils/utils";
+import { Notifier } from "@airbrake/browser";
 
 const JSON5 = require("json5");
 
@@ -16,8 +17,15 @@ function getDataFromApi(params, options = {}) {
       return replaceNanWithNull(JSON5.parse(data));
     },
   ];
+  httpRequestLog.push(url);
   return axios.get(url, options);
 }
+
+const airbrake = new Notifier({
+  projectId: parseFloat(process.env.REACT_APP_AIRBRAKE_PROJECT_ID),
+  projectKey: process.env.REACT_APP_AIRBRAKE_PROJECT_KEY,
+  environment: process.env.NODE_ENV,
+});
 
 function genApiErrorHandler(params, errorMessage = null) {
   return (error) => {
@@ -39,6 +47,18 @@ function genApiErrorHandler(params, errorMessage = null) {
       }
 
       if (!("isAxiosError" in error && error.isAxiosError)) {
+        airbrake.notify({
+          error: error,
+          context: { httpRequestLog: httpRequestLog },
+          environment: {
+            version: process.env.REACT_APP_VERSION,
+            repository: process.env.REACT_APP_REPOSITORY_URL.replace(
+              "git+",
+              ""
+            ).replace(".git", ""),
+          },
+        });
+
         if (
           error &&
           "stack" in error &&

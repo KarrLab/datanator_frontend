@@ -277,6 +277,8 @@ function replaceNanWithNull(value) {
   return value;
 }
 
+const httpRequestLog = [];
+
 export {
   formatScientificNotation,
   formatChemicalFormula,
@@ -294,4 +296,5 @@ export {
   naturalSort,
   isKeggOrthologyId,
   replaceNanWithNull,
+  httpRequestLog,
 };

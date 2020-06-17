@@ -5,6 +5,7 @@ import BarPlot from "./Plot/BarPlot";
 import FrequencyPlot from "./Plot/FrequencyPlot";
 import axios from "axios";
 import { getDataFromApi, genApiErrorHandler } from "~/services/RestApi";
+import { httpRequestLog } from "~/utils/utils";
 
 import "./Stats.scss";
 
@@ -146,6 +147,7 @@ class Stats extends Component {
     // taxonomic distribution of measurements
     const taxonomicUrl =
       "https://raw.githubusercontent.com/KarrLab/datanator_query_python/testapi/docs/taxon_distribution_frontend.json";
+    httpRequestLog.push(taxonomicUrl);
     axios
       .get(taxonomicUrl)
       .then((response) => {

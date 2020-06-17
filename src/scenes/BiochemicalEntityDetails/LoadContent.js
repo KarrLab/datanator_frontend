@@ -4,6 +4,7 @@ import axios from "axios";
 
 import { getDataFromApi, genApiErrorHandler } from "~/services/RestApi";
 import { Link } from "react-router-dom";
+import { httpRequestLog } from "~/utils/utils";
 
 class LoadExternalContent extends Component {
   static propTypes = {
@@ -28,6 +29,7 @@ class LoadExternalContent extends Component {
       this.cancelTokenSource.cancel();
     }
     this.cancelTokenSource = axios.CancelToken.source();
+    httpRequestLog.push(this.props.url);
     axios
       .get(this.props.url, {
         headers: { "Content-Type": "application/json" },
