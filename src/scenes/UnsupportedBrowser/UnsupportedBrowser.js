@@ -5,7 +5,7 @@ import "./UnsupportedBrowser.scss";
 
 const SUPPORTED_BROWSERS = [
   { name: "Chrome", id: "chrome", minVersion: "83" },
-  { name: "Edge", id: "Microsoft Edge", minVersion: "44" },
+  { name: "Edge (engine)", id: "Microsoft Edge", minVersion: "18" },
   { name: "Firefox", id: "firefox", minVersion: "71" },
 ];
 
