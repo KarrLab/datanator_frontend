@@ -58,7 +58,6 @@ library.add(
 );
 
 const browser = Bowser.getParser(window.navigator.userAgent);
-console.log(browser)
 const supportedBrowsers = {};
 for (const browser of SUPPORTED_BROWSERS) {
   supportedBrowsers[browser.id] = ">=" + browser.minVersion;

@@ -4,9 +4,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./UnsupportedBrowser.scss";
 
 const SUPPORTED_BROWSERS = [
-  { name: "Chrome", id: "chrome", minVersion: "83" },
+  { name: "Chrome", id: "chrome", minVersion: "63" },
   { name: "Edge (engine)", id: "Microsoft Edge", minVersion: "18" },
-  { name: "Firefox", id: "firefox", minVersion: "71" },
+  { name: "Firefox", id: "firefox", minVersion: "58" },
+  { name: "Opera", id: "opera", minVersion: "50" },
+  { name: "Safari", id: "safari", minVersion: "11.3" },
 ];
 
 class UnsupportedBrowser extends Component {
@@ -20,8 +22,8 @@ class UnsupportedBrowser extends Component {
         <div className="message">
           <p>
             We&apos;re sorry. <i>Datanator</i> utilizes reactive features only
-            available in modern browsers. <i>Datanator</i> is known to work with
-            the browsers below.
+            available in modern browsers. <i>Datanator</i> works with the
+            browsers below.
           </p>
           <div>
             {SUPPORTED_BROWSERS.map((browser) => {
