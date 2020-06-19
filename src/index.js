@@ -22,6 +22,7 @@ import {
   faBug,
   faEnvelope,
   faExclamationCircle,
+  faExclamationTriangle,
 } from "@fortawesome/free-solid-svg-icons";
 
 // Common page components
@@ -41,91 +42,129 @@ import Stats from "~/scenes/Stats/Stats";
 import Help from "~/scenes/Help/Help";
 import About from "~/scenes/About/About";
 import Error404 from "~/scenes/Error404/Error404";
+import UnsupportedBrowser, {
+  SUPPORTED_BROWSERS,
+} from "~/scenes/UnsupportedBrowser/UnsupportedBrowser";
+import Bowser from "bowser";
 
 // Setup Font Awesome icon library
-library.add(faAtom, faDna, faBug, faEnvelope, faExclamationCircle);
+library.add(
+  faAtom,
+  faDna,
+  faBug,
+  faEnvelope,
+  faExclamationCircle,
+  faExclamationTriangle
+);
 
-// Render site
-const SiteRouter = () => {
-  return (
-    <ErrorBoundary>
+const browser = Bowser.getParser(window.navigator.userAgent);
+const supportedBrowsers = {};
+for (const browser of SUPPORTED_BROWSERS) {
+  supportedBrowsers[browser.id] = ">=" + browser.minVersion;
+}
+const isValidBrowser = browser.satisfies(supportedBrowsers);
+
+let SiteRouter;
+if (isValidBrowser) {
+  let FullSiteRouter = () => {
+    return (
+      <ErrorBoundary>
+        <Router history={history}>
+          <Header />
+          <Switch>
+            {/* Add trailing slash */}
+            <Route
+              path="/:url"
+              exact
+              strict
+              render={({ location }) => {
+                return <Redirect to={location.pathname + "/"} />;
+              }}
+            />
+
+            {/* Remove duplicate slashes */}
+            <Route
+              path="(.*//+.*)"
+              exact
+              render={({ match }) => {
+                return <Redirect to={match.url.replace(/\/\/+/, "/")} />;
+              }}
+            />
+
+            <Route path="/" exact strict component={Home} />
+
+            <Route
+              path="/search/:query/:organism/"
+              exact
+              strict
+              component={SearchResults}
+            />
+            <Route
+              path="/search/:query/"
+              exact
+              strict
+              component={SearchResults}
+            />
+
+            <Route
+              path="/metabolite/:metabolite/:organism/"
+              exact
+              strict
+              component={Metabolite}
+            />
+            <Route
+              path="/metabolite/:metabolite/"
+              exact
+              strict
+              component={Metabolite}
+            />
+
+            <Route
+              path="/gene/:gene/:organism/"
+              exact
+              strict
+              component={Gene}
+            />
+            <Route path="/gene/:gene/" exact strict component={Gene} />
+
+            <Route
+              path="/reaction/:reaction/:organism/"
+              exact
+              strict
+              component={Reaction}
+            />
+            <Route
+              path="/reaction/:reaction/"
+              exact
+              strict
+              component={Reaction}
+            />
+
+            <Route path="/stats/" exact strict component={Stats} />
+            <Route path="/help/" exact strict component={Help} />
+            <Route path="/about/" exact strict component={About} />
+            <Route path="*" component={Error404} />
+          </Switch>
+          <Footer />
+          {errorDialog}
+          <FeedbackForm />
+        </Router>
+      </ErrorBoundary>
+    );
+  };
+  SiteRouter = FullSiteRouter;
+} else {
+  let UnsupportedBrowserSiteRouter = () => {
+    return (
       <Router history={history}>
         <Header />
-        <Switch>
-          {/* Add trailing slash */}
-          <Route
-            path={/^.*?(?<!\/)$/}
-            exact
-            render={({ location }) => {
-              return <Redirect to={location.pathname + "/"} />;
-            }}
-          />
-
-          {/* Remove duplicate slashes */}
-          <Route
-            path="(.*//+.*)"
-            exact
-            render={({ match }) => {
-              return <Redirect to={match.url.replace(/\/\/+/, "/")} />;
-            }}
-          />
-
-          <Route path="/" exact strict component={Home} />
-
-          <Route
-            path="/search/:query/:organism/"
-            exact
-            strict
-            component={SearchResults}
-          />
-          <Route
-            path="/search/:query/"
-            exact
-            strict
-            component={SearchResults}
-          />
-
-          <Route
-            path="/metabolite/:metabolite/:organism/"
-            exact
-            strict
-            component={Metabolite}
-          />
-          <Route
-            path="/metabolite/:metabolite/"
-            exact
-            strict
-            component={Metabolite}
-          />
-
-          <Route path="/gene/:gene/:organism/" exact strict component={Gene} />
-          <Route path="/gene/:gene/" exact strict component={Gene} />
-
-          <Route
-            path="/reaction/:reaction/:organism/"
-            exact
-            strict
-            component={Reaction}
-          />
-          <Route
-            path="/reaction/:reaction/"
-            exact
-            strict
-            component={Reaction}
-          />
-
-          <Route path="/stats/" exact strict component={Stats} />
-          <Route path="/help/" exact strict component={Help} />
-          <Route path="/about/" exact strict component={About} />
-          <Route path="*" component={Error404} />
-        </Switch>
+        <UnsupportedBrowser />
         <Footer />
-        {errorDialog}
-        <FeedbackForm />
       </Router>
-    </ErrorBoundary>
-  );
-};
+    );
+  };
+  SiteRouter = UnsupportedBrowserSiteRouter;
+}
 
 ReactDOM.render(<SiteRouter />, document.getElementById("root"));
 
