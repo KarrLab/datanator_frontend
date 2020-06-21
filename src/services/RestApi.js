@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { setupCache } from "axios-cache-adapter";
 import { errorDialogRef } from "~/components/ErrorDialog/ErrorDialog";
 import { replaceNanWithNull, httpRequestLog } from "~/utils/utils";
 import { Notifier } from "@airbrake/browser";
@@ -10,15 +11,30 @@ const ROOT_URL = process.env.REACT_APP_REST_SERVER;
 const IS_DEVELOPMENT = process.env.NODE_ENV.startsWith("development");
 const IS_TEST = process.env.NODE_ENV.startsWith("test");
 
-function getDataFromApi(params, options = {}) {
-  const url = ROOT_URL + params.join("/");
-  options.transformResponse = [
+const cache = setupCache({
+  maxAge: 24 * 60 * 60 * 1000,
+  exclude: {
+    query: false,
+  },
+});
+
+const cachedApi = axios.create({
+  baseURL: ROOT_URL,
+  adapter: cache.adapter,
+  transformResponse: [
     function (data) {
-      return replaceNanWithNull(JSON5.parse(data));
+      if (typeof data === "string") {
+        return replaceNanWithNull(JSON5.parse(data));
+      } else {
+        return data;
+      }
     },
-  ];
+  ],
+});
+
+function getDataFromApi(url, options = {}, api = cachedApi) {
   httpRequestLog.push(url);
-  return axios.get(url, options);
+  return api.get(url, options);
 }
 
 const airbrake = new Notifier({
@@ -27,11 +43,11 @@ const airbrake = new Notifier({
   environment: process.env.NODE_ENV,
 });
 
-function genApiErrorHandler(params, errorMessage = null) {
+function genApiErrorHandler(url, errorMessage = null) {
   return (error) => {
     if (axios.isCancel(error)) {
       if (IS_DEVELOPMENT || IS_TEST) {
-        console.info("Request '" + params.join("/") + "' cancelled");
+        console.info("Request '" + url + "' cancelled");
       }
     } else {
       if (

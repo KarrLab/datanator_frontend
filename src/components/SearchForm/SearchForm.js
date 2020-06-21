@@ -124,11 +124,11 @@ class SearchForm extends Component {
         "fields=tax_name",
         "_source_includes=tax_name",
       ].join("&");
-    getDataFromApi([url], { cancelToken: this.cancelTokenSource.token })
+    getDataFromApi(url, { cancelToken: this.cancelTokenSource.token })
       .then(this.setOrganismMenu.bind(this, query))
       .catch((error) => {
         genApiErrorHandler(
-          [url],
+          url,
           "Unable to search for organisms that match '" + query + "'."
         )(error);
       })

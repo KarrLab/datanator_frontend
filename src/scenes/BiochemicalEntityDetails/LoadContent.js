@@ -40,7 +40,7 @@ class LoadExternalContent extends Component {
         this.setState({ text: processed_data });
       })
       .catch((error) => {
-        genApiErrorHandler([this.props.url], "Unable to load metadata.")(error);
+        genApiErrorHandler(this.props.url, "Unable to load metadata.")(error);
       })
       .finally(() => {
         this.cancelTokenSource = null;
@@ -92,7 +92,7 @@ class LoadContent extends Component {
     }
 
     this.cancelTokenSource = axios.CancelToken.source();
-    getDataFromApi([url], { cancelToken: this.cancelTokenSource.token })
+    getDataFromApi(url, { cancelToken: this.cancelTokenSource.token })
       .then((response) => {
         let results = this.props["format-results"](response.data);
         this.results = results;
@@ -103,7 +103,7 @@ class LoadContent extends Component {
       })
       .catch((error) => {
         genApiErrorHandler(
-          [url],
+          url,
           "We were unable to conduct your search for '" + this.query + "'."
         )(error);
       })
@@ -171,7 +171,7 @@ class LoadMetabolites extends Component {
 
     this.cancelTokenSource = axios.CancelToken.source();
     if (this.props.inchiKey !== null) {
-      getDataFromApi([url], { cancelToken: this.cancelTokenSource.token })
+      getDataFromApi(url, { cancelToken: this.cancelTokenSource.token })
         .then((response) => {
           let results = LoadMetabolites.processRelatedMetabolites(
             this.props.route,
@@ -186,7 +186,7 @@ class LoadMetabolites extends Component {
         })
         .catch((error) => {
           genApiErrorHandler(
-            [url],
+            url,
             "We were unable to conduct your search for '" + this.query + "'."
           )(error);
         })
