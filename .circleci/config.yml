@@ -86,6 +86,7 @@ commands:
             else
               export NODE_ENV=test
             fi
+            export REACT_APP_REST_CACHE=0
 
             # Run unit tests
             npm run test-unit-coverage

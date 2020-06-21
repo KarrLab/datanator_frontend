@@ -12,6 +12,7 @@ const JSON5 = require("json5");
 const ROOT_URL = process.env.REACT_APP_REST_SERVER;
 const IS_DEVELOPMENT = process.env.NODE_ENV.startsWith("development");
 const IS_TEST = process.env.NODE_ENV.startsWith("test");
+const USE_CACHE = process.env.REACT_APP_REST_CACHE === "1";
 
 localforage.defineDriver(memoryDriver);
 const forageStore = localforage.createInstance({
@@ -34,7 +35,6 @@ const cache = setupCache({
 });
 const cachedApi = axios.create({
   baseURL: ROOT_URL,
-  adapter: cache.adapter,
   transformResponse: [
     function (data) {
       if (typeof data === "string") {
@@ -44,6 +44,7 @@ const cachedApi = axios.create({
       }
     },
   ],
+  adapter: USE_CACHE ? cache.adapter : null,
 });
 
 function getDataFromApi(url, options = {}, api = cachedApi) {

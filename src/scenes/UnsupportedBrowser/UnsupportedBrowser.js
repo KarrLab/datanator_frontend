@@ -21,9 +21,8 @@ class UnsupportedBrowser extends Component {
         <div className="subtitle">Browser not supported</div>
         <div className="message">
           <p>
-            We&apos;re sorry. <i>Datanator</i> utilizes reactive features only
-            available in modern browsers. <i>Datanator</i> works with the
-            browsers below.
+            We&apos;re sorry. <i>Datanator</i> utilizes features only available
+            in modern browsers. We recommend the following browsers:
           </p>
           <div>
             {SUPPORTED_BROWSERS.map((browser) => {

@@ -42,10 +42,7 @@ import Stats from "~/scenes/Stats/Stats";
 import Help from "~/scenes/Help/Help";
 import About from "~/scenes/About/About";
 import Error404 from "~/scenes/Error404/Error404";
-import UnsupportedBrowser, {
-  SUPPORTED_BROWSERS,
-} from "~/scenes/UnsupportedBrowser/UnsupportedBrowser";
-import Bowser from "bowser";
+import UnsupportedBrowser from "~/scenes/UnsupportedBrowser/UnsupportedBrowser";
 
 // Setup Font Awesome icon library
 library.add(
@@ -57,12 +54,9 @@ library.add(
   faExclamationTriangle
 );
 
-const browser = Bowser.getParser(window.navigator.userAgent);
-const supportedBrowsers = {};
-for (const browser of SUPPORTED_BROWSERS) {
-  supportedBrowsers[browser.id] = ">=" + browser.minVersion;
-}
-const isValidBrowser = browser.satisfies(supportedBrowsers);
+const isValidBrowser =
+  typeof Promise !== "undefined" &&
+  Promise.toString().indexOf("[native code]") !== -1;
 
 let SiteRouter;
 if (isValidBrowser) {
@@ -74,7 +68,7 @@ if (isValidBrowser) {
           <Switch>
             {/* Add trailing slash */}
             <Route
-              path="/:url"
+              path="/:url*"
               exact
               strict
               render={({ location }) => {

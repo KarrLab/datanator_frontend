@@ -54,7 +54,7 @@ describe("Common components", function () {
 
     cy.window()
       .its("cypressHistory")
-      .invoke("push", "/" + route + "/" + entity + "/" + organism);
+      .invoke("push", "/" + route + "/" + entity + "/" + organism + "/");
     cy.wait("@getData");
     cy.get(".dialog-message-container span")
       .first()
