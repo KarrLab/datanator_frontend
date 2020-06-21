@@ -14,27 +14,24 @@ const IS_DEVELOPMENT = process.env.NODE_ENV.startsWith("development");
 const IS_TEST = process.env.NODE_ENV.startsWith("test");
 
 localforage.defineDriver(memoryDriver);
-
-// Create `localforage` instance
 const forageStore = localforage.createInstance({
-  // List of drivers used
   driver: [
     localforage.INDEXEDDB,
     localforage.LOCALSTORAGE,
     memoryDriver._driver,
   ],
-  // Prefix all storage keys to prevent conflicts
-  name: "my-cache",
+  name:
+    process.env.REACT_APP_NAME +
+    "-" +
+    process.env.REACT_APP_REST_SERVER_VERSION,
 });
-
 const cache = setupCache({
-  maxAge: 24 * 60 * 60 * 1000,
+  maxAge: 30 * 24 * 60 * 60 * 1000,
   exclude: {
     query: false,
   },
   store: forageStore,
 });
-
 const cachedApi = axios.create({
   baseURL: ROOT_URL,
   adapter: cache.adapter,
