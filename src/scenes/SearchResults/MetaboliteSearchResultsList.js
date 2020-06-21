@@ -37,6 +37,10 @@ export default class MetaboliteSearchResultsList extends Component {
         "fields=pathways.pathway.ecocyc_pathway_id",
         "fields=pathways.pathway.kegg_map_id",
         "fields=pathways.pathway.pathwhiz_id",
+
+        "includes=InChI_Key",
+        "includes=name",
+        "includes=chebi_id"
       ].join("&")
     );
   }
