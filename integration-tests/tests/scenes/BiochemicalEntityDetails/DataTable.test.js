@@ -5,7 +5,7 @@ describe("DataTable", function () {
     const route = "metabolite";
     const entity = "HXXFSFRBOHSIMQ-VFUOTHLCSA-N"; // Alpha-D-glucose 1-phosphate
     const organism = "Escherichia coli";
-    const url = "/" + route + "/" + entity + "/" + organism;
+    const url = "/" + route + "/" + entity + "/" + organism + "/";
 
     cy.visit(url);
     cy.get(".page-title").should(($el) => {

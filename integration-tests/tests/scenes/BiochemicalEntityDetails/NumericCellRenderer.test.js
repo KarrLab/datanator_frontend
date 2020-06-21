@@ -4,7 +4,7 @@ describe("NumericCellRenderer", function () {
   it("Numeric cells render correctly", function () {
     const route = "metabolite";
     const entity = "YSYKRGRSMLTJNL-URARBOGNSA-L"; // TDP-Glucose
-    const url = "/" + route + "/" + entity;
+    const url = "/" + route + "/" + entity + "/";
     const dataContainerId = "concentration";
 
     cy.server();

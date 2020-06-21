@@ -120,9 +120,9 @@ class MetadataSection extends Component {
       let route = null;
       if (met.inchiKey !== null) {
         inchiKey = met.inchiKey;
-        route = "/metabolite/" + encodeURIComponent(inchiKey);
+        route = "/metabolite/" + encodeURIComponent(inchiKey) + "/";
         if (organism) {
-          route += "/" + organism;
+          route += organism + "/";
         }
       }
       partLinks.push(
@@ -162,9 +162,9 @@ class MetadataSection extends Component {
     const descriptions = [];
     if (processedData.enzyme) {
       if (processedData.kegg_orthology_id) {
-        let route = "/gene/" + processedData.kegg_orthology_id;
+        let route = "/gene/" + processedData.kegg_orthology_id + "/";
         if (organism) {
-          route += "/" + organism;
+          route += organism + "/";
         }
         descriptions.push({
           label: "Enzyme",

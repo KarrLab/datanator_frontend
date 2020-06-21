@@ -82,11 +82,11 @@ class MetadataSection extends Component {
     const taxonUrl = "taxon/canon_rank_distance_by_name/?name=" + organism;
     axios
       .all([
-        getDataFromApi([queryUrl], {
+        getDataFromApi(queryUrl, {
           cancelToken: this.queryCancelTokenSource.token,
         }),
         organism
-          ? getDataFromApi([taxonUrl], {
+          ? getDataFromApi(taxonUrl, {
               cancelToken: this.taxonCancelTokenSource.token,
             })
           : null,
@@ -146,7 +146,7 @@ class MetadataSection extends Component {
         }
 
         genApiErrorHandler(
-          [queryUrl],
+          queryUrl,
           "Unable to get metadata about " +
             this.props["entity-type"] +
             " '" +

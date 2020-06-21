@@ -17,7 +17,7 @@ describe("With mocked API calls", () => {
       data: { message: "Api server is up." },
     });
 
-    await getDataFromApi(["status"]).then((response) => {
+    await getDataFromApi("status", {}, axios).then((response) => {
       expect(response.status).toBe(200);
       expect(response.data.message).toBe("Api server is up.");
     });
@@ -35,8 +35,8 @@ describe("With mocked API calls", () => {
     render(errorDialog);
     console.error = jest.fn();
     const customErrMsg = "Custom error message";
-    await getDataFromApi(["not-implemented"], {}).catch(
-      genApiErrorHandler(["not-implemented"], customErrMsg)
+    await getDataFromApi("not-implemented", {}, axios).catch(
+      genApiErrorHandler("not-implemented", customErrMsg)
     );
     if (
       process.env.NODE_ENV.startsWith("development") ||
@@ -63,8 +63,8 @@ describe("With mocked API calls", () => {
     render(errorDialog);
     console.error = jest.fn();
     const customErrMsg = "Custom error message";
-    await getDataFromApi(["not-implemented"], {}).catch(
-      genApiErrorHandler(["not-implemented"], customErrMsg)
+    await getDataFromApi("not-implemented", {}, axios).catch(
+      genApiErrorHandler("not-implemented", customErrMsg)
     );
     if (
       process.env.NODE_ENV.startsWith("development") ||
@@ -72,7 +72,19 @@ describe("With mocked API calls", () => {
     ) {
       expect(console.error.mock.calls[0][0]).toEqual(error);
     } else {
-      expect(console.error.mock.calls).toEqual([]);
+      expect(console.error.mock.calls).toEqual([
+        [
+          {
+            response: {
+              data: {
+                detail: "Server error.",
+                status: 404,
+              },
+              status: 404,
+            },
+          },
+        ],
+      ]);
     }
 
     // close error dialog
@@ -85,9 +97,13 @@ describe("With mocked API calls", () => {
 
     console.info = jest.fn();
     let cancelTokenSource = { token: 0, cancel: () => {} };
-    const request = getDataFromApi(["status"], {
-      cancelToken: cancelTokenSource.token,
-    }).catch(genApiErrorHandler(["status"]));
+    const request = getDataFromApi(
+      "status",
+      {
+        cancelToken: cancelTokenSource.token,
+      },
+      axios
+    ).catch(genApiErrorHandler("status"));
     cancelTokenSource.cancel();
     await request;
     if (

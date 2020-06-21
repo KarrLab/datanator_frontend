@@ -4,7 +4,7 @@ describe("Metabolite scene", function () {
   it("Metabolite scene without organism successfully loads", function () {
     const route = "metabolite";
     const entity = "YSYKRGRSMLTJNL-URARBOGNSA-L"; // TDP-Glucose
-    const url = "/" + route + "/" + entity;
+    const url = "/" + route + "/" + entity + "/";
 
     cy.visit(url);
 
@@ -26,7 +26,7 @@ describe("Metabolite scene", function () {
     const route = "metabolite";
     const entity = "YSYKRGRSMLTJNL-URARBOGNSA-L"; // TDP-Glucose
     const organism = "Escherichia coli";
-    const url = "/" + route + "/" + entity + "/" + organism;
+    const url = "/" + route + "/" + entity + "/" + organism + "/";
 
     cy.server();
     cy.fixture("metabolite-concentrations-" + entity + "-" + organism).then(

@@ -6,7 +6,7 @@ describe("Reaction scene", function () {
     const substrates = "YSYKRGRSMLTJNL-KFQCIAAJSA-N"; // dTDP-D-glucose
     const products = "PSXWNITXWWECNY-UCBTUHGZSA-N,XLYOFNOQVPJJNP-UHFFFAOYSA-N"; // dTDP-4-dehydro-6-deoxy-D-glucose,H2O
     const entity = substrates + "-->" + products;
-    const url = "/" + route + "/" + entity;
+    const url = "/" + route + "/" + entity + "/";
 
     cy.visit(url);
 
@@ -31,7 +31,7 @@ describe("Reaction scene", function () {
     const products = "PSXWNITXWWECNY-UCBTUHGZSA-N,XLYOFNOQVPJJNP-UHFFFAOYSA-N"; // dTDP-4-dehydro-6-deoxy-D-glucose,H2O
     const entity = substrates + "-->" + products;
     const organism = "Escherichia coli";
-    const url = "/" + route + "/" + entity + "/" + organism;
+    const url = "/" + route + "/" + entity + "/" + organism + "/";
 
     cy.visit(url);
 

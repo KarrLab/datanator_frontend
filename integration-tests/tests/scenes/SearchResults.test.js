@@ -10,7 +10,7 @@ describe("Search results scene with no entity nor organism", function () {
 
 describe("Search results scene with entity", function () {
   it("successfully loads", function () {
-    cy.visit("/search/glucose");
+    cy.visit("/search/glucose/");
     cy.get(".page-title").should("contain", "Search: glucose");
 
     // metabolites
@@ -26,7 +26,7 @@ describe("Search results scene with entity", function () {
       .find(".search-result-title a")
       .should(($el) => {
         expect($el.attr("href")).to.match(/^\/metabolite\//i);
-        expect($el.attr("href")).to.not.match(/\/Escherichia coli$/i);
+        expect($el.attr("href")).to.not.match(/\/Escherichia coli\/$/i);
       });
     cy.get("#metabolites .search-results-list > li")
       .first()
@@ -50,7 +50,7 @@ describe("Search results scene with entity", function () {
       .find(".search-result-title a")
       .should(($el) => {
         expect($el.attr("href")).to.match(/^\/gene\//i);
-        expect($el.attr("href")).to.not.match(/\/Escherichia coli$/i);
+        expect($el.attr("href")).to.not.match(/\/Escherichia coli\/$/i);
       });
     cy.get("#genes .search-results-list > li")
       .first()
@@ -66,7 +66,7 @@ describe("Search results scene with entity", function () {
       .find(".search-result-title a")
       .should(($el) => {
         expect($el.attr("href")).to.match(/^\/reaction\//i);
-        expect($el.attr("href")).to.not.match(/\/Escherichia coli$/i);
+        expect($el.attr("href")).to.not.match(/\/Escherichia coli\/$/i);
       });
     cy.get("#reactions .search-results-list > li")
       .first()
@@ -80,7 +80,7 @@ describe("Search results scene with entity", function () {
 
 describe("Search results scene with entity and organism", function () {
   it("successfully loads", function () {
-    cy.visit("/search/glucose/Escherichia coli");
+    cy.visit("/search/glucose/Escherichia coli/");
     cy.get(".page-title").should(
       "contain",
       "Search: glucose in Escherichia coli"
@@ -99,7 +99,7 @@ describe("Search results scene with entity and organism", function () {
       .find(".search-result-title a")
       .should(($el) => {
         expect($el.attr("href")).to.match(/^\/metabolite\//i);
-        expect($el.attr("href")).to.match(/\/Escherichia coli$/i);
+        expect($el.attr("href")).to.match(/\/Escherichia coli\/$/i);
       });
 
     // genes
@@ -115,7 +115,7 @@ describe("Search results scene with entity and organism", function () {
       .find(".search-result-title a")
       .should(($el) => {
         expect($el.attr("href")).to.match(/^\/gene\//i);
-        expect($el.attr("href")).to.match(/\/Escherichia coli$/i);
+        expect($el.attr("href")).to.match(/\/Escherichia coli\/$/i);
       });
 
     // Reactions
@@ -124,14 +124,14 @@ describe("Search results scene with entity and organism", function () {
       .find(".search-result-title a")
       .should(($el) => {
         expect($el.attr("href")).to.match(/^\/reaction\//i);
-        expect($el.attr("href")).to.match(/\/Escherichia coli$/i);
+        expect($el.attr("href")).to.match(/\/Escherichia coli\/$/i);
       });
   });
 });
 
 describe("Search results scene with more results", function () {
   it("successfully loads", function () {
-    cy.visit("/search/glucose");
+    cy.visit("/search/glucose/");
     cy.get(".page-title").should("contain", "Search: glucose");
 
     // initial results
@@ -163,7 +163,7 @@ describe("Search results scene with more results", function () {
 
 describe("Search results scene with no results", function () {
   it("successfully loads", function () {
-    cy.visit("/search/__blank__");
+    cy.visit("/search/__blank__/");
 
     // metabolites
     cy.get("#metabolites .no-search-results").should(($el) => {
@@ -199,7 +199,7 @@ describe("Navigate to page and search again", function () {
 
 describe("Navigate away from page", function () {
   it("successfully loads", function () {
-    cy.visit("/search/__blank__");
+    cy.visit("/search/__blank__/");
     cy.get(".header-component .logo").click();
   });
 });

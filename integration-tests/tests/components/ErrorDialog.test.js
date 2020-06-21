@@ -13,14 +13,14 @@ describe("Open and close", function () {
       },
     }).as("getResults");
 
-    cy.visit("/search/glucose");
+    cy.visit("/search/ABC-XYZ/");
     cy.wait("@getResults");
     cy.get(".dialog-message-container span")
       .first()
       .should(($el) => {
         const text = $el.text();
         expect(text).to.equal(
-          "We were unable to conduct your search for 'glucose'."
+          "We were unable to conduct your search for 'ABC-XYZ'."
         );
       });
 

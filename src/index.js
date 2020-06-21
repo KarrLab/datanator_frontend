@@ -2,7 +2,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 // Router (enables persistant URLs and History)
-import { Router, Switch, Route } from "react-router-dom";
+import { Router, Switch, Route, Redirect } from "react-router-dom";
 
 // Redux (used for state management)
 import history from "~/utils/history";
@@ -22,6 +22,7 @@ import {
   faBug,
   faEnvelope,
   faExclamationCircle,
+  faExclamationTriangle,
 } from "@fortawesome/free-solid-svg-icons";
 
 // Common page components
@@ -41,46 +42,123 @@ import Stats from "~/scenes/Stats/Stats";
 import Help from "~/scenes/Help/Help";
 import About from "~/scenes/About/About";
 import Error404 from "~/scenes/Error404/Error404";
+import UnsupportedBrowser from "~/scenes/UnsupportedBrowser/UnsupportedBrowser";
 
 // Setup Font Awesome icon library
-library.add(faAtom, faDna, faBug, faEnvelope, faExclamationCircle);
+library.add(
+  faAtom,
+  faDna,
+  faBug,
+  faEnvelope,
+  faExclamationCircle,
+  faExclamationTriangle
+);
 
-// Render site
-const SiteRouter = () => {
-  return (
-    <ErrorBoundary>
+const isValidBrowser =
+  typeof Promise !== "undefined" &&
+  Promise.toString().indexOf("[native code]") !== -1;
+
+let SiteRouter;
+if (isValidBrowser) {
+  let FullSiteRouter = () => {
+    return (
+      <ErrorBoundary>
+        <Router history={history}>
+          <Header />
+          <Switch>
+            {/* Add trailing slash */}
+            <Route
+              path="/:url*"
+              exact
+              strict
+              render={({ location }) => {
+                return <Redirect to={location.pathname + "/"} />;
+              }}
+            />
+
+            {/* Remove duplicate slashes */}
+            <Route
+              path="(.*//+.*)"
+              exact
+              render={({ match }) => {
+                return <Redirect to={match.url.replace(/\/\/+/, "/")} />;
+              }}
+            />
+
+            <Route path="/" exact strict component={Home} />
+
+            <Route
+              path="/search/:query/:organism/"
+              exact
+              strict
+              component={SearchResults}
+            />
+            <Route
+              path="/search/:query/"
+              exact
+              strict
+              component={SearchResults}
+            />
+
+            <Route
+              path="/metabolite/:metabolite/:organism/"
+              exact
+              strict
+              component={Metabolite}
+            />
+            <Route
+              path="/metabolite/:metabolite/"
+              exact
+              strict
+              component={Metabolite}
+            />
+
+            <Route
+              path="/gene/:gene/:organism/"
+              exact
+              strict
+              component={Gene}
+            />
+            <Route path="/gene/:gene/" exact strict component={Gene} />
+
+            <Route
+              path="/reaction/:reaction/:organism/"
+              exact
+              strict
+              component={Reaction}
+            />
+            <Route
+              path="/reaction/:reaction/"
+              exact
+              strict
+              component={Reaction}
+            />
+
+            <Route path="/stats/" exact strict component={Stats} />
+            <Route path="/help/" exact strict component={Help} />
+            <Route path="/about/" exact strict component={About} />
+            <Route path="*" component={Error404} />
+          </Switch>
+          <Footer />
+          {errorDialog}
+          <FeedbackForm />
+        </Router>
+      </ErrorBoundary>
+    );
+  };
+  SiteRouter = FullSiteRouter;
+} else {
+  let UnsupportedBrowserSiteRouter = () => {
+    return (
       <Router history={history}>
         <Header />
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route
-            path="/search/:query/:organism?/"
-            exact
-            component={SearchResults}
-          />
-          <Route
-            path="/metabolite/:metabolite/:organism?/"
-            exact
-            component={Metabolite}
-          />
-          <Route path="/gene/:gene/:organism?/" exact component={Gene} />
-          <Route
-            path="/reaction/:reaction/:organism?/"
-            exact
-            component={Reaction}
-          />
-          <Route path="/stats/" exact component={Stats} />
-          <Route path="/help/" exact component={Help} />
-          <Route path="/about/" exact component={About} />
-          <Route path="*" component={Error404} />
-        </Switch>
+        <UnsupportedBrowser />
         <Footer />
-        {errorDialog}
-        <FeedbackForm />
       </Router>
-    </ErrorBoundary>
-  );
-};
+    );
+  };
+  SiteRouter = UnsupportedBrowserSiteRouter;
+}
 
 ReactDOM.render(<SiteRouter />, document.getElementById("root"));
 

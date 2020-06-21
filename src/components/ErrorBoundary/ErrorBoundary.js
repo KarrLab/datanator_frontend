@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Notifier } from "@airbrake/browser";
 import { errorDialogRef } from "~/components/ErrorDialog/ErrorDialog";
+import { httpRequestLog } from "~/utils/utils";
 
 class ErrorBoundary extends Component {
   static propTypes = {
@@ -22,6 +23,7 @@ class ErrorBoundary extends Component {
     // Send error to Airbrake
     this.airbrake.notify({
       error: error,
+      context: { httpRequestLog: httpRequestLog },
       params: { info: info },
       environment: {
         version: process.env.REACT_APP_VERSION,

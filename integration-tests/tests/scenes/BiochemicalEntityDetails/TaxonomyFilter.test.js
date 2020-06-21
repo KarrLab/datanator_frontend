@@ -5,7 +5,7 @@ describe("TaxonomyFilter", function () {
     const route = "metabolite";
     const entity = "YSYKRGRSMLTJNL-URARBOGNSA-L"; // TDP-Glucose
     const organism = "Escherichia coli";
-    const url = "/" + route + "/" + entity + "/" + organism;
+    const url = "/" + route + "/" + entity + "/" + organism + "/";
     const dataContainerId = "concentration";
 
     //use fixture

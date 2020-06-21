@@ -6,7 +6,7 @@ describe("MetadataSection", function () {
     const entity = "YSYKRGRSMLTJNL-KFQCIAAJSA-N"; // DTDP-D-Glucose
     const organism = "Escherichia coli";
 
-    cy.visit("/" + route + "/" + entity);
+    cy.visit("/" + route + "/" + entity + "/");
     cy.get(".page-title").should(($el) => {
       expect($el.text().startsWith("Metabolite: ")).to.be.true;
     });

@@ -146,8 +146,7 @@ class Stats extends Component {
     // taxonomic distribution of measurements
     const taxonomicUrl =
       "https://raw.githubusercontent.com/KarrLab/datanator_query_python/testapi/docs/taxon_distribution_frontend.json";
-    axios
-      .get(taxonomicUrl)
+    getDataFromApi(taxonomicUrl)
       .then((response) => {
         const organismCountsDict = {};
         for (const organismLong in response.data) {
@@ -198,7 +197,7 @@ class Stats extends Component {
       })
       .catch((error) => {
         genApiErrorHandler(
-          [taxonomicUrl],
+          taxonomicUrl,
           "Unable to get taxonomic distribution of measurements."
         )(error);
       });
@@ -223,7 +222,7 @@ class Stats extends Component {
 
     for (const bar of data) {
       for (const url of bar.urls) {
-        requests.push(getDataFromApi([url]));
+        requests.push(getDataFromApi(url));
       }
     }
 
@@ -247,7 +246,7 @@ class Stats extends Component {
   setFrequencyChart(name, dataUrl) {
     const labels = [];
     const values = [];
-    getDataFromApi([dataUrl]).then((response) => {
+    getDataFromApi(dataUrl).then((response) => {
       let data = response.data.sort(function (a, b) {
         return a["_id"] - b["_id"];
       });

@@ -44,7 +44,7 @@ export default class FeedbackForm extends Component {
             errors: "#f44336",
             focus: "#2196f3",
           },
-          closeModalOnSubmit: true,
+          closeModalOnSubmit: false,
         })}
       >
         <div className="feedback-form-component">Send feedback</div>

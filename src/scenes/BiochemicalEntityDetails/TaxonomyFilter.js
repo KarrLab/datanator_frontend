@@ -78,7 +78,7 @@ class TaxonomyFilter extends Component {
     }
 
     this.cancelTokenSource = axios.CancelToken.source();
-    getDataFromApi(["taxon", "canon_rank_distance_by_name/?name=" + organism], {
+    getDataFromApi("taxon/canon_rank_distance_by_name/?name=" + organism, {
       cancelToken: this.cancelTokenSource.token,
     })
       .then((response) => {
@@ -87,7 +87,7 @@ class TaxonomyFilter extends Component {
       })
       .catch((error) => {
         genApiErrorHandler(
-          ["taxon", "canon_rank_distance_by_name/?name=" + organism],
+          "taxon/canon_rank_distance_by_name/?name=" + organism,
           "Unable to obtain taxonomic information about '" + organism + "'."
         )(error);
       })

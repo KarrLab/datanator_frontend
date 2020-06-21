@@ -164,11 +164,11 @@ class DataTable extends Component {
     }
     axios
       .all([
-        getDataFromApi([url], {
+        getDataFromApi(url, {
           cancelToken: this.queryCancelTokenSource.token,
         }),
         organism
-          ? getDataFromApi([taxonUrl], {
+          ? getDataFromApi(taxonUrl, {
               cancelToken: this.taxonCancelTokenSource.token,
             })
           : null,
@@ -204,7 +204,7 @@ class DataTable extends Component {
         }
 
         genApiErrorHandler(
-          [url],
+          url,
           "Unable to retrieve " +
             this.props["data-type"] +
             " data about " +

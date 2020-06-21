@@ -84,7 +84,7 @@ class SearchResultsList extends Component {
     }
 
     this.cancelTokenSource = axios.CancelToken.source();
-    getDataFromApi([url], { cancelToken: this.cancelTokenSource.token })
+    getDataFromApi(url, { cancelToken: this.cancelTokenSource.token })
       .then((response) => {
         this.pageCount++;
 
@@ -94,7 +94,7 @@ class SearchResultsList extends Component {
       })
       .catch((error) => {
         genApiErrorHandler(
-          [url],
+          url,
           "We were unable to conduct your search for '" + this.query + "'."
         )(error);
       })
