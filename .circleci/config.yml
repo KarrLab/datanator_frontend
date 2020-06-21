@@ -51,9 +51,9 @@ commands:
       # Restore dependencies from cache
       - restore_cache:
           keys:
-            - v2-{{ checksum "package.json" }}
+            - v3-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
-            - v2-
+            - v3-
 
       # Install package
       - run:
@@ -67,7 +67,7 @@ commands:
           paths:
             - node_modules
             - ~/.cache
-          key: v2-{{ checksum "package.json" }}
+          key: v3-{{ checksum "package.json" }}
 
       # Run tests, linting, building
       - run:
