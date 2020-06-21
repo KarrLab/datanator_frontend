@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 import { setupCache } from "axios-cache-adapter";
+import localforage from "localforage";
+import memoryDriver from "localforage-memoryStorageDriver";
 import { errorDialogRef } from "~/components/ErrorDialog/ErrorDialog";
 import { replaceNanWithNull, httpRequestLog } from "~/utils/utils";
 import { Notifier } from "@airbrake/browser";
@@ -11,11 +13,26 @@ const ROOT_URL = process.env.REACT_APP_REST_SERVER;
 const IS_DEVELOPMENT = process.env.NODE_ENV.startsWith("development");
 const IS_TEST = process.env.NODE_ENV.startsWith("test");
 
+localforage.defineDriver(memoryDriver);
+
+// Create `localforage` instance
+const forageStore = localforage.createInstance({
+  // List of drivers used
+  driver: [
+    localforage.INDEXEDDB,
+    localforage.LOCALSTORAGE,
+    memoryDriver._driver,
+  ],
+  // Prefix all storage keys to prevent conflicts
+  name: "my-cache",
+});
+
 const cache = setupCache({
   maxAge: 24 * 60 * 60 * 1000,
   exclude: {
     query: false,
   },
+  store: forageStore,
 });
 
 const cachedApi = axios.create({
