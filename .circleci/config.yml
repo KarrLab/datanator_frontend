@@ -30,7 +30,7 @@ commands:
             npm rebuild
       - run:
           name: Install netlify-cli
-          command: sudo npm instal netlify-cli -g
+          command: sudo npm install netlify-cli -g
       - save_cache:
           key: npm-cache-{{ checksum "package.json" }}
           paths:
