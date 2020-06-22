@@ -25,7 +25,7 @@ commands:
             - npm-cache-{{ checksum "package.json" }}
       - run:
           name: Install Dependencies
-          command: npm install netlify-cli -g && npm install && npm rebuild
+          command: sudo npm install netlify-cli -g && npm install && npm rebuild
       - save_cache:
           key: npm-cache-{{ checksum "package.json" }}
           paths:
