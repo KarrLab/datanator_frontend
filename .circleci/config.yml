@@ -279,7 +279,7 @@ jobs:
             - ./public
       - run:
            name: Deploy
-           netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --dir=public
+           command: netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --dir=public
       #
       #      # let Airbrake track deployment
       #      curl -X POST -H "Content-Type: application/json" \
