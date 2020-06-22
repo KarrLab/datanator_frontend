@@ -248,7 +248,19 @@ commands:
 
 workflows:
   version: 2
-  build-deploy:
+  # build-deploy:
+  #   jobs:
+  #     - build: # anything that's not master branch
+  #         filters:
+  #           branches:
+  #             ignore:
+  #               - master
+  #     - release: # only master branch
+  #         filters:
+  #           branches:
+  #             only:
+  #               - master
+  test-workflow:
     jobs:
       - build: # anything that's not master branch
           filters:

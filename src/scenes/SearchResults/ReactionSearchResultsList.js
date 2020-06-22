@@ -21,10 +21,7 @@ export default class ReactionSearchResultsList extends Component {
         "fields=products",
         "fields=product_names",
 
-        "includes=ec-code",
-        "includes=enzyme_names",
-        "includes=substrate_names",
-        "includes=product_names"
+
       ].join("&")
     );
   }
