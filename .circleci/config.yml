@@ -12,7 +12,7 @@ parameters:
 executors:
   node-executor:
     docker:
-      - image: circleci/node:carbon
+      - image: circleci/node:erbium
         environment:
           TERM: xterm # this enables colors in the Cypress output
 
