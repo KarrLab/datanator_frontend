@@ -22,19 +22,18 @@ commands:
       - checkout
       - restore_cache:
           keys:
-            - npm-cache-{{ checksum "package.json" }}
+            - npm-cache-{{ checksum "package-lock.json" }}
       - run:
           name: Install Dependencies
           command: |
             npm install
-            npm rebuild
       - run:
           name: Install netlify-cli
           command: |
-            sudo chmod 777 /usr/local/lib/node_modules
-            sudo npm install netlify-cli -g
+            sudo chmod -R 777 /usr/local/*
+            npm install netlify-cli -g
       - save_cache:
-          key: npm-cache-{{ checksum "package.json" }}
+          key: npm-cache-{{ checksum "package-lock.json" }}
           paths:
             - ./node_modules
       - restore_cache:
@@ -42,11 +41,12 @@ commands:
             - npm-public-cache-{{ .Branch }}
       - run:
           name: Npm Build
-          command: npm build
+          command: |
+            npm run build:$BUILD_ENV
       - save_cache:
           key: npm-public-cache-{{ .Branch }}
           paths:
-            - ./public
+            - ./build
 
   node-build:
     steps:
@@ -248,18 +248,18 @@ commands:
 
 workflows:
   version: 2
-  # build-deploy:
-  #   jobs:
-  #     - build: # anything that's not master branch
-  #         filters:
-  #           branches:
-  #             ignore:
-  #               - master
-  #     - release: # only master branch
-  #         filters:
-  #           branches:
-  #             only:
-  #               - master
+  build-deploy:
+    jobs:
+      - build: # anything that's not master branch
+          filters:
+            branches:
+              ignore:
+                - master
+      - release: # only master branch
+          filters:
+            branches:
+              only:
+                - master
   test-workflow:
     jobs:
       - karrlab-buildtest
@@ -268,39 +268,40 @@ jobs:
   build:
     executor: node-executor
     working_directory: ~/project
+    environment:
+      BUILD_ENV: dev
     steps:
       - netlify-build
       - run:
          name: Netlify Deploy Non-master Branch
          command: |
-           export PATH=$PATH:node_modules/.bin
-           export NODE_ENV=development
+          export PATH=$PATH:node_modules/.bin
+          export REACT_APP_REST_CACHE=0
+          netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --dir=build
       
-           # deploy
-           netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --dir=build
-      #
-      #      # let Airbrake track deployment
-      #      curl -X POST -H "Content-Type: application/json" \
-      #        -d "{\"environment\":\"${NODE_ENV}\",\"username\":\"${CIRCLE_USERNAME}\",\"repository\":\"https://github.com/KarrLab/datanator_frontend\",\"revision\":\"${CIRCLE_SHA1}\"}" \
-      #        "https://airbrake.io/api/v4/projects/${AIRBRAKE_PROJECT_ID}/deploys?key=${AIRBRAKE_PROJECT_KEY}"
+           # let Airbrake track deployment
+           curl -X POST -H "Content-Type: application/json" \
+             -d "{\"environment\":\"test\",\"username\":\"${CIRCLE_USERNAME}\",\"repository\":\"https://github.com/KarrLab/datanator_frontend\",\"revision\":\"${CIRCLE_SHA1}\"}" \
+             "https://airbrake.io/api/v4/projects/275996/deploys?key=527a182e6ad1d36557df055c2d85df51"
   release:
     executor: node-executor
     working_directory: ~/project
+    environment:
+      BUILD_ENV: prod
     steps:
       - netlify-build
       - run:
          name: Netlify Deploy Master
          command: |
-           export PATH=$PATH:node_modules/.bin
-           export NODE_ENV=production
+          export PATH=$PATH:node_modules/.bin
+          export REACT_APP_REST_CACHE=0
+          netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir=build
       
-           # deploy
-           netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir=build
-      #
-      #      # let Airbrake track deployment
-      #      curl -X POST -H "Content-Type: application/json" \
-      #        -d "{\"environment\":\"${NODE_ENV}\",\"username\":\"${CIRCLE_USERNAME}\",\"repository\":\"https://github.com/KarrLab/datanator_frontend\",\"revision\":\"${CIRCLE_SHA1}\"}" \
-      #        "https://airbrake.io/api/v4/projects/${AIRBRAKE_PROJECT_ID}/deploys?key=${AIRBRAKE_PROJECT_KEY}"
+           # let Airbrake track deployment
+           curl -X POST -H "Content-Type: application/json" \
+             -d "{\"environment\":\"production\",\"username\":\"${CIRCLE_USERNAME}\",\"repository\":\"https://github.com/KarrLab/datanator_frontend\",\"revision\":\"${CIRCLE_SHA1}\"}" \
+             "https://airbrake.io/api/v4/projects/275996/deploys?key=527a182e6ad1d36557df055c2d85df51"
+
   karrlab-buildtest:
     executor: node-executor
     working_directory: ~/project
