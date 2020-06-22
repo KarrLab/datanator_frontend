@@ -20,7 +20,9 @@ export default class ReactionSearchResultsList extends Component {
         "fields=substrate_names",
         "fields=products",
         "fields=product_names",
-
+        
+        "excludes=kinlaw_id",
+        "excludes=in_metabolites"
 
       ].join("&")
     );
