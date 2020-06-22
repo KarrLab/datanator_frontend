@@ -32,7 +32,7 @@ commands:
           name: Install netlify-cli
           command: |
             sudo chmod 777 /usr/local/lib/node_modules
-            sudo npm install netlify-cli -g
+            npm install netlify-cli -g
       - save_cache:
           key: npm-cache-{{ checksum "package.json" }}
           paths:
@@ -260,9 +260,9 @@ workflows:
             branches:
               only:
                 - master
-  test-workflow:
-    jobs:
-      - karrlab-buildtest
+  # test-workflow:
+  #   jobs:
+  #     - karrlab-buildtest
 
 jobs:
   build:
