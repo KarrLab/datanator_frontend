@@ -15,6 +15,7 @@ ignores:
   - lcov-result-merger
   - license-checker
   - mocha-junit-reporter
+  - netlify-cli
   - regenerator-runtime
   - sass
   - socket.io
