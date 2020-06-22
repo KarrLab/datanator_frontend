@@ -270,13 +270,13 @@ jobs:
     working_directory: ~/project
     environment:
       NODE_ENV: development
-      PATH: node_modules/.bin
     steps:
       - netlify-build
       - run:
          name: Netlify Deploy Non-master Branch
          command: |
-           netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --dir=build
+          export PATH=$PATH:node_modules/.bin
+          netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --dir=build
       #
       #      # let Airbrake track deployment
       #      curl -X POST -H "Content-Type: application/json" \
@@ -287,13 +287,13 @@ jobs:
     working_directory: ~/project
     environment:
       NODE_ENV: production
-      PATH: node_modules/.bin
     steps:
       - netlify-build
       - run:
          name: Netlify Deploy Master
          command: |
-           netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir=build
+          export PATH=$PATH:node_modules/.bin
+          netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir=build
       #
       #      # let Airbrake track deployment
       #      curl -X POST -H "Content-Type: application/json" \
