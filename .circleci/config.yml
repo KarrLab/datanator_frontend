@@ -255,16 +255,14 @@ workflows:
             branches:
               ignore:
                 - master
-  test-workflow:
-    jobs:
-      - karrlab-buildtest
       - release: # only master branch
           filters:
             branches:
               only:
                 - master
-          requires:
-            - karrlab-buildtest
+  test-workflow:
+    jobs:
+      - karrlab-buildtest
 
 jobs:
   build:
