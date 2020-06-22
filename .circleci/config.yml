@@ -43,7 +43,9 @@ commands:
             - npm-public-cache-{{ .Branch }}
       - run:
           name: Npm Build
-          command: npm run build
+          command: |
+            echo $NODE_ENV
+            npm run build
       - save_cache:
           key: npm-public-cache-{{ .Branch }}
           paths:
