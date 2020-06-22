@@ -61,7 +61,7 @@ class Home extends Component {
                 <LazyLoad>
                   <object
                     data={logo}
-                    className="logo hover-zoom"
+                    className="logo"
                     alt="Datanator logo"
                     aria-label="Datanator logo"
                   />
@@ -185,7 +185,7 @@ class Home extends Component {
                   <LazyLoad>
                     <object
                       data={identifyUseCaseIcon}
-                      className="section-column-icon hover-zoom"
+                      className="section-column-icon"
                       alt="Identify parameters icon"
                       aria-label="Identify parameters icon"
                     />
@@ -209,7 +209,7 @@ class Home extends Component {
                   <LazyLoad>
                     <object
                       data={constrainUseCaseIcon}
-                      className="section-column-icon hover-zoom"
+                      className="section-column-icon"
                       alt="Constrain models icon"
                       aria-label="Constrain models icon"
                     />
@@ -235,7 +235,7 @@ class Home extends Component {
                   <LazyLoad>
                     <object
                       data={recalibrateUseCaseIcon}
-                      className="section-column-icon hover-zoom"
+                      className="section-column-icon"
                       alt="Recalibrate models icon"
                       aria-label="Recalibrate models icon"
                     />
@@ -259,7 +259,7 @@ class Home extends Component {
                   <LazyLoad>
                     <object
                       data={dataDrivenUseCaseIcon}
-                      className="section-column-icon hover-zoom"
+                      className="section-column-icon"
                       alt="Recalibrate models icon"
                       aria-label="Recalibrate models icon"
                     />
@@ -296,7 +296,7 @@ class Home extends Component {
                   <LazyLoad>
                     <object
                       data={metaboliteIcon}
-                      className="section-column-icon hover-zoom"
+                      className="section-column-icon"
                       alt="Metabolite icon"
                       aria-label="Metabolite icon"
                     />
@@ -334,7 +334,7 @@ class Home extends Component {
                   <LazyLoad>
                     <object
                       data={rnaIcon}
-                      className="section-column-icon hover-zoom"
+                      className="section-column-icon"
                       alt="RNA icon"
                       aria-label="RNA icon"
                     />
@@ -394,7 +394,7 @@ class Home extends Component {
                   <LazyLoad>
                     <object
                       data={proteinIcon}
-                      className="section-column-icon hover-zoom"
+                      className="section-column-icon"
                       alt="Protein icon"
                       aria-label="Protein icon"
                     />
@@ -504,7 +504,7 @@ class Home extends Component {
                   <LazyLoad>
                     <object
                       data={reactionIcon}
-                      className="section-column-icon hover-zoom"
+                      className="section-column-icon"
                       alt="Reaction icon"
                       aria-label="Reaction icon"
                     />
@@ -527,7 +527,7 @@ class Home extends Component {
                   >
                     BRENDA
                   </a>{" "}
-                  and{" "}
+                  (coming soon) and{" "}
                   <a
                     href="http://sabio.h-its.org/"
                     target="_blank"
@@ -573,7 +573,7 @@ class Home extends Component {
                   <LazyLoad>
                     <object
                       data={searchIcon}
-                      className="vertical-workflow-el-icon hover-zoom"
+                      className="vertical-workflow-el-icon"
                       alt="Search icon"
                       aria-label="Search icon"
                     />
@@ -604,7 +604,7 @@ class Home extends Component {
                   <LazyLoad>
                     <object
                       data={filterIcon}
-                      className="vertical-workflow-el-icon hover-zoom"
+                      className="vertical-workflow-el-icon"
                       alt="Filter icon"
                       aria-label="Filter icon"
                     />
@@ -633,7 +633,7 @@ class Home extends Component {
                   <LazyLoad>
                     <object
                       data={reviewIcon}
-                      className="vertical-workflow-el-icon hover-zoom"
+                      className="vertical-workflow-el-icon"
                       alt="Review icon"
                       aria-label="Review icon"
                     />
@@ -659,7 +659,7 @@ class Home extends Component {
                   <LazyLoad>
                     <object
                       data={analyzeIcon}
-                      className="vertical-workflow-el-icon hover-zoom"
+                      className="vertical-workflow-el-icon"
                       alt="Analyze icon"
                       aria-label="Analyze icon"
                     />
@@ -683,7 +683,7 @@ class Home extends Component {
                   <LazyLoad>
                     <object
                       data={exportIcon}
-                      className="vertical-workflow-el-icon hover-zoom"
+                      className="vertical-workflow-el-icon"
                       alt="Export icon"
                       aria-label="Export icon"
                     />

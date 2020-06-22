@@ -255,7 +255,7 @@ class MetadataSection extends Component {
                       (structure.type ? structure.type + "/" : "") +
                         structure.value
                     )}
-                    className="entity-scene-icon hover-zoom"
+                    className="entity-scene-icon"
                     alt="Chemical structure"
                     aria-label="Chemical structure"
                     crossOrigin=""
