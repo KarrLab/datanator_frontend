@@ -140,9 +140,8 @@ describe("Search results scene with more results", function () {
 
     // request more metabolites
     cy.get("#metabolites .more-search-results-button").first().click();
+    cy.get("#metabolites .search-results-list > li").should("have.length", 20);
     cy.get("#metabolites .more-search-results-button").first().click();
-
-    // appended metabolite results
     cy.get("#metabolites .search-results-list > li").should("have.length", 30);
 
     // request more genes
