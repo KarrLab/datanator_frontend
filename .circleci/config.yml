@@ -37,16 +37,6 @@ commands:
           key: npm-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
-      - restore_cache:
-          keys:
-            - npm-public-cache-{{ .Branch }}
-      - run:
-          name: Npm Build
-          command: npm build .
-      - save_cache:
-          key: npm-public-cache-{{ .Branch }}
-          paths:
-            - ./public
 
   node-build:
     steps:
@@ -273,12 +263,22 @@ jobs:
     steps:
       - netlify-build
       - run:
-         name: Netlify Deploy Non-master Branch
+         name: Set env variables
          command: |
            export PATH=$PATH:node_modules/.bin
            export NODE_ENV=development
-      
-           # deploy
+      - restore_cache:
+          keys:
+            - npm-public-cache-{{ .Branch }}
+      - run:
+          name: Npm Build
+          command: npm build .
+      - save_cache:
+          key: npm-public-cache-{{ .Branch }}
+          paths:
+            - ./public
+      - run:
+           name: Deploy
            netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --dir=public
       #
       #      # let Airbrake track deployment
