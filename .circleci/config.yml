@@ -260,9 +260,11 @@ workflows:
             branches:
               only:
                 - master
-  # test-workflow:
-  #   jobs:
-  #     - karrlab-buildtest
+          requires:
+            - karrlab-buildtest
+  test-workflow:
+    jobs:
+      - karrlab-buildtest
 
 jobs:
   build:
@@ -277,7 +279,7 @@ jobs:
            export NODE_ENV=development
       
            # deploy
-           netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --dir=build
+           netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --dir=public
       #
       #      # let Airbrake track deployment
       #      curl -X POST -H "Content-Type: application/json" \
@@ -295,7 +297,7 @@ jobs:
            export NODE_ENV=production
       
            # deploy
-           netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir=build
+           netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir=public
       #
       #      # let Airbrake track deployment
       #      curl -X POST -H "Content-Type: application/json" \
