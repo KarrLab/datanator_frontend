@@ -22,12 +22,12 @@ commands:
       - checkout
       - restore_cache:
           keys:
-            - npm-cache-{{ checksum "package-lock.json" }}
+            - npm-cache-{{ checksum "package.json" }}
       - run:
           name: Install Dependencies
-          command: npm install && npm rebuild && npm install netlify-cli -g
+          command: npm install netlify-cli -g && npm install && npm rebuild
       - save_cache:
-          key: npm-cache-{{ checksum "package-lock.json" }}
+          key: npm-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
       - restore_cache:
