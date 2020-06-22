@@ -260,9 +260,9 @@ workflows:
             branches:
               only:
                 - master
-  test-workflow:
-    jobs:
-      - karrlab-buildtest
+  # test-workflow:
+  #   jobs:
+  #     - karrlab-buildtest
 
 jobs:
   build:
