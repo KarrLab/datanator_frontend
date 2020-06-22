@@ -9,7 +9,9 @@ ignores:
   - core-js
   - coveralls
   - depcheck
+  - env-cmd
   - http
+  - if-env
   - istanbul-lib-coverage
   - jsonlint
   - lcov-result-merger
