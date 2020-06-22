@@ -269,6 +269,7 @@ jobs:
     executor: node-executor
     working_directory: ~/project
     environment:
+      NODE_ENV: development # pretty much a place-holder
       BUILD_ENV: dev
     steps:
       - netlify-build
@@ -281,12 +282,13 @@ jobs:
       
            # let Airbrake track deployment
            curl -X POST -H "Content-Type: application/json" \
-             -d "{\"environment\":\"test\",\"username\":\"${CIRCLE_USERNAME}\",\"repository\":\"https://github.com/KarrLab/datanator_frontend\",\"revision\":\"${CIRCLE_SHA1}\"}" \
-             "https://airbrake.io/api/v4/projects/275996/deploys?key=527a182e6ad1d36557df055c2d85df51"
+             -d "{\"environment\":\"${NODE_ENV}\",\"username\":\"${CIRCLE_USERNAME}\",\"repository\":\"https://github.com/KarrLab/datanator_frontend\",\"revision\":\"${CIRCLE_SHA1}\"}" \
+             "https://airbrake.io/api/v4/projects/${AIRBRAKE_PROJECT_ID}/deploys?key=${AIRBRAKE_PROJECT_KEY}"
   release:
     executor: node-executor
     working_directory: ~/project
     environment:
+      NODE_ENV: production # pretty much a place-holder
       BUILD_ENV: prod
     steps:
       - netlify-build
@@ -299,8 +301,8 @@ jobs:
       
            # let Airbrake track deployment
            curl -X POST -H "Content-Type: application/json" \
-             -d "{\"environment\":\"production\",\"username\":\"${CIRCLE_USERNAME}\",\"repository\":\"https://github.com/KarrLab/datanator_frontend\",\"revision\":\"${CIRCLE_SHA1}\"}" \
-             "https://airbrake.io/api/v4/projects/275996/deploys?key=527a182e6ad1d36557df055c2d85df51"
+             -d "{\"environment\":\"${NODE_ENV}\",\"username\":\"${CIRCLE_USERNAME}\",\"repository\":\"https://github.com/KarrLab/datanator_frontend\",\"revision\":\"${CIRCLE_SHA1}\"}" \
+             "https://airbrake.io/api/v4/projects/${AIRBRAKE_PROJECT_ID}/deploys?key=${AIRBRAKE_PROJECT_KEY}"
 
   karrlab-buildtest:
     executor: node-executor
