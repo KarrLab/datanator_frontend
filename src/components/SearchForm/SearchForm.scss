@@ -11,8 +11,8 @@
   }
 
   .search-input .bp3-input {
-    background: $color-primary-light;
-    border: 1px solid $color-primary-lighter;
+    background: rgba($color-white, 0.10);
+    border: 1px solid $color-primary-lightest;
     border-radius: 3px;
     color: $color-white;
     height: 24px;
@@ -38,7 +38,7 @@
 
   .search-input.bp3-input-group > .bp3-icon,
   .search-input.bp3-input-group input::placeholder {
-    color: $color-white-transparent;
+    color: rgba($color-white, 0.5);
   }
 
   .search-input.bp3-input-group input::placeholder {
