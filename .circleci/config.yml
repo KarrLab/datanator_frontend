@@ -31,7 +31,7 @@ commands:
       - run:
           name: Install netlify-cli
           command: |
-            sudo chown $USER -R /usr/local 
+            sudo chown $USER -R /usr/local/ 
             sudo npm install netlify-cli -g
       - save_cache:
           key: npm-cache-{{ checksum "package.json" }}
