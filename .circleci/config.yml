@@ -46,7 +46,7 @@ commands:
       - save_cache:
           key: npm-public-cache-{{ .Branch }}
           paths:
-            - ./build
+            - ./public
 
   node-build:
     steps:
