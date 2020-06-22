@@ -26,3 +26,5 @@ ignores:
   - svgo
   - tldrlegal
   - wait-on
+  - env-cmd
+  - if-env
