@@ -76,9 +76,6 @@ commands:
             chmod +x cc-test-reporter
             sudo mv cc-test-reporter /usr/local/bin/cc-test-reporter
 
-            # install netlify-cli
-            # sudo npm install netlify-cli -g
-
       # Restore dependencies from cache
       - restore_cache:
           keys:

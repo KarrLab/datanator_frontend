@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+if [[ "${BRANCH}" == "master" ]]; then 
+  export NODE_ENV=production
+else
+  export NODE_ENV=development
+fi
+
 npm run build
 
 curl -X POST -H "Content-Type: application/json" \

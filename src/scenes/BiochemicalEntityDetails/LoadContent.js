@@ -39,9 +39,13 @@ class LoadExternalContent extends Component {
         const processed_data = this.props["format-results"](response.data);
         this.setState({ text: processed_data });
       })
-      .catch((error) => {
-        genApiErrorHandler(this.props.url, "Unable to load metadata.")(error);
-      })
+      .catch(
+        genApiErrorHandler.bind(
+          null,
+          this.props.url,
+          "Unable to load metadata."
+        )
+      )
       .finally(() => {
         this.cancelTokenSource = null;
       });
@@ -101,12 +105,13 @@ class LoadContent extends Component {
           results: results,
         });
       })
-      .catch((error) => {
-        genApiErrorHandler(
+      .catch(
+        genApiErrorHandler.bind(
+          null,
           url,
           "We were unable to conduct your search for '" + this.query + "'."
-        )(error);
-      })
+        )
+      )
       .finally(() => {
         this.cancelTokenSource = null;
       });
@@ -184,12 +189,13 @@ class LoadMetabolites extends Component {
             results: results,
           });
         })
-        .catch((error) => {
-          genApiErrorHandler(
+        .catch(
+          genApiErrorHandler.bind(
+            null,
             url,
             "We were unable to conduct your search for '" + this.query + "'."
-          )(error);
-        })
+          )
+        )
         .finally(() => {
           this.cancelTokenSource = null;
         });

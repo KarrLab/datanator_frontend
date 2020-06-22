@@ -92,12 +92,13 @@ class SearchResultsList extends Component {
           this.props["format-results"](response.data, this.organism)
         );
       })
-      .catch((error) => {
-        genApiErrorHandler(
+      .catch(
+        genApiErrorHandler.bind(
+          null,
           url,
           "We were unable to conduct your search for '" + this.query + "'."
-        )(error);
-      })
+        )
+      )
       .finally(() => {
         this.cancelTokenSource = null;
       });

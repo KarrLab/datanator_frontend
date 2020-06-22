@@ -1,41 +1,46 @@
 The following is a list of the licenses of the third party dependencies of Datanator, including the location of each license file where available. This list was generated using license-checker (https://github.com/davglass/license-checker).
 
-├─ @ag-grid-community/all-modules@23.1.1
+├─ @ag-grid-community/all-modules@23.2.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/ag-grid/ag-grid
 │  ├─ publisher: Sean Landsman
 │  ├─ email: sean@thelandsmans.com
 │  └─ licenseFile: @ag-grid-community/all-modules/LICENSE.txt
-├─ @ag-grid-community/client-side-row-model@23.1.1
+├─ @ag-grid-community/client-side-row-model@23.2.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/ag-grid/ag-grid
 │  ├─ publisher: Sean Landsman
 │  ├─ email: sean@thelandsmans.com
 │  └─ licenseFile: @ag-grid-community/client-side-row-model/LICENSE.txt
-├─ @ag-grid-community/core@23.1.1
+├─ @ag-grid-community/core@23.2.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/ag-grid/ag-grid
 │  ├─ publisher: Sean Landsman
 │  ├─ email: sean@thelandsmans.com
 │  └─ licenseFile: @ag-grid-community/core/LICENSE.txt
-├─ @ag-grid-community/csv-export@23.1.1
+├─ @ag-grid-community/csv-export@23.2.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/ag-grid/ag-grid
 │  ├─ publisher: Sean Landsman
 │  ├─ email: sean@thelandsmans.com
 │  └─ licenseFile: @ag-grid-community/csv-export/LICENSE.txt
-├─ @ag-grid-community/infinite-row-model@23.1.1
+├─ @ag-grid-community/infinite-row-model@23.2.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/ag-grid/ag-grid
 │  ├─ publisher: Sean Landsman
 │  ├─ email: sean@thelandsmans.com
 │  └─ licenseFile: @ag-grid-community/infinite-row-model/LICENSE.txt
-├─ @ag-grid-community/react@23.1.1
+├─ @ag-grid-community/react@23.2.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/ag-grid/ag-grid
 │  ├─ publisher: Niall Crosby
 │  ├─ email: niall.crosby@ag-grid.com
 │  └─ licenseFile: @ag-grid-community/react/LICENSE.txt
+├─ @airbrake/browser@1.3.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/airbrake/airbrake-js
+│  ├─ publisher: Airbrake
+│  └─ licenseFile: @airbrake/browser/LICENSE
 ├─ @babel/code-frame@7.10.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/babel/babel
@@ -559,17 +564,17 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Sebastian McKenzie
 │  ├─ email: sebmck@gmail.com
 │  └─ licenseFile: @babel/types/LICENSE
-├─ @blueprintjs/core@3.28.1
+├─ @blueprintjs/core@3.28.2
 │  ├─ licenses: Apache-2.0
 │  ├─ repository: https://github.com/palantir/blueprint
 │  ├─ publisher: Palantir Technologies
 │  └─ licenseFile: @blueprintjs/core/LICENSE
-├─ @blueprintjs/icons@3.18.0
+├─ @blueprintjs/icons@3.18.1
 │  ├─ licenses: Apache-2.0
 │  ├─ repository: https://github.com/palantir/blueprint
 │  ├─ publisher: Palantir Technologies
 │  └─ licenseFile: @blueprintjs/icons/LICENSE
-├─ @blueprintjs/select@3.13.2
+├─ @blueprintjs/select@3.13.3
 │  ├─ licenses: Apache-2.0
 │  ├─ repository: https://github.com/palantir/blueprint
 │  ├─ publisher: Palantir Technologies
@@ -622,28 +627,28 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: firebase-support@google.com
 │  ├─ url: https://firebase.google.com/
 │  └─ licenseFile: @firebase/firestore-types/README.md
-├─ @fortawesome/fontawesome-common-types@0.2.28
+├─ @fortawesome/fontawesome-common-types@0.2.29
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/FortAwesome/Font-Awesome
 │  ├─ publisher: Dave Gandy
 │  ├─ email: dave@fontawesome.com
 │  ├─ url: http://twitter.com/davegandy
 │  └─ licenseFile: @fortawesome/fontawesome-common-types/LICENSE.txt
-├─ @fortawesome/fontawesome-svg-core@1.2.28
+├─ @fortawesome/fontawesome-svg-core@1.2.29
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/FortAwesome/Font-Awesome
 │  ├─ publisher: Dave Gandy
 │  ├─ email: dave@fontawesome.com
 │  ├─ url: http://twitter.com/davegandy
 │  └─ licenseFile: @fortawesome/fontawesome-svg-core/LICENSE.txt
-├─ @fortawesome/free-solid-svg-icons@5.13.0
+├─ @fortawesome/free-solid-svg-icons@5.13.1
 │  ├─ licenses: (CC-BY-4.0 AND MIT)
 │  ├─ repository: https://github.com/FortAwesome/Font-Awesome
 │  ├─ publisher: Dave Gandy
 │  ├─ email: dave@fontawesome.com
 │  ├─ url: http://twitter.com/davegandy
 │  └─ licenseFile: @fortawesome/free-solid-svg-icons/LICENSE.txt
-├─ @fortawesome/react-fontawesome@0.1.9
+├─ @fortawesome/react-fontawesome@0.1.11
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/FortAwesome/react-fontawesome
 │  └─ licenseFile: @fortawesome/react-fontawesome/LICENSE.txt
@@ -703,7 +708,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/jest
 │  └─ licenseFile: @jest/types/LICENSE
-├─ @material-ui/core@4.10.1
+├─ @material-ui/core@4.10.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/mui-org/material-ui
 │  ├─ publisher: Material-UI Team
@@ -728,7 +733,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/mui-org/material-ui
 │  ├─ publisher: Material-UI Team
 │  └─ licenseFile: @material-ui/types/README.md
-├─ @material-ui/utils@4.9.12
+├─ @material-ui/utils@4.10.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/mui-org/material-ui
 │  ├─ publisher: Material-UI Team
@@ -849,6 +854,10 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  └─ licenseFile: @types/babel__traverse/LICENSE
+├─ @types/caseless@0.12.2
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+│  └─ licenseFile: @types/caseless/LICENSE
 ├─ @types/color-name@1.1.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
@@ -897,6 +906,10 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  └─ licenseFile: @types/parse-json/LICENSE
+├─ @types/promise-polyfill@6.0.3
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+│  └─ licenseFile: @types/promise-polyfill/LICENSE
 ├─ @types/prop-types@15.7.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
@@ -909,14 +922,22 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  └─ licenseFile: @types/react-transition-group/LICENSE
-├─ @types/react@16.9.35
+├─ @types/react@16.9.36
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  └─ licenseFile: @types/react/LICENSE
+├─ @types/request@2.48.5
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+│  └─ licenseFile: @types/request/LICENSE
 ├─ @types/stack-utils@1.0.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  └─ licenseFile: @types/stack-utils/LICENSE
+├─ @types/tough-cookie@4.0.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+│  └─ licenseFile: @types/tough-cookie/LICENSE
 ├─ @types/yargs-parser@15.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
@@ -1390,7 +1411,14 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: michael.hart.au@gmail.com
 │  ├─ url: https://github.com/mhart
 │  └─ licenseFile: aws4/LICENSE
-├─ axios@0.19.2
+├─ axios-cache-adapter@2.5.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/RasCarlito/axios-cache-adapter
+│  ├─ publisher: Carl Ogren
+│  ├─ email: rascarlito@gmail.com
+│  ├─ url: https://github.com/RasCarlito
+│  └─ licenseFile: axios-cache-adapter/LICENSE
+├─ axios@0.18.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/axios/axios
 │  ├─ publisher: Matt Zabriskie
@@ -1550,6 +1578,12 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: sindresorhus@gmail.com
 │  ├─ url: sindresorhus.com
 │  └─ licenseFile: binary-extensions/license
+├─ bintrees@1.0.1
+│  ├─ licenses: MIT*
+│  ├─ repository: https://github.com/vadimg/js_bintrees
+│  ├─ publisher: Vadim Graboys
+│  ├─ email: dimva13@gmail.com
+│  └─ licenseFile: bintrees/LICENSE
 ├─ bluebird@3.7.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/petkaantonov/bluebird
@@ -1738,6 +1772,10 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Jon Schlinkert
 │  ├─ url: https://github.com/jonschlinkert
 │  └─ licenseFile: cache-base/LICENSE
+├─ cache-control-esm@1.0.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/rascarlito/cache-control
+│  └─ licenseFile: cache-control-esm/LICENSE
 ├─ call-me-maybe@1.0.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/limulus/call-me-maybe
@@ -2271,6 +2309,12 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: James Kyle
 │  ├─ email: me@thejameskyle.com
 │  └─ licenseFile: create-react-context/LICENSE
+├─ cross-fetch@3.0.5
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/lquixada/cross-fetch
+│  ├─ publisher: Leonardo Quixada
+│  ├─ email: lquixada@gmail.com
+│  └─ licenseFile: cross-fetch/LICENSE
 ├─ cross-spawn@6.0.5
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/moxystudio/node-cross-spawn
@@ -2917,6 +2961,10 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/qix-/node-error-ex
 │  └─ licenseFile: error-ex/LICENSE
+├─ error-stack-parser@2.0.6
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/stacktracejs/error-stack-parser
+│  └─ licenseFile: error-stack-parser/LICENSE
 ├─ es-abstract@1.17.5
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/ljharb/es-abstract
@@ -3414,6 +3462,13 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: felix@debuggable.com
 │  ├─ url: http://debuggable.com/
 │  └─ licenseFile: form-data/License
+├─ form-data@2.5.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/form-data/form-data
+│  ├─ publisher: Felix Geisendörfer
+│  ├─ email: felix@debuggable.com
+│  ├─ url: http://debuggable.com/
+│  └─ licenseFile: @types/request/node_modules/form-data/License
 ├─ forwarded@0.1.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jshttp/forwarded
@@ -3925,6 +3980,10 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/kaelzhang/node-ignore
 │  ├─ publisher: kael
 │  └─ licenseFile: ignore/LICENSE-MIT
+├─ immediate@3.0.6
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/calvinmetcalf/immediate
+│  └─ licenseFile: immediate/LICENSE.txt
 ├─ immer@1.10.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/mweststrate/immer
@@ -4142,6 +4201,13 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: feross@feross.org
 │  ├─ url: http://feross.org/
 │  └─ licenseFile: is-buffer/LICENSE
+├─ is-buffer@2.0.4
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/feross/is-buffer
+│  ├─ publisher: Feross Aboukhadijeh
+│  ├─ email: feross@feross.org
+│  ├─ url: https://feross.org
+│  └─ licenseFile: axios/node_modules/is-buffer/LICENSE
 ├─ is-callable@1.1.5
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/ljharb/is-callable
@@ -4725,42 +4791,42 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/joyent/node-jsprim
 │  └─ licenseFile: jsprim/LICENSE
-├─ jss-plugin-camel-case@10.1.1
+├─ jss-plugin-camel-case@10.3.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/cssinjs/jss
 │  ├─ publisher: JSS Team
 │  └─ licenseFile: jss-plugin-camel-case/LICENSE
-├─ jss-plugin-default-unit@10.1.1
+├─ jss-plugin-default-unit@10.3.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/cssinjs/jss
 │  ├─ publisher: JSS Team
 │  └─ licenseFile: jss-plugin-default-unit/LICENSE
-├─ jss-plugin-global@10.1.1
+├─ jss-plugin-global@10.3.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/cssinjs/jss
 │  ├─ publisher: JSS Team
 │  └─ licenseFile: jss-plugin-global/LICENSE
-├─ jss-plugin-nested@10.1.1
+├─ jss-plugin-nested@10.3.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/cssinjs/jss
 │  ├─ publisher: JSS Team
 │  └─ licenseFile: jss-plugin-nested/LICENSE
-├─ jss-plugin-props-sort@10.1.1
+├─ jss-plugin-props-sort@10.3.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/cssinjs/jss
 │  ├─ publisher: JSS Team
 │  └─ licenseFile: jss-plugin-props-sort/LICENSE
-├─ jss-plugin-rule-value-function@10.1.1
+├─ jss-plugin-rule-value-function@10.3.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/cssinjs/jss
 │  ├─ publisher: JSS Team
 │  └─ licenseFile: jss-plugin-rule-value-function/LICENSE
-├─ jss-plugin-vendor-prefixer@10.1.1
+├─ jss-plugin-vendor-prefixer@10.3.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/cssinjs/jss
 │  ├─ publisher: JSS Team
 │  └─ licenseFile: jss-plugin-vendor-prefixer/LICENSE
-├─ jss@10.1.1
+├─ jss@10.3.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/cssinjs/jss
 │  ├─ publisher: JSS Team
@@ -4865,6 +4931,10 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: George Zahariev
 │  ├─ email: z@georgezahariev.com
 │  └─ licenseFile: levn/LICENSE
+├─ lie@3.1.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/calvinmetcalf/lie
+│  └─ licenseFile: lie/license.md
 ├─ lines-and-columns@1.1.6
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/eventualbuddha/lines-and-columns
@@ -4905,6 +4975,16 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/webpack/loader-utils
 │  ├─ publisher: Tobias Koppers @sokra
 │  └─ licenseFile: loader-utils/LICENSE
+├─ localforage-memoryStorageDriver@0.9.2
+│  ├─ licenses: Apache*
+│  ├─ repository: https://github.com/localForage-extensions/localForage-memoryStorageDriver
+│  ├─ publisher: Thodoris Greasidis
+│  └─ licenseFile: localforage-memoryStorageDriver/LICENSE
+├─ localforage@1.7.4
+│  ├─ licenses: Apache-2.0
+│  ├─ repository: https://github.com/localForage/localForage
+│  ├─ publisher: Mozilla
+│  └─ licenseFile: localforage/LICENSE
 ├─ locate-path@2.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/locate-path
@@ -5343,6 +5423,11 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: hello@blakeembrey.com
 │  ├─ url: http://blakeembrey.me
 │  └─ licenseFile: no-case/LICENSE
+├─ node-fetch@2.6.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/bitinn/node-fetch
+│  ├─ publisher: David Frank
+│  └─ licenseFile: node-fetch/LICENSE.md
 ├─ node-forge@0.9.0
 │  ├─ licenses: (BSD-3-Clause OR GPL-2.0)
 │  ├─ repository: https://github.com/digitalbazaar/forge
@@ -6557,6 +6642,11 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: me@re-becca.org
 │  ├─ url: http://re-becca.org/
 │  └─ licenseFile: promise-inflight/LICENSE
+├─ promise-polyfill@8.1.3
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/taylorhakes/promise-polyfill
+│  ├─ publisher: Taylor Hakes
+│  └─ licenseFile: promise-polyfill/LICENSE
 ├─ promise@8.1.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/then/promise
@@ -6726,7 +6816,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/react
 │  └─ licenseFile: react-is/LICENSE
-├─ react-lazyload@2.6.7
+├─ react-lazyload@2.6.8
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jasonslyvia/react-lazyload
 │  ├─ publisher: jasonslyvia
@@ -7197,7 +7287,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/webpack-contrib/sass-loader
 │  ├─ publisher: J. Tangelder
 │  └─ licenseFile: sass-loader/LICENSE
-├─ sass@1.26.7
+├─ sass@1.26.8
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sass/dart-sass
 │  ├─ publisher: Natalie Weizenbaum
@@ -7581,6 +7671,10 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: james@talmage.io
 │  ├─ url: github.com/jamestalmage
 │  └─ licenseFile: stack-utils/license
+├─ stackframe@1.2.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/stacktracejs/stackframe
+│  └─ licenseFile: stackframe/LICENSE
 ├─ static-extend@0.1.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jonschlinkert/static-extend
@@ -7839,6 +7933,13 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/webpack/tapable
 │  ├─ publisher: Tobias Koppers @sokra
 │  └─ licenseFile: tapable/LICENSE
+├─ tdigest@0.1.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/welch/tdigest
+│  ├─ publisher: Will Welch
+│  ├─ email: welch@quietplease.com
+│  ├─ url: http://quietplease.com/
+│  └─ licenseFile: tdigest/LICENSE
 ├─ terser-webpack-plugin@1.4.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/webpack-contrib/terser-webpack-plugin
@@ -8095,6 +8196,11 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: mail@substack.net
 │  ├─ url: http://substack.net
 │  └─ licenseFile: typedarray/LICENSE
+├─ typescript@3.9.5
+│  ├─ licenses: Apache-2.0
+│  ├─ repository: https://github.com/Microsoft/TypeScript
+│  ├─ publisher: Microsoft Corp.
+│  └─ licenseFile: typescript/LICENSE.txt
 ├─ unicode-canonical-property-names-ecmascript@1.0.4
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/mathiasbynens/unicode-canonical-property-names-ecmascript

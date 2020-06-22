@@ -10,7 +10,7 @@ describe("With real API calls", () => {
     const request = getDataFromApi("status", {
       cancelToken: cancelTokenSource.token,
     })
-      .catch(genApiErrorHandler("status"))
+      .catch(genApiErrorHandler.bind(null, "status", null))
       .finally(() => {
         cancelTokenSource = null;
       });
