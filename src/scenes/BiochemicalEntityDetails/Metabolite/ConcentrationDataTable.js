@@ -65,7 +65,31 @@ class ConcentrationDataTable extends Component {
             source: null,
           };
 
-          if (conc.units === "uM") {
+          if (conc.units === "M") {
+            conc.value *= 1e6;
+            conc.units = htmlDecode("&#181;M");
+          } else if (conc.units === "dM") {
+            conc.value *= 1e5;
+            conc.units = htmlDecode("&#181;M");
+          } else if (conc.units === "cM") {
+            conc.value *= 1e4;
+            conc.units = htmlDecode("&#181;M");
+          } else if (conc.units === "mM") {
+            conc.value *= 1e3;
+            conc.units = htmlDecode("&#181;M");
+          } else if (conc.units === "uM") {
+            conc.units = htmlDecode("&#181;M");
+          } else if (conc.units === "nM") {
+            conc.value *= 1e-3;
+            conc.units = htmlDecode("&#181;M");
+          } else if (conc.units === "pM") {
+            conc.value *= 1e-6;
+            conc.units = htmlDecode("&#181;M");
+          } else if (conc.units === "fM") {
+            conc.value *= 1e-9;
+            conc.units = htmlDecode("&#181;M");
+          } else if (conc.units === "aM") {
+            conc.value *= 1e-12;
             conc.units = htmlDecode("&#181;M");
           } else if (conc.units === "umol/g DW") {
             conc.units = htmlDecode("&#181;mol * gCDW-1");
