@@ -275,8 +275,8 @@ jobs:
       - run:
          name: Netlify Deploy Non-master Branch
          command: |
-          echo $NODE_ENV
           export PATH=$PATH:node_modules/.bin
+          export REACT_APP_REST_CACHE=0
           netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --dir=build
       #
       #      # let Airbrake track deployment
@@ -288,12 +288,14 @@ jobs:
     working_directory: ~/project
     environment:
       NODE_ENV: production
+      REACT_APP_REST_CACHE: 0
     steps:
       - netlify-build
       - run:
          name: Netlify Deploy Master
          command: |
           export PATH=$PATH:node_modules/.bin
+          export REACT_APP_REST_CACHE=0
           netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir=build
       #
       #      # let Airbrake track deployment
