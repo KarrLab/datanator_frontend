@@ -26,9 +26,7 @@ commands:
       - run:
           name: Install Dependencies
           command: |
-            echo $NODE_ENV
             npm install
-            # npm rebuild
       - run:
           name: Install netlify-cli
           command: |
@@ -44,7 +42,6 @@ commands:
       - run:
           name: Npm Build
           command: |
-            echo $NODE_ENV
             npm run build
       - save_cache:
           key: npm-public-cache-{{ .Branch }}
@@ -272,11 +269,8 @@ jobs:
     executor: node-executor
     working_directory: ~/project
     environment:
-      NODE_ENV: development
+      NODE_ENV: test
     steps:
-      - run:
-          name: show NODE_ENV
-          command: echo $NODE_ENV
       - netlify-build
       - run:
          name: Netlify Deploy Non-master Branch
