@@ -262,7 +262,11 @@ describe("Reaction data page", () => {
       null,
       formattedData
     );
-    expect(colSortOrder).toEqual([{colId: "kcat", sort: "asc"}, {colId: "km.AMP", sort: "asc"}, {colId: "km.ATP", sort: "asc"}]);
+    expect(colSortOrder).toEqual([
+      { colId: "kcat", sort: "asc" },
+      { colId: "km.AMP", sort: "asc" },
+      { colId: "km.ATP", sort: "asc" },
+    ]);
 
     //expect(taxonSimCol.valueFormatter({ value: 2 })).toEqual("Family");
   });
