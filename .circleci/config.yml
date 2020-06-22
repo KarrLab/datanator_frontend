@@ -42,7 +42,7 @@ commands:
       - run:
           name: Npm Build
           command: |
-            npm run build
+            npm run build:$BUILD_ENV
       - save_cache:
           key: npm-public-cache-{{ .Branch }}
           paths:
@@ -269,7 +269,7 @@ jobs:
     executor: node-executor
     working_directory: ~/project
     environment:
-      BUILD_ENV: development
+      BUILD_ENV: dev
     steps:
       - netlify-build
       - run:
@@ -287,7 +287,7 @@ jobs:
     executor: node-executor
     working_directory: ~/project
     environment:
-      BUILD_ENV: production
+      BUILD_ENV: prod
     steps:
       - netlify-build
       - run:

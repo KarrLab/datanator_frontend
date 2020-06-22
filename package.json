@@ -143,7 +143,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "stop": "node scripts/stop.js",
-    "build": "if-env BUILD_ENV=production ?? npm run build:prod || npm run build:dev",
+    "build": "react-app-rewired build",
     "build:test": "env-cmd -f .env.test npm run build",
     "build:dev": "env-cmd -f .env.development npm run build",
     "build:prod": "react-app-rewired build",
