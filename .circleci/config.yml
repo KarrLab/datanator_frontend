@@ -269,7 +269,7 @@ jobs:
     executor: node-executor
     working_directory: ~/project
     environment:
-      NODE_ENV: test
+      BUILD_ENV: development
     steps:
       - netlify-build
       - run:
@@ -287,8 +287,7 @@ jobs:
     executor: node-executor
     working_directory: ~/project
     environment:
-      NODE_ENV: production
-      REACT_APP_REST_CACHE: 0
+      BUILD_ENV: production
     steps:
       - netlify-build
       - run:
