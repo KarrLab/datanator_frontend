@@ -288,7 +288,7 @@ jobs:
     executor: node-executor
     working_directory: ~/project
     environment:
-      NODE_ENV: development # pretty much a place-holder
+      NODE_ENV: production # pretty much a place-holder
       BUILD_ENV: prod
     steps:
       - netlify-build
