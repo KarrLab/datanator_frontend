@@ -349,15 +349,7 @@ class DataTable extends Component {
 
   setDefaultSorting(event) {
     const gridApi = event.api;
-
-    const model = [];
-    for (const colId of this.colSortOrder) {
-      model.push({
-        colId: colId,
-        sort: "asc",
-      });
-    }
-    gridApi.setSortModel(model);
+    gridApi.setSortModel(this.colSortOrder);
   }
 
   fitCols(event) {

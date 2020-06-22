@@ -217,7 +217,7 @@ class ConcentrationDataTable extends Component {
         field: "tanimotoSimilarity",
         cellRenderer: "numericCellRenderer",
         type: "numericColumn",
-        hide: true,
+        hide: false,
         filter: "numberFilter",
         filterParams: {
           hiBound: 1.0,
@@ -336,8 +336,20 @@ class ConcentrationDataTable extends Component {
     return colDefs;
   }
 
-  static getColSortOrder() {
-    return ["value"];
+  static getColSortOrder(query, organism) {
+    if (organism) {
+      return [
+        { colId: "tanimotoSimilarity", sort: "desc" },
+        { colId: "taxonomicProximity", sort: "asc" },
+        { colId: "organism", sort: "asc" },
+        { colId: "value", sort: "asc" },
+      ];
+    } else {
+      return [
+        { colId: "tanimotoSimilarity", sort: "desc" },
+        { colId: "value", sort: "asc" },
+      ];
+    }
   }
 
   render() {
