@@ -22,7 +22,7 @@ commands:
       - checkout
       - restore_cache:
           keys:
-            - npm-cache-{{ checksum "package.json" }}
+            - npm-cache-{{ checksum "package-lock.json" }}
       - run:
           name: Install Dependencies
           command: |
@@ -34,7 +34,7 @@ commands:
             sudo chmod -R 777 /usr/local/*
             npm install netlify-cli -g
       - save_cache:
-          key: npm-cache-{{ checksum "package.json" }}
+          key: npm-cache-{{ checksum "package-lock.json" }}
           paths:
             - ./node_modules
       - restore_cache:
