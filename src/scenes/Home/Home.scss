@@ -114,6 +114,10 @@
 
   .section {
     text-align: center;
+
+    a {
+      color: $color-secondary;
+    }
   }
 
   .intro.section {
