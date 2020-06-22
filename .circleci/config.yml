@@ -42,11 +42,11 @@ commands:
             - npm-public-cache-{{ .Branch }}
       - run:
           name: Npm Build
-          command: npm build .
+          command: npm run build
       - save_cache:
           key: npm-public-cache-{{ .Branch }}
           paths:
-            - ./public
+            - ./build
 
   node-build:
     steps:
@@ -277,9 +277,11 @@ jobs:
          command: |
            export PATH=$PATH:node_modules/.bin
            export NODE_ENV=development
+           ls -la .
+           ls -la build
            ls -la public
            # deploy
-           netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --dir=public
+           netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --dir=build
       #
       #      # let Airbrake track deployment
       #      curl -X POST -H "Content-Type: application/json" \
