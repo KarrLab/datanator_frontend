@@ -65,7 +65,7 @@ export default class BarPlot extends Component {
           xAxes: [
             {
               ticks: {
-                minRotation: 45,
+                minRotation: 15,
                 maxRotation: 90,
               },
             },

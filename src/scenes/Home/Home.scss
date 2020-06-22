@@ -56,7 +56,7 @@
       .search-input .bp3-input {
         background: none;
         border: 1px solid $color-primary-lightish;
-        color: $color-primary-light;
+        color: $color-primary;
         height: 30px;
         left: -22px;
         width: calc(100% - 28px - 5px - 2 * 1px);
@@ -69,7 +69,7 @@
 
       .search-input.bp3-input-group > .bp3-icon,
       .search-input.bp3-input-group input::placeholder {
-        color: $color-primary-lighter;
+        color: rgba($color-text, 0.5);
       }
 
       .search-input.bp3-input-group input::placeholder {
@@ -114,6 +114,10 @@
 
   .section {
     text-align: center;
+
+    a {
+      color: $color-secondary;
+    }
   }
 
   .intro.section {

@@ -753,11 +753,17 @@ class About extends Component {
                     <div className="main-developer">
                       <div className="main-developer-headshot-container">
                         <LazyLoad>
-                          <img
-                            src={rothPhoto}
-                            className="hover-zoom"
-                            alt="Yosef Roth headshot"
-                          />
+                          <a
+                            href="https://www.linkedin.com/in/yosef-roth-a80a378a"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <img
+                              src={rothPhoto}
+                              className="hover-zoom"
+                              alt="Yosef Roth headshot"
+                            />
+                          </a>
                         </LazyLoad>
                       </div>
                       <div className="developer-name">
@@ -772,11 +778,17 @@ class About extends Component {
                     <div className="main-developer">
                       <div className="main-developer-headshot-container">
                         <LazyLoad>
-                          <img
-                            src={lianPhoto}
-                            className="hover-zoom"
-                            alt="Zhouyang Lian headshot"
-                          />
+                          <a
+                            href="https://www.linkedin.com/in/zlian/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <img
+                              src={lianPhoto}
+                              className="hover-zoom"
+                              alt="Zhouyang Lian headshot"
+                            />
+                          </a>
                         </LazyLoad>
                       </div>
                       <div className="developer-name">
@@ -791,11 +803,17 @@ class About extends Component {
                     <div className="main-developer">
                       <div className="main-developer-headshot-container">
                         <LazyLoad>
-                          <img
-                            src={karrPhoto}
-                            className="hover-zoom"
-                            alt="Jonathan Karr headshot"
-                          />
+                          <a
+                            href="https://www.karrlab.org/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <img
+                              src={karrPhoto}
+                              className="hover-zoom"
+                              alt="Jonathan Karr headshot"
+                            />
+                          </a>
                         </LazyLoad>
                       </div>
                       <div className="developer-name">
