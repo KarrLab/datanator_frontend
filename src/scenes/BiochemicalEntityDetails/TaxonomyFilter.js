@@ -85,12 +85,13 @@ class TaxonomyFilter extends Component {
         this.taxonLineage = response.data;
         this.setMarks();
       })
-      .catch((error) => {
-        genApiErrorHandler(
+      .catch(
+        genApiErrorHandler.bind(
+          null,
           "taxon/canon_rank_distance_by_name/?name=" + organism,
           "Unable to obtain taxonomic information about '" + organism + "'."
-        )(error);
-      })
+        )
+      )
       .finally(() => {
         this.cancelTokenSource = null;
       });

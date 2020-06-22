@@ -126,12 +126,13 @@ class SearchForm extends Component {
       ].join("&");
     getDataFromApi(url, { cancelToken: this.cancelTokenSource.token })
       .then(this.setOrganismMenu.bind(this, query))
-      .catch((error) => {
-        genApiErrorHandler(
+      .catch(
+        genApiErrorHandler.bind(
+          null,
           url,
           "Unable to search for organisms that match '" + query + "'."
-        )(error);
-      })
+        )
+      )
       .finally(() => {
         this.cancelTokenSource = null;
       });

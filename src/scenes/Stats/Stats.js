@@ -195,12 +195,13 @@ class Stats extends Component {
           },
         });
       })
-      .catch((error) => {
-        genApiErrorHandler(
+      .catch(
+        genApiErrorHandler.bind(
+          null,
           taxonomicUrl,
           "Unable to get taxonomic distribution of measurements."
-        )(error);
-      });
+        )
+      );
 
     // temperature distribution of measurements
     this.setFrequencyChart(

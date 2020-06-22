@@ -36,7 +36,7 @@ describe("With mocked API calls", () => {
     console.error = jest.fn();
     const customErrMsg = "Custom error message";
     await getDataFromApi("not-implemented", {}, axios).catch(
-      genApiErrorHandler("not-implemented", customErrMsg)
+      genApiErrorHandler.bind(null, "not-implemented", customErrMsg)
     );
     if (
       process.env.NODE_ENV.startsWith("development") ||
@@ -64,7 +64,7 @@ describe("With mocked API calls", () => {
     console.error = jest.fn();
     const customErrMsg = "Custom error message";
     await getDataFromApi("not-implemented", {}, axios).catch(
-      genApiErrorHandler("not-implemented", customErrMsg)
+      genApiErrorHandler.bind(null, "not-implemented", customErrMsg)
     );
     if (
       process.env.NODE_ENV.startsWith("development") ||
@@ -103,7 +103,7 @@ describe("With mocked API calls", () => {
         cancelToken: cancelTokenSource.token,
       },
       axios
-    ).catch(genApiErrorHandler("status"));
+    ).catch(genApiErrorHandler.bind(null, "status", null));
     cancelTokenSource.cancel();
     await request;
     if (

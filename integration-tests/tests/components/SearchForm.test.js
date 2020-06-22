@@ -1,4 +1,4 @@
-/* global cy, describe, it, expect, Cypress */
+/* global cy, describe, it, expect */
 
 describe("Works correctly", function () {
   it("Works correctly", function () {

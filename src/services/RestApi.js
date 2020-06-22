@@ -5,7 +5,6 @@ import localforage from "localforage";
 import memoryDriver from "localforage-memoryStorageDriver";
 import { errorDialogRef } from "~/components/ErrorDialog/ErrorDialog";
 import { replaceNanWithNull, httpRequestLog } from "~/utils/utils";
-import { Notifier } from "@airbrake/browser";
 
 const JSON5 = require("json5");
 
@@ -52,78 +51,58 @@ function getDataFromApi(url, options = {}, api = cachedApi) {
   return api.get(url, options);
 }
 
-const airbrake = new Notifier({
-  projectId: parseFloat(process.env.REACT_APP_AIRBRAKE_PROJECT_ID),
-  projectKey: process.env.REACT_APP_AIRBRAKE_PROJECT_KEY,
-  environment: process.env.NODE_ENV,
-});
+function genApiErrorHandler(url, errorMessage = null, error) {
+  if (axios.isCancel(error)) {
+    if (IS_DEVELOPMENT || IS_TEST) {
+      console.info("Request '" + url + "' cancelled");
+    }
+  } else {
+    if (
+      (IS_DEVELOPMENT || IS_TEST) &&
+      "isAxiosError" in error &&
+      error.isAxiosError &&
+      error.response !== undefined
+    ) {
+      const errorInfo = error.response.data;
+      console.error(
+        "Server error " + errorInfo.status + ": " + errorInfo.detail
+      );
+    }
 
-function genApiErrorHandler(url, errorMessage = null) {
-  return (error) => {
-    if (axios.isCancel(error)) {
-      if (IS_DEVELOPMENT || IS_TEST) {
-        console.info("Request '" + url + "' cancelled");
-      }
-    } else {
+    if (errorDialogRef.current) {
+      const contactEmail = process.env.REACT_APP_CONTACT_EMAIL;
+      const defaultErrorMessage = (
+        <span>
+          We&apos;re sorry our server could not complete your request. Please
+          try again, or contact us at{" "}
+          <a href={"mailto:" + contactEmail} subject="Datanator error">
+            {contactEmail}
+          </a>{" "}
+          if the problem persists.
+        </span>
+      );
+
+      errorDialogRef.current.open(
+        <span className="dialog-message-container">
+          {errorMessage && <span>{errorMessage}</span>}
+          {defaultErrorMessage}
+        </span>
+      );
+    }
+
+    if (!("isAxiosError" in error && error.isAxiosError)) {
       if (
-        (IS_DEVELOPMENT || IS_TEST) &&
-        "isAxiosError" in error &&
-        error.isAxiosError &&
-        error.response !== undefined
+        error &&
+        "stack" in error &&
+        "message" in error &&
+        !(IS_DEVELOPMENT || IS_TEST)
       ) {
-        const errorInfo = error.response.data;
-        console.error(
-          "Server error " + errorInfo.status + ": " + errorInfo.detail
-        );
-      }
-
-      if (!("isAxiosError" in error && error.isAxiosError)) {
-        airbrake.notify({
-          error: error,
-          context: { httpRequestLog: httpRequestLog },
-          environment: {
-            version: process.env.REACT_APP_VERSION,
-            repository: process.env.REACT_APP_REPOSITORY_URL.replace(
-              "git+",
-              ""
-            ).replace(".git", ""),
-          },
-        });
-
-        if (
-          error &&
-          "stack" in error &&
-          "message" in error &&
-          !(IS_DEVELOPMENT || IS_TEST)
-        ) {
-          throw error;
-        } else {
-          console.error(error);
-        }
-      }
-
-      if (errorDialogRef.current) {
-        const contactEmail = process.env.REACT_APP_CONTACT_EMAIL;
-        const defaultErrorMessage = (
-          <span>
-            We&apos;re sorry our server could not complete your request. Please
-            try again, or contact us at{" "}
-            <a href={"mailto:" + contactEmail} subject="Datanator error">
-              {contactEmail}
-            </a>{" "}
-            if the problem persists.
-          </span>
-        );
-
-        errorDialogRef.current.open(
-          <span className="dialog-message-container">
-            {errorMessage && <span>{errorMessage}</span>}
-            {defaultErrorMessage}
-          </span>
-        );
+        throw error;
+      } else {
+        console.error(error);
       }
     }
-  };
+  }
 }
 
 export { getDataFromApi, genApiErrorHandler };

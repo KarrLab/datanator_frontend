@@ -151,8 +151,9 @@ class MetadataSection extends Component {
             this.props["entity-type"] +
             " '" +
             query +
-            "'."
-        )(error);
+            "'.",
+          error
+        );
       })
       .finally(() => {
         this.queryCancelTokenSource = null;
