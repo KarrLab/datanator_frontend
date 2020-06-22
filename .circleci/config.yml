@@ -255,14 +255,16 @@ workflows:
             branches:
               ignore:
                 - master
+  test-workflow:
+    jobs:
+      - karrlab-buildtest
       - release: # only master branch
+          requires:
+            - karrlab-buildtest
           filters:
             branches:
               only:
                 - master
-  test-workflow:
-    jobs:
-      - karrlab-buildtest
 
 jobs:
   build:
@@ -277,7 +279,6 @@ jobs:
          name: Netlify Deploy Non-master Branch
          command: |
           export PATH=$PATH:node_modules/.bin
-          export REACT_APP_REST_CACHE=0
           netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --dir=build
       
            # let Airbrake track deployment
@@ -296,7 +297,6 @@ jobs:
          name: Netlify Deploy Master
          command: |
           export PATH=$PATH:node_modules/.bin
-          export REACT_APP_REST_CACHE=0
           netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir=build
       
            # let Airbrake track deployment
