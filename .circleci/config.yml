@@ -258,7 +258,6 @@ workflows:
   test-workflow:
     jobs:
       - karrlab-buildtest
-    jobs:
       - release: # only master branch
           requires:
             - karrlab-buildtest
