@@ -31,7 +31,7 @@ commands:
       - run:
           name: Install netlify-cli
           command: |
-            sudo npm install firebase -g
+            sudo chmod 777 /usr/local/lib/node_modules
             sudo npm install netlify-cli -g
       - save_cache:
           key: npm-cache-{{ checksum "package.json" }}
