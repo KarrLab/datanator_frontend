@@ -49,7 +49,7 @@ class Stats extends Component {
       urls: ["metabolites/summary/concentration_count/"],
     });
     dataTypeData.push({
-      label: ["RNA mods"],
+      label: ["RNA modifications"],
       urls: ["rna/summary/get_total_modifications/"],
     });
     dataTypeData.push({
@@ -57,19 +57,19 @@ class Stats extends Component {
       urls: ["rna/summary/get_total_halflife_obs/"],
     });
     dataTypeData.push({
-      label: ["Prot. abund."],
+      label: ["Prot. abundances"],
       urls: ["proteins/summary/num_obs_abundances/"],
     });
     dataTypeData.push({
-      label: ["Prot. mods"],
+      label: ["Prot. modifications"],
       urls: ["proteins/summary/num_obs_modifications/"],
     });
     dataTypeData.push({
-      label: ["Rxn kcat"],
+      label: ["Reaction kcat"],
       urls: ["reactions/summary/num_parameter_kcat/"],
     });
     dataTypeData.push({
-      label: ["Rxn Km"],
+      label: ["Reaction Km"],
       urls: ["reactions/summary/num_parameter_km/"],
     });
     this.setBarChart("dataType", dataTypeData);
@@ -130,7 +130,7 @@ class Stats extends Component {
       ],
     });
     journalByDataTypeData.push({
-      label: ["Prot abund."],
+      label: ["Prot. abund."],
       urls: ["proteins/summary/num_publications/"],
     });
     journalByDataTypeData.push({

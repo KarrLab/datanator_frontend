@@ -7,6 +7,7 @@ $color-accent: #ffc306;
 $color-accent-light: #ffd144; // 25% lighter
 $color-accent-lighter: #ffe182; // 50% lighter
 $color-accent-lightest: #fff0c0; // 75% lighter
+$color-secondary: #f37121;
 $color-white: #fff;
 $color-white-transparent: #ffffff80;
 $color-text: #333;
@@ -32,6 +33,7 @@ $color-shadow: #0006;
   accent-light: $color-accent-light;
   accent-lighter: $color-accent-lighter;
   accent-lightest: $color-accent-lightest;
+  secondary: $color-secondary;
   white: $color-white;
   white-transparent: $color-white-transparent;
   text: $color-text;

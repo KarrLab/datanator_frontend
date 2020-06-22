@@ -571,7 +571,7 @@ class RateConstantsDataTable extends Component {
     }
 
     if (hasKcat) {
-      sortOrder.push("kcat");
+      sortOrder.push({ colId: "kcat", sort: "asc" });
     }
 
     // K_M columns
@@ -585,7 +585,7 @@ class RateConstantsDataTable extends Component {
     kmMets.sort();
 
     for (const kmMet of kmMets) {
-      sortOrder.push("km." + kmMet);
+      sortOrder.push({ colId: "km." + kmMet, sort: "asc" });
     }
 
     // K_I columns
@@ -599,7 +599,7 @@ class RateConstantsDataTable extends Component {
     kiMets.sort();
 
     for (const kiMet of kiMets) {
-      sortOrder.push("ki." + kiMet);
+      sortOrder.push({ colId: "ki." + kiMet, sort: "asc" });
     }
 
     return sortOrder;

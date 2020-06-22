@@ -40,7 +40,7 @@ export default class MetaboliteSearchResultsList extends Component {
 
         "includes=InChI_Key",
         "includes=name",
-        "includes=chebi_id"
+        "includes=chebi_id",
       ].join("&")
     );
   }

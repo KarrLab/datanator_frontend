@@ -192,7 +192,7 @@ class RnaModificationDataTable extends Component {
   }
 
   static getColSortOrder() {
-    return ["abundance"];
+    return [{ colId: "abundance", sort: "asc" }];
   }
 
   render() {

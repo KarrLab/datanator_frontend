@@ -369,7 +369,7 @@ class RnaHalfLifeDataTable extends Component {
   }
 
   static getColSortOrder() {
-    return ["halfLife"];
+    return [{ colId: "halfLife", sort: "asc" }];
   }
 
   render() {
