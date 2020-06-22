@@ -26,6 +26,7 @@ commands:
       - run:
           name: Install Dependencies
           command: |
+            echo $NODE_ENV
             npm install
             # npm rebuild
       - run:
