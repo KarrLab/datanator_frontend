@@ -248,19 +248,7 @@ commands:
 
 workflows:
   version: 2
-  # build-deploy:
-  #   jobs:
-  #     - build: # anything that's not master branch
-  #         filters:
-  #           branches:
-  #             ignore:
-  #               - master
-  #     - release: # only master branch
-  #         filters:
-  #           branches:
-  #             only:
-  #               - master
-  test-workflow:
+  build-deploy:
     jobs:
       - build: # anything that's not master branch
           filters:
@@ -272,9 +260,9 @@ workflows:
             branches:
               only:
                 - master
-  # test-workflow:
-  #   jobs:
-  #     - karrlab-buildtest
+  test-workflow:
+    jobs:
+      - karrlab-buildtest
 
 jobs:
   build:
@@ -290,11 +278,11 @@ jobs:
           export PATH=$PATH:node_modules/.bin
           export REACT_APP_REST_CACHE=0
           netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --dir=build
-      #
-      #      # let Airbrake track deployment
-      #      curl -X POST -H "Content-Type: application/json" \
-      #        -d "{\"environment\":\"test\",\"username\":\"${CIRCLE_USERNAME}\",\"repository\":\"https://github.com/KarrLab/datanator_frontend\",\"revision\":\"${CIRCLE_SHA1}\"}" \
-      #        "https://airbrake.io/api/v4/projects/275996/deploys?key=527a182e6ad1d36557df055c2d85df51"
+      
+           # let Airbrake track deployment
+           curl -X POST -H "Content-Type: application/json" \
+             -d "{\"environment\":\"test\",\"username\":\"${CIRCLE_USERNAME}\",\"repository\":\"https://github.com/KarrLab/datanator_frontend\",\"revision\":\"${CIRCLE_SHA1}\"}" \
+             "https://airbrake.io/api/v4/projects/275996/deploys?key=527a182e6ad1d36557df055c2d85df51"
   release:
     executor: node-executor
     working_directory: ~/project
@@ -308,11 +296,11 @@ jobs:
           export PATH=$PATH:node_modules/.bin
           export REACT_APP_REST_CACHE=0
           netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir=build
-      #
-      #      # let Airbrake track deployment
-      #      curl -X POST -H "Content-Type: application/json" \
-      #        -d "{\"environment\":\"production\",\"username\":\"${CIRCLE_USERNAME}\",\"repository\":\"https://github.com/KarrLab/datanator_frontend\",\"revision\":\"${CIRCLE_SHA1}\"}" \
-      #        "https://airbrake.io/api/v4/projects/275996/deploys?key=527a182e6ad1d36557df055c2d85df51"
+      
+           # let Airbrake track deployment
+           curl -X POST -H "Content-Type: application/json" \
+             -d "{\"environment\":\"production\",\"username\":\"${CIRCLE_USERNAME}\",\"repository\":\"https://github.com/KarrLab/datanator_frontend\",\"revision\":\"${CIRCLE_SHA1}\"}" \
+             "https://airbrake.io/api/v4/projects/275996/deploys?key=527a182e6ad1d36557df055c2d85df51"
   karrlab-buildtest:
     executor: node-executor
     working_directory: ~/project
