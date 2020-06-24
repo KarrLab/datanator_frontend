@@ -124,7 +124,7 @@ class MetadataSection extends Component {
         /[([]PMID:? *(\d+)[)\]]/gi,
         (pmid) => {
           return (
-            <span key={pmid}>
+            <span key={"PubMed-" + pmid}>
               [
               <a
                 href={"https://www.ncbi.nlm.nih.gov/pubmed/" + pmid}
@@ -143,7 +143,7 @@ class MetadataSection extends Component {
         /EC (\d+\.\d+\.\d+\.\d+)/i,
         (ecNumber) => {
           return (
-            <span key={ecNumber}>
+            <span key={"EC-" + ecNumber}>
               EC:{" "}
               <a
                 href={"https://enzyme.expasy.org/EC/" + ecNumber}
@@ -156,18 +156,41 @@ class MetadataSection extends Component {
           );
         }
       );
+      processedData.description = reactStringReplace(
+        processedData.description,
+        /[([]Biocyc *(.*?)[)\]]/gi,
+        (id) => {
+          return (
+            <span key={"BioCyc-" + id}>
+              [
+              <a
+                href={"https://biocyc.org/META/NEW-IMAGE?object=" + id}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                BioCyc: {id}
+              </a>
+              ]
+            </span>
+          );
+        }
+      );
     }
 
+    const formalCharge = met.property.find((el) => el.kind === "formal_charge");
+    const physiologicalCharge = met.property.find(
+      (el) => el.kind === "physiological_charge"
+    );
     processedData.chemistry = {
       smiles: met.smiles,
       inchi: met.inchi,
       inchiKey: met.InChI_Key,
       formula: formatChemicalFormula(met.chemical_formula),
       molWt: met.average_molecular_weight,
-      charge: met.property.find((el) => el.kind === "formal_charge").value,
-      physiologicalCharge: met.property.find(
-        (el) => el.kind === "physiological_charge"
-      ).value,
+      charge: formalCharge ? formalCharge.value : null,
+      physiologicalCharge: physiologicalCharge
+        ? physiologicalCharge.value
+        : null,
     };
 
     if (met.pathways) {
