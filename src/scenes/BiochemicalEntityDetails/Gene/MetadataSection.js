@@ -11,19 +11,20 @@ class MetadataSection extends Component {
     "set-scene-metadata": PropTypes.func.isRequired,
   };
 
+  static blankResponse = "No description available.";
+
   constructor(props) {
     super(props);
     this.state = { metadata: null };
   }
 
   static processDescriptionFromUniprot(query, uniprotData) {
-    const blankResponse = "No description available.";
     if (
       uniprotData == null ||
       uniprotData.length === 0 ||
       uniprotData[0] == null
     ) {
-      return blankResponse;
+      return MetadataSection.blankResponse;
     }
 
     uniprotData = uniprotData[0];
@@ -44,7 +45,7 @@ class MetadataSection extends Component {
       if (comments) {
         response = comments;
       } else {
-        response = blankResponse;
+        response = MetadataSection.blankResponse;
       }
     } else {
       const properties = [];
@@ -161,7 +162,7 @@ class MetadataSection extends Component {
           </ul>
         );
       } else {
-        response = blankResponse;
+        response = MetadataSection.blankResponse;
       }
     }
 
@@ -333,6 +334,7 @@ class MetadataSection extends Component {
                   uniprotData
                 );
               }}
+              error-message={MetadataSection.blankResponse}
             />
           </div>
         ),
