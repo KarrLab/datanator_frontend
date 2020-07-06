@@ -609,3 +609,9 @@ button {
 ::selection {
   background: rgba($color-accent, 0.3);
 }
+
+
+/* lazy load */
+.lazyload-wrapper {
+  display: inherit;
+}
