@@ -245,7 +245,9 @@ class Home extends Component {
                     />
                   </LazyLoad>
                 </div>
-                <div className="section-column-subtitle">Kinetic models</div>
+                <div className="section-column-subtitle">
+                  Quantitative models
+                </div>
                 <div className="section-column-title">
                   Re-calibrate models to capture other cells
                 </div>

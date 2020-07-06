@@ -383,7 +383,7 @@ class Stats extends Component {
               <ScrollableAnchor id="immediate-source">
                 <div className="section section-column">
                   <h2 className="content-block-heading">
-                    Distribution of the immediate sources of the data
+                    Immediate sources of the measurements
                   </h2>
                   <div className="content-block-content">
                     <BarPlot
@@ -397,7 +397,7 @@ class Stats extends Component {
               <ScrollableAnchor id="primary-source">
                 <div className="section section-column">
                   <h2 className="content-block-heading">
-                    Distribution of the primary sources of the data
+                    Number of primary sources for each type of data
                   </h2>
                   <div className="content-block-content">
                     <BarPlot
