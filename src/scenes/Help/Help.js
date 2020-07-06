@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { HashLink } from "react-router-hash-link";
+import ScrollableAnchor from "react-scrollable-anchor";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { scrollTo } from "~/utils/utils";
 import Tutorial from "./Tutorial";
 import Faq from "./Faq";
 
@@ -24,14 +23,10 @@ class Help extends Component {
               <div className="content-block-content">
                 <ul>
                   <li>
-                    <HashLink to="#tutorial" scroll={scrollTo}>
-                      Tutorial
-                    </HashLink>
+                    <a href="#tutorial">Tutorial</a>
                   </li>
                   <li>
-                    <HashLink to="#faq" scroll={scrollTo}>
-                      FAQ
-                    </HashLink>
+                    <a href="#faq">FAQ</a>
                   </li>
                 </ul>
               </div>
@@ -49,14 +44,14 @@ class Help extends Component {
             <div className="content-block table-of-contents">
               <h2 className="content-block-heading">Need more help?</h2>
               <div className="content-block-content">
-                <div id="contact">
+                <ScrollableAnchor id="contact">
                   <a
                     href={"mailto:" + this.contactEmail}
                     subject="Datanator help"
                   >
                     <FontAwesomeIcon icon="envelope" /> Contact us
                   </a>
-                </div>
+                </ScrollableAnchor>
                 <div>
                   <a
                     href="https://github.com/karrlab/datanator_frontend/issues"

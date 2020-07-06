@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router";
+import ScrollableAnchor from "react-scrollable-anchor";
 import PropTypes from "prop-types";
 import axios from "axios";
 import { getDataFromApi, genApiErrorHandler } from "~/services/RestApi";
@@ -395,61 +396,65 @@ class DataTable extends Component {
   render() {
     if (DataTable.shouldTableRender(this.state.data)) {
       return (
-        <div className="content-block" id={this.props.id}>
-          <div className="content-block-heading-container">
-            <h2 className="content-block-heading">
-              {this.props.title}
-              {this.state.data ? " (" + this.state.data.length + ")" : ""}
-            </h2>
-            <div className="content-block-heading-actions">
-              Export:{" "}
-              <button className="text-button" onClick={this.exportCsv}>
-                CSV
-              </button>{" "}
-              |{" "}
-              <button className="text-button" onClick={this.exportJson}>
-                JSON
-              </button>
+        <ScrollableAnchor id={this.props.id}>
+          <div className="content-block">
+            <div className="content-block-heading-container">
+              <h2 className="content-block-heading">
+                {this.props.title}
+                {this.state.data ? " (" + this.state.data.length + ")" : ""}
+              </h2>
+              <div className="content-block-heading-actions">
+                Export:{" "}
+                <button className="text-button" onClick={this.exportCsv}>
+                  CSV
+                </button>{" "}
+                |{" "}
+                <button className="text-button" onClick={this.exportJson}>
+                  JSON
+                </button>
+              </div>
+            </div>
+            <div className="biochemical-entity-data-table">
+              <ToolPanels agGridReactRef={this.grid} />
+              <div className="ag-theme-balham">
+                <AgGridReact
+                  ref={this.grid}
+                  modules={[ClientSideRowModelModule, CsvExportModule]}
+                  frameworkComponents={DataTable.frameworkComponents}
+                  sideBar={this.state.sideBarDef}
+                  defaultColDef={DataTable.defaultColDef}
+                  columnDefs={this.state.colDefs}
+                  rowData={this.state.data}
+                  rowSelection="multiple"
+                  groupSelectsChildren={true}
+                  suppressMultiSort={true}
+                  suppressAutoSize={true}
+                  suppressMovableColumns={true}
+                  suppressCellSelection={true}
+                  suppressRowClickSelection={true}
+                  suppressContextMenu={true}
+                  domLayout={this.props["dom-layout"]}
+                  onGridSizeChanged={this.fitCols}
+                  onColumnVisible={this.fitCols}
+                  onColumnResized={this.updateHorzScrolling}
+                  onToolPanelVisibleChanged={this.fitCols}
+                  onFirstDataRendered={this.onFirstDataRendered}
+                />
+              </div>
             </div>
           </div>
-          <div className="biochemical-entity-data-table">
-            <ToolPanels agGridReactRef={this.grid} />
-            <div className="ag-theme-balham">
-              <AgGridReact
-                ref={this.grid}
-                modules={[ClientSideRowModelModule, CsvExportModule]}
-                frameworkComponents={DataTable.frameworkComponents}
-                sideBar={this.state.sideBarDef}
-                defaultColDef={DataTable.defaultColDef}
-                columnDefs={this.state.colDefs}
-                rowData={this.state.data}
-                rowSelection="multiple"
-                groupSelectsChildren={true}
-                suppressMultiSort={true}
-                suppressAutoSize={true}
-                suppressMovableColumns={true}
-                suppressCellSelection={true}
-                suppressRowClickSelection={true}
-                suppressContextMenu={true}
-                domLayout={this.props["dom-layout"]}
-                onGridSizeChanged={this.fitCols}
-                onColumnVisible={this.fitCols}
-                onColumnResized={this.updateHorzScrolling}
-                onToolPanelVisibleChanged={this.fitCols}
-                onFirstDataRendered={this.onFirstDataRendered}
-              />
-            </div>
-          </div>
-        </div>
+        </ScrollableAnchor>
       );
     } else {
       return (
-        <div className="content-block" id={this.props.id}>
-          <div className="content-block-heading-container">
-            <h2 className="content-block-heading">{this.props.title} (0)</h2>
+        <ScrollableAnchor id={this.props.id}>
+          <div className="content-block">
+            <div className="content-block-heading-container">
+              <h2 className="content-block-heading">{this.props.title} (0)</h2>
+            </div>
+            <div className="content-block-content">No data is available.</div>
           </div>
-          <div className="content-block-content">No data is available.</div>
-        </div>
+        </ScrollableAnchor>
       );
     }
   }

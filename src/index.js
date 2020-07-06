@@ -3,6 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 // Router (enables persistant URLs and History)
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { configureAnchors } from "react-scrollable-anchor";
 
 // Redux (used for state management)
 import history from "~/utils/history";
@@ -59,6 +60,8 @@ const isValidBrowser =
   typeof Promise !== "undefined" &&
   Promise.toString().indexOf("[native code]") !== -1 &&
   typeof Promise.prototype.finally !== "undefined";
+
+configureAnchors({ offset: -52, scrollDuration: 750 });
 
 let SiteRouter;
 if (isValidBrowser) {

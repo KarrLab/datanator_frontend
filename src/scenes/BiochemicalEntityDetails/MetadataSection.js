@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router";
+import ScrollableAnchor from "react-scrollable-anchor";
 import PropTypes from "prop-types";
 import axios from "axios";
 import { getDataFromApi, genApiErrorHandler } from "~/services/RestApi";
@@ -166,10 +167,12 @@ class MetadataSection extends Component {
       <div>
         {this.state.sections.map((section) => {
           return (
-            <div className="content-block" id={section.id} key={section.id}>
-              <h2 className="content-block-heading">{section.title}</h2>
-              <div className="content-block-content">{section.content}</div>
-            </div>
+            <ScrollableAnchor id={section.id} key={section.id}>
+              <div className="content-block">
+                <h2 className="content-block-heading">{section.title}</h2>
+                <div className="content-block-content">{section.content}</div>
+              </div>
+            </ScrollableAnchor>
           );
         })}
       </div>

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
+import ScrollableAnchor from "react-scrollable-anchor";
 import { Link } from "react-router-dom";
 import { getDataFromApi, genApiErrorHandler } from "~/services/RestApi";
 import axios from "axios";
@@ -138,36 +139,35 @@ class SearchResultsList extends Component {
     const numMore = Math.min(pageSize, numResults - pageSize * this.pageCount);
 
     return (
-      <div
-        className="content-container-search-results-scene content-block section"
-        id={this.props["html-anchor-id"]}
-      >
-        {results == null && <div className="loader"></div>}
+      <ScrollableAnchor id={this.props["html-anchor-id"]}>
+        <div className="content-container-search-results-scene content-block section">
+          {results == null && <div className="loader"></div>}
 
-        {results != null && (
-          <div>
-            {results.length > 0 && (
-              <ul className="search-results-list">{results}</ul>
-            )}
+          {results != null && (
+            <div>
+              {results.length > 0 && (
+                <ul className="search-results-list">{results}</ul>
+              )}
 
-            {results.length === 0 && (
-              <p className="no-search-results">No results found.</p>
-            )}
+              {results.length === 0 && (
+                <p className="no-search-results">No results found.</p>
+              )}
 
-            {results.length > 0 && numMore > 0 && (
-              <button
-                className="more-search-results-button"
-                type="button"
-                onClick={() => {
-                  this.fetchResults();
-                }}
-              >
-                Load {numMore} more of {numResults}
-              </button>
-            )}
-          </div>
-        )}
-      </div>
+              {results.length > 0 && numMore > 0 && (
+                <button
+                  className="more-search-results-button"
+                  type="button"
+                  onClick={() => {
+                    this.fetchResults();
+                  }}
+                >
+                  Load {numMore} more of {numResults}
+                </button>
+              )}
+            </div>
+          )}
+        </div>
+      </ScrollableAnchor>
     );
   }
 }
