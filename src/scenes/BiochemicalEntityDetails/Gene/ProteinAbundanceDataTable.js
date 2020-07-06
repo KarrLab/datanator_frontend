@@ -283,7 +283,12 @@ class ProteinAbundanceDataTable extends Component {
   }
 
   static getColSortOrder() {
-    return [{ colId: "abundance", sort: "asc" }];
+    return [
+      { colId: "taxonomicProximity", sort: "asc" },
+      { colId: "organism", sort: "asc" },
+      // { colId: "organ", sort: "asc" },
+      { colId: "abundance", sort: "asc" },
+    ];
   }
 
   render() {

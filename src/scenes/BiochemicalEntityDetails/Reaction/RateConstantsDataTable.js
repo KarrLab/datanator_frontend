@@ -559,7 +559,10 @@ class RateConstantsDataTable extends Component {
   }
 
   static getColSortOrder(query, organism, formattedData) {
-    const sortOrder = [];
+    const sortOrder = [
+      { colId: "taxonomicProximity", sort: "asc" },
+      { colId: "organism", sort: "asc" },
+    ];
 
     // k_cat column
     let hasKcat = false;

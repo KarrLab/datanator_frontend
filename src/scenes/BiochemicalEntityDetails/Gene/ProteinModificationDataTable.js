@@ -294,7 +294,12 @@ class ProteinModificationDataTable extends Component {
   }
 
   static getColSortOrder() {
-    return [{ colId: "abundance", sort: "asc" }];
+    return [
+      { colId: "taxonomicProximity", sort: "asc" },
+      { colId: "organism", sort: "asc" },
+      // { colId: "proteinName", sort: "asc" },
+      { colId: "modifications", sort: "asc" },
+    ];
   }
 
   render() {

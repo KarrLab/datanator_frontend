@@ -263,6 +263,8 @@ describe("Reaction data page", () => {
       formattedData
     );
     expect(colSortOrder).toEqual([
+      { colId: "taxonomicProximity", sort: "asc" },
+      { colId: "organism", sort: "asc" },
       { colId: "kcat", sort: "asc" },
       { colId: "km.AMP", sort: "asc" },
       { colId: "km.ATP", sort: "asc" },

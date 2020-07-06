@@ -60,11 +60,13 @@ export default class GeneSearchResultsList extends Component {
           source.ko_name.length &&
           source.ko_name[0]
         ) {
-          formattedResult["title"] = upperCaseFirstLetter(source.ko_name[0]);
+          formattedResult["title"] =
+            "Ortholog group: " + upperCaseFirstLetter(source.ko_name[0]);
         } else if ("definition" in source) {
-          formattedResult["title"] = source.definition;
+          formattedResult["title"] = "Gene: " + source.definition;
         } else {
-          formattedResult["title"] = source.protein_name.split("(")[0].trim();
+          formattedResult["title"] =
+            "Gene: " + source.protein_name.split("(")[0].trim();
         }
 
         // description

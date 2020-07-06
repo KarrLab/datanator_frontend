@@ -369,7 +369,13 @@ class RnaHalfLifeDataTable extends Component {
   }
 
   static getColSortOrder() {
-    return [{ colId: "halfLife", sort: "asc" }];
+    return [
+      { colId: "taxonomicProximity", sort: "asc" },
+      { colId: "organism", sort: "asc" },
+      // { colId: "cellLine", sort: "asc" },
+      // { colId: "geneName", sort: "asc" },
+      { colId: "halfLife", sort: "asc" },
+    ];
   }
 
   render() {

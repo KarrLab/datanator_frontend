@@ -192,7 +192,11 @@ class RnaModificationDataTable extends Component {
   }
 
   static getColSortOrder() {
-    return [{ colId: "abundance", sort: "asc" }];
+    return [
+      { colId: "taxonomicProximity", sort: "asc" },
+      { colId: "organism", sort: "asc" },
+      { colId: "numModifications", sort: "asc" },
+    ];
   }
 
   render() {
