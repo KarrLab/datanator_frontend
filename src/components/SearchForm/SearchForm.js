@@ -62,13 +62,13 @@ class SearchForm extends Component {
         route.query != null &&
         route.query !== undefined
       ) {
-        const query = route.query;
+        const query = decodeURIComponent(route.query);
         const organism = route.organism;
         let organismItem;
         if (organism) {
           organismItem = {
             _source: {
-              tax_name: organism,
+              tax_name: decodeURIComponent(organism),
             },
           };
         } else {
@@ -171,9 +171,9 @@ class SearchForm extends Component {
     event.preventDefault();
 
     let url = "/search/";
-    url += this.state.query + "/";
+    url += encodeURIComponent(this.state.query) + "/";
     if (this.state.organism) {
-      url += this.state.organism["_source"]["tax_name"] + "/";
+      url += encodeURIComponent(this.state.organism["_source"]["tax_name"]) + "/";
     }
     this.props.history.push(url);
   }

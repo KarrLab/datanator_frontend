@@ -18,7 +18,7 @@ describe("LinkCellRenderer", function () {
 
     cy.location("pathname").should("not.equal", url);
     cy.location("pathname").should(($val) => {
-      const val = decodeURI($val);
+      const val = decodeURIComponent($val);
       expect(val.startsWith("/" + route + "/")).to.be.true;
       expect(val.endsWith("/" + organism + "/")).to.be.false;
     });
@@ -32,7 +32,7 @@ describe("LinkCellRenderer", function () {
       .click();
     cy.location("pathname").should("not.equal", url);
     cy.location("pathname").should(($val) => {
-      const val = decodeURI($val);
+      const val = decodeURIComponent($val);
       expect(val.startsWith("/" + route + "/")).to.be.true;
       expect(val.endsWith("/" + organism + "/")).to.be.true;
     });

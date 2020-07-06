@@ -166,7 +166,7 @@ function parseHistoryLocationPathname(history) {
   let organism = null;
   if (match) {
     route = match[2];
-    query = match[4] ? decodeURI(match[4].trim()) || null : null;
+    query = match[4] ? decodeURIComponent(match[4].trim()) || null : null;
     organism = match[6] ? decodeURI(match[6].trim()) || null : null;
   }
   if (typeof organism === "string" && organism.toLowerCase() === "null") {
