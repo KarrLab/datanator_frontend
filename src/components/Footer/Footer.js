@@ -22,10 +22,13 @@ export default class Footer extends Component {
           </a>
         </span>
         <span className="footer-item">
-          <Link to="/stats/">Stats</Link>
+          <Link to="/help/#tutorial">Getting started</Link>
         </span>
         <span className="footer-item">
           <Link to="/help/">Help</Link>
+        </span>
+        <span className="footer-item">
+          <Link to="/stats/">Stats</Link>
         </span>
         <span className="footer-item">
           <Link to="/about/">About</Link>

@@ -153,9 +153,15 @@ class Home extends Component {
               of cells. <i>Datanator</i> is composed of an integrated database
               of genomic and biochemical data, this web application for
               identifying relevant data for modeling a specific organism in a
-              specific environmental condition, and a REST API and Python
-              library for programmatically discovering data for large models
-              such as{" "}
+              specific environmental condition, and a{" "}
+              <a
+                href={process.env.REACT_APP_REST_SERVER}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                REST API
+              </a>{" "}
+              for programmatically discovering data for large models such as{" "}
               <a
                 href="https://www.wholecell.org"
                 target="_blank"

@@ -42,7 +42,7 @@ class Tutorial extends Component {
                     Typing enter will take you to the search results such as
                     shown in the next step.
                   </div>
-                  <LazyLoad>
+                  <LazyLoad height={174}>
                     <img
                       src={one_home}
                       className="tutorial-screenshot"
@@ -55,7 +55,7 @@ class Tutorial extends Component {
                     by clicking the &apos;Search&apos; button in the header and
                     using the form that appears in the header.
                   </div>
-                  <LazyLoad>
+                  <LazyLoad height={54}>
                     <img
                       src={search_top}
                       className="tutorial-screenshot"
@@ -122,7 +122,7 @@ class Tutorial extends Component {
                     you to a page with data relevant to ATP as shown in the next
                     step.
                   </div>
-                  <LazyLoad>
+                  <LazyLoad height={327}>
                     <img
                       src={two_intermediate}
                       className="tutorial-screenshot"
@@ -142,7 +142,7 @@ class Tutorial extends Component {
                     ATP in several other databases, and links to pathways that
                     ATP participates in.
                   </div>
-                  <LazyLoad>
+                  <LazyLoad height={236}>
                     <img
                       src={three_metadata}
                       className="tutorial-screenshot"
@@ -167,7 +167,7 @@ class Tutorial extends Component {
                     which <i>Datanator</i> aggregated the measured
                     concentrations.
                   </div>
-                  <LazyLoad>
+                  <LazyLoad height={415}>
                     <img
                       src={four_datatable}
                       className="tutorial-screenshot"
@@ -190,7 +190,7 @@ class Tutorial extends Component {
                     information about the growth media in which each
                     concentration was measured.
                   </div>
-                  <LazyLoad>
+                  <LazyLoad height={319}>
                     <img
                       src={five_datatable}
                       className="tutorial-screenshot"
@@ -259,7 +259,7 @@ class Tutorial extends Component {
                       </li>
                     </ul>
                   </div>
-                  <LazyLoad>
+                  <LazyLoad height={775}>
                     <img
                       src={six_datatable}
                       className="tutorial-screenshot"
@@ -283,7 +283,7 @@ class Tutorial extends Component {
                     <i>Datanator</i> will display a second box plot of the
                     distribution of the selected measurements.
                   </div>
-                  <LazyLoad>
+                  <LazyLoad height={469}>
                     <img
                       src={seven_datatable}
                       className="tutorial-screenshot"
@@ -301,7 +301,7 @@ class Tutorial extends Component {
                     Click the <q>CSV</q> or <q>JSON</q> buttons above the table
                     to export the data in CSV or JSON format.
                   </div>
-                  <LazyLoad>
+                  <LazyLoad height={469}>
                     <img
                       src={eight_datatable}
                       className="tutorial-screenshot"
@@ -318,7 +318,7 @@ class Tutorial extends Component {
                   <div className="tutorial-step-text">
                     For example, the exported data can be viewed in Excel.
                   </div>
-                  <LazyLoad>
+                  <LazyLoad height={372}>
                     <img
                       src={nine_excel}
                       className="tutorial-screenshot"

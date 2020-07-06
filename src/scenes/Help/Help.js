@@ -26,6 +26,15 @@ class Help extends Component {
                     <a href="#tutorial">Tutorial</a>
                   </li>
                   <li>
+                    <a href="#data">Data types</a>
+                  </li>
+                  <li>
+                    <a href="#api">REST API</a>
+                  </li>
+                  <li>
+                    <a href="#download">Downloading data</a>
+                  </li>
+                  <li>
                     <a href="#faq">FAQ</a>
                   </li>
                 </ul>
@@ -68,6 +77,126 @@ class Help extends Component {
 
           <div className="content-column">
             <Tutorial />
+
+            <ScrollableAnchor id="data">
+              <div className="content-block section">
+                <h2 className="content-block-heading">
+                  Data types and sources
+                </h2>
+                <div className="content-block-content">
+                  <p>
+                    Currently, <i>Datanator</i> includes measured metabolite
+                    concentrations, RNA modifications and half-lives, protein
+                    abundances and modifications, and reaction rate parameters
+                    integrated from{" "}
+                    <a
+                      href={"https://www.brenda-enzymes.org/"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      BRENDA
+                    </a>
+                    ,{" "}
+                    <a
+                      href={"http://ecmdb.ca/"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      ECMDB
+                    </a>
+                    ,{" "}
+                    <a
+                      href={"https://iimcb.genesilico.pl/modomics/"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      MODOMICS
+                    </a>
+                    ,{" "}
+                    <a
+                      href={"https://pax-db.org/"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      PAX-DB
+                    </a>
+                    , the{" "}
+                    <a
+                      href={"https://proconsortium.org/"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Protein Ontology (PRO)
+                    </a>
+                    ,{" "}
+                    <a
+                      href={"https://sabiork.h-its.org/"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      SABIO-RK
+                    </a>
+                    ,{" "}
+                    <a
+                      href={"http://www.ymdb.ca/"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      YMDB
+                    </a>
+                    , and numerous publications . We aim to continually
+                    incorporate additional data from additional sources.
+                  </p>
+                </div>
+              </div>
+            </ScrollableAnchor>
+
+            <ScrollableAnchor id="api">
+              <div className="content-block section">
+                <h2 className="content-block-heading">
+                  Programmatically querying the <i>Datanator</i> data via the
+                  REST API
+                </h2>
+
+                <div className="content-block-content">
+                  <p className="no-bottom-margin">
+                    A REST API is available at{" "}
+                    <a
+                      href={process.env.REACT_APP_REST_SERVER}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {process.env.REACT_APP_REST_SERVER}
+                    </a>
+                    . Documentation is available at the same URL.
+                  </p>
+                </div>
+              </div>
+            </ScrollableAnchor>
+
+            <ScrollableAnchor id="download">
+              <div className="content-block section">
+                <h2 className="content-block-heading">
+                  Downloading the <i>Datanator</i> data
+                </h2>
+
+                <div className="content-block-content">
+                  <p className="no-bottom-margin">
+                    The data in <i>Datanator</i> is available as the{" "}
+                    <a
+                      href="https://open.quiltdata.com/b/karrlab/packages/karrlab/datanator"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {" "}
+                      datanator Quilt data package
+                    </a>
+                    .
+                  </p>
+                </div>
+              </div>
+            </ScrollableAnchor>
+
             <Faq />
           </div>
         </div>
