@@ -17,10 +17,10 @@ import { LinkCellRenderer } from "../LinkCellRenderer";
 import { NumericCellRenderer } from "../NumericCellRenderer";
 import { ToolPanels } from "../ToolPanels";
 import { ColumnsToolPanel } from "../ColumnsToolPanel/ColumnsToolPanel";
-import { FiltersToolPanel } from "../FiltersToolPanel/FiltersToolPanel";
+import FiltersToolPanel from "../FiltersToolPanel/FiltersToolPanel";
 import { StatsToolPanel } from "../StatsToolPanel/StatsToolPanel";
 import { NumberFilter } from "../NumberFilter";
-import { TaxonomyFilter } from "../TaxonomyFilter";
+import TaxonomyFilter from "../TaxonomyFilter";
 import { TextFilter } from "../TextFilter";
 
 import "@ag-grid-community/all-modules/dist/styles/ag-grid.scss";

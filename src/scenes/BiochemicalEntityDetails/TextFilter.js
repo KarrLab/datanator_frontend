@@ -126,7 +126,7 @@ class TextFilter extends Component {
 
     this.setState({ vals: vals });
     this.selectedVals = selectedVals;
-    this.props.filterChangedCallback();
+    this.props.filterChangedCallback(this.getModel());
   }
 
   toggleVal(val, event) {
@@ -140,7 +140,7 @@ class TextFilter extends Component {
     vals[val.index].selected = event.target.checked;
 
     this.setState({ vals: vals }, () => {
-      this.props.filterChangedCallback();
+      this.props.filterChangedCallback(this.getModel());
     });
   }
 

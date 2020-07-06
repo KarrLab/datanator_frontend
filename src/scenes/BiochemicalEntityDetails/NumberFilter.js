@@ -190,7 +190,7 @@ class NumberFilter extends Component {
       min: this.min,
       max: this.max,
     });
-    this.props.filterChangedCallback();
+    this.props.filterChangedCallback(this.getModel());
   }
 
   onChange(event, range) {
@@ -210,7 +210,7 @@ class NumberFilter extends Component {
         min: this.min,
         max: this.max,
       });
-      this.props.filterChangedCallback();
+      this.props.filterChangedCallback(this.getModel());
     }
   }
 

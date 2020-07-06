@@ -5,7 +5,6 @@ import { upperCaseFirstLetter } from "~/utils/utils";
 import axios from "axios";
 import { getDataFromApi, genApiErrorHandler } from "~/services/RestApi";
 import { parseHistoryLocationPathname } from "~/utils/utils";
-import history from "~/utils/history";
 
 function valueText(value) {
   return `${value}`;
@@ -13,9 +12,14 @@ function valueText(value) {
 
 class TaxonomyFilter extends Component {
   static propTypes = {
+    history: PropTypes.object,
     agGridReact: PropTypes.object.isRequired,
     valueGetter: PropTypes.func.isRequired,
     filterChangedCallback: PropTypes.func.isRequired,
+  };
+
+  static defaultProps = {
+    history: null,
   };
 
   constructor(props) {
@@ -43,18 +47,28 @@ class TaxonomyFilter extends Component {
   }
 
   componentDidMount() {
-    this.locationPathname = history.location.pathname;
-    this.unlistenToHistory = history.listen((location) => {
-      if (location.pathname !== this.locationPathname) {
-        this.locationPathname = history.location.pathname;
-        this.updateStateFromLocation();
-      }
-    });
-    this.updateStateFromLocation();
+    if (this.props.history) {
+      this.locationPathname = this.props.history.location.pathname;
+      this.unlistenToHistory = this.props.history.listen((location) => {
+        if (location.pathname !== this.locationPathname) {
+          this.locationPathname = this.props.history.location.pathname;
+          this.updateStateFromLocation();
+        }
+      });
+      this.updateStateFromLocation();
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.history !== prevProps.history) {
+      this.componentDidMount();
+    }
   }
 
   componentWillUnmount() {
-    this.unlistenToHistory();
+    if (this.unlistenToHistory) {
+      this.unlistenToHistory();
+    }
     this.unlistenToHistory = null;
     if (this.cancelTokenSource) {
       this.cancelTokenSource.cancel();
@@ -69,7 +83,7 @@ class TaxonomyFilter extends Component {
   }
 
   getDataFromApi() {
-    const route = parseHistoryLocationPathname(history);
+    const route = parseHistoryLocationPathname(this.props.history);
     const organism = route.organism;
 
     // cancel earlier query
@@ -169,7 +183,7 @@ class TaxonomyFilter extends Component {
       selectedMarkValue: this.selectedMarkValue,
       maxDistance: this.maxDistance,
     });
-    this.props.filterChangedCallback();
+    this.props.filterChangedCallback(this.getModel());
   }
 
   // Method could be used to dynamically set the min/max of the slider to the min/max similarity of all of the rows
@@ -186,7 +200,7 @@ class TaxonomyFilter extends Component {
           maxDistance: maxDistance,
         },
         () => {
-          this.props.filterChangedCallback();
+          this.props.filterChangedCallback(this.getModel());
         }
       );
     }
@@ -216,4 +230,4 @@ class TaxonomyFilter extends Component {
   }
 }
 
-export { TaxonomyFilter };
+export default TaxonomyFilter;

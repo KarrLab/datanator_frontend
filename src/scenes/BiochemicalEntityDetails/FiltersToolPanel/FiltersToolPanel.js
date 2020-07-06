@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
@@ -9,6 +10,7 @@ import "./FiltersToolPanel.scss";
 
 class FiltersToolPanel extends Component {
   static propTypes = {
+    history: PropTypes.object,
     /* AG-Grid API */
     api: PropTypes.shape({
       addEventListener: PropTypes.func.isRequired,
@@ -29,7 +31,6 @@ class FiltersToolPanel extends Component {
   constructor(props) {
     super(props);
 
-    this.filterRefs = {};
     this.state = {
       filters: [],
     };
@@ -117,9 +118,9 @@ class FiltersToolPanel extends Component {
     });
   }
 
-  applyFilter(colId) {
+  applyFilter(colId, colModel) {
     const model = this.props.api.getFilterModel();
-    model[colId] = this.filterRefs[colId].current.getModel();
+    model[colId] = colModel;
     this.props.api.setFilterModel(model);
   }
 
@@ -129,7 +130,6 @@ class FiltersToolPanel extends Component {
       <div className="biochemical-entity-scene-filters-tool-panel">
         {this.state.filters.map((filter) => {
           const FilterType = filterTypes[filter.colDef.filter];
-          this.filterRefs[filter.colId] = React.createRef();
           return (
             <ExpansionPanel
               key={filter.colId}
@@ -141,7 +141,7 @@ class FiltersToolPanel extends Component {
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
                 <FilterType
-                  ref={this.filterRefs[filter.colId]}
+                  history={this.props.history}
                   api={this.props.api}
                   agGridReact={this.props.agGridReact}
                   colDef={filter.colDef}
@@ -162,4 +162,4 @@ class FiltersToolPanel extends Component {
   }
 }
 
-export { FiltersToolPanel };
+export default withRouter(FiltersToolPanel);
