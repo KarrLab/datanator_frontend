@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import { Button } from "@blueprintjs/core";
-import { parseHistoryLocationPathname } from "~/utils/utils";
+import { parseHistoryLocationPathname, scrollTo } from "~/utils/utils";
 
 import "./Header.scss";
 import { Logo } from "./Logo/Logo";
@@ -75,14 +76,14 @@ class Header extends Component {
               this.setState({ showSearchForm: !this.state.showSearchForm })
             }
           />
-          <Link to="/stats/">
+          <HashLink to="/help/#tutorial" scroll={scrollTo}>
             <Button
               minimal="true"
               className="icon-button"
-              icon="horizontal-bar-chart"
-              text="Stats"
+              icon="star"
+              text="Getting started"
             />
-          </Link>
+          </HashLink>
           <Link to="/help/">
             <Button
               minimal="true"
@@ -91,6 +92,14 @@ class Header extends Component {
               text="Help"
             />
           </Link>
+          <Link to="/stats/">
+            <Button
+              minimal="true"
+              className="icon-button"
+              icon="horizontal-bar-chart"
+              text="Stats"
+            />
+          </Link>          
           <Link to="/about/">
             <Button
               minimal="true"

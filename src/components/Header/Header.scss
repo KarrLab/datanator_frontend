@@ -73,6 +73,11 @@
     .icon-button:active .bp3-icon {
       color: $color-accent;
     }
+
+    .bp3-button-text {
+      position: relative;
+      top: -2px;
+    }
   }
 
   .icon-button {
