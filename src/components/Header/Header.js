@@ -55,13 +55,13 @@ class Header extends Component {
     return (
       <ScrollableAnchor id="top">
         <div className="header-component">
-          <div className="logo-title-container">
+          <Link to="/" className="logo-title-container">
             <Logo />
             <div className="titles">
               <div className="title">Datanator</div>
               <div className="subtitle">Data for modeling cells</div>
             </div>
-          </div>
+          </Link>
 
           <div className={"search-container" + (showSearchForm ? "" : " hide")}>
             <SearchForm />
