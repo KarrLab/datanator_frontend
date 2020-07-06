@@ -173,7 +173,8 @@ class SearchForm extends Component {
     let url = "/search/";
     url += encodeURIComponent(this.state.query) + "/";
     if (this.state.organism) {
-      url += encodeURIComponent(this.state.organism["_source"]["tax_name"]) + "/";
+      url +=
+        encodeURIComponent(this.state.organism["_source"]["tax_name"]) + "/";
     }
     this.props.history.push(url);
   }
