@@ -5,9 +5,6 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import { configureAnchors } from "react-scrollable-anchor";
 
-// Redux (used for state management)
-import history from "~/utils/history";
-
 // Feedback form
 import { applyPolyfills, defineCustomElements } from "@bruit/component/loader";
 
@@ -68,7 +65,7 @@ if (isValidBrowser) {
   let FullSiteRouter = () => {
     return (
       <ErrorBoundary>
-        <BrowserRouter history={history}>
+        <BrowserRouter>
           <ScrollToTop />
           <Header />
           <Switch>
@@ -156,7 +153,7 @@ if (isValidBrowser) {
 } else {
   let UnsupportedBrowserSiteRouter = () => {
     return (
-      <BrowserRouter history={history}>
+      <BrowserRouter>
         <Header />
         <UnsupportedBrowser />
         <Footer />
