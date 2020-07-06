@@ -2,7 +2,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 // Router (enables persistant URLs and History)
-import { Router, Switch, Route, Redirect } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
 // Redux (used for state management)
 import history from "~/utils/history";
@@ -65,7 +65,7 @@ if (isValidBrowser) {
   let FullSiteRouter = () => {
     return (
       <ErrorBoundary>
-        <Router history={history}>
+        <BrowserRouter history={history}>
           <ScrollToTop />
           <Header />
           <Switch>
@@ -145,7 +145,7 @@ if (isValidBrowser) {
           <Footer />
           {errorDialog}
           <FeedbackForm />
-        </Router>
+        </BrowserRouter>
       </ErrorBoundary>
     );
   };
@@ -153,11 +153,11 @@ if (isValidBrowser) {
 } else {
   let UnsupportedBrowserSiteRouter = () => {
     return (
-      <Router history={history}>
+      <BrowserRouter history={history}>
         <Header />
         <UnsupportedBrowser />
         <Footer />
-      </Router>
+      </BrowserRouter>
     );
   };
   SiteRouter = UnsupportedBrowserSiteRouter;
