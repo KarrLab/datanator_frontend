@@ -31,6 +31,7 @@ import Footer from "~/components/Footer/Footer";
 import FeedbackForm from "~/components/FeedbackForm/FeedbackForm";
 import { errorDialog } from "~/components/ErrorDialog/ErrorDialog";
 import ErrorBoundary from "~/components/ErrorBoundary/ErrorBoundary";
+import ScrollToTop from "~/components/ScrollToTop/ScrollToTop";
 
 // Website pages (scenes)
 import Home from "~/scenes/Home/Home";
@@ -56,7 +57,7 @@ library.add(
 
 const isValidBrowser =
   typeof Promise !== "undefined" &&
-  Promise.toString().indexOf("[native code]") !== -1 && 
+  Promise.toString().indexOf("[native code]") !== -1 &&
   typeof Promise.prototype.finally !== "undefined";
 
 let SiteRouter;
@@ -65,6 +66,7 @@ if (isValidBrowser) {
     return (
       <ErrorBoundary>
         <Router history={history}>
+          <ScrollToTop />
           <Header />
           <Switch>
             {/* Add trailing slash */}

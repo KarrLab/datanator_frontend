@@ -99,7 +99,7 @@ class Header extends Component {
               icon="horizontal-bar-chart"
               text="Stats"
             />
-          </Link>          
+          </Link>
           <Link to="/about/">
             <Button
               minimal="true"
