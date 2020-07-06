@@ -8,6 +8,9 @@ $color-accent-light: #ffd144; // 25% lighter
 $color-accent-lighter: #ffe182; // 50% lighter
 $color-accent-lightest: #fff0c0; // 75% lighter
 $color-secondary: #f37121;
+$color-secondary-light: #f59458; // 25% lighter
+$color-secondary-lighter: #f9b78f; // 50% lighter
+$color-secondary-lightest: #fcdbc7; // 75% lighter
 $color-white: #fff;
 $color-white-transparent: #ffffff80;
 $color-text: #333;
@@ -34,6 +37,9 @@ $color-shadow: #0006;
   accent-lighter: $color-accent-lighter;
   accent-lightest: $color-accent-lightest;
   secondary: $color-secondary;
+  secondary-light: $color-secondary-light;
+  secondary-lighter: $color-secondary-lighter;
+  secondary-lightest: $color-secondary-lightest;
   white: $color-white;
   white-transparent: $color-white-transparent;
   text: $color-text;

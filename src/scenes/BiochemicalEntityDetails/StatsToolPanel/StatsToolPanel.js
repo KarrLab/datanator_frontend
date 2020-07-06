@@ -40,6 +40,15 @@ class StatsToolPanel extends Component {
         min: null,
         max: null,
       },
+      filtered: {
+        values: null,
+        count: null,
+        mean: null,
+        median: null,
+        stdDev: null,
+        min: null,
+        max: null,
+      },
       selected: {
         values: null,
         count: null,
@@ -117,15 +126,18 @@ class StatsToolPanel extends Component {
   }
 
   updateSelectedStats(event) {
-    const dataPoints = [];
+    const filteredDataPoints = [];
+    const selectedDataPoints = [];
     event.api.forEachNodeAfterFilter((node) => {
+      filteredDataPoints.push(node.data);
       if (node.selected) {
-        dataPoints.push(node.data);
+        selectedDataPoints.push(node.data);
       }
     });
 
     this.setState({
-      selected: this.calcStats(dataPoints),
+      filtered: this.calcStats(filteredDataPoints),
+      selected: this.calcStats(selectedDataPoints),
     });
   }
 
@@ -188,6 +200,7 @@ class StatsToolPanel extends Component {
           <div className="biochemical-entity-scene-stats-tool-panel-plot">
             <MeasurementsBoxScatterPlot
               all={this.state.all.values}
+              filtered={this.state.filtered.values}
               selected={this.state.selected.values}
             />
           </div>
@@ -197,36 +210,43 @@ class StatsToolPanel extends Component {
               <tr>
                 <th></th>
                 <th scope="col">All</th>
+                <th scope="col">Filtered</th>
                 <th scope="col">Selected</th>
               </tr>
               <tr>
                 <th scope="row">Count</th>
                 <td>{this.state.all.count}</td>
+                <td>{this.state.filtered.count}</td>
                 <td>{this.state.selected.count}</td>
               </tr>
               <tr>
                 <th scope="row">Mean</th>
                 <td>{this.state.all.mean}</td>
+                <td>{this.state.filtered.mean}</td>
                 <td>{this.state.selected.mean}</td>
               </tr>
               <tr>
                 <th scope="row">Median</th>
                 <td>{this.state.all.median}</td>
+                <td>{this.state.filtered.median}</td>
                 <td>{this.state.selected.median}</td>
               </tr>
               <tr>
                 <th scope="row">Std dev</th>
                 <td>{this.state.all.stdDev}</td>
+                <td>{this.state.filtered.stdDev}</td>
                 <td>{this.state.selected.stdDev}</td>
               </tr>
               <tr>
                 <th scope="row">Min</th>
                 <td>{this.state.all.min}</td>
+                <td>{this.state.filtered.min}</td>
                 <td>{this.state.selected.min}</td>
               </tr>
               <tr>
                 <th scope="row">Max</th>
                 <td>{this.state.all.max}</td>
+                <td>{this.state.filtered.max}</td>
                 <td>{this.state.selected.max}</td>
               </tr>
             </tbody>
