@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ScrollableAnchor from "react-scrollable-anchor";
+import { Link } from "react-router-dom";
 
 import "./Help.scss";
 
@@ -10,6 +11,143 @@ class Faq extends Component {
         <div className="content-block section">
           <h2 className="content-block-heading">Frequently asked questions</h2>
           <div className="content-block-content">
+            <div className="faq">
+              <div className="faq-q">How can I search for metabolites?</div>
+              <div className="faq-a">
+                <p className="no-bottom-margin">
+                  Metabolites can be searched via their names; synonmys;
+                  descriptions; BioCyc, CAS, Chemspider, ChEBI, KEGG, and
+                  PubChem ids; InChI and SMILES representations; and pathways
+                  (name and KEGG id). Below are several example queries for
+                  metabolites.
+                </p>
+
+                <ul className="no-top-margin">
+                  <li>
+                    Name: <Link to="/search/D-glucose/">D-glucose</Link>
+                  </li>
+                  <li>
+                    BioCyc id:{" "}
+                    <Link to="/search/ALPHA-GLUCOSE/">ALPHA-GLUCOSE</Link>
+                  </li>
+                  <li>
+                    CAS id: <Link to="/search/50-99-7/">50-99-7</Link>
+                  </li>
+                  <li>
+                    ChEBI id: <Link to="/search/17634/">17634</Link>
+                  </li>
+                  <li>
+                    Chemspider id: <Link to="/search/5589/">5589</Link>
+                  </li>
+                  <li>
+                    KEGG id: <Link to="/search/C00031/">C00031</Link>
+                  </li>
+                  <li>
+                    PubChem id: <Link to="/search/5793/">5793</Link>
+                  </li>
+                  <li>
+                    InChI:{" "}
+                    <Link to="/search/InChI%3D1S%2FC6H12O6%2Fc7-1-2-3%288%294%289%295%2810%296%2811%2912-2%2Fh2-11H%2C1H2%2Ft2-%2C3-%2C4%2B%2C5-%2C6%3F%2Fm1%2Fs1/">
+                      InChI=1S/C6H12O6/c7-1-2-3(8)4(9)5(10)6(11)12-2/h2-11H,1H2/t2-,3-,4+,5-,6?/m1/s1
+                    </Link>
+                  </li>
+                  <li>
+                    InChI key:{" "}
+                    <Link to="/search/WQZGKKKJIJFFOK-GASJEMHNSA-N/">
+                      WQZGKKKJIJFFOK-GASJEMHNSA-N
+                    </Link>
+                  </li>
+                  <li>
+                    SMILES:{" "}
+                    <Link to="/search/OC[C@H]1OC(O)[C@H](O)[C@@H](O)[C@@H]1O/">
+                      OC[C@H]1OC(O)[C@H](O)[C@@H](O)[C@@H]1O
+                    </Link>
+                  </li>
+                  <li>
+                    Pathway name:{" "}
+                    <Link to="/search/ABC transporters/">ABC transporters</Link>
+                  </li>
+                  <li>
+                    Pathway KEGG id: <Link to="/search/ec00030/">ec00030</Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="faq">
+              <div className="faq-q">
+                How can I search for classes of genes (KEGG Orthology groups)?
+              </div>
+              <div className="faq-a">
+                <p className="no-bottom-margin">
+                  Ortholog groups can be searched via their names; KEGG ids; and
+                  the names, symbols, NCBI and UniProt ids, and EC numbers of
+                  individual genes. Below are several example queries for genes.
+                </p>
+
+                <ul className="no-top-margin">
+                  <li>
+                    Name:{" "}
+                    <Link to="/search/Glucose 1-dehydrogenase/">
+                      Glucose 1-dehydrogenase
+                    </Link>
+                  </li>
+                  <li>
+                    KEGG id: <Link to="/search/K00034/">K00034</Link>
+                  </li>
+                  <li>
+                    Gene symbol: <Link to="/search/gdh/">gdh</Link>
+                  </li>
+                  <li>
+                    NCBI Gene id: <Link to="/search/938261/">938261</Link>
+                  </li>
+                  <li>
+                    UniProt gene id: <Link to="/search/P12310/">P12310</Link>
+                  </li>
+                  <li>
+                    EC number: <Link to="/search/1.1.1.47/">1.1.1.47</Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="faq">
+              <div className="faq-q">
+                How can I search for classes of reactions (Enzyme Classification
+                groups)?
+              </div>
+              <div className="faq-a">
+                <p className="no-bottom-margin">
+                  Enzyme Classification groups can be searched via their names,
+                  EC numbers, and reactants and products (names and InChI key
+                  representations). Below are several example queries for
+                  reactions.
+                </p>
+
+                <ul className="no-top-margin">
+                  <li>
+                    Name:{" "}
+                    <Link to="/search/Glucose-6-phosphatase/">
+                      Glucose-6-phosphatase
+                    </Link>
+                  </li>
+                  <li>
+                    EC number: <Link to="/search/3.1.3.9/">3.1.3.9</Link>
+                  </li>
+                  <li>
+                    Reactant/product names:{" "}
+                    <Link to="/search/D-glucose/">D-glucose</Link>
+                  </li>
+                  <li>
+                    Reactant/product InChI keys:{" "}
+                    <Link to="/search/WQZGKKKJIJFFOK-GASJEMHNSA-N/">
+                      WQZGKKKJIJFFOK-GASJEMHNSA-N
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
             <div className="faq">
               <div className="faq-q">
                 Why are RNAs and proteins grouped by{" "}

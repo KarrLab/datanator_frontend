@@ -141,7 +141,7 @@ class Home extends Component {
                     EC number: <Link to="/search/3.1.3.9/">3.1.3.9</Link>
                   </li>
                   <li>
-                    Substrates/products:{" "}
+                    Reactants/products:{" "}
                     <Link to="/search/D-glucose/">D-glucose</Link>
                   </li>
                 </ul>
