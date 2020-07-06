@@ -55,16 +55,21 @@
 
       .search-input .bp3-input {
         background: none;
-        border: 1px solid $color-primary-lightish;
+        border: 1px solid $color-text-lighter;
         color: $color-primary;
         height: 30px;
         left: -22px;
         width: calc(100% - 28px - 5px - 2 * 1px);
       }
 
+      .search-input .bp3-input:focus {
+        border-color: $color-primary;
+        background: rgba($color-primary, 0.25);
+      }
+
       .search-input .svg-inline--fa {
         height: 20px;
-        color: $color-primary-light;
+        color: $color-text-lighter;
       }
 
       .search-input.bp3-input-group > .bp3-icon,
@@ -83,6 +88,11 @@
 
       .search-submit .bp3-icon {
         color: $color-primary-light;
+      }
+
+      .search-submit:hover .bp3-icon,
+      .search-submit:focus .bp3-icon {
+        color: $color-primary;
       }
 
       .search-submit.bp3-disabled .bp3-icon {
