@@ -56,7 +56,8 @@ library.add(
 
 const isValidBrowser =
   typeof Promise !== "undefined" &&
-  Promise.toString().indexOf("[native code]") !== -1;
+  Promise.toString().indexOf("[native code]") !== -1 && 
+  typeof Promise.prototype.finally !== "undefined";
 
 let SiteRouter;
 if (isValidBrowser) {
