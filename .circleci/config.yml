@@ -25,6 +25,8 @@ commands:
             - npm-cache-{{ checksum "package-lock.json" }}
       - run:
           name: Install Dependencies
+          environment:
+            NODE_ENV: development
           command: |
             npm install
       - run:
@@ -185,7 +187,7 @@ commands:
             fi
 
             # Build production package
-            NODE_ENV=production npm run build
+            npm run build:prod
             if [[ $? -ne 0 ]]; then
               error=1;
               error_msgs+=("Production build failed")
