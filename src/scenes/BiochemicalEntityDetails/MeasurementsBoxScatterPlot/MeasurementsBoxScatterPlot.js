@@ -225,8 +225,10 @@ export default class MeasurementsBoxScatterPlot extends Component {
       nodes = this.props.selected.nodes;
     } else if (datasetIndex === 1) {
       nodes = this.props.filtered.nodes;
-    } else {
+    } else if (datasetIndex === 2) {
       nodes = this.props.all.nodes;
+    } else {
+      return null;
     }
     const node = nodes[iDatum];
 

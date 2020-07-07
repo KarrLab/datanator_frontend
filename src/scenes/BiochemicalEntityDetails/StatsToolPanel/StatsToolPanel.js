@@ -147,19 +147,21 @@ class StatsToolPanel extends Component {
   calcStats(nodes) {
     // get values
     const vals = [];
+    const nonNullVals = [];
     for (const node of nodes) {
       let val = node.data;
       for (const col of this.props.col) {
         if (val != null && val !== undefined && col in val) {
-          val = parseFloat(val[col]);
+          val = val[col];
         } else {
           val = null;
           break;
         }
       }
 
+      vals.push(val)
       if (val != null) {
-        vals.push(val);
+        nonNullVals.push(val);
       }
     }
 
@@ -175,16 +177,16 @@ class StatsToolPanel extends Component {
       max: null,
     };
 
-    if (vals.length > 0) {
-      stats.count = vals.length;
-      stats.mean = formatScientificNotation(mean(vals));
-      stats.median = formatScientificNotation(median(vals));
-      stats.stdDev = formatScientificNotation(std(vals));
-      stats.min = formatScientificNotation(min(vals));
-      stats.max = formatScientificNotation(max(vals));
+    if (nonNullVals.length > 0) {
+      stats.count = nonNullVals.length;
+      stats.mean = formatScientificNotation(mean(nonNullVals));
+      stats.median = formatScientificNotation(median(nonNullVals));
+      stats.stdDev = formatScientificNotation(std(nonNullVals));
+      stats.min = formatScientificNotation(min(nonNullVals));
+      stats.max = formatScientificNotation(max(nonNullVals));
     }
 
-    if (vals.length < 2) {
+    if (nonNullVals.length < 2) {
       stats.stdDev = null;
     }
 
