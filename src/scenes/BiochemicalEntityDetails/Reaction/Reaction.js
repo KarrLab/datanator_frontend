@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { HashLink } from "react-router-hash-link";
+import { scrollTo } from "~/utils/utils";
 import { MetadataSection } from "./MetadataSection";
 import { RateConstantsDataTable } from "./RateConstantsDataTable";
 import Error404 from "~/scenes/Error404/Error404";
@@ -60,11 +62,15 @@ export default class Reaction extends Component {
                     {this.state.metadata &&
                       this.state.metadata.metadataSections.map((section) => (
                         <li key={section.id}>
-                          <a href={"#" + section.id}>{section.title}</a>
+                          <HashLink scroll={scrollTo} to={"#" + section.id}>
+                            {section.title}
+                          </HashLink>
                         </li>
                       ))}
                     <li>
-                      <a href="#rate-constants">Rate constants</a>
+                      <HashLink scroll={scrollTo} to="#rate-constants">
+                        Rate constants
+                      </HashLink>
                     </li>
                   </ul>
                 </div>

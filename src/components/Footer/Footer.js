@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
+import { scrollTo } from "~/utils/utils";
 import "./Footer.scss";
 
 export default class Footer extends Component {
@@ -22,7 +24,9 @@ export default class Footer extends Component {
           </a>
         </span>
         <span className="footer-item">
-          <Link to="/help/#tutorial">Getting started</Link>
+          <HashLink scroll={scrollTo} to="/help/#tutorial">
+            Getting started
+          </HashLink>
         </span>
         <span className="footer-item">
           <Link to="/help/">Help</Link>

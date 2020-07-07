@@ -52,9 +52,7 @@ describe("Common components", function () {
     cy.get(".header-component .logo").click();
     cy.location("pathname").should("equal", "/");
 
-    cy.window()
-      .its("cypressHistory")
-      .invoke("push", "/" + route + "/" + entity + "/" + organism + "/");
+    cy.visit("/" + route + "/" + entity + "/" + organism + "/");
     cy.wait("@getData");
     cy.get(".dialog-message-container span")
       .first()

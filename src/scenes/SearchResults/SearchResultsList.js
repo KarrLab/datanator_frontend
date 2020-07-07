@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
-import ScrollableAnchor from "react-scrollable-anchor";
 import { Link } from "react-router-dom";
 import { getDataFromApi, genApiErrorHandler } from "~/services/RestApi";
 import axios from "axios";
@@ -140,43 +139,41 @@ class SearchResultsList extends Component {
     const numMore = Math.min(pageSize, numResults - pageSize * this.pageCount);
 
     return (
-      <ScrollableAnchor id={this.props["html-anchor-id"]}>
-        <div className="content-block section">
-          <h2 className="content-block-heading">
-            {this.props.title}
-            {this.state.results
-              ? " (" + this.state.results.length + " of " + numResults + ")"
-              : ""}
-          </h2>
-          <div className="content-block-content">
-            {results == null && <div className="loader"></div>}
+      <div className="content-block section" id={this.props["html-anchor-id"]}>
+        <h2 className="content-block-heading">
+          {this.props.title}
+          {this.state.results
+            ? " (" + this.state.results.length + " of " + numResults + ")"
+            : ""}
+        </h2>
+        <div className="content-block-content">
+          {results == null && <div className="loader"></div>}
 
-            {results != null && (
-              <div>
-                {results.length > 0 && (
-                  <ul className="search-results-list">{results}</ul>
-                )}
+          {results != null && (
+            <div>
+              {results.length > 0 && (
+                <ul className="search-results-list">{results}</ul>
+              )}
 
-                {results.length === 0 && (
-                  <p className="no-search-results">No results found.</p>
-                )}
+              {results.length === 0 && (
+                <p className="no-search-results">No results found.</p>
+              )}
 
-                {results.length > 0 && numMore > 0 && (
-                  <button
-                    className="more-search-results-button"
-                    type="button"
-                    onClick={() => {
-                      this.fetchResults();
-                    }}
-                  >
-                    Load {numMore} more of {numResults}
-                  </button>
-                )}
-              </div>
-            )}
-          </div>
+              {results.length > 0 && numMore > 0 && (
+                <button
+                  className="more-search-results-button"
+                  type="button"
+                  onClick={() => {
+                    this.fetchResults();
+                  }}
+                >
+                  Load {numMore} more of {numResults}
+                </button>
+              )}
+            </div>
+          )}
         </div>
-      </ScrollableAnchor>
+      </div>
     );
   }
 }

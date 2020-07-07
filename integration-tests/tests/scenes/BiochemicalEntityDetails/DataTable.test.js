@@ -14,9 +14,8 @@ describe("DataTable", function () {
     });
 
     // scroll to concentration data
-    cy.window()
-      .its("cypressHistory")
-      .invoke("push", url + "#concentration");
+    // cy.get(".table-of-contents ul").first().find("li").last().find("a").click();
+    cy.scrollTo("bottom");
     cy.get("#concentration .ag-root .ag-header-row")
       .find(".ag-header-cell")
       .first()
@@ -48,16 +47,7 @@ describe("DataTable", function () {
     // });
 
     // navigate to new page, back, to home, back
-    cy.window()
-      .its("cypressHistory")
-      .invoke("push", "/" + route + "/" + entity + "/" + "Esperiana esperi");
-    cy.window()
-      .its("cypressHistory")
-      .invoke("push", "/" + route + "/" + entity + "/" + organism);
-    cy.window().its("cypressHistory").invoke("push", "/");
-    cy.window()
-      .its("cypressHistory")
-      .invoke("push", "/" + route + "/" + entity + "/" + organism);
+    cy.visit("/" + route + "/" + entity + "/" + organism);
     cy.get(".page-title").should(($el) => {
       expect($el.text().startsWith("Metabolite: ")).to.be.true;
       expect($el.text().endsWith(" in " + organism)).to.be.true;

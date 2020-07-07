@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import ScrollableAnchor from "react-scrollable-anchor";
+import { HashLink } from "react-router-hash-link";
+import { scrollTo } from "~/utils/utils";
 import BarPlot from "./Plot/BarPlot";
 import FrequencyPlot from "./Plot/FrequencyPlot";
 import axios from "axios";
@@ -278,30 +279,46 @@ class Stats extends Component {
               <div className="content-block-content">
                 <ul>
                   <li>
-                    <a href="#data-type">Data types</a>
+                    <HashLink scroll={scrollTo} to="#data-type">
+                      Data types
+                    </HashLink>
                   </li>
                   <li>
-                    <a href="#taxa">Taxa</a>
+                    <HashLink scroll={scrollTo} to="#taxa">
+                      Taxa
+                    </HashLink>
                   </li>
                   <li>
-                    <a href="#temperature">Env. conditions</a>
+                    <HashLink scroll={scrollTo} to="#temperature">
+                      Env. conditions
+                    </HashLink>
                     <ul>
                       <li>
-                        <a href="#temperature">Temperature</a>
+                        <HashLink scroll={scrollTo} to="#temperature">
+                          Temperature
+                        </HashLink>
                       </li>
                       <li>
-                        <a href="#ph">pH</a>
+                        <HashLink scroll={scrollTo} to="#ph">
+                          pH
+                        </HashLink>
                       </li>
                     </ul>
                   </li>
                   <li>
-                    <a href="#immediate-source">Sources</a>
+                    <HashLink scroll={scrollTo} to="#immediate-source">
+                      Sources
+                    </HashLink>
                     <ul>
                       <li>
-                        <a href="#immediate-source">Immediate</a>
+                        <HashLink scroll={scrollTo} to="#immediate-source">
+                          Immediate
+                        </HashLink>
                       </li>
                       <li>
-                        <a href="#primary-source">Primary</a>
+                        <HashLink scroll={scrollTo} to="#primary-source">
+                          Primary
+                        </HashLink>
                       </li>
                     </ul>
                   </li>
@@ -312,101 +329,89 @@ class Stats extends Component {
 
           <div className="content-column">
             <div className="section-columns section-2-columns">
-              <ScrollableAnchor id="data-type">
-                <div className="section section-column">
-                  <h2 className="content-block-heading">
-                    Distribution of the types of the measurements
-                  </h2>
-                  <div className="content-block-content">
-                    <BarPlot
-                      data={this.state.dataType}
-                      yAxisLabel="Measurements"
-                    />
-                  </div>
+              <div className="section section-column" id="data-type">
+                <h2 className="content-block-heading">
+                  Distribution of the types of the measurements
+                </h2>
+                <div className="content-block-content">
+                  <BarPlot
+                    data={this.state.dataType}
+                    yAxisLabel="Measurements"
+                  />
                 </div>
-              </ScrollableAnchor>
+              </div>
 
-              <ScrollableAnchor id="taxa">
-                <div className="section section-column">
-                  <h2 className="content-block-heading">
-                    Taxonomic distribution of the measurements
-                  </h2>
-                  <div className="content-block-content">
-                    <BarPlot
-                      data={this.state.taxonomy}
-                      yAxisLabel="Measurements"
-                    />
-                  </div>
+              <div className="section section-column" id="taxa">
+                <h2 className="content-block-heading">
+                  Taxonomic distribution of the measurements
+                </h2>
+                <div className="content-block-content">
+                  <BarPlot
+                    data={this.state.taxonomy}
+                    yAxisLabel="Measurements"
+                  />
                 </div>
-              </ScrollableAnchor>
+              </div>
             </div>
 
             <div className="section-columns section-2-columns">
-              <ScrollableAnchor id="temperature">
-                <div className="section section-column">
-                  <h2 className="content-block-heading">
-                    Temperature distribution of the measurements
-                  </h2>
-                  <div className="content-block-content">
-                    <FrequencyPlot
-                      data={this.state.temperatureFrequency}
-                      xAxisLabel={"Temperature (˚C)"}
-                      xMin={10}
-                      xMax={80}
-                      yAxisLabel="Measurements"
-                      kernelBandwidth={0.5}
-                    />
-                  </div>
+              <div className="section section-column" id="temperature">
+                <h2 className="content-block-heading">
+                  Temperature distribution of the measurements
+                </h2>
+                <div className="content-block-content">
+                  <FrequencyPlot
+                    data={this.state.temperatureFrequency}
+                    xAxisLabel={"Temperature (˚C)"}
+                    xMin={10}
+                    xMax={80}
+                    yAxisLabel="Measurements"
+                    kernelBandwidth={0.5}
+                  />
                 </div>
-              </ScrollableAnchor>
+              </div>
 
-              <ScrollableAnchor id="ph">
-                <div className="section section-column">
-                  <h2 className="content-block-heading">
-                    pH distribution of the measurements
-                  </h2>
-                  <div className="content-block-content">
-                    <FrequencyPlot
-                      data={this.state.phFrequency}
-                      xAxisLabel={"pH"}
-                      xMin={1}
-                      xMax={14}
-                      yAxisLabel="Measurements"
-                      kernelBandwidth={0.5}
-                    />
-                  </div>
+              <div className="section section-column" id="ph">
+                <h2 className="content-block-heading">
+                  pH distribution of the measurements
+                </h2>
+                <div className="content-block-content">
+                  <FrequencyPlot
+                    data={this.state.phFrequency}
+                    xAxisLabel={"pH"}
+                    xMin={1}
+                    xMax={14}
+                    yAxisLabel="Measurements"
+                    kernelBandwidth={0.5}
+                  />
                 </div>
-              </ScrollableAnchor>
+              </div>
             </div>
 
             <div className="section-columns section-2-columns">
-              <ScrollableAnchor id="immediate-source">
-                <div className="section section-column">
-                  <h2 className="content-block-heading">
-                    Immediate sources of the measurements
-                  </h2>
-                  <div className="content-block-content">
-                    <BarPlot
-                      data={this.state.dataSource}
-                      yAxisLabel="Measurements"
-                    />
-                  </div>
+              <div className="section section-column" id="immediate-source">
+                <h2 className="content-block-heading">
+                  Immediate sources of the measurements
+                </h2>
+                <div className="content-block-content">
+                  <BarPlot
+                    data={this.state.dataSource}
+                    yAxisLabel="Measurements"
+                  />
                 </div>
-              </ScrollableAnchor>
+              </div>
 
-              <ScrollableAnchor id="primary-source">
-                <div className="section section-column">
-                  <h2 className="content-block-heading">
-                    Number of primary sources for each type of data
-                  </h2>
-                  <div className="content-block-content">
-                    <BarPlot
-                      data={this.state.journalByDataType}
-                      yAxisLabel="Articles"
-                    />
-                  </div>
+              <div className="section section-column" id="primary-source">
+                <h2 className="content-block-heading">
+                  Number of primary sources for each type of data
+                </h2>
+                <div className="content-block-content">
+                  <BarPlot
+                    data={this.state.journalByDataType}
+                    yAxisLabel="Articles"
+                  />
                 </div>
-              </ScrollableAnchor>
+              </div>
             </div>
           </div>
         </div>

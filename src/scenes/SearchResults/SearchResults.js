@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router";
+import { HashLink } from "react-router-hash-link";
+import { scrollTo } from "~/utils/utils";
 import PropTypes from "prop-types";
 import { parseHistoryLocationPathname } from "~/utils/utils";
 import MetaboliteSearchResultsList from "./MetaboliteSearchResultsList";
@@ -62,13 +64,19 @@ class SearchResults extends Component {
               <div className="content-block-content">
                 <ul>
                   <li>
-                    <a href="#metabolites">{"Metabolites"}</a>
+                    <HashLink scroll={scrollTo} to="#metabolites">
+                      {"Metabolites"}
+                    </HashLink>
                   </li>
                   <li>
-                    <a href="#genes">{"Genes"}</a>
+                    <HashLink scroll={scrollTo} to="#genes">
+                      {"Genes"}
+                    </HashLink>
                   </li>
                   <li>
-                    <a href="#reactions">{"Reactions"}</a>
+                    <HashLink scroll={scrollTo} to="#reactions">
+                      {"Reactions"}
+                    </HashLink>
                   </li>
                 </ul>
               </div>

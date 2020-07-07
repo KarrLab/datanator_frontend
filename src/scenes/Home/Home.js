@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
+import { scrollTo } from "~/utils/utils";
 
 import SearchForm from "~/components/SearchForm/SearchForm";
 import LazyLoad from "react-lazyload";
@@ -593,9 +595,12 @@ class Home extends Component {
                       reaction)
                     </div>
                     <div className="vertical-workflow-el-description">
-                      Use the search form at the <a href="#top">top</a> to
-                      search for measurements of a metabolite, RNA, protein, or
-                      reaction relevant to a specific organism.
+                      Use the search form at the{" "}
+                      <HashLink scroll={scrollTo} to="#top">
+                        top
+                      </HashLink>{" "}
+                      to search for measurements of a metabolite, RNA, protein,
+                      or reaction relevant to a specific organism.
                     </div>
                   </div>
                 </div>

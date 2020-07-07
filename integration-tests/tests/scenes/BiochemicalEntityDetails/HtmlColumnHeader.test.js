@@ -6,12 +6,12 @@ describe("HtmlColumnHeader", function () {
     const entity =
       "YSYKRGRSMLTJNL-KFQCIAAJSA-N-->PSXWNITXWWECNY-UCBTUHGZSA-N,XLYOFNOQVPJJNP-UHFFFAOYSA-N"; // DTDP-glucose 4,6-dehydratase
     const url = "/" + route + "/" + entity + "/";
-    const dataContainerId = "rate-constants";
+    const dataContainerId = "#rate-constants";
 
     cy.visit(url);
 
     // check text rendered correctly
-    cy.get("#" + dataContainerId + " .ag-root .ag-header-row")
+    cy.get(dataContainerId + " .ag-root .ag-header-row")
       .find(".ag-header-cell")
       .first()
       .find(".ag-header-cell-text")
@@ -21,7 +21,7 @@ describe("HtmlColumnHeader", function () {
     // check sorts
     function getHeaderCellLabelContainer() {
       return cy
-        .get("#" + dataContainerId + " .ag-root .ag-header-row")
+        .get(dataContainerId + " .ag-root .ag-header-row")
         .find(".ag-header-cell")
         .first()
         .find(".ag-cell-label-container");
@@ -29,7 +29,7 @@ describe("HtmlColumnHeader", function () {
 
     function getHeaderCellLabel() {
       return cy
-        .get("#" + dataContainerId + " .ag-root .ag-header-row")
+        .get(dataContainerId + " .ag-root .ag-header-row")
         .find(".ag-header-cell")
         .first()
         .find(".ag-cell-label-container")
@@ -38,7 +38,7 @@ describe("HtmlColumnHeader", function () {
 
     function getAscIcon() {
       return cy
-        .get("#" + dataContainerId + " .ag-root .ag-header-row")
+        .get(dataContainerId + " .ag-root .ag-header-row")
         .find(".ag-header-cell")
         .first()
         .find(".ag-cell-label-container")
@@ -47,7 +47,7 @@ describe("HtmlColumnHeader", function () {
 
     function getDescIcon() {
       return cy
-        .get("#" + dataContainerId + " .ag-root .ag-header-row")
+        .get(dataContainerId + " .ag-root .ag-header-row")
         .find(".ag-header-cell")
         .first()
         .find(".ag-cell-label-container")

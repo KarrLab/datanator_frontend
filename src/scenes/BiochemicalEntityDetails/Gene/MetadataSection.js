@@ -321,9 +321,9 @@ class MetadataSection extends Component {
     const sections = [];
 
     sections.push({
-        id: "id",
-        title: "Id",
-        content: query,
+      id: "id",
+      title: "Id",
+      content: query,
     });
 
     if (processedData.descriptionUrl) {

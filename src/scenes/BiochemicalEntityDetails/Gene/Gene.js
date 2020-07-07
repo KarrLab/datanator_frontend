@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { HashLink } from "react-router-hash-link";
+import { scrollTo } from "~/utils/utils";
 import { MetadataSection } from "./MetadataSection";
 import { RnaModificationDataTable } from "./RnaModificationDataTable";
 import { RnaHalfLifeDataTable } from "./RnaHalfLifeDataTable";
@@ -74,14 +76,20 @@ class Gene extends Component {
                       this.state.metadata.metadataSections &&
                       this.state.metadata.metadataSections.map((section) => (
                         <li key={section.id}>
-                          <a href={"#" + section.id}>{section.title}</a>
+                          <HashLink scroll={scrollTo} to={"#" + section.id}>
+                            {section.title}
+                          </HashLink>
                         </li>
                       ))}
                     <li key="rna-half-life">
-                      <a href="#rna-half-life">RNA half-life</a>
+                      <HashLink scroll={scrollTo} to="#rna-half-life">
+                        RNA half-life
+                      </HashLink>
                     </li>
                     <li key="protein-abundance">
-                      <a href="#protein-abundance">Protein abundance</a>
+                      <HashLink scroll={scrollTo} to="#protein-abundance">
+                        Protein abundance
+                      </HashLink>
                     </li>
                   </ul>
                 </div>

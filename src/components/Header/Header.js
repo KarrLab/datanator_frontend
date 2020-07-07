@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
-import ScrollableAnchor from "react-scrollable-anchor";
 import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
+import { scrollTo } from "~/utils/utils";
 import { Button } from "@blueprintjs/core";
 import { parseHistoryLocationPathname } from "~/utils/utils";
 
@@ -53,65 +54,63 @@ class Header extends Component {
     }
 
     return (
-      <ScrollableAnchor id="top">
-        <div className="header-component">
-          <Link to="/" className="logo-title-container">
-            <Logo />
-            <div className="titles">
-              <div className="title">Datanator</div>
-              <div className="subtitle">Data for modeling cells</div>
-            </div>
-          </Link>
-
-          <div className={"search-container" + (showSearchForm ? "" : " hide")}>
-            <SearchForm />
+      <div className="header-component" id="top">
+        <Link to="/" className="logo-title-container">
+          <Logo />
+          <div className="titles">
+            <div className="title">Datanator</div>
+            <div className="subtitle">Data for modeling cells</div>
           </div>
+        </Link>
 
-          <div className="page-links">
+        <div className={"search-container" + (showSearchForm ? "" : " hide")}>
+          <SearchForm />
+        </div>
+
+        <div className="page-links">
+          <Button
+            minimal="true"
+            className="icon-button page-link-search"
+            icon={searchIcon}
+            text={searchText}
+            onClick={() =>
+              this.setState({ showSearchForm: !this.state.showSearchForm })
+            }
+          />
+          <HashLink scroll={scrollTo} to="/help/#tutorial">
             <Button
               minimal="true"
-              className="icon-button page-link-search"
-              icon={searchIcon}
-              text={searchText}
-              onClick={() =>
-                this.setState({ showSearchForm: !this.state.showSearchForm })
-              }
+              className="icon-button"
+              icon="star"
+              text="Getting started"
             />
-            <Link to="/help/#tutorial">
-              <Button
-                minimal="true"
-                className="icon-button"
-                icon="star"
-                text="Getting started"
-              />
-            </Link>
-            <Link to="/help/">
-              <Button
-                minimal="true"
-                className="icon-button"
-                icon="help"
-                text="Help"
-              />
-            </Link>
-            <Link to="/stats/">
-              <Button
-                minimal="true"
-                className="icon-button"
-                icon="horizontal-bar-chart"
-                text="Stats"
-              />
-            </Link>
-            <Link to="/about/">
-              <Button
-                minimal="true"
-                className="icon-button"
-                icon="info-sign"
-                text="About"
-              />
-            </Link>
-          </div>
+          </HashLink>
+          <Link to="/help/">
+            <Button
+              minimal="true"
+              className="icon-button"
+              icon="help"
+              text="Help"
+            />
+          </Link>
+          <Link to="/stats/">
+            <Button
+              minimal="true"
+              className="icon-button"
+              icon="horizontal-bar-chart"
+              text="Stats"
+            />
+          </Link>
+          <Link to="/about/">
+            <Button
+              minimal="true"
+              className="icon-button"
+              icon="info-sign"
+              text="About"
+            />
+          </Link>
         </div>
-      </ScrollableAnchor>
+      </div>
     );
   }
 }

@@ -159,7 +159,7 @@ class StatsToolPanel extends Component {
         }
       }
 
-      vals.push(val)
+      vals.push(val);
       if (val != null) {
         nonNullVals.push(val);
       }

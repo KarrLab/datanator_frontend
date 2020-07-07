@@ -5,7 +5,7 @@ describe("NumericCellRenderer", function () {
     const route = "metabolite";
     const entity = "YSYKRGRSMLTJNL-URARBOGNSA-L"; // TDP-Glucose
     const url = "/" + route + "/" + entity + "/";
-    const dataContainerId = "concentration";
+    const dataContainerId = "#concentration";
 
     cy.server();
     cy.fixture("metabolite-concentrations-" + entity).then((json) => {
@@ -24,14 +24,13 @@ describe("NumericCellRenderer", function () {
 
     function getRows() {
       return cy.get(
-        "#" +
-          dataContainerId +
+        dataContainerId +
           " .ag-root .ag-center-cols-clipper .ag-row .ag-cell-value[aria-colindex='1'] .ag-numeric-cell"
       );
     }
 
     cy.get(
-      "#" + dataContainerId + " .ag-root .ag-center-cols-clipper .ag-row"
+      dataContainerId + " .ag-root .ag-center-cols-clipper .ag-row"
     ).should("have.length", 92);
 
     getRows().should(($cells) => {

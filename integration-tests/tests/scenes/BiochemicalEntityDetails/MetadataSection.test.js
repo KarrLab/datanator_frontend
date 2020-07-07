@@ -11,27 +11,19 @@ describe("MetadataSection", function () {
       expect($el.text().startsWith("Metabolite: ")).to.be.true;
     });
 
-    cy.window()
-      .its("cypressHistory")
-      .invoke("push", "/" + route + "/" + entity + "#description");
+    cy.visit("/" + route + "/" + entity + "#description");
     cy.get(".page-title").should(($el) => {
       expect($el.text().startsWith("Metabolite: ")).to.be.true;
     });
 
-    cy.window()
-      .its("cypressHistory")
-      .invoke("push", "/" + route + "/" + entity + "/" + organism);
+    cy.visit("/" + route + "/" + entity + "/" + organism);
     cy.get(".page-title").should(($el) => {
       expect($el.text().startsWith("Metabolite: ")).to.be.true;
       expect($el.text().endsWith(" in " + organism)).to.be.true;
     });
 
-    cy.window()
-      .its("cypressHistory")
-      .invoke("push", "/" + route + "/" + entity);
-    cy.window()
-      .its("cypressHistory")
-      .invoke("push", "/" + route + "/" + entity + "/" + organism);
+    cy.visit("/" + route + "/" + entity);
+    cy.visit("/" + route + "/" + entity + "/" + organism);
     cy.get(".page-title").should(($el) => {
       expect($el.text().startsWith("Metabolite: ")).to.be.true;
       expect($el.text().endsWith(" in " + organism)).to.be.true;

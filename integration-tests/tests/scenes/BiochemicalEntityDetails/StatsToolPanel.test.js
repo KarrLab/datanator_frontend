@@ -3,20 +3,20 @@
 describe("StatsToolPanel", function () {
   it("Display stats of selected rows correctly", function () {
     const route = "metabolite";
-    const entity = "NBSCHQHZLSJFNQ-VFUOTHLCSA-N"; // Beta-D-Glucose 6-phosphate
+    const entity = "WQZGKKKJIJFFOK-GASJEMHNSA-N"; // D-Glucose
     const url = "/" + route + "/" + entity + "/";
-    const dataContainerId = "concentration";
+    const dataContainerId = "#concentration";
 
     cy.visit(url);
 
     // open stats tool panel
-    cy.get("#" + dataContainerId + " .biochemical-entity-data-table-tool-panel")
+    cy.get(dataContainerId + " .biochemical-entity-data-table-tool-panel")
       .eq(2)
       .click();
 
     // select some rows
     cy.get(
-      "#" + dataContainerId + " .ag-root .ag-center-cols-container .ag-row"
+      dataContainerId + " .ag-root .ag-center-cols-container .ag-row"
     ).each(($row) => {
       cy.wrap($row).find(".ag-selection-checkbox").click();
     });
