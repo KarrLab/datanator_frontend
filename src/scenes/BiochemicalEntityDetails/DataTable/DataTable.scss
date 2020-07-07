@@ -61,15 +61,15 @@
   margin-right: 1rem;
   border: 1px solid #bdc3c7;
 
-  .biochemical-entity-data-table-tool-panel.MuiExpansionPanel-root {
+  .biochemical-entity-data-table-tool-panel.MuiAccordion-root {
     border-bottom: 1px solid #bdc3c7;
   }
 
-  .MuiExpansionPanel-root::before {
+  .MuiAccordion-root::before {
     background: none;
   }
 
-  .MuiExpansionPanel-root.Mui-expanded {
+  .MuiAccordion-root.Mui-expanded {
     margin-top: 0;
     margin-bottom: 0;
 
@@ -78,29 +78,29 @@
     }
   }
 
-  .MuiExpansionPanelSummary-root {
+  .MuiAccordionSummary-root {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
   }
 
   .biochemical-entity-data-table-tool-panel {
-    > .MuiExpansionPanelSummary-root {
+    > .MuiAccordionSummary-root {
       background: $color-button-hover;
     }
   }
 
-  .MuiExpansionPanelSummary-root,
-  .MuiExpansionPanelSummary-root.Mui-expanded {
+  .MuiAccordionSummary-root,
+  .MuiAccordionSummary-root.Mui-expanded {
     min-height: 32px;
   }
 
-  .MuiExpansionPanelSummary-content,
-  .MuiExpansionPanelSummary-content.Mui-expanded {
+  .MuiAccordionSummary-content,
+  .MuiAccordionSummary-content.Mui-expanded {
     margin-top: 0.25rem;
     margin-bottom: 0.25rem;
   }
 
-  .MuiExpansionPanelDetails-root {
+  .MuiAccordionDetails-root {
     border-top: 1px solid #bdc3c766;
     padding: 0;
   }

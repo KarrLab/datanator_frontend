@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import Accordion from "@material-ui/core/Accordion";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
+import AccordionDetails from "@material-ui/core/AccordionDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 class ToolPanels extends Component {
@@ -72,22 +72,22 @@ class ToolPanels extends Component {
       <div className="biochemical-entity-data-table-tool-panels">
         {this.state.panels.map((panel) => {
           return (
-            <ExpansionPanel
+            <Accordion
               key={panel.id}
               className="biochemical-entity-data-table-tool-panel"
               defaultExpanded={panel.expanded}
             >
-              <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 {panel.name}
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
+              </AccordionSummary>
+              <AccordionDetails>
                 <panel.type
                   api={this.state.agGridReact.api}
                   agGridReact={this.state.agGridReact}
                   {...panel.params}
                 />
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
+              </AccordionDetails>
+            </Accordion>
           );
         })}
       </div>

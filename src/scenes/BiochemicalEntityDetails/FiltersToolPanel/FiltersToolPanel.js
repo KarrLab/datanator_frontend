@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import Accordion from "@material-ui/core/Accordion";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
+import AccordionDetails from "@material-ui/core/AccordionDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import "./FiltersToolPanel.scss";
@@ -131,15 +131,15 @@ class FiltersToolPanel extends Component {
         {this.state.filters.map((filter) => {
           const FilterType = filterTypes[filter.colDef.filter];
           return (
-            <ExpansionPanel
+            <Accordion
               key={filter.colId}
               square={true}
               className="biochemical-entity-scene-filter-container"
             >
-              <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 {filter.name}
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails>
+              </AccordionSummary>
+              <AccordionDetails>
                 <FilterType
                   history={this.props.history}
                   api={this.props.api}
@@ -153,8 +153,8 @@ class FiltersToolPanel extends Component {
                   )}
                   {...filter.colDef.filterParams}
                 />
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
+              </AccordionDetails>
+            </Accordion>
           );
         })}
       </div>

@@ -3,21 +3,21 @@
 .biochemical-entity-scene-filters-tool-panel {
   width: 100%;
 
-  .MuiExpansionPanelSummary-content {
+  .MuiAccordionSummary-content {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  .MuiExpansionPanel-root {
+  .MuiAccordion-root {
     border-bottom: 1px solid #bdc3c7;
   }
 
-  .MuiExpansionPanel-root:last-child {
+  .MuiAccordion-root:last-child {
     border-bottom: none;
   }
 
-  .MuiExpansionPanelSummary-root {
+  .MuiAccordionSummary-root {
     padding-left: 0.5rem;
     padding-right: 0.125rem;
   }
