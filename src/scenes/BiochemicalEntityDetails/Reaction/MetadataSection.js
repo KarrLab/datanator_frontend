@@ -144,6 +144,12 @@ class MetadataSection extends Component {
   static formatMetadata(query, organism, processedData) {
     const sections = [];
 
+    sections.push({
+        id: "id",
+        title: "Id",
+        content: query,
+    });
+
     const partLinks = [];
     MetadataSection.processRelatedMetabolites(
       partLinks,

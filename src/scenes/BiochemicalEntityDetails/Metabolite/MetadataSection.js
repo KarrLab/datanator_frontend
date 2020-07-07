@@ -250,6 +250,13 @@ class MetadataSection extends Component {
 
   static formatMetadata(query, organism, processedData) {
     const sections = [];
+
+    sections.push({
+        id: "id",
+        title: "Id",
+        content: query,
+    });
+
     if (processedData.description) {
       let structure = null;
       if (processedData.chemistry.smiles) {
