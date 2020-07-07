@@ -17,7 +17,8 @@ function formatScientificNotation(
   sciMagDownThresh = 1,
   sciDecimals = 1,
   fixedDeminals = 1,
-  minFixedDecimals = 0
+  minFixedDecimals = 0,
+  html = true
 ) {
   if (value == null || isNaN(value) || value === undefined) return null;
 
@@ -31,11 +32,15 @@ function formatScientificNotation(
       absValue < Math.pow(10, -sciMagDownThresh))
   ) {
     const sciVal = ((sign * absValue) / Math.pow(10, exp)).toFixed(sciDecimals);
-    return (
-      <span className="sci-notation">
-        {sciVal}&thinsp;&times;&thinsp;10<sup>{exp}</sup>
-      </span>
-    );
+    if (html) {
+      return (
+        <span className="sci-notation">
+          {sciVal}&thinsp;&times;&thinsp;10<sup>{exp}</sup>
+        </span>
+      );
+    } else {
+      return sciVal + " × 10^" + exp;
+    }
   } else if (absValue > 1 || absValue === 0) {
     return value.toFixed(fixedDeminals);
   } else {

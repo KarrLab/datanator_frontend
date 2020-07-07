@@ -115,7 +115,7 @@ class StatsToolPanel extends Component {
   updateStats(event) {
     const dataPoints = [];
     event.api.forEachNode((node) => {
-      dataPoints.push(node.data);
+      dataPoints.push(node);
     });
 
     this.setState({
@@ -129,9 +129,9 @@ class StatsToolPanel extends Component {
     const filteredDataPoints = [];
     const selectedDataPoints = [];
     event.api.forEachNodeAfterFilter((node) => {
-      filteredDataPoints.push(node.data);
+      filteredDataPoints.push(node);
       if (node.selected) {
-        selectedDataPoints.push(node.data);
+        selectedDataPoints.push(node);
       }
     });
 
@@ -144,14 +144,14 @@ class StatsToolPanel extends Component {
   /**
    * Calculate the summary statistics
    */
-  calcStats(data) {
+  calcStats(nodes) {
     // get values
     const vals = [];
-    for (const datum of data) {
-      let val = datum;
+    for (const node of nodes) {
+      let val = node.data;
       for (const col of this.props.col) {
         if (val != null && val !== undefined && col in val) {
-          val = val[col];
+          val = parseFloat(val[col]);
         } else {
           val = null;
           break;
@@ -165,6 +165,7 @@ class StatsToolPanel extends Component {
 
     // calcalate statistics
     const stats = {
+      nodes: nodes,
       values: vals,
       count: null,
       mean: null,
@@ -199,9 +200,18 @@ class StatsToolPanel extends Component {
         <div className="biochemical-entity-scene-stats-tool-panel">
           <div className="biochemical-entity-scene-stats-tool-panel-plot">
             <MeasurementsBoxScatterPlot
-              all={this.state.all.values}
-              filtered={this.state.filtered.values}
-              selected={this.state.selected.values}
+              all={{
+                nodes: this.state.all.nodes,
+                values: this.state.all.values,
+              }}
+              filtered={{
+                nodes: this.state.filtered.nodes,
+                values: this.state.filtered.values,
+              }}
+              selected={{
+                nodes: this.state.selected.nodes,
+                values: this.state.selected.values,
+              }}
             />
           </div>
 

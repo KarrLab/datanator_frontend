@@ -16,6 +16,18 @@
       border-bottom-width: 0;
     }
 
+    .ag-row-selected {
+      background-color: $color-accent-lighter;
+    }
+
+    .ag-checkbox-input-wrapper.ag-checked::after {
+      color: $color-accent;
+    }
+
+    .ag-checkbox-input-wrapper:focus-within {
+      box-shadow: none;
+    }
+
     // right align numeric cells with check boxes
     .ag-numeric-cell {
       width: 100%;
@@ -39,6 +51,10 @@
         display: flex;
         align-items: center;
       }
+    }
+
+    .ag-cell-data-changed {
+      background-color: $color-primary-lighter !important;
     }
 
     .ag-sort-order {

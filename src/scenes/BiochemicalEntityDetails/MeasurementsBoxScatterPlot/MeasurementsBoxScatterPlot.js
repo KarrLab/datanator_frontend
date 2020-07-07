@@ -2,14 +2,24 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Chart from "chart.js";
 import "chartjs-chart-box-and-violin-plot/build/Chart.BoxPlot";
+import { formatScientificNotation } from "~/utils/utils";
 
 import * as colorPalette from "~/colors.scss";
 
 export default class MeasurementsBoxScatterPlot extends Component {
   static propTypes = {
-    all: PropTypes.array,
-    filtered: PropTypes.array,
-    selected: PropTypes.array,
+    all: PropTypes.shape({
+      nodes: PropTypes.array,
+      values: PropTypes.array,
+    }),
+    filtered: PropTypes.shape({
+      nodes: PropTypes.array,
+      values: PropTypes.array,
+    }),
+    selected: PropTypes.shape({
+      nodes: PropTypes.array,
+      values: PropTypes.array,
+    }),
   };
 
   static defaultProps = {
@@ -18,6 +28,11 @@ export default class MeasurementsBoxScatterPlot extends Component {
   };
 
   canvas = React.createRef();
+
+  constructor() {
+    super();
+    this.chartConfig = null;
+  }
 
   componentDidMount() {
     this.configChart();
@@ -28,7 +43,7 @@ export default class MeasurementsBoxScatterPlot extends Component {
   }
 
   configChart() {
-    let chartConfig = {
+    this.chartConfig = {
       type: "boxplot",
       data: {
         labels: ["All", "Filtered", "Selected"],
@@ -46,7 +61,6 @@ export default class MeasurementsBoxScatterPlot extends Component {
         ],
       },
       options: {
-        events: [],
         responsive: true,
         maintainAspectRatio: false,
         legend: {
@@ -76,11 +90,46 @@ export default class MeasurementsBoxScatterPlot extends Component {
             },
           ],
         },
+        tooltips: {
+          callbacks: {
+            title: function () {
+              return null;
+            },
+            boxplotLabel: (item) => {
+              const results = this.getDatum(item.datasetIndex, item.index);
+
+              if (results != null) {
+                const node = results.node;
+                node.gridApi.ensureNodeVisible(node);
+                node.gridApi.flashCells({
+                  rowNodes: [node],
+                  flashDelay: 1000,
+                  fadeDelay: 1000,
+                });
+
+                const value = results.value;
+                return formatScientificNotation(value, 1, 1, 1, 1, 0, false);
+              }
+            },
+          },
+          displayColors: false,
+        },
+        onClick: (evt, items) => {
+          if (evt.type === "click") {
+            for (const item of items) {
+              const results = this.getDatum(item._datasetIndex, item._index);
+              if (results) {
+                const node = results.node;
+                node.setSelected(true);
+              }
+            }
+          }
+        },
       },
     };
 
     // all measurements
-    let measurements = this.props.all || [];
+    let measurements = this.props.all.values || [];
     let dataForBoxPlot = measurements;
     let dataForScatterPlot = [];
     for (const measurement of measurements) {
@@ -89,12 +138,14 @@ export default class MeasurementsBoxScatterPlot extends Component {
         y: measurement,
       });
     }
-    chartConfig.data.datasets[0].data.push(dataForBoxPlot);
-    chartConfig.data.datasets[0].backgroundColor.push(
-      colorPalette["primary-light"]
+    this.chartConfig.data.datasets[0].data.push(dataForBoxPlot);
+    this.chartConfig.data.datasets[0].backgroundColor.push(
+      colorPalette["text-lighter"]
     );
-    chartConfig.data.datasets[0].borderColor.push(colorPalette["primary"]);
-    chartConfig.data.datasets.push({
+    this.chartConfig.data.datasets[0].borderColor.push(
+      colorPalette["text-light"]
+    );
+    this.chartConfig.data.datasets.push({
       borderColor: colorPalette["text-light"],
       borderWidth: 1,
       data: dataForScatterPlot,
@@ -103,23 +154,25 @@ export default class MeasurementsBoxScatterPlot extends Component {
     });
 
     // filtered measurements
-    if (this.props.filtered != null) {
-      let measurements = this.props.filtered || [];
+    if (this.props.filtered.values != null) {
+      let measurements = this.props.filtered.values || [];
       let dataForBoxPlot = measurements;
       let dataForScatterPlot = [];
       for (const measurement of measurements) {
         dataForScatterPlot.push({
           x: "Filtered",
-          y: parseFloat(measurement),
+          y: measurement,
         });
       }
 
-      chartConfig.data.datasets[0].data.push(dataForBoxPlot);
-      chartConfig.data.datasets[0].backgroundColor.push(
-        colorPalette["accent-light"]
+      this.chartConfig.data.datasets[0].data.push(dataForBoxPlot);
+      this.chartConfig.data.datasets[0].backgroundColor.push(
+        colorPalette["primary-light"]
       );
-      chartConfig.data.datasets[0].borderColor.push(colorPalette["accent"]);
-      chartConfig.data.datasets.push({
+      this.chartConfig.data.datasets[0].borderColor.push(
+        colorPalette["primary"]
+      );
+      this.chartConfig.data.datasets.push({
         borderColor: colorPalette["text-light"],
         borderWidth: 1,
         data: dataForScatterPlot,
@@ -129,23 +182,25 @@ export default class MeasurementsBoxScatterPlot extends Component {
     }
 
     // selected measurements
-    if (this.props.selected != null) {
-      let measurements = this.props.selected || [];
+    if (this.props.selected.values != null) {
+      let measurements = this.props.selected.values || [];
       let dataForBoxPlot = measurements;
       let dataForScatterPlot = [];
       for (const measurement of measurements) {
         dataForScatterPlot.push({
           x: "Selected",
-          y: parseFloat(measurement),
+          y: measurement,
         });
       }
 
-      chartConfig.data.datasets[0].data.push(dataForBoxPlot);
-      chartConfig.data.datasets[0].backgroundColor.push(
-        colorPalette["secondary-light"]
+      this.chartConfig.data.datasets[0].data.push(dataForBoxPlot);
+      this.chartConfig.data.datasets[0].backgroundColor.push(
+        colorPalette["accent-light"]
       );
-      chartConfig.data.datasets[0].borderColor.push(colorPalette["secondary"]);
-      chartConfig.data.datasets.push({
+      this.chartConfig.data.datasets[0].borderColor.push(
+        colorPalette["accent"]
+      );
+      this.chartConfig.data.datasets.push({
         borderColor: colorPalette["text-light"],
         borderWidth: 1,
         data: dataForScatterPlot,
@@ -156,7 +211,33 @@ export default class MeasurementsBoxScatterPlot extends Component {
 
     // build chart
     let canvasContext = this.canvas.current.getContext("2d");
-    new Chart(canvasContext, chartConfig);
+    new Chart(canvasContext, this.chartConfig);
+  }
+
+  getDatum(datasetIndex, index) {
+    const iDataSet = this.chartConfig.data.datasets.length - 1 - datasetIndex;
+    const iDatum = index;
+    const dataset = this.chartConfig.data.datasets[iDataSet].data;
+    const datum = dataset[iDatum];
+
+    let nodes;
+    if (datasetIndex === 0) {
+      nodes = this.props.selected.nodes;
+    } else if (datasetIndex === 1) {
+      nodes = this.props.filtered.nodes;
+    } else {
+      nodes = this.props.all.nodes;
+    }
+    const node = nodes[iDatum];
+
+    if (datum === undefined) {
+      return null;
+    } else {
+      return {
+        node: node,
+        value: datum.y,
+      };
+    }
   }
 
   render() {
