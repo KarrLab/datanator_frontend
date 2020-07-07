@@ -345,10 +345,10 @@ describe("Reaction data page", () => {
       processedMetadata
     );
 
-    expect(formattedMetadata[0].id).toEqual("description");
-    expect(formattedMetadata[0].title).toEqual("Description");
+    expect(formattedMetadata[1].id).toEqual("description");
+    expect(formattedMetadata[1].title).toEqual("Description");
 
-    const formattedMetadataWrapper = shallow(formattedMetadata[0].content);
+    const formattedMetadataWrapper = shallow(formattedMetadata[1].content);
 
     const correctListOfMetadata = [
       "Enzyme: Adenylate kinase",

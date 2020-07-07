@@ -151,10 +151,10 @@ describe("Gene data page", () => {
       processedMetadata
     );
 
-    expect(formattedMetadata[0].id).toEqual("description");
-    expect(formattedMetadata[0].title).toEqual("Description");
+    expect(formattedMetadata[1].id).toEqual("description");
+    expect(formattedMetadata[1].title).toEqual("Description");
 
-    const descriptionMetadataWrapper = shallow(formattedMetadata[0].content);
+    const descriptionMetadataWrapper = shallow(formattedMetadata[1].content);
 
     const description = getListDomElements(
       descriptionMetadataWrapper,

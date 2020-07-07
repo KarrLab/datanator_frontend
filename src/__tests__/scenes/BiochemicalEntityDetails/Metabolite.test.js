@@ -276,7 +276,7 @@ describe("Metabolite data page", () => {
     );
 
     let structure =
-      formattedMetadata[0].content.props.children[0].props.children.props
+      formattedMetadata[1].content.props.children[0].props.children.props
         .children.props.src;
     structure = structure.substring(0, structure.indexOf("image"));
     expect(structure).toEqual(
@@ -294,7 +294,7 @@ describe("Metabolite data page", () => {
     );
 
     let structureWithInchi =
-      formattedMetadataWithInchi[0].content.props.children[0].props.children
+      formattedMetadataWithInchi[1].content.props.children[0].props.children
         .props.children.props.src;
     structureWithInchi = structureWithInchi.substring(
       0,
