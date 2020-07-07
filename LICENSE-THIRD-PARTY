@@ -564,17 +564,17 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Sebastian McKenzie
 │  ├─ email: sebmck@gmail.com
 │  └─ licenseFile: @babel/types/LICENSE
-├─ @blueprintjs/core@3.28.2
+├─ @blueprintjs/core@3.29.0
 │  ├─ licenses: Apache-2.0
 │  ├─ repository: https://github.com/palantir/blueprint
 │  ├─ publisher: Palantir Technologies
 │  └─ licenseFile: @blueprintjs/core/LICENSE
-├─ @blueprintjs/icons@3.18.1
+├─ @blueprintjs/icons@3.19.0
 │  ├─ licenses: Apache-2.0
 │  ├─ repository: https://github.com/palantir/blueprint
 │  ├─ publisher: Palantir Technologies
 │  └─ licenseFile: @blueprintjs/icons/LICENSE
-├─ @blueprintjs/select@3.13.3
+├─ @blueprintjs/select@3.13.4
 │  ├─ licenses: Apache-2.0
 │  ├─ repository: https://github.com/palantir/blueprint
 │  ├─ publisher: Palantir Technologies
@@ -708,7 +708,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/jest
 │  └─ licenseFile: @jest/types/LICENSE
-├─ @material-ui/core@4.10.2
+├─ @material-ui/core@4.11.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/mui-org/material-ui
 │  ├─ publisher: Material-UI Team
@@ -922,7 +922,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  └─ licenseFile: @types/react-transition-group/LICENSE
-├─ @types/react@16.9.36
+├─ @types/react@16.9.41
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  └─ licenseFile: @types/react/LICENSE
@@ -1312,6 +1312,13 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: ljharb@gmail.com
 │  ├─ url: http://ljharb.codes
 │  └─ licenseFile: array.prototype.flat/LICENSE
+├─ array.prototype.flatmap@1.2.3
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/es-shims/Array.prototype.flatMap
+│  ├─ publisher: Jordan Harband
+│  ├─ email: ljharb@gmail.com
+│  ├─ url: http://ljharb.codes
+│  └─ licenseFile: array.prototype.flatmap/LICENSE
 ├─ arrify@1.0.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sindresorhus/arrify
@@ -2513,7 +2520,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jsakas/CSSStyleDeclaration
 │  └─ licenseFile: cssstyle/README.md
-├─ csstype@2.6.10
+├─ csstype@2.6.11
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/frenic/csstype
 │  ├─ publisher: Fredrik Nicol
@@ -3075,7 +3082,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Yannick Croissant
 │  ├─ email: yannick.croissant+npm@gmail.com
 │  └─ licenseFile: react-scripts/node_modules/eslint-plugin-react/LICENSE
-├─ eslint-plugin-react@7.20.0
+├─ eslint-plugin-react@7.20.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/yannickcr/eslint-plugin-react
 │  ├─ publisher: Yannick Croissant
@@ -3793,7 +3800,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/ReactTraining/history
 │  ├─ publisher: Michael Jackson
-│  └─ licenseFile: history/LICENSE
+│  └─ licenseFile: react-router/node_modules/history/LICENSE
 ├─ hmac-drbg@1.0.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/indutny/hmac-drbg
@@ -4836,6 +4843,11 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/evcohen/jsx-ast-utils
 │  ├─ publisher: Ethan Cohen
 │  └─ licenseFile: jsx-ast-utils/LICENSE.md
+├─ jsx-ast-utils@2.4.1
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/evcohen/jsx-ast-utils
+│  ├─ publisher: Ethan Cohen
+│  └─ licenseFile: eslint-plugin-react/node_modules/jsx-ast-utils/LICENSE.md
 ├─ kernel-smooth@0.2.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/Planeshifter/kernelSmoother.js
@@ -5133,7 +5145,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ publisher: Jon Schlinkert
 │  ├─ url: https://github.com/jonschlinkert
 │  └─ licenseFile: map-visit/LICENSE
-├─ mathjs@7.0.1
+├─ mathjs@7.0.2
 │  ├─ licenses: Apache-2.0
 │  ├─ repository: https://github.com/josdejong/mathjs
 │  ├─ publisher: Jos de Jong
@@ -5340,7 +5352,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: mail@substack.net
 │  ├─ url: http://substack.net
 │  └─ licenseFile: mkdirp/LICENSE
-├─ moment@2.26.0
+├─ moment@2.27.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/moment/moment
 │  ├─ publisher: Iskren Ivov Chernev
@@ -6816,7 +6828,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/react
 │  └─ licenseFile: react-is/LICENSE
-├─ react-lazyload@2.6.8
+├─ react-lazyload@3.0.0
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jasonslyvia/react-lazyload
 │  ├─ publisher: jasonslyvia
@@ -7287,7 +7299,7 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ repository: https://github.com/webpack-contrib/sass-loader
 │  ├─ publisher: J. Tangelder
 │  └─ licenseFile: sass-loader/LICENSE
-├─ sass@1.26.8
+├─ sass@1.26.9
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/sass/dart-sass
 │  ├─ publisher: Natalie Weizenbaum
@@ -8196,11 +8208,6 @@ The following is a list of the licenses of the third party dependencies of Datan
 │  ├─ email: mail@substack.net
 │  ├─ url: http://substack.net
 │  └─ licenseFile: typedarray/LICENSE
-├─ typescript@3.9.5
-│  ├─ licenses: Apache-2.0
-│  ├─ repository: https://github.com/Microsoft/TypeScript
-│  ├─ publisher: Microsoft Corp.
-│  └─ licenseFile: typescript/LICENSE.txt
 ├─ unicode-canonical-property-names-ecmascript@1.0.4
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/mathiasbynens/unicode-canonical-property-names-ecmascript
