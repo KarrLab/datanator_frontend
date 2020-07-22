@@ -24,7 +24,6 @@ The *Datanator* toolkit seeks to address these problems for biochemical modeling
 
 The *Datanator* toolkit is composed of the following packages:
 - [*Datanator*](https://github.com/KarrLab/datanator): Tools for aggregating and integrating diverse data from diverse sources into a single dataset and searching these datasets
-- [*Datanator-data*](https://open.quiltdata.com/b/karrlab/packages/karrlab/datanator): An integrated dataset of data for modeling cellular biochemistry
 - *Datanator-db*: MongoDB server for *Datanator-data*
 - *Datanator-fulltext-db*: ElasticSearch server for *Datanator-data*
 - [*Datanator-query-python*](https://github.com/KarrLab/datanator_query_python): Tools for querying *Datanator-db* and *Datanator-fulltext-db*
