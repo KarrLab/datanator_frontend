@@ -355,8 +355,8 @@ class Home extends Component {
                   Modifications
                 </div>
                 <div className="section-column-description">
-                  Reconstructed modifications of 19 rRNA and 580 tRNA integrated
-                  by{" "}
+                  Reconstructed modification profiles of 19 rRNA and 580 tRNA
+                  integrated by{" "}
                   <a
                     href="https://iimcb.genesilico.pl/modomics/"
                     target="_blank"
@@ -370,7 +370,7 @@ class Home extends Component {
                   Half-lives
                 </div>
                 <div className="section-column-description">
-                  Measurements aggregated from more than 20 publications.
+                  75,836 measurements aggregated from 10 publications.
                 </div>
 
                 <div className="section-column-subsection-title">
@@ -393,7 +393,7 @@ class Home extends Component {
                   >
                     lncATLAS
                   </a>
-                  , and various publications.
+                  , and 1 publication.
                 </div>
               </div>
 
@@ -416,8 +416,8 @@ class Home extends Component {
                   Abundances
                 </div>
                 <div className="section-column-description">
-                  103,572 measurements of 20,689 ortholog groups and 846,970
-                  proteins in 20,980 organisms aggregated from{" "}
+                  2,634,941 measurements of 846,970 proteins from 20,689
+                  ortholog groups in 55 organisms aggregated from{" "}
                   <a
                     href="https://pax-db.org/"
                     target="_blank"
@@ -447,8 +447,8 @@ class Home extends Component {
                   Modifications
                 </div>
                 <div className="section-column-description">
-                  Reconstructed modifications of 4,083 proteins integrated by
-                  the{" "}
+                  Reconstructed modification profiles of 4,083 proteins
+                  integrated by the{" "}
                   <a
                     href="https://proconsortium.org/"
                     target="_blank"
@@ -503,7 +503,7 @@ class Home extends Component {
                   Half-lives &ndash; coming soon
                 </div>
                 <div className="section-column-description">
-                  Half-lives curated from over 10 publications.
+                  More than 50,000 measurements curated from 9 publications.
                 </div>
               </div>
 
@@ -526,22 +526,22 @@ class Home extends Component {
                   Rate constants
                 </div>
                 <div className="section-column-description">
-                  273,596 measurements of rate constants for more than 3,137
+                  61,734 measurements of rate constants for more than 3,137
                   distinct enzymes and 37,858 reactions aggregated from{" "}
-                  <a
-                    href="https://www.brenda-enzymes.org/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    BRENDA
-                  </a>{" "}
-                  (coming soon) and{" "}
                   <a
                     href="http://sabio.h-its.org/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     SABIO-RK
+                  </a>
+                  . Comming soon: 211,862 additional measurements from{" "}
+                  <a
+                    href="https://www.brenda-enzymes.org/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    BRENDA
                   </a>
                   .
                 </div>
