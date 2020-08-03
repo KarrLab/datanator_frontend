@@ -4,7 +4,7 @@ import { setupCache } from "axios-cache-adapter";
 import localforage from "localforage";
 import memoryDriver from "localforage-memoryStorageDriver";
 import { errorDialogRef } from "~/components/ErrorDialog/ErrorDialog";
-import { replaceNanWithNull, httpRequestLog } from "~/utils/utils";
+import { replaceNanWithNull, httpRequestLog, isiOS } from "~/utils/utils";
 
 const JSON5 = require("json5");
 
@@ -14,12 +14,21 @@ const IS_TEST = process.env.NODE_ENV.startsWith("test");
 const USE_CACHE = process.env.REACT_APP_REST_CACHE === "1";
 
 localforage.defineDriver(memoryDriver);
+
+const driver = [];
+if (localforage.supports(localforage.INDEXEDDB) && !isiOS) {
+  driver.push(localforage.INDEXEDDB);
+}
+if (localforage.supports(localforage.WEBSQL)) {
+  driver.push(localforage.WEBSQL);
+}
+if (localforage.supports(localforage.LOCALSTORAGE)) {
+  driver.push(localforage.LOCALSTORAGE);
+}
+driver.push(memoryDriver._driver);
+
 const forageStore = localforage.createInstance({
-  driver: [
-    localforage.INDEXEDDB,
-    localforage.LOCALSTORAGE,
-    memoryDriver._driver,
-  ],
+  driver: driver,
   name:
     process.env.REACT_APP_NAME +
     "-" +
@@ -43,7 +52,7 @@ const cachedApi = axios.create({
       }
     },
   ],
-  adapter: USE_CACHE ? cache.adapter : null,
+  adapter: USE_CACHE && driver.length >= 2 ? cache.adapter : null,
 });
 
 function getDataFromApi(url, options = {}, api = cachedApi) {
