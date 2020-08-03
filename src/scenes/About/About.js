@@ -388,7 +388,7 @@ class About extends Component {
                   BY-NC-ND 4.0){" "}
                   <a
                     href={
-                      "https://open.quiltdata.com/b/karrlab/packages/karrlab/datanator/tree/latest/LICENSE"
+                      "https://github.com/KarrLab/datanator/blob/master/DATA_LICENSE"
                     }
                     target="_blank"
                     rel="noopener noreferrer"
@@ -714,16 +714,6 @@ class About extends Component {
                           Prettier
                         </a>
                         : code formatting
-                      </li>
-                      <li>
-                        <a
-                          href="https://open.quiltdata.com/"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          Quilt
-                        </a>
-                        : date repository
                       </li>
                     </ul>
                   )}

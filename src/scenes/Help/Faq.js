@@ -396,7 +396,7 @@ class Faq extends Component {
                 </a>
                 . Please see the{" "}
                 <a
-                  href="https://open.quiltdata.com/b/karrlab/packages/karrlab/datanator"
+                  href="https://github.com/KarrLab/datanator/blob/master/DATA_LICENSE"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
