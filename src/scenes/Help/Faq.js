@@ -375,34 +375,26 @@ class Faq extends Component {
                 <i>Datanator</i>&apos;s data is available via the{" "}
                 <a
                   href={
-                    "https://open.quiltdata.com/b/karrlab/packages/karrlab/datanator/"
+                    "s3://mongo-dbdump/restore-5f27dc66fa50dd335127575c.tar.gz"
                   }
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   datanator
                 </a>{" "}
-                Quilt data package. The data is released under the Creative
+                database snapshot package. The data is released under the Creative
                 Commons Attribution-NonCommercial-NoDerivatives 4.0 (CC BY-NC-ND
                 4.0){" "}
                 <a
                   href={
-                    "https://open.quiltdata.com/b/karrlab/packages/karrlab/datanator/tree/latest/LICENSE"
+                    "https://creativecommons.org/licenses/by-nd/4.0/legalcode"
                   }
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   license
                 </a>
-                . Please see the{" "}
-                <a
-                  href="https://open.quiltdata.com/b/karrlab/packages/karrlab/datanator"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  README
-                </a>{" "}
-                for the package for more information about using the package.
+                . 
               </p>
               <p>
                 In addition, users can use the

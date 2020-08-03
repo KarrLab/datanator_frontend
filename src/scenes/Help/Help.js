@@ -187,12 +187,12 @@ class Help extends Component {
                 <p className="no-bottom-margin">
                   The data in <i>Datanator</i> is available as the{" "}
                   <a
-                    href="https://open.quiltdata.com/b/karrlab/packages/karrlab/datanator"
+                    href="s3://mongo-dbdump/restore-5f27dc66fa50dd335127575c.tar.gz"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     {" "}
-                    datanator Quilt data package
+                    datanator snapshot package
                   </a>
                   .
                 </p>
