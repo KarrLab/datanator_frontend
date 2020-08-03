@@ -32,7 +32,7 @@ class LoadExternalContent extends Component {
     this.cancelTokenSource = axios.CancelToken.source();
     httpRequestLog.push(this.props.url);
     axios
-      .get("this.props.url", {
+      .get(this.props.url, {
         headers: { "Content-Type": "application/json" },
         cancelToken: this.cancelTokenSource.token,
       })
@@ -41,10 +41,21 @@ class LoadExternalContent extends Component {
         this.setState({ text: processed_data });
       })
       .catch((error) => {
-        if ([400, 404, 500, 502, 503, 504].includes(error.response.status)) {
-          this.setState({ text: this.props["error-message"] });
-        } else {
-          genApiErrorHandler(this.props.url, "Unable to load metadata.", error);
+        if (!axios.isCancel(error)) {
+          if (
+            "isAxiosError" in error &&
+            error.isAxiosError &&
+            error.response !== undefined &&
+            [400, 404, 500, 502, 503, 504].includes(error.response.status)
+          ) {
+            this.setState({ text: this.props["error-message"] });
+          } else {
+            genApiErrorHandler(
+              this.props.url,
+              "Unable to load metadata.",
+              error
+            );
+          }
         }
       })
       .finally(() => {
