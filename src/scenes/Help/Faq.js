@@ -6,6 +6,11 @@ import { scrollTo } from "~/utils/utils";
 import "./Help.scss";
 
 class Faq extends Component {
+  constructor(props) {
+    super(props);
+    this.downloadUrl = process.env.REACT_APP_DOWNLOAD_URL;
+  }
+
   render() {
     return (
       <div className="content-block section" id="faq">
@@ -372,37 +377,26 @@ class Faq extends Component {
             </div>
             <div className="faq-a">
               <p>
-                <i>Datanator</i>&apos;s data is available via the{" "}
+                <i>Datanator</i>&apos;s data is available from{" "}
                 <a
-                  href={
-                    "https://open.quiltdata.com/b/karrlab/packages/karrlab/datanator/"
-                  }
+                  href={this.downloadUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  datanator
-                </a>{" "}
-                Quilt data package. The data is released under the Creative
+                  Zenodo
+                </a>. The data is released under the Creative
                 Commons Attribution-NonCommercial-NoDerivatives 4.0 (CC BY-NC-ND
                 4.0){" "}
                 <a
                   href={
-                    "https://open.quiltdata.com/b/karrlab/packages/karrlab/datanator/tree/latest/LICENSE"
+                    "https://github.com/KarrLab/datanator/blob/master/DATA_LICENSE"
                   }
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   license
                 </a>
-                . Please see the{" "}
-                <a
-                  href="https://github.com/KarrLab/datanator/blob/master/DATA_LICENSE"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  README
-                </a>{" "}
-                for the package for more information about using the package.
+                .
               </p>
               <p>
                 In addition, users can use the

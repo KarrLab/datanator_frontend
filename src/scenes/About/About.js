@@ -20,6 +20,7 @@ class About extends Component {
   constructor(props) {
     super(props);
     this.contactEmail = process.env.REACT_APP_CONTACT_EMAIL;
+    this.downloadUrl = process.env.REACT_APP_DOWNLOAD_URL;
   }
 
   render() {
@@ -316,15 +317,14 @@ class About extends Component {
 
               <div className="content-block-content">
                 <p className="no-bottom-margin">
-                  The data in <i>Datanator</i> is available as the{" "}
+                  The data in <i>Datanator</i> is available from{" "}
                   <a
-                    href="https://open.quiltdata.com/b/karrlab/packages/karrlab/datanator"
+                    href="{this.downloadUrl}"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    datanator
-                  </a>{" "}
-                  Quilt data package.
+                    Zenodo
+                  </a>.
                 </p>
               </div>
             </div>
