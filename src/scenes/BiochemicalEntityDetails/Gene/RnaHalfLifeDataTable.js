@@ -11,7 +11,7 @@ class RnaHalfLifeDataTable extends Component {
     "set-scene-metadata": PropTypes.func.isRequired,
   };
 
-  static getUrl(query, organism) {
+  getUrl(query, organism) {
     let endpoint;
     const args = [];
 

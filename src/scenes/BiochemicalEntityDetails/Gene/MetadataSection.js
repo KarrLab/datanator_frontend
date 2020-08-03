@@ -239,7 +239,7 @@ class MetadataSection extends Component {
     });
   }
 
-  static getMetadataUrl(query) {
+  getMetadataUrl(query) {
     if (isKeggOrthologyId(query)) {
       return "kegg/get_meta/?kegg_ids=" + query;
     } else {

@@ -16,7 +16,7 @@ class ConcentrationDataTable extends Component {
     "set-scene-metadata": PropTypes.func.isRequired,
   };
 
-  static getUrl(query, organism) {
+  getUrl(query, organism) {
     const args = ["inchikey=" + query, "threshold=0.6"];
     if (organism) {
       args.push("target_species=" + organism);

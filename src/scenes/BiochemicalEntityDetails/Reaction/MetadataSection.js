@@ -32,7 +32,7 @@ class MetadataSection extends Component {
     this.state = { metadata: null };
   }
 
-  static getMetadataUrl(query) {
+  getMetadataUrl(query) {
     if (query == null) {
       return;
     }
@@ -40,10 +40,13 @@ class MetadataSection extends Component {
     const args = ["_from=0", "size=1000", "bound=tight", "dof=0"];
 
     const substratesProducts = query.split("-->");
-    args.push("substrates=" + substratesProducts[0]);
-    if (substratesProducts.length >= 2) {
-      args.push("products=" + substratesProducts[1]);
+    if (substratesProducts.length < 2) {
+      this.props["set-scene-metadata"]({ error404: true });
+      return;
     }
+
+    args.push("substrates=" + substratesProducts[0]);
+    args.push("products=" + substratesProducts[1]);
 
     return "reactions/kinlaw_by_rxn/?" + args.join("&");
   }
@@ -326,7 +329,7 @@ class MetadataSection extends Component {
     return (
       <BaseMetadataSection
         entity-type="reaction"
-        get-metadata-url={MetadataSection.getMetadataUrl}
+        get-metadata-url={this.getMetadataUrl.bind(this)}
         process-metadata={MetadataSection.processMetadata}
         format-title={MetadataSection.formatTitle}
         format-metadata={MetadataSection.formatMetadata}

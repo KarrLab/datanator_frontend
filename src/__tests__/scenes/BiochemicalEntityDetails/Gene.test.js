@@ -117,7 +117,7 @@ describe("Gene data page", () => {
 
   it("Gets correct metadata url ", () => {
     const query = "K00850";
-    expect(MetadataSection.getMetadataUrl(query)).toEqual(
+    expect(new MetadataSection().getMetadataUrl(query)).toEqual(
       "kegg/get_meta/?kegg_ids=K00850"
     );
   });

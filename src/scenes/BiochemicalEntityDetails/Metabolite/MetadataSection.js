@@ -86,7 +86,7 @@ class MetadataSection extends Component {
     this.state = { metadata: null };
   }
 
-  static getMetadataUrl(query) {
+  getMetadataUrl(query) {
     return "metabolites/meta/?inchikey=" + query;
   }
 

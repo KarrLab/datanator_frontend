@@ -11,14 +11,17 @@ class RateConstantsDataTable extends Component {
     "set-scene-metadata": PropTypes.func.isRequired,
   };
 
-  static getUrl(query, organism) {
+  getUrl(query, organism) {
     const args = ["_from=0", "size=1000", "bound=tight", "dof=0"];
 
     const substratesProducts = query.split("-->");
-    args.push("substrates=" + substratesProducts[0]);
-    if (substratesProducts.length >= 2) {
-      args.push("products=" + substratesProducts[1]);
+    if (substratesProducts.length < 2) {
+      this.props["set-scene-metadata"]({ error404: true });
+      return;
     }
+
+    args.push("substrates=" + substratesProducts[0]);
+    args.push("products=" + substratesProducts[1]);
 
     if (organism) {
       args.push("taxon_distance=true");
@@ -615,7 +618,7 @@ class RateConstantsDataTable extends Component {
         title="Rate constants"
         entity-type="reaction"
         data-type="rate constants"
-        get-data-url={RateConstantsDataTable.getUrl}
+        get-data-url={this.getUrl.bind(this)}
         format-data={RateConstantsDataTable.formatData}
         get-side-bar-def={RateConstantsDataTable.getSideBarDef}
         get-col-defs={RateConstantsDataTable.getColDefs}

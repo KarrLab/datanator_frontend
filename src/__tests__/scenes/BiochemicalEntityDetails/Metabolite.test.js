@@ -15,10 +15,10 @@ describe("Metabolite data page", () => {
     const organism = "Escherichia coli";
 
     // assert URL correct
-    expect(ConcentrationDataTable.getUrl(entity)).toEqual(
+    expect(new ConcentrationDataTable().getUrl(entity)).toEqual(
       "metabolites/concentrations/similar_compounds/?inchikey=dTDP-D-Glucose&threshold=0.6&taxon_distance=false"
     );
-    expect(ConcentrationDataTable.getUrl(entity, organism)).toEqual(
+    expect(new ConcentrationDataTable().getUrl(entity, organism)).toEqual(
       "metabolites/concentrations/similar_compounds/?inchikey=dTDP-D-Glucose&threshold=0.6&target_species=Escherichia coli&taxon_distance=true"
     );
   });
@@ -120,7 +120,7 @@ describe("Metabolite data page", () => {
   it("Gets correct metadata url ", () => {
     const query = "BAWFJGJZGIEFAR-NNYOXOHSSA-O";
     const organism = "Escherichia coli";
-    expect(MetadataSection.getMetadataUrl(query, organism)).toEqual(
+    expect(new MetadataSection().getMetadataUrl(query, organism)).toEqual(
       "metabolites/meta/?inchikey=BAWFJGJZGIEFAR-NNYOXOHSSA-O"
     );
   });
