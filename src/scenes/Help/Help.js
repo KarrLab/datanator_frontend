@@ -187,7 +187,7 @@ class Help extends Component {
                 <p className="no-bottom-margin">
                   The data in <i>Datanator</i> is available as the{" "}
                   <a
-                    href="s3://mongo-dbdump/restore-5f27dc66fa50dd335127575c.tar.gz"
+                    href="https://mongo-dbdump.s3.amazonaws.com/restore-5f27dc66fa50dd335127575c.tar.gz"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
