@@ -195,7 +195,7 @@ class DataTable extends Component {
           error.response.request.constructor.name === "XMLHttpRequest"
         ) {
           const response = error.response;
-          if (response.status === 500) {
+          if ([404, 500].includes(response.status)) {
             this.props["set-scene-metadata"]({
               error404: true,
             });
