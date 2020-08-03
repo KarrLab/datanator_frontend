@@ -385,7 +385,7 @@ class RnaHalfLifeDataTable extends Component {
         title="RNA half-life"
         entity-type="ortholog group"
         data-type="RNA half-life"
-        get-data-url={RnaHalfLifeDataTable.getUrl}
+        get-data-url={this.getUrl}
         format-data={RnaHalfLifeDataTable.formatData}
         get-side-bar-def={RnaHalfLifeDataTable.getSideBarDef}
         get-col-defs={RnaHalfLifeDataTable.getColDefs}

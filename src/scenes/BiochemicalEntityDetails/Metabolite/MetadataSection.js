@@ -443,7 +443,7 @@ class MetadataSection extends Component {
     return (
       <BaseMetadataSection
         entity-type="metabolite"
-        get-metadata-url={MetadataSection.getMetadataUrl}
+        get-metadata-url={this.getMetadataUrl}
         process-metadata={MetadataSection.processMetadata}
         format-title={MetadataSection.formatTitle}
         format-metadata={MetadataSection.formatMetadata}

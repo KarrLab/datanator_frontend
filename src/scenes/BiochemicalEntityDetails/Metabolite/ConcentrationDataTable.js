@@ -383,7 +383,7 @@ class ConcentrationDataTable extends Component {
         title="Concentration"
         entity-type="metabolite"
         data-type="concentration"
-        get-data-url={ConcentrationDataTable.getUrl}
+        get-data-url={this.getUrl}
         format-data={ConcentrationDataTable.formatData}
         get-side-bar-def={ConcentrationDataTable.getSideBarDef}
         get-col-defs={ConcentrationDataTable.getColDefs}
