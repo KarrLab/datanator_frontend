@@ -377,16 +377,16 @@ class Faq extends Component {
             </div>
             <div className="faq-a">
               <p>
-                <i>Datanator</i>&apos;s data is available from{" "}
+                <i>Datanator</i>&apos;s data is available as a MongoDB dump from{" "}
                 <a
                   href={this.downloadUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   Zenodo
-                </a>. The data is released under the Creative
-                Commons Attribution-NonCommercial-NoDerivatives 4.0 (CC BY-NC-ND
-                4.0){" "}
+                </a>
+                . The data is released under the Creative Commons
+                Attribution-NonCommercial-NoDerivatives 4.0 (CC BY-NC-ND 4.0){" "}
                 <a
                   href={
                     "https://github.com/KarrLab/datanator/blob/master/DATA_LICENSE"
