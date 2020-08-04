@@ -377,7 +377,7 @@ class Faq extends Component {
             </div>
             <div className="faq-a">
               <p>
-                <i>Datanator</i>&apos;s data is available as a MongoDB dump from{" "}
+                <i>Datanator</i>&apos;s data is available as a MongoDB snapshot from{" "}
                 <a
                   href={this.downloadUrl}
                   target="_blank"
