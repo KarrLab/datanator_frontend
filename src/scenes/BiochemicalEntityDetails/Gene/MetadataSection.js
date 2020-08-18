@@ -18,155 +18,153 @@ class MetadataSection extends Component {
     this.state = { metadata: null };
   }
 
-  static processDescriptionFromUniprot(query, uniprotData) {
-    if (
-      uniprotData == null ||
-      uniprotData.length === 0 ||
-      uniprotData[0] == null
-    ) {
+  static processDescriptionFromUniprot(query, data) {
+    if (data == null || data.length === 0) {
       return MetadataSection.blankResponse;
     }
 
-    uniprotData = uniprotData[0];
-
-    let comments = null;
-    if (
-      uniprotData.comments &&
-      uniprotData.comments.length &&
-      uniprotData.comments[0] &&
-      uniprotData.comments[0].text &&
-      uniprotData.comments[0].text.length
-    ) {
-      comments = uniprotData.comments[0].text[0].value;
-    }
-
-    let response;
-    if (isKeggOrthologyId(query)) {
-      if (comments) {
-        response = comments;
-      } else {
-        response = MetadataSection.blankResponse;
+    for (const datum of data) {
+      if (datum == null) {
+        continue;
       }
-    } else {
-      const properties = [];
 
-      // gene
-      let geneName = null;
-      let geneUrl = null;
-      if (uniprotData.gene && uniprotData.gene.length && uniprotData.gene[0]) {
-        if (uniprotData.gene[0].name && uniprotData.gene[0].name.value) {
-          geneName = uniprotData.gene[0].name.value;
-        } else if (
-          uniprotData.gene[0].olnNames &&
-          uniprotData.gene[0].olnNames[0]
-        ) {
-          if (uniprotData.gene[0].olnNames[0].value) {
-            geneName = uniprotData.gene[0].olnNames[0].value;
-          } else if (
-            uniprotData.gene[0].olnNames[0].evidences &&
-            uniprotData.gene[0].olnNames[0].evidences.length
-          ) {
-            geneName = uniprotData.gene[0].olnNames[0].value;
-            geneUrl = uniprotData.gene[0].olnNames[0].evidences[0].source.url;
+      let response = null;
+
+      let comments = null;
+      if (
+        datum.comments &&
+        datum.comments.length &&
+        datum.comments[0] &&
+        datum.comments[0].text &&
+        datum.comments[0].text.length
+      ) {
+        comments = datum.comments[0].text[0].value;
+      }
+
+      if (isKeggOrthologyId(query)) {
+        if (comments) {
+          response = comments;
+        }
+      } else {
+        const properties = [];
+
+        // gene
+        let geneName = null;
+        let geneUrl = null;
+        if (datum.gene && datum.gene.length && datum.gene[0]) {
+          if (datum.gene[0].name && datum.gene[0].name.value) {
+            geneName = datum.gene[0].name.value;
+          } else if (datum.gene[0].olnNames && datum.gene[0].olnNames[0]) {
+            if (datum.gene[0].olnNames[0].value) {
+              geneName = datum.gene[0].olnNames[0].value;
+            } else if (
+              datum.gene[0].olnNames[0].evidences &&
+              datum.gene[0].olnNames[0].evidences.length
+            ) {
+              geneName = datum.gene[0].olnNames[0].value;
+              geneUrl = datum.gene[0].olnNames[0].evidences[0].source.url;
+            }
           }
         }
-      }
 
-      if (geneName != null) {
-        if (geneUrl != null) {
+        if (geneName != null) {
+          if (geneUrl != null) {
+            properties.push({
+              key: "Gene",
+              value: (
+                <a href={geneUrl} target="_blank" rel="noopener noreferrer">
+                  {geneName}
+                </a>
+              ),
+            });
+          } else {
+            properties.push({
+              key: "Gene",
+              value: geneName,
+            });
+          }
+        }
+
+        // organism
+        if (
+          datum.organism &&
+          datum.organism.names &&
+          datum.organism.names.length &&
+          datum.organism.names[0] &&
+          datum.organism.names[0].value
+        ) {
           properties.push({
-            key: "Gene",
+            key: "Organism",
             value: (
-              <a href={geneUrl} target="_blank" rel="noopener noreferrer">
-                {geneName}
+              <a
+                href={
+                  "https://www.ncbi.nlm.nih.gov/taxonomy/" +
+                  datum.organism.taxonomy
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {datum.organism.names[0].value.split("(")[0].trim()}
               </a>
             ),
           });
-        } else {
+        }
+
+        // comments
+        if (comments) {
           properties.push({
-            key: "Gene",
-            value: geneName,
+            key: "Comments",
+            value: comments,
           });
         }
-      }
 
-      // organism
-      if (
-        uniprotData.organism &&
-        uniprotData.organism.names &&
-        uniprotData.organism.names.length &&
-        uniprotData.organism.names[0] &&
-        uniprotData.organism.names[0].value
-      ) {
-        properties.push({
-          key: "Organism",
-          value: (
-            <a
-              href={
-                "https://www.ncbi.nlm.nih.gov/taxonomy/" +
-                uniprotData.organism.taxonomy
-              }
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {uniprotData.organism.names[0].value.split("(")[0].trim()}
-            </a>
-          ),
-        });
-      }
+        // sequence
+        if (datum.sequence && datum.sequence.sequence) {
+          const seq = datum.sequence.sequence;
+          const aaPerLine = 115;
+          const formattedSeq = [];
+          for (
+            let iLine = 0;
+            iLine < Math.ceil(seq.length / aaPerLine);
+            iLine++
+          ) {
+            formattedSeq.push(
+              <li key={iLine}>
+                {seq.slice(
+                  iLine * aaPerLine,
+                  Math.min((iLine + 1) * aaPerLine, seq.length)
+                )}
+              </li>
+            );
+          }
 
-      // comments
-      if (comments) {
-        properties.push({
-          key: "Comments",
-          value: comments,
-        });
-      }
-
-      // sequence
-      if (uniprotData.sequence && uniprotData.sequence.sequence) {
-        const seq = uniprotData.sequence.sequence;
-        const aaPerLine = 115;
-        const formattedSeq = [];
-        for (
-          let iLine = 0;
-          iLine < Math.ceil(seq.length / aaPerLine);
-          iLine++
-        ) {
-          formattedSeq.push(
-            <li key={iLine}>
-              {seq.slice(
-                iLine * aaPerLine,
-                Math.min((iLine + 1) * aaPerLine, seq.length)
-              )}
-            </li>
-          );
+          properties.push({
+            key: <span>Sequence ({seq.length} aa)</span>,
+            value: <ul className="sequence">{formattedSeq}</ul>,
+          });
         }
 
-        properties.push({
-          key: <span>Sequence ({seq.length} aa)</span>,
-          value: <ul className="sequence">{formattedSeq}</ul>,
-        });
+        if (properties.length) {
+          response = (
+            <ul className="key-value-list link-list">
+              {properties.map((property) => {
+                return (
+                  <li key={property.key}>
+                    <b>{property.key}</b>: {property.value}
+                  </li>
+                );
+              })}
+            </ul>
+          );
+        }
       }
 
-      if (properties.length) {
-        response = (
-          <ul className="key-value-list link-list">
-            {properties.map((property) => {
-              return (
-                <li key={property.key}>
-                  <b>{property.key}</b>: {property.value}
-                </li>
-              );
-            })}
-          </ul>
-        );
-      } else {
-        response = MetadataSection.blankResponse;
+      if (response != null) {
+        return response;
       }
     }
 
-    return response;
+    return MetadataSection.blankResponse;
   }
 
   static processRelatedReactions(organism, relatedReactions) {
@@ -282,7 +280,7 @@ class MetadataSection extends Component {
       processedData.descriptionUrl =
         "https://www.ebi.ac.uk/proteins/api/proteins/KO:" +
         query +
-        "?offset=0&size=1";
+        "?offset=0&size=10";
     }
 
     processedData.relatedLinksUrl =
@@ -335,10 +333,10 @@ class MetadataSection extends Component {
           <div>
             <LoadExternalContent
               url={processedData.descriptionUrl}
-              format-results={(uniprotData) => {
+              format-results={(data) => {
                 return MetadataSection.processDescriptionFromUniprot(
                   query,
-                  uniprotData
+                  data
                 );
               }}
               error-message={MetadataSection.blankResponse}
