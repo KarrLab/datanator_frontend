@@ -280,8 +280,9 @@ class MetadataSection extends Component {
       processedData.descriptionUrl = null;
     } else {
       processedData.descriptionUrl =
-        "https://www.ebi.ac.uk/proteins/api/proteins?offset=0&size=1&gene=" +
-        rawData[0].gene_name[0];
+        "https://www.ebi.ac.uk/proteins/api/proteins/KO:" +
+        query +
+        "?offset=0&size=1";
     }
 
     processedData.relatedLinksUrl =
