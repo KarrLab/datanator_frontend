@@ -317,8 +317,8 @@ class About extends Component {
 
               <div className="content-block-content">
                 <p className="no-bottom-margin">
-                  The data in <i>Datanator</i> is available as a MongoDB snapshot
-                  from{" "}
+                  The data in <i>Datanator</i> is available as a MongoDB
+                  snapshot from{" "}
                   <a
                     href="{this.downloadUrl}"
                     target="_blank"
