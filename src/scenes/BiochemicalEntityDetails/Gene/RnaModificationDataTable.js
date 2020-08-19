@@ -29,29 +29,31 @@ class RnaModificationDataTable extends Component {
   formatData(query, organism, rawData) {
     const formattedData = [];
     for (const rawDatum of rawData) {
-      for (const measurement of rawDatum.modifications) {
-        if (measurement.bpforms_errors != null) {
-          continue;
-        }
+      if ("modifications" in rawDatum && rawDatum.modifications) {
+        for (const measurement of rawDatum.modifications) {
+          if (measurement.bpforms_errors != null) {
+            continue;
+          }
 
-        const row = {
-          numModifications: measurement.number_of_modifications,
-          unmodifiedSequence: measurement.sequence_iupac,
-          modifiedSequence: measurement.sequence_bpforms,
-          aminoAcid: rawDatum.amino_acid,
-          anticodon: measurement.anticodon,
-          organism: measurement.organism,
-          localization: measurement.organellum,
-          source: "MODOMICS",
-        };
-        if (organism != null) {
-          row["taxonomicProximity"] = DataTable.calcTaxonomicDistance(
-            measurement.taxon_distance,
-            organism,
-            measurement.organism
-          );
+          const row = {
+            numModifications: measurement.number_of_modifications,
+            unmodifiedSequence: measurement.sequence_iupac,
+            modifiedSequence: measurement.sequence_bpforms,
+            aminoAcid: rawDatum.amino_acid,
+            anticodon: measurement.anticodon,
+            organism: measurement.organism,
+            localization: measurement.organellum,
+            source: "MODOMICS",
+          };
+          if (organism != null) {
+            row["taxonomicProximity"] = DataTable.calcTaxonomicDistance(
+              measurement.taxon_distance,
+              organism,
+              measurement.organism
+            );
+          }
+          formattedData.push(row);
         }
-        formattedData.push(row);
       }
     }
 

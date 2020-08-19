@@ -37,7 +37,7 @@ class RnaHalfLifeDataTable extends Component {
   static formatData(query, organism, rawData) {
     const formattedData = [];
     for (const rawDatum of rawData) {
-      if (rawDatum.halflives) {
+      if ("halflives" in rawDatum && rawDatum.halflives) {
         const measurements = rawDatum.halflives;
         for (const measurement of measurements) {
           if ("halflife" in measurement) {

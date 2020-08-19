@@ -37,14 +37,16 @@ class RateConstantsDataTable extends Component {
     for (const datum of rawData) {
       let enzymeName = null;
       let enzymeSubunitUniprotIds = null;
-      for (const enz of datum.enzymes) {
-        if ("enzyme" in enz) {
-          enzymeName = enz["enzyme"][0].enzyme_name;
-        } else if ("subunit" in enz) {
-          enzymeSubunitUniprotIds = enz["subunit"].map(
-            (subunit) => subunit.uniprot_id
-          );
-          enzymeSubunitUniprotIds.sort();
+      if ("enzymes" in datum && datum.enzymes) {
+        for (const enz of datum.enzymes) {
+          if ("enzyme" in enz) {
+            enzymeName = enz["enzyme"][0].enzyme_name;
+          } else if ("subunit" in enz) {
+            enzymeSubunitUniprotIds = enz["subunit"].map(
+              (subunit) => subunit.uniprot_id
+            );
+            enzymeSubunitUniprotIds.sort();
+          }
         }
       }
 

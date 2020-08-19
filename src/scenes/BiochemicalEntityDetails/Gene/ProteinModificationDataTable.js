@@ -79,7 +79,7 @@ class ProteinModificationDataTable extends Component {
 
   formatDocuments(organism, taxonDistance, rawData, formattedData) {
     for (const rawDatum of rawData) {
-      if ("modifications" in rawDatum) {
+      if ("modifications" in rawDatum && rawDatum.modifications) {
         for (const measurement of rawDatum.modifications) {
           if (
             measurement.concrete !== true ||

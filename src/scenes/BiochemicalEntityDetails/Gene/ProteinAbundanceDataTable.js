@@ -77,7 +77,7 @@ class ProteinAbundanceDataTable extends Component {
 
   formatDocuments(uniprotId, organism, taxonDistance, rawData, formattedData) {
     for (const rawDatum of rawData) {
-      if ("abundances" in rawDatum) {
+      if ("abundances" in rawDatum && rawDatum.abundances) {
         for (const measurement of rawDatum.abundances) {
           let proteinName = rawDatum.protein_name;
           if (proteinName.includes("(")) {

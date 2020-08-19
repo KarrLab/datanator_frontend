@@ -30,7 +30,7 @@ class ConcentrationDataTable extends Component {
   static formatData(query, organism, rawData) {
     const formattedData = [];
     for (const metabolite of rawData) {
-      if ("concentrations" in metabolite) {
+      if ("concentrations" in metabolite && metabolite.concentrations) {
         for (const metConc of metabolite["concentrations"]) {
           let uncertainty = parseFloat(metConc.error);
           if (uncertainty === 0 || isNaN(uncertainty)) {
