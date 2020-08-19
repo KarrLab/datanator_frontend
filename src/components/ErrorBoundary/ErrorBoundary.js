@@ -20,6 +20,17 @@ class ErrorBoundary extends Component {
   }
 
   componentDidCatch(error, info) {
+    // ignore HTTP cancellation "errors"
+    if (
+      error &&
+      "response" in error &&
+      error.response &&
+      "status" in error.reponse &&
+      error.reponse.status === 0
+    ) {
+      return;
+    }
+
     // Send error to Airbrake
     this.airbrake.notify({
       error: error,
