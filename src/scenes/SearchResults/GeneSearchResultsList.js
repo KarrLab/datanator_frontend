@@ -35,7 +35,7 @@ export default class GeneSearchResultsList extends Component {
     const formattedResults = [];
     for (const result of results) {
       if (Array.isArray(result.key) && result.key.length > 0) {
-        let koNumber = result.top_ko.hits.hits[0]._source.ko_number;
+        let koNumber = result.top_ko.hits.hits[0]._source.ko_number[0];
         const uniprotId = result.top_ko.hits.hits[0]._id.toUpperCase();
 
         const source = result.top_ko.hits.hits[0]._source;
