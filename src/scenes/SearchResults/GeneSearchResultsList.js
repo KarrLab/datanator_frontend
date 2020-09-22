@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import SearchResultsList from "./SearchResultsList.js";
-import { upperCaseFirstLetter } from "~/utils/utils";
+import { upperCaseFirstLetter, castToArray } from "~/utils/utils";
 
 export default class GeneSearchResultsList extends Component {
   getResultsUrl(query, pageCount, pageSize) {
@@ -35,10 +35,17 @@ export default class GeneSearchResultsList extends Component {
     const formattedResults = [];
     for (const result of results) {
       if (Array.isArray(result.key) && result.key.length > 0) {
-        let koNumber = result.top_ko.hits.hits[0]._source.ko_number[0];
+        let koNumber = castToArray(
+          result.top_ko.hits.hits[0]._source.ko_number
+        )[0];
         const uniprotId = result.top_ko.hits.hits[0]._id.toUpperCase();
 
         const source = result.top_ko.hits.hits[0]._source;
+
+        if (typeof koNumber !== "string") {
+          koNumber = null;
+        }
+
         let id;
         if (
           koNumber == null ||
