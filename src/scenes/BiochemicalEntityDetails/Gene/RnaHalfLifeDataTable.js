@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { upperCaseFirstLetter, isKeggOrthologyId } from "~/utils/utils";
+import {
+  upperCaseFirstLetter,
+  isKeggOrthologyId,
+  castToArray,
+} from "~/utils/utils";
 import DataTable from "../DataTable/DataTable";
 import { HtmlColumnHeader } from "../HtmlColumnHeader";
 import Tooltip from "@material-ui/core/Tooltip";
@@ -63,8 +67,10 @@ class RnaHalfLifeDataTable extends Component {
                   ? measurement.growth_medium
                   : null,
               source: {
-                id: "DOI: " + measurement.reference[0].doi,
-                url: "https://dx.doi.org/" + measurement.reference[0].doi,
+                id: "DOI: " + castToArray(measurement.reference)[0].doi,
+                url:
+                  "https://dx.doi.org/" +
+                  castToArray(measurement.reference)[0].doi,
               },
             };
 
@@ -147,8 +153,10 @@ class RnaHalfLifeDataTable extends Component {
                     ? measurement.growth_medium
                     : null,
                 source: {
-                  id: "DOI: " + measurement.reference[0].doi,
-                  url: "https://dx.doi.org/" + measurement.reference[0].doi,
+                  id: "DOI: " + castToArray(measurement.reference)[0].doi,
+                  url:
+                    "https://dx.doi.org/" +
+                    castToArray(measurement.reference)[0].doi,
                 },
               };
 
