@@ -81,6 +81,7 @@ class Stats extends Component {
       urls: ["rna/summary/get_distinct/?_input=halflives.reference.doi"],
     });
     // TODO: BRENDA Kis
+    /*
     dataSourceData.push({
       label: ["BRENDA"],
       urls: [
@@ -89,6 +90,7 @@ class Stats extends Component {
         // "reactions/summary/get_brenda_obs/?parameter=k_is"
       ],
     });
+    */
     dataSourceData.push({
       label: ["ECMDB"],
       urls: ["metabolites/summary/ecmdb_conc_count/"],

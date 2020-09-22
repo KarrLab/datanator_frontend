@@ -172,14 +172,6 @@ class About extends Component {
                   abundances and modifications, and reaction rate parameters
                   integrated from{" "}
                   <a
-                    href={"https://www.brenda-enzymes.org/"}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    BRENDA
-                  </a>
-                  ,{" "}
-                  <a
                     href={"http://ecmdb.ca/"}
                     target="_blank"
                     rel="noopener noreferrer"
