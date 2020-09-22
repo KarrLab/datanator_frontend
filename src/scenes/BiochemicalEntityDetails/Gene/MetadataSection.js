@@ -196,9 +196,9 @@ class MetadataSection extends Component {
       substrateNames.sort(naturalSort);
       productNames.sort(naturalSort);
 
-      const equation =
+      let equation =
         formatSide(substrateNames) + " → " + formatSide(productNames);
-      const ecMeta = reaction["ec_meta"];
+
       let route =
         "/reaction/" +
         substrateIds.join(",") +
@@ -209,25 +209,42 @@ class MetadataSection extends Component {
         route += organism + "/";
       }
 
-      formattedResult["title"] = ecMeta["ec_name"];
+      let title;
+      let name;
+      let ecNumber;
+      if ("ec_meta" in reaction) {
+        const ecMeta = reaction["ec_meta"];
+        title = ecMeta["ec_name"];
+        name = ecMeta["ec_name"];
+        ecNumber = ecMeta["ec_number"];
+      } else {
+        title = equation;
+        name = equation;
+        equation = null;
+        ecNumber = null;
+      }
+
+      formattedResult["title"] = title;
       formattedResult["content"] = (
         <div key={id} className="subsection">
           <div className="subsection-title">
-            <Link to={route}>{ecMeta["ec_name"]}</Link>
+            <Link to={route}>{name}</Link>
           </div>
-          <div className="subsection-description">
-            <div>{equation}</div>
-            <div>
-              EC:{" "}
-              <a
-                href={"https://enzyme.expasy.org/EC/" + ecMeta["ec_number"]}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {ecMeta["ec_number"]}
-              </a>
+          {ecNumber != null && (
+            <div className="subsection-description">
+              <div>{equation}</div>
+              <div>
+                EC:{" "}
+                <a
+                  href={"https://enzyme.expasy.org/EC/" + ecNumber}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {ecNumber}
+                </a>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       );
     }
