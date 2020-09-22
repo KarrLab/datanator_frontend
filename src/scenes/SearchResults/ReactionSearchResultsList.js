@@ -34,7 +34,6 @@ export default class ReactionSearchResultsList extends Component {
     const formattedResults = [];
     for (const result of results) {
       const formattedResult = {};
-      formattedResults.push(formattedResult);
 
       // title and description
       let name = result["enzyme_names"][0];
@@ -75,6 +74,15 @@ export default class ReactionSearchResultsList extends Component {
         );
       }
 
+      if (
+        !("substrates" in result) ||
+        !("products" in result) ||
+        !Array.isArray(result.substrates) ||
+        !Array.isArray(result.products)
+      ) {
+        continue;
+      }
+
       // route
       formattedResult["route"] =
         "/reaction/" +
@@ -85,6 +93,9 @@ export default class ReactionSearchResultsList extends Component {
       if (organism) {
         formattedResult["route"] += organism + "/";
       }
+
+      // add to list of formatted results
+      formattedResults.push(formattedResult);
     }
 
     return {
