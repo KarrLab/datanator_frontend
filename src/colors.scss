@@ -20,6 +20,7 @@ $color-text-lightest: #ccc; // 75% lighter
 $color-heading: #5c5c5c;
 $color-button: #f9f9f9;
 $color-button-hover: #f0f0f0;
+$color-background: #efefef;
 $color-border: #e0e0e0;
 $color-border-dark: #c3c3c3; // 12.5% darker
 $color-border-darker: #a8a8a8; // 25% darker
@@ -49,6 +50,7 @@ $color-shadow: #0006;
   heading: $color-heading;
   button: $color-button;
   button-hover: $color-button-hover;
+  color: $color-background;
   border: $color-border;
   shadow: $color-shadow;
   /* stylelint-enable property-no-unknown */

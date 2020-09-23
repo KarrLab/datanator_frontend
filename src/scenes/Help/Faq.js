@@ -422,8 +422,18 @@ class Faq extends Component {
               How can I use the <i>Datanator</i> MongoDB snapshot?
             </div>
             <div className="faq-a">
-              First, install and configure MongoDB. Second, restore the snapshot
-              by executing ...
+              <p>First, install and configure MongoDB.</p>
+
+              <p className="no-bottom-margin">
+                Second, restore the snapshot by executing the following
+                commands:
+              </p>
+
+              <pre>
+                lvcreate --size 1G --name mdb-new vg0{"\n"}
+                gzip -d -c mdb-snap01.gz | dd of=/dev/vg0/mdb-new{"\n"}
+                mount /dev/vg0/mdb-new /srv/mongodb
+              </pre>
             </div>
           </div>
 
