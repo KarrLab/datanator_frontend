@@ -487,8 +487,22 @@ class Faq extends Component {
               How can I cite <i>Datanator</i>?
             </div>
             <div className="faq-a">
-              We aim to submit an article for publication and to a pre-printer
-              server in 2020. Please check back later for more information.
+              <p>Please cite the following article.</p>
+
+              <p>
+                Roth YD, Lian Z, Pochiraju S, Shaikh B &amp; Karr JR. Datanator:
+                an integrated database of molecular data for quantitatively
+                modeling cellular behavior. bioRxiv, 2020.08.06.240051 (2020).
+                DOI:{" "}
+                <a
+                  href="https://doi.org/10.1101/2020.08.06.240051"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  10.1101/2020.08.06.240051
+                </a>
+                .
+              </p>
             </div>
           </div>
 
