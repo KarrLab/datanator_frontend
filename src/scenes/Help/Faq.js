@@ -434,7 +434,8 @@ class Faq extends Component {
                 gzip -d -c mdb-snap01.gz | dd of=/dev/vg0/mdb-new{"\n"}
                 mount /dev/vg0/mdb-new /srv/mongodb
               </pre>
-                <p>For more details, see {" "}
+              <p>
+                Please see the{" "}
                 <a
                   href={
                     "https://docs.mongodb.com/manual/tutorial/backup-with-filesystem-snapshots/"
@@ -442,10 +443,10 @@ class Faq extends Component {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  here
-                </a>
-                .
-                </p>
+                  MongoDB documentation
+                </a>{" "}
+                for more information about restoring snapshots.
+              </p>
             </div>
           </div>
 
