@@ -264,16 +264,17 @@ class About extends Component {
                       Tanimoto distance
                     </a>{" "}
                     of their structures. Users can identify measurements of
-                    similar proteins according to their{" "}
+                    similar proteins according to their orthology (sequence
+                    similarity as computed by{" "}
                     <a
-                      href={"https://www.genome.jp/kegg/ko.html"}
+                      href={"https://www.orthodb.org/"}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      orthology
-                    </a>{" "}
-                    (sequence similarity). Users can identify measurements of
-                    similar reactions according to their{" "}
+                      OrthoDB
+                    </a>
+                    ). Users can identify measurements of similar reactions
+                    according to their{" "}
                     <a
                       href={
                         "https://en.wikipedia.org/wiki/Enzyme_Commission_number"

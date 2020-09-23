@@ -90,13 +90,21 @@ class Faq extends Component {
 
           <div className="faq">
             <div className="faq-q">
-              How can I search for classes of genes (KEGG Orthology groups)?
+              How can I search for classes of genes (orthology groups)?
             </div>
             <div className="faq-a">
               <p className="no-bottom-margin">
-                Ortholog groups can be searched via their names; KEGG ids; and
-                the names, symbols, NCBI and UniProt ids, and EC numbers of
-                individual genes. Below are several example queries for genes.
+                Ortholog groups can be searched via their names;{" "}
+                <a
+                  href="https://www.orthodb.org/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  OrthoDB
+                </a>{" "}
+                ids; and the names, symbols, NCBI and UniProt ids, and EC
+                numbers of individual genes. Below are several example queries
+                for genes.
               </p>
 
               <ul className="no-top-margin">
@@ -164,15 +172,8 @@ class Faq extends Component {
 
           <div className="faq">
             <div className="faq-q">
-              Why are RNAs and proteins grouped by{" "}
-              <a
-                href={"https://www.genome.jp/kegg/ko.html"}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                ortholog groups
-              </a>{" "}
-              rather than by gene names or UniProt ids?
+              Why are RNAs and proteins grouped by ortholog groups rather than
+              by gene names or UniProt ids?
             </div>
             <div className="faq-a">
               <p>
@@ -187,9 +188,11 @@ class Faq extends Component {
                 orthologous mRNAs/proteins.
               </p>
               <p>
-                <i>Datanator</i> uses KEGG&apos;s ortholog groups because they
-                have wide taxonomic coverage and are available in a
-                machine-readable format.
+                <i>Datanator</i> uses OrthoDB&apos;s ortholog groups because
+                they have wide taxonomic coverage, they have been generated via
+                an unbiased, systematic approach, they are available in a
+                machine-readable format, and they are available under an
+                open-source license.
               </p>
               <p>
                 <i>Datanator</i> uses orthology rather than gene names to

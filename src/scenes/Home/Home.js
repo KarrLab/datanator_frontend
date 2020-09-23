@@ -429,11 +429,11 @@ class Home extends Component {
                   </a>{" "}
                   and organized with metadata from{" "}
                   <a
-                    href="https://www.genome.jp/kegg/ko.html"
+                    href="https://www.orthodb.org/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    KEGG Orthology
+                    OrthoDB
                   </a>
                   , and{" "}
                   <a
@@ -628,7 +628,7 @@ class Home extends Component {
                   </div>
                   <div className="vertical-workflow-el-description">
                     Select a metabolite, RNA, protein, or reaction class (e.g.,
-                    KEGG ortholog group) to obtain potentially relevant
+                    OrthoDB ortholog group) to obtain potentially relevant
                     measurements to the entity of interest. Then filter for data
                     about similar entities (e.g., by sequence similarity)
                     measured in similar organisms (by phylogenetic distance) and
