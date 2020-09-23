@@ -90,7 +90,15 @@ class About extends Component {
             <div className="content-block table-of-contents">
               <h2 className="content-block-heading">Citing us</h2>
               <div className="content-block-content">
-                Please check back soon for citation information.
+                <a
+                  href="https://doi.org/10.1101/2020.08.06.240051"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Roth YD et al. Datanator: an integrated database of molecular
+                  data for quantitatively modeling cellular behavior. bioRxiv,
+                  2020.08.06.240051 (2020)
+                </a>
               </div>
             </div>
 

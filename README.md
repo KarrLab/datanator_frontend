@@ -207,6 +207,9 @@ We welcome contributions to *Datanator* via Git pull requests. Please contact th
 ## License
 This package is released under the [MIT license](LICENSE). The licenses of the third party dependencies are summarized in [LICENSE-THIRD-PARTY](LICENSE-THIRD-PARTY).
 
+## Citing Datanator
+Roth YD, Lian Z, Pochiraju S, Shaikh B & Karr JR. Datanator: an integrated database of molecular data for quantitatively modeling cellular behavior. bioRxiv, 2020.08.06.240051 (2020). DOI: [10.1101/2020.08.06.240051](https://doi.org/10.1101/2020.08.06.240051).
+
 ## Development team
 This package was developed by the [Karr Lab](https://www.karrlab.org) at the Icahn School of Medicine at Mount Sinai in New York by the following individuals:
 
