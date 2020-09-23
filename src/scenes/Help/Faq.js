@@ -373,7 +373,7 @@ class Faq extends Component {
 
           <div className="faq">
             <div className="faq-q">
-              Can I download <i>Datanator</i>&apos;s data?
+              How can I download all of <i>Datanator</i>&apos;s data?
             </div>
             <div className="faq-a">
               <p>
@@ -415,6 +415,13 @@ class Faq extends Component {
                 data into a single database.
               </p>
             </div>
+          </div>
+
+          <div className="faq">
+            <div className="faq-q">
+              How can I use the <i>Datanator</i> MongoDB snapshot?
+            </div>
+            <div className="faq-a">Coming soon!</div>
           </div>
 
           <div className="faq">
