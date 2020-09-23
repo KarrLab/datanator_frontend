@@ -17,7 +17,9 @@ class Faq extends Component {
         <h2 className="content-block-heading">Frequently asked questions</h2>
         <div className="content-block-content">
           <div className="faq">
-            <div className="faq-q">How can I search for metabolites?</div>
+            <div className="faq-q">
+              How can I search for data about metabolites?
+            </div>
             <div className="faq-a">
               <p className="no-bottom-margin">
                 Metabolites can be searched via their names; synonmys;
@@ -90,7 +92,8 @@ class Faq extends Component {
 
           <div className="faq">
             <div className="faq-q">
-              How can I search for classes of genes (orthology groups)?
+              How can I search for data about classes of genes (orthology
+              groups)?
             </div>
             <div className="faq-a">
               <p className="no-bottom-margin">
@@ -135,8 +138,8 @@ class Faq extends Component {
 
           <div className="faq">
             <div className="faq-q">
-              How can I search for classes of reactions (Enzyme Classification
-              groups)?
+              How can I search for data about classes of reactions (Enzyme
+              Classification groups)?
             </div>
             <div className="faq-a">
               <p className="no-bottom-margin">
@@ -167,6 +170,22 @@ class Faq extends Component {
                   </Link>
                 </li>
               </ul>
+            </div>
+          </div>
+
+          <div className="faq">
+            <div className="faq-q">
+              Does <i>Datanator</i> include data about multi-cellular organisms?
+            </div>
+            <div className="faq-a">
+              Yes, <i>Datanator</i> has a significant amount of data about
+              several multi-cellular organisms. In fact, four of the five
+              organisms best characterized by <i>Datanator</i> (most
+              measurements) are multi-cellular. These four organisms are{" "}
+              <i>Arabidopsis thaliana</i>, <i>Homo sapiens</i>,{" "}
+              <i>Mus musculus</i>, and <i>Rattus norvegicus</i>. Where possible,{" "}
+              <i>Datanator</i> tracks the source cell line, cell type, and
+              tissue of each measurement of a multi-cellular organism.
             </div>
           </div>
 
