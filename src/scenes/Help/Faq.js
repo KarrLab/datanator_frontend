@@ -421,7 +421,10 @@ class Faq extends Component {
             <div className="faq-q">
               How can I use the <i>Datanator</i> MongoDB snapshot?
             </div>
-            <div className="faq-a">Coming soon!</div>
+            <div className="faq-a">
+              First, install and configure MongoDB. Second, restore the snapshot
+              by executing ...
+            </div>
           </div>
 
           <div className="faq">
