@@ -28,51 +28,61 @@ class Faq extends Component {
 
               <ul className="no-top-margin">
                 <li>
-                  Name: <Link to="/search/D-glucose/">D-glucose</Link>
+                  Name: <Link to="/search/Adenosine/">Adenosine</Link>
                 </li>
                 <li>
-                  BioCyc id:{" "}
-                  <Link to="/search/ALPHA-GLUCOSE/">ALPHA-GLUCOSE</Link>
+                  BioCyc id: <Link to="/search/ADENOSINE/">ADENOSINE</Link>
                 </li>
                 <li>
-                  CAS id: <Link to="/search/50-99-7/">50-99-7</Link>
+                  CAS id:{" "}
+                  <Link to={'/search/"58-61-7"/'}>&quot;58-61-7&quot;</Link>
                 </li>
                 <li>
-                  ChEBI id: <Link to="/search/17634/">17634</Link>
+                  ChEBI id: <Link to="/search/16335/">16335</Link>
                 </li>
                 <li>
-                  Chemspider id: <Link to="/search/5589/">5589</Link>
+                  Chemspider id: <Link to="/search/54923/">54923</Link>
                 </li>
                 <li>
-                  KEGG id: <Link to="/search/C00031/">C00031</Link>
+                  KEGG id: <Link to="/search/C00212/">C00212</Link>
                 </li>
                 <li>
-                  PubChem id: <Link to="/search/5793/">5793</Link>
+                  PubChem id: <Link to="/search/60961/">60961</Link>
                 </li>
                 <li>
                   InChI:{" "}
-                  <Link to="/search/InChI%3D1S%2FC6H12O6%2Fc7-1-2-3%288%294%289%295%2810%296%2811%2912-2%2Fh2-11H%2C1H2%2Ft2-%2C3-%2C4%2B%2C5-%2C6%3F%2Fm1%2Fs1/">
-                    InChI=1S/C6H12O6/c7-1-2-3(8)4(9)5(10)6(11)12-2/h2-11H,1H2/t2-,3-,4+,5-,6?/m1/s1
+                  <Link
+                    to={
+                      '/search/"InChI%3D1S%2FC10H13N5O4%2Fc11-8-5-9%2813-2-12-8%2915%283-14-5%2910-7%2818%296%2817%294%281-16%2919-10%2Fh2-4%2C6-7%2C10%2C16-18H%2C1H2%2C%28H2%2C11%2C12%2C13%29%2Ft4-%2C6-%2C7-%2C10-%2Fm1%2Fs1"/'
+                    }
+                  >
+                    &quot;InChI=1S/C10H13N5O4/c11-8-5-9(13-2-12-8)15(3-14-5)10-7(18)6(17)4(1-16)19-10/h2-4,6-7,10,16-18H,1H2,(H2,11,12,13)/t4-,6-,7-,10-/m1/s1&quot;
                   </Link>
                 </li>
                 <li>
                   InChI key:{" "}
-                  <Link to="/search/WQZGKKKJIJFFOK-GASJEMHNSA-N/">
-                    WQZGKKKJIJFFOK-GASJEMHNSA-N
+                  <Link to={'/search/"OIRDTQYFTABQOQ-KQYNXXCUSA-N"/'}>
+                    &quot;OIRDTQYFTABQOQ-KQYNXXCUSA-N&quot;
                   </Link>
                 </li>
                 <li>
                   SMILES:{" "}
-                  <Link to="/search/OC[C@H]1OC(O)[C@H](O)[C@@H](O)[C@@H]1O/">
-                    OC[C@H]1OC(O)[C@H](O)[C@@H](O)[C@@H]1O
+                  <Link
+                    to={
+                      '/search/"[H]OC([H])([H])[C@@]1([H])O[C@@]([H])(N2C([H])=NC3=C2N=C([H])N=C3N([H])[H])[C@]([H])(O[H])[C@]1([H])O[H]"/'
+                    }
+                  >
+                    &quot;[H]OC([H])([H])[C@@]1([H])O[C@@]([H])(N2C([H])=NC3=C2N=C([H])N=C3N([H])[H])[C@]([H])(O[H])[C@]1([H])O[H]&quot;
                   </Link>
                 </li>
                 <li>
                   Pathway name:{" "}
-                  <Link to="/search/ABC transporters/">ABC transporters</Link>
+                  <Link to={'/search/"Methionine metabolism and salvage"/'}>
+                    &quot;Methionine metabolism and salvage&quot;
+                  </Link>
                 </li>
                 <li>
-                  Pathway KEGG id: <Link to="/search/ec00030/">ec00030</Link>
+                  Pathway KEGG id: <Link to="/search/00230/">00230</Link>
                 </li>
               </ul>
             </div>
@@ -92,24 +102,24 @@ class Faq extends Component {
               <ul className="no-top-margin">
                 <li>
                   Name:{" "}
-                  <Link to="/search/Glucose 1-dehydrogenase/">
-                    Glucose 1-dehydrogenase
+                  <Link to="/search/glutamate dehydrogenase (NAD(P)+)/">
+                    glutamate dehydrogenase (NAD(P)+)
                   </Link>
                 </li>
                 <li>
-                  KEGG id: <Link to="/search/K00034/">K00034</Link>
+                  KEGG id: <Link to="/search/K00261/">K00261</Link>
                 </li>
                 <li>
-                  Gene symbol: <Link to="/search/gdh/">gdh</Link>
+                  Gene symbol: <Link to="/search/GLUD1/">GLUD1</Link>
                 </li>
                 <li>
-                  NCBI Gene id: <Link to="/search/938261/">938261</Link>
+                  NCBI Gene id: <Link to="/search/2746/">2746</Link>
                 </li>
                 <li>
-                  UniProt gene id: <Link to="/search/P12310/">P12310</Link>
+                  UniProt gene id: <Link to="/search/P00367/">P00367</Link>
                 </li>
                 <li>
-                  EC number: <Link to="/search/1.1.1.47/">1.1.1.47</Link>
+                  EC number: <Link to="/search/1.4.1.3/">1.4.1.3</Link>
                 </li>
               </ul>
             </div>
@@ -144,8 +154,8 @@ class Faq extends Component {
                 </li>
                 <li>
                   Reactant/product InChI keys:{" "}
-                  <Link to="/search/WQZGKKKJIJFFOK-GASJEMHNSA-N/">
-                    WQZGKKKJIJFFOK-GASJEMHNSA-N
+                  <Link to={'/search/"NBSCHQHZLSJFNQ-GASJEMHNSA-N"/'}>
+                    &quot;NBSCHQHZLSJFNQ-GASJEMHNSA-N&quot;
                   </Link>
                 </li>
               </ul>

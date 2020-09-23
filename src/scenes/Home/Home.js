@@ -79,30 +79,32 @@ class Home extends Component {
                 Metabolites –{" "}
                 <ul className="comma-separated-list">
                   <li>
-                    Name: <Link to="/search/D-glucose/">D-glucose</Link>
+                    Name: <Link to="/search/Adenosine/">Adenosine</Link>
                   </li>
                   <li>
-                    ChEBI id: <Link to="/search/17634/">17634</Link>
+                    ChEBI id: <Link to="/search/16335/">16335</Link>
                   </li>
                   <li>
-                    PubChem id: <Link to="/search/5793/">5793</Link>
+                    PubChem id: <Link to="/search/60961/">60961</Link>
                   </li>
                   <li>
                     InChI key:{" "}
                     <Link
                       className="truncate"
-                      to="/search/WQZGKKKJIJFFOK-GASJEMHNSA-N/"
+                      to={'/search/"OIRDTQYFTABQOQ-KQYNXXCUSA-N"/'}
                     >
-                      WQZGKKKJIJFFOK-GASJEMHNSA-N
+                      &quot;OIRDTQYFTABQOQ-KQYNXXCUSA-N&quot;
                     </Link>
                   </li>
                   <li>
                     SMILES:{" "}
                     <Link
                       className="truncate"
-                      to="/search/OC[C@H]1OC(O)[C@H](O)[C@@H](O)[C@@H]1O/"
+                      to={
+                        '/search/"[H]OC([H])([H])[C@@]1([H])O[C@@]([H])(N2C([H])=NC3=C2N=C([H])N=C3N([H])[H])[C@]([H])(O[H])[C@]1([H])O[H]"/'
+                      }
                     >
-                      OC[C@H]1OC(O)[C@H](O)[C@@H](O)[C@@H]1O
+                      &quot;[H]OC([H])([H])[C@@]1([H])O[C@@]([H])(N2C([H])=NC3=C2N=C([H])N=C3N([H])[H])[C@]([H])(O[H])[C@]1([H])O[H]&quot;
                     </Link>
                   </li>
                 </ul>
@@ -111,22 +113,22 @@ class Home extends Component {
                 Genes –{" "}
                 <ul className="comma-separated-list">
                   <li>
-                    Symbol: <Link to="/search/gdh/">gdh</Link>
+                    Symbol: <Link to="/search/GLUD1/">GLUD1</Link>
                   </li>
                   <li>
                     Name:{" "}
-                    <Link to="/search/Glucose 1-dehydrogenase/">
-                      Glucose 1-dehydrogenase
+                    <Link to="/search/Glutamate dehydrogenase/">
+                      Glutamate dehydrogenase
                     </Link>
                   </li>
                   <li>
-                    NCBI Gene id: <Link to="/search/938261/">938261</Link>
+                    NCBI Gene id: <Link to="/search/2746/">2746</Link>
                   </li>
                   <li>
-                    KEGG id: <Link to="/search/K00034/">K00034</Link>
+                    KEGG id: <Link to="/search/K00261/">K00261</Link>
                   </li>
                   <li>
-                    UniProt id: <Link to="/search/P12310/">P12310</Link>
+                    UniProt id: <Link to="/search/P00367/">P00367</Link>
                   </li>
                 </ul>
               </div>
