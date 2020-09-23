@@ -625,3 +625,26 @@ pre {
   border-radius: 0.25rem;
   margin: 0 0 0.5rem 0;
 }
+
+/* tooltip */
+.bp3-portal .bp3-overlay .bp3-popover .bp3-popover-content {
+  max-width: 400px;
+  border-radius: 0.25rem;
+  padding: 0.25rem;
+  p, ul {
+    margin-block-start: 0;
+    margin-block-end: 0;
+
+    &:not(:last-child) {
+      margin-block-end: 0.25rem;
+    }
+
+    &.no-bottom-margin {
+      margin-block-end: 0;  
+    }
+  }
+
+  ul {
+    margin-left: 1.1rem;
+  }
+}

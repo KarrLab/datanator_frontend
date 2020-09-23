@@ -6,6 +6,7 @@ import { InputGroup } from "@blueprintjs/core";
 import { MenuItem } from "@blueprintjs/core";
 import { Button } from "@blueprintjs/core";
 import { Suggest } from "@blueprintjs/select";
+import { Tooltip, Position } from "@blueprintjs/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getDataFromApi, genApiErrorHandler } from "~/services/RestApi";
 import axios from "axios";
@@ -180,49 +181,114 @@ class SearchForm extends Component {
   }
 
   render() {
+    const entityTooltip = (
+      <div>
+        <p>
+          Enter the id or name of a metabolite, gene, or reaction to search for
+          data about such as
+        </p>
+        <ul>
+          <li>
+            <b>Metabolite:</b> name &ndash; Adenosine, ChEBI id &ndash; 16335,
+            or PubChem id &ndash; 60961
+          </li>
+          <li>
+            <b>Gene:</b> name &ndash; Glutamate dehydrogenase, symbol &ndash;
+            GLUD1, UniProt id &ndash; P00367, or OrthoDB id &ndash; 692851at2759
+          </li>
+          <li>
+            <b>Reaction:</b> name &ndash; Glucose-6-phosphatase or EC code
+            &ndash; 3.1.3.9
+          </li>
+        </ul>
+        <p>
+          This input will be used to search for metabolites, genes, and
+          reactions with similar ids and names for which <i>Datanator</i>{" "}
+          contains potentially relevant experimental measurements.
+        </p>
+      </div>
+    );
+
+    const taxonTooltip = (
+      <div>
+        <p>
+          Use this suggestion box to select a taxon such as &ldquo;Homo
+          sapiens&rdquo;, &ldquo;E. coli&rdquo;, or &ldquo;Bacillus&rdquo; to
+          find relevant data about.
+        </p>
+        <p>
+          The data pages will use this input to (a) sort potentially relevant
+          measurements by their taxonomic similarity to your taxon of interest
+          and (b) provide you a slider for filtering these measurements by their
+          taxonomic relevance.
+        </p>
+        <p>
+          Note, due to the complexity of calculating taxonomic similarity,
+          Datanator&apos;s search results display metabolites, genes, and
+          reactions from all taxa. Going forward, we aim to filter and rank
+          these search results by their relevance to your taxon of interest.
+        </p>
+        <p>Please see the help for more information.</p>
+      </div>
+    );
+
     return (
       <form className="search-form" onSubmit={this.submitSearch}>
         <div className="search-label search-label-find">Find data about</div>
 
-        <InputGroup
-          aria-label="Biochemical entity (e.g., metabolite, gene, or reaction)"
-          type="text"
-          className="search-form-el search-form-el-entity search-input"
-          leftIcon=<FontAwesomeIcon icon="atom" />
-          placeholder="metabolite, gene, or reaction (e.g., Adenosine)"
-          value={this.state.query}
-          onChange={(event) => {
-            this.setState({
-              query: event.target.value,
-              queryValid:
-                event.target.value && event.target.value.trim() !== "",
-            });
-          }}
-        />
+        <Tooltip
+          content={entityTooltip}
+          className="search-form-el"
+          position={Position.BOTTOM}
+        >
+          <InputGroup
+            aria-label="Biochemical entity (e.g., metabolite, gene, or reaction)"
+            type="text"
+            className="search-form-el-entity search-input"
+            leftIcon=<FontAwesomeIcon icon="atom" />
+            placeholder="metabolite, gene, or reaction (e.g., Adenosine)"
+            value={this.state.query}
+            onChange={(event) => {
+              this.setState({
+                query: event.target.value,
+                queryValid:
+                  event.target.value && event.target.value.trim() !== "",
+              });
+            }}
+          />
+        </Tooltip>
 
         <div className="search-label search-label-in">in</div>
 
-        <Suggest
-          ref={(el) => {
-            this.organismSuggest = el;
-          }}
-          className="search-form-el search-form-el-organism"
-          inputProps={{
-            "aria-label": "Taxon (e.g., Escherichia coli)",
-            className: "search-input",
-            leftIcon: <FontAwesomeIcon icon="dna" />,
-            placeholder: "taxon (e.g., Escherichia coli)",
-          }}
-          items={this.state.matchingOrganisms}
-          openOnKeyDown={true}
-          onQueryChange={this.getMatchingOrganisms}
-          itemRenderer={this.genOrganismMenuItem}
-          inputValueRenderer={this.renderOrganism}
-          noResults={<MenuItem disabled={true} text="No matching organisms" />}
-          onItemSelect={this.selectOrganism}
+        <Tooltip
+          content={taxonTooltip}
+          className="search-form-el"
+          position={Position.BOTTOM}
         >
-          <InputGroup />
-        </Suggest>
+          <Suggest
+            ref={(el) => {
+              this.organismSuggest = el;
+            }}
+            className="search-form-el-organism"
+            inputProps={{
+              "aria-label": "Taxon (e.g., Escherichia coli)",
+              className: "search-input",
+              leftIcon: <FontAwesomeIcon icon="dna" />,
+              placeholder: "taxon (e.g., Escherichia coli)",
+            }}
+            items={this.state.matchingOrganisms}
+            openOnKeyDown={true}
+            onQueryChange={this.getMatchingOrganisms}
+            itemRenderer={this.genOrganismMenuItem}
+            inputValueRenderer={this.renderOrganism}
+            noResults={
+              <MenuItem disabled={true} text="No matching organisms" />
+            }
+            onItemSelect={this.selectOrganism}
+          >
+            <InputGroup />
+          </Suggest>
+        </Tooltip>
 
         <Button
           type="submit"

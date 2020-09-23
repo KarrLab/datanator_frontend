@@ -227,6 +227,95 @@ class Faq extends Component {
 
           <div className="faq">
             <div className="faq-q">
+              How does the search form use the taxon input?
+            </div>
+            <div className="faq-a">
+              <p>The taxon input is used for two purposes in the data pages:</p>
+              <ul>
+                <li>
+                  <b>Sorting:</b> The taxon input is used to sort the
+                  potentially relevant measurements by their taxonomic
+                  similarity to the taxon of interest.
+                </li>
+                <li>
+                  <b>Filtering:</b> The taxon input is used to provide users a
+                  slider for filtering the potentially relevant measurements by
+                  their taxonomic similarity to the taxon of interest.
+                </li>
+              </ul>
+              <p>
+                Note: due to the computational cost of calculating taxonomic
+                similarity, the taxon input is not used to filter or rank search
+                results. Going forward, we hope to use the taxon input to
+                provide more relevant search results.
+              </p>
+            </div>
+          </div>
+
+          <div className="faq">
+            <div className="faq-q">
+              The search results don&apos;t appear to be limited to the taxon
+              entered in the search form. Why isn&apos;t the taxon input used?
+              Why does the search form ask for a taxon? Where is the taxon input
+              used?
+            </div>
+            <div className="faq-a">
+              <p>
+                The search form asks for a taxon because, as described above,
+                the data pages uses the taxon input to sort and filter
+                potentially relevant measurements by their similarity to the
+                taxon of interest.
+              </p>
+
+              <p>
+                In designing <i>Datanator</i>, we felt that the simplest and
+                most intuitive way to help users find data relevant to specific
+                organisms is to begin by asking users both about (a) the
+                molecules or reactions they want to find data about and (b) the
+                taxon (organism) they would like data about. From the start,
+                this design intentionally encourages users to think about
+                finding data relevant to specific taxa. In particular, we felt
+                this design was simpler than providing a form on each data page
+                which asks users to enter their taxon of interest and uses this
+                information to sort and filter measurements.
+              </p>
+
+              <p>
+                Due to the complexity of calculating taxonomic similar,
+                unfortunately, the search results do not yet filter or rank
+                search results by their taxonomic similarity. The taxon input is
+                only used to sort and filter measurements in the data pages.
+              </p>
+
+              <p>
+                <i>Datanator</i> also aspires to help users find data from
+                relevant environmental conditions. Ideally, this would be
+                implemented symetrically by incorporating an input for the
+                target environmental condition in the search form, and using
+                this information to filter and rank the search results, and sort
+                and filter the potentially relevant measurements in the data
+                pages. We have chosen to implement filtering and sorting of
+                environmental conditions differently from filtering and sorting
+                taxa (genotypes) for several related reasons: environments
+                require multi-dimensional descriptions (e.g., temperature, pH,
+                gas pressures, media) which makes capturing the target
+                environment and computing environmental similarity more complex,
+                there is no commonly accepted way of systematically describing
+                environments (e.g., no ontology of media), and <i>Datanator</i>{" "}
+                does not consistently represent the environmental condition of
+                each measurement because the sources that we have used to
+                assemble <i>Datanator</i> provide different metadata (i.e. some
+                sources record temperatures while others do not). We aspire to
+                improve this going forward. In our opinion, this requires a
+                community effort to annotate environmental conditions more
+                consistently which, in turn, requires the development of data
+                models and ontologies for describing environmental conditions.
+              </p>
+            </div>
+          </div>
+
+          <div className="faq">
+            <div className="faq-q">
               Why does the metabolite concentration data table display data for
               biomolecules that were not queried (e.g., ADP is displayed in the
               page for ATP)?
