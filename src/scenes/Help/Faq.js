@@ -507,18 +507,16 @@ class Faq extends Component {
                 >
                   Zenodo
                 </a>
-                . The data is released under the Creative Commons
-                Attribution-NonCommercial-NoDerivatives 4.0 (CC BY-NC-ND 4.0){" "}
-                <a
-                  href={
-                    "https://github.com/KarrLab/datanator/blob/master/DATA_LICENSE"
-                  }
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  license
-                </a>
-                .
+                . Due to restrictions by the data sources for Datanator, all of
+                the data is available under the Creative Commons
+                Attribution-NonCommercial 4.0 International (CC BY-NC) License.
+                The structure of the database is available under the Creative
+                Commons 1.0 Universal Public Domain Dedication (CC0). Please see
+                the{" "}
+                <HashLink scroll={scrollTo} to="/about/#license">
+                  about page
+                </HashLink>{" "}
+                for more information.
               </p>
               <p>
                 In addition, users can use the

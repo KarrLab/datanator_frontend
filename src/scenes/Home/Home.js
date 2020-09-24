@@ -736,11 +736,15 @@ class Home extends Component {
             </p>
             <p>
               <i>Datanator</i> was implemented using several open-source tools
-              including Elasticsearch, Flask, MongoDB, OpenAPI, and React. The
-              code is available open-source under the MIT license. The data is
-              available under the Creative Commons
-              Attribution-NonCommercial-NoDerivatives 4.0 (CC BY-NC-ND 4.0)
-              license.
+              including Elasticsearch, Flask, MongoDB, OpenAPI, and React.
+            </p>
+
+            <p>
+              The data is available under the Creative Commons
+              Attribution-NonCommercial 4.0 International (CC BY-NC) License.
+              The structure of the database is available under the Creative
+              Commons 1.0 Universal Public Domain (CC0) License. The code is
+              available open-source under the MIT License.
             </p>
             <p className="no-bottom-margin">
               Please see the <Link to="/about/">About</Link> page for more

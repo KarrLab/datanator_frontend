@@ -386,34 +386,61 @@ class About extends Component {
 
               <div className="content-block-content">
                 <p>
-                  The <i>Datanator</i> data is released under the Creative
-                  Commons Attribution-NonCommercial-NoDerivatives 4.0 (CC
-                  BY-NC-ND 4.0){" "}
+                  We aim to provide data and tools for working with this data
+                  with no additional restrictions beyond those imposed by the
+                  third-party data sources and software libraries used to
+                  construct <i>Datanator</i>.
+                </p>
+
+                <p>
+                  Due to restrictions by some of the data sources for Datanator,
+                  all of the data is available under the Creative Commons
+                  Attribution-NonCommercial 4.0 International (CC BY-NC){" "}
                   <a
-                    href={
-                      "https://github.com/KarrLab/datanator/blob/master/DATA_LICENSE"
-                    }
+                    href="https://github.com/KarrLab/datanator/blob/master/LICENSE-DATA"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    license
+                    License
+                  </a>
+                  . Some of the data is available under more permisive licenses
+                  as summarized{" "}
+                  <a
+                    href="https://github.com/KarrLab/datanator/blob/master/LICENSE-THIRD-PARTY-DATA"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    here
+                  </a>
+                  .
+                </p>
+
+                <p>
+                  The structure of the database is available under the Creative
+                  Commons 1.0 Universal Public Domain (CC0){" "}
+                  <a
+                    href="https://github.com/KarrLab/datanator/blob/master/LICENSE-DATABASE-STRUCTURE"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    License
                   </a>
                   .
                 </p>
 
                 <p className="no-bottom-margin">
-                  The <i>Datanator</i> source code is released under the MIT{" "}
+                  The source code is released under the MIT{" "}
                   <a
                     href={
-                      "https://github.com/KarrLab/datanator/blob/master/LICENSE"
+                      "https://github.com/KarrLab/datanator_frontend/blob/master/LICENSE"
                     }
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    license
+                    License
                   </a>
-                  . The licenses for <i>Datanator</i>&apos;s third-party
-                  dependencies are described{" "}
+                  . The licenses for the third-party libraries used to build{" "}
+                  <i>Datanator</i> are summarized{" "}
                   <a
                     href="https://github.com/KarrLab/datanator_frontend/blob/master/LICENSE-THIRD-PARTY"
                     target="_blank"
