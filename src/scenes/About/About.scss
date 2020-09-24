@@ -1,6 +1,19 @@
 @import '../../colors';
 
 .content-container-about-scene {
+  /* sources */
+  .sources {
+    th,
+    td {
+      &:nth-child(2),
+      &:nth-child(3),
+      &:nth-child(4),
+      &:nth-child(5) {
+        text-align: center;
+      }
+    }
+  }
+
   /* searching and filtering */
   .search-filtering {
     li {

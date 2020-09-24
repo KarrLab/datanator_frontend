@@ -13,6 +13,7 @@ export default class Footer extends Component {
   render() {
     return (
       <div className="footer-component">
+        <span className="footer-item">Version 2020.08.03</span>
         <span className="footer-item">
           &copy;2019-2020&nbsp;
           <a

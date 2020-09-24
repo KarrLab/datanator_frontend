@@ -44,6 +44,11 @@ class About extends Component {
                     </HashLink>
                   </li>
                   <li>
+                    <HashLink scroll={scrollTo} to="#versioning">
+                      Updating and versioning
+                    </HashLink>
+                  </li>
+                  <li>
                     <HashLink scroll={scrollTo} to="#searching">
                       Searching
                     </HashLink>
@@ -184,7 +189,7 @@ class About extends Component {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    ECMDB
+                    E. coli Metabolome Database (ECMDB)
                   </a>
                   ,{" "}
                   <a
@@ -224,11 +229,212 @@ class About extends Component {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    YMDB
+                    Yeast Metabolome Database (YMDB)
                   </a>
-                  , and numerous publications . We aim to continually
-                  incorporate additional data from additional sources.
+                  , and numerous publications. These measurements are
+                  complemented with metadata (e.g., names, structures,
+                  sequences) of metabolites, genes, reactions, and taxa from{" "}
+                  <a
+                    href="https://www.ncbi.nlm.nih.gov/taxonomy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    NCBI Taxonomy
+                  </a>
+                  ,{" "}
+                  <a
+                    href="https://www.orthodb.org/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    OrthoDB
+                  </a>
+                  , and{" "}
+                  <a
+                    href="https://www.uniprot.org/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    UniProt
+                  </a>
+                  . We aim to continually incorporate additional data from
+                  additional sources.
                 </p>
+              </div>
+            </div>
+
+            <div className="content-block section" id="versioning">
+              <h2 className="content-block-heading">Updating and versioning</h2>
+              <div className="content-block-content">
+                <p>
+                  The <i>Datanator</i> database will be updated periodically
+                  with the latest versions of all of the sources used to
+                  assemble the database. This is possible because the
+                  aggregation, normalization, and integration of each data
+                  source is implemented as a repeatable script. We also aim to
+                  continue to curate data. Each time we update the database, we
+                  will increment the version number of the database and deposit
+                  a snapshot to Zenodo. Below is a summary of the version of
+                  each source currently incorporated into <i>Datanator</i>.
+                </p>
+                <table className="sources padded striped border-radius">
+                  <thead>
+                    <tr>
+                      <th>Source</th>
+                      <th>
+                        Current version in <i>Datanator</i>
+                      </th>
+                      <th>Date updated</th>
+                      <th>Latest version</th>
+                      <th>Date released</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <a
+                          href="http://ecmdb.ca/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          E. coli Metabolome Database (ECMDB)
+                        </a>
+                      </td>
+                      <td>2.0</td>
+                      <td>2015-09-13</td>
+                      <td>2.0</td>
+                      <td>?</td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <a
+                          href="https://iimcb.genesilico.pl/modomics/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          MODOMICS
+                        </a>
+                      </td>
+                      <td>N/A</td>
+                      <td>2019-08-23</td>
+                      <td>N/A</td>
+                      <td>?</td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <a
+                          href="https://www.ncbi.nlm.nih.gov/taxonomy"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          NCBI Taxonomy
+                        </a>
+                      </td>
+                      <td>2020-05-01</td>
+                      <td>2020-04-30</td>
+                      <td>2020-09-24</td>
+                      <td>2020-09-24</td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <a
+                          href="https://www.orthodb.org/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          OrthoDB
+                        </a>
+                      </td>
+                      <td>10.1</td>
+                      <td>2020-09-11</td>
+                      <td>10.1</td>
+                      <td>?</td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <a
+                          href="https://pax-db.org/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          PaxDB
+                        </a>
+                      </td>
+                      <td>4.1</td>
+                      <td>2018-10</td>
+                      <td>4.1</td>
+                      <td>2017-10-04</td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <a
+                          href="https://proconsortium.org/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Protein Ontology (PRO)
+                        </a>
+                      </td>
+                      <td>58.0</td>
+                      <td>2019-07-11</td>
+                      <td>61.0</td>
+                      <td>2020-08-19</td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <a
+                          href="https://sabiork.h-its.org/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          SABIO-RK
+                        </a>
+                      </td>
+                      <td>2.7</td>
+                      <td>2019-10-22</td>
+                      <td>2.11</td>
+                      <td>2020-06-29</td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <a
+                          href="https://www.uniprot.org/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          UniProt
+                        </a>
+                      </td>
+                      <td>2020_04</td>
+                      <td>2020-09-11</td>
+                      <td>2020_04</td>
+                      <td>2020-08-12</td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <a
+                          href="http://www.ymdb.ca/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Yeast Metabolome Database (YMDB)
+                        </a>
+                      </td>
+                      <td>2.0</td>
+                      <td>2016-09-08</td>
+                      <td>2.0</td>
+                      <td>?</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
 

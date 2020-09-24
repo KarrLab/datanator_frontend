@@ -15,18 +15,13 @@
   }
 
   .summary {
-    margin-left: auto;
-    margin-right: auto;
-
     th {
       text-align: right;
       font-weight: 500;
-      margin-right: 0.125rem;
     }
 
     td {
       text-align: right;
-      margin-left: 0.125rem;
       width: 55px;
       border: 1px solid $color-border;
       border-radius: 3px;
