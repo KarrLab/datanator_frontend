@@ -264,8 +264,48 @@ class About extends Component {
             </div>
 
             <div className="content-block section" id="versioning">
-              <h2 className="content-block-heading">Updating and versioning</h2>
+              <h2 className="content-block-heading">
+                Warehousing, updating and versioning
+              </h2>
               <div className="content-block-content">
+                <p>
+                  <i>Datanator</i> is structured as a data warehouse (i.e.
+                  Datanator maintains copies of each data source) rather than a
+                  federated database (e.g., BioMart) or registry of datasets
+                  (e.g., OmicsDI) for multiple reasons:
+                </p>
+                <ul className="vertically-spaced">
+                  <li>
+                    Some of the data sources incorporated into <i>Datanator</i>{" "}
+                    do not provide APIs.
+                  </li>
+                  <li>
+                    Only a few of the data sources provide SPAQRL endpoints.
+                  </li>
+                  <li>
+                    A federated design would be more vulnerable to changes in
+                    the schemas of the data sources. In contrast, the data
+                    warehouse design utilizes snapshots of each source to
+                    insulate the integrated database from changes to the schemas
+                    of the data sources. The code for building the data
+                    warehouse still has to be updated when schemas are changed,
+                    but schema changes don&apos;t break the integrated database.
+                  </li>
+                  <li>
+                    Several of the sources do not have clear versioning schemes.
+                  </li>
+                  <li>
+                    Several of the sources that have limited resources are not
+                    gauranteed to always be always from their websites.
+                  </li>
+                  <li>
+                    Queries to a federated architecture would likely be slower
+                    because data would need to normalized and integrated during
+                    each query. In contrast, our warehouse design allows
+                    normalization and integration to be done once prior to all
+                    querying.
+                  </li>
+                </ul>
                 <p>
                   The <i>Datanator</i> database will be updated periodically
                   with the latest versions of all of the sources used to
