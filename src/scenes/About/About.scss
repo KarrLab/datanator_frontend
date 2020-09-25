@@ -12,6 +12,14 @@
         text-align: center;
       }
     }
+
+    th,
+    td {
+      &:nth-child(4),
+      &:nth-child(5) {
+        display: none;
+      }
+    }
   }
 
   /* searching and filtering */

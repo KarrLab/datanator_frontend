@@ -324,7 +324,7 @@ class About extends Component {
                       <th>
                         Current version in <i>Datanator</i>
                       </th>
-                      <th>Date updated</th>
+                      <th>Date imported</th>
                       <th>Latest version</th>
                       <th>Date released</th>
                     </tr>
