@@ -640,8 +640,9 @@ class About extends Component {
 
                 <p>
                   Due to restrictions by some of the data sources for Datanator,
-                  all of the data is available under the Creative Commons
-                  Attribution-NonCommercial 4.0 International (CC BY-NC){" "}
+                  all of the copyrightable content of the database is available
+                  under the Creative Commons Attribution-NonCommercial 4.0
+                  International (CC BY-NC){" "}
                   <a
                     href="https://github.com/KarrLab/datanator/blob/master/LICENSE-DATA"
                     target="_blank"
@@ -649,8 +650,8 @@ class About extends Component {
                   >
                     License
                   </a>
-                  . Some of the data is available under more permisive licenses
-                  as summarized{" "}
+                  . Some of the copyrightable content of the database is
+                  available under more permisive licenses as summarized{" "}
                   <a
                     href="https://github.com/KarrLab/datanator/blob/master/LICENSE-THIRD-PARTY-DATA"
                     target="_blank"

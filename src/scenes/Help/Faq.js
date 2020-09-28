@@ -508,11 +508,11 @@ class Faq extends Component {
                   Zenodo
                 </a>
                 . Due to restrictions by the data sources for Datanator, all of
-                the data is available under the Creative Commons
-                Attribution-NonCommercial 4.0 International (CC BY-NC) License.
-                The structure of the database is available under the Creative
-                Commons 1.0 Universal Public Domain Dedication (CC0). Please see
-                the{" "}
+                the copyrightable content of the database is available under the
+                Creative Commons Attribution-NonCommercial 4.0 International (CC
+                BY-NC) License. The structure of the database is available under
+                the Creative Commons 1.0 Universal Public Domain Dedication
+                (CC0). Please see the{" "}
                 <HashLink scroll={scrollTo} to="/about/#license">
                   about page
                 </HashLink>{" "}
