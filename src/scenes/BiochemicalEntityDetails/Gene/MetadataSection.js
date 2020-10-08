@@ -255,9 +255,7 @@ class MetadataSection extends Component {
 
   getMetadataUrl(query) {
     if (isOrthoDbId(query)) {
-      // Todo: update for KEGG -> OrthoDB
-      return null;
-      // return "kegg/get_meta/?kegg_ids=" + query;
+      return "kegg/get_meta/?kegg_ids=" + query;
     } else {
       return "proteins/meta/meta_combo/?uniprot_id=" + query;
     }
@@ -286,8 +284,7 @@ class MetadataSection extends Component {
 
     let processedData = {};
 
-    // Todo: update KEGG -> OrthoDB
-    processedData.title = null;
+    processedData.title = rawData[0].orthodb_name;
     processedData.orthoDbId = query;
     processedData.uniprotId = null;
     processedData.description = null;
@@ -298,9 +295,10 @@ class MetadataSection extends Component {
       "?offset=0&size=10";
 
     // Todo: check this works after updating KEGG -> OrthoDB
-    processedData.relatedLinksUrl =
-      "proteins/related/related_reactions_by_kegg/?ko=" +
-      processedData.orthoDbId;
+    processedData.relatedLinksUrl = null;
+    // processedData.relatedLinksUrl =
+    //  "proteins/related/related_reactions_by_kegg/?ko=" +
+    //  processedData.orthoDbId;
 
     return processedData;
   }
