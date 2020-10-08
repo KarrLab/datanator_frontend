@@ -740,14 +740,18 @@ class Home extends Component {
             </p>
 
             <p>
-              The data is available under the Creative Commons
-              Attribution-NonCommercial 4.0 International (CC BY-NC) License.
-              The structure of the database is available under the Creative
-              Commons 1.0 Universal Public Domain (CC0) License. The code is
-              available open-source under the MIT License.
+              The content of the <i>Datanator</i> database is a compilation of
+              data curated by the Datanator Team and data aggregated from
+              third-party databases. The copyrightable content curated by the
+              Datanator Team is available under the Creative Commons 1.0
+              Universal Public Domain (CC0) License. The content from
+              third-party databases is available under the licenses summarized
+              on the <Link to="/about/">About page</Link>. The structure of the
+              database is available under the CC0 License. The code is available
+              open-source under the MIT License.
             </p>
             <p className="no-bottom-margin">
-              Please see the <Link to="/about/">About</Link> page for more
+              Please see the <Link to="/about/">About page</Link> for more
               information.
             </p>
             <div className="about-icons">

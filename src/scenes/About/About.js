@@ -632,17 +632,22 @@ class About extends Component {
 
               <div className="content-block-content">
                 <p>
-                  We aim to provide data and tools for working with this data
-                  with no additional restrictions beyond those imposed by the
-                  third-party data sources and software libraries used to
+                  The <i>Datanator</i> database is a compilation of data curated
+                  by the Datanator Team and data aggregated from third-party
+                  databases.
+                </p>
+
+                <p>
+                  We aim to provide this data and tools for working with this
+                  data with no additional restrictions beyond those imposed by
+                  the third-party data sources and software libraries used to
                   construct <i>Datanator</i>.
                 </p>
 
                 <p>
-                  Due to restrictions by some of the data sources for Datanator,
-                  all of the copyrightable content of the database is available
-                  under the Creative Commons Attribution-NonCommercial 4.0
-                  International (CC BY-NC){" "}
+                  The copyrightable content of the database curated by the
+                  Datanator Team is available under the Creative Commons 1.0
+                  Universal Public Domain (CC0){" "}
                   <a
                     href="https://github.com/KarrLab/datanator/blob/master/LICENSE-DATA"
                     target="_blank"
@@ -650,8 +655,9 @@ class About extends Component {
                   >
                     License
                   </a>
-                  . Some of the copyrightable content of the database is
-                  available under more permisive licenses as summarized{" "}
+                  . Due to restrictions by some of the third-party data sources
+                  for Datanator, the content from third-party databases is
+                  available under the licenses summarized
                   <a
                     href="https://github.com/KarrLab/datanator/blob/master/LICENSE-THIRD-PARTY-DATA"
                     target="_blank"
