@@ -657,7 +657,7 @@ class About extends Component {
                   </a>
                   . Due to restrictions by some of the third-party data sources
                   for Datanator, the content from third-party databases is
-                  available under the licenses summarized
+                  available under the licenses summarized{" "}
                   <a
                     href="https://github.com/KarrLab/datanator/blob/master/LICENSE-THIRD-PARTY-DATA"
                     target="_blank"
@@ -692,7 +692,7 @@ class About extends Component {
                   >
                     License
                   </a>
-                  . The licenses for the third-party libraries used to build{" "}
+                  . The licenses for the third-party libraries used by{" "}
                   <i>Datanator</i> are summarized{" "}
                   <a
                     href="https://github.com/KarrLab/datanator_frontend/blob/master/LICENSE-THIRD-PARTY"
