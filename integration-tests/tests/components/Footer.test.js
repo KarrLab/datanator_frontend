@@ -7,12 +7,18 @@ describe("Footer loads correctly", function () {
     // check content
     cy.get(".footer-component .footer-item")
       .first()
+      .next()
       .find("a")
       .should("have.text", "Karr Lab");
 
     // visit a link
     cy.location("pathname").should("equal", "/");
-    cy.get(".footer-component .footer-item").first().next().find("a").click();
+    cy.get(".footer-component .footer-item")
+      .first()
+      .next()
+      .next()
+      .find("a")
+      .click();
     cy.location("pathname").should("not.equal", "/");
   });
 });

@@ -3,8 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import BaseMetadataSection from "../MetadataSection";
 import { LoadExternalContent, LoadContent } from "../LoadContent";
-import KeggPathwaysMetadataSection from "../KeggPathwaysMetadataSection";
-import { naturalSort, isKeggOrthologyId } from "~/utils/utils";
+import { naturalSort, isOrthoDbId } from "~/utils/utils";
 
 class MetadataSection extends Component {
   static propTypes = {
@@ -41,7 +40,7 @@ class MetadataSection extends Component {
         comments = datum.comments[0].text[0].value;
       }
 
-      if (isKeggOrthologyId(query)) {
+      if (isOrthoDbId(query)) {
         if (comments) {
           response = comments;
         }
@@ -255,16 +254,18 @@ class MetadataSection extends Component {
   }
 
   getMetadataUrl(query) {
-    if (isKeggOrthologyId(query)) {
-      return "kegg/get_meta/?kegg_ids=" + query;
+    if (isOrthoDbId(query)) {
+      // Todo: update for KEGG -> OrthoDB
+      return null;
+      // return "kegg/get_meta/?kegg_ids=" + query;
     } else {
       return "proteins/meta/meta_combo/?uniprot_id=" + query;
     }
   }
 
   static processMetadata(query, organism, rawData) {
-    if (isKeggOrthologyId(query)) {
-      return MetadataSection.processKeggOrthologGroupMetadata(
+    if (isOrthoDbId(query)) {
+      return MetadataSection.processOrthoDbGroupMetadata(
         query,
         organism,
         rawData
@@ -278,31 +279,28 @@ class MetadataSection extends Component {
     }
   }
 
-  static processKeggOrthologGroupMetadata(query, organism, rawData) {
+  static processOrthoDbGroupMetadata(query, organism, rawData) {
     if (!Array.isArray(rawData)) {
       return;
     }
 
     let processedData = {};
 
-    processedData.title = rawData[0].definition.name[0];
-    processedData.koNumber = rawData[0].kegg_orthology_id;
+    // Todo: update KEGG -> OrthoDB
+    processedData.title = null;
+    processedData.orthoDbId = query;
     processedData.uniprotId = null;
     processedData.description = null;
-    processedData.ecCode = rawData[0].definition.ec_code[0];
-    processedData.pathways = rawData[0].kegg_pathway;
-    if (rawData[0].gene_name[0].match(/^(\d+SrRNA|tRNA-[A-Z][a-z]+)$/)) {
-      processedData.descriptionUrl = null;
-    } else {
-      processedData.descriptionUrl =
-        "https://www.ebi.ac.uk/proteins/api/proteins/KO:" +
-        query +
-        "?offset=0&size=10";
-    }
+    processedData.ecCode = null;
+    processedData.descriptionUrl =
+      "https://www.ebi.ac.uk/proteins/api/proteins/OrthoDB:" +
+      query +
+      "?offset=0&size=10";
 
+    // Todo: check this works after updating KEGG -> OrthoDB
     processedData.relatedLinksUrl =
       "proteins/related/related_reactions_by_kegg/?ko=" +
-      rawData[0].kegg_orthology_id;
+      processedData.orthoDbId;
 
     return processedData;
   }
@@ -315,11 +313,10 @@ class MetadataSection extends Component {
     let processedData = {};
 
     processedData.title = rawData[0].protein_name.split("(")[0].trim();
-    processedData.koNumber = null;
+    processedData.orthoDbId = null;
     processedData.uniprotId = query;
     processedData.description = null;
     processedData.ecCode = rawData[0].ec_number;
-    processedData.pathways = [];
     processedData.descriptionUrl =
       "https://www.ebi.ac.uk/proteins/api/proteins?offset=0&size=1&accession=" +
       query;
@@ -365,26 +362,23 @@ class MetadataSection extends Component {
 
     const crossRefs = [];
 
-    if (processedData.koNumber != null) {
+    if (processedData.orthoDbId != null) {
       crossRefs.push({
-        key: "KEGG orthology",
+        key: "OrthoDB",
         value: (
           <a
-            href={
-              "https://www.genome.jp/dbget-bin/www_bget?ko:" +
-              processedData.koNumber
-            }
+            href={"https://www.orthodb.org/?query=" + processedData.orthoDbId}
             target="_blank"
             rel="noopener noreferrer"
           >
             {" "}
-            {processedData.koNumber}
+            {processedData.orthoDbId}
           </a>
         ),
       });
     } else {
       crossRefs.push({
-        key: "KEGG orthology",
+        key: "OrthoDB",
         value: "None",
       });
     }
@@ -444,22 +438,6 @@ class MetadataSection extends Component {
       });
     }
 
-    if (processedData.pathways) {
-      if (processedData.pathways.length > 0) {
-        sections.push({
-          id: "pathways",
-          title: "Pathways",
-          content: (
-            <KeggPathwaysMetadataSection
-              pathways={processedData.pathways}
-              page-size={30}
-              kegg-id-name={"kegg_pathway_code"}
-              kegg-description-name={"pathway_description"}
-            />
-          ),
-        });
-      }
-    }
     return sections;
   }
 

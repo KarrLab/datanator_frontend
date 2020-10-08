@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import BaseMetadataSection from "../MetadataSection";
 import { Link } from "react-router-dom";
-import KeggPathwaysMetadataSection from "../KeggPathwaysMetadataSection";
 import { LoadMetabolites } from "../LoadContent";
 import { naturalSort } from "~/utils/utils";
 
@@ -83,10 +82,9 @@ class MetadataSection extends Component {
       const end = name.substring(1, name.length);
       processedData["enzyme"] = start + end;
     }
-    if ("kegg_meta" in rawData[0]) {
-      processedData["kegg_orthology_id"] =
-        rawData[0]["kegg_meta"]["kegg_orthology_id"];
-    }
+
+    // todo: get OrthoDB id for enzyme
+    processedData["orthoDbId"] = null;
 
     const substrateNames = substrates.map((part) => part.name);
     const productNames = products.map((part) => part.name);
@@ -99,9 +97,6 @@ class MetadataSection extends Component {
       " → " +
       MetadataSection.formatSide(productNames);
 
-    if ("kegg_meta" in rawData[0]) {
-      processedData["pathways"] = rawData[0].kegg_meta.kegg_pathway;
-    }
     return processedData;
   }
 
@@ -170,8 +165,8 @@ class MetadataSection extends Component {
     // description
     const descriptions = [];
     if (processedData.enzyme) {
-      if (processedData.kegg_orthology_id) {
-        let route = "/gene/" + processedData.kegg_orthology_id + "/";
+      if (processedData.orthoDbId) {
+        let route = "/gene/" + processedData.orthoDbId + "/";
         if (organism) {
           route += organism + "/";
         }
@@ -254,21 +249,6 @@ class MetadataSection extends Component {
         id: "cross-refs",
         title: "Cross references",
         content: <ul className="three-col-list link-list">{dbLinks}</ul>,
-      });
-    }
-
-    if (processedData.pathways) {
-      sections.push({
-        id: "pathways",
-        title: "Pathways",
-        content: (
-          <KeggPathwaysMetadataSection
-            pathways={processedData.pathways}
-            page-size={30}
-            kegg-id-name={"kegg_pathway_code"}
-            kegg-description-name={"pathway_description"}
-          />
-        ),
       });
     }
 

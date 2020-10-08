@@ -125,7 +125,8 @@ class Home extends Component {
                     NCBI Gene id: <Link to="/search/2746/">2746</Link>
                   </li>
                   <li>
-                    KEGG id: <Link to="/search/K00261/">K00261</Link>
+                    OrthoDB id:{" "}
+                    <Link to="/search/692851at2759/">692851at2759</Link>
                   </li>
                   <li>
                     UniProt id: <Link to="/search/P00367/">P00367</Link>

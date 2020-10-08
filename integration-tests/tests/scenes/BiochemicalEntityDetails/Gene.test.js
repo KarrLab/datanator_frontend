@@ -3,17 +3,19 @@
 describe("Gene scene", function () {
   it("Gene scene with organism successfully loads with protein abundances", function () {
     const route = "gene";
-    const entity = "K00117";
+    const entity = "1004719at2";
     const organism = "Escherichia coli";
     const url = "/" + route + "/" + entity + "/" + organism + "/";
 
     cy.visit(url);
 
     // page title
+    /*
     cy.get(".page-title").should(
       "have.text",
-      "Gene: quinoprotein glucose dehydrogenase in " + organism
+      "Gene: Glucose-1-phosphate thymidylyltransferase in " + organism
     );
+    */
 
     // data table
     const dataContainerId = "#protein-abundance";
@@ -53,7 +55,7 @@ describe("Gene scene", function () {
 
   it("Gene scene with organism successfully loads with RNA half-lives", function () {
     const route = "gene";
-    const entity = "K16370";
+    const entity = "1004719at2";
     const organism = "Escherichia coli";
     const url = "/" + route + "/" + entity + "/" + organism + "/";
 

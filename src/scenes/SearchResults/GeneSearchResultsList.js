@@ -10,8 +10,8 @@ export default class GeneSearchResultsList extends Component {
         "query_message=" + query,
         "from_=" + pageCount * pageSize,
         "size=" + pageSize,
-        "fields=ko_name",
-        "fields=ko_number",
+        "fields=orthodb_id",
+        "fields=orthodb_name",
 
         "fields=gene_name",
         "fields=gene_name_alt",
@@ -34,105 +34,105 @@ export default class GeneSearchResultsList extends Component {
 
     const formattedResults = [];
     for (const result of results) {
-      if (Array.isArray(result.key) && result.key.length > 0) {
-        const koNumberArr = castToArray(
-          result.top_ko.hits.hits[0]?._source?.ko_number
-        );
-        let koNumber = koNumberArr.length ? koNumberArr[0] : null;
-        const uniprotId = result.top_ko.hits.hits[0]._id.toUpperCase();
+      const orthoDbIdArr = castToArray(
+        result.top_ko.hits.hits[0]?._source?.orthodb_id
+      );
+      const orthoDbNameArr = castToArray(
+        result.top_ko.hits.hits[0]?._source?.orthodb_name
+      );
+      let orthoDbId = orthoDbIdArr.length ? orthoDbIdArr[0] : null;
+      let orthoDbName = orthoDbNameArr.length ? orthoDbNameArr[0] : null;
+      const uniprotId = result.top_ko.hits.hits[0]._id.toUpperCase();
 
-        const source = result.top_ko.hits.hits[0]._source;
+      const source = result.top_ko.hits.hits[0]._source;
 
-        if (typeof koNumber !== "string") {
-          koNumber = null;
-        }
+      if (typeof orthoDbId !== "string") {
+        orthoDbId = null;
+      }
+      if (typeof orthoDbName !== "string") {
+        orthoDbName = null;
+      }
 
-        let id;
-        if (
-          koNumber == null ||
-          ["nan", "n/a"].includes(koNumber.toLowerCase())
-        ) {
-          id = uniprotId;
-          koNumber = null;
-        } else {
-          id = koNumber;
-        }
+      let id;
+      if (
+        orthoDbId == null ||
+        ["nan", "n/a"].includes(orthoDbId.toLowerCase())
+      ) {
+        id = uniprotId;
+        orthoDbId = null;
+      } else {
+        id = orthoDbId;
+      }
 
-        const formattedResult = {};
-        formattedResults.push(formattedResult);
+      const formattedResult = {};
+      formattedResults.push(formattedResult);
 
-        // title
-        if (
-          "ko_name" in source &&
-          Array.isArray(source.ko_name) &&
-          source.ko_name.length &&
-          source.ko_name[0]
-        ) {
-          formattedResult["title"] =
-            "Ortholog group: " + upperCaseFirstLetter(source.ko_name[0]);
-        } else if ("definition" in source) {
-          formattedResult["title"] = "Gene: " + source.definition;
-        } else {
-          formattedResult["title"] =
-            "Gene: " + source.protein_name.split("(")[0].trim();
-        }
+      // title
+      if (orthoDbId) {
+        formattedResult["title"] =
+          "Ortholog group: " + upperCaseFirstLetter(orthoDbName || orthoDbId);
+      } else if ("definition" in source) {
+        formattedResult["title"] = "Gene: " + source.definition;
+      } else {
+        formattedResult["title"] =
+          "Gene: " + source.protein_name.split("(")[0].trim();
+      }
 
-        // description
-        const descriptions = [];
-        if (koNumber == null) {
-          const taxonName = source.species_name;
-          descriptions.push(
-            <li key="taxonomy">
-              Organism:{" "}
-              <a
-                href={
-                  "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?name=" +
-                  taxonName
-                }
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {taxonName}
-              </a>
-            </li>
-          );
-
-          descriptions.push(
-            <li key="uniprot">
-              UniProt:{" "}
-              <a
-                href={"https://www.uniprot.org/uniprot/" + uniprotId}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {uniprotId}
-              </a>
-            </li>
-          );
-        } else {
-          descriptions.push(
-            <li key="kegg">
-              KEGG:{" "}
-              <a
-                href={"https://www.genome.jp/dbget-bin/www_bget?ko:" + koNumber}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {koNumber}
-              </a>
-            </li>
-          );
-        }
-
-        formattedResult["description"] = (
-          <ul className="comma-separated-list">{descriptions}</ul>
+      // description
+      const descriptions = [];
+      if (orthoDbId == null) {
+        const taxonName = source.species_name;
+        descriptions.push(
+          <li key="taxonomy">
+            Organism:{" "}
+            <a
+              href={
+                "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?name=" +
+                taxonName
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {taxonName}
+            </a>
+          </li>
         );
 
-        //route
-        formattedResult["route"] = "/gene/" + id + "/";
-        if (organism) {
-          formattedResult["route"] += organism + "/";
-        }
+        descriptions.push(
+          <li key="uniprot">
+            UniProt:{" "}
+            <a
+              href={"https://www.uniprot.org/uniprot/" + uniprotId}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {uniprotId}
+            </a>
+          </li>
+        );
+      } else {
+        descriptions.push(
+          <li key="orthodb">
+            OrthoDB:{" "}
+            <a
+              href={"https://www.orthodb.org/?query=" + orthoDbId}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {orthoDbId}
+            </a>
+          </li>
+        );
+      }
+
+      formattedResult["description"] = (
+        <ul className="comma-separated-list">{descriptions}</ul>
+      );
+
+      //route
+      formattedResult["route"] = "/gene/" + id + "/";
+      if (organism) {
+        formattedResult["route"] += organism + "/";
       }
     }
 

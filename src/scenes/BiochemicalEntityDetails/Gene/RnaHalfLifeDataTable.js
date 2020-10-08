@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import {
-  upperCaseFirstLetter,
-  isKeggOrthologyId,
-  castToArray,
-} from "~/utils/utils";
+import { upperCaseFirstLetter, isOrthoDbId, castToArray } from "~/utils/utils";
 import DataTable from "../DataTable/DataTable";
 import { HtmlColumnHeader } from "../HtmlColumnHeader";
 import Tooltip from "@material-ui/core/Tooltip";
@@ -19,7 +15,7 @@ class RnaHalfLifeDataTable extends Component {
     let endpoint;
     const args = [];
 
-    if (isKeggOrthologyId(query)) {
+    if (isOrthoDbId(query)) {
       endpoint = "rna/halflife/get_info_by_ko/";
       args.push("ko_number=" + query);
     } else {
@@ -51,13 +47,6 @@ class RnaHalfLifeDataTable extends Component {
               proteinName:
                 "protein_names" in rawDatum && rawDatum.protein_names
                   ? rawDatum.protein_names[0]
-                  : null,
-              geneName:
-                "kegg_meta" in rawDatum &&
-                rawDatum.kegg_meta &&
-                "gene_name" in rawDatum.kegg_meta &&
-                rawDatum.kegg_meta.gene_name
-                  ? rawDatum.kegg_meta.gene_name[0]
                   : null,
               uniprotId: "uniprot_id" in rawDatum ? rawDatum.uniprot_id : null,
               organism: measurement.species,
@@ -136,13 +125,6 @@ class RnaHalfLifeDataTable extends Component {
                 proteinName:
                   "protein_names" in rawDatum && rawDatum.protein_names
                     ? rawDatum.protein_names[0]
-                    : null,
-                geneName:
-                  "kegg_meta" in rawDatum &&
-                  rawDatum.kegg_meta &&
-                  "gene_name" in rawDatum.kegg_meta &&
-                  rawDatum.kegg_meta.gene_name
-                    ? rawDatum.kegg_meta.gene_name[0]
                     : null,
                 uniprotId:
                   "uniprot_id" in rawDatum ? rawDatum.uniprot_id : null,
@@ -263,12 +245,6 @@ class RnaHalfLifeDataTable extends Component {
         },
       },
       {
-        headerName: "Gene",
-        field: "geneName",
-        filter: "textFilter",
-        hide: true,
-      },
-      {
         headerName: "Organism",
         field: "organism",
         filter: "textFilter",
@@ -381,7 +357,6 @@ class RnaHalfLifeDataTable extends Component {
       { colId: "taxonomicProximity", sort: "asc" },
       { colId: "organism", sort: "asc" },
       // { colId: "cellLine", sort: "asc" },
-      // { colId: "geneName", sort: "asc" },
       { colId: "halfLife", sort: "asc" },
     ];
   }

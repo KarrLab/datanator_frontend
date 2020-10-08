@@ -72,14 +72,10 @@ class Tutorial extends Component {
                       <li>Name and synonyms</li>
                       <li>Description</li>
                       <li>
-                        Identifiers: BioCyc, CAS, ChEBI, ChemSpider, ECMDB,
-                        HMDB, KEGG, PubChem compound, YMDB
+                        Identifiers: BioCyc, CAS, ChEBI, ChemSpider, KEGG,
+                        PubChem compound
                       </li>
                       <li>Structure: InChI, InChI key, SMILES, formula</li>
-                      <li>
-                        Pathways: names, descriptions, and EcoCyc, KEGG and
-                        PathWhiz identifiers of parent pathways
-                      </li>
                     </ul>
                   </li>
                   <li>
@@ -135,9 +131,8 @@ class Tutorial extends Component {
                 </div>
                 <div className="tutorial-step-text">
                   The top of the ATP page shows metadata about ATP such as a
-                  description of ATP, synonyms for ATP, links to entries about
-                  ATP in several other databases, and links to pathways that ATP
-                  participates in.
+                  description of ATP, synonyms for ATP, and links to entries
+                  about ATP in several other databases.
                 </div>
                 <LazyLoad height={236 + 18}>
                   <img

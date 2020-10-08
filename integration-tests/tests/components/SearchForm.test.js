@@ -76,7 +76,7 @@ describe("Works correctly", function () {
       .first()
       .next()
       .find(".bp3-menu-item")
-      .click();
+      .click({ force: true });
     cy.get(
       ".content-container-home-scene .search-form .search-form-el-organism input"
     ).should(($el) => {

@@ -29,9 +29,6 @@ export default class MetaboliteSearchResultsList extends Component {
         "fields=kegg_id",
         "fields=pubchem_compound_id",
 
-        "fields=pathways.pathway.name",
-        "fields=pathways.pathway.kegg_map_id",
-
         "includes=InChI_Key",
         "includes=name",
         "includes=chebi_id",

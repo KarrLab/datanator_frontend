@@ -24,8 +24,8 @@ class Faq extends Component {
               <p className="no-bottom-margin">
                 Metabolites can be searched via their names; synonmys;
                 descriptions; BioCyc, CAS, Chemspider, ChEBI, KEGG, and PubChem
-                ids; InChI and SMILES representations; and pathways (name and
-                KEGG id). Below are several example queries for metabolites.
+                ids; and InChI and SMILES representations. Below are several
+                example queries for metabolites.
               </p>
 
               <ul className="no-top-margin">
@@ -77,15 +77,6 @@ class Faq extends Component {
                     &quot;[H]OC([H])([H])[C@@]1([H])O[C@@]([H])(N2C([H])=NC3=C2N=C([H])N=C3N([H])[H])[C@]([H])(O[H])[C@]1([H])O[H]&quot;
                   </Link>
                 </li>
-                <li>
-                  Pathway name:{" "}
-                  <Link to={'/search/"Methionine metabolism and salvage"/'}>
-                    &quot;Methionine metabolism and salvage&quot;
-                  </Link>
-                </li>
-                <li>
-                  Pathway KEGG id: <Link to="/search/00230/">00230</Link>
-                </li>
               </ul>
             </div>
           </div>
@@ -113,12 +104,13 @@ class Faq extends Component {
               <ul className="no-top-margin">
                 <li>
                   Name:{" "}
-                  <Link to="/search/glutamate dehydrogenase (NAD(P)+)/">
-                    glutamate dehydrogenase (NAD(P)+)
+                  <Link to="/search/Glutamate dehydrogenase/">
+                    Glutamate dehydrogenase
                   </Link>
                 </li>
                 <li>
-                  KEGG id: <Link to="/search/K00261/">K00261</Link>
+                  OrthoDB id:{" "}
+                  <Link to="/search/692851at2759/">692851at2759</Link>
                 </li>
                 <li>
                   Gene symbol: <Link to="/search/GLUD1/">GLUD1</Link>

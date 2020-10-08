@@ -57,7 +57,7 @@ describe("Search results scene with entity", function () {
       .find(".search-result-description")
       .should(($el) => {
         const text = $el.text();
-        expect(text).to.match(/^KEGG: K[0-9]+$/);
+        expect(text).to.match(/^OrthoDB: [0-9]+at[0-9]+$/);
       });
 
     // Reactions

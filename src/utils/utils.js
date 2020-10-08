@@ -231,8 +231,8 @@ function naturalSort(a, b) {
   });
 }
 
-function isKeggOrthologyId(id) {
-  return id.match(/K\d{5,5}/i);
+function isOrthoDbId(id) {
+  return id.match(/\d/i);
 }
 
 function replaceNanWithNull(value) {
@@ -311,7 +311,7 @@ export {
   numberWithCommas,
   isEmpty,
   naturalSort,
-  isKeggOrthologyId,
+  isOrthoDbId,
   replaceNanWithNull,
   httpRequestLog,
   isiOS,

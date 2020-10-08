@@ -314,15 +314,6 @@ describe("Reaction data page", () => {
     expect(processedMetadata.ecNumber).toEqual("2.7.4.3");
     expect(processedMetadata.enzyme).toEqual("Adenylate kinase");
     expect(processedMetadata.equation).toEqual("AMP + ATP → ADP");
-
-    expect(processedMetadata.pathways).toEqual(
-      expect.arrayContaining([
-        {
-          kegg_pathway_code: "ko00230",
-          pathway_description: "Purine metabolism",
-        },
-      ])
-    );
   });
 
   it("Formats metadata data correctly", () => {

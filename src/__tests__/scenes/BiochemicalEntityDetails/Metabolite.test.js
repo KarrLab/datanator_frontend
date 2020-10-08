@@ -203,7 +203,9 @@ describe("Metabolite data page", () => {
       "id",
       "cross-refs"
     );
-    expect(formattedLinks.title).toEqual("Cross references");
+    expect(formattedLinks.title).toEqual(
+      "Cross references and more information"
+    );
     const linksWrapper = shallow(formattedLinks.content);
 
     const correctListOfLinks = [
@@ -254,25 +256,6 @@ describe("Metabolite data page", () => {
     const localizationsWrapper = shallow(formattedLocalizations.content);
     expect(localizationsWrapper.html()).toEqual(
       '<ul class="vertically-spaced"><li><div class="bulleted-list-item">Escherichia coli (ECMDB)<ul><li>Cytosol</li></ul></div></li></ul>'
-    );
-
-    const formattedPathways = getSectionFromList(
-      formattedMetadata,
-      "id",
-      "pathways"
-    );
-    expect(formattedPathways.id).toEqual("pathways");
-    expect(formattedPathways.title).toEqual("Pathways");
-    const pathwaysWrapper = shallow(formattedPathways.content);
-
-    const correctListOfPathways = [
-      '<li><a href="https://www.genome.jp/dbget-bin/www_bget?map00240" class="bulleted-list-item" target="_blank" rel="noopener noreferrer">Pyrimidine metabolism</a></li>',
-      '<li><div class="bulleted-list-item">Superpathway of (KDO)<SUB>2</SUB>-lipid A biosynthesis</div></li>',
-    ];
-
-    const actualListOfPathways = getListDomElements(pathwaysWrapper, "li");
-    expect(actualListOfPathways).toEqual(
-      expect.arrayContaining(correctListOfPathways)
     );
 
     let structure =

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {
   getNumProperties,
   upperCaseFirstLetter,
-  isKeggOrthologyId,
+  isOrthoDbId,
 } from "~/utils/utils";
 import DataTable from "../DataTable/DataTable";
 import { HtmlColumnHeader } from "../HtmlColumnHeader";
@@ -21,7 +21,7 @@ class ProteinModificationDataTable extends Component {
   };
 
   getUrl(query, organism) {
-    if (isKeggOrthologyId(query)) {
+    if (isOrthoDbId(query)) {
       const args = ["kegg_id=" + query, "distance=40"];
       if (organism) {
         args.push("anchor=" + organism);
@@ -41,7 +41,7 @@ class ProteinModificationDataTable extends Component {
   }
 
   formatData(query, organism, rawData) {
-    if (isKeggOrthologyId(query)) {
+    if (isOrthoDbId(query)) {
       return this.formatOrthologGroupData(query, organism, rawData);
     } else {
       return this.formatProteinData(query, organism, rawData);

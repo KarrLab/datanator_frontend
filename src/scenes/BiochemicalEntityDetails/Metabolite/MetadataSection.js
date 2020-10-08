@@ -1,13 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import {
-  formatChemicalFormula,
-  strCompare,
-  removeDuplicates,
-  castToArray,
-} from "~/utils/utils";
+import { formatChemicalFormula, strCompare, castToArray } from "~/utils/utils";
 import BaseMetadataSection from "../MetadataSection";
-import KeggPathwaysMetadataSection from "../KeggPathwaysMetadataSection";
 import LazyLoad from "react-lazyload";
 import ReactionSearchResultsList from "./ReactionSearchResultsList";
 
@@ -96,7 +90,6 @@ class MetadataSection extends Component {
     processedData = {};
     processedData.synonyms = null;
     processedData.description = null;
-    processedData.pathways = null;
     processedData.cellularLocations = null;
 
     processedData.name = met.name;
@@ -192,18 +185,6 @@ class MetadataSection extends Component {
         ? physiologicalCharge.value
         : null,
     };
-
-    if (met.pathways) {
-      processedData.pathways = castToArray(met.pathways.pathway);
-
-      processedData.pathways = removeDuplicates(
-        processedData.pathways,
-        (el) => el.name
-      );
-      processedData.pathways.sort((a, b) => {
-        return strCompare(a.name, b.name);
-      });
-    }
 
     if (met.cellular_locations) {
       const locs = castToArray(met.cellular_locations);
@@ -343,7 +324,7 @@ class MetadataSection extends Component {
 
       sections.push({
         id: "cross-refs",
-        title: "Cross references",
+        title: "Cross references and more information",
         content: (
           <ul className="key-value-list three-col-list link-list">{dbLinks}</ul>
         ),
@@ -421,20 +402,6 @@ class MetadataSection extends Component {
       title: "Reactions",
       content: <ReactionSearchResultsList />,
     });
-    if (processedData.pathways) {
-      sections.push({
-        id: "pathways",
-        title: "Pathways",
-        content: (
-          <KeggPathwaysMetadataSection
-            pathways={processedData.pathways}
-            page-size={30}
-            kegg-id-name={"kegg_map_id"}
-            kegg-description-name={"name"}
-          />
-        ),
-      });
-    }
 
     return sections;
   }

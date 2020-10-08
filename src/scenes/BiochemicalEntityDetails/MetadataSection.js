@@ -76,6 +76,19 @@ class MetadataSection extends Component {
 
     this.queryCancelTokenSource = axios.CancelToken.source();
     const queryUrl = this.props["get-metadata-url"](query, organism);
+    if (!queryUrl) {
+      const formattedMetadataSections = [];
+      this.props["set-scene-metadata"]({
+        error404: false,
+        title: query,
+        organism: organism,
+        metadataSections: formattedMetadataSections,
+        other: undefined,
+      });
+      this.setState({ sections: formattedMetadataSections });
+      return;
+    }
+
     if (organism) {
       this.taxonCancelTokenSource = axios.CancelToken.source();
     }
@@ -162,18 +175,22 @@ class MetadataSection extends Component {
   }
 
   render() {
-    return (
-      <div>
-        {this.state.sections.map((section) => {
-          return (
-            <div className="content-block" id={section.id} key={section.id}>
-              <h2 className="content-block-heading">{section.title}</h2>
-              <div className="content-block-content">{section.content}</div>
-            </div>
-          );
-        })}
-      </div>
-    );
+    if (this.state.sections?.length) {
+      return (
+        <div>
+          {this.state.sections.map((section) => {
+            return (
+              <div className="content-block" id={section.id} key={section.id}>
+                <h2 className="content-block-heading">{section.title}</h2>
+                <div className="content-block-content">{section.content}</div>
+              </div>
+            );
+          })}
+        </div>
+      );
+    } else {
+      return null;
+    }
   }
 }
 

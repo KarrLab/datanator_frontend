@@ -11,17 +11,17 @@ import React from "react";
 /* global describe, it, expect */
 describe("Gene data page", () => {
   it("Gets correct concentration data url", () => {
-    const entity = "K00850";
+    const entity = "688282at2759";
     const organism = "Escherichia coli";
     // instantiate data table
     const dataTable = new ProteinAbundanceDataTable();
 
     // assert URL correct
     expect(dataTable.getUrl(entity)).toEqual(
-      "proteins/proximity_abundance/proximity_abundance_kegg/?kegg_id=K00850&distance=40"
+      "proteins/proximity_abundance/proximity_abundance_kegg/?kegg_id=688282at2759&distance=40"
     );
     expect(dataTable.getUrl(entity, organism)).toEqual(
-      "proteins/proximity_abundance/proximity_abundance_kegg/?kegg_id=K00850&distance=40&anchor=Escherichia coli"
+      "proteins/proximity_abundance/proximity_abundance_kegg/?kegg_id=688282at2759&distance=40&anchor=Escherichia coli"
     );
   });
 
@@ -30,7 +30,7 @@ describe("Gene data page", () => {
     const dataTable = new ProteinAbundanceDataTable();
 
     // format raw data
-    const query = "K00850";
+    const query = "688282at2759";
     const organism = "Escherichia coli";
     const formattedData = dataTable.formatData(query, organism, testRawData);
 
@@ -55,7 +55,7 @@ describe("Gene data page", () => {
     expect(formattedData[8].geneSymbol).toEqual(null);
 
     const formattedDataWithoutTaxonomicData = dataTable.formatData(
-      "K00850",
+      "688282at2759",
       null,
       testRawData
     );
@@ -116,27 +116,28 @@ describe("Gene data page", () => {
   });
 
   it("Gets correct metadata url ", () => {
-    const query = "K00850";
+    const query = "688282at2759";
     expect(new MetadataSection().getMetadataUrl(query)).toEqual(
-      "kegg/get_meta/?kegg_ids=K00850"
+      // Todo: update for KEGG -> OrthoDb
+      "kegg/get_meta/?kegg_ids=688282at2759"
     );
   });
 
   it("Processes metadata data correctly", () => {
     // format raw data
     const processedMetadata = MetadataSection.processMetadata(
-      "K00850",
+      "688282at2759",
       null,
       testRawMetadata
     );
-    expect(processedMetadata.koNumber).toEqual("K00850");
+    expect(processedMetadata.orthoDbId).toEqual("688282at2759");
     expect(processedMetadata.title).toEqual("6-phosphofructokinase 1");
   });
 
   it("Formats metadata data correctly", () => {
     // format processed data
     const processedMetadata = MetadataSection.processMetadata(
-      "K00850",
+      "688282at2759",
       null,
       testRawMetadata
     );
@@ -146,7 +147,7 @@ describe("Gene data page", () => {
     );
 
     const formattedMetadata = MetadataSection.formatMetadata(
-      "K00850",
+      "688282at2759",
       null,
       processedMetadata
     );
@@ -173,7 +174,7 @@ describe("Gene data page", () => {
 
     const namesMetadataWrapper = shallow(formattedCrossReferences.content);
 
-    const correct_list_of_names = ["KEGG orthology:  K00850"];
+    const correct_list_of_names = ["OrthoDB:  688282at2759"];
 
     const actual_list_of_names = getListDomElements(
       namesMetadataWrapper,
@@ -188,12 +189,12 @@ describe("Gene data page", () => {
 
   it("get description from uniprot", () => {
     const emptyUniprotDescription = MetadataSection.processDescriptionFromUniprot(
-      "K00850",
+      "688282at2759",
       null
     );
     expect(emptyUniprotDescription).toEqual("No description available.");
     const uniprotDescription = MetadataSection.processDescriptionFromUniprot(
-      "K00850",
+      "688282at2759",
       rawUniprotDescription
     );
     expect(uniprotDescription).toEqual(
