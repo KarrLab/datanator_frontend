@@ -131,7 +131,7 @@ describe("Gene data page", () => {
       testRawMetadata
     );
     expect(processedMetadata.orthoDbId).toEqual("688282at2759");
-    expect(processedMetadata.title).toEqual("6-phosphofructokinase 1");
+    expect(processedMetadata.title).toEqual("Protein kinase domain");
   });
 
   it("Formats metadata data correctly", () => {
@@ -143,7 +143,7 @@ describe("Gene data page", () => {
     );
 
     expect(MetadataSection.formatTitle(processedMetadata)).toEqual(
-      "6-phosphofructokinase 1"
+      "Protein kinase domain"
     );
 
     const formattedMetadata = MetadataSection.formatMetadata(
