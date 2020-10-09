@@ -13,19 +13,22 @@ import "../BiochemicalEntityDetails.scss";
 class Gene extends Component {
   constructor() {
     super();
+    this._metadata = null;
     this.state = {
       metadata: null,
     };
   }
 
   setMetadata(metadata, update = false) {
-    if (update && this.state.metadata) {
-      const allMetadata = Object.assign({}, this.state.metadata);
+    if (update && this._metadata) {
+      const allMetadata = Object.assign({}, this._metadata);
       for (const key in metadata) {
         allMetadata[key] = metadata[key];
       }
+      this._metadata = allMetadata;
       this.setState({ metadata: allMetadata });
     } else {
+      this._metadata = metadata;
       this.setState({ metadata: metadata });
     }
   }

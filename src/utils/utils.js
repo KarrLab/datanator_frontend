@@ -232,7 +232,15 @@ function naturalSort(a, b) {
 }
 
 function isOrthoDbId(id) {
-  return id.match(/\d/i);
+  return id.match(/^\d/i) != null;
+}
+
+function isUniProtId(id) {
+  return (
+    id.match(
+      /^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\.\d+)?$/
+    ) != null
+  );
 }
 
 function replaceNanWithNull(value) {
@@ -312,6 +320,7 @@ export {
   isEmpty,
   naturalSort,
   isOrthoDbId,
+  isUniProtId,
   replaceNanWithNull,
   httpRequestLog,
   isiOS,

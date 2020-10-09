@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import SearchResultsList from "./SearchResultsList.js";
-import { upperCaseFirstLetter, castToArray } from "~/utils/utils";
+import { castToArray, isOrthoDbId } from "~/utils/utils";
 
 export default class GeneSearchResultsList extends Component {
   getResultsUrl(query, pageCount, pageSize) {
@@ -23,6 +23,8 @@ export default class GeneSearchResultsList extends Component {
         "fields=entry_name",
         "fields=uniprot_id",
 
+        "fields=definition",
+
         "fields=ec_number",
       ].join("&")
     );
@@ -42,14 +44,15 @@ export default class GeneSearchResultsList extends Component {
       );
       let orthoDbId = orthoDbIdArr.length ? orthoDbIdArr[0] : null;
       let orthoDbName = orthoDbNameArr.length ? orthoDbNameArr[0] : null;
-      const uniprotId = result.top_ko.hits.hits[0]._id.toUpperCase();
+      const uniprotId = result.top_ko.hits.hits[0]._source?.uniprot_id;
 
       const source = result.top_ko.hits.hits[0]._source;
 
-      if (typeof orthoDbId !== "string") {
+      if (typeof orthoDbId !== "string" || !orthoDbId) {
         orthoDbId = null;
+        orthoDbName = null;
       }
-      if (typeof orthoDbName !== "string") {
+      if (typeof orthoDbName !== "string" || !orthoDbName) {
         orthoDbName = null;
       }
 
@@ -69,34 +72,42 @@ export default class GeneSearchResultsList extends Component {
 
       // title
       if (orthoDbId) {
-        formattedResult["title"] =
-          "Ortholog group: " + upperCaseFirstLetter(orthoDbName || orthoDbId);
+        let name = orthoDbName;
+        if (!name) {
+          name = orthoDbId;
+        }
+
+        formattedResult["title"] = "Ortholog group: " + name;
       } else if ("definition" in source) {
         formattedResult["title"] = "Gene: " + source.definition;
-      } else {
+      } else if ("protein_name" in source) {
         formattedResult["title"] =
           "Gene: " + source.protein_name.split("(")[0].trim();
+      } else {
+        formattedResult["title"] = "Gene: " + source.uniprot_id;
       }
 
       // description
       const descriptions = [];
       if (orthoDbId == null) {
-        const taxonName = source.species_name;
-        descriptions.push(
-          <li key="taxonomy">
-            Organism:{" "}
-            <a
-              href={
-                "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?name=" +
-                taxonName
-              }
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {taxonName}
-            </a>
-          </li>
-        );
+        if ("species_name" in source) {
+          const taxonName = source.species_name;
+          descriptions.push(
+            <li key="taxonomy">
+              Organism:{" "}
+              <a
+                href={
+                  "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?name=" +
+                  taxonName
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {taxonName}
+              </a>
+            </li>
+          );
+        }
 
         descriptions.push(
           <li key="uniprot">
@@ -110,7 +121,7 @@ export default class GeneSearchResultsList extends Component {
             </a>
           </li>
         );
-      } else {
+      } else if (isOrthoDbId(orthoDbId)) {
         descriptions.push(
           <li key="orthodb">
             OrthoDB:{" "}

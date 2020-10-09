@@ -77,7 +77,13 @@ class MetadataSection extends Component {
     this.queryCancelTokenSource = axios.CancelToken.source();
     const queryUrl = this.props["get-metadata-url"](query, organism);
     if (!queryUrl) {
-      const formattedMetadataSections = [];
+      const formattedMetadataSections = [
+        {
+          id: "id",
+          title: "Id",
+          content: query,
+        },
+      ];
       this.props["set-scene-metadata"]({
         error404: false,
         title: query,

@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { upperCaseFirstLetter, isOrthoDbId, castToArray } from "~/utils/utils";
+import {
+  upperCaseFirstLetter,
+  isOrthoDbId,
+  isUniProtId,
+  castToArray,
+} from "~/utils/utils";
 import DataTable from "../DataTable/DataTable";
 import { HtmlColumnHeader } from "../HtmlColumnHeader";
 import Tooltip from "@material-ui/core/Tooltip";
@@ -16,9 +21,15 @@ class RnaHalfLifeDataTable extends Component {
     const args = [];
 
     if (isOrthoDbId(query)) {
+      // ortholog groups of mRNA
       endpoint = "rna/halflife/get_info_by_ko/";
       args.push("ko_number=" + query);
+    } else if (isUniProtId(query)) {
+      // individual genes
+      endpoint = "rna/halflife/get_info_by_uniprot/";
+      args.push("uniprot_id=" + query);
     } else {
+      // ortholog groups of non-coding RNA
       endpoint = "rna/halflife/get_info_by_uniprot/";
       args.push("uniprot_id=" + query);
     }

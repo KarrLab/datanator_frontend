@@ -5,6 +5,7 @@ import DataTable from "../DataTable/DataTable";
 import { HtmlColumnHeader } from "../HtmlColumnHeader";
 import Tooltip from "@material-ui/core/Tooltip";
 import { TAXONOMIC_PROXIMITY_TOOLTIP } from "../ColumnsToolPanel/TooltipDescriptions";
+import { isOrthoDbId, isUniProtId } from "~/utils/utils";
 
 class RnaModificationDataTable extends Component {
   static propTypes = {
@@ -17,11 +18,17 @@ class RnaModificationDataTable extends Component {
   };
 
   getUrl(query, organism) {
+    if (!isOrthoDbId(query) && !isUniProtId(query)) {
+      this.props["set-scene-metadata"]({ coding: false }, true);
+    }
+
     const args = ["ko_number=" + query, "_from=0", "size=10"];
     if (organism) {
       args.push("taxon_distance=true");
       args.push("target_organism=" + organism);
     }
+
+    console.log("rna/modification/get_modifications_by_ko/?" + args.join("&"));
 
     return "rna/modification/get_modifications_by_ko/?" + args.join("&");
   }
@@ -56,8 +63,6 @@ class RnaModificationDataTable extends Component {
         }
       }
     }
-
-    this.props["set-scene-metadata"]({ coding: false }, true);
 
     return formattedData;
   }

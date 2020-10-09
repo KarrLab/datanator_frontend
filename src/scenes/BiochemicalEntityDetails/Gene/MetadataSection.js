@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import BaseMetadataSection from "../MetadataSection";
 import { LoadExternalContent, LoadContent } from "../LoadContent";
-import { naturalSort, isOrthoDbId } from "~/utils/utils";
+import { naturalSort, isOrthoDbId, isUniProtId } from "~/utils/utils";
 
 class MetadataSection extends Component {
   static propTypes = {
@@ -256,8 +256,10 @@ class MetadataSection extends Component {
   getMetadataUrl(query) {
     if (isOrthoDbId(query)) {
       return "kegg/get_meta/?kegg_ids=" + query;
-    } else {
+    } else if (isUniProtId(query)) {
       return "proteins/meta/meta_combo/?uniprot_id=" + query;
+    } else {
+      return null;
     }
   }
 
@@ -294,11 +296,9 @@ class MetadataSection extends Component {
       query +
       "?offset=0&size=10";
 
-    // Todo: check this works after updating KEGG -> OrthoDB
-    processedData.relatedLinksUrl = null;
-    // processedData.relatedLinksUrl =
-    //  "proteins/related/related_reactions_by_kegg/?ko=" +
-    //  processedData.orthoDbId;
+    processedData.relatedLinksUrl =
+      "proteins/related/related_reactions_by_kegg/?ko=" +
+      processedData.orthoDbId;
 
     return processedData;
   }
