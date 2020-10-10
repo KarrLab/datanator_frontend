@@ -28,8 +28,6 @@ class RnaModificationDataTable extends Component {
       args.push("target_organism=" + organism);
     }
 
-    console.log("rna/modification/get_modifications_by_ko/?" + args.join("&"));
-
     return "rna/modification/get_modifications_by_ko/?" + args.join("&");
   }
 

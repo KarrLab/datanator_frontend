@@ -2,6 +2,14 @@
   #root {
     .header-component {
       position: static;
+
+      .search-container {
+        display: none;
+      }
+
+      .page-links {
+        display: none;
+      }
     }
 
     .content-container {
