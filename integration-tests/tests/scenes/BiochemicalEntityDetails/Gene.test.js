@@ -10,12 +10,10 @@ describe("Gene scene", function () {
     cy.visit(url);
 
     // page title
-    /*
     cy.get(".page-title").should(
       "have.text",
       "Gene: Glucose-1-phosphate thymidylyltransferase in " + organism
     );
-    */
 
     // data table
     const dataContainerId = "#protein-abundance";
