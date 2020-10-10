@@ -83,8 +83,8 @@ class Tutorial extends Component {
                     <ul>
                       <li>Ortholog group, gene and protein names</li>
                       <li>
-                        Identifiers: OrthoDB orthology, Entrez (gene), UniProt
-                        (protein)
+                        Identifiers: OrthoDB (ortholog group), Entrez (gene),
+                        UniProt (protein)
                       </li>
                       <li>Reactions: EC numbers of catalyzed reactions</li>
                     </ul>

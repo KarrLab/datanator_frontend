@@ -510,8 +510,8 @@ class About extends Component {
                       Tanimoto distance
                     </a>{" "}
                     of their structures. Users can identify measurements of
-                    similar proteins according to their orthology (sequence
-                    similarity as computed by{" "}
+                    similar RNAs and proteins according to their orthology
+                    (sequence similarity as computed by{" "}
                     <a
                       href={"https://www.orthodb.org/"}
                       target="_blank"

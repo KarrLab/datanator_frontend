@@ -419,30 +419,14 @@ class Home extends Component {
                   Abundances
                 </div>
                 <div className="section-column-description">
-                  2,634,941 measurements of 846,970 proteins from 20,689
-                  ortholog groups in 55 organisms aggregated from{" "}
+                  2,634,941 measurements of 846,970 proteins in 55 organisms
+                  aggregated from{" "}
                   <a
                     href="https://pax-db.org/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     PAXdb
-                  </a>{" "}
-                  and organized with metadata from{" "}
-                  <a
-                    href="https://www.orthodb.org/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    OrthoDB
-                  </a>
-                  , and{" "}
-                  <a
-                    href="https://www.uniprot.org/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    UniProt
                   </a>
                 </div>
 
@@ -628,8 +612,15 @@ class Home extends Component {
                     similar cells and similar environments
                   </div>
                   <div className="vertical-workflow-el-description">
-                    Select a metabolite, RNA, protein, or reaction class (e.g.,
-                    OrthoDB ortholog group) to obtain potentially relevant
+                    Select a metabolite; RNA or protein class (
+                    <a
+                      href="https://orthodb.org/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      OrthoDB
+                    </a>{" "}
+                    ortholog group); or reaction to obtain potentially relevant
                     measurements to the entity of interest. Then filter for data
                     about similar entities (e.g., by sequence similarity)
                     measured in similar organisms (by phylogenetic distance) and

@@ -83,7 +83,7 @@ class Faq extends Component {
 
           <div className="faq">
             <div className="faq-q">
-              How can I search for data about classes of genes (orthology
+              How can I search for data about classes of genes (ortholog
               groups)?
             </div>
             <div className="faq-a">
@@ -194,9 +194,9 @@ class Faq extends Component {
                 molecular biology (e.g., similar metabolites, RNA, proteins,
                 reactions) in similar organisms (e.g., neighboring taxa) and
                 environmental conditions (e.g., similar temperature, pH). For
-                mRNA and proteins, this is achieved by displaying measurements
-                of the mRNA/protein of interest, as well as measurements of
-                orthologous mRNAs/proteins.
+                RNA and proteins, this is achieved by displaying measurements of
+                the RNA/protein of interest, as well as measurements of
+                orthologous RNAs/proteins.
               </p>
               <p>
                 <i>Datanator</i> uses OrthoDB&apos;s ortholog groups because
@@ -207,7 +207,7 @@ class Faq extends Component {
               </p>
               <p>
                 <i>Datanator</i> uses orthology rather than gene names to
-                identify similar mRNAs/proteins because gene names are not
+                identify similar RNAs/proteins because gene names are not
                 consistent across organisms (similar genes can have different
                 names, and genes with similar names can have dissimilar
                 sequences). Similarly, <i>Datanator</i> uses orthology rather
