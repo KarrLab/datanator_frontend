@@ -11,7 +11,7 @@ const JSON5 = require("json5");
 const ROOT_URL = process.env.REACT_APP_REST_SERVER;
 const IS_DEVELOPMENT = process.env.NODE_ENV.startsWith("development");
 const IS_TEST = process.env.NODE_ENV.startsWith("test");
-const USE_CACHE = false && process.env.REACT_APP_REST_CACHE === "1";
+const USE_CACHE = process.env.REACT_APP_REST_CACHE === "1";
 
 localforage.defineDriver(memoryDriver);
 
