@@ -1,4 +1,4 @@
-license-checker --production --excludePackages datanator_frontend@0.1.0 --out LICENSE-THIRD-PARTY
+license-checker --production --excludePackages datanator_frontend@0.2.0 --out LICENSE-THIRD-PARTY
 
 # Remove local paths
 cwd=`pwd`
