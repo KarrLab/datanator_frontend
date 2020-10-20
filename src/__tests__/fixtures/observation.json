@@ -1,0 +1,149 @@
+{
+    "_id": {
+        "$oid": "5efba9e5a8c2d4a8d415b06a"
+    },
+    "identifier": {
+        "namespace": "inchikey",
+        "value": "TYEYBOSBBBHJIV-UHFFFAOYSA-N"
+    },
+    "entity": {
+        "type": "metabolite",
+        "name": "2-Ketobutyric acid",
+        "identifiers": [
+            {
+                "namespace": "inchikey",
+                "value": "TYEYBOSBBBHJIV-UHFFFAOYSA-N"
+            }
+        ]
+    },
+    "genotype": {
+        "taxon": {
+            "ncbi_taxonomy_id": 4932,
+            "name": "Saccharomyces cerevisiae",
+            "canon_ancestors": [
+                {
+                    "ncbi_taxonomy_id": 131567,
+                    "name": "cellular organisms"
+                },
+                {
+                    "ncbi_taxonomy_id": 2759,
+                    "name": "Eukaryota"
+                },
+                {
+                    "ncbi_taxonomy_id": 4751,
+                    "name": "Fungi"
+                },
+                {
+                    "ncbi_taxonomy_id": 4890,
+                    "name": "Ascomycota"
+                },
+                {
+                    "ncbi_taxonomy_id": 4891,
+                    "name": "Saccharomycetes"
+                },
+                {
+                    "ncbi_taxonomy_id": 4892,
+                    "name": "Saccharomycetales"
+                },
+                {
+                    "ncbi_taxonomy_id": 4893,
+                    "name": "Saccharomycetaceae"
+                },
+                {
+                    "ncbi_taxonomy_id": 4930,
+                    "name": "Saccharomyces"
+                }
+            ]
+        }
+    },
+    "schema_version": "2.0",
+    "source": [
+        {
+            "namespace": "YMDB",
+            "value": "YMDB00071",
+            "level": "secondary"
+        }
+    ],
+    "values": [
+        {
+            "type": "cellular_location",
+            "value": "mitochondrion"
+        },
+        {
+            "type": "cellular_location",
+            "value": "cytoplasm"
+        },
+        {
+            "type": "logp",
+            "value": "0.77"
+        },
+        {
+            "type": "pka_strongest_acidic",
+            "value": "3.19"
+        },
+        {
+            "type": "pka_strongest_basic",
+            "value": "-9.7"
+        },
+        {
+            "type": "iupac",
+            "value": "2-oxobutanoic acid"
+        },
+        {
+            "type": "average_mass",
+            "value": "102.0886"
+        },
+        {
+            "type": "mono_mass",
+            "value": "102.031694058"
+        },
+        {
+            "type": "smiles",
+            "value": "[H]OC(=O)C(=O)C([H])([H])C([H])([H])[H]"
+        },
+        {
+            "type": "formula",
+            "value": "C4H6O3"
+        },
+        {
+            "type": "inchi",
+            "value": "InChI=1S/C4H6O3/c1-2-3(5)4(6)7/h2H2,1H3,(H,6,7)"
+        },
+        {
+            "type": "inchikey",
+            "value": "TYEYBOSBBBHJIV-UHFFFAOYSA-N"
+        },
+        {
+            "type": "polar_surface_area",
+            "value": "54.37"
+        },
+        {
+            "type": "refractivity",
+            "value": "22.62"
+        },
+        {
+            "type": "polarizability",
+            "value": "9.2"
+        },
+        {
+            "type": "rotatable_bond_count",
+            "value": "2"
+        },
+        {
+            "type": "acceptor_count",
+            "value": "3"
+        },
+        {
+            "type": "donor_count",
+            "value": "1"
+        },
+        {
+            "type": "physiological_charge",
+            "value": "-1"
+        },
+        {
+            "type": "formal_charge",
+            "value": "0"
+        }
+    ]
+}
