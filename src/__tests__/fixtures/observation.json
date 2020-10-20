@@ -1,7 +1,4 @@
 {
-    "_id": {
-        "$oid": "5efba9e5a8c2d4a8d415b06a"
-    },
     "identifier": {
         "namespace": "inchikey",
         "value": "TYEYBOSBBBHJIV-UHFFFAOYSA-N"
