@@ -1,0 +1,478 @@
+{
+    "description": "Adenosine triphosphate (ATP) is an adenine nucleotide. ATP occurs in all known life forms as a high-energy intermediate which transports chemical energy within cells for metabolism. It is produced by photophosphorylation and cellular respiration. It is used as a substrate in signal transduction pathways, by kinases that phosphorylate proteins and lipids, and by adenylate cyclase which uses ATP to produce the second messenger molecule cyclic AMP.",
+    "identifiers": [
+        {
+            "namespace": "inchikey",
+            "value": "ZKHQWZAMYRWXGA-KQYNXXCUSA-N"
+        },
+        {
+            "namespace": "biocyc_id",
+            "value": "ATP"
+        },
+        {
+            "namespace": "cas_registry_number",
+            "value": "56-65-5"
+        },
+        {
+            "namespace": "chemical_formula",
+            "value": "C10H16N5O13P3"
+        },
+        {
+            "namespace": "chemspider_id",
+            "value": "5742"
+        },
+        {
+            "namespace": "hmdb_id",
+            "value": "HMDB00538"
+        },
+        {
+            "namespace": "inchi",
+            "value": "InChI=1S/C10H16N5O13P3/c11-8-5-9(13-2-12-8)15(3-14-5)10-7(17)6(16)4(26-10)1-25-30(21,22)28-31(23,24)27-29(18,19)20/h2-4,6-7,10,16-17H,1H2,(H,21,22)(H,23,24)(H2,11,12,13)(H2,18,19,20)/t4-,6-,7-,10-/m1/s1"
+        },
+        {
+            "namespace": "kegg_id",
+            "value": "C00002"
+        },
+        {
+            "namespace": "m2m_id",
+            "value": "M2MDB000148"
+        },
+        {
+            "namespace": "pubchem_compound_id",
+            "value": "5957"
+        },
+        {
+            "namespace": "smiles",
+            "value": "[H]O[C@]1([H])[C@]([H])(O[H])[C@]([H])(O[C@@]1([H])N1C([H])=NC2=C1N=C([H])N=C2N([H])[H])C([H])([H])OP(=O)(O[H])OP(=O)(O[H])OP(=O)(O[H])O[H]"
+        },
+        {
+            "namespace": "ymdb_id",
+            "value": "YMDB00109"
+        },
+        {
+            "namespace": "average_molecular_weight",
+            "value": "507.181"
+        }
+    ],
+    "name": "Adenosine triphosphate",
+    "related": [
+        {
+            "description": "Purine metabolism",
+            "namespace": "kegg_map_id",
+            "value": "00230"
+        },
+        {
+            "description": "Oxidative phosphorylation",
+            "namespace": "kegg_map_id",
+            "value": "00190"
+        },
+        {
+            "description": "Methane metabolism",
+            "namespace": "kegg_map_id",
+            "value": "00680"
+        },
+        {
+            "description": "Amino sugar and nucleotide sugar metabolism",
+            "namespace": "kegg_map_id",
+            "value": "00520"
+        },
+        {
+            "description": "Asparagine metabolism",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "beta-Alanine metabolism",
+            "namespace": "kegg_map_id",
+            "value": "00410"
+        },
+        {
+            "description": "Biosynthesis of unsaturated fatty acids",
+            "namespace": "kegg_map_id",
+            "value": "01040"
+        },
+        {
+            "description": "Biosynthesis of unsaturated fatty acids (docosanoyl)",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Biosynthesis of unsaturated fatty acids (icosanoyl)",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Biosynthesis of unsaturated fatty acids (stearoyl)",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Biosynthesis of unsaturated fatty acids (tetracosanoyl-CoA)",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Biotin Biosynthesis",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Cholesterol biosynthesis and metabolism CE(10:0)",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Cholesterol biosynthesis and metabolism CE(12:0)",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Cholesterol biosynthesis and metabolism CE(14:0)",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Cholesterol biosynthesis and metabolism CE(16:0)",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Cholesterol biosynthesis and metabolism CE(18:0)",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Choline metabolism",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Citric Acid Cycle",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Citric Acid Cycle 1434561204",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Cysteine Metabolism",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Ethanol fermentation",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Fatty acid metabolism",
+            "namespace": "kegg_map_id",
+            "value": "00071"
+        },
+        {
+            "description": "Fructose Metabolism",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Glutathione metabolism",
+            "namespace": "kegg_map_id",
+            "value": "00480"
+        },
+        {
+            "description": "Glycerol metabolism",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Glycerophospholipid metabolism",
+            "namespace": "kegg_map_id",
+            "value": "00564"
+        },
+        {
+            "description": "Glycolysis I",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Histidine Biosynthesis",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Inositol Metabolism",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Inositol phosphate metabolism",
+            "namespace": "kegg_map_id",
+            "value": "00562"
+        },
+        {
+            "description": "Leloir Pathway",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Lipoic acid metabolism",
+            "namespace": "kegg_map_id",
+            "value": "00785"
+        },
+        {
+            "description": "Lysolipid incorporation into ER",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Lysolipid incorporation into ER PC(10:0/10:0)",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Lysolipid incorporation into ER PC(14:0/14:0)",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Lysolipid incorporation into ER PC(16:0/16:0)",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Lysolipid incorporation into ER PC(16:1(11Z)/16:1(11Z))",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Lysolipid incorporation into ER PC(16:1(9Z)/16:1(9Z))",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Lysolipid incorporation into ER PC(18:0/18:0)",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Lysolipid incorporation into ER PC(18:1(9Z)/18:1(9Z))",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Lysolipid incorporation into ER PC(18:2(9Z,11Z)/18:2(9Z,11Z))",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Lysolipid incorporation into ER PC(20:4(5Z,8Z,11Z,14Z)/20:4(5Z,8Z,11Z,14Z))",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Lysolipid incorporation into Mitochondria",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Lysolipid incorporation into Mitochondria PC(10:0/10:0)",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Lysolipid incorporation into Mitochondria PC(14:0/14:0)",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Lysolipid incorporation into Mitochondria PC(16:0/16:0)",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Lysolipid incorporation into Mitochondria PC(16:1(11Z)/16:1(11Z))",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Lysolipid incorporation into Mitochondria PC(16:1(9Z)/16:1(9Z))",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Lysolipid incorporation into Mitochondria PC(18:0/18:0)",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Lysolipid incorporation into Mitochondria PC(18:1(9Z)/18:1(9Z))",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Lysolipid incorporation into Mitochondria PC(18:2(9Z,11Z)/18:2(9Z,11Z))",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Lysolipid incorporation into Mitochondria PC(20:4(5Z,8Z,11Z,14Z)/20:4(5Z,8Z,11Z,14Z))",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Mannose Metabolism",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Methionine metabolism and salvage",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "NAD metabolism",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Nitrogen metabolism",
+            "namespace": "kegg_map_id",
+            "value": "00910"
+        },
+        {
+            "description": "Pantothenate and CoA biosynthesis",
+            "namespace": "kegg_map_id",
+            "value": "00770"
+        },
+        {
+            "description": "Proline Metabolism",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Pyruvate metabolism",
+            "namespace": "kegg_map_id",
+            "value": "00620"
+        },
+        {
+            "description": "Selenocompound metabolism",
+            "namespace": "kegg_map_id",
+            "value": "00450"
+        },
+        {
+            "description": "Sphingolipid metabolism",
+            "namespace": "kegg_map_id",
+            "value": "00600"
+        },
+        {
+            "description": "Starch and sucrose metabolism",
+            "namespace": "kegg_map_id",
+            "value": "00500"
+        },
+        {
+            "description": "Steroid biosynthesis",
+            "namespace": "kegg_map_id",
+            "value": "00100"
+        },
+        {
+            "description": "Sulfur metabolism",
+            "namespace": "kegg_map_id",
+            "value": "00920"
+        },
+        {
+            "description": "TCA Cycle",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Terpenoid backbone biosynthesis",
+            "namespace": "kegg_map_id",
+            "value": "00900"
+        },
+        {
+            "description": "Vitamin B1/Thiamine metabolism",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Vitamin B6",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "glycine metabolism",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "lysine metabolism",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "purine nucleotides de novo biosynthesis",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "Pyrimidine metabolism",
+            "namespace": "kegg_map_id",
+            "value": "00240"
+        },
+        {
+            "description": "Riboflavin metabolism",
+            "namespace": "kegg_map_id",
+            "value": "00740"
+        },
+        {
+            "description": "serine metabolism",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "tetrahydrofolate biosynthesis",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "threonine metabolism",
+            "namespace": "kegg_map_id",
+            "value": null
+        },
+        {
+            "description": "xylitol degradation",
+            "namespace": "kegg_map_id",
+            "value": null
+        }
+    ],
+    "schema_version": "2.0",
+    "synonyms": [
+        "5'-(tetrahydrogen triphosphate) Adenosine",
+        "5'-ATP",
+        "Adenosine 5'-triphosphate",
+        "Adenosine 5'-triphosphorate",
+        "Adenosine 5'-triphosphoric acid",
+        "Adenosine triphosphate",
+        "Adenosine triphosphic acid",
+        "Adenylpyrophosphorate",
+        "Adenylpyrophosphoric acid",
+        "Adephos",
+        "Adetol",
+        "Adynol",
+        "Atipi",
+        "ATP",
+        "Atriphos",
+        "Cardenosine",
+        "Fosfobion",
+        "Glucobasin",
+        "Myotriphos",
+        "Phosphobion",
+        "Striadyne",
+        "Triadenyl",
+        "Triphosphaden",
+        "Triphosphoric acid adenosine ester"
+    ],
+    "type": "metabolite"
+}
